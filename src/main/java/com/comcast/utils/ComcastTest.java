@@ -81,6 +81,10 @@ public class ComcastTest {
 	
 	protected Hashtable<String,String> testStatusTable;
 	protected static IDataDump dataDump;
+	
+	public static IDataDump getDataDump(){
+		return dataDump;
+	}
 
 	
 	 @Rule

@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.data.CustomerInfo;
 import com.comcast.reporting.Status;
+import com.comcast.utils.ComcastTest;
 import com.comcast.utils.PerfTransaction;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
@@ -23,6 +24,9 @@ public class CustomerTabPageCM extends Page {
 	public CustomerTabPageCM(WebDriver browser, SeleniumReport report) {
 		super(browser, report);
 	}
+	
+	private String customerName;
+	
 	@FindBy(css = "span#Customer")
 	private WebElement tabCustomer;
 	
@@ -154,7 +158,11 @@ public class CustomerTabPageCM extends Page {
 		  waitForElement(txtCustomerName);
 		  txtCustomerName.click();
 		  txtCustomerName.clear();
-		  txtCustomerName.sendKeys(customerInfo.customerName+RandomNumber());
+		  //updated by harsh to store runtime data into datadump - 8/5/2016
+		  customerName = customerInfo.customerName+RandomNumber();
+		  txtCustomerName.sendKeys(customerName);
+		  ComcastTest.getDataDump().setValue("CustomerName_RT", customerName);
+		  
 		  waitforPageLoadComplete();
 		  report.reportDoneEvent("Enter Customer Name", "Entered Customer Name as ->" +customerInfo.customerName+RandomNumber());
 		  if(waitForElement(txtworkPhone)){
