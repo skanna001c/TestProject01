@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="com.comcast.century.newConnect.newConnect" duration-ms="1098482" started-at="2016-08-01T12:44:32Z" finished-at="2016-08-01T13:02:51Z">
+    <groups>
+    </groups>
+    <test name="Command line test" duration-ms="1098482" started-at="2016-08-01T12:44:32Z" finished-at="2016-08-01T13:02:51Z">
+      <class name="com.comcast.century.newConnect.newConnect">
+        <test-method status="PASS" signature="initializeSummaryReport()[pri:0, instance:com.comcast.century.newConnect.newConnect@2a079c]" name="initializeSummaryReport" is-config="true" duration-ms="262" started-at="2016-08-01T18:14:32Z" finished-at="2016-08-01T18:14:32Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initializeSummaryReport -->
+        <test-method status="PASS" signature="setupData(java.lang.reflect.Method)[pri:0, instance:com.comcast.century.newConnect.newConnect@2a079c]" name="setupData" is-config="true" duration-ms="41718" started-at="2016-08-01T18:14:32Z" finished-at="2016-08-01T18:15:14Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.comcast.century.newConnect.newConnect.New_Connect_ME_EDI_New_connect() throws java.lang.InterruptedException,java.awt.AWTException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupData -->
+        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.comcast.century.newConnect.newConnect@2a079c]" name="openApplication" is-config="true" duration-ms="67380" started-at="2016-08-01T18:15:14Z" finished-at="2016-08-01T18:16:22Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openApplication -->
+        <test-method status="PASS" signature="New_Connect_ME_EDI_New_connect()[pri:0, instance:com.comcast.century.newConnect.newConnect@2a079c]" name="New_Connect_ME_EDI_New_connect" duration-ms="989096" started-at="2016-08-01T18:16:22Z" finished-at="2016-08-01T18:32:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- New_Connect_ME_EDI_New_connect -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.comcast.century.newConnect.newConnect@2a079c]" name="tearDown" is-config="true" duration-ms="2" started-at="2016-08-01T18:32:51Z" finished-at="2016-08-01T18:32:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="endReportSummaryReport()[pri:0, instance:com.comcast.century.newConnect.newConnect@2a079c]" name="endReportSummaryReport" is-config="true" duration-ms="12" started-at="2016-08-01T18:32:51Z" finished-at="2016-08-01T18:32:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- endReportSummaryReport -->
+      </class> <!-- com.comcast.century.newConnect.newConnect -->
+    </test> <!-- Command line test -->
+  </suite> <!-- com.comcast.century.newConnect.newConnect -->
+</testng-results>

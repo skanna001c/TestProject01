@@ -1,0 +1,93 @@
+package com.comcast.century.cso.pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
+
+import com.comcast.century.cm.pages.Page;
+import com.comcast.utils.SeleniumReport;
+
+
+public class PresalesTasksPageCSO extends Page {
+
+	public PresalesTasksPageCSO(WebDriver browser, SeleniumReport report) {
+		super(browser, report);
+		
+	}
+
+	@Override
+	protected boolean isValidPage() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	protected void waitForPageLoad() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@FindBy(xpath = "//*[text()='Conduct Coax Survey']")
+	private WebElement taskConductCoaxSurvey;
+	
+	@FindBy(xpath = "//*[@id='surveyCompDate']/following-sibling::img")
+	private WebElement surveyCompletionDate;
+	
+	@FindBy(xpath = "//button[text()='Today']")
+	private WebElement btnToday;
+	
+	@FindBy(xpath = "//span[text()='Coax Survey Results']")
+	private WebElement tabCoaxSurveyResults;
+	
+	@FindBy(xpath = "//*[@id='comboHomeheadEndNameZip']/following-sibling::img")
+	private WebElement ddArrwHeadendName;
+	
+	@FindBy(xpath = "//div[text()='a1atlanta.ga']")
+	private WebElement ddValueHeadendName;
+	
+	@FindBy(xpath = "//*[@id='nodeNumber']")
+	private WebElement txtNodeNumber;
+	
+	@FindBy(xpath = "//select[@id='serviceable']")
+	private WebElement ddServiceable;
+	
+	@FindBy(xpath = "//input[@value='Complete']")
+	private WebElement btnComplete;
+	
+	@FindBy(xpath = "//button[text()='Yes']")
+	private WebElement btnYes;
+	
+	@FindBy(xpath = "//div[text()='loading...']")
+	private WebElement elementLoading ;
+	
+	public void ConductCoaxSurvey() throws InterruptedException{
+		if(waitForElement(taskConductCoaxSurvey)){
+			taskConductCoaxSurvey.click();
+			waitforPageLoadComplete();
+			waitForElement(surveyCompletionDate);
+			surveyCompletionDate.click();
+			btnToday.click();
+			clickndRelease(tabCoaxSurveyResults);
+			waitForElement(ddArrwHeadendName);
+			ddArrwHeadendName.click();
+		    Thread.sleep(5*1000);
+		    ddValueHeadendName.click();
+			txtNodeNumber.sendKeys(RandomNumber());
+			new Select(ddServiceable).selectByValue("Yes");
+			waitForElement(btnComplete);
+			btnComplete.click();
+			btnYes.click();
+			waitforPageLoadComplete();
+			btnYes.click();
+			waitforPageLoadComplete();	
+		}
+	}
+	
+	
+	
+	
+           
+	
+
+}

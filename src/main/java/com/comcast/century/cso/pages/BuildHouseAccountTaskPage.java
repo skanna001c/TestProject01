@@ -1,0 +1,103 @@
+package com.comcast.century.cso.pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import com.comcast.century.cm.pages.Page;
+import com.comcast.century.data.SiteLevelTaskInfo;
+import com.comcast.utils.SeleniumReport;
+
+public class BuildHouseAccountTaskPage extends Page {
+
+	public BuildHouseAccountTaskPage(WebDriver browser, SeleniumReport report) {
+		super(browser, report);
+	}
+
+	@Override
+	protected boolean isValidPage() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	protected void waitForPageLoad() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@FindBy(xpath = "//*[@id='RightFrame' and contains(@src,'MyOrder.exc')]")
+	private WebElement frameRight;
+
+	@FindBy(xpath = "//input[@id='comboHomelocalBillerNameMarket']")
+	private WebElement ddTextLocalBillerName;
+	
+	@FindBy(xpath = "//div[text()='DDP']")
+	private WebElement ddValueLocalBillerName;
+	
+	@FindBy(xpath = "//input[@id='localBillerHouseAccountNumber']")
+	private WebElement txtLBHouseAccountNumber;
+	
+	@FindBy(xpath = "//input[@id='comboHomelocalBillerNameMarket']/following-sibling::img")
+	private WebElement txtLocalBillerName;
+	
+	@FindBy(xpath = "//div[text()='CSG']")
+	private WebElement ddValueCSG;
+	
+	@FindBy(xpath = "//div[text()='DDP']")
+	private WebElement ddValueDDP;
+	
+	@FindBy(xpath = "//img[@title='Back']")
+	private WebElement btnBack;
+	
+	@FindBy(xpath = "//input[@value='Complete']")
+	private WebElement btnComplete;
+	
+	@FindBy(xpath = "//input[@value='Save']")
+	private WebElement btnSave;
+	
+	@FindBy(xpath = "//input[@value='Reset']")
+	private WebElement btnReset;
+	
+	@FindBy(xpath = "//div[text()='loading...']")
+	private WebElement elementLoading ;
+	
+	public void BuildHouseAccount(SiteLevelTaskInfo siteLevelTaskInfo){
+		try{
+			waitforPageLoadComplete();
+			waitForElement(txtLocalBillerName);
+			txtLocalBillerName.click();
+			waitForElement(ddValueCSG);
+			ddValueCSG.click();
+			waitForElement(txtLBHouseAccountNumber);
+			txtLBHouseAccountNumber.sendKeys(siteLevelTaskInfo.localBillerHouseAccountNumber);
+			this.ClickCompleteButton();
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public void ClickBackButton(){
+		if(waitForElement(btnBack)){
+			btnBack.click();
+		}
+	}
+	
+	public void ClickSaveButton(){
+		if(waitForElement(btnSave)){
+			btnSave.click();
+		}
+	}
+	
+	public void ClickCompleteButton(){
+		if(waitForElement(btnComplete)){
+			btnComplete.click();
+			waitforPageLoadComplete();
+			report.reportDoneEvent("Complete BuildHouseAccount Task", " BuildHouseAccount Task Completed");
+		}
+	}
+	
+	
+	
+
+}

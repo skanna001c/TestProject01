@@ -1,0 +1,63 @@
+package com.comcast.century.cso.pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import com.comcast.century.cm.pages.Page;
+import com.comcast.reporting.Status;
+import com.comcast.utils.SeleniumReport;
+
+public class EqFeeFlowTasks extends Page {
+          
+	public EqFeeFlowTasks(WebDriver browser, SeleniumReport report){
+		super(browser, report);
+	}
+
+	@Override
+	protected boolean isValidPage() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	protected void waitForPageLoad() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@FindBy(xpath = "//img[@title='Back']")
+	private WebElement btnBack;
+	
+	@FindBy(xpath = "//div[@class[contains(.,'refresh')]]")
+	private WebElement btnRefresh;
+	
+	@FindBy(xpath = "//*[text()='Start Billing']")
+	private WebElement taskEqFeeStartBilling;
+	
+	@FindBy(xpath = "//div[text()='loading...']")
+	private WebElement elementLoading ;
+	
+	public void EqFeeStartBilling() throws InterruptedException{
+		if(waitForElement(taskEqFeeStartBilling)){
+			if(checkifStatusChanged(taskEqFeeStartBilling,btnRefresh,"COMPLETED")){
+				waitForElement(taskEqFeeStartBilling);
+				Thread.sleep(5*1000);
+				jsClick(taskEqFeeStartBilling);
+				report.reportDoneEvent("Click EqFeeStartBilling Task", " EqFeeStartBilling Task Clicked");
+			}
+			waitforPageLoadComplete();
+		}
+	}
+	
+	public void ClickBackButton() throws InterruptedException{
+		if(waitForElement(btnBack)){
+			clickndRelease(btnBack);
+			//btnBack.click();
+			waitforPageLoadComplete();
+			waitForElementDisappear(elementLoading);
+			report.updateTestLog("Validate", "EqFee Flow Task Completed", Status.SCREENSHOT);
+		}
+	}
+
+}
