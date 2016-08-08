@@ -51,3 +51,6 @@ local.properties
 
 #TestNG
 .test-output
+
+*.class
+*.properties
