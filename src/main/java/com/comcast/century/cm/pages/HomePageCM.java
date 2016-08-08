@@ -35,6 +35,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.comcast.reporting.*;
+import com.comcast.utils.ComcastTest;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
 import com.comcast.utils.TestUtils;
@@ -74,6 +75,9 @@ public class HomePageCM extends Page {
 	@FindBy(xpath = "//*[@id='mainFrame']")
 	private WebElement frameMain;
 	
+	@FindBy(xpath = "//*[@id='leftFrame']")
+	private WebElement frameLeft;
+	
 	//*[@id='customerNameCombo-inputEl']
 	
 	@FindBy(xpath = "//input[@id='customerNameCombo-inputEl']")
@@ -112,6 +116,33 @@ public class HomePageCM extends Page {
 		 browser.switchTo().defaultContent();
 		 Thread.sleep(10000);
 		 //waitforPageLoadComplete(); 
+	}
+	
+	//added by harsh on 8/8 to ensure continuity in packaged execution
+	public void searchCustomer(){
+		String custName = ComcastTest.getDataDump().getValue("CustomerName_RT");
+		//leftframe
+		/*waitforPageLoadComplete();
+		WaitandSwitchToFrame(frameLeft);
+		WebElement elem = browser.findElement(By.xpath("//span[@class=\"standartTreeRow\" and contains(.,'"+custName+"')]"));
+		if(shortWaitForElement(elem)) {
+			elem.click();
+			
+		}else{
+*/			//span[@class="standartTreeRow" and contains(.,'ProdTest_ENT_R16.07_EDI_NC56515')]
+			waitforPageLoadComplete();
+			 WaitandSwitchToFrame(frameMain);
+			 
+			 txtCustomerName.sendKeys(custName);
+			 btnSearch.click();
+			 waitforPageLoadComplete();
+			 browser.findElement(By.xpath("//span[contains(.,'"+custName+"')]")).click();
+				
+		 //clickServiceAcc.click();
+		 waitforPageLoadComplete();
+		 browser.switchTo().defaultContent();
+		
+		
 	}
 	
 	

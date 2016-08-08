@@ -23,7 +23,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -37,7 +37,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" class="navigator-link" panel-name="suite-Suite">
-              <span class="suite-name border-failed">Suite</span>
+              <span class="suite-name border-passed">Suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -90,40 +90,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">7 methods, 1 failed,  2 skipped,  4 passed</span>
-                  </li>
-                  <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-Suite" class="hide-methods failed suite-Suite"> (hide)</a> <!-- hide-methods failed suite-Suite -->
-                      <a href="#" panel-name="suite-Suite" class="show-methods failed suite-Suite"> (show)</a> <!-- show-methods failed suite-Suite -->
-                    </span>
-                    <div class="method-list-content failed suite-Suite">
-                      <span>
-                        <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="com.comcast.century.newConnect.NewConnectTest" hash-for-method="selectService">selectService</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                    </div> <!-- method-list-content failed suite-Suite -->
-                  </li>
-                  <li>
-                    <span class="method-list-title skipped">Skipped methods</span>
-                    <span class="show-or-hide-methods skipped">
-                      <a href="#" panel-name="suite-Suite" class="hide-methods skipped suite-Suite"> (hide)</a> <!-- hide-methods skipped suite-Suite -->
-                      <a href="#" panel-name="suite-Suite" class="show-methods skipped suite-Suite"> (show)</a> <!-- show-methods skipped suite-Suite -->
-                    </span>
-                    <div class="method-list-content skipped suite-Suite">
-                      <span>
-                        <img width="3%" src="skipped.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="com.comcast.century.newConnect.NewConnectTest" hash-for-method="processService">processService</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img width="3%" src="skipped.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="com.comcast.century.newConnect.NewConnectTest" hash-for-method="submitOrder">submitOrder</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                    </div> <!-- method-list-content skipped suite-Suite -->
+                    <span class="method-stats">6 methods,   6 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -144,12 +111,22 @@
                       <br/>
                       <span>
                         <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="com.comcast.century.newConnect.NewConnectTest" hash-for-method="createCustomer">createCustomer</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="com.comcast.century.newConnect.NewConnectTest" hash-for-method="createServiceAccount">createServiceAccount</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="com.comcast.century.newConnect.NewConnectTest" hash-for-method="createServiceAccount">createServiceAccount</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="com.comcast.century.newConnect.NewConnectTest" hash-for-method="processService">processService</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="com.comcast.century.newConnect.NewConnectTest" hash-for-method="selectService">selectService</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="com.comcast.century.newConnect.NewConnectTest" hash-for-method="submitOrder">submitOrder</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Suite -->
@@ -164,87 +141,6 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Suite" class="panel Suite">
-          <div class="suite-Suite-class-failed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
-              <span class="class-name">com.comcast.century.newConnect.NewConnectTest</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="selectService">
-                  </a> <!-- selectService -->
-                  <span class="method-name">selectService</span>
-                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//*[@id=&apos;loadSelectedProducts&apos;]&quot;}
-Command duration or timeout: 10.18 seconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.53.1&apos;, revision: &apos;a36b8b1cd5757287168e54b817830adce9b0158d&apos;, time: &apos;2016-06-30 19:26:09&apos;
-System info: host: &apos;HQSWL-335593&apos;, ip: &apos;10.20.205.250&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_77&apos;
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities [{applicationCacheEnabled=true, rotatable=false, handlesAlerts=true, databaseEnabled=true, version=47.0.1, platform=WINDOWS, nativeEvents=false, acceptSslCerts=true, webStorageEnabled=true, locationContextEnabled=true, browserName=firefox, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: ba63eb5d-e631-45d9-ac07-6a312598e363
-*** Element info: {Using=xpath, value=//*[@id=&apos;loadSelectedProducts&apos;]}
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:500)
-	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
-	at org.openqa.selenium.support.ThreadGuard$WebDriverInvocationHandler.invokeUnderlying(ThreadGuard.java:100)
-	at org.openqa.selenium.support.ThreadGuard$WebDriverInvocationHandler.invoke(ThreadGuard.java:92)
-	at com.sun.proxy.$Proxy10.findElement(Unknown Source)
-	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
-	at com.sun.proxy.$Proxy12.getCoordinates(Unknown Source)
-	at org.openqa.selenium.interactions.internal.MouseAction.getActionLocation(MouseAction.java:51)
-	at org.openqa.selenium.interactions.MoveMouseAction.perform(MoveMouseAction.java:39)
-	at org.openqa.selenium.interactions.CompositeAction.perform(CompositeAction.java:50)
-	at org.openqa.selenium.interactions.Actions.perform(Actions.java:373)
-	at com.comcast.century.cm.pages.Page.scrollToElementandclick(Page.java:1537)
-	at com.comcast.century.cm.pages.ServiceTabPageCM.ClickOnContinueButton(ServiceTabPageCM.java:182)
-	at com.comcast.century.newConnect.NewConnectTest.selectService(NewConnectTest.java:130)
-Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//*[@id=&apos;loadSelectedProducts&apos;]&quot;}
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.53.1&apos;, revision: &apos;a36b8b1cd5757287168e54b817830adce9b0158d&apos;, time: &apos;2016-06-30 19:26:09&apos;
-System info: host: &apos;HQSWL-335593&apos;, ip: &apos;10.20.205.250&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_77&apos;
-Driver info: driver.version: unknown
-	at &lt;anonymous class&gt;.FirefoxDriver.prototype.findElementInternal_(file:///C:/Users/HBOLAK~1/AppData/Local/Temp/anonymous6524808694353383799webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10770)
-	at &lt;anonymous class&gt;.fxdriver.Timer.prototype.setTimeout/&lt;.notify(file:///C:/Users/HBOLAK~1/AppData/Local/Temp/anonymous6524808694353383799webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:625)
-... Removed 31 stack frames
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Suite-class-failed -->
-          <div class="suite-Suite-class-skipped">
-            <div class="main-panel-header rounded-window-top">
-              <img src="skipped.png"/>
-              <span class="class-name">com.comcast.century.newConnect.NewConnectTest</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="processService">
-                  </a> <!-- processService -->
-                  <span class="method-name">processService</span>
-                  <div class="stack-trace">java.lang.Throwable: Method NewConnectTest.processService()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@1623b78d] depends on not successfully finished methods
-... Removed 17 stack frames
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="submitOrder">
-                  </a> <!-- submitOrder -->
-                  <span class="method-name">submitOrder</span>
-                  <div class="stack-trace">java.lang.Throwable: Method NewConnectTest.submitOrder()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@1623b78d] depends on not successfully finished methods
-... Removed 17 stack frames
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Suite-class-skipped -->
           <div class="suite-Suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
@@ -267,16 +163,30 @@ Driver info: driver.version: unknown
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
-                  <a name="createCustomer">
-                  </a> <!-- createCustomer -->
-                  <span class="method-name">createCustomer</span>
+                  <a name="createServiceAccount">
+                  </a> <!-- createServiceAccount -->
+                  <span class="method-name">createServiceAccount</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
-                  <a name="createServiceAccount">
-                  </a> <!-- createServiceAccount -->
-                  <span class="method-name">createServiceAccount</span>
+                  <a name="processService">
+                  </a> <!-- processService -->
+                  <span class="method-name">processService</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="selectService">
+                  </a> <!-- selectService -->
+                  <span class="method-name">selectService</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="submitOrder">
+                  </a> <!-- submitOrder -->
+                  <span class="method-name">submitOrder</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -290,7 +200,7 @@ Driver info: driver.version: unknown
             <pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
-&lt;suite guice-stage=&quot;DEVELOPMENT&quot; name=&quot;Suite&quot;&gt;
+&lt;suite guice-stage=&quot;DEVELOPMENT&quot; name=&quot;Suite&quot; parallel=&quot;tests&quot;&gt;
   &lt;listeners&gt;
     &lt;listener class-name=&quot;com.comcast.utils.TestFilter&quot;/&gt;
     &lt;listener class-name=&quot;com.comcast.utils.CustomAnnotationListener&quot;/&gt;
@@ -337,40 +247,36 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(7);
+data.addRows(6);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'createBillingAccount')
+data.setCell(0, 1, 'processService')
 data.setCell(0, 2, 'com.comcast.century.newConnect.NewConnectTest')
-data.setCell(0, 3, 46116);
+data.setCell(0, 3, 121153);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'createAddress')
+data.setCell(1, 1, 'submitOrder')
 data.setCell(1, 2, 'com.comcast.century.newConnect.NewConnectTest')
-data.setCell(1, 3, 34689);
+data.setCell(1, 3, 53135);
 data.setCell(2, 0, 2)
 data.setCell(2, 1, 'selectService')
 data.setCell(2, 2, 'com.comcast.century.newConnect.NewConnectTest')
-data.setCell(2, 3, 31285);
+data.setCell(2, 3, 52905);
 data.setCell(3, 0, 3)
-data.setCell(3, 1, 'createServiceAccount')
+data.setCell(3, 1, 'createBillingAccount')
 data.setCell(3, 2, 'com.comcast.century.newConnect.NewConnectTest')
-data.setCell(3, 3, 28963);
+data.setCell(3, 3, 43523);
 data.setCell(4, 0, 4)
-data.setCell(4, 1, 'createCustomer')
+data.setCell(4, 1, 'createAddress')
 data.setCell(4, 2, 'com.comcast.century.newConnect.NewConnectTest')
-data.setCell(4, 3, 17724);
+data.setCell(4, 3, 37467);
 data.setCell(5, 0, 5)
-data.setCell(5, 1, 'processService')
+data.setCell(5, 1, 'createServiceAccount')
 data.setCell(5, 2, 'com.comcast.century.newConnect.NewConnectTest')
-data.setCell(5, 3, 0);
-data.setCell(6, 0, 6)
-data.setCell(6, 1, 'submitOrder')
-data.setCell(6, 2, 'com.comcast.century.newConnect.NewConnectTest')
-data.setCell(6, 3, 0);
+data.setCell(5, 3, 33874);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 2 minutes</span>
+              <span class="suite-total-time">Total running time: 5 minutes</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -398,126 +304,144 @@ return data;
             <div class="chronological-class">
               <div class="chronological-class-name">com.comcast.century.newConnect.NewConnectTest</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
-                <span class="method-name">beforeTestMain(org.testng.TestRunner@7479b626)</span>
+                <span class="method-name">beforeTestMain(org.testng.TestRunner@58c1670b)</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-test before -->
               <div class="configuration-test before">
                 <span class="method-name">beforeTest</span>
-                <span class="method-start">15217 ms</span>
+                <span class="method-start">6039 ms</span>
               </div> <!-- configuration-test before -->
               <div class="configuration-method before">
-                <span class="method-name">setupData(public void com.comcast.century.newConnect.NewConnectTest.createCustomer())</span>
-                <span class="method-start">30745 ms</span>
-              </div> <!-- configuration-method before -->
-              <div class="configuration-method before">
                 <span class="method-name">beforeMethod</span>
-                <span class="method-start">30746 ms</span>
-              </div> <!-- configuration-method before -->
-              <div class="test-method">
-                <span class="method-name">createCustomer</span>
-                <span class="method-start">30746 ms</span>
-              </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">afterMethod</span>
-                <span class="method-start">48472 ms</span>
-              </div> <!-- configuration-method after -->
-              <div class="configuration-method after">
-                <span class="method-name">tearDown([TestResult name=createCustomer status=SUCCESS method=NewConnectTest.createCustomer()[pri:0, instanc...)</span>
-                <span class="method-start">48472 ms</span>
-              </div> <!-- configuration-method after -->
-              <div class="configuration-method before">
-                <span class="method-name">beforeMethod</span>
-                <span class="method-start">48475 ms</span>
+                <span class="method-start">18317 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">createServiceAccount</span>
-                <span class="method-start">48475 ms</span>
+                <span class="method-start">18317 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method before">
                 <span class="method-name">setupData(public void com.comcast.century.newConnect.NewConnectTest.createServiceAccount() throws java.lang.In...)</span>
-                <span class="method-start">48475 ms</span>
+                <span class="method-start">18317 ms</span>
               </div> <!-- configuration-method before -->
               <div class="configuration-method after">
                 <span class="method-name">afterMethod</span>
-                <span class="method-start">77439 ms</span>
+                <span class="method-start">52197 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown([TestResult name=createServiceAccount status=SUCCESS method=NewConnectTest.createServiceAccount()[pr...)</span>
-                <span class="method-start">77440 ms</span>
+                <span class="method-start">52197 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method before">
-                <span class="method-name">setupData(public void com.comcast.century.newConnect.NewConnectTest.createBillingAccount())</span>
-                <span class="method-start">77443 ms</span>
-              </div> <!-- configuration-method before -->
-              <div class="configuration-method before">
                 <span class="method-name">beforeMethod</span>
-                <span class="method-start">77444 ms</span>
+                <span class="method-start">52199 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">createBillingAccount</span>
-                <span class="method-start">77444 ms</span>
+                <span class="method-start">52199 ms</span>
               </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">setupData(public void com.comcast.century.newConnect.NewConnectTest.createBillingAccount())</span>
+                <span class="method-start">52199 ms</span>
+              </div> <!-- configuration-method before -->
               <div class="configuration-method after">
                 <span class="method-name">afterMethod</span>
-                <span class="method-start">123561 ms</span>
+                <span class="method-start">95726 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown([TestResult name=createBillingAccount status=SUCCESS method=NewConnectTest.createBillingAccount()[pr...)</span>
-                <span class="method-start">123561 ms</span>
+                <span class="method-start">95726 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method before">
                 <span class="method-name">beforeMethod</span>
-                <span class="method-start">123567 ms</span>
+                <span class="method-start">95730 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">createAddress</span>
-                <span class="method-start">123567 ms</span>
+                <span class="method-start">95730 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method before">
                 <span class="method-name">setupData(public void com.comcast.century.newConnect.NewConnectTest.createAddress() throws java.lang.Interrupt...)</span>
-                <span class="method-start">123567 ms</span>
+                <span class="method-start">95730 ms</span>
               </div> <!-- configuration-method before -->
               <div class="configuration-method after">
                 <span class="method-name">afterMethod</span>
-                <span class="method-start">158257 ms</span>
+                <span class="method-start">133200 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method after">
-                <span class="method-name">tearDown([TestResult name=createAddress status=SUCCESS method=NewConnectTest.createAddress()[pri:0, instance:...)</span>
-                <span class="method-start">158257 ms</span>
+                <span class="method-name">tearDown([TestResult name=createAddress status=SUCCESS method=NewConnectTest.createAddress()[pri:4, instance:...)</span>
+                <span class="method-start">133200 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method before">
                 <span class="method-name">beforeMethod</span>
-                <span class="method-start">158260 ms</span>
+                <span class="method-start">133202 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
                 <span class="method-name">selectService</span>
-                <span class="method-start">158260 ms</span>
+                <span class="method-start">133202 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method before">
                 <span class="method-name">setupData(public void com.comcast.century.newConnect.NewConnectTest.selectService() throws java.lang.Interrupt...)</span>
-                <span class="method-start">158260 ms</span>
+                <span class="method-start">133202 ms</span>
               </div> <!-- configuration-method before -->
               <div class="configuration-method after">
                 <span class="method-name">afterMethod</span>
-                <span class="method-start">189553 ms</span>
+                <span class="method-start">186116 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method after">
-                <span class="method-name">tearDown([TestResult name=selectService status=FAILURE method=NewConnectTest.selectService()[pri:0, instance:...)</span>
-                <span class="method-start">189553 ms</span>
+                <span class="method-name">tearDown([TestResult name=selectService status=SUCCESS method=NewConnectTest.selectService()[pri:5, instance:...)</span>
+                <span class="method-start">186116 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">beforeMethod</span>
+                <span class="method-start">186118 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">processService</span>
+                <span class="method-start">186118 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">setupData(public void com.comcast.century.newConnect.NewConnectTest.processService() throws java.lang.Interrup...)</span>
+                <span class="method-start">186118 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method after">
+                <span class="method-name">afterMethod</span>
+                <span class="method-start">307277 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown([TestResult name=processService status=SUCCESS method=NewConnectTest.processService()[pri:6, instanc...)</span>
+                <span class="method-start">307277 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">beforeMethod</span>
+                <span class="method-start">307279 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">setupData(public void com.comcast.century.newConnect.NewConnectTest.submitOrder() throws java.lang.Interrupted...)</span>
+                <span class="method-start">307279 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">submitOrder</span>
+                <span class="method-start">307279 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">afterMethod</span>
+                <span class="method-start">360417 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown([TestResult name=submitOrder status=SUCCESS method=NewConnectTest.submitOrder()[pri:7, instance:com....)</span>
+                <span class="method-start">360417 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-class after">
                 <span class="method-name">endReportSummaryReport</span>
-                <span class="method-start">189560 ms</span>
+                <span class="method-start">360419 ms</span>
               </div> <!-- configuration-class after -->
               <div class="configuration-test after">
                 <span class="method-name">afterTest</span>
-                <span class="method-start">189562 ms</span>
+                <span class="method-start">360422 ms</span>
               </div> <!-- configuration-test after -->
               <div class="configuration-test after">
                 <span class="method-name">afterTestMain</span>
-                <span class="method-start">189562 ms</span>
+                <span class="method-start">360422 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

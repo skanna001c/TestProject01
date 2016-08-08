@@ -1,30 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]" parallel="tests">
   <listeners>
     <listener class-name="com.comcast.utils.TestFilter"/>
     <listener class-name="com.comcast.utils.CustomAnnotationListener"/>
   </listeners>
-  <test name="New_Connect_ME_EDI_New_connect(failed)">
+  <test name="New_Connect_ME_EDI_New_connect(failed)" parallel="tests">
     <classes>
       <class name="com.comcast.century.newConnect.NewConnectTest">
         <methods>
           <include name="createServiceAccount"/>
-          <include name="afterMethod"/>
-          <include name="afterTest"/>
-          <include name="createAddress"/>
-          <include name="tearDown"/>
-          <include name="createBillingAccount"/>
-          <include name="endReportSummaryReport"/>
-          <include name="createCustomer"/>
           <include name="beforeTest"/>
           <include name="selectService"/>
           <include name="submitOrder"/>
           <include name="beforeTestMain"/>
-          <include name="setupData"/>
+          <include name="createAddress"/>
+          <include name="createBillingAccount"/>
           <include name="processService"/>
-          <include name="beforeMethod"/>
-          <include name="afterTestMain"/>
         </methods>
       </class> <!-- com.comcast.century.newConnect.NewConnectTest -->
     </classes>

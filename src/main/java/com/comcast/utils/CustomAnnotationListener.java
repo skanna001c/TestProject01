@@ -29,6 +29,7 @@ public class CustomAnnotationListener implements IInvokedMethodListener2 {
 		//System.out.println("The transaction with name: " + name + " started at :" + startTime);
 		//System.out.println("The transaction with name: " + name + " ended at :" + endTime);
 		System.out.println("The transaction with name: " + name + " took :" + duration + " secs");
+	    ComcastTest.report.reportDoneEvent(name,"The transaction with name: " + name + " took :" + duration + " secs");
 		
 
 	}

@@ -68,7 +68,7 @@ public class ComcastTest {
 	
 	public Method testName;
 	protected DataTable dataTable; // updated by harsh on 8/4
-	public SeleniumReport report;
+	public static SeleniumReport report;
 	protected static SeleniumReport reportSummary;
 	
 	protected WebDriver browser;
@@ -208,7 +208,7 @@ public class ComcastTest {
     {
 
 		String reportPath=ReportPath.getInstance().getReportPath();
-		ReportSettings reportSettings = new ReportSettings(reportPath, "Einstein 360 Execution Summary");
+		ReportSettings reportSettings = new ReportSettings(reportPath, "Execution Summary");
 		reportSettings.generateExcelReports=false;
 		reportSettings.generateHtmlReports=true;
 		reportSettings.includeTestDataInReport=false;
@@ -219,7 +219,7 @@ public class ComcastTest {
  	//Result Summary
 		reportSummary.initializeReportTypes();
 		reportSummary.initializeResultSummary();
-		reportSummary.addResultSummaryHeading("Einstein 360 Execution Summary");
+		reportSummary.addResultSummaryHeading("Execution Summary");
 		reportSummary.addResultSummarySubHeading("Component", "TestCaseName", "Time", "Status");
 		//reportSummary.addResultSummarySubHeading(subHeading1, subHeading2, subHeading3, subHeading4);\
 		
@@ -286,7 +286,7 @@ public class ComcastTest {
 	@BeforeMethod
 	public synchronized void setupData(Method testName) {
 		
-		System.out.println("inside comcast test before method: "+ testName.getName());
+		//System.out.println("inside comcast test before method: "+ testName.getName());
 		
 		if(settings==null)
 			settings=new TestSettings();
@@ -377,6 +377,11 @@ public class ComcastTest {
 		
 		dataDump.setValue(result.getMethod().getMethodName() + "_status", methodStatus);
 		if(methodStatus.equalsIgnoreCase("fail")){
+			try {
+				dataDump.dumpData(dataTable.getDataTable());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			throw new SkipException("Test method: "+result.getMethod().getMethodName()+" failed. Quitting the test as other methods depend on it");
 
 		}

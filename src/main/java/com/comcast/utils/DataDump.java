@@ -1,5 +1,6 @@
 package com.comcast.utils;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -61,7 +62,13 @@ public class DataDump implements IDataDump {
 			properties.put(key,dumpTable.get(key));
 			
 		}
-		properties.store(new FileOutputStream("dump_"+ testName + ".properties"), "Dumping data to properties file");
+		File file = new File("C:\\dump\\dump_"+ testName + ".properties");
+		if(!file.exists()){
+			file.getParentFile().mkdirs();
+			file.createNewFile();
+		}
+		
+		properties.store(new FileOutputStream("C:\\dump\\dump_"+ testName + ".properties"), "Dumping data to properties file");
 	}
 	
 	/* (non-Javadoc)
@@ -71,7 +78,7 @@ public class DataDump implements IDataDump {
 	public Hashtable<String,String> loadData(){
 
 		try {
-			properties.load(new FileInputStream("dump_"+ testName + ".properties"));
+			properties.load(new FileInputStream("C:\\dump\\dump_"+ testName + ".properties"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

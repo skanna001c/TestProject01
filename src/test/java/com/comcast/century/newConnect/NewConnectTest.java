@@ -13,6 +13,7 @@ import com.comcast.century.cm.pages.AddressTabPageCM;
 import com.comcast.century.cm.pages.ContactTabPageCM;
 import com.comcast.century.cm.pages.CustomerTabPageCM;
 import com.comcast.century.cm.pages.FeatureTabPageCM;
+import com.comcast.century.cm.pages.HomePageCM;
 import com.comcast.century.cm.pages.OrderSummaryTabCMPage;
 import com.comcast.century.cm.pages.ProcessTabPageCM;
 import com.comcast.century.cm.pages.ServiceTabPageCM;
@@ -51,6 +52,7 @@ public class NewConnectTest extends ComcastTest {
   public void beforeMethod() {
 	  //check for rerun and the status of the method
 	  
+	  
   }
   
   @BeforeTest
@@ -64,6 +66,12 @@ public class NewConnectTest extends ComcastTest {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//Search for customer if rerun
+		if(settings.getPERerunStatus().equalsIgnoreCase("true")){
+			(new HomePageCM(browser,report)).searchCustomer();
+		}
+		
+		
   }
 	
   @Test(priority=4)
@@ -89,7 +97,7 @@ public class NewConnectTest extends ComcastTest {
 	  
   }
   
-  @Test(priority=2)
+  @Test(priority=3)
   @PerfTransaction(name="createBillingAccount")
   public void createBillingAccount(){
 	  
@@ -112,7 +120,7 @@ public class NewConnectTest extends ComcastTest {
 	  
   }
   
-  @Test(priority=3)
+  @Test(priority=2)
   @PerfTransaction(name="CreateServiceAccount")
   public void createServiceAccount() throws InterruptedException{
 	  (new AccountTabPageCM(browser, report)).CreateServiceAccount(accountInfo);

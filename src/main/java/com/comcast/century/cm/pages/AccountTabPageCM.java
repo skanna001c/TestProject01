@@ -16,7 +16,7 @@ public class AccountTabPageCM extends Page {
 		super(browser, report);
 	}
 
-	@FindBy(xpath = "//a[.='Account']")
+	@FindBy(xpath = "//a[.='Account']") //@FindBy(xpath = "//a[.='Account']")
 	private WebElement tabAccount;
 
 	@FindBy(xpath = "//*[@id='mainFrame' and contains(@src,'loadCustomerPanel.exc')]" )
