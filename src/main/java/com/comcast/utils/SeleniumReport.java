@@ -130,6 +130,15 @@ public class SeleniumReport extends Report {
 			}
 		}
 		
+
+		}
+	
+	public void reportFailEvent(String stepName,String description, boolean blnExit){
+		this.updateTestLog(stepName, description, Status.FAIL);
+		if(blnExit){
+			
+		}
+		
 		
 		
 	}	

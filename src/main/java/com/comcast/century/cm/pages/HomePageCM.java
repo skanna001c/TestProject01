@@ -101,6 +101,9 @@ public class HomePageCM extends Page {
 	@FindBy(xpath = "//span[contains(.,'ServiceAcc')]")
 	private WebElement clickServiceAcc;
 	
+	@FindBy(xpath = "//*[@id='CustomerFrame']")
+	private WebElement frameCustomer;
+	
 	
 	
 	
@@ -137,10 +140,19 @@ public class HomePageCM extends Page {
 			 btnSearch.click();
 			 waitforPageLoadComplete();
 			 browser.findElement(By.xpath("//span[contains(.,'"+custName+"')]")).click();
+			 waitforPageLoadComplete();
+			 browser.switchTo().defaultContent();
+			 try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			 //WaitandSwitchToFrame(frameMain);
+			 //WaitandSwitchToFrame(frameCustomer);
+			 //waitForElement(browser.findElement(By.xpath(".//*[@id='busiCustBean.businessName']")));
 				
 		 //clickServiceAcc.click();
-		 waitforPageLoadComplete();
-		 browser.switchTo().defaultContent();
+
 		
 		
 	}

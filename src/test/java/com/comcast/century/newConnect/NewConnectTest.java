@@ -2,6 +2,7 @@ package com.comcast.century.newConnect;
 
 import java.io.IOException;
 
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
@@ -59,14 +60,13 @@ public class NewConnectTest extends ComcastTest {
   @PerfTransaction(name="Login")
   public void beforeTest() {
 	  	loadData();
-		//LoginDetails loginInfo = LoginDetails.loadFromDatatable(dataTable);
 		centuryApplication = new CenturyApplication(browser, report);
 		try {
 			centuryApplication.openUrl(loginInfo);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		//Search for customer if rerun
+		//Search for customer if rerun - added by harsh on 8/8/16
 		if(settings.getPERerunStatus().equalsIgnoreCase("true")){
 			(new HomePageCM(browser,report)).searchCustomer();
 		}
@@ -77,7 +77,7 @@ public class NewConnectTest extends ComcastTest {
   @Test(priority=4)
   @PerfTransaction(name="createAddress")
   public void createAddress() throws InterruptedException {
-	  //siteInfo = SiteInfo.loadFromDatatable(dataTable);
+
 		(new AddressTabPageCM(browser, report)).ClickAddressTab(siteInfo);
 		Site1 = (new AddressTabPageCM(browser, report)).EnterSiteDetailsValid(siteInfo);
 		(new ContactTabPageCM(browser, report)).CreateSiteTechnicalContact(contactInfo);
@@ -87,8 +87,7 @@ public class NewConnectTest extends ComcastTest {
   @Test(priority=1)
   @PerfTransaction(name="createCustomer")
   public void createCustomer(){
-	  
-		//customerInfo = CustomerInfo.loadFromDatatable(dataTable);
+
 		try {
 			(new CustomerTabPageCM(browser, report)).createCustomer(customerInfo);
 		} catch (InterruptedException e) {
@@ -100,20 +99,15 @@ public class NewConnectTest extends ComcastTest {
   @Test(priority=3)
   @PerfTransaction(name="createBillingAccount")
   public void createBillingAccount(){
-	  
-		//accountInfo = AccountInfo.loadFromDatatable(dataTable);
-		//contactInfo = ContactInfo.loadFromDatatable(dataTable);
 
 		try {
 			(new AccountTabPageCM(browser, report)).CreateBiilingAccount(accountInfo);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
 			(new ContactTabPageCM(browser, report)).CreateBillingContact(contactInfo);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();
@@ -132,11 +126,15 @@ public class NewConnectTest extends ComcastTest {
   @PerfTransaction(name="selectService")
   public void selectService() throws InterruptedException{
 	  (new ServiceTabPageCM(browser, report)).ClickOnServiceTab();
-		(new ServiceTabPageCM(browser, report)).SelectPricePlan();
-		(new ServiceTabPageCM(browser, report)).EDI();
-		(new ServiceTabPageCM(browser, report)).EquipmentFee();
-		(new ServiceTabPageCM(browser, report)).ClickOnContinueButton();
-		(new FeatureTabPageCM(browser, report)).ClickOnContinueButton();
+		if((new ServiceTabPageCM(browser, report)).SelectPricePlan()){
+			if((new ServiceTabPageCM(browser, report)).EDI()){
+				if((new ServiceTabPageCM(browser, report)).EquipmentFee()){
+					if((new ServiceTabPageCM(browser, report)).ClickOnContinueButton()){
+						(new FeatureTabPageCM(browser, report)).ClickOnContinueButton();
+					}Assert.fail("Click continue button failed");
+				}Assert.fail("Equipment fee failed");
+			}Assert.fail(" Select EDI plan failed");
+		}Assert.fail(" Select service plan failed");
 	  
 	  
   }
@@ -144,8 +142,8 @@ public class NewConnectTest extends ComcastTest {
   @Test(priority=6)
   @PerfTransaction(name="processService")
   public void processService() throws InterruptedException{
-	  // processInfo = ProcessInfo.loadFromDatatable(dataTable);
 		SRID = (new ProcessTabPageCM(browser, report)).ProcessConfiguration(processInfo);
+		dataDump.setValue("SRID_RT", SRID);
 		(new ProcessTabPageCM(browser, report)).UNIConfiguration(processInfo, Site1);
 		(new ProcessTabPageCM(browser, report)).EVCConfiguration_EDI(processInfo);
 		(new ProcessTabPageCM(browser, report)).EqFeeConfiguration(processInfo);
@@ -157,8 +155,6 @@ public class NewConnectTest extends ComcastTest {
   @Test(priority=7)
   @PerfTransaction(name="submitOrder")
   public void submitOrder() throws InterruptedException{
-	  
-		//orderSummaryInfo = OrderSummaryInfo.loadFromDatatable(dataTable);
 		//(new OrderSummaryTabCMPage(browser, report)).assignLabel(orderSummaryInfo);
 		(new OrderSummaryTabCMPage(browser, report)).SubmitOrder(orderSummaryInfo);
 		(new OrderSummaryTabCMPage(browser, report)).mrcNrc_Value(orderSummaryInfo);

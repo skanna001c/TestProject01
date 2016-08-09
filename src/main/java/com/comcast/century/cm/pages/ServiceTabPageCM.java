@@ -37,7 +37,7 @@ public class ServiceTabPageCM extends Page {
 	@FindBy(xpath = "//*[@id='mainFrame' and contains(@src,'loadServOrderManagementPanel.exc')]")
 	private WebElement frameMain;
 	
-	@FindBy(xpath = "//input[@id='loadAvailProduct']")
+	@FindBy(xpath = "//input[@id='loadAvailProduct']") //xpath = "//input[@id='loadAvailProduct']"
 	private WebElement btnContinueAvailProduct;
 	
 	@FindBy(xpath = "//*[@id='loadSelectedProducts']")
@@ -88,23 +88,28 @@ public class ServiceTabPageCM extends Page {
 	}
 	
 	
-	public void SelectPricePlan() throws InterruptedException{
-		  if (WaitandSwitchToFrame(frameMain)){
+	public boolean SelectPricePlan() throws InterruptedException{
+		boolean mStatus = true;
+		if (WaitandSwitchToFrame(frameMain)){
 			  if(waitForElement(btnContinueAvailProduct)){
 			  btnContinueAvailProduct.click();
 			  jsClickWE(btnContinueAvailProduct);
 			  //scrollToElementandclick(btnContinueAvailProduct); 
 				waitForElementDisappear(elementLoading);
 				//scrollDown();
+				}else mStatus =false;
+			  }
+		  return mStatus;
 		  }
-	} 
-}
-			 public void EDI(){
+	
+			 public boolean EDI(){
+			  boolean mStatus = true; 
 			  if (waitForElement(selectCheckBoxEDI)){
 				  selectCheckBoxEDI.click();
 				  EqFeeqt="1";
 				  report.updateTestLog("Select EDI Service", "EDI Service Selected", Status.SCREENSHOT);
-			  }
+			  }else mStatus = false;
+			  return mStatus;
 	  }
 			 
 			 public void ENS(){
@@ -147,7 +152,8 @@ public class ServiceTabPageCM extends Page {
 				}
 			}*/
 			
-			public void EquipmentFee() throws InterruptedException{
+			public boolean EquipmentFee() throws InterruptedException{
+				boolean mStatus = true;
 				if(waitForElement(selectCheckBoxEqFee)){
 					selectCheckBoxEqFee.click();
 					Thread.sleep(2*1000);
@@ -156,10 +162,10 @@ public class ServiceTabPageCM extends Page {
 					txtEqFeeqt.clear();
 					txtEqFeeqt.sendKeys(EqFeeqt);
 					report.updateTestLog("Select Equipment Fee", "Equipment Fee Selected", Status.SCREENSHOT);
-				 }
+					}else mStatus = false;
+				}
+			return mStatus;	
 			}
-				
-	}
      
 			
 			public void BVE(){
@@ -174,8 +180,8 @@ public class ServiceTabPageCM extends Page {
 				 }
 			}
 			
-			public void ClickOnContinueButton(){
-				
+			public boolean ClickOnContinueButton(){
+				boolean mStatus = true;
 				
 				if(waitForElement(btnContinueSelectedProduct)){
 					System.out.println("Continue selected button present");
@@ -183,7 +189,8 @@ public class ServiceTabPageCM extends Page {
 					waitforPageLoadComplete();
 					waitForElementDisappear(elementLoading);
 					report.reportDoneEvent("Click Continue", "Continue Clicked");
-				}
+				}else mStatus = false;
+				return mStatus;
 			}
 	}
 	
