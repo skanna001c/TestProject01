@@ -188,17 +188,19 @@
 	<build>	
 	<plugins>
 	<plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.14.1</version>
-                <configuration>
-                    <!-- Suite testng xml file to consider for test execution -->
-                    <suiteXmlFiles>
-                        <suiteXmlFile>${project.basedir}\testng.xml</suiteXmlFile>
-                        <!-- <suiteXmlFile>suites-test-testng.xml</suiteXmlFile> -->
-                    </suiteXmlFiles>
-                </configuration>
-            </plugin>
+	     <groupId>org.apache.maven.plugins</groupId>
+	     <artifactId>maven-surefire-plugin</artifactId>
+	     <version>2.19.1</version>
+	     <configuration>
+	         <!-- Suite testng xml file to consider for test execution -->
+	         <suiteXmlFiles>
+	             <suiteXmlFile>testng-classrunner.xml</suiteXmlFile>
+	             <!-- <suiteXmlFile>suites-test-testng.xml</suiteXmlFile> -->
+	         </suiteXmlFiles>
+	         <parallel>Tests</parallel>
+	         <threadCount>5</threadCount>
+	     </configuration>
+     </plugin>
             
       <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
