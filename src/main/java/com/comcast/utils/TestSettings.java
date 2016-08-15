@@ -197,6 +197,20 @@ public class TestSettings {
 		return rerunstatus;
 	}
 	
+	// added by harsh for PE_Rerun
+		//8/15/2016
+		public String getGridIP(){
+			String rerunstatus= System.getenv("grid_ip");
+			if(rerunstatus==null || rerunstatus == ""){
+				rerunstatus=properties.getProperty("grid_ip","");
+			}
+			if(rerunstatus==null || rerunstatus == ""){
+				rerunstatus="false";
+			}
+			
+			return rerunstatus;
+		}
+	
 	/**
 	 * Get the if rerun is true or false
 	 */

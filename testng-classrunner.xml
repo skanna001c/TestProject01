@@ -13,4 +13,11 @@
       </class>
     </classes>
   </test> <!-- Test -->
+  <test name="New_Connect_ME_ENS_New_connect">
+    <classes>
+      <class name="com.comcast.century.newConnect.NewConnectTest">
+      
+      </class>
+    </classes>
+  </test> <!-- Test -->
 </suite> <!-- Suite -->

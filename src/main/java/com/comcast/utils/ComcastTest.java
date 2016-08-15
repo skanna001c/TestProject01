@@ -406,6 +406,9 @@ public class ComcastTest {
 	 * @return
 	 */
 	protected WebDriver getDriver(String browserName) {
+		
+		String gridflag = settings.getGRIDstatus();
+		String gridip = settings.getGridIP();
 		 final ThreadLocal<WebDriver> ThreadDriver =
 		         new  ThreadLocal<WebDriver>();
 		 WebDriver driver= ThreadDriver.get();
@@ -418,27 +421,41 @@ public class ComcastTest {
 //		}
 		if (browserName.equalsIgnoreCase("firefox")) {
 			
-			ProfilesIni profilesIni = new ProfilesIni();
+			if(gridflag.equals("false"))
+			{	
+				
+				ProfilesIni profilesIni = new ProfilesIni();
 
-			FirefoxProfile profile = profilesIni.getProfile("default");
+				FirefoxProfile profile = profilesIni.getProfile("default");
 
-//			profile.setAcceptUntrustedCertificates(true);
+//				profile.setAcceptUntrustedCertificates(true);
 
-//			profile.setAssumeUntrustedCertificateIssuer(false);
+//				profile.setAssumeUntrustedCertificateIssuer(false);
 
-			profile.setEnableNativeEvents(true);
+				profile.setEnableNativeEvents(true);
 
 
-			driver =ThreadGuard.protect( new FirefoxDriver(profile));
-			ThreadDriver.set(driver); 
+				driver =ThreadGuard.protect( new FirefoxDriver(profile));
+				ThreadDriver.set(driver); 
+				
+
+				
+			}
+			else{
+				DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+				try {
+					driver =ThreadGuard.protect( new RemoteWebDriver(new URL("http://"+gridip+":4444/wd/hub"),capabilities));
+				} catch (MalformedURLException e) {
+					e.printStackTrace();
+				}
+				ThreadDriver.set(driver); 
+			}
 
 		}
 		if(browserName.equalsIgnoreCase("chrome")){
 			System.setProperty("webdriver.chrome.driver", 
 					TestUtils.getRelativePath()+"/src/main/resources/BrowserSpecificDrivers/chromedriver.exe");
 	
-					
-					String gridflag = settings.getGRIDstatus();
 					if(gridflag.equals("false"))
 					{	
 						//Chrome SetUp to allow popups
@@ -458,7 +475,7 @@ public class ComcastTest {
 							
 							DesiredCapabilities capabilities =DesiredCapabilities.chrome();
 							capabilities.setBrowserName("chrome");
-							driver = ThreadGuard.protect(new RemoteWebDriver(new URL("http://24.40.25.193:4444/wd/hub"), capabilities));
+							driver = ThreadGuard.protect(new RemoteWebDriver(new URL("http://"+gridip+":4444/wd/hub"), capabilities));
 							 ThreadDriver.set(driver);
 						 	} catch (MalformedURLException e) {
 							// TODO Auto-generated catch block
@@ -496,8 +513,6 @@ public class ComcastTest {
 				/*capabilities.setCapability(InternetExplorerDriver.IE_SWITCHES, "-private");*/
 				capabilities.setCapability("ACCEPT_SSL_CERTS", true);
 			
-				
-				String gridflag = settings.getGRIDstatus();
 				if(gridflag.equals("false"))
 				{	
 					
@@ -513,7 +528,7 @@ public class ComcastTest {
 						 capabilities.setCapability(InternetExplorerDriver.FORCE_CREATE_PROCESS, true);
 						 capabilities.setCapability(InternetExplorerDriver.IE_SWITCHES, "-private");
 						
-						 driver = ThreadGuard.protect(new RemoteWebDriver(new URL("http://24.40.25.193:4444/wd/hub"), capabilities));
+						 driver = ThreadGuard.protect(new RemoteWebDriver(new URL("http://"+gridip+":4444/wd/hub"), capabilities));
 						 ThreadDriver.set(driver);
 					 	} catch (MalformedURLException e) {
 						// TODO Auto-generated catch block
