@@ -159,27 +159,28 @@ public class CustomerTabPageCM extends Page {
 		  txtCustomerName.click();
 		  txtCustomerName.clear();
 		  //updated by harsh to store runtime data into datadump - 8/5/2016
-		  customerName = customerInfo.customerName+RandomNumber();
+		  customerName = customerInfo.customerName + RandomNumber();
 		  txtCustomerName.sendKeys(customerName);
-		  ComcastTest.getDataDump().setValue("CustomerName_RT", customerName);
-		  
+		  ComcastTest.getDataDump().setValue("CustomerName_RT", customerName);		  
 		  waitforPageLoadComplete();
-		  report.reportDoneEvent("Enter Customer Name", "Entered Customer Name as ->" +customerInfo.customerName+RandomNumber());
+		  report.reportDoneEvent("Enter Customer Name", "Entered Customer Name as ->" + customerName);
 		  if(waitForElement(txtworkPhone)){
 			  txtworkPhone.click();
 		  }
 		  txtworkPhone.sendKeys(customerInfo.workPhone);
 		  report.reportDoneEvent("Enter Work Phone", "Work Phone Entered as ->" +customerInfo.workPhone);
-		  txtSalesForceID.sendKeys(customerInfo.salesForceAccId+RandomNumber());
-		  report.reportDoneEvent("Enter Salesforce Account ID", "Salesforce Account ID Entered as ->" +customerInfo.salesForceAccId+RandomNumber());  
+		  String salesForceID = customerInfo.salesForceAccId+RandomNumber();
+		  txtSalesForceID.sendKeys(salesForceID);
+		  report.reportDoneEvent("Enter Salesforce Account ID", "Salesforce Account ID Entered as ->" + salesForceID);  
 		  
 	  }
 	  
 	  public void addressInformationInvalid(CustomerInfo customerInfo) throws InterruptedException{
 		  
 		  waitForElement(txtAddressLine1);
-		  txtAddressLine1.sendKeys(customerInfo.addressLine1+RandomNumber());
-		  report.reportDoneEvent("Enter Address Line 1", "Address Line 1 Entered as ->" +customerInfo.addressLine1+RandomNumber());
+		  String addressLine1 = customerInfo.addressLine1+RandomNumber();
+		  txtAddressLine1.sendKeys(addressLine1);
+		  report.reportDoneEvent("Enter Address Line 1", "Address Line 1 Entered as ->" + addressLine1);
 		  ddtxtZipCode.sendKeys(customerInfo.zipCode);
 		  report.reportDoneEvent("Enter Zipcode", "Zipcode Entered as ->" +customerInfo.zipCode);
 		  imgZipcodeSearch.click();
@@ -215,8 +216,9 @@ public class CustomerTabPageCM extends Page {
 		  waitForElement(txtAddressLine1);
 		  txtAddressLine1.sendKeys(customerInfo.addressLine1);
 		  report.reportDoneEvent("Enter Address Line 1", "Address Line 1 Entered as ->" +customerInfo.addressLine1);
-		  txtAddressLine2.sendKeys(customerInfo.addressLine2+" "+RandomNumber());
-		  report.reportDoneEvent("Enter Address Line 2", "Address Line 2 Entered as ->" +customerInfo.addressLine2+RandomNumber());
+		  String addressLine2 = customerInfo.addressLine2+" "+RandomNumber();
+		  txtAddressLine2.sendKeys(addressLine2);
+		  report.reportDoneEvent("Enter Address Line 2", "Address Line 2 Entered as ->" + addressLine2);
 		  ddtxtZipCode.sendKeys(customerInfo.zipCode);
 		  report.reportDoneEvent("Enter Zipcode", "Zipcode Entered as ->" +customerInfo.zipCode);
 		  imgZipcodeSearch.click();
