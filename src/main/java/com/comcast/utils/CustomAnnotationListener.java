@@ -13,7 +13,7 @@ public class CustomAnnotationListener implements IInvokedMethodListener2 {
 
 
 	@Override
-	public void afterInvocation(IInvokedMethod method, ITestResult result, ITestContext context) {
+	public synchronized void  afterInvocation(IInvokedMethod method, ITestResult result, ITestContext context) {
 		// TODO Auto-generated method stub
 		//System.out.println("inside perftransaction after invoke method");
 		//String methodname = method.toString();
@@ -28,14 +28,14 @@ public class CustomAnnotationListener implements IInvokedMethodListener2 {
 		String name = annotation.name();
 		//System.out.println("The transaction with name: " + name + " started at :" + startTime);
 		//System.out.println("The transaction with name: " + name + " ended at :" + endTime);
-		System.out.println("The transaction with name: " + name + " took :" + duration + " secs");
-	    ComcastTest.report.reportDoneEvent(name,"The transaction with name: " + name + " took :" + duration + " secs");
+		//System.out.println("The transaction with name: " + name + " took :" + duration + " secs");
+	    //ComcastTest.report.reportDoneEvent(name,"The transaction with name: " + name + " took :" + duration + " secs");
 		
 
 	}
 
 	@Override
-	public void beforeInvocation(IInvokedMethod method, ITestResult result, ITestContext context) {
+	public synchronized void beforeInvocation(IInvokedMethod method, ITestResult result, ITestContext context) {
 		// TODO Auto-generated method stub
 		//System.out.println("inside perftransaction before invoke method");
 		

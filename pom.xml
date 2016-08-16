@@ -197,8 +197,8 @@
 	             <suiteXmlFile>testng-classrunner.xml</suiteXmlFile>
 	             <!-- <suiteXmlFile>suites-test-testng.xml</suiteXmlFile> -->
 	         </suiteXmlFiles>
-	         <parallel>Tests</parallel>
-	         <threadCount>5</threadCount>
+	         <parallel>tests</parallel>
+	         <threadCount>2</threadCount>
 	     </configuration>
      </plugin>
             

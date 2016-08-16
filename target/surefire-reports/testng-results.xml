@@ -1,44 +1,645 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="1" passed="1">
+<testng-results skipped="4" failed="2" total="14" passed="8">
   <reporter-output>
   </reporter-output>
-  <suite name="com.comcast.century.newConnect.newConnect" duration-ms="1098482" started-at="2016-08-01T12:44:32Z" finished-at="2016-08-01T13:02:51Z">
+  <suite name="Suite" duration-ms="402721" started-at="2016-08-16T14:55:48Z" finished-at="2016-08-16T15:02:31Z">
     <groups>
     </groups>
-    <test name="Command line test" duration-ms="1098482" started-at="2016-08-01T12:44:32Z" finished-at="2016-08-01T13:02:51Z">
-      <class name="com.comcast.century.newConnect.newConnect">
-        <test-method status="PASS" signature="initializeSummaryReport()[pri:0, instance:com.comcast.century.newConnect.newConnect@2a079c]" name="initializeSummaryReport" is-config="true" duration-ms="262" started-at="2016-08-01T18:14:32Z" finished-at="2016-08-01T18:14:32Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- initializeSummaryReport -->
-        <test-method status="PASS" signature="setupData(java.lang.reflect.Method)[pri:0, instance:com.comcast.century.newConnect.newConnect@2a079c]" name="setupData" is-config="true" duration-ms="41718" started-at="2016-08-01T18:14:32Z" finished-at="2016-08-01T18:15:14Z">
+    <test name="New_Connect_ME_EDI_New_connect" duration-ms="183144" started-at="2016-08-16T14:55:48Z" finished-at="2016-08-16T14:58:52Z">
+      <class name="com.comcast.century.newConnect.NewConnectTest">
+        <test-method status="PASS" signature="beforeTestMain(org.testng.ITestContext)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="beforeTestMain" is-config="true" duration-ms="6595" started-at="2016-08-16T10:55:48Z" finished-at="2016-08-16T10:55:55Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[public void com.comcast.century.newConnect.newConnect.New_Connect_ME_EDI_New_connect() throws java.lang.InterruptedException,java.awt.AWTException]]>
+                <![CDATA[org.testng.TestRunner@76f4b65]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTestMain -->
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="beforeTest" is-config="true" duration-ms="16949" started-at="2016-08-16T10:55:55Z" depends-on-methods="com.comcast.utils.ComcastTest.beforeTestMain" finished-at="2016-08-16T10:56:12Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="createCustomer()[pri:1, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="createCustomer" duration-ms="23653" started-at="2016-08-16T10:56:12Z" finished-at="2016-08-16T10:56:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createCustomer -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-08-16T10:56:12Z" finished-at="2016-08-16T10:56:12Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="setupData(java.lang.reflect.Method)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="setupData" is-config="true" duration-ms="0" started-at="2016-08-16T10:56:12Z" finished-at="2016-08-16T10:56:12Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.comcast.century.newConnect.NewConnectTest.createCustomer()]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setupData -->
-        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.comcast.century.newConnect.newConnect@2a079c]" name="openApplication" is-config="true" duration-ms="67380" started-at="2016-08-01T18:15:14Z" finished-at="2016-08-01T18:16:22Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openApplication -->
-        <test-method status="PASS" signature="New_Connect_ME_EDI_New_connect()[pri:0, instance:com.comcast.century.newConnect.newConnect@2a079c]" name="New_Connect_ME_EDI_New_connect" duration-ms="989096" started-at="2016-08-01T18:16:22Z" finished-at="2016-08-01T18:32:51Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- New_Connect_ME_EDI_New_connect -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.comcast.century.newConnect.newConnect@2a079c]" name="tearDown" is-config="true" duration-ms="2" started-at="2016-08-01T18:32:51Z" finished-at="2016-08-01T18:32:51Z">
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="tearDown" is-config="true" duration-ms="1" started-at="2016-08-16T10:56:36Z" finished-at="2016-08-16T10:56:36Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=createCustomer status=SUCCESS method=NewConnectTest.createCustomer()[pri:1, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5] output={null}]]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method status="PASS" signature="endReportSummaryReport()[pri:0, instance:com.comcast.century.newConnect.newConnect@2a079c]" name="endReportSummaryReport" is-config="true" duration-ms="12" started-at="2016-08-01T18:32:51Z" finished-at="2016-08-01T18:32:51Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="afterMethod" is-config="true" duration-ms="0" started-at="2016-08-16T10:56:36Z" finished-at="2016-08-16T10:56:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="setupData(java.lang.reflect.Method)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="setupData" is-config="true" duration-ms="0" started-at="2016-08-16T10:56:36Z" finished-at="2016-08-16T10:56:36Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.comcast.century.newConnect.NewConnectTest.createServiceAccount() throws java.lang.InterruptedException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupData -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-08-16T10:56:36Z" finished-at="2016-08-16T10:56:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="createServiceAccount()[pri:2, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="createServiceAccount" duration-ms="37450" started-at="2016-08-16T10:56:36Z" finished-at="2016-08-16T10:57:13Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createServiceAccount -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="afterMethod" is-config="true" duration-ms="1" started-at="2016-08-16T10:57:13Z" finished-at="2016-08-16T10:57:13Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="tearDown" is-config="true" duration-ms="3" started-at="2016-08-16T10:57:13Z" finished-at="2016-08-16T10:57:13Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=createServiceAccount status=SUCCESS method=NewConnectTest.createServiceAccount()[pri:2, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="createBillingAccount()[pri:3, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="createBillingAccount" duration-ms="48252" started-at="2016-08-16T10:57:13Z" finished-at="2016-08-16T10:58:01Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createBillingAccount -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-08-16T10:57:13Z" finished-at="2016-08-16T10:57:13Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="setupData(java.lang.reflect.Method)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="setupData" is-config="true" duration-ms="0" started-at="2016-08-16T10:57:13Z" finished-at="2016-08-16T10:57:13Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.comcast.century.newConnect.NewConnectTest.createBillingAccount()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupData -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="afterMethod" is-config="true" duration-ms="0" started-at="2016-08-16T10:58:01Z" finished-at="2016-08-16T10:58:01Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="tearDown" is-config="true" duration-ms="1" started-at="2016-08-16T10:58:01Z" finished-at="2016-08-16T10:58:01Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=createBillingAccount status=SUCCESS method=NewConnectTest.createBillingAccount()[pri:3, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="setupData(java.lang.reflect.Method)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="setupData" is-config="true" duration-ms="0" started-at="2016-08-16T10:58:01Z" finished-at="2016-08-16T10:58:01Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.comcast.century.newConnect.NewConnectTest.createAddress() throws java.lang.InterruptedException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupData -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-08-16T10:58:01Z" finished-at="2016-08-16T10:58:01Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="createAddress()[pri:4, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="createAddress" duration-ms="46401" started-at="2016-08-16T10:58:01Z" finished-at="2016-08-16T10:58:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createAddress -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="afterMethod" is-config="true" duration-ms="1" started-at="2016-08-16T10:58:48Z" finished-at="2016-08-16T10:58:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="tearDown" is-config="true" duration-ms="1" started-at="2016-08-16T10:58:48Z" finished-at="2016-08-16T10:58:48Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=createAddress status=SUCCESS method=NewConnectTest.createAddress()[pri:4, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="setupData(java.lang.reflect.Method)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="setupData" is-config="true" duration-ms="0" started-at="2016-08-16T10:58:48Z" finished-at="2016-08-16T10:58:48Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.comcast.century.newConnect.NewConnectTest.selectService() throws java.lang.InterruptedException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupData -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-08-16T10:58:48Z" finished-at="2016-08-16T10:58:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="FAIL" signature="selectService()[pri:5, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="selectService" duration-ms="3789" started-at="2016-08-16T10:58:48Z" finished-at="2016-08-16T10:58:52Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[ Select service plan failed]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError:  Select service plan failed
+	at org.testng.Assert.fail(Assert.java:94)
+	at com.comcast.century.newConnect.NewConnectTest.selectService(NewConnectTest.java:138)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1191)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1116)
+	at org.testng.TestNG.run(TestNG.java:1024)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:281)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:75)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:121)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:290)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- selectService -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="afterMethod" is-config="true" duration-ms="1" started-at="2016-08-16T10:58:52Z" finished-at="2016-08-16T10:58:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="tearDown" is-config="true" duration-ms="0" started-at="2016-08-16T10:58:52Z" finished-at="2016-08-16T10:58:52Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=selectService status=FAILURE method=NewConnectTest.selectService()[pri:5, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.testng.SkipException">
+            <message>
+              <![CDATA[Test method: selectService failed. Quitting the test as other methods depend on it]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.testng.SkipException: Test method: selectService failed. Quitting the test as other methods depend on it
+	at com.comcast.utils.ComcastTest.tearDown(ComcastTest.java:385)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:510)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:211)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:703)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1191)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1116)
+	at org.testng.TestNG.run(TestNG.java:1024)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:281)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:75)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:121)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:290)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.testng.SkipException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="SKIP" signature="setupData(java.lang.reflect.Method)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="setupData" is-config="true" duration-ms="0" started-at="2016-08-16T10:58:52Z" finished-at="2016-08-16T10:58:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupData -->
+        <test-method status="SKIP" signature="processService()[pri:6, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="processService" duration-ms="0" started-at="2016-08-16T10:58:52Z" finished-at="2016-08-16T10:58:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- processService -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-08-16T10:58:52Z" finished-at="2016-08-16T10:58:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="submitOrder()[pri:7, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="submitOrder" duration-ms="1" started-at="2016-08-16T10:58:52Z" finished-at="2016-08-16T10:58:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- submitOrder -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="afterMethod" is-config="true" duration-ms="0" started-at="2016-08-16T10:58:52Z" finished-at="2016-08-16T10:58:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-08-16T10:58:52Z" finished-at="2016-08-16T10:58:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="tearDown" is-config="true" duration-ms="0" started-at="2016-08-16T10:58:52Z" finished-at="2016-08-16T10:58:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="SKIP" signature="setupData(java.lang.reflect.Method)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="setupData" is-config="true" duration-ms="0" started-at="2016-08-16T10:58:52Z" finished-at="2016-08-16T10:58:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupData -->
+        <test-method status="SKIP" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="tearDown" is-config="true" duration-ms="0" started-at="2016-08-16T10:58:52Z" finished-at="2016-08-16T10:58:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="afterMethod" is-config="true" duration-ms="0" started-at="2016-08-16T10:58:52Z" finished-at="2016-08-16T10:58:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="endReportSummaryReport()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="endReportSummaryReport" is-config="true" duration-ms="0" started-at="2016-08-16T10:58:52Z" finished-at="2016-08-16T10:58:52Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endReportSummaryReport -->
-      </class> <!-- com.comcast.century.newConnect.newConnect -->
-    </test> <!-- Command line test -->
-  </suite> <!-- com.comcast.century.newConnect.newConnect -->
+        <test-method status="SKIP" signature="afterTest()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="afterTest" is-config="true" duration-ms="0" started-at="2016-08-16T10:58:52Z" finished-at="2016-08-16T10:58:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+        <test-method status="SKIP" signature="afterTestMain()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@10bdf5e5]" name="afterTestMain" is-config="true" duration-ms="0" started-at="2016-08-16T10:58:52Z" depends-on-methods="com.comcast.century.newConnect.NewConnectTest.afterTest" finished-at="2016-08-16T10:58:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTestMain -->
+      </class> <!-- com.comcast.century.newConnect.NewConnectTest -->
+    </test> <!-- New_Connect_ME_EDI_New_connect -->
+    <test name="New_Connect_ME_ENS_New_connect" duration-ms="219558" started-at="2016-08-16T14:58:52Z" finished-at="2016-08-16T15:02:31Z">
+      <class name="com.comcast.century.newConnect.NewConnectTest">
+        <test-method status="PASS" signature="beforeTestMain(org.testng.ITestContext)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="beforeTestMain" is-config="true" duration-ms="5652" started-at="2016-08-16T10:58:52Z" finished-at="2016-08-16T10:58:57Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@c94fd30]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTestMain -->
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="beforeTest" is-config="true" duration-ms="16518" started-at="2016-08-16T10:58:57Z" depends-on-methods="com.comcast.utils.ComcastTest.beforeTestMain" finished-at="2016-08-16T10:59:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="setupData(java.lang.reflect.Method)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="setupData" is-config="true" duration-ms="1" started-at="2016-08-16T10:59:14Z" finished-at="2016-08-16T10:59:14Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.comcast.century.newConnect.NewConnectTest.createCustomer()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupData -->
+        <test-method status="PASS" signature="createCustomer()[pri:1, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="createCustomer" duration-ms="21243" started-at="2016-08-16T10:59:14Z" finished-at="2016-08-16T10:59:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createCustomer -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-08-16T10:59:14Z" finished-at="2016-08-16T10:59:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="tearDown" is-config="true" duration-ms="1" started-at="2016-08-16T10:59:35Z" finished-at="2016-08-16T10:59:35Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=createCustomer status=SUCCESS method=NewConnectTest.createCustomer()[pri:1, instance:com.comcast.century.newConnect.NewConnectTest@2286778] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="afterMethod" is-config="true" duration-ms="0" started-at="2016-08-16T10:59:35Z" finished-at="2016-08-16T10:59:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="createServiceAccount()[pri:2, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="createServiceAccount" duration-ms="35390" started-at="2016-08-16T10:59:35Z" finished-at="2016-08-16T11:00:10Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createServiceAccount -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-08-16T10:59:35Z" finished-at="2016-08-16T10:59:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="setupData(java.lang.reflect.Method)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="setupData" is-config="true" duration-ms="0" started-at="2016-08-16T10:59:35Z" finished-at="2016-08-16T10:59:35Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.comcast.century.newConnect.NewConnectTest.createServiceAccount() throws java.lang.InterruptedException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupData -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="tearDown" is-config="true" duration-ms="1" started-at="2016-08-16T11:00:10Z" finished-at="2016-08-16T11:00:10Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=createServiceAccount status=SUCCESS method=NewConnectTest.createServiceAccount()[pri:2, instance:com.comcast.century.newConnect.NewConnectTest@2286778] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="afterMethod" is-config="true" duration-ms="0" started-at="2016-08-16T11:00:10Z" finished-at="2016-08-16T11:00:10Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-08-16T11:00:10Z" finished-at="2016-08-16T11:00:10Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="createBillingAccount()[pri:3, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="createBillingAccount" duration-ms="48421" started-at="2016-08-16T11:00:10Z" finished-at="2016-08-16T11:00:59Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createBillingAccount -->
+        <test-method status="PASS" signature="setupData(java.lang.reflect.Method)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="setupData" is-config="true" duration-ms="0" started-at="2016-08-16T11:00:10Z" finished-at="2016-08-16T11:00:10Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.comcast.century.newConnect.NewConnectTest.createBillingAccount()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupData -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="afterMethod" is-config="true" duration-ms="1" started-at="2016-08-16T11:00:59Z" finished-at="2016-08-16T11:00:59Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="tearDown" is-config="true" duration-ms="0" started-at="2016-08-16T11:00:59Z" finished-at="2016-08-16T11:00:59Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=createBillingAccount status=SUCCESS method=NewConnectTest.createBillingAccount()[pri:3, instance:com.comcast.century.newConnect.NewConnectTest@2286778] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="setupData(java.lang.reflect.Method)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="setupData" is-config="true" duration-ms="1" started-at="2016-08-16T11:00:59Z" finished-at="2016-08-16T11:00:59Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.comcast.century.newConnect.NewConnectTest.createAddress() throws java.lang.InterruptedException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupData -->
+        <test-method status="PASS" signature="createAddress()[pri:4, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="createAddress" duration-ms="45352" started-at="2016-08-16T11:00:59Z" finished-at="2016-08-16T11:01:44Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createAddress -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-08-16T11:00:59Z" finished-at="2016-08-16T11:00:59Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="tearDown" is-config="true" duration-ms="1" started-at="2016-08-16T11:01:44Z" finished-at="2016-08-16T11:01:44Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=createAddress status=SUCCESS method=NewConnectTest.createAddress()[pri:4, instance:com.comcast.century.newConnect.NewConnectTest@2286778] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="afterMethod" is-config="true" duration-ms="0" started-at="2016-08-16T11:01:44Z" finished-at="2016-08-16T11:01:44Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="FAIL" signature="selectService()[pri:5, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="selectService" duration-ms="46950" started-at="2016-08-16T11:01:44Z" finished-at="2016-08-16T11:02:31Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Click continue button failed]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Click continue button failed
+	at org.testng.Assert.fail(Assert.java:94)
+	at com.comcast.century.newConnect.NewConnectTest.selectService(NewConnectTest.java:135)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1191)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1116)
+	at org.testng.TestNG.run(TestNG.java:1024)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:281)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:75)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:121)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:290)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- selectService -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-08-16T11:01:44Z" finished-at="2016-08-16T11:01:44Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="setupData(java.lang.reflect.Method)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="setupData" is-config="true" duration-ms="0" started-at="2016-08-16T11:01:44Z" finished-at="2016-08-16T11:01:44Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.comcast.century.newConnect.NewConnectTest.selectService() throws java.lang.InterruptedException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupData -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="afterMethod" is-config="true" duration-ms="0" started-at="2016-08-16T11:02:31Z" finished-at="2016-08-16T11:02:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="tearDown" is-config="true" duration-ms="0" started-at="2016-08-16T11:02:31Z" finished-at="2016-08-16T11:02:31Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=selectService status=FAILURE method=NewConnectTest.selectService()[pri:5, instance:com.comcast.century.newConnect.NewConnectTest@2286778] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.testng.SkipException">
+            <message>
+              <![CDATA[Test method: selectService failed. Quitting the test as other methods depend on it]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.testng.SkipException: Test method: selectService failed. Quitting the test as other methods depend on it
+	at com.comcast.utils.ComcastTest.tearDown(ComcastTest.java:385)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:510)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:211)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:703)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1191)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1116)
+	at org.testng.TestNG.run(TestNG.java:1024)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:281)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:75)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:121)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:290)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.testng.SkipException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="SKIP" signature="setupData(java.lang.reflect.Method)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="setupData" is-config="true" duration-ms="0" started-at="2016-08-16T11:02:31Z" finished-at="2016-08-16T11:02:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupData -->
+        <test-method status="SKIP" signature="processService()[pri:6, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="processService" duration-ms="0" started-at="2016-08-16T11:02:31Z" finished-at="2016-08-16T11:02:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- processService -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-08-16T11:02:31Z" finished-at="2016-08-16T11:02:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="afterMethod" is-config="true" duration-ms="0" started-at="2016-08-16T11:02:31Z" finished-at="2016-08-16T11:02:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="tearDown" is-config="true" duration-ms="0" started-at="2016-08-16T11:02:31Z" finished-at="2016-08-16T11:02:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="SKIP" signature="submitOrder()[pri:7, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="submitOrder" duration-ms="0" started-at="2016-08-16T11:02:31Z" finished-at="2016-08-16T11:02:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- submitOrder -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2016-08-16T11:02:31Z" finished-at="2016-08-16T11:02:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="setupData(java.lang.reflect.Method)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="setupData" is-config="true" duration-ms="0" started-at="2016-08-16T11:02:31Z" finished-at="2016-08-16T11:02:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupData -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="afterMethod" is-config="true" duration-ms="0" started-at="2016-08-16T11:02:31Z" finished-at="2016-08-16T11:02:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="endReportSummaryReport()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="endReportSummaryReport" is-config="true" duration-ms="0" started-at="2016-08-16T11:02:31Z" finished-at="2016-08-16T11:02:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- endReportSummaryReport -->
+        <test-method status="SKIP" signature="afterTest()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="afterTest" is-config="true" duration-ms="0" started-at="2016-08-16T11:02:31Z" finished-at="2016-08-16T11:02:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+        <test-method status="SKIP" signature="afterTestMain()[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="afterTestMain" is-config="true" duration-ms="0" started-at="2016-08-16T11:02:31Z" depends-on-methods="com.comcast.century.newConnect.NewConnectTest.afterTest" finished-at="2016-08-16T11:02:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTestMain -->
+        <test-method status="SKIP" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.comcast.century.newConnect.NewConnectTest@2286778]" name="tearDown" is-config="true" duration-ms="0" started-at="2016-08-16T11:02:31Z" finished-at="2016-08-16T11:02:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.comcast.century.newConnect.NewConnectTest -->
+    </test> <!-- New_Connect_ME_ENS_New_connect -->
+  </suite> <!-- Suite -->
 </testng-results>

@@ -122,17 +122,18 @@ public class HomePageCM extends Page {
 	}
 	
 	//added by harsh on 8/8 to ensure continuity in packaged execution
+	//commented by harsh on 8/16 as we need to find an alternate way tor ead data from data dump
 	public void searchCustomer(){
-		String custName = ComcastTest.getDataDump().getValue("CustomerName_RT");
+		/*String custName = ComcastTest.getDataDump().getValue("CustomerName_RT");
 		//leftframe
-		/*waitforPageLoadComplete();
+		waitforPageLoadComplete();
 		WaitandSwitchToFrame(frameLeft);
 		WebElement elem = browser.findElement(By.xpath("//span[@class=\"standartTreeRow\" and contains(.,'"+custName+"')]"));
 		if(shortWaitForElement(elem)) {
 			elem.click();
 			
 		}else{
-*/			//span[@class="standartTreeRow" and contains(.,'ProdTest_ENT_R16.07_EDI_NC56515')]
+			//span[@class="standartTreeRow" and contains(.,'ProdTest_ENT_R16.07_EDI_NC56515')]
 			waitforPageLoadComplete();
 			 WaitandSwitchToFrame(frameMain);
 			 
@@ -154,7 +155,7 @@ public class HomePageCM extends Page {
 		 //clickServiceAcc.click();
 
 		
-		
+*/		
 	}
 	
 	
