@@ -187,8 +187,9 @@ public class AccountTabPageCM extends Page {
 		WaitandSwitchToFrame(frameAccount);
 		txtAccnName.click();
 		txtAccnName.clear();
-		txtAccnName.sendKeys(accountInfo.serviceAccName+RandomNumber());
-		report.reportDoneEvent("Enter Service Account Name", "Entered Service Account Name as->" +accountInfo.serviceAccName+RandomNumber());
+		String serviceAccName = accountInfo.serviceAccName + RandomNumber();
+		txtAccnName.sendKeys(serviceAccName);
+		report.reportDoneEvent("Enter Service Account Name", "Entered Service Account Name as->" + serviceAccName);
 		waitforPageLoadComplete();
 		ddValueSelect(ddTextLegalEntity,ddValueLegalEntity,accountInfo.legalEntity);
 		report.reportDoneEvent("Select Legal Entity", "Selected Legal Entity as->" +accountInfo.legalEntity);
@@ -281,8 +282,9 @@ public class AccountTabPageCM extends Page {
 		 ddValueSelect(ddtxtServiceAcc,chkSite,"Site");
 		 waitforPageLoadComplete();
 		 txtBillingAccnName.click();
-		 txtBillingAccnName.sendKeys(accountInfo.billingAccName+RandomNumber());
-		 report.reportDoneEvent("Enter Billing Account Name", "Entered Billing Account Name as->"+accountInfo.billingAccName+RandomNumber());
+		 String billingAccName = accountInfo.billingAccName + RandomNumber();
+		 txtBillingAccnName.sendKeys(billingAccName);
+		 report.reportDoneEvent("Enter Billing Account Name", "Entered Billing Account Name as->" + billingAccName);
 		 waitforPageLoadComplete();
 		 imgGetBAN.click();
 		 report.reportDoneEvent("Click to get BAN", "Clicked to get BAN");

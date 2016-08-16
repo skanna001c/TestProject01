@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.comcast.century.cm.pages.Page;
 import com.comcast.century.data.SiteInfo;
 import com.comcast.reporting.Status;
 import com.comcast.utils.SeleniumReport;
@@ -185,9 +186,9 @@ public class AddressTabPageCM extends Page {
 	
 	public String EnterSiteDetailsInvalid(SiteInfo siteInfo) throws InterruptedException{
 		waitForElement(txtSiteName);
-		String temp = siteInfo.siteName+RandomNumber();
-		txtSiteName.sendKeys(temp);
-		report.reportDoneEvent("Enter Site Name", "Entered Site Name as->" +siteInfo.siteName+RandomNumber());
+		String siteName = siteInfo.siteName + RandomNumber();
+		txtSiteName.sendKeys(siteName);
+		report.reportDoneEvent("Enter Site Name", "Entered Site Name as->" + siteName);
 		this.siteAddressInvalid(siteInfo);
 		this.headEndInformation(siteInfo);
 		this.clickCreateButton();
@@ -203,15 +204,15 @@ public class AddressTabPageCM extends Page {
 		report.updateTestLog("Create Address", "Address Created Successfully", Status.SCREENSHOT);
 		browser.switchTo().defaultContent();
 		this.clickAddContact();	
-		return temp;
+		return siteName;
 			 
 	}
 	
 	public String EnterSiteDetailsValid(SiteInfo siteInfo) throws InterruptedException{
 		waitForElement(txtSiteName);
-		String temp = siteInfo.siteName+RandomNumber();
-		txtSiteName.sendKeys(temp);
-		report.reportDoneEvent("Enter Site Name", "Entered Site Name as->" +siteInfo.siteName+RandomNumber());
+		String siteName = siteInfo.siteName + RandomNumber();
+		txtSiteName.sendKeys(siteName);
+		report.reportDoneEvent("Enter Site Name", "Entered Site Name as->" + siteName);
 		this.siteAddressValid(siteInfo);
 		this.headEndInformation(siteInfo);
 		this.clickCreateButton();
@@ -226,15 +227,16 @@ public class AddressTabPageCM extends Page {
 	    BtnAddContact.click();
 	    report.reportDoneEvent("Click on Add Contact", "Add Contact Clicked");
 	    waitforPageLoadComplete();	
-		return temp;
+		return siteName;
 			 
 	}
 	
 	public void siteAddressInvalid(SiteInfo siteInfo) throws InterruptedException{
 		
 		waitForElement(txtSiteAddressLine1);
-		txtSiteAddressLine1.sendKeys(siteInfo.siteAddress1+RandomNumber());
-		report.reportDoneEvent("Enter Site Address Line 1", "Entered Site Address Line 1 as->" +siteInfo.siteAddress1+RandomNumber());
+		String siteAddress1 = siteInfo.siteAddress1 + RandomNumber();
+		txtSiteAddressLine1.sendKeys(siteAddress1);
+		report.reportDoneEvent("Enter Site Address Line 1", "Entered Site Address Line 1 as->" + siteAddress1);
 		waitForElement(ddtxtZipCode);
 		ddtxtZipCode.sendKeys(siteInfo.zipCode);
 		report.reportDoneEvent("Enter Zipcode", "Entered Zipcode as->" +siteInfo.zipCode);
@@ -254,8 +256,9 @@ public class AddressTabPageCM extends Page {
 		waitForElement(txtSiteAddressLine1);
 		txtSiteAddressLine1.sendKeys(siteInfo.siteAddress1);
 		report.reportDoneEvent("Enter Site Address Line 1", "Entered Site Address Line 1 as->" +siteInfo.siteAddress1);
-		txtSiteAddressLine2.sendKeys(siteInfo.siteAddress2+ " "+RandomNumber());
-		report.reportDoneEvent("Enter Site Address Line 2", "Entered Site Address Line 2 as->" +siteInfo.siteAddress2+RandomNumber());
+		String siteAddress2 = siteInfo.siteAddress2 + " " + RandomNumber();
+		txtSiteAddressLine2.sendKeys(siteAddress2);
+		report.reportDoneEvent("Enter Site Address Line 2", "Entered Site Address Line 2 as->" + siteAddress2);
 		waitForElement(ddtxtZipCode);
 		ddtxtZipCode.sendKeys(siteInfo.zipCode);
 		report.reportDoneEvent("Enter Zipcode", "Entered Zipcode as->" +siteInfo.zipCode);

@@ -141,12 +141,13 @@ public class ContactTabPageCM extends Page {
 		public void CreateAccountPrimaryContact(ContactInfo contactInfo) throws InterruptedException{
 			
 			 if (WaitandSwitchToFrame(frameMain)){
-		 ddValueSelect(ddTextContactType,ddValueContactType1,contactInfo.contactType1);
-		 report.reportDoneEvent("Select Contact Type", "Selected Contact Type as->" +contactInfo.contactType1);
+			 ddValueSelect(ddTextContactType,ddValueContactType1,contactInfo.contactType1);
+		     report.reportDoneEvent("Select Contact Type", "Selected Contact Type as->" +contactInfo.contactType1);
 			 txtFirstName.sendKeys(contactInfo.firstName);
 		     report.reportDoneEvent("Enter First Name", "Entered First Name as->" +contactInfo.firstName);
-			 txtLastName.sendKeys(contactInfo.lastName+RandomNumber());
-			 report.reportDoneEvent("Enter Last Name", "Entered Last Name as->" +contactInfo.lastName+RandomNumber());
+		     String lastName = contactInfo.lastName+RandomNumber();
+			 txtLastName.sendKeys(lastName);
+			 report.reportDoneEvent("Enter Last Name", "Entered Last Name as->" +lastName);
 			 waitForElement(ddTextNameSuffix);
 			 ddValueSelect(ddTextNameSuffix,ddValueNameSuffix,contactInfo.nameSuffix);
 			 txtEmailId.sendKeys(contactInfo.emailId);
@@ -165,12 +166,13 @@ public class ContactTabPageCM extends Page {
 		public void CreateBillingContact(ContactInfo contactInfo) throws InterruptedException{
 			
 			 if (WaitandSwitchToFrame(frameMain)){
-		 ddValueSelect(ddTextContactType,ddValueContactType4,"Billing");
-		 report.reportDoneEvent("Select Contact Type", "Selected Contact Type as->" +contactInfo.contactType1);
+			 ddValueSelect(ddTextContactType,ddValueContactType4,"Billing");
+		     report.reportDoneEvent("Select Contact Type", "Selected Contact Type as->" +contactInfo.contactType1);
 			 txtFirstName.sendKeys(contactInfo.firstName);
 		     report.reportDoneEvent("Enter First Name", "Entered First Name as->" +contactInfo.firstName);
-			 txtLastName.sendKeys(contactInfo.lastName+RandomNumber());
-			 report.reportDoneEvent("Enter Last Name", "Entered Last Name as->" +contactInfo.lastName+RandomNumber());
+		     String lastName = contactInfo.lastName + RandomNumber();
+			 txtLastName.sendKeys(lastName);
+			 report.reportDoneEvent("Enter Last Name", "Entered Last Name as->" + lastName);
 			 waitForElement(ddTextNameSuffix);
 			 ddValueSelect(ddTextNameSuffix,ddValueNameSuffix,contactInfo.nameSuffix);
 			 txtEmailId.sendKeys(contactInfo.emailId);
@@ -191,19 +193,20 @@ public class ContactTabPageCM extends Page {
 		public void CreateSiteTechnicalContact(ContactInfo contactInfo) throws InterruptedException{
 			
 			 if (WaitandSwitchToFrame(frameMain)){
-		ddValueSelect(ddTextContactType,ddValueContactType2,contactInfo.contactType2);
-		 report.reportDoneEvent("Select Contact Type", "Selected Contact Type as->" +contactInfo.contactType2);
+		     ddValueSelect(ddTextContactType,ddValueContactType2,contactInfo.contactType2);
+		     report.reportDoneEvent("Select Contact Type", "Selected Contact Type as->" +contactInfo.contactType2);
 			 txtFirstName.sendKeys(contactInfo.firstName);
 			 report.reportDoneEvent("Enter First Name", "Entered First Name as->" +contactInfo.firstName);
-			 txtLastName.sendKeys(contactInfo.lastName+RandomNumber());
-			 report.reportDoneEvent("Enter Last Name", "Entered Last Name as->" +contactInfo.lastName+RandomNumber());
+			 String lastName = contactInfo.lastName+RandomNumber();
+			 txtLastName.sendKeys(lastName);
+			 report.reportDoneEvent("Enter Last Name", "Entered Last Name as->" + lastName);
 			 waitForElement(ddTextNameSuffix);
 			 ddValueSelect(ddTextNameSuffix,ddValueNameSuffix,contactInfo.nameSuffix);
 			 txtEmailId.sendKeys(contactInfo.emailId);
 			 report.reportDoneEvent("Enter EmailID","Entered EmailID as->" +contactInfo.emailId );
 			 txtPrimaryPhone.sendKeys(contactInfo.primaryPhoneNum);
 			 report.reportDoneEvent("Enter Primary Phone Number", "Entered Primary Phone Number as->" +contactInfo.primaryPhoneNum);
-			waitForElement(btnCreate);
+			 waitForElement(btnCreate);
 			 btnCreate.click();
 			 waitforPageLoadComplete();
 			 report.updateTestLog("Create Site Technical Contact", "Site Technical Contact Created Successfully", Status.SCREENSHOT);
@@ -221,21 +224,23 @@ public class ContactTabPageCM extends Page {
 				 btnAddNewContact.click();
 				 waitforPageLoadComplete();
 				 waitForElement(ddTextContactType);
-		ddValueSelect(ddTextContactType,ddValueContactType3,contactInfo.contactType3);
-		 report.reportDoneEvent("Select Contact Type", "Selected Contact Type as->" +contactInfo.contactType2);
-			 txtFirstName.sendKeys(contactInfo.firstName+RandomNumber());
-			 report.reportDoneEvent("Enter First Name", "Entered First Name as->" +contactInfo.firstName+RandomNumber());
-			 txtLastName.sendKeys(contactInfo.lastName+RandomNumber());
-			 report.reportDoneEvent("Enter Last Name", "Entered Last Name as->" +contactInfo.lastName+RandomNumber());
-			 txtEmailId.sendKeys(contactInfo.emailId);
-			 report.reportDoneEvent("Enter EmailID","Entered EmailID as->" +contactInfo.emailId );
-			 txtPrimaryPhone.sendKeys(contactInfo.primaryPhoneNum);
-			 report.reportDoneEvent("Enter Primary Phone Number", "Entered Primary Phone Number as->" +contactInfo.primaryPhoneNum);
-			waitForElement(btnCreate);
-			 btnCreate.click();
-			 waitforPageLoadComplete();
-			 report.updateTestLog("Create Shipping Contact", "Shipping Contact Created Successfully", Status.SCREENSHOT);
-			 browser.switchTo().defaultContent(); 
+		         ddValueSelect(ddTextContactType,ddValueContactType3,contactInfo.contactType3);
+				 report.reportDoneEvent("Select Contact Type", "Selected Contact Type as->" +contactInfo.contactType2);
+				 String firstName = contactInfo.firstName+RandomNumber();
+				 txtFirstName.sendKeys(firstName);
+				 report.reportDoneEvent("Enter First Name", "Entered First Name as->" +firstName);
+				 String lastName = contactInfo.lastName+RandomNumber();
+				 txtLastName.sendKeys(lastName);
+				 report.reportDoneEvent("Enter Last Name", "Entered Last Name as->" + lastName);
+				 txtEmailId.sendKeys(contactInfo.emailId);
+				 report.reportDoneEvent("Enter EmailID","Entered EmailID as->" + contactInfo.emailId );
+				 txtPrimaryPhone.sendKeys(contactInfo.primaryPhoneNum);
+				 report.reportDoneEvent("Enter Primary Phone Number", "Entered Primary Phone Number as->" +contactInfo.primaryPhoneNum);
+				 waitForElement(btnCreate);
+				 btnCreate.click();
+				 waitforPageLoadComplete();
+				 report.updateTestLog("Create Shipping Contact", "Shipping Contact Created Successfully", Status.SCREENSHOT);
+				 browser.switchTo().defaultContent(); 
 		}
 			 	
 			
@@ -251,8 +256,8 @@ public class ContactTabPageCM extends Page {
 			waitForElement(btnBack);
 			btnBack.click();
 			report.reportDoneEvent("Click on Back Button", "Back Button Clicked");
-			 waitforPageLoadComplete();
-			 browser.switchTo().defaultContent(); 
+			waitforPageLoadComplete();
+			browser.switchTo().defaultContent(); 
 		}
 	
 }
