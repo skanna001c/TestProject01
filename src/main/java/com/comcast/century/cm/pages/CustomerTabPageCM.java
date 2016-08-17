@@ -161,7 +161,9 @@ public class CustomerTabPageCM extends Page {
 		  //updated by harsh to store runtime data into datadump - 8/5/2016
 		  customerName = customerInfo.customerName + RandomNumber();
 		  txtCustomerName.sendKeys(customerName);
-		  ComcastTest.getDataDump().setValue("CustomerName_RT", customerName);		  
+
+		  //ComcastTest.getDataDump().setValue("CustomerName_RT", customerName); //commented by harsh on 8/16 - need to find a way to push data to datadump
+		  		  
 		  waitforPageLoadComplete();
 		  report.reportDoneEvent("Enter Customer Name", "Entered Customer Name as ->" + customerName);
 		  if(waitForElement(txtworkPhone)){

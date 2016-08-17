@@ -68,11 +68,11 @@ public class ComcastTest {
 	
 	public Method testName;
 	protected DataTable dataTable; // updated by harsh on 8/4
-	public static SeleniumReport report;
-	protected static SeleniumReport reportSummary;
+	public SeleniumReport report;
+	protected  SeleniumReport reportSummary;
 	
 	protected WebDriver browser;
-	protected static TestSettings settings; // updated by harsh on 8/4
+	protected TestSettings settings; // updated by harsh on 8/4
 	protected String testCaseName;
 	
 	public static String totalExecutionTime;
@@ -80,9 +80,9 @@ public class ComcastTest {
 	public static int nTestsFailed=0;
 	
 	protected Hashtable<String,String> testStatusTable;
-	protected static IDataDump dataDump;
+	protected IDataDump dataDump;
 	
-	public static IDataDump getDataDump(){
+	public IDataDump getDataDump(){
 		return dataDump;
 	}
 
@@ -204,7 +204,7 @@ public class ComcastTest {
 	
 	// changed to before suite from beforeclass - Harsh 
     
-    public static void initializeSummaryReport()
+    public void initializeSummaryReport()
     {
 
 		String reportPath=ReportPath.getInstance().getReportPath();
@@ -232,7 +232,7 @@ public class ComcastTest {
     }
     
     @AfterClass
-    public static void endReportSummaryReport()
+    public void endReportSummaryReport()
     {
     	System.out.println("After Class");
     	 int h = (int) ((timeTaken1 / 1000) / 3600);
@@ -256,9 +256,9 @@ public class ComcastTest {
     	initializeSummaryReport();
     	testCaseName = context.getCurrentXmlTest().getName();
     	
-		if(settings==null) // added by harsh on 8/2/2016
+		//if(settings==null) // added by harsh on 8/2/2016
 			settings=new TestSettings();
-		if(browser==null)
+		//if(browser==null)
 			browser=getDriver(settings.getBrowser());
     	
     	initializeReport(testCaseName);
@@ -287,7 +287,7 @@ public class ComcastTest {
 	public synchronized void setupData(Method testName) {
 		
 		//System.out.println("inside comcast test before method: "+ testName.getName());
-		
+		startTime = System.currentTimeMillis();
 		if(settings==null)
 			settings=new TestSettings();
 		if(browser==null)
@@ -361,7 +361,7 @@ public class ComcastTest {
 		
 		String methodStatus;
 		endTime=System.currentTimeMillis();
-		Long timeTaken=endTime-startTime-20;//-20 is to compensate for things other than test script execution
+		Long timeTaken=endTime-startTime;
 		int h = (int) ((timeTaken / 1000) / 3600);
 		int m = (int) (((timeTaken / 1000) / 60) % 60);
 		int s = (int) ((timeTaken / 1000) % 60);
@@ -374,6 +374,8 @@ public class ComcastTest {
 		}else{
 			methodStatus = "FAIL";
 		}
+		
+		System.out.println("The transaction with name: " + result.getMethod().getMethodName() + " took :" + time);
 		
 		dataDump.setValue(result.getMethod().getMethodName() + "_status", methodStatus);
 		if(methodStatus.equalsIgnoreCase("fail")){
@@ -396,6 +398,8 @@ public class ComcastTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		browser.close();
+		browser.quit();
 		
 		
 	}
@@ -476,6 +480,7 @@ public class ComcastTest {
 							DesiredCapabilities capabilities =DesiredCapabilities.chrome();
 							capabilities.setBrowserName("chrome");
 							driver = ThreadGuard.protect(new RemoteWebDriver(new URL("http://"+gridip+":4444/wd/hub"), capabilities));
+							//driver = new RemoteWebDriver(new URL("http://"+gridip+":4444/wd/hub"), capabilities);
 							 ThreadDriver.set(driver);
 						 	} catch (MalformedURLException e) {
 							// TODO Auto-generated catch block

@@ -15,13 +15,16 @@ public class TestFilter implements IMethodInterceptor {
 		System.out.println("inside method interceptor");
 		List<IMethodInstance> finalMethods = new ArrayList<IMethodInstance>();
 
-		//String testName = context.getCurrentXmlTest().getName();
+		String testName = context.getCurrentXmlTest().getName();
+		TestSettings settings = new TestSettings();
+		IDataDump dataDump = new DataDump(testName);
 
-		if(ComcastTest.settings.getPERerunStatus().equalsIgnoreCase("true")){
+		if(settings.getPERerunStatus().equalsIgnoreCase("true")){
+			dataDump.loadData();
 			
 			for(IMethodInstance method: methods){
 
-				if(ComcastTest.dataDump.getValue(method.getMethod().getMethodName()+"_status").equalsIgnoreCase("pass")){
+				if(dataDump.getValue(method.getMethod().getMethodName()+"_status").equalsIgnoreCase("pass")){
 					System.out.println("Test method: "+method.getMethod().getMethodName()+" already passed and not required to be rerun");
 				}else{
 					finalMethods.add(method);
