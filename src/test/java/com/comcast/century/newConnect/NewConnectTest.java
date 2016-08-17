@@ -68,7 +68,7 @@ public class NewConnectTest extends ComcastTest {
 		}
 		//Search for customer if rerun - added by harsh on 8/8/16
 		if(settings.getPERerunStatus().equalsIgnoreCase("true")){
-			(new HomePageCM(browser,report)).searchCustomer();
+			(new HomePageCM(browser,report)).searchCustomer(getDataDump().getValue("CustomerName_RT"));
 		}
 		
 		
@@ -87,9 +87,10 @@ public class NewConnectTest extends ComcastTest {
   @Test(priority=1)
   @PerfTransaction(name="createCustomer")
   public void createCustomer(){
-
+	    String customerName;
 		try {
-			(new CustomerTabPageCM(browser, report)).createCustomer(customerInfo);
+			customerName = (new CustomerTabPageCM(browser, report)).createCustomer(customerInfo);
+			getDataDump().setValue("CustomerName_RT", customerName);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -144,7 +145,7 @@ public class NewConnectTest extends ComcastTest {
   @PerfTransaction(name="processService")
   public void processService() throws InterruptedException{
 		SRID = (new ProcessTabPageCM(browser, report)).ProcessConfiguration(processInfo);
-		dataDump.setValue("SRID_RT", SRID);
+		getDataDump().setValue("SRID_RT", SRID);
 		(new ProcessTabPageCM(browser, report)).UNIConfiguration(processInfo, Site1);
 		(new ProcessTabPageCM(browser, report)).EVCConfiguration_EDI(processInfo);
 		(new ProcessTabPageCM(browser, report)).EqFeeConfiguration(processInfo);

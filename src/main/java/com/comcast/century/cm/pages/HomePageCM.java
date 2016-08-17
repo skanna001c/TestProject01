@@ -123,8 +123,8 @@ public class HomePageCM extends Page {
 	
 	//added by harsh on 8/8 to ensure continuity in packaged execution
 	//commented by harsh on 8/16 as we need to find an alternate way tor ead data from data dump
-	public void searchCustomer(){
-		/*String custName = ComcastTest.getDataDump().getValue("CustomerName_RT");
+	public void searchCustomer(String custName){
+		//String custName = ComcastTest.getDataDump().getValue("CustomerName_RT");
 		//leftframe
 		waitforPageLoadComplete();
 		WaitandSwitchToFrame(frameLeft);
@@ -153,9 +153,10 @@ public class HomePageCM extends Page {
 			 //waitForElement(browser.findElement(By.xpath(".//*[@id='busiCustBean.businessName']")));
 				
 		 //clickServiceAcc.click();
+		}
 
 		
-*/		
+		
 	}
 	
 	
