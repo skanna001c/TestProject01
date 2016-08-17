@@ -2769,17 +2769,22 @@ public abstract class Page {
 	 * @return
 	 */
 	
-		protected String RandomNumber() {
-			  LocalDateTime now = LocalDateTime.now();
+		protected String getTimestamp() {
+			
+			  	LocalDateTime now = LocalDateTime.now();
 				int year = now.getYear();
 				int month = now.getMonthValue();
 				int day = now.getDayOfMonth();
 				int hour = now.getHour();
 				int minute = now.getMinute();
 				int second = now.getSecond();
-			    return  Integer.toString(second)+Integer.toString(minute)+Integer.toString(hour);  		
+				return  Integer.toString(year)+Integer.toString(month)+Integer.toString(day)+Integer.toString(hour)+Integer.toString(minute)+Integer.toString(second);			   
+			   
 			}
 		
+		protected String randomNumber(int limit) {			
+			return Double.toString(Math.random()).substring(2,2+limit);			
+			}
 		
 	/****
 	 * Method to handle drop downs

@@ -145,7 +145,7 @@ public class ContactTabPageCM extends Page {
 		     report.reportDoneEvent("Select Contact Type", "Selected Contact Type as->" +contactInfo.contactType1);
 			 txtFirstName.sendKeys(contactInfo.firstName);
 		     report.reportDoneEvent("Enter First Name", "Entered First Name as->" +contactInfo.firstName);
-		     String lastName = contactInfo.lastName+RandomNumber();
+		     String lastName = contactInfo.lastName+getTimestamp();
 			 txtLastName.sendKeys(lastName);
 			 report.reportDoneEvent("Enter Last Name", "Entered Last Name as->" +lastName);
 			 waitForElement(ddTextNameSuffix);
@@ -170,7 +170,7 @@ public class ContactTabPageCM extends Page {
 		     report.reportDoneEvent("Select Contact Type", "Selected Contact Type as->" +contactInfo.contactType1);
 			 txtFirstName.sendKeys(contactInfo.firstName);
 		     report.reportDoneEvent("Enter First Name", "Entered First Name as->" +contactInfo.firstName);
-		     String lastName = contactInfo.lastName + RandomNumber();
+		     String lastName = contactInfo.lastName + getTimestamp();
 			 txtLastName.sendKeys(lastName);
 			 report.reportDoneEvent("Enter Last Name", "Entered Last Name as->" + lastName);
 			 waitForElement(ddTextNameSuffix);
@@ -197,7 +197,7 @@ public class ContactTabPageCM extends Page {
 		     report.reportDoneEvent("Select Contact Type", "Selected Contact Type as->" +contactInfo.contactType2);
 			 txtFirstName.sendKeys(contactInfo.firstName);
 			 report.reportDoneEvent("Enter First Name", "Entered First Name as->" +contactInfo.firstName);
-			 String lastName = contactInfo.lastName+RandomNumber();
+			 String lastName = contactInfo.lastName+getTimestamp();
 			 txtLastName.sendKeys(lastName);
 			 report.reportDoneEvent("Enter Last Name", "Entered Last Name as->" + lastName);
 			 waitForElement(ddTextNameSuffix);
@@ -226,10 +226,10 @@ public class ContactTabPageCM extends Page {
 				 waitForElement(ddTextContactType);
 		         ddValueSelect(ddTextContactType,ddValueContactType3,contactInfo.contactType3);
 				 report.reportDoneEvent("Select Contact Type", "Selected Contact Type as->" +contactInfo.contactType2);
-				 String firstName = contactInfo.firstName+RandomNumber();
+				 String firstName = contactInfo.firstName+getTimestamp();
 				 txtFirstName.sendKeys(firstName);
 				 report.reportDoneEvent("Enter First Name", "Entered First Name as->" +firstName);
-				 String lastName = contactInfo.lastName+RandomNumber();
+				 String lastName = contactInfo.lastName+getTimestamp();
 				 txtLastName.sendKeys(lastName);
 				 report.reportDoneEvent("Enter Last Name", "Entered Last Name as->" + lastName);
 				 txtEmailId.sendKeys(contactInfo.emailId);

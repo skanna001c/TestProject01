@@ -255,7 +255,7 @@ public class ProcessTabPageCM extends Page {
 			 waitForElement(ddvalueSURCILI1);
 			 ddvalueSURCILI1.click();
 			 waitForElement(txtUNInumber);
-			 txtUNInumber.sendKeys(RandomNumber());
+			 txtUNInumber.sendKeys(randomNumber(5));
 			 new Select(ddUNIPortSpeed).selectByIndex(1);
 			 btnSave.click();
 			 report.reportDoneEvent("Save UNI Configuration", "UNI Configuration Saved");
@@ -316,7 +316,7 @@ public class ProcessTabPageCM extends Page {
 			 waitForElement(ddvalueSURCILI2);
 			 ddvalueSURCILI2.click();
 			 waitForElement(txtUNInumber);
-			 txtUNInumber.sendKeys(RandomNumber());
+			 txtUNInumber.sendKeys(randomNumber(5));
 			 new Select(ddUNIPortSpeed).selectByIndex(1);
 			 btnSave.click();
 			 report.reportDoneEvent("Save UNI~2 Configuration", "UNI~2 Configuration Saved");
@@ -362,7 +362,7 @@ public class ProcessTabPageCM extends Page {
 			 waitForElement(ddvalueSURCILI3);
 			 ddvalueSURCILI3.click();
 			 waitForElement(txtUNInumber);
-			 txtUNInumber.sendKeys(RandomNumber());
+			 txtUNInumber.sendKeys(randomNumber(5));
 			 new Select(ddUNIPortSpeed).selectByValue("No");;
 			 btnSave.click();
 			 report.reportDoneEvent("Save UNI~3 Configuration", "UNI~3 Configuration Saved");
@@ -403,7 +403,7 @@ public class ProcessTabPageCM extends Page {
 			 waitForElement(ddvalueSURCILI1);
 			 ddvalueSURCILI1.click();
 			 waitForElement(txtUNInumber);
-			 txtUNInumber.sendKeys(RandomNumber());
+			 txtUNInumber.sendKeys(randomNumber(5));
 			 new Select(ddUNIPortSpeed).selectByIndex(1);
 			 btnSave.click();
 			 report.reportDoneEvent("Save UNI Configuration", "UNI Configuration Saved");
@@ -425,7 +425,7 @@ public class ProcessTabPageCM extends Page {
 			 waitForElement(ddArrwLocationZuni);
 			 ddArrwLocationZuni.click();
 			 ddvalueLocationZuni.get(0).click();
-			 txtEVCnumber.sendKeys(RandomNumber());
+			 txtEVCnumber.sendKeys(randomNumber(5));
 			 btnSave.click();
 			 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
 			 waitForElementDisappear(elementLoading);
@@ -448,7 +448,7 @@ public class ProcessTabPageCM extends Page {
 			 waitForElement(ddArrwLocationZuni);
 			 ddArrwLocationZuni.click();
 			 ddvalueLocationZuni.get(0).click();
-			 txtEVCnumber.sendKeys(RandomNumber());
+			 txtEVCnumber.sendKeys(randomNumber(5));
 			 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
 			 new Select(ddIpBlockChange).selectByIndex(1);
 			 new Select(ddIpAddressAllocation).selectByVisibleText(processInfo.ipAddressAllocation);
@@ -475,7 +475,7 @@ public class ProcessTabPageCM extends Page {
 			 ddvalueLocationZuni.get(0).click();
 			 new Select(ddExistingEVC).selectByValue("No");
 			 new Select(ddEVCAreaType).selectByValue(processInfo.evcAreaType);
-			 txtEVCnumber.sendKeys(RandomNumber());
+			 txtEVCnumber.sendKeys(randomNumber(5));
 			 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
 			 new Select(ddMaxUNIExceeded).selectByValue("No");
 			 btnSave.click();
@@ -525,7 +525,7 @@ public class ProcessTabPageCM extends Page {
 			 ddArrwLocationZuni.click();
 			 ddvalueLocationZuni.get(3).click();           //Select 2nd site at location Z UNI
 			 waitForElement(txtEVCnumber);
-			 txtEVCnumber.sendKeys(RandomNumber());
+			 txtEVCnumber.sendKeys(randomNumber(5));
 			 new Select(ddEVCAreaType).selectByValue(processInfo.evcAreaType);
 			 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
 			 new Select(ddMaxEVCExceeded).selectByValue("No");
@@ -554,7 +554,7 @@ public class ProcessTabPageCM extends Page {
 			 ddArrwLocationZuni.click();
 			 ddvalueLocationZuni.get(4).click();              //Select 2nd site at location Z UNI
 			 waitForElement(txtEVCnumber);
-			 txtEVCnumber.sendKeys(RandomNumber());
+			 txtEVCnumber.sendKeys(randomNumber(5));
 			 new Select(ddEVCAreaType).selectByValue(processInfo.evcAreaType);
 			 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
 			 new Select(ddMaxEVCExceeded).selectByValue("No");
@@ -584,7 +584,7 @@ public class ProcessTabPageCM extends Page {
 			 ddArrwLocationZuni.click();
 			 ddvalueLocationZuni.get(5).click();                 //Select 3rd site at location Z UNI
 			 waitForElement(txtEVCnumber);
-			 txtEVCnumber.sendKeys(RandomNumber());
+			 txtEVCnumber.sendKeys(randomNumber(5));
 			 new Select(ddEVCAreaType).selectByValue(processInfo.evcAreaType);
 			 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
 			 new Select(ddMaxEVCExceeded).selectByValue("No");

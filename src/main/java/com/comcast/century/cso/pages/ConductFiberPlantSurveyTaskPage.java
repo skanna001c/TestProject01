@@ -89,8 +89,8 @@ public class ConductFiberPlantSurveyTaskPage extends Page {
 			waitForElement(tabFiberSurveyResults);
 			clickndRelease(tabFiberSurveyResults);			
 			waitForElement(txtHeadEndDistance);
-			txtHeadEndDistance.sendKeys(RandomNumber());
-			txtNodeNumber.sendKeys(RandomNumber());
+			txtHeadEndDistance.sendKeys(randomNumber(5));
+			txtNodeNumber.sendKeys(randomNumber(5));
 			new Select(ddServiceable).selectByIndex(2);
 			this.ClickCompleteButton();
 		}

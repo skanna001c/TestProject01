@@ -186,7 +186,7 @@ public class AddressTabPageCM extends Page {
 	
 	public String EnterSiteDetailsInvalid(SiteInfo siteInfo) throws InterruptedException{
 		waitForElement(txtSiteName);
-		String siteName = siteInfo.siteName + RandomNumber();
+		String siteName = siteInfo.siteName + getTimestamp();
 		txtSiteName.sendKeys(siteName);
 		report.reportDoneEvent("Enter Site Name", "Entered Site Name as->" + siteName);
 		this.siteAddressInvalid(siteInfo);
@@ -210,7 +210,7 @@ public class AddressTabPageCM extends Page {
 	
 	public String EnterSiteDetailsValid(SiteInfo siteInfo) throws InterruptedException{
 		waitForElement(txtSiteName);
-		String siteName = siteInfo.siteName + RandomNumber();
+		String siteName = siteInfo.siteName + getTimestamp();
 		txtSiteName.sendKeys(siteName);
 		report.reportDoneEvent("Enter Site Name", "Entered Site Name as->" + siteName);
 		this.siteAddressValid(siteInfo);
@@ -234,7 +234,7 @@ public class AddressTabPageCM extends Page {
 	public void siteAddressInvalid(SiteInfo siteInfo) throws InterruptedException{
 		
 		waitForElement(txtSiteAddressLine1);
-		String siteAddress1 = siteInfo.siteAddress1 + RandomNumber();
+		String siteAddress1 = siteInfo.siteAddress1 + getTimestamp();
 		txtSiteAddressLine1.sendKeys(siteAddress1);
 		report.reportDoneEvent("Enter Site Address Line 1", "Entered Site Address Line 1 as->" + siteAddress1);
 		waitForElement(ddtxtZipCode);
@@ -256,7 +256,7 @@ public class AddressTabPageCM extends Page {
 		waitForElement(txtSiteAddressLine1);
 		txtSiteAddressLine1.sendKeys(siteInfo.siteAddress1);
 		report.reportDoneEvent("Enter Site Address Line 1", "Entered Site Address Line 1 as->" +siteInfo.siteAddress1);
-		String siteAddress2 = siteInfo.siteAddress2 + " " + RandomNumber();
+		String siteAddress2 = siteInfo.siteAddress2 + " " + getTimestamp();
 		txtSiteAddressLine2.sendKeys(siteAddress2);
 		report.reportDoneEvent("Enter Site Address Line 2", "Entered Site Address Line 2 as->" + siteAddress2);
 		waitForElement(ddtxtZipCode);

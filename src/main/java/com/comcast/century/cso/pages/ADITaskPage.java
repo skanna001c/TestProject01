@@ -71,7 +71,7 @@ public class ADITaskPage extends Page {
 			Thread.sleep(2*1000);
 			scrollToElementandclick(elementDash.get(0));
 			waitForElement(txtServiceID);
-			txtServiceID.sendKeys(RandomNumber());
+			txtServiceID.sendKeys(randomNumber(6));
 			txtEVCid.sendKeys(serviceLevelTaskInfo.EVC1);
 			txtProjectName.clear();
 			txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
@@ -88,7 +88,7 @@ public class ADITaskPage extends Page {
 			Thread.sleep(2*1000);
 			scrollToElementandclick(elementDash.get(1));
 			waitForElement(txtServiceID);
-			txtServiceID.sendKeys(RandomNumber());
+			txtServiceID.sendKeys(randomNumber(6));
 			txtEVCid.sendKeys(serviceLevelTaskInfo.EVC2);
 			txtProjectName.clear();
 			txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);

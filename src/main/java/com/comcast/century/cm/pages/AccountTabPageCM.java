@@ -187,7 +187,7 @@ public class AccountTabPageCM extends Page {
 		WaitandSwitchToFrame(frameAccount);
 		txtAccnName.click();
 		txtAccnName.clear();
-		String serviceAccName = accountInfo.serviceAccName + RandomNumber();
+		String serviceAccName = accountInfo.serviceAccName + getTimestamp();
 		txtAccnName.sendKeys(serviceAccName);
 		report.reportDoneEvent("Enter Service Account Name", "Entered Service Account Name as->" + serviceAccName);
 		waitforPageLoadComplete();
@@ -282,7 +282,7 @@ public class AccountTabPageCM extends Page {
 		 ddValueSelect(ddtxtServiceAcc,chkSite,"Site");
 		 waitforPageLoadComplete();
 		 txtBillingAccnName.click();
-		 String billingAccName = accountInfo.billingAccName + RandomNumber();
+		 String billingAccName = accountInfo.billingAccName + getTimestamp();
 		 txtBillingAccnName.sendKeys(billingAccName);
 		 report.reportDoneEvent("Enter Billing Account Name", "Entered Billing Account Name as->" + billingAccName);
 		 waitforPageLoadComplete();

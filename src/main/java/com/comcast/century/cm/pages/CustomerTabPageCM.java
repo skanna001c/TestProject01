@@ -159,7 +159,7 @@ public class CustomerTabPageCM extends Page {
 		  txtCustomerName.click();
 		  txtCustomerName.clear();
 		  //updated by harsh to store runtime data into datadump - 8/5/2016
-		  customerName = customerInfo.customerName + RandomNumber();
+		  customerName = customerInfo.customerName + getTimestamp();
 		  txtCustomerName.sendKeys(customerName);
 
 		  //ComcastTest.getDataDump().setValue("CustomerName_RT", customerName); //commented by harsh on 8/16 - need to find a way to push data to datadump
@@ -171,7 +171,7 @@ public class CustomerTabPageCM extends Page {
 		  }
 		  txtworkPhone.sendKeys(customerInfo.workPhone);
 		  report.reportDoneEvent("Enter Work Phone", "Work Phone Entered as ->" +customerInfo.workPhone);
-		  String salesForceID = customerInfo.salesForceAccId+RandomNumber();
+		  String salesForceID = customerInfo.salesForceAccId+randomNumber(5);
 		  txtSalesForceID.sendKeys(salesForceID);
 		  report.reportDoneEvent("Enter Salesforce Account ID", "Salesforce Account ID Entered as ->" + salesForceID);  
 		  
@@ -180,7 +180,7 @@ public class CustomerTabPageCM extends Page {
 	  public void addressInformationInvalid(CustomerInfo customerInfo) throws InterruptedException{
 		  
 		  waitForElement(txtAddressLine1);
-		  String addressLine1 = customerInfo.addressLine1+RandomNumber();
+		  String addressLine1 = customerInfo.addressLine1+getTimestamp();
 		  txtAddressLine1.sendKeys(addressLine1);
 		  report.reportDoneEvent("Enter Address Line 1", "Address Line 1 Entered as ->" + addressLine1);
 		  ddtxtZipCode.sendKeys(customerInfo.zipCode);
@@ -218,7 +218,7 @@ public class CustomerTabPageCM extends Page {
 		  waitForElement(txtAddressLine1);
 		  txtAddressLine1.sendKeys(customerInfo.addressLine1);
 		  report.reportDoneEvent("Enter Address Line 1", "Address Line 1 Entered as ->" +customerInfo.addressLine1);
-		  String addressLine2 = customerInfo.addressLine2+" "+RandomNumber();
+		  String addressLine2 = customerInfo.addressLine2+" "+getTimestamp();
 		  txtAddressLine2.sendKeys(addressLine2);
 		  report.reportDoneEvent("Enter Address Line 2", "Address Line 2 Entered as ->" + addressLine2);
 		  ddtxtZipCode.sendKeys(customerInfo.zipCode);

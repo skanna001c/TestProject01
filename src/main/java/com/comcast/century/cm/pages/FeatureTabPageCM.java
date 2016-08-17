@@ -38,7 +38,7 @@ public class FeatureTabPageCM extends Page {
 	@FindBy(xpath = "//b[text()='BGP Configuration']/preceding-sibling::input[@type='checkbox']")
 	private WebElement chkBoxBGP ;
 	
-	@FindBy(xpath = "//*[@id='button_eventId_continue']")
+	@FindBy(xpath = ".//*[@value='Continue' and @type='button']")
 	private WebElement btnContinue;
 	
 	@FindBy(xpath = "//span[contains(.,'Min 1')]/preceding-sibling::input")
@@ -121,7 +121,8 @@ public class FeatureTabPageCM extends Page {
 		scrollDown();
 		waitForElement(btnContinue);
 		waitForElement(btnContinue);
-		btnContinue.sendKeys(Keys.ENTER);
+		btnContinue.click();
+		//btnContinue.sendKeys(Keys.ENTER); Updated with click method for continue button By krajam003c
 	    waitForElementDisappear(elementLoading);			 
 	}
 

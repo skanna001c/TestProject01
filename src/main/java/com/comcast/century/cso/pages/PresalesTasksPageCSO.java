@@ -73,7 +73,7 @@ public class PresalesTasksPageCSO extends Page {
 			ddArrwHeadendName.click();
 		    Thread.sleep(5*1000);
 		    ddValueHeadendName.click();
-			txtNodeNumber.sendKeys(RandomNumber());
+			txtNodeNumber.sendKeys(randomNumber(5));
 			new Select(ddServiceable).selectByValue("Yes");
 			waitForElement(btnComplete);
 			btnComplete.click();

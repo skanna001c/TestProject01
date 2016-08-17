@@ -130,9 +130,9 @@ public class SurveyTabPageCM extends Page {
 			btnRadioInitiateSurvey.click();
 			waitforPageLoadComplete();
 			waitForElement(txtSiteName);
-			txtSiteName.sendKeys("Site"+RandomNumber());
+			txtSiteName.sendKeys("Site"+getTimestamp());
 			ddValueSelect(ddtextTT,ddValueTT,"Coax");
-			 txtAddressLine1.sendKeys("Address"+RandomNumber());
+			 txtAddressLine1.sendKeys("Address"+getTimestamp());
 			 waitForElement(ddtxtZipCode);
 			 ddtxtZipCode.clear();
 			 ddtxtZipCode.sendKeys("30309");

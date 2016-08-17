@@ -205,8 +205,9 @@ public class OrderSummaryTabCMPage extends Page {
 		dtSalesOrderSubmitted.click();
 		btnToday.get(2).click();
 		waitForElement(txtsalesOrderNumber);
-		txtsalesOrderNumber.sendKeys(RandomNumber());
-		report.reportDoneEvent("Enter Sales Order Number", "Entered Sales Order Number as->"+RandomNumber());
+		String salesOrderNumber = randomNumber(5);
+		txtsalesOrderNumber.sendKeys(salesOrderNumber);
+		report.reportDoneEvent("Enter Sales Order Number", "Entered Sales Order Number as->"+ salesOrderNumber);
 		waitForElement(txtsalesforceopportunityid);
 		txtsalesforceopportunityid.sendKeys(orderSummaryInfo.opportunityId);
 		report.reportDoneEvent("Enter Opportunity ID", "Entered Opportunity ID as->" +orderSummaryInfo.opportunityId);

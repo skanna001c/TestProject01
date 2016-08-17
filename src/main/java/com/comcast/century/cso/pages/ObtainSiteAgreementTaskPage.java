@@ -71,7 +71,7 @@ public class ObtainSiteAgreementTaskPage extends Page {
 			waitForElementDisappear(elementLoading);
 			scrollDown();
 			waitForElement(txtAgreementName);
-			txtAgreementName.sendKeys(siteLevelTaskInfo.agreementName+RandomNumber());
+			txtAgreementName.sendKeys(siteLevelTaskInfo.agreementName+randomNumber(5));
 			SubmittedDate.click();
 			btnToday.get(0).click();
 			clickndRelease(ActualReceivedDate);

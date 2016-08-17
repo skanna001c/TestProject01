@@ -132,10 +132,10 @@ public class NewConnectTest extends ComcastTest {
 				if((new ServiceTabPageCM(browser, report)).EquipmentFee()){
 					if((new ServiceTabPageCM(browser, report)).ClickOnContinueButton()){
 						(new FeatureTabPageCM(browser, report)).ClickOnContinueButton();
-					}Assert.fail("Click continue button failed");
-				}Assert.fail("Equipment fee failed");
-			}Assert.fail(" Select EDI plan failed");
-		}Assert.fail(" Select service plan failed");
+					}else Assert.fail("Click continue button failed");
+				}else Assert.fail("Equipment fee failed");
+			}else Assert.fail(" Select EDI plan failed");
+		}else Assert.fail(" Select service plan failed");
 	  
 	  
   }
