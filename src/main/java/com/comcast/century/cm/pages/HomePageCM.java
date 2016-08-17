@@ -127,12 +127,12 @@ public class HomePageCM extends Page {
 		//String custName = ComcastTest.getDataDump().getValue("CustomerName_RT");
 		//leftframe
 		waitforPageLoadComplete();
-		WaitandSwitchToFrame(frameLeft);
+		/*WaitandSwitchToFrame(frameLeft);
 		WebElement elem = browser.findElement(By.xpath("//span[@class=\"standartTreeRow\" and contains(.,'"+custName+"')]"));
 		if(shortWaitForElement(elem)) {
 			elem.click();
 			
-		}else{
+		}else{*/
 			//span[@class="standartTreeRow" and contains(.,'ProdTest_ENT_R16.07_EDI_NC56515')]
 			waitforPageLoadComplete();
 			 WaitandSwitchToFrame(frameMain);
@@ -155,9 +155,6 @@ public class HomePageCM extends Page {
 		 //clickServiceAcc.click();
 		}
 
-		
-		
-	}
 	
 	
 }
