@@ -69,11 +69,7 @@ public class NewConnectTest extends ComcastTest {
 		
 		//Search for customer if rerun - added by harsh on 8/8/16
 		if(settings.getPERerunStatus().equalsIgnoreCase("true")){
-<<<<<<< HEAD
-			(new HomePageCM(browser,report)).searchCustomer(dataDump.getValue("CustomerName_RT"));
-=======
 			(new HomePageCM(browser,report)).searchCustomer(getDataDump().getValue("CustomerName_RT"));
->>>>>>> 722fde61916055211ec065175a12831154da5533
 		}
 		
 		
@@ -94,14 +90,8 @@ public class NewConnectTest extends ComcastTest {
   public void createCustomer(){
 	    String customerName;
 		try {
-<<<<<<< HEAD
-			String customerName = (new CustomerTabPageCM(browser, report)).createCustomer(customerInfo);
-			dataDump.setValue("CustomerName_RT", customerName);
-			
-=======
 			customerName = (new CustomerTabPageCM(browser, report)).createCustomer(customerInfo);
 			getDataDump().setValue("CustomerName_RT", customerName);
->>>>>>> 722fde61916055211ec065175a12831154da5533
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
