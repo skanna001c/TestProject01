@@ -188,7 +188,7 @@ public class OrderSummaryTabCMPage extends Page {
 		}
 	}
 
-	public void SubmitOrder(OrderSummaryInfo orderSummaryInfo){
+	public void enterOrderDetails(OrderSummaryInfo orderSummaryInfo){
 		//WaitandSwitchToFrame(frameMain);
 		waitForElement(dtCustomerOrderSig);
 		dtCustomerOrderSig.click();

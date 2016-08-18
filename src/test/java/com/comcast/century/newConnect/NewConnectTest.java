@@ -51,8 +51,26 @@ public class NewConnectTest extends ComcastTest {
   @BeforeMethod
   public void beforeMethod() {
 	  //check for rerun and the status of the method
+	  if (userName==null)
+	  {
+		  userName="ordermanagementbat1";
+	  } 
+	  else userName=getDataDump().getValue("userName");
 	  
-	  
+	   centuryApplication = new CenturyApplication(browser, report);
+		// CM nd CSO login -> added by rijin on 8/18/2016
+		 if (getDataDump().getValue("CM_Status").equalsIgnoreCase("PASS")
+				 	&& !(getDataDump().getValue("CSOLoggedIN").equalsIgnoreCase("PASS")))
+		 {
+			 centuryApplication.openCSOUrl(userName);
+			 getDataDump().setValue("CSOLoggedIN","PASS");
+		 }
+		 else if (!(getDataDump().getValue("CMLoggedIN").equalsIgnoreCase("PASS")))
+		 {
+			 centuryApplication.openCMUrl(userName);
+			 getDataDump().setValue("CMLoggedIN","PASS");
+			 
+		 }
   }
   
   @BeforeTest
@@ -61,7 +79,7 @@ public class NewConnectTest extends ComcastTest {
 	  if (userName==null)
 	  {
 		  userName="ordermanagementbat1";
-	  }
+	  }	  
 	  if(settings.getPERerunStatus().equalsIgnoreCase("true")){
 		  userName=getDataDump().getValue("userName");
 	  }
@@ -72,8 +90,15 @@ public class NewConnectTest extends ComcastTest {
 		 if (getDataDump().getValue("CM_Status").equalsIgnoreCase("PASS"))
 		 {
 			 centuryApplication.openCSOUrl(userName);
+			 getDataDump().setValue("CSOLoggedIN","PASS");
+			 
 		 }
-		 else centuryApplication.openCMUrl(userName);
+		 else
+		 {
+			 centuryApplication.openCMUrl(userName);
+			 getDataDump().setValue("CMLoggedIN","PASS");
+			 
+		 }
 		
 		//Search for customer if rerun - added by harsh on 8/8/16
 		if(settings.getPERerunStatus().equalsIgnoreCase("true")){
@@ -178,9 +203,10 @@ public class NewConnectTest extends ComcastTest {
 	  		processService();
 	  	}
 		//(new OrderSummaryTabCMPage(browser, report)).assignLabel(orderSummaryInfo);
-		(new OrderSummaryTabCMPage(browser, report)).SubmitOrder(orderSummaryInfo);
-		
+		(new OrderSummaryTabCMPage(browser, report)).enterOrderDetails(orderSummaryInfo);
+		//getsubmitOrder_SubmitOrder_status
 		(new OrderSummaryTabCMPage(browser, report)).mrcNrc_Value(orderSummaryInfo);
+		
 		(new OrderSummaryTabCMPage(browser, report)).ClickSubmitOrderButton();
 		getDataDump().setValue("CM_Status","PASS");
 		getDataDump().setValue("userName","FiberPMauto");

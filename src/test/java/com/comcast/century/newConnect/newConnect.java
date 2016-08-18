@@ -121,7 +121,7 @@ public class newConnect extends ComcastTest {
 		(new ProcessTabPageCM(browser, report)).ClickOnContinueButton();
 		orderSummaryInfo = OrderSummaryInfo.loadFromDatatable(dataTable);
 		//(new OrderSummaryTabCMPage(browser, report)).assignLabel(orderSummaryInfo);
-		(new OrderSummaryTabCMPage(browser, report)).SubmitOrder(orderSummaryInfo);
+		(new OrderSummaryTabCMPage(browser, report)).enterOrderDetails(orderSummaryInfo);
 		(new OrderSummaryTabCMPage(browser, report)).mrcNrc_Value(orderSummaryInfo);
 		(new OrderSummaryTabCMPage(browser, report)).ClickSubmitOrderButton();
 		(new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);
@@ -219,7 +219,7 @@ public class newConnect extends ComcastTest {
 		(new ProcessTabPageCM(browser, report)).EqFeeConfiguration(processInfo);
 		(new ProcessTabPageCM(browser, report)).ClickOnContinueButton();
 		orderSummaryInfo = OrderSummaryInfo.loadFromDatatable(dataTable);
-		(new OrderSummaryTabCMPage(browser, report)).SubmitOrder(orderSummaryInfo);
+		(new OrderSummaryTabCMPage(browser, report)).enterOrderDetails(orderSummaryInfo);
 		(new OrderSummaryTabCMPage(browser, report)).mrcNrc_Value(orderSummaryInfo);
 		(new OrderSummaryTabCMPage(browser, report)).ClickSubmitOrderButton();
 		(new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);
@@ -328,7 +328,7 @@ public class newConnect extends ComcastTest {
 		(new ProcessTabPageCM(browser, report)).EqFeeConfiguration(processInfo);
 		(new ProcessTabPageCM(browser, report)).ClickOnContinueButton();
 		orderSummaryInfo = OrderSummaryInfo.loadFromDatatable(dataTable);
-		(new OrderSummaryTabCMPage(browser, report)).SubmitOrder(orderSummaryInfo);
+		(new OrderSummaryTabCMPage(browser, report)).enterOrderDetails(orderSummaryInfo);
 		(new OrderSummaryTabCMPage(browser, report)).mrcNrc_Value(orderSummaryInfo);
 		(new OrderSummaryTabCMPage(browser, report)).Attachments(orderSummaryInfo);
 		(new OrderSummaryTabCMPage(browser, report)).ClickSubmitOrderButton();
@@ -432,7 +432,7 @@ public class newConnect extends ComcastTest {
 		(new ProcessTabPageCM(browser, report)).EVCConfiguration_PRI(processInfo);
 		(new ProcessTabPageCM(browser, report)).ClickOnContinueButton();
 		orderSummaryInfo = OrderSummaryInfo.loadFromDatatable(dataTable);
-		(new OrderSummaryTabCMPage(browser, report)).SubmitOrder(orderSummaryInfo);
+		(new OrderSummaryTabCMPage(browser, report)).enterOrderDetails(orderSummaryInfo);
 		(new OrderSummaryTabCMPage(browser, report)).mrcNrc_Value(orderSummaryInfo);
 		(new OrderSummaryTabCMPage(browser, report)).ClickSubmitOrderButton();
 		(new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);
@@ -564,7 +564,7 @@ public class newConnect extends ComcastTest {
 		(new ProcessTabPageCM(browser, report)).ClickOnContinueButton();
 		orderSummaryInfo = OrderSummaryInfo.loadFromDatatable(dataTable);
 		(new OrderSummaryTabCMPage(browser, report)).assignLabel(orderSummaryInfo);
-		(new OrderSummaryTabCMPage(browser, report)).SubmitOrder(orderSummaryInfo);
+		(new OrderSummaryTabCMPage(browser, report)).enterOrderDetails(orderSummaryInfo);
 		(new OrderSummaryTabCMPage(browser, report)).mrcNrc_Value(orderSummaryInfo);
 		(new OrderSummaryTabCMPage(browser, report)).ClickSubmitOrderButton();
 		(new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);
@@ -611,7 +611,7 @@ public class newConnect extends ComcastTest {
 		(new ProcessTabPageCM(browser, report)).ClickOnContinueButton();
 		orderSummaryInfo = OrderSummaryInfo.loadFromDatatable(dataTable);
 		(new OrderSummaryTabCMPage(browser, report)).assignLabel(orderSummaryInfo);
-		(new OrderSummaryTabCMPage(browser, report)).SubmitOrder(orderSummaryInfo);
+		(new OrderSummaryTabCMPage(browser, report)).enterOrderDetails(orderSummaryInfo);
 		(new OrderSummaryTabCMPage(browser, report)).mrcNrc_Value(orderSummaryInfo);
 		(new OrderSummaryTabCMPage(browser, report)).ClickSubmitOrderButton();
 		(new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);
@@ -781,7 +781,7 @@ public class newConnect extends ComcastTest {
 		(new ProcessTabPageCM(browser, report)).ClickOnContinueButton();
 		orderSummaryInfo = OrderSummaryInfo.loadFromDatatable(dataTable);
 		(new OrderSummaryTabCMPage(browser, report)).assignLabel(orderSummaryInfo);
-		(new OrderSummaryTabCMPage(browser, report)).SubmitOrder(orderSummaryInfo);
+		(new OrderSummaryTabCMPage(browser, report)).enterOrderDetails(orderSummaryInfo);
 		(new OrderSummaryTabCMPage(browser, report)).mrcNrc_Value(orderSummaryInfo);
 		(new OrderSummaryTabCMPage(browser, report)).ClickSubmitOrderButton();
 		(new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);

@@ -57,7 +57,7 @@ public class DataDump implements IDataDump {
 		/*for(String key: dataTable.keySet()){
 			properties.put(key,dataTable.get(key));
 			
-		}*/
+		}*/		
 		for(String key: dumpTable.keySet()){
 			properties.put(key,dumpTable.get(key));
 			
@@ -76,7 +76,7 @@ public class DataDump implements IDataDump {
 	 */
 	@Override
 	public Hashtable<String,String> loadData(){
-
+		
 		try {
 			properties.load(new FileInputStream("C:\\dump\\dump_"+ testName + ".properties"));
 		} catch (IOException e) {
@@ -85,7 +85,7 @@ public class DataDump implements IDataDump {
 		}
 		
 		for(String key: properties.stringPropertyNames()){
-			dumpTable.put(key, properties.get(key).toString());
+			dumpTable.put(key, properties.get(key).toString());			
 		}
 		//dumpMap = new HashMap<Object,Object>(properties);
 		return dumpTable;
