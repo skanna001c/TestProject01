@@ -47,9 +47,7 @@ public class NewConnectTest extends ComcastTest {
 	String SRID;
 	String SurveyID;
 	String Site1;
-	
-
-	
+		
   @BeforeMethod
   public void beforeMethod() {
 	  //check for rerun and the status of the method
@@ -62,7 +60,10 @@ public class NewConnectTest extends ComcastTest {
   public void beforeTest() {
 	  if (userName==null)
 	  {
-		  userName="custpmauto";
+		  userName="ordermanagementbat1";
+	  }
+	  if(settings.getPERerunStatus().equalsIgnoreCase("true")){
+		  userName=getDataDump().getValue("userName");
 	  }
 			  
 	  	loadData();
@@ -100,6 +101,7 @@ public class NewConnectTest extends ComcastTest {
 			userName="ordermanagementbat1";
 			customerName = (new CustomerTabPageCM(browser, report)).createCustomer(customerInfo);
 			getDataDump().setValue("CustomerName_RT", customerName);
+			getDataDump().setValue("userName","custpmauto");
 			//getDataDump().getValue("CM_Status")
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -113,7 +115,7 @@ public class NewConnectTest extends ComcastTest {
   public void createBillingAccount(){
 
 		try {
-			userName="custpmauto";
+			
 			(new AccountTabPageCM(browser, report)).CreateBiilingAccount(accountInfo);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -143,7 +145,7 @@ public class NewConnectTest extends ComcastTest {
 			if((new ServiceTabPageCM(browser, report)).EDI()){
 				if((new ServiceTabPageCM(browser, report)).EquipmentFee()){
 					if((new ServiceTabPageCM(browser, report)).ClickOnContinueButton()){
-						(new FeatureTabPageCM(browser, report)).ClickOnContinueButton();
+						(new FeatureTabPageCM(browser, report)).ClickOnContinueButton();					
 					}else Assert.fail("Click continue button failed");
 				}else Assert.fail("Equipment fee failed");
 			}else Assert.fail(" Select EDI plan failed");
@@ -154,24 +156,34 @@ public class NewConnectTest extends ComcastTest {
   @Test(priority=6)
   @PerfTransaction(name="processService")
   public void processService() throws InterruptedException{
+	  	if(getDataDump().getValue("processService_status").equalsIgnoreCase("FAIL"))
+	  	{
+	  		selectService();
+	  	}
 		SRID = (new ProcessTabPageCM(browser, report)).ProcessConfiguration(processInfo);
 		getDataDump().setValue("SRID_RT", SRID);
 		(new ProcessTabPageCM(browser, report)).UNIConfiguration(processInfo, Site1);
 		(new ProcessTabPageCM(browser, report)).EVCConfiguration_EDI(processInfo);
 		(new ProcessTabPageCM(browser, report)).EqFeeConfiguration(processInfo);
 		(new ProcessTabPageCM(browser, report)).ClickOnContinueButton();
-
-	  
+			  
   }
   
   @Test(priority=7)
-  @PerfTransaction(name="submitOrder")
+  @PerfTransaction(name="submitOrder")  
   public void submitOrder() throws InterruptedException{
+	  if(getDataDump().getValue("submitOrder_status").equalsIgnoreCase("FAIL"))
+	  	{
+	  		selectService();
+	  		processService();
+	  	}
 		//(new OrderSummaryTabCMPage(browser, report)).assignLabel(orderSummaryInfo);
 		(new OrderSummaryTabCMPage(browser, report)).SubmitOrder(orderSummaryInfo);
+		
 		(new OrderSummaryTabCMPage(browser, report)).mrcNrc_Value(orderSummaryInfo);
 		(new OrderSummaryTabCMPage(browser, report)).ClickSubmitOrderButton();
-	  
+		getDataDump().setValue("CM_Status","PASS");
+		getDataDump().setValue("userName","FiberPMauto");
 	  
   }
 

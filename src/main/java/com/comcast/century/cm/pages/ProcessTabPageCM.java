@@ -250,7 +250,8 @@ public class ProcessTabPageCM extends Page {
 			 new Select(ddAggregatorNeeded).selectByValue("No");
 			 waitForElement(ddtxtSURCILI);
 			 ddtxtSURCILI.clear();
-			 ddtxtSURCILI.sendKeys(processInfo.surCILI1);
+			 ddtxtSURCILI.click();	 
+			 ddtxtSURCILI.sendKeys(processInfo.surCILI1);		 
 			 //Thread.sleep(10000);
 			/* ddValue(ddtxtSURCILI,processInfo.surCILI1);			 
 			 WebElement ddvalueSURCILI1 = browser.findElement(By.xpath("//li[text()='"+processInfo.surCILI1+"']"));
