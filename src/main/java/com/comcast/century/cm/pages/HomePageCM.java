@@ -123,9 +123,16 @@ public class HomePageCM extends Page {
 	
 	//added by harsh on 8/8 to ensure continuity in packaged execution
 	//commented by harsh on 8/16 as we need to find an alternate way tor ead data from data dump
+<<<<<<< HEAD
 	public void searchCustomer(String custName){		
 		//leftframe
 		//waitforPageLoadComplete();
+=======
+	public void searchCustomer(String custName){
+		//String custName = ComcastTest.getDataDump().getValue("CustomerName_RT");
+		//leftframe
+		waitforPageLoadComplete();
+>>>>>>> 722fde61916055211ec065175a12831154da5533
 		/*WaitandSwitchToFrame(frameLeft);
 		WebElement elem = browser.findElement(By.xpath("//span[@class=\"standartTreeRow\" and contains(.,'"+custName+"')]"));
 		if(shortWaitForElement(elem)) {
@@ -151,10 +158,14 @@ public class HomePageCM extends Page {
 			 //waitForElement(browser.findElement(By.xpath(".//*[@id='busiCustBean.businessName']")));
 				
 		 //clickServiceAcc.click();
+		}
 
+<<<<<<< HEAD
 		
 		
 	}
+=======
+>>>>>>> 722fde61916055211ec065175a12831154da5533
 	
 	
 	}

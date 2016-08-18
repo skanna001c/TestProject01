@@ -14,7 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -2768,24 +2767,23 @@ public abstract class Page {
 	 * 
 	 * @return
 	 */
+	protected String getTimestamp() {
+		Calendar now = Calendar.getInstance();
+		int year = now.get(Calendar.YEAR);
+		int month = now.get(Calendar.MONTH) + 1; // Note: zero based!
+		int day = now.get(Calendar.DAY_OF_MONTH);
+		int hour = now.get(Calendar.HOUR_OF_DAY);
+		int minute = now.get(Calendar.MINUTE);
+		int second = now.get(Calendar.SECOND);
+	//	int millis = now.get(Calendar.MILLISECOND);
+		return  Integer.toString(year)+Integer.toString(month)+Integer.toString(day)
+		+Integer.toString(hour)+Integer.toString(minute)+Integer.toString(second);
+	}
 	
-		protected String getTimestamp() {
-			
-			  	LocalDateTime now = LocalDateTime.now();
-				int year = now.getYear();
-				int month = now.getMonthValue();
-				int day = now.getDayOfMonth();
-				int hour = now.getHour();
-				int minute = now.getMinute();
-				int second = now.getSecond();
-				return  Integer.toString(year)+Integer.toString(month)+Integer.toString(day)+Integer.toString(hour)+Integer.toString(minute)+Integer.toString(second);			   
-			   
-			}
-		
-		protected String randomNumber(int limit) {			
-			return Double.toString(Math.random()).substring(2,2+limit);			
-			}
-		
+	protected String randomNumber(int limit) {			
+		return Double.toString(Math.random()).substring(2,2+limit);			
+		}
+	
 	/****
 	 * Method to handle drop downs
 	 * @param ddTxtWE

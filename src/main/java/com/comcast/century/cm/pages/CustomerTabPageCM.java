@@ -173,8 +173,15 @@ public class CustomerTabPageCM extends Page {
 		  report.reportDoneEvent("Enter Work Phone", "Work Phone Entered as ->" +customerInfo.workPhone);
 		  String salesForceID = customerInfo.salesForceAccId+randomNumber(5);
 		  txtSalesForceID.sendKeys(salesForceID);
+<<<<<<< HEAD
 		  report.reportDoneEvent("Enter Salesforce Account ID", "Salesforce Account ID Entered as ->" + salesForceID);  
 		  return customerName;
+=======
+		  report.reportDoneEvent("Enter Salesforce Account ID", "Salesforce Account ID Entered as ->" + salesForceID); 
+		  
+		  return customerName;
+		  
+>>>>>>> 722fde61916055211ec065175a12831154da5533
 	  }
 	  
 	  public void addressInformationInvalid(CustomerInfo customerInfo) throws InterruptedException{
@@ -245,11 +252,18 @@ public class CustomerTabPageCM extends Page {
 		  report.updateTestLog("Create Customer", "Customer Created Successfully", Status.SCREENSHOT); 
 	  }
 	  
+<<<<<<< HEAD
 	  @PerfTransaction(name="CreateCustomer")
 	  public String  createCustomer(CustomerInfo customerInfo) throws InterruptedException{
 		  customerName = this.customerInformation(customerInfo);
 		  this.addressInformationValid(customerInfo);
 		  return customerName;
+=======
+	  public String createCustomer(CustomerInfo customerInfo) throws InterruptedException{
+		  String custName = customerInformation(customerInfo);
+		  this.addressInformationValid(customerInfo);
+		  return custName;
+>>>>>>> 722fde61916055211ec065175a12831154da5533
 		  
 	  }
 	
