@@ -152,6 +152,48 @@ public class LogInPage extends Page {
 			throw Ex;
 		}	
 		//return new HomePageCM(browser,report);			
+	}
+
+	public void applicationLogin(String userName, String password, String domain) {
+		// TODO Auto-generated method stub
+		try{
+			shortWaitForElement(txtUserName);
+			txtUserName.click();
+			txtUserName.sendKeys(userName);
+			report.reportDoneEvent("Enter username","Entered username as-> " +userName);				
+			txtPassword.click();
+			txtPassword.sendKeys(password);
+			report.reportDoneEvent("Enter password","Entered password as-> " +password.replaceAll(".", "*"));			
+			 
+			new Select(lstDomain).selectByVisibleText(domain);
+			report.reportDoneEvent("Select Domain","Selected domain as-> "+domain);			
+			
+			if (! chkBxWarning.isSelected()){
+			    chkBxWarning.click();
+			}
+			report.reportDoneEvent("Check on Terms and Conditions","Checked Terms and Conditions");				
+			report.updateTestLog("Enter Login Details","Login Details Entered",Status.SCREENSHOT);		
+			
+			if(isElementPresent(btnLogin)){
+				btnLogin.click();
+				report.reportDoneEvent("Click on Login", "Login Clicked successfully");
+			}
+			/*waitForElement(userHomePage);
+			if(isElementPresent(userHomePage)){
+				report.updateTestLog("LogintoHomePage", "logged into the homepage Successfully", Status.SCREENSHOT);
+			}else{
+				report.reportFailEvent("LoginToHomePage", "Login Unsuccessfull <Please check UN and PWD>");
+			}*/
+			waitForElement(tabHome);			
+			if(isElementPresent(tabHome)){
+				report.updateTestLog("Login to HomePage", "Logged into homepage Successfully", Status.SCREENSHOT);
+			}else{
+				report.reportFailEvent("Login to HomePage", "Login Unsuccessfull <Please check UN and PWD>");
+			}			
+		}catch(Exception Ex){
+			report.reportFailEvent("applicationLogin", "User Login NOT successful, EXCEPTION CAUGHT : " + Ex.getMessage());
+			throw Ex;
+		}	
 	}	
 	
 

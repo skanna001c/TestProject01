@@ -43,6 +43,7 @@ public class NewConnectTest extends ComcastTest {
 	private SiteLevelTaskInfo siteLevelTaskInfo;
 	private LoginDetails loginInfo;
 	private ServiceLevelTaskInfo serviceLevelTaskInfo;
+	private String userName;
 	String SRID;
 	String SurveyID;
 	String Site1;
@@ -59,13 +60,19 @@ public class NewConnectTest extends ComcastTest {
   @BeforeTest
   @PerfTransaction(name="Login")
   public void beforeTest() {
+	  if (userName==null)
+	  {
+		  userName="custpmauto";
+	  }
+			  
 	  	loadData();
 		centuryApplication = new CenturyApplication(browser, report);
-		try {
-			centuryApplication.openUrl(loginInfo);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		// CM nd CSO login -> added by rijin on 8/18/2016
+		 if (getDataDump().getValue("CM_Status").equalsIgnoreCase("PASS"))
+		 {
+			 centuryApplication.openCSOUrl(userName);
+		 }
+		 else centuryApplication.openCMUrl(userName);
 		
 		//Search for customer if rerun - added by harsh on 8/8/16
 		if(settings.getPERerunStatus().equalsIgnoreCase("true")){
@@ -90,8 +97,10 @@ public class NewConnectTest extends ComcastTest {
   public void createCustomer(){
 	    String customerName;
 		try {
+			userName="ordermanagementbat1";
 			customerName = (new CustomerTabPageCM(browser, report)).createCustomer(customerInfo);
 			getDataDump().setValue("CustomerName_RT", customerName);
+			//getDataDump().getValue("CM_Status")
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -104,6 +113,7 @@ public class NewConnectTest extends ComcastTest {
   public void createBillingAccount(){
 
 		try {
+			userName="custpmauto";
 			(new AccountTabPageCM(browser, report)).CreateBiilingAccount(accountInfo);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -138,7 +148,6 @@ public class NewConnectTest extends ComcastTest {
 				}else Assert.fail("Equipment fee failed");
 			}else Assert.fail(" Select EDI plan failed");
 		}else Assert.fail(" Select service plan failed");
-	  
 	  
   }
   

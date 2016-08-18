@@ -130,6 +130,8 @@ public class TestSettings {
 		return DOMAIN;
 	}
 	
+
+		
 	
 	/**
 	 * Get the ALM PROJECT for the rest API call
@@ -271,31 +273,61 @@ public class TestSettings {
 	/**
 	 *	Get the URL of the application under test 
 	 */
-	public String getApplicationURL(){
-		if(getEnvironmentToTest().equals("UAT")){
-			return getSettings("einstein_uat_url");
+	public String getApplicationCMURL(){
+		if(getEnvironmentToTest().equals("UAT")){			
+			return getSettings("century_uat_url_cm");
 		}else if(getEnvironmentToTest().equals("SOAK")){
-			return getSettings("einstein_soak_url");
+			return getSettings("century_soak_url_cm");
 		}else if(getEnvironmentToTest().equals("PROD")){
-			return getSettings("einstein_prod_url");
+			return getSettings("century_prod_url_cm");
 		}else if(getEnvironmentToTest().equals("STG")){
-			return getSettings("einstein_stg_url");
+			return getSettings("century_stg_url_cm");
 		}else if(getEnvironmentToTest().equals("INT")){
-			return getSettings("einstein_int_url");
+			return getSettings("century_int_url_cm");
 		}else if(getEnvironmentToTest().equals("RES_QA")){
-			return getSettings("einstein_rqa_url");	
+			return getSettings("century_rqa_url");	
 		}else if(getEnvironmentToTest().equals("RES_UAT")){
-			return getSettings("einstein_ruat_url");	
+			return getSettings("century_ruat_url_cm");	
 			
 		}else if(getEnvironmentToTest().equals("DEV")){
-			return getSettings("einstein_dev_url");	
+			return getSettings("century_dev_url_cm");	
 		
 		}else if(getEnvironmentToTest().equals("UAT_KM")) {
-			return getSettings("einstein_uat_km");
+			return getSettings("century_uat_km");
 		}else if(getEnvironmentToTest().equals("CI")) {
-			return getSettings("einstein_ci_url");
+			return getSettings("century_ci_url_cm");
 		}else{
-			return getSettings("einstein_qa_url");
+			return getSettings("century_qa_url_cm");
+		}
+		
+	}
+	
+	
+	public String getApplicationCSOURL(){
+		if(getEnvironmentToTest().equals("UAT")){			
+			return getSettings("century_uat_url_cso");
+		}else if(getEnvironmentToTest().equals("SOAK")){
+			return getSettings("century_soak_url_cso");
+		}else if(getEnvironmentToTest().equals("PROD")){
+			return getSettings("century_prod_url_cso");
+		}else if(getEnvironmentToTest().equals("STG")){
+			return getSettings("century_stg_url_cso");
+		}else if(getEnvironmentToTest().equals("INT")){
+			return getSettings("century_int_url_cso");
+		}else if(getEnvironmentToTest().equals("RES_QA")){
+			return getSettings("century_rqa_url_cso");	
+		}else if(getEnvironmentToTest().equals("RES_UAT")){
+			return getSettings("century_ruat_url_cso");	
+			
+		}else if(getEnvironmentToTest().equals("DEV")){
+			return getSettings("century_dev_url_cso");	
+		
+		}else if(getEnvironmentToTest().equals("UAT_KM")) {
+			return getSettings("century_uat_km");
+		}else if(getEnvironmentToTest().equals("CI")) {
+			return getSettings("century_ci_url_cso");
+		}else{
+			return getSettings("century_qa_url_cso");
 		}
 		
 	}
@@ -468,5 +500,17 @@ public class TestSettings {
 		return getSettings("qcUpdate");
 	}
 	
+	public String getUserPassword(String userName) {
+		// TODO Auto-generated method stub
+		return getSettings(userName);
+	}
 	
+	public String getAPPDOMAIN(){
+		String DOMAIN= System.getenv("APP_DOMAIN");
+		if(DOMAIN==null || DOMAIN == ""){
+			DOMAIN=properties.getProperty("APP_DOMAIN","");
+		}
+		
+		return DOMAIN;
+	}
 }

@@ -348,7 +348,7 @@ public class ComcastTest {
 		report.initializeTestLog();
 		report.addTestLogHeading(testCaseName);
 		//report.addTestLogSubHeading("Browser:", settings.getBrowser(), "ENV : "+settings.getEnvironmentToTest()+"   URL :", settings.getApplicationURL());
-		report.addTestLogSubHeading("Browser:", settings.getBrowser(), "ENV : "+settings.getEnvironmentToTest(), "URL :"+settings.getApplicationURL());
+		report.addTestLogSubHeading("Browser:", settings.getBrowser(), "ENV : "+settings.getEnvironmentToTest(), "URL :"+settings.getApplicationCMURL());
 		
 		report.addTestLogTableHeadings();
 		//report.addTestLogSection("Detailed Steps");

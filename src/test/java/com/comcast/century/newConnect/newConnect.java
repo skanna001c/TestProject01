@@ -82,7 +82,7 @@ public class newConnect extends ComcastTest {
 	public void openApplication() throws Exception {
 		LoginDetails loginInfo = LoginDetails.loadFromDatatable(dataTable);
 		centuryApplication = new CenturyApplication(browser, report);
-		centuryApplication.openUrl(loginInfo);
+		//centuryApplication.openCSOUrl(loginInfo);
 	}
 
 

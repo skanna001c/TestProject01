@@ -273,7 +273,7 @@ public class ComcastTest_bkup extends TestWatcher{
 		report.initializeTestLog();
 		report.addTestLogHeading(testCaseName);
 		//report.addTestLogSubHeading("Browser:", settings.getBrowser(), "ENV : "+settings.getEnvironmentToTest()+"   URL :", settings.getApplicationURL());
-		report.addTestLogSubHeading("Browser:", settings.getBrowser(), "ENV : "+settings.getEnvironmentToTest(), "URL :"+settings.getApplicationURL());
+		//report.addTestLogSubHeading("Browser:", settings.getBrowser(), "ENV : "+settings.getEnvironmentToTest(), "URL :"+settings.getApplicationURL());
 		
 		report.addTestLogTableHeadings();
 		//report.addTestLogSection("Detailed Steps");
