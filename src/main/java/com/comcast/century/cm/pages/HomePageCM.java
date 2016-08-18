@@ -123,27 +123,25 @@ public class HomePageCM extends Page {
 	
 	//added by harsh on 8/8 to ensure continuity in packaged execution
 	//commented by harsh on 8/16 as we need to find an alternate way tor ead data from data dump
-	public void searchCustomer(){
-		/*String custName = ComcastTest.getDataDump().getValue("CustomerName_RT");
+	public void searchCustomer(String custName){		
 		//leftframe
-		waitforPageLoadComplete();
-		WaitandSwitchToFrame(frameLeft);
+		//waitforPageLoadComplete();
+		/*WaitandSwitchToFrame(frameLeft);
 		WebElement elem = browser.findElement(By.xpath("//span[@class=\"standartTreeRow\" and contains(.,'"+custName+"')]"));
 		if(shortWaitForElement(elem)) {
 			elem.click();
 			
-		}else{
+		}else{*/
 			//span[@class="standartTreeRow" and contains(.,'ProdTest_ENT_R16.07_EDI_NC56515')]
 			waitforPageLoadComplete();
-			 WaitandSwitchToFrame(frameMain);
-			 
-			 txtCustomerName.sendKeys(custName);
-			 btnSearch.click();
-			 waitforPageLoadComplete();
-			 browser.findElement(By.xpath("//span[contains(.,'"+custName+"')]")).click();
-			 waitforPageLoadComplete();
-			 browser.switchTo().defaultContent();
-			 try {
+			WaitandSwitchToFrame(frameMain);			 
+			txtCustomerName.sendKeys(custName);
+			btnSearch.click();
+			waitforPageLoadComplete();
+			browser.findElement(By.xpath("//span[contains(.,'"+custName+"')]")).click();
+			waitforPageLoadComplete();
+			browser.switchTo().defaultContent();
+			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -155,11 +153,12 @@ public class HomePageCM extends Page {
 		 //clickServiceAcc.click();
 
 		
-*/		
+		
 	}
 	
 	
-}
+	}
+
 
 
 

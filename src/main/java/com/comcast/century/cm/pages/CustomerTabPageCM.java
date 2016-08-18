@@ -145,7 +145,7 @@ public class CustomerTabPageCM extends Page {
 		
 	}
 	
-	  public void customerInformation(CustomerInfo customerInfo){
+	  public String customerInformation(CustomerInfo customerInfo){
 		  
 		  waitforPageLoadComplete();
 		  waitForElement(tabCustomer);
@@ -174,7 +174,7 @@ public class CustomerTabPageCM extends Page {
 		  String salesForceID = customerInfo.salesForceAccId+randomNumber(5);
 		  txtSalesForceID.sendKeys(salesForceID);
 		  report.reportDoneEvent("Enter Salesforce Account ID", "Salesforce Account ID Entered as ->" + salesForceID);  
-		  
+		  return customerName;
 	  }
 	  
 	  public void addressInformationInvalid(CustomerInfo customerInfo) throws InterruptedException{
@@ -246,9 +246,10 @@ public class CustomerTabPageCM extends Page {
 	  }
 	  
 	  @PerfTransaction(name="CreateCustomer")
-	  public void createCustomer(CustomerInfo customerInfo) throws InterruptedException{
-		  this.customerInformation(customerInfo);
+	  public String  createCustomer(CustomerInfo customerInfo) throws InterruptedException{
+		  customerName = this.customerInformation(customerInfo);
 		  this.addressInformationValid(customerInfo);
+		  return customerName;
 		  
 	  }
 	

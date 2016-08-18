@@ -249,12 +249,15 @@ public class ProcessTabPageCM extends Page {
 			 WaitandSwitchToFrame(frameMain);
 			 new Select(ddAggregatorNeeded).selectByValue("No");
 			 waitForElement(ddtxtSURCILI);
+			 ddtxtSURCILI.clear();
+			 ddtxtSURCILI.sendKeys(processInfo.surCILI1);
 			 //Thread.sleep(10000);
-			 ddValue(ddtxtSURCILI,processInfo.surCILI1);
+			/* ddValue(ddtxtSURCILI,processInfo.surCILI1);			 
 			 WebElement ddvalueSURCILI1 = browser.findElement(By.xpath("//li[text()='"+processInfo.surCILI1+"']"));
 			 waitForElement(ddvalueSURCILI1);
-			 ddvalueSURCILI1.click();
+			 ddvalueSURCILI1.click();*/
 			 waitForElement(txtUNInumber);
+			 txtUNInumber.clear();
 			 txtUNInumber.sendKeys(randomNumber(5));
 			 new Select(ddUNIPortSpeed).selectByIndex(1);
 			 btnSave.click();
@@ -450,9 +453,9 @@ public class ProcessTabPageCM extends Page {
 			 ddvalueLocationZuni.get(0).click();
 			 txtEVCnumber.sendKeys(randomNumber(5));
 			 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
-			 new Select(ddIpBlockChange).selectByIndex(1);
+			 new Select(ddIpBlockChange).selectByVisibleText("No");
 			 new Select(ddIpAddressAllocation).selectByVisibleText(processInfo.ipAddressAllocation);
-			 new Select(ddAdditionalIpAddress).selectByIndex(1);
+			 new Select(ddAdditionalIpAddress).selectByVisibleText("No");
 			 btnSave.click();
 			 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
 			 waitForElementDisappear(elementLoading);
