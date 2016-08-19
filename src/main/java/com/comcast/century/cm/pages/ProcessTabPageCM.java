@@ -271,7 +271,7 @@ public class ProcessTabPageCM extends Page {
 				 waitForElement(txtUNInumber);
 				 txtUNInumber.clear();
 				 txtUNInumber.sendKeys(randomNumber(5));
-				 new Select(ddUNIPortSpeed).selectByIndex(1);
+				 new Select(ddUNIPortSpeed).selectByVisibleText("10/100");
 				 btnSave.click();
 				 report.reportDoneEvent("Save UNI Configuration", "UNI Configuration Saved");
 				 waitForElementDisappear(elementLoading);
@@ -346,7 +346,7 @@ public class ProcessTabPageCM extends Page {
 				 ddvalueSURCILI2.click();
 				 waitForElement(txtUNInumber);
 				 txtUNInumber.sendKeys(randomNumber(5));
-				 new Select(ddUNIPortSpeed).selectByIndex(1);
+				 new Select(ddUNIPortSpeed).selectByVisibleText("10/100");
 				 btnSave.click();
 				 report.reportDoneEvent("Save UNI~2 Configuration", "UNI~2 Configuration Saved");
 				 waitForElementDisappear(elementLoading);
@@ -390,7 +390,7 @@ public class ProcessTabPageCM extends Page {
 				 }
 				 browser.switchTo().defaultContent();
 				 WaitandSwitchToFrame(frameMain);
-				 new Select(ddAggregatorNeeded).selectByIndex(1);
+				 new Select(ddAggregatorNeeded).selectByVisibleText("No");
 				 waitForElement(ddtxtSURCILI);
 				 ddValue(ddtxtSURCILI,processInfo.surCILI3);
 				 WebElement ddvalueSURCILI3 = browser.findElement(By.xpath("//li[text()='"+processInfo.surCILI3+"']"));
@@ -445,7 +445,7 @@ public class ProcessTabPageCM extends Page {
 				 ddvalueSURCILI1.click();
 				 waitForElement(txtUNInumber);
 				 txtUNInumber.sendKeys(randomNumber(5));
-				 new Select(ddUNIPortSpeed).selectByIndex(1);
+				 new Select(ddUNIPortSpeed).selectByVisibleText("10/100");
 				 btnSave.click();
 				 report.reportDoneEvent("Save UNI Configuration", "UNI Configuration Saved");
 				 waitForElementDisappear(elementLoading);

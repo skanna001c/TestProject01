@@ -84,14 +84,14 @@ public class ConductFiberPlantSurveyTaskPage extends Page {
 			waitForElement(SurveyCompletionDate);
 			SurveyCompletionDate.click();
 			btnToday.click();
-			new Select(ddPermitRequired).selectByIndex(1);
-			new Select(ddConstructionRequired).selectByIndex(1);
+			new Select(ddPermitRequired).selectByVisibleText("Yes");
+			new Select(ddConstructionRequired).selectByVisibleText("Yes");
 			waitForElement(tabFiberSurveyResults);
-			clickndRelease(tabFiberSurveyResults);			
+			clickndRelease(tabFiberSurveyResults);
 			waitForElement(txtHeadEndDistance);
 			txtHeadEndDistance.sendKeys(randomNumber(5));
 			txtNodeNumber.sendKeys(randomNumber(5));
-			new Select(ddServiceable).selectByIndex(2);
+			new Select(ddServiceable).selectByVisibleText("No");
 			this.ClickCompleteButton();
 		}
 	}

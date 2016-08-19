@@ -295,7 +295,7 @@ public class OrderSummaryTabCMPage extends Page {
 		try {
 			waitforPageLoadComplete();	
 			waitForElement(ddNavigateToCSO);
-			new Select(ddNavigateToCSO).selectByIndex(1);
+			new Select(ddNavigateToCSO).selectByVisibleText("Century Service Orchestrator");
 			report.reportDoneEvent("Navigate to " +orderSummaryInfo.goToApplication, "Navigated to " +orderSummaryInfo.goToApplication);
 			waitForElement(btnOK);
 			btnOK.click();

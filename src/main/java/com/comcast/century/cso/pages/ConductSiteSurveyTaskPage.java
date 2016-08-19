@@ -77,10 +77,10 @@ public class ConductSiteSurveyTaskPage extends Page {
 			SurveyCompletionDate.click();
 			btnToday.get(1).click();
 			waitForElement(ddSitePermitRequired);
-			new Select(ddSitePermitRequired).selectByIndex(2);
-			new Select(ddCPElocationType).selectByIndex(1);
-			new Select(ddPowerStatus).selectByIndex(1);
-			new Select(ddEquipmentLocationDescription).selectByIndex(1);	
+			new Select(ddSitePermitRequired).selectByVisibleText("No");
+			new Select(ddCPElocationType).selectByVisibleText("Raw Land Site");
+			new Select(ddPowerStatus).selectByVisibleText("Existing Power");
+			new Select(ddEquipmentLocationDescription).selectByVisibleText("Leased Area");
 			this.ClickCompleteButton();
 		}
 	}

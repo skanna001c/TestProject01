@@ -65,7 +65,7 @@ public class ObtainFiberPlantPermitsTaskPage extends Page {
 		waitForElementDisappear(elementLoading);
 		scrollDown();
 		if(waitForElement(ddPermitType)){
-			new Select(ddPermitType).selectByIndex(2);
+			new Select(ddPermitType).selectByVisibleText("Zoning");
 			PermitAppliedDate.click();
 			btnToday.get(0).click();
 			PermitActualApprovedDate.click();
