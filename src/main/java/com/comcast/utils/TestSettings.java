@@ -250,9 +250,9 @@ public class TestSettings {
 	 *	Get the environment under test 
 	 */
 	public String getEnvironmentToTest(){
-		String test= System.getenv("test");
+		String test= System.getenv("env");
 		if(test==null || test == ""){
-			test=properties.getProperty("test","UAT");
+			test=properties.getProperty("env","UAT");
 		}
 		return test;
 	}

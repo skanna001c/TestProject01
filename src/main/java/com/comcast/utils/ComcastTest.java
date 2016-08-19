@@ -48,6 +48,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.comcast.century.cm.pages.HomePageCM;
+import com.comcast.century.commons.CenturyApplication;
 import com.comcast.neto.alm.ALMTestInformation;
 import com.comcast.neto.alm.ALMUpdaterClient;
 import com.comcast.reporting.ReportSettings;
@@ -81,11 +83,17 @@ public class ComcastTest {
 	
 	protected Hashtable<String,String> testStatusTable;
 	protected IDataDump dataDump;
+	protected IUserDetails userDetails;
+	private static CenturyApplication centuryApplication;
+	private String userName;
 	
 	public IDataDump getDataDump(){
 		return dataDump;
 	}
-
+	
+	public IUserDetails getUserDetail(){
+		return userDetails;
+	}
 	
 	 @Rule
 	 
@@ -269,6 +277,8 @@ public class ComcastTest {
 		try{
 				dataTable = new DataTable(testCaseName);
 				dataDump = new DataDump(testCaseName);
+				userDetails = new UserDetails(testCaseName);
+				userDetails.loadData();
 				if(settings.getPERerunStatus().equalsIgnoreCase("true")){				
 					dataDump.loadData();
 				}
@@ -277,7 +287,7 @@ public class ComcastTest {
 			browser.quit();			
 			System.out.println("Test Data Row not present. Please check");
 		}	
-		
+		//#####################################################################
 
     	
     }
@@ -380,7 +390,7 @@ public class ComcastTest {
 		dataDump.setValue(result.getMethod().getMethodName() + "_status", methodStatus);
 		if(methodStatus.equalsIgnoreCase("fail")){
 			try {
-				dataDump.dumpData(dataTable.getDataTable());
+				dataDump.dumpData(dataTable.getDataTable());				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -725,7 +735,64 @@ public class ComcastTest {
 		return line;
 	}
 	
-
+		
+	public void beforeMethod() {
+		  //check for rerun and the status of the method
+		  if (userName==null)
+		  {
+			  userName="ordermanagementbat1";
+		  } 
+		  else userName=getDataDump().getValue("userName");
+		  
+		   centuryApplication = new CenturyApplication(browser, report);
+			// CM nd CSO login -> added by rijin on 8/18/2016
+			 if (getDataDump().getValue("CM_Status").equalsIgnoreCase("PASS")
+					 	&& !(getDataDump().getValue("CSOLoggedIN").equalsIgnoreCase("PASS")))
+			 {
+				 centuryApplication.openCSOUrl(userName);
+				 getDataDump().setValue("CSOLoggedIN","PASS");
+			 }
+			 else if (!(getDataDump().getValue("CMLoggedIN").equalsIgnoreCase("PASS")))
+			 {
+				 centuryApplication.openCMUrl(userName);
+				 getDataDump().setValue("CMLoggedIN","PASS");
+				 
+			 }
+	  }
 	
+	@BeforeTest
+	  @PerfTransaction(name="Login")
+	  public void beforeTest() {
+		  if (userName==null)
+		  {
+			  userName="ordermanagementbat1";
+		  }	  
+		  if(settings.getPERerunStatus().equalsIgnoreCase("true")){
+			  userName=getDataDump().getValue("userName");
+		  }
+				  
+		  	
+			centuryApplication = new CenturyApplication(browser, report);
+			// CM nd CSO login -> added by rijin on 8/18/2016
+			 if (getDataDump().getValue("CM_Status").equalsIgnoreCase("PASS"))
+			 {
+				 centuryApplication.openCSOUrl(userName);
+				 getDataDump().setValue("CSOLoggedIN","PASS");
+				 
+			 }
+			 else
+			 {
+				 centuryApplication.openCMUrl(userName);
+				 getDataDump().setValue("CMLoggedIN","PASS");
+				 
+			 }
+			
+			//Search for customer if rerun - added by harsh on 8/8/16
+			if(settings.getPERerunStatus().equalsIgnoreCase("true")){
+				(new HomePageCM(browser,report)).searchCustomer(getDataDump().getValue("CustomerName_RT"));
+			}
+			
+			
+	  }
 	 
 }
