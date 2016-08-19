@@ -103,20 +103,8 @@ public class NewConnectTest extends ComcastTest {
 		//Search for customer if rerun - added by harsh on 8/8/16
 		if(settings.getPERerunStatus().equalsIgnoreCase("true")){
 			(new HomePageCM(browser,report)).searchCustomer(getDataDump().getValue("CustomerName_RT"));
-		}
-		
-		
-  }
-	
-  @Test(priority=4)
-  @PerfTransaction(name="createAddress")
-  public void createAddress() throws InterruptedException {
-
-		(new AddressTabPageCM(browser, report)).ClickAddressTab(siteInfo);
-		Site1 = (new AddressTabPageCM(browser, report)).EnterSiteDetailsValid(siteInfo);
-		(new ContactTabPageCM(browser, report)).CreateSiteTechnicalContact(contactInfo);
-		
-  }
+		}		
+  }  
   
   @Test(priority=1)
   @PerfTransaction(name="createCustomer")
@@ -131,35 +119,47 @@ public class NewConnectTest extends ComcastTest {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-	  
-		
-  }
-  
-  @Test(priority=3)
-  @PerfTransaction(name="createBillingAccount")
-  public void createBillingAccount(){
-
-		try {
-			
-			(new AccountTabPageCM(browser, report)).CreateBiilingAccount(accountInfo);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		try {
-			(new ContactTabPageCM(browser, report)).CreateBillingContact(contactInfo);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();
-	  
   }
   
   @Test(priority=2)
   @PerfTransaction(name="CreateServiceAccount")
   public void createServiceAccount() throws InterruptedException{
-	  (new AccountTabPageCM(browser, report)).CreateServiceAccount(accountInfo);
-	  (new ContactTabPageCM(browser, report)).CreateAccountPrimaryContact(contactInfo);
-	  (new ContactTabPageCM(browser, report)).ClickOnBackBtn();
+	  if((new AccountTabPageCM(browser, report)).CreateServiceAccount(accountInfo)){
+		  if((new ContactTabPageCM(browser, report)).CreateAccountPrimaryContact(contactInfo)){
+			  if((new ContactTabPageCM(browser, report)).ClickOnBackBtn()){
+				  
+			  }else Assert.fail("Click on back button failed");
+		  }else Assert.fail("Create account primary contact failed");
+	  }else Assert.fail("Create service account failed");
+  }
+  
+  @Test(priority=3)
+  @PerfTransaction(name="createBillingAccount")
+  public void createBillingAccount(){			
+	try {
+		if((new AccountTabPageCM(browser, report)).CreateBillingAccount(accountInfo)){
+			try {
+				if((new ContactTabPageCM(browser, report)).CreateBillingContact(contactInfo)){
+					if((new ContactTabPageCM(browser, report)).ClickOnBackBtn()){							
+					} else Assert.fail("Click on back button failed");
+				}else Assert.fail("Create Billing Contact failed");
+			} catch (InterruptedException e) {						
+				e.printStackTrace();
+			}
+		}else Assert.fail("Create Billing Account failed");
+	} catch (InterruptedException e) {				
+		e.printStackTrace();
+	} 
+  }
+  
+  @Test(priority=4)
+  @PerfTransaction(name="createAddress")
+  public void createAddress() throws InterruptedException {
+		if((new AddressTabPageCM(browser, report)).ClickAddressTab(siteInfo)){
+			Site1 = (new AddressTabPageCM(browser, report)).EnterSiteDetailsValid(siteInfo);
+			if((new ContactTabPageCM(browser, report)).CreateSiteTechnicalContact(contactInfo)){
+			}else Assert.fail("Create site technical Contact failed");
+		}else Assert.fail("click on address tab failed");		
   }
   
   @Test(priority=5)
@@ -187,12 +187,16 @@ public class NewConnectTest extends ComcastTest {
 	  	}
 		SRID = (new ProcessTabPageCM(browser, report)).ProcessConfiguration(processInfo);
 		getDataDump().setValue("SRID_RT", SRID);
-		(new ProcessTabPageCM(browser, report)).UNIConfiguration(processInfo, Site1);
-		(new ProcessTabPageCM(browser, report)).EVCConfiguration_EDI(processInfo);
-		(new ProcessTabPageCM(browser, report)).EqFeeConfiguration(processInfo);
-		(new ProcessTabPageCM(browser, report)).ClickOnContinueButton();
-			  
-  }
+		if((new ProcessTabPageCM(browser, report)).UNIConfiguration(processInfo, Site1)){
+			if((new ProcessTabPageCM(browser, report)).EVCConfiguration_EDI(processInfo)){
+				if((new ProcessTabPageCM(browser, report)).EqFeeConfiguration(processInfo)){
+					if((new ProcessTabPageCM(browser, report)).ClickOnContinueButton()){
+					}else Assert.fail("Click on continue button failed");
+				}else Assert.fail("Equipment fee configuration failed");
+			}else Assert.fail("EVC configuration failed");
+		}else Assert.fail("UNI configuration failed");
+  }	  
+  
   
   @Test(priority=7)
   @PerfTransaction(name="submitOrder")  
@@ -202,15 +206,16 @@ public class NewConnectTest extends ComcastTest {
 	  		selectService();
 	  		processService();
 	  	}
-		//(new OrderSummaryTabCMPage(browser, report)).assignLabel(orderSummaryInfo);
-		(new OrderSummaryTabCMPage(browser, report)).enterOrderDetails(orderSummaryInfo);
-		//getsubmitOrder_SubmitOrder_status
-		(new OrderSummaryTabCMPage(browser, report)).mrcNrc_Value(orderSummaryInfo);
-		
-		(new OrderSummaryTabCMPage(browser, report)).ClickSubmitOrderButton();
-		getDataDump().setValue("CM_Status","PASS");
-		getDataDump().setValue("userName","FiberPMauto");
-	  
+		if((new OrderSummaryTabCMPage(browser, report)).assignLabel(orderSummaryInfo)){
+			if((new OrderSummaryTabCMPage(browser, report)).enterOrderDetails(orderSummaryInfo)){
+				if((new OrderSummaryTabCMPage(browser, report)).mrcNrc_Value(orderSummaryInfo)){
+					if((new OrderSummaryTabCMPage(browser, report)).ClickSubmitOrderButton()){
+						getDataDump().setValue("CM_Status","PASS");
+						getDataDump().setValue("userName","FiberPMauto");
+					}else Assert.fail("Order submission failed");
+				}else Assert.fail("Entering NRC values failed");
+			}else Assert.fail("Entering order detrails failed");
+		}else Assert.fail("Assigning label failed");	  
   }
 
 

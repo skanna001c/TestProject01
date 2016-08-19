@@ -118,52 +118,60 @@ public class SurveyTabPageCM extends Page {
 	@FindBy(xpath = "//div[text()='Presale']/../following-sibling::*[position()=1]/child::*")
 	private WebElement txtSurveyID;
 	
-	public void CreateSiteForSurvey() throws InterruptedException{
-		waitforPageLoadComplete();
-		if(waitForElement(tabSurvey)){
-		tabSurvey.click();
-	        }
-		waitforPageLoadComplete();
-		waitForElementDisappear(elementLoading);	
-		if(WaitandSwitchToFrame(frameMain)){
-			waitForElement(btnRadioInitiateSurvey);
-			btnRadioInitiateSurvey.click();
+	private boolean mstatus;
+	
+	public boolean CreateSiteForSurvey() throws InterruptedException{
+		mstatus = true;
+		try {
 			waitforPageLoadComplete();
-			waitForElement(txtSiteName);
-			txtSiteName.sendKeys("Site"+getTimestamp());
-			ddValueSelect(ddtextTT,ddValueTT,"Coax");
-			 txtAddressLine1.sendKeys("Address"+getTimestamp());
-			 waitForElement(ddtxtZipCode);
-			 ddtxtZipCode.clear();
-			 ddtxtZipCode.sendKeys("30309");
-			 waitForElement(imgZipcodeSearch);
-			 imgZipcodeSearch.click();
-			 WaitandSwitchToFrame(frameCondition);
-			 waitForElement(btnRadioSelectZip);
-			 btnRadioSelectZip.click();
-			 waitForElement(btnOk);
-			 btnOk.click();
-			 browser.switchTo().defaultContent();
-			 WaitandSwitchToFrame(frameMain);
-			
-			 waitForElement(btnValidate);
-			 btnValidate.click();
-			 waitforPageLoadComplete();
-			 waitForElement(btnMore);
-			 btnMore.click();
-			 if (WaitandSwitchToFrame(frameCondition)){
-				 waitForElement(chkDisclaimer);
-				 chkDisclaimer.click();
-				 waitForElement(btnContinue);
-				 btnContinue.click();
+			if(waitForElement(tabSurvey)){
+			tabSurvey.click();
+			    }
+			waitforPageLoadComplete();
+			waitForElementDisappear(elementLoading);	
+			if(WaitandSwitchToFrame(frameMain)){
+				waitForElement(btnRadioInitiateSurvey);
+				btnRadioInitiateSurvey.click();
+				waitforPageLoadComplete();
+				waitForElement(txtSiteName);
+				txtSiteName.sendKeys("Site"+getTimestamp());
+				ddValueSelect(ddtextTT,ddValueTT,"Coax");
+				 txtAddressLine1.sendKeys("Address"+getTimestamp());
+				 waitForElement(ddtxtZipCode);
+				 ddtxtZipCode.clear();
+				 ddtxtZipCode.sendKeys("30309");
+				 waitForElement(imgZipcodeSearch);
+				 imgZipcodeSearch.click();
+				 WaitandSwitchToFrame(frameCondition);
+				 waitForElement(btnRadioSelectZip);
+				 btnRadioSelectZip.click();
+				 waitForElement(btnOk);
+				 btnOk.click();
+				 browser.switchTo().defaultContent();
+				 WaitandSwitchToFrame(frameMain);
+				
+				 waitForElement(btnValidate);
+				 btnValidate.click();
 				 waitforPageLoadComplete();
-				 browser.switchTo().defaultContent();	 
-			 }
-			 WaitandSwitchToFrame(frameMain);
-			 waitForElement(BtnAddContact);	 
-			 BtnAddContact.click();
-			 waitforPageLoadComplete();
+				 waitForElement(btnMore);
+				 btnMore.click();
+				 if (WaitandSwitchToFrame(frameCondition)){
+					 waitForElement(chkDisclaimer);
+					 chkDisclaimer.click();
+					 waitForElement(btnContinue);
+					 btnContinue.click();
+					 waitforPageLoadComplete();
+					 browser.switchTo().defaultContent();	 
+				 }
+				 WaitandSwitchToFrame(frameMain);
+				 waitForElement(BtnAddContact);	 
+				 BtnAddContact.click();
+				 waitforPageLoadComplete();
+			}
+		} catch (Exception e) {
+			mstatus = true;
 		}
+		return mstatus;
 	}
 	
 	public String SubmitSurveyRequest() throws InterruptedException{

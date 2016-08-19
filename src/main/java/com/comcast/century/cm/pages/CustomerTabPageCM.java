@@ -126,7 +126,7 @@ public class CustomerTabPageCM extends Page {
 	@FindBy(xpath = "//input[@value='Continue']")
 	private WebElement btnContinue;
 	
-	
+	private boolean mstatus;	
 	
 	
 	@Override
@@ -145,8 +145,7 @@ public class CustomerTabPageCM extends Page {
 		
 	}
 	
-	  public String customerInformation(CustomerInfo customerInfo){
-		  
+	  public String customerInformation(CustomerInfo customerInfo){		  
 		  waitforPageLoadComplete();
 		  waitForElement(tabCustomer);
 		  tabCustomer.click();
@@ -178,72 +177,86 @@ public class CustomerTabPageCM extends Page {
 
 	  }
 	  
-	  public void addressInformationInvalid(CustomerInfo customerInfo) throws InterruptedException{
-		  
-		  waitForElement(txtAddressLine1);
-		  String addressLine1 = customerInfo.addressLine1+getTimestamp();
-		  txtAddressLine1.sendKeys(addressLine1);
-		  report.reportDoneEvent("Enter Address Line 1", "Address Line 1 Entered as ->" + addressLine1);
-		  ddtxtZipCode.sendKeys(customerInfo.zipCode);
-		  report.reportDoneEvent("Enter Zipcode", "Zipcode Entered as ->" +customerInfo.zipCode);
-		  imgZipcodeSearch.click();
-		  waitforPageLoadComplete();
-		  WaitandSwitchToFrame(frameCondition);
-		  waitForElement(txtCity);
-		  iterateThroughtableAndSelectCity(customerInfo.city);
-		  btnOk.click();
-		  browser.switchTo().defaultContent();
-		  if(WaitandSwitchToFrame(frameMain)){
-			  WaitandSwitchToFrame(frameCustomer);
-			  }
-		  waitForElement(btnCreate);
-		  btnCreate.click();
-		  waitforPageLoadComplete();
-		  waitForElement(btnMore);
-		  btnMore.click();
-		  waitforPageLoadComplete();
-		  WaitandSwitchToFrame(frameCondition);
-		  waitForElement(chkDisclaimer);
-		  chkDisclaimer.click();
-		  waitForElement(btnContinue);
-		  btnContinue.click();
-		  browser.switchTo().defaultContent();
-		  waitforPageLoadComplete();
-		  Thread.sleep(3000);
-		  report.updateTestLog("Create Customer", "Customer Created Successfully", Status.SCREENSHOT);
-		  
+	  public boolean addressInformationInvalid(CustomerInfo customerInfo) throws InterruptedException{
+		  mstatus = true;
+		  try{
+				  
+			  waitForElement(txtAddressLine1);
+			  String addressLine1 = customerInfo.addressLine1+getTimestamp();
+			  txtAddressLine1.sendKeys(addressLine1);
+			  report.reportDoneEvent("Enter Address Line 1", "Address Line 1 Entered as ->" + addressLine1);
+			  ddtxtZipCode.sendKeys(customerInfo.zipCode);
+			  report.reportDoneEvent("Enter Zipcode", "Zipcode Entered as ->" +customerInfo.zipCode);
+			  imgZipcodeSearch.click();
+			  waitforPageLoadComplete();
+			  WaitandSwitchToFrame(frameCondition);
+			  waitForElement(txtCity);
+			  iterateThroughtableAndSelectCity(customerInfo.city);
+			  btnOk.click();
+			  browser.switchTo().defaultContent();
+			  if(WaitandSwitchToFrame(frameMain)){
+				  WaitandSwitchToFrame(frameCustomer);
+				  }
+			  waitForElement(btnCreate);
+			  btnCreate.click();
+			  waitforPageLoadComplete();
+			  waitForElement(btnMore);
+			  btnMore.click();
+			  waitforPageLoadComplete();
+			  WaitandSwitchToFrame(frameCondition);
+			  waitForElement(chkDisclaimer);
+			  chkDisclaimer.click();
+			  waitForElement(btnContinue);
+			  btnContinue.click();
+			  browser.switchTo().defaultContent();
+			  waitforPageLoadComplete();
+			  Thread.sleep(3000);
+			  report.updateTestLog("Create Customer", "Customer Created Successfully", Status.SCREENSHOT);
+		  }
+		  catch(Exception ex)
+		  {
+			  mstatus = false;
+		  }
+		  return mstatus;
+			  
 	  }
 	  
-	  public void addressInformationValid(CustomerInfo customerInfo) throws InterruptedException{
-		  
-		  waitForElement(txtAddressLine1);
-		  txtAddressLine1.sendKeys(customerInfo.addressLine1);
-		  report.reportDoneEvent("Enter Address Line 1", "Address Line 1 Entered as ->" +customerInfo.addressLine1);
-		  String addressLine2 = customerInfo.addressLine2+" "+getTimestamp();
-		  txtAddressLine2.sendKeys(addressLine2);
-		  report.reportDoneEvent("Enter Address Line 2", "Address Line 2 Entered as ->" + addressLine2);
-		  ddtxtZipCode.sendKeys(customerInfo.zipCode);
-		  report.reportDoneEvent("Enter Zipcode", "Zipcode Entered as ->" +customerInfo.zipCode);
-		  imgZipcodeSearch.click();
-		  waitforPageLoadComplete();
-		  WaitandSwitchToFrame(frameCondition);
-		  waitForElement(txtCity);
-		  iterateThroughtableAndSelectCity(customerInfo.city);
-		  btnOk.click();
-		  browser.switchTo().defaultContent();
-		  if(WaitandSwitchToFrame(frameMain)){
-			  WaitandSwitchToFrame(frameCustomer);
-			  }
-		  waitForElement(btnCreate);
-		  btnCreate.click();
-		  waitforPageLoadComplete();
-		  waitForElement(btnSelectValidSite);
-		  btnSelectValidSite.click();
-		  waitForElement(btnContinue);
-		  btnContinue.click();
-		  waitforPageLoadComplete();
-		  browser.switchTo().defaultContent();
-		  report.updateTestLog("Create Customer", "Customer Created Successfully", Status.SCREENSHOT); 
+	  public boolean addressInformationValid(CustomerInfo customerInfo) throws InterruptedException{
+		  mstatus = true;
+		  try {
+			waitForElement(txtAddressLine1);
+			  txtAddressLine1.sendKeys(customerInfo.addressLine1);
+			  report.reportDoneEvent("Enter Address Line 1", "Address Line 1 Entered as ->" +customerInfo.addressLine1);
+			  String addressLine2 = customerInfo.addressLine2+" "+getTimestamp();
+			  txtAddressLine2.sendKeys(addressLine2);
+			  report.reportDoneEvent("Enter Address Line 2", "Address Line 2 Entered as ->" + addressLine2);
+			  ddtxtZipCode.sendKeys(customerInfo.zipCode);
+			  report.reportDoneEvent("Enter Zipcode", "Zipcode Entered as ->" +customerInfo.zipCode);
+			  imgZipcodeSearch.click();
+			  waitforPageLoadComplete();
+			  WaitandSwitchToFrame(frameCondition);
+			  waitForElement(txtCity);
+			  iterateThroughtableAndSelectCity(customerInfo.city);
+			  btnOk.click();
+			  browser.switchTo().defaultContent();
+			  if(WaitandSwitchToFrame(frameMain)){
+				  WaitandSwitchToFrame(frameCustomer);
+				  }
+			  waitForElement(btnCreate);
+			  btnCreate.click();
+			  waitforPageLoadComplete();
+			  waitForElement(btnSelectValidSite);
+			  btnSelectValidSite.click();
+			  waitForElement(btnContinue);
+			  btnContinue.click();
+			  waitforPageLoadComplete();
+			  browser.switchTo().defaultContent();
+			  report.updateTestLog("Create Customer", "Customer Created Successfully", Status.SCREENSHOT);
+		} catch (Exception e) {
+			mstatus = true;
+			e.printStackTrace();
+		}
+		return mstatus;
 	  }
 	  
 

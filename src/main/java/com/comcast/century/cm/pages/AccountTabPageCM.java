@@ -127,6 +127,8 @@ public class AccountTabPageCM extends Page {
 	@FindBy(xpath = "//*[@id='addcontact-toolEl']")
 	private WebElement BtnAddContact ;
 	
+	private boolean mstatus; 
+	
 	@Override
 	protected boolean isValidPage() {
 		
@@ -142,172 +144,193 @@ public class AccountTabPageCM extends Page {
 	
 	
 	
-	public void CreateServiceAccount(AccountInfo accountInfo) throws InterruptedException{
-		waitforPageLoadComplete();
-		WaitandSwitchToFrame(frameMain);
-		waitForElement(tabAccount);
-		tabAccount.click();
-		jsClick(tabAccount);
-		report.reportDoneEvent("Click on Account tab", "Account tab clicked");
-		WaitandSwitchToFrame(frameAccount);
-		txtAccnName.click();
-		 txtAccnName.clear();
-		 txtAccnName.sendKeys(accountInfo.serviceAccName);
-		 report.reportDoneEvent("Enter Service Account Name", "Entered Service Account Name as->" +accountInfo.serviceAccName);
-		 waitforPageLoadComplete();
-		 ddValueSelect(ddTextLegalEntity,ddValueLegalEntity,accountInfo.legalEntity);
-		 report.reportDoneEvent("Select Legal Entity", "Selected Legal Entity as->" +accountInfo.legalEntity);
-		 ddValueSelect(ddTextLOB,ddValueLOB,accountInfo.lineOfBusiness);
-		 report.reportDoneEvent("Select Line of Business", "Selected Line of Business as->" +accountInfo.lineOfBusiness);
-		 ddValueSelect(ddTextVMarket,ddValueVMarket,accountInfo.verticalMarket);
-		 report.reportDoneEvent("Select Vertical Market", "Selected Vertical Market as->" +accountInfo.verticalMarket);
-		 waitforPageLoadComplete();
-		 waitForElement(useCustomerAddress);
-		 useCustomerAddress.click();
-		 report.reportDoneEvent("Check Use Customer Address", "Use Customer Address Checked");
-		 waitforPageLoadComplete();
-		 waitForElement(createAccountBtn);
-		 createAccountBtn.click();
-		 waitforPageLoadComplete();	
-		 report.updateTestLog("Create Service Account", "Service Account Created Successfully", Status.SCREENSHOT);
-		 waitForElement(BtnAddContact);
-		 BtnAddContact.click();	
-		 report.reportDoneEvent("Click on Add Contact", "Add Contact Clicked");
-		 waitforPageLoadComplete();		
+	public boolean CreateServiceAccount(AccountInfo accountInfo) throws InterruptedException{
+		mstatus = true;
+		try{			
+			 waitforPageLoadComplete();
+			 WaitandSwitchToFrame(frameMain);
+			 waitForElement(tabAccount);
+			 tabAccount.click();
+			 jsClick(tabAccount);
+			 report.reportDoneEvent("Click on Account tab", "Account tab clicked");
+			 WaitandSwitchToFrame(frameAccount);
+			 txtAccnName.click();
+			 txtAccnName.clear();
+			 txtAccnName.sendKeys(accountInfo.serviceAccName);
+			 report.reportDoneEvent("Enter Service Account Name", "Entered Service Account Name as->" +accountInfo.serviceAccName);
+			 waitforPageLoadComplete();
+			 ddValueSelect(ddTextLegalEntity,ddValueLegalEntity,accountInfo.legalEntity);
+			 report.reportDoneEvent("Select Legal Entity", "Selected Legal Entity as->" +accountInfo.legalEntity);
+			 ddValueSelect(ddTextLOB,ddValueLOB,accountInfo.lineOfBusiness);
+			 report.reportDoneEvent("Select Line of Business", "Selected Line of Business as->" +accountInfo.lineOfBusiness);
+			 ddValueSelect(ddTextVMarket,ddValueVMarket,accountInfo.verticalMarket);
+			 report.reportDoneEvent("Select Vertical Market", "Selected Vertical Market as->" +accountInfo.verticalMarket);
+			 waitforPageLoadComplete();
+			 waitForElement(useCustomerAddress);
+			 useCustomerAddress.click();
+			 report.reportDoneEvent("Check Use Customer Address", "Use Customer Address Checked");
+			 waitforPageLoadComplete();
+			 waitForElement(createAccountBtn);
+			 createAccountBtn.click();
+			 waitforPageLoadComplete();	
+			 report.updateTestLog("Create Service Account", "Service Account Created Successfully", Status.SCREENSHOT);
+			 waitForElement(BtnAddContact);
+			 BtnAddContact.click();	
+			 report.reportDoneEvent("Click on Add Contact", "Add Contact Clicked");
+			 waitforPageLoadComplete();
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
 	
-	public void CreateErateServiceAccount(AccountInfo accountInfo) throws InterruptedException{
-		waitforPageLoadComplete();
-		WaitandSwitchToFrame(frameMain);
-		waitForElement(tabAccount);
-		tabAccount.click();
-		jsClick(tabAccount);
-		report.reportDoneEvent("Click on Account tab", "Account tab clicked");
-		WaitandSwitchToFrame(frameAccount);
-		txtAccnName.click();
-		txtAccnName.clear();
-		String serviceAccName = accountInfo.serviceAccName + getTimestamp();
-		txtAccnName.sendKeys(serviceAccName);
-		report.reportDoneEvent("Enter Service Account Name", "Entered Service Account Name as->" + serviceAccName);
-		waitforPageLoadComplete();
-		ddValueSelect(ddTextLegalEntity,ddValueLegalEntity,accountInfo.legalEntity);
-		report.reportDoneEvent("Select Legal Entity", "Selected Legal Entity as->" +accountInfo.legalEntity);
-		ddValueSelect(ddTextLOB,ddValueLOB,accountInfo.lineOfBusiness);
-		report.reportDoneEvent("Select Line of Business", "Selected Line of Business as->" +accountInfo.lineOfBusiness);
-		ddValueSelect(ddTextErate,ddValueErate,"Yes");
-		report.reportDoneEvent("Select Erate dropdown", "Dropdown Selected");
-		ddValueSelect(ddTextVMarketErate,ddValueVMarketErate,accountInfo.verticalMarket);
-		waitforPageLoadComplete();
-		waitForElement(useCustomerAddress);
-		useCustomerAddress.click();
-		report.reportDoneEvent("Check Use Customer Address", "Use Customer Address Checked");
-		waitforPageLoadComplete();
-		waitForElement(createAccountBtn);
-		createAccountBtn.click();
-		waitforPageLoadComplete();	
-		report.updateTestLog("Create Service Account", "Service Account Created Successfully", Status.SCREENSHOT);
-		waitForElement(BtnAddContact);
-		BtnAddContact.click();	
-		report.reportDoneEvent("Click on Add Contact", "Add Contact Clicked");
-		waitforPageLoadComplete();		
-		
-		
+	public boolean CreateErateServiceAccount(AccountInfo accountInfo) throws InterruptedException{
+		mstatus = true;
+		try{				
+			waitforPageLoadComplete();
+			WaitandSwitchToFrame(frameMain);
+			waitForElement(tabAccount);
+			tabAccount.click();
+			jsClick(tabAccount);
+			report.reportDoneEvent("Click on Account tab", "Account tab clicked");
+			WaitandSwitchToFrame(frameAccount);
+			txtAccnName.click();
+			txtAccnName.clear();
+			String serviceAccName = accountInfo.serviceAccName + getTimestamp();
+			txtAccnName.sendKeys(serviceAccName);
+			report.reportDoneEvent("Enter Service Account Name", "Entered Service Account Name as->" + serviceAccName);
+			waitforPageLoadComplete();
+			ddValueSelect(ddTextLegalEntity,ddValueLegalEntity,accountInfo.legalEntity);
+			report.reportDoneEvent("Select Legal Entity", "Selected Legal Entity as->" +accountInfo.legalEntity);
+			ddValueSelect(ddTextLOB,ddValueLOB,accountInfo.lineOfBusiness);
+			report.reportDoneEvent("Select Line of Business", "Selected Line of Business as->" +accountInfo.lineOfBusiness);
+			ddValueSelect(ddTextErate,ddValueErate,"Yes");
+			report.reportDoneEvent("Select Erate dropdown", "Dropdown Selected");
+			ddValueSelect(ddTextVMarketErate,ddValueVMarketErate,accountInfo.verticalMarket);
+			waitforPageLoadComplete();
+			waitForElement(useCustomerAddress);
+			useCustomerAddress.click();
+			report.reportDoneEvent("Check Use Customer Address", "Use Customer Address Checked");
+			waitforPageLoadComplete();
+			waitForElement(createAccountBtn);
+			createAccountBtn.click();
+			waitforPageLoadComplete();	
+			report.updateTestLog("Create Service Account", "Service Account Created Successfully", Status.SCREENSHOT);
+			waitForElement(BtnAddContact);
+			BtnAddContact.click();	
+			report.reportDoneEvent("Click on Add Contact", "Add Contact Clicked");
+			waitforPageLoadComplete();
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+			
+		return mstatus;
 	}
 	
 	
-	public void CreateBiilingAccount(AccountInfo accountInfo) throws InterruptedException{
-		waitforPageLoadComplete();
-		 if (WaitandSwitchToFrame(frameMain)){
-			 if (WaitandSwitchToFrame(frameAccount)){
-				 if(waitForElement(btnCreateNewAcc)) {
-					 System.out.println("Create new Acc exists");
-					 btnCreateNewAcc.click();
-					 jsClickWE(btnCreateNewAcc);
-					 report.reportDoneEvent("Click on Create New Account", "Create New Account Clicked");
+	public boolean CreateBillingAccount(AccountInfo accountInfo) throws InterruptedException{
+		mstatus = true;
+		try{
+				
+			waitforPageLoadComplete();
+			 if (WaitandSwitchToFrame(frameMain)){
+				 if (WaitandSwitchToFrame(frameAccount)){
+					 if(waitForElement(btnCreateNewAcc)) {
+						 System.out.println("Create new Acc exists");
+						 btnCreateNewAcc.click();
+						 jsClickWE(btnCreateNewAcc);
+						 report.reportDoneEvent("Click on Create New Account", "Create New Account Clicked");
+						 waitforPageLoadComplete();
+					 }
+					 ddValueSelect(ddTextAccountType,ddValueAccountTypeBilling,accountInfo.accountType);
+					 report.reportDoneEvent("Select Account Type", "Selected Account Type as->" +accountInfo.accountType);
 					 waitforPageLoadComplete();
-				 }
-				 ddValueSelect(ddTextAccountType,ddValueAccountTypeBilling,accountInfo.accountType);
-				 report.reportDoneEvent("Select Account Type", "Selected Account Type as->" +accountInfo.accountType);
-				 waitforPageLoadComplete();
-				 ddValueSelect(ddtxtServiceAcc,chkServiceAcc,accountInfo.serviceAccName);
-				 report.reportDoneEvent("Select Service Account", "Selected Service Account as->" +accountInfo.serviceAccName);
-				 waitforPageLoadComplete();
-				 txtBillingAccnName.click();
-				 txtBillingAccnName.sendKeys(accountInfo.billingAccName);
-				 report.reportDoneEvent("Enter Billing Account Name", "Entered Billing Account Name as->"+accountInfo.billingAccName);
-				 waitforPageLoadComplete();
-				 imgGetBAN.click();
-				 report.reportDoneEvent("Click to get BAN", "Clicked to get BAN");
-				 waitforPageLoadComplete();
-				 waitForElement(useCustomerAddress);
-				 report.reportDoneEvent("Check Use Customer Address", "Use Customer Address Checked");
-				 useCustomerAddress.click();
-				 waitforPageLoadComplete();
-				 waitForElement(createAccountBtn);
-				 createAccountBtn.click();
-				 waitforPageLoadComplete();	
-				 report.updateTestLog("Create Billing Account", "Billing Account Created Successfully", Status.SCREENSHOT);
-				 waitForElement(BtnAddContact);
-				 BtnAddContact.click();	
-				 waitforPageLoadComplete();	
-				 //browser.switchTo().defaultContent();
-				 
+					 ddValueSelect(ddtxtServiceAcc,chkServiceAcc,accountInfo.serviceAccName);
+					 report.reportDoneEvent("Select Service Account", "Selected Service Account as->" +accountInfo.serviceAccName);
+					 waitforPageLoadComplete();
+					 txtBillingAccnName.click();
+					 txtBillingAccnName.sendKeys(accountInfo.billingAccName);
+					 report.reportDoneEvent("Enter Billing Account Name", "Entered Billing Account Name as->"+accountInfo.billingAccName);
+					 waitforPageLoadComplete();
+					 imgGetBAN.click();
+					 report.reportDoneEvent("Click to get BAN", "Clicked to get BAN");
+					 waitforPageLoadComplete();
+					 waitForElement(useCustomerAddress);
+					 report.reportDoneEvent("Check Use Customer Address", "Use Customer Address Checked");
+					 useCustomerAddress.click();
+					 waitforPageLoadComplete();
+					 waitForElement(createAccountBtn);
+					 createAccountBtn.click();
+					 waitforPageLoadComplete();	
+					 report.updateTestLog("Create Billing Account", "Billing Account Created Successfully", Status.SCREENSHOT);
+					 waitForElement(BtnAddContact);
+					 BtnAddContact.click();	
+					 waitforPageLoadComplete();	
+					 //browser.switchTo().defaultContent();
+					 
 			 }
 		 }
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void CreateSecondBillingAccount(AccountInfo accountInfo) throws InterruptedException{
-		
-		WaitandSwitchToFrame(frameMain);
-		waitForElement(tabAccount);
-		tabAccount.click();
-		jsClick(tabAccount);
-		waitforPageLoadComplete();
-		report.reportDoneEvent("Click on Account tab", "Account tab clicked");
-		WaitandSwitchToFrame(frameAccount);
-		if(waitForElement(btnCreateNewAcc)) {
-			 System.out.println("Create new Acc exists");
-			 btnCreateNewAcc.click();
-			 jsClickWE(btnCreateNewAcc);
-			 report.reportDoneEvent("Click on Create New Account", "Create New Account Clicked");
-			 waitforPageLoadComplete();
-		 }
-		 ddValueSelect(ddTextAccountType,ddValueAccountTypeBilling,accountInfo.accountType);
-		 report.reportDoneEvent("Select Account Type", "Selected Account Type as->" +accountInfo.accountType);
-		 waitforPageLoadComplete();
-		 waitForElement(ddtxtAssocTo);
-		 ddValueSelect(ddtxtAssocTo,ddValueAssocTo,"Site");
-		 waitForElement(ddtxtServiceAcc);
-		 ddValueSelect(ddtxtServiceAcc,chkSite,"Site");
-		 waitforPageLoadComplete();
-		 txtBillingAccnName.click();
-		 String billingAccName = accountInfo.billingAccName + getTimestamp();
-		 txtBillingAccnName.sendKeys(billingAccName);
-		 report.reportDoneEvent("Enter Billing Account Name", "Entered Billing Account Name as->" + billingAccName);
-		 waitforPageLoadComplete();
-		 imgGetBAN.click();
-		 report.reportDoneEvent("Click to get BAN", "Clicked to get BAN");
-		 waitforPageLoadComplete();
-		 waitForElement(useCustomerAddress);
-		 report.reportDoneEvent("Check Use Customer Address", "Use Customer Address Checked");
-		 useCustomerAddress.click();
-		 waitforPageLoadComplete();
-		 waitForElement(createAccountBtn);
-		 createAccountBtn.click();
-		 waitforPageLoadComplete();	
-		 report.updateTestLog("Create Billing Account", "Billing Account Created Successfully", Status.SCREENSHOT);
-		 browser.switchTo().defaultContent();
-	}
-	
-}
-	
-
-			 
-			
-				 
+	public boolean CreateSecondBillingAccount(AccountInfo accountInfo) throws InterruptedException{
+		mstatus = true;
+		try{
 				
-			 
-
-		 
-		 
+			WaitandSwitchToFrame(frameMain);
+			waitForElement(tabAccount);
+			tabAccount.click();
+			jsClick(tabAccount);
+			waitforPageLoadComplete();
+			report.reportDoneEvent("Click on Account tab", "Account tab clicked");
+			WaitandSwitchToFrame(frameAccount);
+			if(waitForElement(btnCreateNewAcc)) {
+				 System.out.println("Create new Acc exists");
+				 btnCreateNewAcc.click();
+				 jsClickWE(btnCreateNewAcc);
+				 report.reportDoneEvent("Click on Create New Account", "Create New Account Clicked");
+				 waitforPageLoadComplete();
+			 }
+			 ddValueSelect(ddTextAccountType,ddValueAccountTypeBilling,accountInfo.accountType);
+			 report.reportDoneEvent("Select Account Type", "Selected Account Type as->" +accountInfo.accountType);
+			 waitforPageLoadComplete();
+			 waitForElement(ddtxtAssocTo);
+			 ddValueSelect(ddtxtAssocTo,ddValueAssocTo,"Site");
+			 waitForElement(ddtxtServiceAcc);
+			 ddValueSelect(ddtxtServiceAcc,chkSite,"Site");
+			 waitforPageLoadComplete();
+			 txtBillingAccnName.click();
+			 String billingAccName = accountInfo.billingAccName + getTimestamp();
+			 txtBillingAccnName.sendKeys(billingAccName);
+			 report.reportDoneEvent("Enter Billing Account Name", "Entered Billing Account Name as->" + billingAccName);
+			 waitforPageLoadComplete();
+			 imgGetBAN.click();
+			 report.reportDoneEvent("Click to get BAN", "Clicked to get BAN");
+			 waitforPageLoadComplete();
+			 waitForElement(useCustomerAddress);
+			 report.reportDoneEvent("Check Use Customer Address", "Use Customer Address Checked");
+			 useCustomerAddress.click();
+			 waitforPageLoadComplete();
+			 waitForElement(createAccountBtn);
+			 createAccountBtn.click();
+			 waitforPageLoadComplete();	
+			 report.updateTestLog("Create Billing Account", "Billing Account Created Successfully", Status.SCREENSHOT);
+			 browser.switchTo().defaultContent();
+		}	
+		catch(Exception ex)
+		{
+			mstatus=false;
+		}
+		return mstatus;
+   }
+}

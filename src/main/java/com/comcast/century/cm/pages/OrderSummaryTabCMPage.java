@@ -166,8 +166,11 @@ public class OrderSummaryTabCMPage extends Page {
 	@FindBy(xpath = "//span[text()='OK']/following-sibling::span")
 	private WebElement btnOk ;
 	
+	private boolean mstatus;
 	
-	public void assignLabel(OrderSummaryInfo orderSummaryInfo){
+	
+	public boolean assignLabel(OrderSummaryInfo orderSummaryInfo){
+		mstatus = true;
 		try{
 			waitForElement(ddTextMoreActions);
 			ddValueSelect(ddTextMoreActions,ddValueMoreActions,"Assign Label");
@@ -185,93 +188,122 @@ public class OrderSummaryTabCMPage extends Page {
 			WaitandSwitchToFrame(frameMain);
 		}catch(Exception e){
 			System.out.println(e.getMessage());
+			mstatus = false;
 		}
+		return mstatus;
 	}
 
-	public void enterOrderDetails(OrderSummaryInfo orderSummaryInfo){
-		//WaitandSwitchToFrame(frameMain);
-		waitForElement(dtCustomerOrderSig);
-		dtCustomerOrderSig.click();
-	    btnToday.get(0).click();
-		waitForElement(ddtaxJurisdiction);
-		new Select(ddtaxJurisdiction).selectByVisibleText(orderSummaryInfo.taxJurisdiction);
-		report.reportDoneEvent("Select Tax Jurisdiction", "Select Tax Jurisdiction as->" +orderSummaryInfo.taxJurisdiction);
-		new Select(ddsaleschannel).selectByVisibleText(orderSummaryInfo.salesChannel);
-		report.reportDoneEvent("Select Sales Channel", "Selected Sales Channel as->" +orderSummaryInfo.salesChannel);
-		new Select(ddsoldRegion).selectByVisibleText(orderSummaryInfo.soldRegion);
-		report.reportDoneEvent("Select Sold Region", "Selected Sold Region as->" +orderSummaryInfo.soldRegion);
-		dtSalesOrderAcceptance.click();
-		btnToday.get(1).click();
-		dtSalesOrderSubmitted.click();
-		btnToday.get(2).click();
-		waitForElement(txtsalesOrderNumber);
-		String salesOrderNumber = randomNumber(5);
-		txtsalesOrderNumber.sendKeys(salesOrderNumber);
-		report.reportDoneEvent("Enter Sales Order Number", "Entered Sales Order Number as->"+ salesOrderNumber);
-		waitForElement(txtsalesforceopportunityid);
-		txtsalesforceopportunityid.sendKeys(orderSummaryInfo.opportunityId);
-		report.reportDoneEvent("Enter Opportunity ID", "Entered Opportunity ID as->" +orderSummaryInfo.opportunityId);
-		waitForElement(btnSalesOrderId);
-		btnSalesOrderId.click();
+	public boolean enterOrderDetails(OrderSummaryInfo orderSummaryInfo){
+		mstatus = true;		
+		try {
+			//WaitandSwitchToFrame(frameMain);
+			waitForElement(dtCustomerOrderSig);
+			dtCustomerOrderSig.click();
+			btnToday.get(0).click();
+			waitForElement(ddtaxJurisdiction);
+			new Select(ddtaxJurisdiction).selectByVisibleText(orderSummaryInfo.taxJurisdiction);
+			report.reportDoneEvent("Select Tax Jurisdiction", "Select Tax Jurisdiction as->" +orderSummaryInfo.taxJurisdiction);
+			new Select(ddsaleschannel).selectByVisibleText(orderSummaryInfo.salesChannel);
+			report.reportDoneEvent("Select Sales Channel", "Selected Sales Channel as->" +orderSummaryInfo.salesChannel);
+			new Select(ddsoldRegion).selectByVisibleText(orderSummaryInfo.soldRegion);
+			report.reportDoneEvent("Select Sold Region", "Selected Sold Region as->" +orderSummaryInfo.soldRegion);
+			dtSalesOrderAcceptance.click();
+			btnToday.get(1).click();
+			dtSalesOrderSubmitted.click();
+			btnToday.get(2).click();
+			waitForElement(txtsalesOrderNumber);
+			String salesOrderNumber = randomNumber(5);
+			txtsalesOrderNumber.sendKeys(salesOrderNumber);
+			report.reportDoneEvent("Enter Sales Order Number", "Entered Sales Order Number as->"+ salesOrderNumber);
+			waitForElement(txtsalesforceopportunityid);
+			txtsalesforceopportunityid.sendKeys(orderSummaryInfo.opportunityId);
+			report.reportDoneEvent("Enter Opportunity ID", "Entered Opportunity ID as->" +orderSummaryInfo.opportunityId);
+			waitForElement(btnSalesOrderId);
+			btnSalesOrderId.click();
+		} catch (Exception e) {
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
 	
-	public void Attachments(OrderSummaryInfo orderSummaryInfo) throws AWTException, InterruptedException{
-		waitForElement(linkAttachments);
-		clickndRelease(linkAttachments);
-		waitforPageLoadComplete();
-		WaitandSwitchToFrame(frameNotes);
-		waitForElement(ddAttachmentRepository);
-		new Select(ddAttachmentRepository).selectByVisibleText(orderSummaryInfo.attachmentRepository);
-		waitForElement(btnBrowse);
-		clickndRelease(btnBrowse);
-		Thread.sleep(5000);
-		uploadAttachments(orderSummaryInfo.filePath);
-		waitForElement(ddAttachmentType);
-		new Select(ddAttachmentType).selectByVisibleText(orderSummaryInfo.attachmentType);
-		waitForElement(btnAdd);
-		clickndRelease(btnAdd);
-		Thread.sleep(15000);
-		browser.switchTo().defaultContent();	
-		WaitandSwitchToFrame(frameMain);
-		waitForElement(closeAttachmentWindow);
-		clickndRelease(closeAttachmentWindow);
+	public boolean Attachments(OrderSummaryInfo orderSummaryInfo) throws AWTException, InterruptedException{
+		mstatus = true;
+		try {
+			waitForElement(linkAttachments);
+			clickndRelease(linkAttachments);
+			waitforPageLoadComplete();
+			WaitandSwitchToFrame(frameNotes);
+			waitForElement(ddAttachmentRepository);
+			new Select(ddAttachmentRepository).selectByVisibleText(orderSummaryInfo.attachmentRepository);
+			waitForElement(btnBrowse);
+			clickndRelease(btnBrowse);
+			Thread.sleep(5000);
+			uploadAttachments(orderSummaryInfo.filePath);
+			waitForElement(ddAttachmentType);
+			new Select(ddAttachmentType).selectByVisibleText(orderSummaryInfo.attachmentType);
+			waitForElement(btnAdd);
+			clickndRelease(btnAdd);
+			Thread.sleep(15000);
+			browser.switchTo().defaultContent();	
+			WaitandSwitchToFrame(frameMain);
+			waitForElement(closeAttachmentWindow);
+			clickndRelease(closeAttachmentWindow);
+		} catch (Exception e) {
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
 	
-	public void mrcNrc_Value(OrderSummaryInfo orderSummaryInfo) throws InterruptedException{
-		
-		enterValue(nrcUNI,txtValueNRC,orderSummaryInfo.valueNRC);          //Enter UNI NRC Value
-		enterValue(mrcUNI,txtValueMRC,orderSummaryInfo.valueMRC);          // Enter UNI MRC Value
-		enterValue(mrcBCosBW,txtValueMRC,orderSummaryInfo.valueMRC);       // Enter BCosW MRC Value                                                             //Enter MRC Value
-		enterValue(mrcEqFee,txtValueMRC,orderSummaryInfo.valueEqFeeMRC);   //Enter MRC for Equipment Fee
-	
-		
+	public boolean mrcNrc_Value(OrderSummaryInfo orderSummaryInfo) throws InterruptedException{
+		mstatus = true;
+		try {
+			enterValue(nrcUNI,txtValueNRC,orderSummaryInfo.valueNRC);          //Enter UNI NRC Value
+			enterValue(mrcUNI,txtValueMRC,orderSummaryInfo.valueMRC);          // Enter UNI MRC Value
+			enterValue(mrcBCosBW,txtValueMRC,orderSummaryInfo.valueMRC);       // Enter BCosW MRC Value                                                             //Enter MRC Value
+			enterValue(mrcEqFee,txtValueMRC,orderSummaryInfo.valueEqFeeMRC);   //Enter MRC for Equipment Fee
+		} catch (Exception e) {
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
 	
 	
 	
 	
-	public void ClickSubmitOrderButton(){
-		if(waitForElement(btnsubmitOrder)){
-			btnsubmitOrder.click();
+	public boolean ClickSubmitOrderButton(){
+		mstatus = true;		
+		try {
+			if(waitForElement(btnsubmitOrder)){
+				btnsubmitOrder.click();
+				waitforPageLoadComplete();	
+				}
+				 browser.switchTo().defaultContent();
+				waitForElementDisappear(elementLoading);
+				waitforPageLoadComplete();	
+				report.updateTestLog("Click Sumbit Order", "Order Submitted Successfully", Status.SCREENSHOT);
+		} catch (Exception e) {
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	public boolean NavigateToCSO(OrderSummaryInfo orderSummaryInfo){
+		mstatus = true;	
+		try {
 			waitforPageLoadComplete();	
-			}
-			 browser.switchTo().defaultContent();
-			waitForElementDisappear(elementLoading);
-			waitforPageLoadComplete();	
-			report.updateTestLog("Click Sumbit Order", "Order Submitted Successfully", Status.SCREENSHOT);
-	}
-	
-	public void NavigateToCSO(OrderSummaryInfo orderSummaryInfo){
-		waitforPageLoadComplete();	
-		waitForElement(ddNavigateToCSO);
-		new Select(ddNavigateToCSO).selectByIndex(1);
-		report.reportDoneEvent("Navigate to " +orderSummaryInfo.goToApplication, "Navigated to " +orderSummaryInfo.goToApplication);
-		waitForElement(btnOK);
-		btnOK.click();
-		waitforPageLoadComplete();
+			waitForElement(ddNavigateToCSO);
+			new Select(ddNavigateToCSO).selectByIndex(1);
+			report.reportDoneEvent("Navigate to " +orderSummaryInfo.goToApplication, "Navigated to " +orderSummaryInfo.goToApplication);
+			waitForElement(btnOK);
+			btnOK.click();
+			waitforPageLoadComplete();
+		} catch (Exception e) {
+			mstatus = false;		
+		}
+		return mstatus;
 		
 	}
 	

@@ -35,15 +35,22 @@ public class EquipmentTabPageCM extends Page {
 	@FindBy(xpath = "//input[@value='Continue']")
 	private WebElement btnContinue;
 	
+	private boolean mstatus;
 	
-	public void equipmentConfiguration(){
-		waitForElementDisappear(elementLoading);
-		enterQuantity(txtPolycomDevice,"5");
-		scrollDown();
-		waitForElement(btnContinue);
-		waitForElement(btnContinue);
-		btnContinue.sendKeys(Keys.ENTER);
-	    waitForElementDisappear(elementLoading);
+	public boolean equipmentConfiguration(){
+		mstatus = true;
+		try {
+			waitForElementDisappear(elementLoading);
+			enterQuantity(txtPolycomDevice,"5");
+			scrollDown();
+			waitForElement(btnContinue);
+			waitForElement(btnContinue);
+			btnContinue.sendKeys(Keys.ENTER);
+			waitForElementDisappear(elementLoading);
+		} catch (Exception e) {
+			mstatus = true;
+		}
+		return mstatus;
 	}
 	
 	

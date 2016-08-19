@@ -76,15 +76,21 @@ public class ServiceTabPageCM extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
+	private boolean mstatus;
 	
-	
-	public void ClickOnServiceTab(){
-		 waitforPageLoadComplete();
-		 if (waitForElement(tabService)){
-			  tabService.click();
-			  report.reportDoneEvent("Click On Service Tab", "Service Tab Clicked");
-			  waitforPageLoadComplete();
-		  }	
+	public boolean ClickOnServiceTab(){
+		mstatus= true;
+		try {
+			waitforPageLoadComplete();
+			 if (waitForElement(tabService)){
+				  tabService.click();
+				  report.reportDoneEvent("Click On Service Tab", "Service Tab Clicked");
+				  waitforPageLoadComplete();
+			  }
+		} catch (Exception e) {
+			mstatus= false;
+		}
+		return mstatus;
 	}
 	
 	
@@ -112,36 +118,60 @@ public class ServiceTabPageCM extends Page {
 			  return mStatus;
 	  }
 			 
-			 public void ENS(){
-				 if(waitForElement(selectCheckBoxENS)){
-					 selectCheckBoxENS.click();
-					 EqFeeqt="2";
-				 }
+			 public boolean ENS(){
+				 mstatus= true;
+				 try {
+					if(waitForElement(selectCheckBoxENS)){
+						 selectCheckBoxENS.click();
+						 EqFeeqt="2";
+					 }
+				} catch (Exception e) {
+					mstatus= false;
+				}
+				return mstatus;
 			 }
 			 
-			public void EPL(){
-				if(waitForElement(selectCheckBoxEPL)){
-					 selectCheckBoxEPL.click();
-					 EqFeeqt="2";
-				 }
-			}
-			
-			public void EVPL() throws AWTException{
-				if(waitForElement(txtAuxService)){
-					txtAuxService.click();
-					keyPress(KeyEvent.VK_TAB,20);
+			public boolean EPL(){
+				mstatus= true;
+				try {
+					if(waitForElement(selectCheckBoxEPL)){
+						 selectCheckBoxEPL.click();
+						 EqFeeqt="2";
+					 }
+				} catch (Exception e) {
+					mstatus= false;
 				}
-				if(waitForElement(selectCheckBoxEVPL)){
-					 selectCheckBoxEVPL.click();
-					 EqFeeqt="3";
-					
-				 }
+				return mstatus;
 			}
 			
-			public void TrunkPRI(){
-				if(waitForElement(selectCheckBoxTrunkPRI)){
-					selectCheckBoxTrunkPRI.click();
-				 }
+			public boolean EVPL() throws AWTException{
+				mstatus= true;
+				try {
+					if(waitForElement(txtAuxService)){
+						txtAuxService.click();
+						keyPress(KeyEvent.VK_TAB,20);
+					}
+					if(waitForElement(selectCheckBoxEVPL)){
+						 selectCheckBoxEVPL.click();
+						 EqFeeqt="3";
+						
+					 }
+				} catch (Exception e) {
+					mstatus= false;
+				}
+				return mstatus;
+			}
+			
+			public boolean TrunkPRI(){
+				mstatus= true;
+				try {
+					if(waitForElement(selectCheckBoxTrunkPRI)){
+						selectCheckBoxTrunkPRI.click();
+					 }
+				} catch (Exception e) {
+					mstatus= false;
+				}
+				return mstatus;
 			}
 			
 			
@@ -168,16 +198,28 @@ public class ServiceTabPageCM extends Page {
 			}
      
 			
-			public void BVE(){
-				if(waitForElement(selectCheckBoxBVE)){
-					selectCheckBoxBVE.click();
-				 }
+			public boolean BVE(){
+				mstatus = true;
+				try {
+					if(waitForElement(selectCheckBoxBVE)){
+						selectCheckBoxBVE.click();
+					 }
+				} catch (Exception e) {
+					mstatus= false;
+				}
+				return mstatus;
 			}
 			
-			public void BVETeleworker(){
-				if(waitForElement(selectCheckBoxBVETeleworker)){
-					selectCheckBoxBVETeleworker.click();
-				 }
+			public boolean BVETeleworker(){
+				mstatus = true;
+				try {
+					if(waitForElement(selectCheckBoxBVETeleworker)){
+						selectCheckBoxBVETeleworker.click();
+					 }
+				} catch (Exception e) {
+					mstatus= false;
+				}
+				return mstatus;
 			}
 			
 			public boolean ClickOnContinueButton(){
