@@ -137,9 +137,12 @@ public class ContactTabPageCM extends Page {
 	@FindBy(xpath = "//li[text()='Mr']")
     private WebElement ddValueNameSuffix;
 	
+	private boolean mstatus;
+	
 
-		public void CreateAccountPrimaryContact(ContactInfo contactInfo) throws InterruptedException{
-			
+	public boolean CreateAccountPrimaryContact(ContactInfo contactInfo) throws InterruptedException{
+		mstatus = true;
+		try{
 			 if (WaitandSwitchToFrame(frameMain)){
 			 ddValueSelect(ddTextContactType,ddValueContactType1,contactInfo.contactType1);
 		     report.reportDoneEvent("Select Contact Type", "Selected Contact Type as->" +contactInfo.contactType1);
@@ -159,12 +162,18 @@ public class ContactTabPageCM extends Page {
 			 waitforPageLoadComplete();
 			 report.updateTestLog("Create Account Primary Contact", "Account Primary Contact Created Successfully", Status.SCREENSHOT);
 			 browser.switchTo().defaultContent();
-			 
-		}
-			 
-}
-		public void CreateBillingContact(ContactInfo contactInfo) throws InterruptedException{
-			
+			 }
+			}
+		 catch(Exception ex)
+		 {
+			 mstatus=false;
+		 }
+		return mstatus;
+		}			 
+
+	public boolean CreateBillingContact(ContactInfo contactInfo) throws InterruptedException{
+		mstatus = true;
+		try{
 			 if (WaitandSwitchToFrame(frameMain)){
 			 ddValueSelect(ddTextContactType,ddValueContactType4,"Billing");
 		     report.reportDoneEvent("Select Contact Type", "Selected Contact Type as->" +contactInfo.contactType1);
@@ -184,14 +193,19 @@ public class ContactTabPageCM extends Page {
 			 waitforPageLoadComplete();
 			 report.updateTestLog("Create Billing Contact", "Billing Contact Created Successfully", Status.SCREENSHOT);
 			 browser.switchTo().defaultContent();
-			 
+			 } 
 		}
-			 
-}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;			 
+    }
 		
 		
-		public void CreateSiteTechnicalContact(ContactInfo contactInfo) throws InterruptedException{
-			
+	public boolean CreateSiteTechnicalContact(ContactInfo contactInfo) throws InterruptedException{
+		mstatus=true;
+		try{			
 			 if (WaitandSwitchToFrame(frameMain)){
 		     ddValueSelect(ddTextContactType,ddValueContactType2,contactInfo.contactType2);
 		     report.reportDoneEvent("Select Contact Type", "Selected Contact Type as->" +contactInfo.contactType2);
@@ -211,14 +225,20 @@ public class ContactTabPageCM extends Page {
 			 waitforPageLoadComplete();
 			 report.updateTestLog("Create Site Technical Contact", "Site Technical Contact Created Successfully", Status.SCREENSHOT);
 			 browser.switchTo().defaultContent(); 
+		  }
 		}
-			 	
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;		
 			
-   }
+     }
 		
 		
-		public void CreateShippingContact(ContactInfo contactInfo) throws InterruptedException{
-			
+	public boolean CreateShippingContact(ContactInfo contactInfo) throws InterruptedException{
+		mstatus = true;
+		try{
 			 if (WaitandSwitchToFrame(frameMain)){
 				 waitForElement(btnAddNewContact);
 				 btnAddNewContact.click();
@@ -241,23 +261,29 @@ public class ContactTabPageCM extends Page {
 				 waitforPageLoadComplete();
 				 report.updateTestLog("Create Shipping Contact", "Shipping Contact Created Successfully", Status.SCREENSHOT);
 				 browser.switchTo().defaultContent(); 
+		  }
 		}
-			 	
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;				 	
 			
   }
-		
-		
-		
-		
-
-
-		public void ClickOnBackBtn() {
+	public boolean ClickOnBackBtn() {
+		mstatus = true;
+		try{
 			WaitandSwitchToFrame(frameMain);
 			waitForElement(btnBack);
 			btnBack.click();
 			report.reportDoneEvent("Click on Back Button", "Back Button Clicked");
 			waitforPageLoadComplete();
 			browser.switchTo().defaultContent(); 
-		}
-	
+		}	
+	catch(Exception ex)
+	{
+		mstatus = false;
+	}
+	return mstatus;		
+	}	
 }

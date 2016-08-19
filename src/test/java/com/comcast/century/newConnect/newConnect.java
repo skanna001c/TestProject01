@@ -100,7 +100,7 @@ public class newConnect extends ComcastTest {
 		contactInfo = ContactInfo.loadFromDatatable(dataTable);
 		(new ContactTabPageCM(browser, report)).CreateAccountPrimaryContact(contactInfo);
 		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();
-		(new AccountTabPageCM(browser, report)).CreateBiilingAccount(accountInfo);
+		(new AccountTabPageCM(browser, report)).CreateBillingAccount(accountInfo);
 		(new ContactTabPageCM(browser, report)).CreateBillingContact(contactInfo);
 		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();
 		siteInfo = SiteInfo.loadFromDatatable(dataTable);
@@ -197,7 +197,7 @@ public class newConnect extends ComcastTest {
 		contactInfo = ContactInfo.loadFromDatatable(dataTable);
 		(new ContactTabPageCM(browser, report)).CreateAccountPrimaryContact(contactInfo);
 		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();
-		(new AccountTabPageCM(browser, report)).CreateBiilingAccount(accountInfo);
+		(new AccountTabPageCM(browser, report)).CreateBillingAccount(accountInfo);
 		(new ContactTabPageCM(browser, report)).CreateBillingContact(contactInfo);
 		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();
 		siteInfo = SiteInfo.loadFromDatatable(dataTable);
@@ -310,7 +310,7 @@ public class newConnect extends ComcastTest {
 		contactInfo = ContactInfo.loadFromDatatable(dataTable);
 		(new ContactTabPageCM(browser, report)).CreateAccountPrimaryContact(contactInfo);
 		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();
-		(new AccountTabPageCM(browser, report)).CreateBiilingAccount(accountInfo);
+		(new AccountTabPageCM(browser, report)).CreateBillingAccount(accountInfo);
 		siteInfo = SiteInfo.loadFromDatatable(dataTable);
 		(new AddressTabPageCM(browser, report)).ClickAddressTab(siteInfo);
 		Site1 = (new AddressTabPageCM(browser, report)).EnterSiteDetailsInvalid(siteInfo);
@@ -408,7 +408,7 @@ public class newConnect extends ComcastTest {
 		contactInfo = ContactInfo.loadFromDatatable(dataTable);
 		(new ContactTabPageCM(browser, report)).CreateAccountPrimaryContact(contactInfo);
 		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();
-		(new AccountTabPageCM(browser, report)).CreateBiilingAccount(accountInfo);
+		(new AccountTabPageCM(browser, report)).CreateBillingAccount(accountInfo);
 		(new ContactTabPageCM(browser, report)).CreateBillingContact(contactInfo);
 		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();
 		siteInfo = SiteInfo.loadFromDatatable(dataTable);
@@ -536,7 +536,7 @@ public class newConnect extends ComcastTest {
 		contactInfo = ContactInfo.loadFromDatatable(dataTable);
 		(new ContactTabPageCM(browser, report)).CreateAccountPrimaryContact(contactInfo);
 		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();
-		(new AccountTabPageCM(browser, report)).CreateBiilingAccount(accountInfo);
+		(new AccountTabPageCM(browser, report)).CreateBillingAccount(accountInfo);
 		(new ContactTabPageCM(browser, report)).CreateBillingContact(contactInfo);
 		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();
 		siteInfo = SiteInfo.loadFromDatatable(dataTable);
@@ -584,7 +584,7 @@ public class newConnect extends ComcastTest {
 		contactInfo = ContactInfo.loadFromDatatable(dataTable);
 		(new ContactTabPageCM(browser, report)).CreateAccountPrimaryContact(contactInfo);
 		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();
-		(new AccountTabPageCM(browser, report)).CreateBiilingAccount(accountInfo);
+		(new AccountTabPageCM(browser, report)).CreateBillingAccount(accountInfo);
 		(new ContactTabPageCM(browser, report)).CreateBillingContact(contactInfo);
 		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();
 		siteInfo = SiteInfo.loadFromDatatable(dataTable);
@@ -709,7 +709,7 @@ public class newConnect extends ComcastTest {
 		contactInfo = ContactInfo.loadFromDatatable(dataTable);
 		(new ContactTabPageCM(browser, report)).CreateAccountPrimaryContact(contactInfo);
 		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();
-		(new AccountTabPageCM(browser, report)).CreateBiilingAccount(accountInfo);
+		(new AccountTabPageCM(browser, report)).CreateBillingAccount(accountInfo);
 		(new ContactTabPageCM(browser, report)).CreateBillingContact(contactInfo);
 		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();
 		/*siteInfo = SiteInfo.loadFromDatatable(dataTable);
@@ -760,7 +760,7 @@ public class newConnect extends ComcastTest {
 		contactInfo = ContactInfo.loadFromDatatable(dataTable);
 		(new ContactTabPageCM(browser, report)).CreateAccountPrimaryContact(contactInfo);
 		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();
-		(new AccountTabPageCM(browser, report)).CreateBiilingAccount(accountInfo);
+		(new AccountTabPageCM(browser, report)).CreateBillingAccount(accountInfo);
 		(new ContactTabPageCM(browser, report)).CreateBillingContact(contactInfo);
 		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();
 		siteInfo = SiteInfo.loadFromDatatable(dataTable);
@@ -828,7 +828,7 @@ public class newConnect extends ComcastTest {
 		contactInfo = ContactInfo.loadFromDatatable(dataTable);
 		(new ContactTabPageCM(browser, report)).CreateAccountPrimaryContact(contactInfo);
 		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();
-		(new AccountTabPageCM(browser, report)).CreateBiilingAccount(accountInfo);
+		(new AccountTabPageCM(browser, report)).CreateBillingAccount(accountInfo);
 		siteInfo = SiteInfo.loadFromDatatable(dataTable);
 		Site1 = (new AddressTabPageCM(browser, report)).EnterSiteDetailsValid(siteInfo);
 		(new ContactTabPageCM(browser, report)).CreateSiteTechnicalContact(contactInfo);

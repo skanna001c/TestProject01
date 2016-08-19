@@ -180,6 +180,8 @@ public class ProcessTabPageCM extends Page {
 		@FindBy(xpath = "//b[text()='Service Request ID :']/../following-sibling::*[position()=1]")
 		private WebElement txtSRId ;
 		
+		private boolean mstatus;
+		
 		
 		/*Method to save terms on process page
 		 * 
@@ -207,17 +209,23 @@ public class ProcessTabPageCM extends Page {
 		 * 
 		 */
 		
-		public void Trunk_PRI(ProcessInfo processInfo){
-			waitForElement(LinkTrunkPRI);
-			LinkTrunkPRI.click();
-			waitForElementDisappear(elementLoading);
-			if(waitForElement(ddSelectTerms)){
-				System.out.println("Terms Present");
-				}
-				new Select(ddSelectTerms).selectByValue(processInfo.terms);
-				btnSave.click();
-				report.reportDoneEvent("Save Terms", "Terms Saved");
+		public boolean Trunk_PRI(ProcessInfo processInfo){
+			mstatus= true;
+			try {
+				waitForElement(LinkTrunkPRI);
+				LinkTrunkPRI.click();
 				waitForElementDisappear(elementLoading);
+				if(waitForElement(ddSelectTerms)){
+					System.out.println("Terms Present");
+					}
+					new Select(ddSelectTerms).selectByValue(processInfo.terms);
+					btnSave.click();
+					report.reportDoneEvent("Save Terms", "Terms Saved");
+					waitForElementDisappear(elementLoading);
+			} catch (Exception e) {
+				mstatus= true;
+			}
+			return true;
 		}
 		
 		/*Method to save UNI Configuration
@@ -227,43 +235,50 @@ public class ProcessTabPageCM extends Page {
 		 * 
 		 */
 		
-		public void UNIConfiguration(ProcessInfo processInfo, String Site) throws InterruptedException{
-			waitForElement(LinkUNI);
-			LinkUNI.click();
-			waitForElementDisappear(elementLoading);
-			waitForElement(imgAddressLookup);
-			imgAddressLookup.click();
-			 waitforPageLoadComplete();
-			 if (WaitandSwitchToFrame(frameCondition.get(0))){
-				 waitForElement(txtSiteName);
-				 txtSiteName.sendKeys(Site);
-				 waitForElement(btnSearch);
-				 btnSearch.click();
+		public boolean UNIConfiguration(ProcessInfo processInfo, String Site) throws InterruptedException{
+			mstatus= true;
+			
+			try {
+				waitForElement(LinkUNI);
+				LinkUNI.click();
+				waitForElementDisappear(elementLoading);
+				waitForElement(imgAddressLookup);
+				imgAddressLookup.click();
+				 waitforPageLoadComplete();
+				 if (WaitandSwitchToFrame(frameCondition.get(0))){
+					 waitForElement(txtSiteName);
+					 txtSiteName.sendKeys(Site);
+					 waitForElement(btnSearch);
+					 btnSearch.click();
+					 waitForElementDisappear(elementLoading);
+					 waitForElement(btnRadioSelectSite);
+					 btnRadioSelectSite.click();
+					 waitForElement(btnOK);
+					 btnOK.click();
+				 }
+				 browser.switchTo().defaultContent();
+				 WaitandSwitchToFrame(frameMain);
+				 new Select(ddAggregatorNeeded).selectByValue("No");
+				 waitForElement(ddtxtSURCILI);
+				 ddtxtSURCILI.clear();
+				 ddtxtSURCILI.click();	 
+				 ddtxtSURCILI.sendKeys(processInfo.surCILI1);		 
+				 //Thread.sleep(10000);
+				/* ddValue(ddtxtSURCILI,processInfo.surCILI1);			 
+				 WebElement ddvalueSURCILI1 = browser.findElement(By.xpath("//li[text()='"+processInfo.surCILI1+"']"));
+				 waitForElement(ddvalueSURCILI1);
+				 ddvalueSURCILI1.click();*/
+				 waitForElement(txtUNInumber);
+				 txtUNInumber.clear();
+				 txtUNInumber.sendKeys(randomNumber(5));
+				 new Select(ddUNIPortSpeed).selectByIndex(1);
+				 btnSave.click();
+				 report.reportDoneEvent("Save UNI Configuration", "UNI Configuration Saved");
 				 waitForElementDisappear(elementLoading);
-				 waitForElement(btnRadioSelectSite);
-				 btnRadioSelectSite.click();
-				 waitForElement(btnOK);
-				 btnOK.click();
-			 }
-			 browser.switchTo().defaultContent();
-			 WaitandSwitchToFrame(frameMain);
-			 new Select(ddAggregatorNeeded).selectByValue("No");
-			 waitForElement(ddtxtSURCILI);
-			 ddtxtSURCILI.clear();
-			 ddtxtSURCILI.click();	 
-			 ddtxtSURCILI.sendKeys(processInfo.surCILI1);		 
-			 //Thread.sleep(10000);
-			/* ddValue(ddtxtSURCILI,processInfo.surCILI1);			 
-			 WebElement ddvalueSURCILI1 = browser.findElement(By.xpath("//li[text()='"+processInfo.surCILI1+"']"));
-			 waitForElement(ddvalueSURCILI1);
-			 ddvalueSURCILI1.click();*/
-			 waitForElement(txtUNInumber);
-			 txtUNInumber.clear();
-			 txtUNInumber.sendKeys(randomNumber(5));
-			 new Select(ddUNIPortSpeed).selectByIndex(1);
-			 btnSave.click();
-			 report.reportDoneEvent("Save UNI Configuration", "UNI Configuration Saved");
-			 waitForElementDisappear(elementLoading);
+			} catch (Exception e) {
+				mstatus= false;
+			}
+			return mstatus;
 		}
 		
 		
@@ -275,13 +290,20 @@ public class ProcessTabPageCM extends Page {
 		 */
 		
 		
-		public void BGPConfiguration(){
-			 waitForElement(LinkBGP);
-			 LinkBGP.click();
-			 waitForElementDisappear(elementLoading);
-			 waitForElement(btnSave);
-			 btnSave.click();
-			 waitForElementDisappear(elementLoading);
+		public boolean BGPConfiguration(){
+			mstatus = true;
+			
+			 try {
+				waitForElement(LinkBGP);
+				 LinkBGP.click();
+				 waitForElementDisappear(elementLoading);
+				 waitForElement(btnSave);
+				 btnSave.click();
+				 waitForElementDisappear(elementLoading);
+			} catch (Exception e) {
+				mstatus= false;
+			}
+			 return true;
 		}
 		
 		
@@ -292,39 +314,46 @@ public class ProcessTabPageCM extends Page {
 		 * 
 		 */
 		
-		public void UNI2Configuration(ProcessInfo processInfo,String Site) throws InterruptedException{
-			waitForElement(LinkUNI2);
-			LinkUNI2.click();
-			waitForElementDisappear(elementLoading);
-			waitForElement(imgAddressLookup);
-			imgAddressLookup.click();
-			 waitforPageLoadComplete();
-			 if (WaitandSwitchToFrame(frameCondition.get(1))){
-				 waitForElement(txtSiteName);
-				 jsSendKeys(txtSiteName,Site);
-				 //txtSiteName.sendKeys(Site);
-				 waitForElement(btnSearch);
-				 btnSearch.click();
+		public boolean UNI2Configuration(ProcessInfo processInfo,String Site) throws InterruptedException{
+			mstatus= true;
+			
+			try {
+				waitForElement(LinkUNI2);
+				LinkUNI2.click();
+				waitForElementDisappear(elementLoading);
+				waitForElement(imgAddressLookup);
+				imgAddressLookup.click();
+				 waitforPageLoadComplete();
+				 if (WaitandSwitchToFrame(frameCondition.get(1))){
+					 waitForElement(txtSiteName);
+					 jsSendKeys(txtSiteName,Site);
+					 //txtSiteName.sendKeys(Site);
+					 waitForElement(btnSearch);
+					 btnSearch.click();
+					 waitForElementDisappear(elementLoading);
+					 waitForElement(btnRadioSelectSite);
+					 btnRadioSelectSite.click();
+					 waitForElement(btnOK);
+					 btnOK.click();
+				 }
+				 browser.switchTo().defaultContent();
+				 WaitandSwitchToFrame(frameMain);
+				 new Select(ddAggregatorNeeded).selectByValue("No");
+				 waitForElement(ddtxtSURCILI);
+				 ddValue(ddtxtSURCILI,processInfo.surCILI2);
+				 WebElement ddvalueSURCILI2 = browser.findElement(By.xpath("//li[text()='"+processInfo.surCILI2+"']"));
+				 waitForElement(ddvalueSURCILI2);
+				 ddvalueSURCILI2.click();
+				 waitForElement(txtUNInumber);
+				 txtUNInumber.sendKeys(randomNumber(5));
+				 new Select(ddUNIPortSpeed).selectByIndex(1);
+				 btnSave.click();
+				 report.reportDoneEvent("Save UNI~2 Configuration", "UNI~2 Configuration Saved");
 				 waitForElementDisappear(elementLoading);
-				 waitForElement(btnRadioSelectSite);
-				 btnRadioSelectSite.click();
-				 waitForElement(btnOK);
-				 btnOK.click();
-			 }
-			 browser.switchTo().defaultContent();
-			 WaitandSwitchToFrame(frameMain);
-			 new Select(ddAggregatorNeeded).selectByValue("No");
-			 waitForElement(ddtxtSURCILI);
-			 ddValue(ddtxtSURCILI,processInfo.surCILI2);
-			 WebElement ddvalueSURCILI2 = browser.findElement(By.xpath("//li[text()='"+processInfo.surCILI2+"']"));
-			 waitForElement(ddvalueSURCILI2);
-			 ddvalueSURCILI2.click();
-			 waitForElement(txtUNInumber);
-			 txtUNInumber.sendKeys(randomNumber(5));
-			 new Select(ddUNIPortSpeed).selectByIndex(1);
-			 btnSave.click();
-			 report.reportDoneEvent("Save UNI~2 Configuration", "UNI~2 Configuration Saved");
-			 waitForElementDisappear(elementLoading);
+			} catch (Exception e) {
+				mstatus= false;
+			}
+			return mstatus;
 		}
 		
 		
@@ -336,41 +365,47 @@ public class ProcessTabPageCM extends Page {
 		 */
 		
 		
-		public void UNI3Configuration(ProcessInfo processInfo,String Site) throws InterruptedException{
-			waitForElement(LinkUNI3);
-			LinkUNI3.click();
-			waitForElementDisappear(elementLoading);
-			waitForElement(imgAddressLookup);
-			imgAddressLookup.click();
-			 waitforPageLoadComplete();
-			 if (WaitandSwitchToFrame(frameCondition.get(2))){
-				 waitForElement(txtSiteName);
-				 jsSendKeys(txtSiteName,Site);
-				 //txtSiteName.sendKeys(Site);
-				 waitForElement(btnSearch);
-				 btnSearch.click();
+		public boolean UNI3Configuration(ProcessInfo processInfo,String Site) throws InterruptedException{
+			mstatus= true;
+			try {
+				waitForElement(LinkUNI3);
+				LinkUNI3.click();
+				waitForElementDisappear(elementLoading);
+				waitForElement(imgAddressLookup);
+				imgAddressLookup.click();
+				 waitforPageLoadComplete();
+				 if (WaitandSwitchToFrame(frameCondition.get(2))){
+					 waitForElement(txtSiteName);
+					 jsSendKeys(txtSiteName,Site);
+					 //txtSiteName.sendKeys(Site);
+					 waitForElement(btnSearch);
+					 btnSearch.click();
+					 waitForElementDisappear(elementLoading);
+					 btnSearch.click();
+					 waitForElementDisappear(elementLoading);
+					 waitForElement(btnRadioSelectSite);
+					 btnRadioSelectSite.click();
+					 waitForElement(btnOK);
+					 btnOK.click();
+				 }
+				 browser.switchTo().defaultContent();
+				 WaitandSwitchToFrame(frameMain);
+				 new Select(ddAggregatorNeeded).selectByIndex(1);
+				 waitForElement(ddtxtSURCILI);
+				 ddValue(ddtxtSURCILI,processInfo.surCILI3);
+				 WebElement ddvalueSURCILI3 = browser.findElement(By.xpath("//li[text()='"+processInfo.surCILI3+"']"));
+				 waitForElement(ddvalueSURCILI3);
+				 ddvalueSURCILI3.click();
+				 waitForElement(txtUNInumber);
+				 txtUNInumber.sendKeys(randomNumber(5));
+				 new Select(ddUNIPortSpeed).selectByValue("No");;
+				 btnSave.click();
+				 report.reportDoneEvent("Save UNI~3 Configuration", "UNI~3 Configuration Saved");
 				 waitForElementDisappear(elementLoading);
-				 btnSearch.click();
-				 waitForElementDisappear(elementLoading);
-				 waitForElement(btnRadioSelectSite);
-				 btnRadioSelectSite.click();
-				 waitForElement(btnOK);
-				 btnOK.click();
-			 }
-			 browser.switchTo().defaultContent();
-			 WaitandSwitchToFrame(frameMain);
-			 new Select(ddAggregatorNeeded).selectByIndex(1);
-			 waitForElement(ddtxtSURCILI);
-			 ddValue(ddtxtSURCILI,processInfo.surCILI3);
-			 WebElement ddvalueSURCILI3 = browser.findElement(By.xpath("//li[text()='"+processInfo.surCILI3+"']"));
-			 waitForElement(ddvalueSURCILI3);
-			 ddvalueSURCILI3.click();
-			 waitForElement(txtUNInumber);
-			 txtUNInumber.sendKeys(randomNumber(5));
-			 new Select(ddUNIPortSpeed).selectByValue("No");;
-			 btnSave.click();
-			 report.reportDoneEvent("Save UNI~3 Configuration", "UNI~3 Configuration Saved");
-			 waitForElementDisappear(elementLoading);
+			} catch (Exception e) {
+				mstatus= false;
+			}
+			return mstatus;
 		}
 		
 		
@@ -381,37 +416,43 @@ public class ProcessTabPageCM extends Page {
 		 * 
 		 */
 		
-		public void UNIConfiguration_PRI(ProcessInfo processInfo,String Site) throws InterruptedException{
-			waitForElement(LinkUNI);
-			LinkUNI.click();
-			waitForElementDisappear(elementLoading);
-			waitForElement(imgAddressLookup);
-			imgAddressLookup.click();
-			 waitforPageLoadComplete();
-			 if (WaitandSwitchToFrame(frameCondition.get(1))){
-				 waitForElement(txtSiteName);
-				 txtSiteName.sendKeys(Site);
-				 waitForElement(btnSearch);
-				 btnSearch.click();
+		public boolean UNIConfiguration_PRI(ProcessInfo processInfo,String Site) throws InterruptedException{
+			mstatus= true;
+			try {
+				waitForElement(LinkUNI);
+				LinkUNI.click();
+				waitForElementDisappear(elementLoading);
+				waitForElement(imgAddressLookup);
+				imgAddressLookup.click();
+				 waitforPageLoadComplete();
+				 if (WaitandSwitchToFrame(frameCondition.get(1))){
+					 waitForElement(txtSiteName);
+					 txtSiteName.sendKeys(Site);
+					 waitForElement(btnSearch);
+					 btnSearch.click();
+					 waitForElementDisappear(elementLoading);
+					 waitForElement(btnRadioSelectSite);
+					 btnRadioSelectSite.click();
+					 waitForElement(btnOK);
+					 btnOK.click();
+				 }
+				 browser.switchTo().defaultContent();
+				 WaitandSwitchToFrame(frameMain);
+				 waitForElement(ddtxtSURCILI);
+				 ddValue(ddtxtSURCILI,processInfo.surCILI1);
+				 WebElement ddvalueSURCILI1 = browser.findElement(By.xpath("//li[text()='"+processInfo.surCILI1+"']"));
+				 waitForElement(ddvalueSURCILI1);
+				 ddvalueSURCILI1.click();
+				 waitForElement(txtUNInumber);
+				 txtUNInumber.sendKeys(randomNumber(5));
+				 new Select(ddUNIPortSpeed).selectByIndex(1);
+				 btnSave.click();
+				 report.reportDoneEvent("Save UNI Configuration", "UNI Configuration Saved");
 				 waitForElementDisappear(elementLoading);
-				 waitForElement(btnRadioSelectSite);
-				 btnRadioSelectSite.click();
-				 waitForElement(btnOK);
-				 btnOK.click();
-			 }
-			 browser.switchTo().defaultContent();
-			 WaitandSwitchToFrame(frameMain);
-			 waitForElement(ddtxtSURCILI);
-			 ddValue(ddtxtSURCILI,processInfo.surCILI1);
-			 WebElement ddvalueSURCILI1 = browser.findElement(By.xpath("//li[text()='"+processInfo.surCILI1+"']"));
-			 waitForElement(ddvalueSURCILI1);
-			 ddvalueSURCILI1.click();
-			 waitForElement(txtUNInumber);
-			 txtUNInumber.sendKeys(randomNumber(5));
-			 new Select(ddUNIPortSpeed).selectByIndex(1);
-			 btnSave.click();
-			 report.reportDoneEvent("Save UNI Configuration", "UNI Configuration Saved");
-			 waitForElementDisappear(elementLoading);
+			} catch (Exception e) {
+				mstatus= false;
+			}
+			return mstatus;
 		}
 		
 		
@@ -422,17 +463,23 @@ public class ProcessTabPageCM extends Page {
 		 * 
 		 */
 		
-		public void EVCConfiguration_PRI(ProcessInfo processInfo){
-			 waitForElement(LinkEVCPRI.get(1));
-			 LinkEVCPRI.get(1).click();
-			 waitForElementDisappear(elementLoading);
-			 waitForElement(ddArrwLocationZuni);
-			 ddArrwLocationZuni.click();
-			 ddvalueLocationZuni.get(0).click();
-			 txtEVCnumber.sendKeys(randomNumber(5));
-			 btnSave.click();
-			 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
-			 waitForElementDisappear(elementLoading);
+		public boolean EVCConfiguration_PRI(ProcessInfo processInfo){
+			 mstatus= true;
+			 try {
+				waitForElement(LinkEVCPRI.get(1));
+				 LinkEVCPRI.get(1).click();
+				 waitForElementDisappear(elementLoading);
+				 waitForElement(ddArrwLocationZuni);
+				 ddArrwLocationZuni.click();
+				 ddvalueLocationZuni.get(0).click();
+				 txtEVCnumber.sendKeys(randomNumber(5));
+				 btnSave.click();
+				 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
+				 waitForElementDisappear(elementLoading);
+			} catch (Exception e) {
+				mstatus= false;
+			}
+			 return mstatus;
 			
 		}
 		
@@ -445,21 +492,28 @@ public class ProcessTabPageCM extends Page {
 		 */
 		
 		
-		public void EVCConfiguration_EDI(ProcessInfo processInfo){
-			 waitForElement(LinkEVC);
-			 LinkEVC.click();
-			 waitForElementDisappear(elementLoading);
-			 waitForElement(ddArrwLocationZuni);
-			 ddArrwLocationZuni.click();
-			 ddvalueLocationZuni.get(0).click();
-			 txtEVCnumber.sendKeys(randomNumber(5));
-			 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
-			 new Select(ddIpBlockChange).selectByVisibleText("No");
-			 new Select(ddIpAddressAllocation).selectByVisibleText(processInfo.ipAddressAllocation);
-			 new Select(ddAdditionalIpAddress).selectByVisibleText("No");
-			 btnSave.click();
-			 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
-			 waitForElementDisappear(elementLoading);
+		public boolean EVCConfiguration_EDI(ProcessInfo processInfo){
+			 mstatus = true;
+			
+			 try {
+				waitForElement(LinkEVC);
+				 LinkEVC.click();
+				 waitForElementDisappear(elementLoading);
+				 waitForElement(ddArrwLocationZuni);
+				 ddArrwLocationZuni.click();
+				 ddvalueLocationZuni.get(0).click();
+				 txtEVCnumber.sendKeys(randomNumber(5));
+				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
+				 new Select(ddIpBlockChange).selectByVisibleText("No");
+				 new Select(ddIpAddressAllocation).selectByVisibleText(processInfo.ipAddressAllocation);
+				 new Select(ddAdditionalIpAddress).selectByVisibleText("No");
+				 btnSave.click();
+				 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
+				 waitForElementDisappear(elementLoading);
+			} catch (Exception e) {
+				mstatus= false;
+			}
+			 return mstatus;
 		}
 		
 		
@@ -470,21 +524,27 @@ public class ProcessTabPageCM extends Page {
 		 * 
 		 */
 		
-		public void EVCConfiguration_ENS(ProcessInfo processInfo){
-			 waitForElement(LinkEVC);
-			 LinkEVC.click();
-			 waitForElementDisappear(elementLoading);
-			 waitForElement(ddArrwLocationZuni);
-			 ddArrwLocationZuni.click();
-			 ddvalueLocationZuni.get(0).click();
-			 new Select(ddExistingEVC).selectByValue("No");
-			 new Select(ddEVCAreaType).selectByValue(processInfo.evcAreaType);
-			 txtEVCnumber.sendKeys(randomNumber(5));
-			 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
-			 new Select(ddMaxUNIExceeded).selectByValue("No");
-			 btnSave.click();
-			 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
-			 waitForElementDisappear(elementLoading);
+		public boolean EVCConfiguration_ENS(ProcessInfo processInfo){
+			mstatus= true;
+			 try {
+				waitForElement(LinkEVC);
+				 LinkEVC.click();
+				 waitForElementDisappear(elementLoading);
+				 waitForElement(ddArrwLocationZuni);
+				 ddArrwLocationZuni.click();
+				 ddvalueLocationZuni.get(0).click();
+				 new Select(ddExistingEVC).selectByValue("No");
+				 new Select(ddEVCAreaType).selectByValue(processInfo.evcAreaType);
+				 txtEVCnumber.sendKeys(randomNumber(5));
+				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
+				 new Select(ddMaxUNIExceeded).selectByValue("No");
+				 btnSave.click();
+				 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
+				 waitForElementDisappear(elementLoading);
+			} catch (Exception e) {
+				mstatus= false;
+			}
+			 return mstatus;
 			 
 		}
 		
@@ -496,17 +556,23 @@ public class ProcessTabPageCM extends Page {
 		 * 
 		 */
 		
-		public void EVC2Configuration_ENS(ProcessInfo processInfo){
-			 waitForElement(LinkEVC2);
-			 LinkEVC2.click();
-			 waitForElementDisappear(elementLoading);
-			 waitForElement(ddArrwLocationZuni);
-			 ddArrwLocationZuni.click();
-			 ddvalueLocationZuni.get(1).click();
-			 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
-			 btnSave.click();
-			 report.reportDoneEvent("Save EVC~2 Configuration", "EVC~2 Configuration Saved");
-			 waitForElementDisappear(elementLoading);
+		public boolean EVC2Configuration_ENS(ProcessInfo processInfo){
+			mstatus= true;
+			 try {
+				waitForElement(LinkEVC2);
+				 LinkEVC2.click();
+				 waitForElementDisappear(elementLoading);
+				 waitForElement(ddArrwLocationZuni);
+				 ddArrwLocationZuni.click();
+				 ddvalueLocationZuni.get(1).click();
+				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
+				 btnSave.click();
+				 report.reportDoneEvent("Save EVC~2 Configuration", "EVC~2 Configuration Saved");
+				 waitForElementDisappear(elementLoading);
+			} catch (Exception e) {
+				mstatus= false;
+			}
+			 return mstatus;
 			 
 		}
 		
@@ -518,24 +584,30 @@ public class ProcessTabPageCM extends Page {
 		 * 
 		 */
 		
-		public void EVCConfiguration_EPL(ProcessInfo processInfo){
-			 waitForElement(LinkEVC);
-			 LinkEVC.click();
-			 waitForElementDisappear(elementLoading);
-			 waitForElement(ddArrwLocationAuni);
-			 ddArrwLocationAuni.click();
-			 ddvalueLocationZuni.get(0).click();            //Select 1st site at location A UNI
-			 waitForElement(ddArrwLocationZuni);
-			 ddArrwLocationZuni.click();
-			 ddvalueLocationZuni.get(3).click();           //Select 2nd site at location Z UNI
-			 waitForElement(txtEVCnumber);
-			 txtEVCnumber.sendKeys(randomNumber(5));
-			 new Select(ddEVCAreaType).selectByValue(processInfo.evcAreaType);
-			 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
-			 new Select(ddMaxEVCExceeded).selectByValue("No");
-			 btnSave.click();
-			 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
-			 waitForElementDisappear(elementLoading); 
+		public boolean EVCConfiguration_EPL(ProcessInfo processInfo){
+			mstatus= true;
+			 try {
+				waitForElement(LinkEVC);
+				 LinkEVC.click();
+				 waitForElementDisappear(elementLoading);
+				 waitForElement(ddArrwLocationAuni);
+				 ddArrwLocationAuni.click();
+				 ddvalueLocationZuni.get(0).click();            //Select 1st site at location A UNI
+				 waitForElement(ddArrwLocationZuni);
+				 ddArrwLocationZuni.click();
+				 ddvalueLocationZuni.get(3).click();           //Select 2nd site at location Z UNI
+				 waitForElement(txtEVCnumber);
+				 txtEVCnumber.sendKeys(randomNumber(5));
+				 new Select(ddEVCAreaType).selectByValue(processInfo.evcAreaType);
+				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
+				 new Select(ddMaxEVCExceeded).selectByValue("No");
+				 btnSave.click();
+				 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
+				 waitForElementDisappear(elementLoading);
+			} catch (Exception e) {
+				mstatus= false;
+			}
+			 return mstatus;
 		}
 		
 		
@@ -547,25 +619,31 @@ public class ProcessTabPageCM extends Page {
 		 */
 		
 		
-		public void EVCConfiguration_EVPL(ProcessInfo processInfo){
-			 waitForElement(LinkEVC);
-			 LinkEVC.click();
-			 waitForElementDisappear(elementLoading);
-			 waitForElement(ddArrwLocationAuni);
-			 ddArrwLocationAuni.click();
-			 ddvalueLocationZuni.get(0).click();              //Select 1st site at location A UNI
-			 waitForElement(ddArrwLocationZuni);
-			 ddArrwLocationZuni.click();
-			 ddvalueLocationZuni.get(4).click();              //Select 2nd site at location Z UNI
-			 waitForElement(txtEVCnumber);
-			 txtEVCnumber.sendKeys(randomNumber(5));
-			 new Select(ddEVCAreaType).selectByValue(processInfo.evcAreaType);
-			 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
-			 new Select(ddMaxEVCExceeded).selectByValue("No");
-			 txtCustomerVLANInfo.sendKeys(processInfo.customerVLANInfo);
-			 btnSave.click();
-			 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
-			 waitForElementDisappear(elementLoading); 
+		public boolean EVCConfiguration_EVPL(ProcessInfo processInfo){
+			mstatus= true;
+			 try {
+				waitForElement(LinkEVC);
+				 LinkEVC.click();
+				 waitForElementDisappear(elementLoading);
+				 waitForElement(ddArrwLocationAuni);
+				 ddArrwLocationAuni.click();
+				 ddvalueLocationZuni.get(0).click();              //Select 1st site at location A UNI
+				 waitForElement(ddArrwLocationZuni);
+				 ddArrwLocationZuni.click();
+				 ddvalueLocationZuni.get(4).click();              //Select 2nd site at location Z UNI
+				 waitForElement(txtEVCnumber);
+				 txtEVCnumber.sendKeys(randomNumber(5));
+				 new Select(ddEVCAreaType).selectByValue(processInfo.evcAreaType);
+				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
+				 new Select(ddMaxEVCExceeded).selectByValue("No");
+				 txtCustomerVLANInfo.sendKeys(processInfo.customerVLANInfo);
+				 btnSave.click();
+				 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
+				 waitForElementDisappear(elementLoading);
+			} catch (Exception e) {
+				mstatus= false;
+			}
+			 return mstatus;
 		}
 		
 		
@@ -577,25 +655,31 @@ public class ProcessTabPageCM extends Page {
 		 */
 		
 		
-		public void EVC2Configuration_EVPL(ProcessInfo processInfo){
-			 waitForElement(LinkEVC2);
-			 LinkEVC2.click();
-			 waitForElementDisappear(elementLoading);
-			 waitForElement(ddArrwLocationAuni);
-			 ddArrwLocationAuni.click();
-			 ddvalueLocationZuni.get(0).click();                 //Select 1st site at location A UNI
-			 waitForElement(ddArrwLocationZuni);
-			 ddArrwLocationZuni.click();
-			 ddvalueLocationZuni.get(5).click();                 //Select 3rd site at location Z UNI
-			 waitForElement(txtEVCnumber);
-			 txtEVCnumber.sendKeys(randomNumber(5));
-			 new Select(ddEVCAreaType).selectByValue(processInfo.evcAreaType);
-			 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
-			 new Select(ddMaxEVCExceeded).selectByValue("No");
-			 txtCustomerVLANInfo.sendKeys(processInfo.customerVLANInfo);
-			 btnSave.click();
-			 report.reportDoneEvent("Save EVC~2 Configuration", "EVC~2 Configuration Saved");
-			 waitForElementDisappear(elementLoading); 
+		public boolean EVC2Configuration_EVPL(ProcessInfo processInfo){
+			mstatus= true;
+			 try {
+				waitForElement(LinkEVC2);
+				 LinkEVC2.click();
+				 waitForElementDisappear(elementLoading);
+				 waitForElement(ddArrwLocationAuni);
+				 ddArrwLocationAuni.click();
+				 ddvalueLocationZuni.get(0).click();                 //Select 1st site at location A UNI
+				 waitForElement(ddArrwLocationZuni);
+				 ddArrwLocationZuni.click();
+				 ddvalueLocationZuni.get(5).click();                 //Select 3rd site at location Z UNI
+				 waitForElement(txtEVCnumber);
+				 txtEVCnumber.sendKeys(randomNumber(5));
+				 new Select(ddEVCAreaType).selectByValue(processInfo.evcAreaType);
+				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
+				 new Select(ddMaxEVCExceeded).selectByValue("No");
+				 txtCustomerVLANInfo.sendKeys(processInfo.customerVLANInfo);
+				 btnSave.click();
+				 report.reportDoneEvent("Save EVC~2 Configuration", "EVC~2 Configuration Saved");
+				 waitForElementDisappear(elementLoading);
+			} catch (Exception e) {
+				mstatus= false;
+			}
+			 return mstatus;
 		}
 		
 		
@@ -606,26 +690,32 @@ public class ProcessTabPageCM extends Page {
 		 * 
 		 */
 		
-		public void EqFeeConfiguration(ProcessInfo processInfo){
-			 if(waitForElement(LinkEquipmentFee)){
-			 LinkEquipmentFee.click();
-			 }
-			 waitForElementDisappear(elementLoading);
-			 waitForElement(btnSave);
-			 btnSave.click();
-			 waitForElementDisappear(elementLoading);
-			 
-			 if (waitForElement(LinkEquipmentFeeConfiguration.get(0))){
-			 LinkEquipmentFeeConfiguration.get(0).click();
-			 waitForElementDisappear(elementLoading);
-			 }
-			 if (waitForElement(ddArrwEqFeeServiceLocation)){
-				 ddArrwEqFeeServiceLocation.click();
-				 ddValueEqFeeServiceLocation.get(0).click();
-			  }
-			 btnSave.click();
-			 waitForElementDisappear(elementLoading);
-			 report.reportDoneEvent("Save Equipment Fee Configuration", "Equipment Fee Configuration Saved");
+		public boolean EqFeeConfiguration(ProcessInfo processInfo){
+			mstatus= true;
+			 try {
+				if(waitForElement(LinkEquipmentFee)){
+				 LinkEquipmentFee.click();
+				 }
+				 waitForElementDisappear(elementLoading);
+				 waitForElement(btnSave);
+				 btnSave.click();
+				 waitForElementDisappear(elementLoading);
+				 
+				 if (waitForElement(LinkEquipmentFeeConfiguration.get(0))){
+				 LinkEquipmentFeeConfiguration.get(0).click();
+				 waitForElementDisappear(elementLoading);
+				 }
+				 if (waitForElement(ddArrwEqFeeServiceLocation)){
+					 ddArrwEqFeeServiceLocation.click();
+					 ddValueEqFeeServiceLocation.get(0).click();
+				  }
+				 btnSave.click();
+				 waitForElementDisappear(elementLoading);
+				 report.reportDoneEvent("Save Equipment Fee Configuration", "Equipment Fee Configuration Saved");
+			} catch (Exception e) {
+				mstatus= false;
+			}
+			 return mstatus;
 		}
 		
 		
@@ -636,26 +726,32 @@ public class ProcessTabPageCM extends Page {
 		 * 
 		 */
 		
-		public void EqFee2Configuration(ProcessInfo processInfo){
-			 if(waitForElement(LinkEquipmentFee2)){
-			 LinkEquipmentFee2.click();
-			 }
-			 waitForElementDisappear(elementLoading);
-			 waitForElement(btnSave);
-			 btnSave.click();
-			 waitForElementDisappear(elementLoading);
-			 
-			 if (waitForElement(LinkEquipmentFeeConfiguration.get(1))){
-			 LinkEquipmentFeeConfiguration.get(1).click();
-			 waitForElementDisappear(elementLoading);
-			 }
-			 if (waitForElement(ddArrwEqFeeServiceLocation)){
-				 ddArrwEqFeeServiceLocation.click();
-				 ddValueEqFeeServiceLocation.get(1).click();
-			  }
-			 btnSave.click();
-			 waitForElementDisappear(elementLoading);
-			 report.reportDoneEvent("Save Equipment Fee~2 Configuration", "Equipment Fee~2 Configuration Saved");
+		public boolean EqFee2Configuration(ProcessInfo processInfo){
+			mstatus= true;
+			 try {
+				if(waitForElement(LinkEquipmentFee2)){
+				 LinkEquipmentFee2.click();
+				 }
+				 waitForElementDisappear(elementLoading);
+				 waitForElement(btnSave);
+				 btnSave.click();
+				 waitForElementDisappear(elementLoading);
+				 
+				 if (waitForElement(LinkEquipmentFeeConfiguration.get(1))){
+				 LinkEquipmentFeeConfiguration.get(1).click();
+				 waitForElementDisappear(elementLoading);
+				 }
+				 if (waitForElement(ddArrwEqFeeServiceLocation)){
+					 ddArrwEqFeeServiceLocation.click();
+					 ddValueEqFeeServiceLocation.get(1).click();
+				  }
+				 btnSave.click();
+				 waitForElementDisappear(elementLoading);
+				 report.reportDoneEvent("Save Equipment Fee~2 Configuration", "Equipment Fee~2 Configuration Saved");
+			} catch (Exception e) {
+				mstatus= false;
+			}
+			 return mstatus;
 		}
 		
 		
@@ -666,26 +762,32 @@ public class ProcessTabPageCM extends Page {
 		 * 
 		 */
 		
-		public void EqFee3Configuration(ProcessInfo processInfo){
-			 if(waitForElement(LinkEquipmentFee3)){
-			 LinkEquipmentFee3.click();
-			 }
-			 waitForElementDisappear(elementLoading);
-			 waitForElement(btnSave);
-			 btnSave.click();
-			 waitForElementDisappear(elementLoading);
-			 
-			 if (waitForElement(LinkEquipmentFeeConfiguration.get(2))){
-			 LinkEquipmentFeeConfiguration.get(2).click();
-			 waitForElementDisappear(elementLoading);
-			 }
-			 if (waitForElement(ddArrwEqFeeServiceLocation)){
-				 ddArrwEqFeeServiceLocation.click();
-				 ddValueEqFeeServiceLocation.get(2).click();
-			  }
-			 btnSave.click();
-			 waitForElementDisappear(elementLoading);
-			 report.reportDoneEvent("Save Equipment Fee~3 Configuration", "Equipment Fee~3 Configuration Saved");
+		public boolean EqFee3Configuration(ProcessInfo processInfo){
+			mstatus= true;
+			 try {
+				if(waitForElement(LinkEquipmentFee3)){
+				 LinkEquipmentFee3.click();
+				 }
+				 waitForElementDisappear(elementLoading);
+				 waitForElement(btnSave);
+				 btnSave.click();
+				 waitForElementDisappear(elementLoading);
+				 
+				 if (waitForElement(LinkEquipmentFeeConfiguration.get(2))){
+				 LinkEquipmentFeeConfiguration.get(2).click();
+				 waitForElementDisappear(elementLoading);
+				 }
+				 if (waitForElement(ddArrwEqFeeServiceLocation)){
+					 ddArrwEqFeeServiceLocation.click();
+					 ddValueEqFeeServiceLocation.get(2).click();
+				  }
+				 btnSave.click();
+				 waitForElementDisappear(elementLoading);
+				 report.reportDoneEvent("Save Equipment Fee~3 Configuration", "Equipment Fee~3 Configuration Saved");
+			} catch (Exception e) {
+				mstatus= false;
+			}
+			 return mstatus;
 		}
 		
 		
@@ -699,13 +801,18 @@ public class ProcessTabPageCM extends Page {
 		 */
 		
 		
-		public void ClickOnContinueButton(){
-			 report.updateTestLog("Save Process Configuration", "Process Configuration Saved", Status.SCREENSHOT);
-			 if (waitForElement(btnContinue)){
-				 btnContinue.click();
-				 waitforPageLoadComplete();
-			  }
-			
+		public boolean ClickOnContinueButton(){
+			mstatus= true;
+			 try {
+				report.updateTestLog("Save Process Configuration", "Process Configuration Saved", Status.SCREENSHOT);
+				 if (waitForElement(btnContinue)){
+					 btnContinue.click();
+					 waitforPageLoadComplete();
+				  }
+			} catch (Exception e) {
+				mstatus= false;
+			}
+			 return mstatus;
 			 
 		}
 	

@@ -104,29 +104,38 @@ public class HomePageCM extends Page {
 	@FindBy(xpath = "//*[@id='CustomerFrame']")
 	private WebElement frameCustomer;
 	
+	private boolean mstatus;
 	
 	
 	
-	public void NavigateToServiceTab() throws InterruptedException{
-		 waitforPageLoadComplete();
-		 WaitandSwitchToFrame(frameMain);
-		 txtCustomerName.sendKeys("CustName123420862016");
-		 btnSearch.click();
-		 waitforPageLoadComplete();
-		 clickSRid.click();
-		 //clickServiceAcc.click();
-		 waitforPageLoadComplete();
-		 browser.switchTo().defaultContent();
-		 Thread.sleep(10000);
-		 //waitforPageLoadComplete(); 
+	public boolean NavigateToServiceTab() throws InterruptedException{
+		mstatus = true;
+		 try {
+			waitforPageLoadComplete();
+			 WaitandSwitchToFrame(frameMain);
+			 txtCustomerName.sendKeys("CustName123420862016");
+			 btnSearch.click();
+			 waitforPageLoadComplete();
+			 clickSRid.click();
+			 //clickServiceAcc.click();
+			 waitforPageLoadComplete();
+			 browser.switchTo().defaultContent();
+			 Thread.sleep(10000);
+			 //waitforPageLoadComplete(); 
+		} catch (Exception e) {
+			e.printStackTrace();
+			mstatus = false;
+		}
+		 return mstatus;
 	}
 	
 	//added by harsh on 8/8 to ensure continuity in packaged execution
 	//commented by harsh on 8/16 as we need to find an alternate way tor ead data from data dump
-	public void searchCustomer(String custName){
+	public boolean searchCustomer(String custName){
+		mstatus = true;
 		//String custName = ComcastTest.getDataDump().getValue("CustomerName_RT");
 		//leftframe
-		waitforPageLoadComplete();
+		//itforPageLoadComplete();
 		/*WaitandSwitchToFrame(frameLeft);
 		WebElement elem = browser.findElement(By.xpath("//span[@class=\"standartTreeRow\" and contains(.,'"+custName+"')]"));
 		if(shortWaitForElement(elem)) {
@@ -134,6 +143,7 @@ public class HomePageCM extends Page {
 			
 		}else{*/
 			//span[@class="standartTreeRow" and contains(.,'ProdTest_ENT_R16.07_EDI_NC56515')]
+		try{
 			waitforPageLoadComplete();
 			WaitandSwitchToFrame(frameMain);			 
 			txtCustomerName.sendKeys(custName);
@@ -142,16 +152,17 @@ public class HomePageCM extends Page {
 			browser.findElement(By.xpath("//span[contains(.,'"+custName+"')]")).click();
 			waitforPageLoadComplete();
 			browser.switchTo().defaultContent();
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
+		    }
+			catch (Exception e) {
 				e.printStackTrace();
+				mstatus = false;
 			}
 			 //WaitandSwitchToFrame(frameMain);
 			 //WaitandSwitchToFrame(frameCustomer);
 			 //waitForElement(browser.findElement(By.xpath(".//*[@id='busiCustBean.businessName']")));
 				
 		 //clickServiceAcc.click();
+		return mstatus;
 		}
 
 	

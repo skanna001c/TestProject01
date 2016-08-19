@@ -26,7 +26,8 @@ public class AddressTabPageCM extends Page {
 
 	protected static String HOME_PAGE_TITLE_SCH = "Search";
 	
-
+	private boolean mstatus;
+	
 	public AddressTabPageCM(WebDriver browser, SeleniumReport report) {
 		
 		super(browser, report);
@@ -174,7 +175,9 @@ public class AddressTabPageCM extends Page {
 	
 	
 	
-	public void ClickAddressTab(SiteInfo siteInfo) throws InterruptedException{	
+	public boolean ClickAddressTab(SiteInfo siteInfo) throws InterruptedException{
+		mstatus = true;
+		try{
 		  waitforPageLoadComplete();
 		  WaitandSwitchToFrame(frameMain);
 		  waitForElement(tabAddress);
@@ -182,6 +185,12 @@ public class AddressTabPageCM extends Page {
 		  jsClick(tabAddress);
 		  report.reportDoneEvent("Click on Address Tab", "Address Tab Clicked");
 		  WaitandSwitchToFrame(frameAddress);
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
 	public String EnterSiteDetailsInvalid(SiteInfo siteInfo) throws InterruptedException{
@@ -231,126 +240,178 @@ public class AddressTabPageCM extends Page {
 			 
 	}
 	
-	public void siteAddressInvalid(SiteInfo siteInfo) throws InterruptedException{
-		
-		waitForElement(txtSiteAddressLine1);
-		String siteAddress1 = siteInfo.siteAddress1 + getTimestamp();
-		txtSiteAddressLine1.sendKeys(siteAddress1);
-		report.reportDoneEvent("Enter Site Address Line 1", "Entered Site Address Line 1 as->" + siteAddress1);
-		waitForElement(ddtxtZipCode);
-		ddtxtZipCode.sendKeys(siteInfo.zipCode);
-		report.reportDoneEvent("Enter Zipcode", "Entered Zipcode as->" +siteInfo.zipCode);
-		imgZipcodeSearch.click();
-		report.reportDoneEvent("Search for Zipcode", "Zipcode Searched");
-		WaitandSwitchToFrame(frameCondition);
-		waitForElement(txtCity);
-		iterateThroughtableAndSelectCity(siteInfo.city);
-		waitForElement(btnOk);
-		btnOk.click();
-		browser.switchTo().defaultContent();
-		
-	}
-	
-     public void siteAddressValid(SiteInfo siteInfo) throws InterruptedException{
-		
-		waitForElement(txtSiteAddressLine1);
-		txtSiteAddressLine1.sendKeys(siteInfo.siteAddress1);
-		report.reportDoneEvent("Enter Site Address Line 1", "Entered Site Address Line 1 as->" +siteInfo.siteAddress1);
-		String siteAddress2 = siteInfo.siteAddress2 + " " + getTimestamp();
-		txtSiteAddressLine2.sendKeys(siteAddress2);
-		report.reportDoneEvent("Enter Site Address Line 2", "Entered Site Address Line 2 as->" + siteAddress2);
-		waitForElement(ddtxtZipCode);
-		ddtxtZipCode.sendKeys(siteInfo.zipCode);
-		report.reportDoneEvent("Enter Zipcode", "Entered Zipcode as->" +siteInfo.zipCode);
-		imgZipcodeSearch.click();
-		report.reportDoneEvent("Search for Zipcode", "Zipcode Searched");
-		waitforPageLoadComplete();
-		WaitandSwitchToFrame(frameCondition);
-		waitForElement(txtCity);
-		iterateThroughtableAndSelectCity(siteInfo.city);
-		waitForElement(btnOk);
-		btnOk.click();
-		browser.switchTo().defaultContent();
-		
-	}
-	
-	
-	
-	public void headEndInformation(SiteInfo siteInfo) throws InterruptedException{
-		if( WaitandSwitchToFrame(frameMain)){
-			 WaitandSwitchToFrame(frameAddress);
-			 waitForElement(ddtxtHeadendName);
-			 ddValue(ddtxtHeadendName,siteInfo.headendName);
-			 WebElement ddValueHeadendName = browser.findElement(By.xpath("//li[text()='"+siteInfo.headendName+"']"));
-			 waitForElement(ddValueHeadendName);
-			 ddValueHeadendName.click();
-			 report.reportDoneEvent("Select Headend Name", "Selected Headend Name as->" +siteInfo.headendName);
-			 Thread.sleep(4000);
+	public boolean siteAddressInvalid(SiteInfo siteInfo) throws InterruptedException{
+		mstatus = true;
+		try{				
+			waitForElement(txtSiteAddressLine1);
+			String siteAddress1 = siteInfo.siteAddress1 + getTimestamp();
+			txtSiteAddressLine1.sendKeys(siteAddress1);
+			report.reportDoneEvent("Enter Site Address Line 1", "Entered Site Address Line 1 as->" + siteAddress1);
+			waitForElement(ddtxtZipCode);
+			ddtxtZipCode.sendKeys(siteInfo.zipCode);
+			report.reportDoneEvent("Enter Zipcode", "Entered Zipcode as->" +siteInfo.zipCode);
+			imgZipcodeSearch.click();
+			report.reportDoneEvent("Search for Zipcode", "Zipcode Searched");
+			WaitandSwitchToFrame(frameCondition);
+			waitForElement(txtCity);
+			iterateThroughtableAndSelectCity(siteInfo.city);
+			waitForElement(btnOk);
+			btnOk.click();
+			browser.switchTo().defaultContent();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+		
 	}
 	
-	public void clickCreateButton(){
-		if(waitForElement(btnCreate)){
-			btnCreate.click();
+     public boolean siteAddressValid(SiteInfo siteInfo) throws InterruptedException{
+		mstatus = true;
+		try{				
+			waitForElement(txtSiteAddressLine1);
+			txtSiteAddressLine1.sendKeys(siteInfo.siteAddress1);
+			report.reportDoneEvent("Enter Site Address Line 1", "Entered Site Address Line 1 as->" +siteInfo.siteAddress1);
+			String siteAddress2 = siteInfo.siteAddress2 + " " + getTimestamp();
+			txtSiteAddressLine2.sendKeys(siteAddress2);
+			report.reportDoneEvent("Enter Site Address Line 2", "Entered Site Address Line 2 as->" + siteAddress2);
+			waitForElement(ddtxtZipCode);
+			ddtxtZipCode.sendKeys(siteInfo.zipCode);
+			report.reportDoneEvent("Enter Zipcode", "Entered Zipcode as->" +siteInfo.zipCode);
+			imgZipcodeSearch.click();
+			report.reportDoneEvent("Search for Zipcode", "Zipcode Searched");
 			waitforPageLoadComplete();
+			WaitandSwitchToFrame(frameCondition);
+			waitForElement(txtCity);
+			iterateThroughtableAndSelectCity(siteInfo.city);
+			waitForElement(btnOk);
+			btnOk.click();
+			browser.switchTo().defaultContent();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;			
 	}
 	
-	public void clickAddContact(){
-		 WaitandSwitchToFrame(frameMain);
-		 WaitandSwitchToFrame(frameAddress);
-         if(waitForElement(BtnAddContact)){
-        	 System.out.println("Btn exist");
-         }
-	     BtnAddContact.sendKeys(Keys.ENTER);
-	     report.reportDoneEvent("Click on Add Contact", "Add Contact Clicked");
-	     waitforPageLoadComplete();
-		
+	
+	
+	public boolean headEndInformation(SiteInfo siteInfo) throws InterruptedException{
+		mstatus = true;
+		try{
+			if( WaitandSwitchToFrame(frameMain)){
+				 WaitandSwitchToFrame(frameAddress);
+				 waitForElement(ddtxtHeadendName);
+				 ddValue(ddtxtHeadendName,siteInfo.headendName);
+				 WebElement ddValueHeadendName = browser.findElement(By.xpath("//li[text()='"+siteInfo.headendName+"']"));
+				 waitForElement(ddValueHeadendName);
+				 ddValueHeadendName.click();
+				 report.reportDoneEvent("Select Headend Name", "Selected Headend Name as->" +siteInfo.headendName);
+				 Thread.sleep(4000);
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void CreateNewAddress(){
-		waitforPageLoadComplete();
-		if(WaitandSwitchToFrame(frameMain)){
-			WaitandSwitchToFrame(frameAddress);
-			waitForElement(BtnCreateNewAddress);
-			BtnCreateNewAddress.click();
-			 jsClickWE(BtnCreateNewAddress);
+	public boolean clickCreateButton(){
+		mstatus = true;
+		try{
+			if(waitForElement(btnCreate)){
+				btnCreate.click();
+				waitforPageLoadComplete();
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	public boolean clickAddContact(){
+		mstatus= true;
+		try{
+			 WaitandSwitchToFrame(frameMain);
+			 WaitandSwitchToFrame(frameAddress);
+			 if(waitForElement(BtnAddContact)){
+				 System.out.println("Btn exist");
+			 }
+			 BtnAddContact.sendKeys(Keys.ENTER);
+			 report.reportDoneEvent("Click on Add Contact", "Add Contact Clicked");
 			 waitforPageLoadComplete();
 		}
-		
-	}
-	
-	public void ClickOnCreateNewAdd() throws InterruptedException{
-		waitforPageLoadComplete();		
-		int counter;
-		WebElement frame = null;
-		if(WaitandSwitchToFrame(frameMain)){
-			System.out.println("Switched to main frame");
-			counter = 0;
-			
-			do 
-			  {
-				System.out.println("inside do");
-				frame=iterateThroughFramesinsideFrame(BtnCreateNewAddress,frameMain);
-				sleep(10*1000);
-				counter++;
-			 } while (frame==null && counter<=5);
-			
-		}
-		
-		if(WaitandSwitchToFrame(frame)){
-			if(waitForElement(BtnCreateNewAddress)){
-				 clickndRelease(BtnCreateNewAddress);
-				 waitforPageLoadComplete();
-			 }
-			
-		}
-		else
+		catch(Exception ex)
 		{
-			System.out.println("Address Frame not Found");
-		}	 
+			mstatus = false;
+		}
+		return mstatus;
+		
 	}
 	
+	public boolean CreateNewAddress(){
+		mstatus = true;
+		try{
+			waitforPageLoadComplete();
+			if(WaitandSwitchToFrame(frameMain)){
+				WaitandSwitchToFrame(frameAddress);
+				waitForElement(BtnCreateNewAddress);
+				BtnCreateNewAddress.click();
+				 jsClickWE(BtnCreateNewAddress);
+				 waitforPageLoadComplete();
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;		
+	}
+	
+	public boolean ClickOnCreateNewAdd() throws InterruptedException{
+		mstatus = true;
+		try{
+			waitforPageLoadComplete();		
+			int counter;
+			WebElement frame = null;
+			if(WaitandSwitchToFrame(frameMain)){
+				System.out.println("Switched to main frame");
+				counter = 0;
+				
+				do 
+				  {
+					System.out.println("inside do");
+					frame=iterateThroughFramesinsideFrame(BtnCreateNewAddress,frameMain);
+					sleep(10*1000);
+					counter++;
+				 } while (frame==null && counter<=5);
+				
+			}
+		
+			if(WaitandSwitchToFrame(frame)){
+				if(waitForElement(BtnCreateNewAddress)){
+					 clickndRelease(BtnCreateNewAddress);
+					 waitforPageLoadComplete();
+				 }
+				
+			}
+			else
+			{
+				System.out.println("Address Frame not Found");
+			}	 
+		}
+		
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
 }
 
 

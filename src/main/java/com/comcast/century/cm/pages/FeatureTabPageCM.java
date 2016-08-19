@@ -62,47 +62,67 @@ public class FeatureTabPageCM extends Page {
 	@FindBy(xpath = "//b[text()='TN Block Selection']/../../../following-sibling::tr[1]/child::td[2]/child::*/child::input[1]")
 	private WebElement txtAdditionalAlternateTN ;
 	
+	private boolean mstatus;
 	
-	
-	public void BGP(){
-		if(waitForElement(chkBoxBGP)){
-			chkBoxBGP.click();
+	public boolean BGP(){
+		mstatus = true;
+		try {
+			if(waitForElement(chkBoxBGP)){
+				chkBoxBGP.click();
+			}
+		} catch (Exception e) {
+			mstatus = false;
 		}
+		return mstatus;
 	}
 	
-	public void ENS() throws InterruptedException{
-		waitForElementDisappear(elementLoading);
-		if(waitForElement(txtUNIandEVCqt.get(0))){
-			txtUNIandEVCqt.get(0).clear();
-			txtUNIandEVCqt.get(0).sendKeys("2");
-			txtUNIandEVCqt.get(1).clear();
-			txtUNIandEVCqt.get(1).sendKeys("2");
-			waitForElement(btnContinue);
-			clickndRelease(btnContinue);
+	public boolean ENS() throws InterruptedException{
+		mstatus = true;		
+		try {
 			waitForElementDisappear(elementLoading);
-			
+			if(waitForElement(txtUNIandEVCqt.get(0))){
+				txtUNIandEVCqt.get(0).clear();
+				txtUNIandEVCqt.get(0).sendKeys("2");
+				txtUNIandEVCqt.get(1).clear();
+				txtUNIandEVCqt.get(1).sendKeys("2");
+				waitForElement(btnContinue);
+				clickndRelease(btnContinue);
+				waitForElementDisappear(elementLoading);
+				
+			}
+		} catch (Exception e) {
+			mstatus = false;
 		}
+		return mstatus;
 	}
 	
-	public void EVPL() throws InterruptedException, AWTException{
-		waitForElementDisappear(elementLoading);
-		if(waitForElement(txtUNIqt)){
-			//Thread.sleep(8000);
-			txtUNIqt.click();
-			txtUNIqt.clear();
-			keyPress(KeyEvent.VK_NUMPAD3,1);
-			waitForElement(txtUNIandEVCqt.get(0));
-			txtUNIandEVCqt.get(0).click();
-			txtUNIandEVCqt.get(0).clear();
-			keyPress(KeyEvent.VK_NUMPAD2,1);
-			scrollDown();
-			waitForElement(btnContinue);
-			clickndRelease(btnContinue);
+	public boolean EVPL() throws InterruptedException, AWTException{
+		mstatus = true;		
+		try {
 			waitForElementDisappear(elementLoading);
+			if(waitForElement(txtUNIqt)){
+				//Thread.sleep(8000);
+				txtUNIqt.click();
+				txtUNIqt.clear();
+				keyPress(KeyEvent.VK_NUMPAD3,1);
+				waitForElement(txtUNIandEVCqt.get(0));
+				txtUNIandEVCqt.get(0).click();
+				txtUNIandEVCqt.get(0).clear();
+				keyPress(KeyEvent.VK_NUMPAD2,1);
+				scrollDown();
+				waitForElement(btnContinue);
+				clickndRelease(btnContinue);
+				waitForElementDisappear(elementLoading);
+			}
+		} catch (Exception e) {
+			mstatus = false;
 		}
+		return mstatus;
 	}
 	
-	public void BVE(){
+	public boolean BVE(){
+		mstatus = true;		
+		try {
 		waitForElementDisappear(elementLoading);
 		enterQuantity(txtAdditionalAlternateTN,"5");
 		enterQuantity(txtStandardSeat,"2");
@@ -113,17 +133,27 @@ public class FeatureTabPageCM extends Page {
 		waitForElement(btnContinue);
 		btnContinue.sendKeys(Keys.ENTER);
 	    waitForElementDisappear(elementLoading);
+		} catch (Exception e) {
+			mstatus = false;
+		}
+		return mstatus;
 		
 	}
 	
-	public void ClickOnContinueButton() throws InterruptedException{
-		waitForElementDisappear(elementLoading);
-		scrollDown();
-		waitForElement(btnContinue);
-		waitForElement(btnContinue);
-		btnContinue.click();
-		//btnContinue.sendKeys(Keys.ENTER); Updated with click method for continue button By krajam003c
-	    waitForElementDisappear(elementLoading);			 
+	public boolean ClickOnContinueButton() throws InterruptedException{
+		mstatus = true;		
+		try {
+			waitForElementDisappear(elementLoading);
+			scrollDown();
+			waitForElement(btnContinue);
+			waitForElement(btnContinue);
+			btnContinue.click();
+			//btnContinue.sendKeys(Keys.ENTER); Updated with click method for continue button By krajam003c
+		    waitForElementDisappear(elementLoading);			 
+	
+	} catch (Exception e) {
+		mstatus = false;
 	}
-
+	return mstatus;
+	}
 }

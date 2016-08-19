@@ -68,6 +68,8 @@ public class LogInPage extends Page {
 	private WebElement searchBox;
 	
 	protected static String LOGIN_PAGE_TITLE = "Login Page";
+	
+	private boolean mstatus;
 		
 	public LogInPage(WebDriver browser, SeleniumReport report) {
 		super(browser, report);		
@@ -82,7 +84,8 @@ public class LogInPage extends Page {
 	}
 	
 	@Override
-	protected void waitForPageLoad() {try{
+	protected void waitForPageLoad() {
+		try{
 		new WebDriverWait(browser,30).
 
 		until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='logButton']")));	
@@ -112,7 +115,8 @@ public class LogInPage extends Page {
 
 	@PerfTransaction(name="Login")
 	@Test
-	public void applicationLogin(LoginDetails loginInfo) {
+	public boolean applicationLogin(LoginDetails loginInfo) {
+		mstatus = true;
 		try{
 			shortWaitForElement(txtUserName);
 			txtUserName.click();
@@ -149,13 +153,16 @@ public class LogInPage extends Page {
 			}			
 		}catch(Exception Ex){
 			report.reportFailEvent("applicationLogin", "User Login NOT successful, EXCEPTION CAUGHT : " + Ex.getMessage());
-			throw Ex;
+			mstatus = false;
+			throw Ex;			
 		}	
+		return mstatus;
 		//return new HomePageCM(browser,report);			
 	}
 
-	public void applicationLogin(String userName, String password, String domain) {
+	public boolean applicationLogin(String userName, String password, String domain) {
 		// TODO Auto-generated method stub
+		mstatus = true;
 		try{
 			shortWaitForElement(txtUserName);
 			txtUserName.click();
@@ -192,8 +199,10 @@ public class LogInPage extends Page {
 			}			
 		}catch(Exception Ex){
 			report.reportFailEvent("applicationLogin", "User Login NOT successful, EXCEPTION CAUGHT : " + Ex.getMessage());
+			mstatus = false;
 			throw Ex;
 		}	
+		return mstatus;
 	}	
 	
 
