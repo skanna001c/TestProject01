@@ -197,7 +197,7 @@ public class OrderSummaryTabCMPage extends Page {
 	public boolean enterOrderDetails(OrderSummaryInfo orderSummaryInfo){
 		mstatus = true;		
 		try {
-			//WaitandSwitchToFrame(frameMain);
+			WaitandSwitchToFrame(frameMain);
 			waitForElement(dtCustomerOrderSig);
 			dtCustomerOrderSig.click();
 			btnToday.get(0).click();
@@ -277,6 +277,7 @@ public class OrderSummaryTabCMPage extends Page {
 	public boolean ClickSubmitOrderButton(){
 		mstatus = true;		
 		try {
+			ShortWaitandSwitchToFrame(frameMain);
 			if(waitForElement(btnsubmitOrder)){
 				btnsubmitOrder.click();
 				waitforPageLoadComplete();	

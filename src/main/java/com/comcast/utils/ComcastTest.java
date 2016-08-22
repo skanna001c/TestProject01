@@ -83,9 +83,10 @@ public class ComcastTest {
 	protected Hashtable<String,String> testStatusTable;
 	protected IDataDump dataDump;
 	protected   DataTable dataTable; // updated by harsh on 8/4
-	protected static TestSettings settings; // updated by harsh on 8/4 //made static by rijin 19/8/16
-	protected static IUserDetails userDetails;
-	private static CenturyApplication centuryApplication;
+	// updated by harsh on 8/4 //made static by rijin 19/8/16
+	protected  TestSettings settings; 
+	protected  IUserDetails userDetails;
+	private  CenturyApplication centuryApplication;
 	private String userName;
 	
 	public IDataDump getDataDump(){
@@ -415,8 +416,8 @@ public class ComcastTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		browser.close();
-		browser.quit();
+		/*browser.close();
+		browser.quit();*/
 		
 		
 	}
@@ -742,46 +743,6 @@ public class ComcastTest {
 		return line;
 	}
 	
-///	@BeforeTest
-/*	public void beforeTestGetUserndURL() {
-		  	
-			  if(settings.getPERerunStatus().equalsIgnoreCase("true")){
-				  userName=userDetails.getPassword(testName.getName());
-			  }
-			  if (userName==null)
-			  {
-				  userName=userDetails.getPassword("default");
-			  }	  
-				//centuryApplication = new CenturyApplication(browser, report);
-			  
-				// CM nd CSO login -> added by rijin on 8/18/2016
-		  if(settings.getPERerunStatus().equalsIgnoreCase("true")){
-				 if (getDataDump().getValue("CM_Status").equalsIgnoreCase("PASS"))
-				 {	 //browser.quit();
-					 centuryApplication.openCSOUrl(userName);
-					 getDataDump().setValue("CSOLoggedIN","PASS");
-					 getDataDump().setValue("currentUser", userName);					 
-				 }
-				 else
-				 {
-					 centuryApplication.openCMUrl(userName);
-					 getDataDump().setValue("CMLoggedIN","PASS");
-					 getDataDump().setValue("currentUser", userName);
-				 }
-				
-				//Search for customer if rerun - added by harsh on 8/8/16
-				
-					(new HomePageCM(browser,report)).searchCustomer(getDataDump().getValue("CustomerName_RT"));
-				}
-		  else 
-		  	{   System.out.println(userName);
-		  		 centuryApplication.openCMUrl(userName);
-				 getDataDump().setValue("CMLoggedIN","PASS");
-				 getDataDump().setValue("currentUser", userName);
-		  	}
-				
-		  }
-	  */
 	public void beforeMethodGetUserndURL(Method testName) {
 		  //check for rerun and the status of the method
 		 userName=userDetails.getPassword(testName.getName());
@@ -809,7 +770,8 @@ public class ComcastTest {
 							 //(new HomePageCM(browser,report)).searchCustomer(getDataDump().getValue("CustomerName_RT"));
 							}
 						 getDataDump().setValue("CSOLoggedIN","PASS");
-						 getDataDump().setValue("currentUser", userName);
+						 getDataDump().setValue("CMLoggedIN","FAIL");
+						 getDataDump().setValue("currentUser", userName); 
 					 
 					 }
 			 }
@@ -822,6 +784,7 @@ public class ComcastTest {
 			}
 		 	
 			 getDataDump().setValue("CMLoggedIN","PASS");
+			 getDataDump().setValue("CSOLoggedIN","FAIL");
 			 getDataDump().setValue("currentUser", userName);
 		 }
 		
@@ -831,8 +794,8 @@ public class ComcastTest {
 			 if (!(getDataDump().getValue("currentUser").equalsIgnoreCase(userName)))
 				 {
 					 centuryApplication.openCMUrl(userName,
-							 getDataDump().getValue("CMLoggedIN").equalsIgnoreCase("PASS"));
-					 getDataDump().setValue("CMLoggedIN","PASS");
+							 true);
+					 getDataDump().setValue("CSOLoggedIN","FAIL");
 					 getDataDump().setValue("currentUser", userName);
 				 }
 		 }
@@ -842,8 +805,8 @@ public class ComcastTest {
 			 if (!(getDataDump().getValue("currentUser").equalsIgnoreCase(userName)))
 				 {
 				 centuryApplication.openCSOUrl(userName,
-						 getDataDump().getValue("CSOLoggedIN").equalsIgnoreCase("PASS"));
-					 getDataDump().setValue("CSOLoggedIN","PASS");
+						true);
+					 getDataDump().setValue("CMLoggedIN","FAIL");
 					 getDataDump().setValue("currentUser", userName);
 				 }
 		 }

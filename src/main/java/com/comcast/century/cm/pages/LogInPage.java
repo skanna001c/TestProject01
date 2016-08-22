@@ -165,25 +165,31 @@ public class LogInPage extends Page {
 		return mstatus;
 		//return new HomePageCM(browser,report);			
 	}*/
-
-	public boolean applicationLogin(String userName, String password, String domain, boolean alreadyloggedin) {
+	public boolean Signout(){
+		mstatus = true;
+		try{
+			browser.switchTo().defaultContent();
+			if (waitForElement(btnSignout,5)){
+			btnSignout.click();
+			browser.manage().deleteAllCookies();
+			waitforPageLoadComplete();
+			waitForElement(txtUserName);
+			}
+		}
+		catch(Exception Ex){
+			report.reportFailEvent("applicationLogin", "User Login NOT successful, EXCEPTION CAUGHT : " + Ex.getMessage());
+			mstatus = false;
+			throw Ex;
+		}	
+		return mstatus;
+	}
+	public boolean applicationLoginCM(String userName, String password, String domain) {
 		// TODO Auto-generated method stub
 		//boolean useralreadyloggined=true;
 		mstatus = true;
 		try{
 			waitforPageLoadComplete();			
-			/*
-			if(waitForElement(txtUserName)) //username box exists
-			{
-				useralreadyloggined=false;
-			}
-			*/
-			if (alreadyloggedin){
-				btnSignout.click();				
-				waitforPageLoadComplete();
-				shortWaitForElement(txtUserName);
-			}
-			
+			waitForElement(txtUserName);
 			txtUserName.click();
 			txtUserName.sendKeys(userName);
 			report.reportDoneEvent("Enter username","Entered username as-> " +userName);				
@@ -216,6 +222,53 @@ public class LogInPage extends Page {
 			}else{
 				report.reportFailEvent("Login to HomePage", "Login Unsuccessfull <Please check UN and PWD>");
 			}			
+		}catch(Exception Ex){
+			report.reportFailEvent("applicationLogin", "User Login NOT successful, EXCEPTION CAUGHT : " + Ex.getMessage());
+			mstatus = false;
+			throw Ex;
+		}	
+		return mstatus;
+	}	
+	
+	public boolean applicationLoginCSO(String userName, String password, String domain) {
+		// TODO Auto-generated method stub
+		//boolean useralreadyloggined=true;
+		mstatus = true;
+		try{
+			waitforPageLoadComplete();			
+			waitForElement(txtUserName);
+			txtUserName.click();
+			txtUserName.sendKeys(userName);
+			report.reportDoneEvent("Enter username","Entered username as-> " +userName);				
+			txtPassword.click();
+			txtPassword.sendKeys(password);
+			report.reportDoneEvent("Enter password","Entered password as-> " +password.replaceAll(".", "*"));			
+			 
+			new Select(lstDomain).selectByVisibleText(domain);
+			report.reportDoneEvent("Select Domain","Selected domain as-> "+domain);			
+			
+			if (! chkBxWarning.isSelected()){
+			    chkBxWarning.click();
+			}
+			report.reportDoneEvent("Check on Terms and Conditions","Checked Terms and Conditions");				
+			report.updateTestLog("Enter Login Details","Login Details Entered",Status.SCREENSHOT);		
+			
+			if(isElementPresent(btnLogin)){
+				btnLogin.sendKeys(Keys.ENTER);
+				report.reportDoneEvent("Click on Login", "Login Clicked successfully");
+			}
+			/*waitForElement(userHomePage);
+			if(isElementPresent(userHomePage)){
+				report.updateTestLog("LogintoHomePage", "logged into the homepage Successfully", Status.SCREENSHOT);
+			}else{
+				report.reportFailEvent("LoginToHomePage", "Login Unsuccessfull <Please check UN and PWD>");
+			}*/
+			/*waitForElement(tabHome);			
+			if(isElementPresent(tabHome)){
+				report.updateTestLog("Login to HomePage", "Logged into homepage Successfully", Status.SCREENSHOT);
+			}else{
+				report.reportFailEvent("Login to HomePage", "Login Unsuccessfull <Please check UN and PWD>");
+			}*/			
 		}catch(Exception Ex){
 			report.reportFailEvent("applicationLogin", "User Login NOT successful, EXCEPTION CAUGHT : " + Ex.getMessage());
 			mstatus = false;

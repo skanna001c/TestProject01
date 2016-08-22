@@ -36,7 +36,6 @@ import com.comcast.utils.PerfTransaction;
 
 public class NewConnectTest extends ComcastTest {
 	
-	private static CenturyApplication centuryApplication;
 	private CustomerInfo customerInfo;
 	private AccountInfo accountInfo;
 	private ContactInfo contactInfo;
@@ -44,8 +43,7 @@ public class NewConnectTest extends ComcastTest {
 	private ProcessInfo processInfo;
 	private OrderSummaryInfo orderSummaryInfo;
 	private SiteLevelTaskInfo siteLevelTaskInfo;	
-	private ServiceLevelTaskInfo serviceLevelTaskInfo;
-	private String userName;
+	
 	String SRID;
 	String SurveyID;
 	String Site1;
@@ -174,46 +172,50 @@ public class NewConnectTest extends ComcastTest {
   }	  
   
   
-  @Test(priority=7)
-  @PerfTransaction(name="SubmitOrder")  
+  @Test(priority=7)    
   public void submitOrder() throws InterruptedException{
-	 /* if(getDataDump().getValue("submitOrder_status").equalsIgnoreCase("FAIL"))
+	 if(getDataDump().getValue("submitOrder_status").equalsIgnoreCase("FAIL"))
 	  	{
 	  		selectService();
 	  		processService();
-	  	}*/
+	  	}
 	   
 		if((new OrderSummaryTabCMPage(browser, report)).assignLabel(orderSummaryInfo)){
 			if((new OrderSummaryTabCMPage(browser, report)).enterOrderDetails(orderSummaryInfo)){
 				if((new OrderSummaryTabCMPage(browser, report)).mrcNrc_Value(orderSummaryInfo)){
 					if((new OrderSummaryTabCMPage(browser, report)).ClickSubmitOrderButton()){
+						
 						getDataDump().setValue("CM_Status","PASS");
-					}else Assert.fail("Order submission failed");
+						
+				}else Assert.fail("Order submission failed");
 				}else Assert.fail("Entering NRC values failed");
 			}else Assert.fail("Entering order detrails failed");
 		}else Assert.fail("Assigning label failed");	
-		
-		getDataDump().setValue("CM_Status","PASS");
+	
   }
 
   @Test(priority=8)
   public void StartCSO() {
-	// (new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);  
-	 (new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(SRID);
+	//(new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);  
+	 (new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
 	 (new WorkOrderTabPageCSO(browser, report)).ClickFirstSiteFlow();
 	 
   }	 
   
   @Test(priority=9)
-  public void Conduct_Site_Survey() throws InterruptedException {	  
-	  (new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(SRID);
-	  (new WorkOrderTabPageCSO(browser, report)).ClickFirstSiteFlow();
+  public void Conduct_Site_Survey() throws InterruptedException {	
+	  if (getDataDump().getValue("Conduct_Site_Survey_status").equalsIgnoreCase("fail"))
+	  {
+		  CSOSearchForOrderInSO();
+	  }
 	  (new SiteLevelTasks(browser, report)).ConductSiteSurvey();
 	  (new ConductSiteSurveyTaskPage(browser, report)).ConductSiteSurvey(siteLevelTaskInfo);
   }	
   
   @Test(priority=10)
-  public void Obtain_Site_Agreement() throws InterruptedException {
+  public void Obtain_Site_Agreement(Method method) throws InterruptedException {
+	  (new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
+	  (new WorkOrderTabPageCSO(browser, report)).ClickFirstSiteFlow();
 	  (new SiteLevelTasks(browser, report)).ObtainSiteAgreement();
 	  (new ObtainSiteAgreementTaskPage(browser, report)).ObtainSiteAgreement(siteLevelTaskInfo);
   }	
@@ -276,7 +278,12 @@ public class NewConnectTest extends ComcastTest {
 	(new ServiceLevelTasks(browser, report)).ClickBackButton();*/
   
   
-  
+  public void CSOSearchForOrderInSO()
+  {
+	  (new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(SRID);
+	  (new WorkOrderTabPageCSO(browser, report)).ClickFirstSiteFlow();
+	  
+  }
   
   @AfterMethod
   public void afterMethod() {

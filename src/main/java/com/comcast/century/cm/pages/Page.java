@@ -844,6 +844,16 @@ public abstract class Page {
 		return true;
 	}
 	
+	protected Boolean waitForElement(WebElement we,int sec) {
+		try {
+			new WebDriverWait(browser, sec).until(ExpectedConditions.visibilityOf(we));
+
+		} catch (RuntimeException ex) {
+			return false;
+		}
+		return true;
+	}
+	
 	protected Boolean miniWaitForElement(WebElement we) {
 		try {
 			new WebDriverWait(browser, 5).until(ExpectedConditions.visibilityOf(we));

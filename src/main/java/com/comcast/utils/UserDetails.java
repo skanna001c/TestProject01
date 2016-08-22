@@ -25,6 +25,7 @@ public class UserDetails implements IUserDetails {
 		properties = new Properties();		
 	//	this.testName = testName;
 		settings=new TestSettings();
+		loadData();
 	}
 	
 	/* (non-Javadoc)

@@ -141,6 +141,7 @@ public class WorkOrderTabPageCSO extends Page {
 	
 
 	public void SearchForOrderInSO(String SRID){
+		//WaitandSwitchToFrame(fra)
 		waitforPageLoadComplete();
 	    waitForElement(btnExpand);
 		btnExpand.click();
@@ -190,11 +191,11 @@ public class WorkOrderTabPageCSO extends Page {
 			
 	public void ClickFirstSiteFlow(){
 		WaitandSwitchToFrame(frameRight);
-		if(waitForElement(linkSiteFlow.get(0))){
+		/*if(waitForElement(linkSiteFlow.get(0))){
 			linkSiteFlow.get(0).click();
 			waitforPageLoadComplete();
 			report.reportDoneEvent("Click on Site level flow", "Site level flow Clicked");
-		}
+		}*/
 	}
 	
 	

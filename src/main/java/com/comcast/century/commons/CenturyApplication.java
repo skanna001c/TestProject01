@@ -7,9 +7,10 @@ import com.comcast.century.cm.pages.Page;
 import com.comcast.reporting.Status;
 import com.comcast.utils.ComcastTest;
 import com.comcast.utils.SeleniumReport;
+import com.comcast.utils.TestSettings;
 import com.comcast.utils.UserDetails;
 
-public class CenturyApplication extends ComcastTest {
+public class CenturyApplication {
 	private WebDriver browser;
 	private SeleniumReport report;
 	private String cm_url;
@@ -18,12 +19,13 @@ public class CenturyApplication extends ComcastTest {
 	private String env;
 	private Page page;
 	private String domain;
-	
+	TestSettings settings=new TestSettings();
+	UserDetails userDetails=new  UserDetails();
 
 
 	public CenturyApplication(Object browser, SeleniumReport report) {
 		this.browser = (WebDriver) browser;		
-		this.cm_url= settings.getApplicationCMURL();	
+		this.cm_url= settings.getApplicationCMURL();
 		this.cso_url= settings.getApplicationCSOURL();		
 		this.report = report;
 		this.env = settings.getEnvironmentToTest();
@@ -31,17 +33,20 @@ public class CenturyApplication extends ComcastTest {
 
 
 
-	public void openCSOUrl(String userName, boolean alreadyloggedin) {
+	public void openCSOUrl(String userName, boolean alreadySameApp) {
 		// TODO Auto-generated method stub
+		System.out.println("Inside openCSOUrl");
 		try{
-			if(!alreadyloggedin)
-			{
+			
+			(new LogInPage(browser,report)).Signout(); //need to changed the log
+			if(!alreadySameApp)
+			{	
 				browser.get(cso_url);
 				browser.manage().window().maximize();
 			}
 			this.password= userDetails.getPassword(userName);
 			this.domain=  settings.getAPPDOMAIN();
-			(new LogInPage(browser,report)).applicationLogin(userName,this.password,this.domain,alreadyloggedin);
+			(new LogInPage(browser,report)).applicationLoginCSO(userName,this.password,this.domain);
 			report.updateTestLog("Century CM Application Launch", "Application has been launched", Status.SCREENSHOT);
 		}catch(Exception Ex){
 		report.reportFailEvent("Exception Caught", "Message is->"+Ex.getMessage());
@@ -50,18 +55,19 @@ public class CenturyApplication extends ComcastTest {
 
 
 
-	public void openCMUrl(String userName, boolean alreadyloggedin) {
+	public void openCMUrl(String userName, boolean alreadySameApp) {
 		// TODO Auto-generated method stub
 		System.out.println("Inside openCMUrl");
 		try{
-			if (!alreadyloggedin)
+			(new LogInPage(browser,report)).Signout();
+			if (!alreadySameApp)
 			{
 				browser.get(cm_url);
 				browser.manage().window().maximize();
 			}
 			this.password= userDetails.getPassword(userName);
 			this.domain= settings.getAPPDOMAIN();
-			(new LogInPage(browser,report)).applicationLogin(userName,this.password,this.domain,alreadyloggedin);			
+			(new LogInPage(browser,report)).applicationLoginCM(userName,this.password,this.domain);			
 			report.updateTestLog("Century CSO Application Launch", "Application has been launched", Status.SCREENSHOT);
 		}catch(Exception Ex){
 		report.reportFailEvent("Exception Caught", "Message is->"+Ex.getMessage());
