@@ -128,6 +128,8 @@ public class newConnect extends ComcastTest {
 		(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(SRID);
 		(new WorkOrderTabPageCSO(browser, report)).ClickFirstSiteFlow();
 		siteLevelTaskInfo = SiteLevelTaskInfo.loadFromDatatable(dataTable);
+		
+		
 		(new SiteLevelTasks(browser, report)).ConductSiteSurvey();
 		(new ConductSiteSurveyTaskPage(browser, report)).ConductSiteSurvey(siteLevelTaskInfo);
 		(new SiteLevelTasks(browser, report)).ObtainSiteAgreement();

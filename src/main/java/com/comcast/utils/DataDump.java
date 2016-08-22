@@ -48,11 +48,20 @@ public class DataDump implements IDataDump {
 			return "";
 	}
 	
+	
+	@Override
+	public boolean deleteValue(String key){
+		if(dumpTable.containsKey(key)){
+			 dumpTable.remove(key);
+			 return true;
+		}else
+			return false;
+	}
 	/* (non-Javadoc)
 	 * @see com.comcast.utils.IDataDump#dumpData(java.util.Hashtable)
 	 */
 	@Override
-	public void dumpData(Hashtable<String,String> dataTable) throws FileNotFoundException, IOException{
+	public void dumpData() throws FileNotFoundException, IOException{
 		//properties.putAll(dataTable);
 		/*for(String key: dataTable.keySet()){
 			properties.put(key,dataTable.get(key));
@@ -90,5 +99,8 @@ public class DataDump implements IDataDump {
 		//dumpMap = new HashMap<Object,Object>(properties);
 		return dumpTable;
 	}
+	
+	
+	
 
 }

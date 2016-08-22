@@ -20,10 +20,10 @@ public class UserDetails implements IUserDetails {
 	private String testName;
 	protected TestSettings settings;
 	
-	public UserDetails(String testName){
+	public UserDetails(){
 		
 		properties = new Properties();		
-		this.testName = testName;
+	//	this.testName = testName;
 		settings=new TestSettings();
 	}
 	
@@ -35,7 +35,7 @@ public class UserDetails implements IUserDetails {
 	 * @see com.comcast.utils.IUserDetails#getValue(java.lang.String)
 	 */
 	@Override
-	public String getValue(String key){
+	public String getPassword(String key){
 		if(properties.containsKey(key)){
 			return properties.getProperty(key);
 		}else
@@ -53,8 +53,10 @@ public class UserDetails implements IUserDetails {
 	public Properties loadData(){
 		
 		try {
+		//	System.out.println("UserDetails_"+settings.getEnvironmentToTest()+".properties");
+			String relativePath=TestUtils.getRelativePath();
+			properties.load(new FileInputStream(relativePath + "//src//test//resources"+ File.separator +"UserDetails_"+settings.getEnvironmentToTest()+".properties"));
 			
-			properties.load(new FileInputStream("UserDetails_"+settings.getEnvironmentToTest()+".properties"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

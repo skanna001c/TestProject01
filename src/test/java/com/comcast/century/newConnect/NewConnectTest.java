@@ -1,14 +1,13 @@
 package com.comcast.century.newConnect;
 
-import java.io.IOException;
+import java.awt.AWTException;
+import java.lang.reflect.Method;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
 import com.comcast.century.cm.pages.AccountTabPageCM;
 import com.comcast.century.cm.pages.AddressTabPageCM;
 import com.comcast.century.cm.pages.ContactTabPageCM;
@@ -19,10 +18,14 @@ import com.comcast.century.cm.pages.OrderSummaryTabCMPage;
 import com.comcast.century.cm.pages.ProcessTabPageCM;
 import com.comcast.century.cm.pages.ServiceTabPageCM;
 import com.comcast.century.commons.CenturyApplication;
+import com.comcast.century.cso.pages.ConductFiberPlantSurveyTaskPage;
+import com.comcast.century.cso.pages.ConductSiteSurveyTaskPage;
+import com.comcast.century.cso.pages.ObtainSiteAgreementTaskPage;
+import com.comcast.century.cso.pages.SiteLevelTasks;
+import com.comcast.century.cso.pages.WorkOrderTabPageCSO;
 import com.comcast.century.data.AccountInfo;
 import com.comcast.century.data.ContactInfo;
 import com.comcast.century.data.CustomerInfo;
-import com.comcast.century.data.LoginDetails;
 import com.comcast.century.data.OrderSummaryInfo;
 import com.comcast.century.data.ProcessInfo;
 import com.comcast.century.data.ServiceLevelTaskInfo;
@@ -40,15 +43,14 @@ public class NewConnectTest extends ComcastTest {
 	private SiteInfo siteInfo;
 	private ProcessInfo processInfo;
 	private OrderSummaryInfo orderSummaryInfo;
-	private SiteLevelTaskInfo siteLevelTaskInfo;
-	private LoginDetails loginInfo;
+	private SiteLevelTaskInfo siteLevelTaskInfo;	
 	private ServiceLevelTaskInfo serviceLevelTaskInfo;
 	private String userName;
 	String SRID;
 	String SurveyID;
 	String Site1;
 		
-  @BeforeMethod
+  /*@BeforeMethod
   public void beforeMethod() {
 	  //check for rerun and the status of the method
 	  if (userName==null)
@@ -71,50 +73,24 @@ public class NewConnectTest extends ComcastTest {
 			 getDataDump().setValue("CMLoggedIN","PASS");
 			 
 		 }
-  }
+  }*/
   
   @BeforeTest
-  @PerfTransaction(name="Login")
   public void beforeTest() {
-	  if (userName==null)
-	  {
-		  userName="ordermanagementbat1";
-	  }	  
-	  if(settings.getPERerunStatus().equalsIgnoreCase("true")){
-		  userName=getDataDump().getValue("userName");
-	  }
 			  
 	  	loadData();
-		centuryApplication = new CenturyApplication(browser, report);
-		// CM nd CSO login -> added by rijin on 8/18/2016
-		 if (getDataDump().getValue("CM_Status").equalsIgnoreCase("PASS"))
-		 {
-			 centuryApplication.openCSOUrl(userName);
-			 getDataDump().setValue("CSOLoggedIN","PASS");
-			 
-		 }
-		 else
-		 {
-			 centuryApplication.openCMUrl(userName);
-			 getDataDump().setValue("CMLoggedIN","PASS");
-			 
-		 }
+//Search for customer if rerun - added by harsh on 8/8/16
 		
-		//Search for customer if rerun - added by harsh on 8/8/16
-		if(settings.getPERerunStatus().equalsIgnoreCase("true")){
-			(new HomePageCM(browser,report)).searchCustomer(getDataDump().getValue("CustomerName_RT"));
-		}		
-  }  
+  }
   
   @Test(priority=1)
-  @PerfTransaction(name="createCustomer")
+  @PerfTransaction(name="CreateCustomer")
   public void createCustomer(){
 	    String customerName;
 		try {
-			userName="ordermanagementbat1";
 			customerName = (new CustomerTabPageCM(browser, report)).createCustomer(customerInfo);
 			getDataDump().setValue("CustomerName_RT", customerName);
-			getDataDump().setValue("userName","custpmauto");
+		//	getDataDump().setValue("userName","custpmauto");
 			//getDataDump().getValue("CM_Status")
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -134,7 +110,7 @@ public class NewConnectTest extends ComcastTest {
   }
   
   @Test(priority=3)
-  @PerfTransaction(name="createBillingAccount")
+  @PerfTransaction(name="CreateBillingAccount")
   public void createBillingAccount(){			
 	try {
 		if((new AccountTabPageCM(browser, report)).CreateBillingAccount(accountInfo)){
@@ -153,7 +129,7 @@ public class NewConnectTest extends ComcastTest {
   }
   
   @Test(priority=4)
-  @PerfTransaction(name="createAddress")
+  @PerfTransaction(name="CreateAddress")
   public void createAddress() throws InterruptedException {
 		if((new AddressTabPageCM(browser, report)).ClickAddressTab(siteInfo)){
 			Site1 = (new AddressTabPageCM(browser, report)).EnterSiteDetailsValid(siteInfo);
@@ -163,7 +139,7 @@ public class NewConnectTest extends ComcastTest {
   }
   
   @Test(priority=5)
-  @PerfTransaction(name="selectService")
+  @PerfTransaction(name="SelectService")
   public void selectService() throws InterruptedException{
 	  (new ServiceTabPageCM(browser, report)).ClickOnServiceTab();
 		if((new ServiceTabPageCM(browser, report)).SelectPricePlan()){
@@ -179,7 +155,7 @@ public class NewConnectTest extends ComcastTest {
   }
   
   @Test(priority=6)
-  @PerfTransaction(name="processService")
+  @PerfTransaction(name="ProcessService")
   public void processService() throws InterruptedException{
 	  	if(getDataDump().getValue("processService_status").equalsIgnoreCase("FAIL"))
 	  	{
@@ -199,26 +175,109 @@ public class NewConnectTest extends ComcastTest {
   
   
   @Test(priority=7)
-  @PerfTransaction(name="submitOrder")  
+  @PerfTransaction(name="SubmitOrder")  
   public void submitOrder() throws InterruptedException{
-	  if(getDataDump().getValue("submitOrder_status").equalsIgnoreCase("FAIL"))
+	 /* if(getDataDump().getValue("submitOrder_status").equalsIgnoreCase("FAIL"))
 	  	{
 	  		selectService();
 	  		processService();
-	  	}
+	  	}*/
+	   
 		if((new OrderSummaryTabCMPage(browser, report)).assignLabel(orderSummaryInfo)){
 			if((new OrderSummaryTabCMPage(browser, report)).enterOrderDetails(orderSummaryInfo)){
 				if((new OrderSummaryTabCMPage(browser, report)).mrcNrc_Value(orderSummaryInfo)){
 					if((new OrderSummaryTabCMPage(browser, report)).ClickSubmitOrderButton()){
 						getDataDump().setValue("CM_Status","PASS");
-						getDataDump().setValue("userName","FiberPMauto");
 					}else Assert.fail("Order submission failed");
 				}else Assert.fail("Entering NRC values failed");
 			}else Assert.fail("Entering order detrails failed");
-		}else Assert.fail("Assigning label failed");	  
+		}else Assert.fail("Assigning label failed");	
+		
+		getDataDump().setValue("CM_Status","PASS");
   }
 
-
+  @Test(priority=8)
+  public void StartCSO() {
+	// (new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);  
+	 (new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(SRID);
+	 (new WorkOrderTabPageCSO(browser, report)).ClickFirstSiteFlow();
+	 
+  }	 
+  
+  @Test(priority=9)
+  public void Conduct_Site_Survey() throws InterruptedException {	  
+	  (new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(SRID);
+	  (new WorkOrderTabPageCSO(browser, report)).ClickFirstSiteFlow();
+	  (new SiteLevelTasks(browser, report)).ConductSiteSurvey();
+	  (new ConductSiteSurveyTaskPage(browser, report)).ConductSiteSurvey(siteLevelTaskInfo);
+  }	
+  
+  @Test(priority=10)
+  public void Obtain_Site_Agreement() throws InterruptedException {
+	  (new SiteLevelTasks(browser, report)).ObtainSiteAgreement();
+	  (new ObtainSiteAgreementTaskPage(browser, report)).ObtainSiteAgreement(siteLevelTaskInfo);
+  }	
+  
+  @Test(priority=11)
+  public void Conduct_Fiber_Plant_Survey() throws InterruptedException, AWTException {
+	  (new SiteLevelTasks(browser, report)).ConductFiberPlantSurvey();
+	 (new ConductFiberPlantSurveyTaskPage(browser, report)).ConductFiberPlantSurvey(siteLevelTaskInfo);
+		
+  }	
+    
+/*	(new SiteLevelTasks(browser, report)).ConductFiberPlantSurvey();
+	(new ConductFiberPlantSurveyTaskPage(browser, report)).ConductFiberPlantSurvey(siteLevelTaskInfo);
+	(new SiteLevelTasks(browser, report)).BuildHouseAccount();
+	(new BuildHouseAccountTaskPage(browser, report)).BuildHouseAccount(siteLevelTaskInfo);
+	(new SiteLevelTasks(browser, report)).CompleteWavelengthReservation();
+	(new CompleteWavelengthReservationTaskPage(browser, report)).CompleteWavelengthReservation(siteLevelTaskInfo);
+	(new SiteLevelTasks(browser, report)).CompleteSiteBuild();
+	(new CompleteSiteBuildTaskPage(browser, report)).ClickCompleteButton();
+	(new CompleteSiteBuildTaskPage(browser, report)).closePopup();
+	(new SiteLevelTasks(browser, report)).ObtainFiberPlantPermits();
+	(new ObtainFiberPlantPermitsTaskPage(browser, report)).ObtainFiberPlantPermits();
+	(new SiteLevelTasks(browser, report)).CompleteFiberPlantBuild();
+	(new CompleteFiberPlantBuildTaskPage(browser, report)).ClickCompleteButton();
+	(new CompleteFiberPlantBuildTaskPage(browser, report)).closePopup();
+	(new ServiceLevelTasks(browser, report)).ContactCustomer();
+	(new ContactCustomerTaskPage(browser, report)).ContactCustomer();
+	(new ServiceLevelTasks(browser, report)).UpdateDesign();
+	(new UpdateDesignTaskPage(browser, report)).UpdateDesign();
+	(new SiteLevelTasks(browser, report)).ClickBackButton();
+	(new WorkOrderTabPageCSO(browser, report)).ClickEDIFlow();
+	serviceLevelTaskInfo = ServiceLevelTaskInfo.loadFromDatatable(dataTable);
+	(new ServiceLevelTasks(browser, report)).BULBA();
+	(new BULBATaskPage(browser, report)).BULBA(serviceLevelTaskInfo);
+	(new ServiceLevelTasks(browser, report)).ShipCPE();
+	(new ShipCPETaskPage(browser, report)).ShipCPE(serviceLevelTaskInfo);
+	(new ServiceLevelTasks(browser, report)).CAE();
+	(new CAETaskPage(browser, report)).CAE(serviceLevelTaskInfo);
+	(new ServiceLevelTasks(browser, report)).ADI();
+	(new ADITaskPage(browser, report)).ADI(serviceLevelTaskInfo);
+	(new ServiceLevelTasks(browser, report)).GenerateCoreConfigs();
+	new GenerateCoreConfigsTaskPage(browser, report).ClickCompleteButton();
+	(new ServiceLevelTasks(browser, report)).GenerateCPEConfigs();
+	(new GenerateCPEConfigsTaskPage(browser, report)).ClickCompleteButton();
+	(new ServiceLevelTasks(browser, report)).LoadCoreConfigs();
+	(new LoadCoreConfigsTaskPage(browser, report)).ClickCompleteButton();
+	(new ServiceLevelTasks(browser, report)).InstallCPE();
+	(new InstallCPETaskPage(browser, report)).InstallCPE();
+	(new ServiceLevelTasks(browser, report)).SetCriticalDates();
+	(new SetCriticalDatesTaskPage(browser, report)).SetCriticalDates();
+	(new ServiceLevelTasks(browser, report)).DayofConfigs();
+	(new DaysOfConfigsTaskPage(browser, report)).ClickCompleteButton();
+	(new ServiceLevelTasks(browser, report)).ActivateService();
+	(new ActivateServiceTaskPage(browser, report)).ActivateService(serviceLevelTaskInfo);
+	(new ServiceLevelTasks(browser, report)).NotifyCustomerofServiceInstallation();
+	(new NotifyCustomerofServiceInstallationTaskPage(browser, report)).NotifyCustomerofServiceInstallation();
+	(new ServiceLevelTasks(browser, report)).CCAT();
+	(new CCATTaskPage(browser, report)).ClickCompleteButton();
+	(new ServiceLevelTasks(browser, report)).StartBilling();
+	(new ServiceLevelTasks(browser, report)).ClickBackButton();*/
+  
+  
+  
+  
   @AfterMethod
   public void afterMethod() {
 	  //set the status of the method
@@ -232,11 +291,14 @@ public class NewConnectTest extends ComcastTest {
 
   public void loadData(){
 		accountInfo = AccountInfo.loadFromDatatable(dataTable);
-		loginInfo = LoginDetails.loadFromDatatable(dataTable);
+	//	loginInfo = LoginDetails.loadFromDatatable(dataTable);
 		siteInfo = SiteInfo.loadFromDatatable(dataTable);
 		customerInfo = CustomerInfo.loadFromDatatable(dataTable);
 		contactInfo = ContactInfo.loadFromDatatable(dataTable);
 		processInfo = ProcessInfo.loadFromDatatable(dataTable);
 		orderSummaryInfo = OrderSummaryInfo.loadFromDatatable(dataTable);
+		siteLevelTaskInfo = SiteLevelTaskInfo.loadFromDatatable(dataTable);
 	}
+  
+	
 }

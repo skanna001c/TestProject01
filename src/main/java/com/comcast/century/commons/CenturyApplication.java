@@ -1,32 +1,20 @@
 package com.comcast.century.commons;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.SessionNotFoundException;
-import org.openqa.selenium.remote.UnreachableBrowserException;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.comcast.century.cm.pages.LogInPage;
-import com.comcast.century.data.LoginDetails;
 import com.comcast.century.cm.pages.Page;
 import com.comcast.reporting.Status;
-import com.comcast.utils.PerfTransaction;
+import com.comcast.utils.ComcastTest;
 import com.comcast.utils.SeleniumReport;
-import com.comcast.utils.TestSettings;
-import com.comcast.utils.TestUtils;
+import com.comcast.utils.UserDetails;
 
-public class CenturyApplication {
+public class CenturyApplication extends ComcastTest {
 	private WebDriver browser;
 	private SeleniumReport report;
 	private String cm_url;
 	private String cso_url;
 	private String password;
-	private TestSettings testSettings;
 	private String env;
 	private Page page;
 	private String domain;
@@ -34,25 +22,26 @@ public class CenturyApplication {
 
 
 	public CenturyApplication(Object browser, SeleniumReport report) {
-		this.browser = (WebDriver) browser;
-		testSettings= new TestSettings();
-		this.cm_url= testSettings.getApplicationCMURL();
-	//
-		this.cso_url= testSettings.getApplicationCSOURL();		
+		this.browser = (WebDriver) browser;		
+		this.cm_url= settings.getApplicationCMURL();	
+		this.cso_url= settings.getApplicationCSOURL();		
 		this.report = report;
-		this.env = testSettings.getEnvironmentToTest();
+		this.env = settings.getEnvironmentToTest();
 	}
 
 
 
-	public void openCSOUrl(String userName) {
+	public void openCSOUrl(String userName, boolean alreadyloggedin) {
 		// TODO Auto-generated method stub
-		try{			
-			browser.get(cso_url);
-			browser.manage().window().maximize();
-			this.password= testSettings.getUserPassword(userName);
-			this.domain= testSettings.getAPPDOMAIN();
-			(new LogInPage(browser,report)).applicationLogin(userName,this.password,this.domain);
+		try{
+			if(!alreadyloggedin)
+			{
+				browser.get(cso_url);
+				browser.manage().window().maximize();
+			}
+			this.password= userDetails.getPassword(userName);
+			this.domain=  settings.getAPPDOMAIN();
+			(new LogInPage(browser,report)).applicationLogin(userName,this.password,this.domain,alreadyloggedin);
 			report.updateTestLog("Century CM Application Launch", "Application has been launched", Status.SCREENSHOT);
 		}catch(Exception Ex){
 		report.reportFailEvent("Exception Caught", "Message is->"+Ex.getMessage());
@@ -61,14 +50,18 @@ public class CenturyApplication {
 
 
 
-	public void openCMUrl(String userName) {
+	public void openCMUrl(String userName, boolean alreadyloggedin) {
 		// TODO Auto-generated method stub
-		try{			
-			browser.get(cm_url);
-			browser.manage().window().maximize();
-			this.password= testSettings.getUserPassword(userName);
-			this.domain= testSettings.getAPPDOMAIN();
-			(new LogInPage(browser,report)).applicationLogin(userName,this.password,this.domain);
+		System.out.println("Inside openCMUrl");
+		try{
+			if (!alreadyloggedin)
+			{
+				browser.get(cm_url);
+				browser.manage().window().maximize();
+			}
+			this.password= userDetails.getPassword(userName);
+			this.domain= settings.getAPPDOMAIN();
+			(new LogInPage(browser,report)).applicationLogin(userName,this.password,this.domain,alreadyloggedin);			
 			report.updateTestLog("Century CSO Application Launch", "Application has been launched", Status.SCREENSHOT);
 		}catch(Exception Ex){
 		report.reportFailEvent("Exception Caught", "Message is->"+Ex.getMessage());
@@ -81,7 +74,7 @@ public class CenturyApplication {
 	public void openUrl(LoginDetails loginInfo) throws IOException {
 		String strBrowser;
 				if(env.equals("UAT")){
-					strBrowser = (new TestSettings()).getBrowser();			
+					strBrowser = (new settings()).getBrowser();			
 					if(strBrowser.contains("ie")){
 							 openUATapplicationBasicURL(loginInfo);
 					}
@@ -90,7 +83,7 @@ public class CenturyApplication {
 					}
 				}
 					else if(env.equals("QA")){
-						strBrowser = (new TestSettings()).getBrowser();			
+						strBrowser = (new settings()).getBrowser();			
 						if(strBrowser.contains("ie")){
 								 openUATapplicationBasicURL(loginInfo);
 						}	
@@ -110,7 +103,7 @@ public class CenturyApplication {
     	
 		String strBrowser;
 				if(env.equals("UAT")){
-					strBrowser = (new TestSettings()).getBrowser();			
+					strBrowser = (new settings()).getBrowser();			
 					if(strBrowser.contains("ie")){
 							 openUATapplicationBasicURL(user);
 					}
@@ -119,7 +112,7 @@ public class CenturyApplication {
 					}
 				}
 					else if(env.equals("QA")){
-						strBrowser = (new TestSettings()).getBrowser();			
+						strBrowser = (new settings()).getBrowser();			
 						if(strBrowser.contains("ie")){
 								 openUATapplicationBasicURL(user);
 						}	
@@ -336,7 +329,7 @@ public class CenturyApplication {
 
 	public HomePage openQAApplication(LoginDetails loginInfo) {
 		try {			
-			String[] filepath=new String[] { TestUtils.getRelativePath()+"\\src\\main\\resources\\AutoIt\\QALoginAll1.exe",testSettings.getBrowser(),loginInfo.userID,loginInfo.password};
+			String[] filepath=new String[] { TestUtils.getRelativePath()+"\\src\\main\\resources\\AutoIt\\QALoginAll1.exe",settings.getBrowser(),loginInfo.userID,loginInfo.password};
 			try {
 				Runtime.getRuntime().exec(filepath);
 
@@ -452,7 +445,7 @@ public class CenturyApplication {
 	
 	
 	public synchronized void close() throws IOException, Exception {
-		  String testSetID=testSettings.getTestSetID();
+		  String testSetID=settings.getTestSetID();
 		  try{
 			
 			System.out.println("********Quitting Browser********");
@@ -620,7 +613,7 @@ public class CenturyApplication {
 		try{
 			//if(page.isElementPresent(By.id("overridelink"))){
 		    if(true){	
-				String browserName = testSettings.getBrowser();
+				String browserName = settings.getBrowser();
 				String url= browser.getCurrentUrl();
 				if(browserName.equalsIgnoreCase("iexplore") && url.contains("http")){
 					browser.navigate().to("javascript:document.getElementById('overridelink').click()");
@@ -724,7 +717,7 @@ public class CenturyApplication {
 	public void openCSOUrl(String userName) {
 		String strBrowser;
 		if(env.equals("UAT")){
-			strBrowser = (new TestSettings()).getBrowser();		
+			strBrowser = (new settings()).getBrowser();		
 			openUATapplication(userName);
 			if(strBrowser.contains("ie")){
 					 openUATapplicationCSOURL(userName);
@@ -735,7 +728,7 @@ public class CenturyApplication {
 			}
 		}
 			else if(env.equals("QA")){
-				strBrowser = (new TestSettings()).getBrowser();			
+				strBrowser = (new settings()).getBrowser();			
 				if(strBrowser.contains("ie")){
 						 openUATapplicationCSOURL(userName);
 				}	

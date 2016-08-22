@@ -1,6 +1,7 @@
 package com.comcast.century.cm.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,7 +27,12 @@ public class LogInPage extends Page {
 	private Page page;
 	private TestSettings testSettings;
 
-		
+	
+	@FindBy(xpath="//a[@onclick='Signout()']")
+	private WebElement btnSignout;
+	
+	//a[@onclick='Signout()']
+	//a[@onclick='Signout()']
 	//@FindBy(xpath="//*[@id='username']")
 	@FindBy(xpath="//input[@id='username']")
 	private WebElement txtUserName;
@@ -113,7 +119,7 @@ public class LogInPage extends Page {
 	@FindBy(xpath="//*[@type='submit']")
 	private WebElement btnSubmit3;*/
 
-	@PerfTransaction(name="Login")
+	/*@PerfTransaction(name="Login")
 	@Test
 	public boolean applicationLogin(LoginDetails loginInfo) {
 		mstatus = true;
@@ -139,12 +145,12 @@ public class LogInPage extends Page {
 				btnLogin.click();
 				report.reportDoneEvent("Click on Login", "Login Clicked successfully");
 			}
-			/*waitForElement(userHomePage);
+			waitForElement(userHomePage);
 			if(isElementPresent(userHomePage)){
 				report.updateTestLog("LogintoHomePage", "logged into the homepage Successfully", Status.SCREENSHOT);
 			}else{
 				report.reportFailEvent("LoginToHomePage", "Login Unsuccessfull <Please check UN and PWD>");
-			}*/
+			}
 			waitForElement(tabHome);			
 			if(isElementPresent(tabHome)){
 				report.updateTestLog("Login to HomePage", "Logged into homepage Successfully", Status.SCREENSHOT);
@@ -158,13 +164,26 @@ public class LogInPage extends Page {
 		}	
 		return mstatus;
 		//return new HomePageCM(browser,report);			
-	}
+	}*/
 
-	public boolean applicationLogin(String userName, String password, String domain) {
+	public boolean applicationLogin(String userName, String password, String domain, boolean alreadyloggedin) {
 		// TODO Auto-generated method stub
+		//boolean useralreadyloggined=true;
 		mstatus = true;
 		try{
-			shortWaitForElement(txtUserName);
+			waitforPageLoadComplete();			
+			/*
+			if(waitForElement(txtUserName)) //username box exists
+			{
+				useralreadyloggined=false;
+			}
+			*/
+			if (alreadyloggedin){
+				btnSignout.click();				
+				waitforPageLoadComplete();
+				shortWaitForElement(txtUserName);
+			}
+			
 			txtUserName.click();
 			txtUserName.sendKeys(userName);
 			report.reportDoneEvent("Enter username","Entered username as-> " +userName);				
@@ -182,7 +201,7 @@ public class LogInPage extends Page {
 			report.updateTestLog("Enter Login Details","Login Details Entered",Status.SCREENSHOT);		
 			
 			if(isElementPresent(btnLogin)){
-				btnLogin.click();
+				btnLogin.sendKeys(Keys.ENTER);
 				report.reportDoneEvent("Click on Login", "Login Clicked successfully");
 			}
 			/*waitForElement(userHomePage);

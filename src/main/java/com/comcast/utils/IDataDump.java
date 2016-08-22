@@ -10,8 +10,11 @@ public interface IDataDump {
 
 	String getValue(String key);
 
-	void dumpData(Hashtable<String, String> dataTable) throws FileNotFoundException, IOException;
+//	void dumpData(Hashtable<String, String> dataTable) throws FileNotFoundException, IOException;
+	void dumpData() throws FileNotFoundException, IOException;
 
 	Hashtable loadData();
+
+	boolean deleteValue(String key);
 
 }

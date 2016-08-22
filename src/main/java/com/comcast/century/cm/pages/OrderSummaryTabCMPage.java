@@ -172,6 +172,7 @@ public class OrderSummaryTabCMPage extends Page {
 	public boolean assignLabel(OrderSummaryInfo orderSummaryInfo){
 		mstatus = true;
 		try{
+			ShortWaitandSwitchToFrame(frameMain);
 			waitForElement(ddTextMoreActions);
 			ddValueSelect(ddTextMoreActions,ddValueMoreActions,"Assign Label");
 			btnGo.click();

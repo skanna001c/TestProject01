@@ -126,8 +126,8 @@ public class AddressTabPageCM extends Page {
 	@FindBy(xpath = "//input[@id='CmbSiteheadEndName-inputEl']")
 	private WebElement ddtxtHeadendName;
 	
-	/*@FindBy(xpath = "//li[text()='arneysmount.nj']")
-	private WebElement ddValueHeadendName;*/
+	@FindBy(xpath = "//li[text()='arneysmount.nj']")
+	private WebElement ddValueHeadendName;
 	
 	@FindBy(xpath = "//input[@value='Validate']")
 	private WebElement btnValidate;
@@ -304,10 +304,12 @@ public class AddressTabPageCM extends Page {
 			if( WaitandSwitchToFrame(frameMain)){
 				 WaitandSwitchToFrame(frameAddress);
 				 waitForElement(ddtxtHeadendName);
-				 ddValue(ddtxtHeadendName,siteInfo.headendName);
-				 WebElement ddValueHeadendName = browser.findElement(By.xpath("//li[text()='"+siteInfo.headendName+"']"));
-				 waitForElement(ddValueHeadendName);
-				 ddValueHeadendName.click();
+				 ddValueSelect(ddtxtHeadendName,ddValueHeadendName,siteInfo.headendName);
+//				 ddValue(ddtxtHeadendName,siteInfo.headendName);
+//				// WebElement ddValueHeadendName = browser.findElement(By.xpath("//li[text()='"+siteInfo.headendName+"']"));
+//				 //arneysmount.nj ddValueHeadendName
+//				 waitForElement(ddValueHeadendName);
+//				 ddValueHeadendName.click();
 				 report.reportDoneEvent("Select Headend Name", "Selected Headend Name as->" +siteInfo.headendName);
 				 Thread.sleep(4000);
 			}

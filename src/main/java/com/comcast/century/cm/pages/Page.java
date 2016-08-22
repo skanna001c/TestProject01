@@ -1545,7 +1545,7 @@ public abstract class Page {
 
 
 	public void waitforPageLoadComplete() {
-		 WebDriverWait wait = new WebDriverWait(browser, 30);
+		 WebDriverWait wait = new WebDriverWait(browser, 60);
 
 	    wait.until(new ExpectedCondition<Boolean>() {
 	        public Boolean apply(WebDriver wdriver) {

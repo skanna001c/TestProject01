@@ -5,7 +5,7 @@ import java.util.Hashtable;
 public interface IUserDetails {
 
 	
-	String getValue(String key);
+	String getPassword(String key);
 
 	Hashtable loadData();
 
