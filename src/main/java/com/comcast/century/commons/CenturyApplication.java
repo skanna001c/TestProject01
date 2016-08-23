@@ -1,6 +1,9 @@
 package com.comcast.century.commons;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import com.comcast.century.cm.pages.LogInPage;
 import com.comcast.century.cm.pages.Page;
@@ -36,9 +39,15 @@ public class CenturyApplication {
 	public void openCSOUrl(String userName, boolean alreadySameApp) {
 		// TODO Auto-generated method stub
 		System.out.println("Inside openCSOUrl");
+		System.out.println("browser.getTitle()"+browser.getTitle()+"#"+browser.getTitle().length());
 		try{
+			if(!(browser.getTitle().equalsIgnoreCase("WebDriver")
+					||browser.getTitle().length()==0))
+				{
+					(new LogInPage(browser,report)).Signout();
+				}
+				
 			
-			(new LogInPage(browser,report)).Signout(); //need to changed the log
 			if(!alreadySameApp)
 			{	
 				browser.get(cso_url);
@@ -49,17 +58,22 @@ public class CenturyApplication {
 			(new LogInPage(browser,report)).applicationLoginCSO(userName,this.password,this.domain);
 			report.updateTestLog("Century CM Application Launch", "Application has been launched", Status.SCREENSHOT);
 		}catch(Exception Ex){
-		report.reportFailEvent("Exception Caught", "Message is->"+Ex.getMessage());
+		report.reportFailEvent("Exception Caught", "");
+		
 		}
 	}
 
 
 
 	public void openCMUrl(String userName, boolean alreadySameApp) {
-		// TODO Auto-generated method stub
-		System.out.println("Inside openCMUrl");
+		// TODO Auto-generated method stub		
 		try{
-			(new LogInPage(browser,report)).Signout();
+			if(!(browser.getTitle().equalsIgnoreCase("WebDriver")
+					||browser.getTitle().length()==0))
+				{
+					(new LogInPage(browser,report)).Signout();
+				}
+				
 			if (!alreadySameApp)
 			{
 				browser.get(cm_url);

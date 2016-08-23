@@ -190,6 +190,7 @@ public class LogInPage extends Page {
 		try{
 			waitforPageLoadComplete();			
 			waitForElement(txtUserName);
+			//System.out.println("browser.getTitle()"+browser.getTitle())	;			
 			txtUserName.click();
 			txtUserName.sendKeys(userName);
 			report.reportDoneEvent("Enter username","Entered username as-> " +userName);				
