@@ -40,27 +40,47 @@ public class CCATTaskPage extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
+	private boolean mstatus = true;
 	
-	public void ClickBackButton(){
-		if(waitForElement(btnBack)){
-			btnBack.click();
+	public boolean ClickBackButton(){
+		try{
+			if(waitForElement(btnBack)){
+				btnBack.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickSaveButton(){
-		if(waitForElement(btnSave)){
-			btnSave.click();
+	public boolean ClickSaveButton(){
+		try{
+			if(waitForElement(btnSave)){
+				btnSave.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickCompleteButton(){
-		if(waitForElement(btnComplete)){
-			btnComplete.click();
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Complete CCAT Task", " CCAT Task Completed");
+	public boolean ClickCompleteButton(){
+		try{
+			if(waitForElement(btnComplete)){
+				btnComplete.click();
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Complete CCAT Task", " CCAT Task Completed");
+			}
+		}		
+		catch(Exception ex)
+		{
+			mstatus = false;
 		}
-		
+		return mstatus;		
 	}
-
 
 }

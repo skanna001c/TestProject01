@@ -62,8 +62,12 @@ public class ActivateServiceTaskPage extends Page {
 	@FindBy(xpath = "//div[text()='EPL']")
 	private List<WebElement> elementEPL ;
 	
-	public void ActivateService(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
-		 scrollDown();
+	private boolean mstatus;
+	
+	public boolean ActivateService(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
+		mstatus = true;
+		try{
+		scrollDown();
 		if(waitForElement(edpCompletionDate)){
 			edpCompletionDate.click();
 			btnToday.get(0).click();
@@ -77,10 +81,16 @@ public class ActivateServiceTaskPage extends Page {
 			}
 		}
 		this.ClickCompleteButton();
+		}
+		catch(Exception Ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ActivateService_EPL(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
-		
+	public boolean ActivateService_EPL(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
+		mstatus = true;
 		try{
 			scrollDown();
 			waitForElement(edpCompletionDate);
@@ -106,28 +116,53 @@ public class ActivateServiceTaskPage extends Page {
 			this.ClickCompleteButton();
 		}catch(Exception e){
 			System.out.println(e.getMessage());
+			mstatus = false;
 		}
+		return mstatus;
 	}
 	
-	public void ClickBackButton(){
+	public boolean ClickBackButton(){
+		mstatus = true;
+		try{
 		if(waitForElement(btnBack)){
 			btnBack.click();
 		}
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickSaveButton(){
-		if(waitForElement(btnSave)){
-			btnSave.click();
+	public boolean ClickSaveButton(){
+		mstatus = true;
+		try{
+			if(waitForElement(btnSave)){
+				btnSave.click();
+			}
 		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickCompleteButton(){
-		if(waitForElement(btnComplete)){
-			btnComplete.click();
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Complete ActivateService Task", " ActivateService Task Completed");
+	public boolean ClickCompleteButton(){
+		mstatus = true;
+		try{
+			if(waitForElement(btnComplete)){
+				btnComplete.click();
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Complete ActivateService Task", " ActivateService Task Completed");
+			}
 		}
-		
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;
+		}
+		return mstatus;
 	}
 
 }

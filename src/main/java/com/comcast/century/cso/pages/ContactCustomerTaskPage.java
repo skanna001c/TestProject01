@@ -48,33 +48,61 @@ public class ContactCustomerTaskPage extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
-	
-	public void ContactCustomer(){
-		if(waitForElement(NextContactDate)){
-			NextContactDate.click();
-			btnToday.click();
-			this.ClickCompleteButton();
+	private boolean mstatus = true;
+	public boolean ContactCustomer(){
+		try{
+			if(waitForElement(NextContactDate)){
+				NextContactDate.click();
+				btnToday.click();
+				this.ClickCompleteButton();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickBackButton(){
-		if(waitForElement(btnBack)){
-			btnBack.click();
+	public boolean ClickBackButton(){
+		try{
+			if(waitForElement(btnBack)){
+				btnBack.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickSaveButton(){
-		if(waitForElement(btnSave)){
-			btnSave.click();
+	public boolean ClickSaveButton(){
+		try{
+			if(waitForElement(btnSave)){
+				btnSave.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickCompleteButton(){
-		if(waitForElement(btnComplete)){
-			btnComplete.click();
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Complete ContactCustomer Task", " ContactCustomer Task Completed");
+	public boolean ClickCompleteButton(){
+		try{
+			if(waitForElement(btnComplete)){
+				btnComplete.click();
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Complete ContactCustomer Task", " ContactCustomer Task Completed");
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 		
 	}
 

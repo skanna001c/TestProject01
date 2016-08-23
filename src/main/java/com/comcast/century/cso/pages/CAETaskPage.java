@@ -67,85 +67,120 @@ public class CAETaskPage extends Page {
 	@FindBy(xpath = "//input[@id='projectName']")
 	private WebElement txtProjectName ;
 	
+	private boolean mstatus = true;
 	
-	public void CAE(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
-		if(waitForElement(tabOnnetServiceCI)){
-			tabOnnetServiceCI.click();
-			Thread.sleep(2*1000);
-			scrollToElementandclick(elementEDI);
-			waitForElement(txtUNIid);
-			txtUNIid.sendKeys(serviceLevelTaskInfo.UNI1);
-			txtSiteCili.sendKeys(serviceLevelTaskInfo.siteCili);
-			linkRetrieveCircuitID.click();
-			Thread.sleep(5*1000);
-			txtProjectName.clear();
-			txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
-			this.ClickCompleteButton();
-			
+	public boolean CAE(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
+		try{
+			if(waitForElement(tabOnnetServiceCI)){
+				tabOnnetServiceCI.click();
+				Thread.sleep(2*1000);
+				scrollToElementandclick(elementEDI);
+				waitForElement(txtUNIid);
+				txtUNIid.sendKeys(serviceLevelTaskInfo.UNI1);
+				txtSiteCili.sendKeys(serviceLevelTaskInfo.siteCili);
+				linkRetrieveCircuitID.click();
+				Thread.sleep(5*1000);
+				txtProjectName.clear();
+				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
+				this.ClickCompleteButton();
+			}
 		}
-	}
-	
-	public void CAE_EPL(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
-		if(waitForElement(tabOnnetServiceCI)){
-			tabOnnetServiceCI.click();
-			Thread.sleep(2*1000);
-			scrollToElementandclick(elementEPL);
-			waitForElement(txtUNIid);
-			txtUNIid.sendKeys(serviceLevelTaskInfo.UNI1);
-			txtSiteCili.sendKeys(serviceLevelTaskInfo.siteCili);
-			/*txtProjectName.clear();
-			txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);*/
-			linkRetrieveCircuitID.click();
-			Thread.sleep(5*1000);
-			btnSave.click();
-			waitforPageLoadComplete();
-			Thread.sleep(2*1000);
-			waitForElement(tabOnnetServiceCI);
-			tabOnnetServiceCI.click();
-			Thread.sleep(2*1000);
-			scrollToElementandclick(elementEPL);
-			waitForElement(txtUNIid);
-			txtUNIid.sendKeys(serviceLevelTaskInfo.UNI2);
-			txtSiteCili.sendKeys(serviceLevelTaskInfo.siteCili);
-			/*txtProjectName.clear();
-			txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);*/
-			linkRetrieveCircuitID.click();
-			Thread.sleep(5*1000);
-			this.ClickCompleteButton();
-			
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;			
 		}
+		return mstatus;
 	}
 	
-	public void cAE_PRI(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
-		if(waitForElement(tabOnnetServiceCI)){
-			tabOnnetServiceCI.click();
-			Thread.sleep(2*1000);
-			scrollToElementandclick(elementPRI);
-			waitForElement(txtUNIid);
-			txtUNIid.sendKeys(serviceLevelTaskInfo.UNI2);
-			txtSiteCili.sendKeys(serviceLevelTaskInfo.siteCili);
-			linkRetrieveCircuitID.click();
-			Thread.sleep(5*1000);
-			txtProjectName.clear();
-			txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
-			this.ClickCompleteButton();
-	}
+	public boolean CAE_EPL(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
+		try{
+			if(waitForElement(tabOnnetServiceCI)){
+				tabOnnetServiceCI.click();
+				Thread.sleep(2*1000);
+				scrollToElementandclick(elementEPL);
+				waitForElement(txtUNIid);
+				txtUNIid.sendKeys(serviceLevelTaskInfo.UNI1);
+				txtSiteCili.sendKeys(serviceLevelTaskInfo.siteCili);
+				/*txtProjectName.clear();
+				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);*/
+				linkRetrieveCircuitID.click();
+				Thread.sleep(5*1000);
+				btnSave.click();
+				waitforPageLoadComplete();
+				Thread.sleep(2*1000);
+				waitForElement(tabOnnetServiceCI);
+				tabOnnetServiceCI.click();
+				Thread.sleep(2*1000);
+				scrollToElementandclick(elementEPL);
+				waitForElement(txtUNIid);
+				txtUNIid.sendKeys(serviceLevelTaskInfo.UNI2);
+				txtSiteCili.sendKeys(serviceLevelTaskInfo.siteCili);
+				/*txtProjectName.clear();
+				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);*/
+				linkRetrieveCircuitID.click();
+				Thread.sleep(5*1000);
+				this.ClickCompleteButton();
+				
+			}
+		}	
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;			
+		}
+		return mstatus;
+}
+	
+	public boolean cAE_PRI(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
+		try{
+			if(waitForElement(tabOnnetServiceCI)){
+				tabOnnetServiceCI.click();
+				Thread.sleep(2*1000);
+				scrollToElementandclick(elementPRI);
+				waitForElement(txtUNIid);
+				txtUNIid.sendKeys(serviceLevelTaskInfo.UNI2);
+				txtSiteCili.sendKeys(serviceLevelTaskInfo.siteCili);
+				linkRetrieveCircuitID.click();
+				Thread.sleep(5*1000);
+				txtProjectName.clear();
+				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
+				this.ClickCompleteButton();
+			}
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;			
+		}
+		return mstatus;
 		
 	}
 	
 	
-	public void ClickSaveButton(){
-		if(waitForElement(btnSave)){
-			btnSave.click();
+	public boolean ClickSaveButton(){
+		try{
+			if(waitForElement(btnSave)){
+				btnSave.click();
+			}
 		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;			
+		}
+		return mstatus;
 	}
 	
-	public void ClickCompleteButton(){
-		if(waitForElement(btnComplete)){
-			btnComplete.click();
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Complete CAE Task", " CAE Task Completed");
+	public boolean ClickCompleteButton(){
+		try{
+			if(waitForElement(btnComplete)){
+				btnComplete.click();
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Complete CAE Task", " CAE Task Completed");
+			}
 		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;			
+		}
+		return mstatus;
 		
 	}
 

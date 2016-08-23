@@ -41,25 +41,52 @@ public class AssignDesignBGPTaskPage extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
+	private boolean mstatus;
 	
-	public void ClickBackButton(){
-		if(waitForElement(btnBack)){
+	public boolean ClickBackButton(){
+		mstatus = true;
+		try{
+			if(waitForElement(btnBack)){
 			btnBack.click();
+		    }
 		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;
+		}
+		return mstatus;
+		
 	}
 	
-	public void ClickSaveButton(){
-		if(waitForElement(btnSave)){
-			btnSave.click();
+	public boolean ClickSaveButton(){
+		mstatus = true;
+		try{
+			if(waitForElement(btnSave)){
+				btnSave.click();
+			}
+		}		
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;
 		}
+		return mstatus;
 	}
 	
-	public void ClickCompleteButton(){
-		if(waitForElement(btnComplete)){
-			btnComplete.click();
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Complete AssignDesignBGP Task", " AssignDesignBGP Task Completed");
+	public boolean ClickCompleteButton(){
+		mstatus = true;
+		try{
+			if(waitForElement(btnComplete)){
+				btnComplete.click();
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Complete AssignDesignBGP Task", " AssignDesignBGP Task Completed");
+			}
 		}
+		
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;
+		}
+		return mstatus;
 		
 	}
 

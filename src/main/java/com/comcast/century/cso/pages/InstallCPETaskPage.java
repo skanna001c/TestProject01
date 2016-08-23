@@ -57,54 +57,91 @@ public class InstallCPETaskPage extends Page {
 	@FindBy(xpath = "//button[text()='Today']")
 	private List<WebElement> btnToday ;
 	
-	public void InstallCPE() throws InterruptedException{
-		if(waitForElement(SchCPEInstallDate)){
-			clickndRelease(SchCPEInstallDate);
-			//SchCPEInstallDate.click();
-			btnToday.get(0).click();
-			clickndRelease(ActualCompletionDate);
-			//ActualCompletionDate.click();
-			btnToday.get(1).click();
-			this.ClickCompleteButton();
+	private boolean mstatus = true;
+	
+	public boolean InstallCPE() throws InterruptedException{
+		try{
+			if(waitForElement(SchCPEInstallDate)){
+				clickndRelease(SchCPEInstallDate);
+				//SchCPEInstallDate.click();
+				btnToday.get(0).click();
+				clickndRelease(ActualCompletionDate);
+				//ActualCompletionDate.click();
+				btnToday.get(1).click();
+				this.ClickCompleteButton();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void installCPEPRI() throws InterruptedException{
-		if(waitForElement(SchCPEInstallDate)){
-			clickndRelease(SchCPEInstallDate);
-			//SchCPEInstallDate.click();
-			btnToday.get(0).click();
-			clickndRelease(ActualCompletionDate);
-			//ActualCompletionDate.click();
-			btnToday.get(1).click();
-			clickndRelease(SchIADDate);
-			btnToday.get(2).click();
-			clickndRelease(ActualIADDate);
-			btnToday.get(3).click();
-			this.ClickCompleteButton();
+	public boolean installCPEPRI() throws InterruptedException{
+		try{
+			if(waitForElement(SchCPEInstallDate)){
+				clickndRelease(SchCPEInstallDate);
+				//SchCPEInstallDate.click();
+				btnToday.get(0).click();
+				clickndRelease(ActualCompletionDate);
+				//ActualCompletionDate.click();
+				btnToday.get(1).click();
+				clickndRelease(SchIADDate);
+				btnToday.get(2).click();
+				clickndRelease(ActualIADDate);
+				btnToday.get(3).click();
+				this.ClickCompleteButton();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
 	
 	
-	public void ClickBackButton(){
-		if(waitForElement(btnBack)){
-			btnBack.click();
+	public boolean ClickBackButton(){
+		try{
+			if(waitForElement(btnBack)){
+				btnBack.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickSaveButton(){
-		if(waitForElement(btnSave)){
-			btnSave.click();
+	public boolean ClickSaveButton(){
+		try{
+			if(waitForElement(btnSave)){
+				btnSave.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickCompleteButton(){
-		if(waitForElement(btnComplete)){
-			btnComplete.click();
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Complete InstallCPE Task", " InstallCPE Task Completed");
+	public boolean ClickCompleteButton(){
+		try{
+			if(waitForElement(btnComplete)){
+				btnComplete.click();
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Complete InstallCPE Task", " InstallCPE Task Completed");
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 		
 	}
 

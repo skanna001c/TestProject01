@@ -3042,7 +3042,7 @@ public abstract class Page {
 		 
 		 public void iterateThroughtableAndSelectCity(String city) throws InterruptedException{
 			 int rowId=-1;
-			 
+			 waitforPageLoadComplete();
 			 while(!isElementPresent(browser.findElement(By.tagName("tbody")))){
 				 Thread.sleep(2000);
 			 }

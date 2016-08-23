@@ -60,102 +60,160 @@ public class BGPTasks extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
+	private boolean mstatus;
 	
-	public void assignDesignBGP() throws InterruptedException{
-		if(waitForElement(taskAssignDesignBGP)){
-			if(checkifStatusChanged(taskAssignDesignBGP,btnRefresh,"INPROGRESS")){
-			waitForElement(taskAssignDesignBGP);	
-			jsClick(taskAssignDesignBGP);
+	public boolean assignDesignBGP() throws InterruptedException{
+		mstatus= true;
+		try{
+			if(waitForElement(taskAssignDesignBGP)){
+				if(checkifStatusChanged(taskAssignDesignBGP,btnRefresh,"INPROGRESS")){
+				waitForElement(taskAssignDesignBGP);	
+				jsClick(taskAssignDesignBGP);
+				}
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Click assignDesignBGP Task", " assignDesignBGP Task Clicked");
 			}
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Click assignDesignBGP Task", " assignDesignBGP Task Clicked");
 		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
 	
-	public void genearteCPEConfigs() throws InterruptedException{
-		if(waitForElement(taskGenearteCPEConfigs)){
-			if(checkifStatusChanged(taskGenearteCPEConfigs,btnRefresh,"INPROGRESS")){
-			waitForElement(taskGenearteCPEConfigs);	
-			jsClick(taskGenearteCPEConfigs);
+	public boolean genearteCPEConfigs() throws InterruptedException{
+		mstatus = true;
+		try{				
+			if(waitForElement(taskGenearteCPEConfigs)){
+				if(checkifStatusChanged(taskGenearteCPEConfigs,btnRefresh,"INPROGRESS")){
+				waitForElement(taskGenearteCPEConfigs);	
+				jsClick(taskGenearteCPEConfigs);
+				}
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Click genearteCPEConfigs Task", " genearteCPEConfigs Task Clicked");
 			}
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Click genearteCPEConfigs Task", " genearteCPEConfigs Task Clicked");
 		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
 	
-	public void setCriticalDates() throws InterruptedException{
-		if(waitForElement(taskSetCriticalDates)){
-			if(checkifStatusChanged(taskSetCriticalDates,btnRefresh,"INPROGRESS")){
-			waitForElement(taskSetCriticalDates);	
-			jsClick(taskSetCriticalDates);
+	public boolean setCriticalDates() throws InterruptedException{
+		mstatus = true;
+		try{
+			if(waitForElement(taskSetCriticalDates)){
+				if(checkifStatusChanged(taskSetCriticalDates,btnRefresh,"INPROGRESS")){
+				waitForElement(taskSetCriticalDates);	
+				jsClick(taskSetCriticalDates);
+				}
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Click setCriticalDates Task", " setCriticalDates Task Clicked");
 			}
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Click setCriticalDates Task", " setCriticalDates Task Clicked");
 		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void dayOfConfigs() throws InterruptedException{
-		if(waitForElement(taskDayOfConfigs)){
-			if(checkifStatusChanged(taskDayOfConfigs,btnRefresh,"INPROGRESS")){
-			waitForElement(taskDayOfConfigs);	
-			jsClick(taskDayOfConfigs);
+	public boolean dayOfConfigs() throws InterruptedException{
+		mstatus = true;
+		try{
+			if(waitForElement(taskDayOfConfigs)){
+				if(checkifStatusChanged(taskDayOfConfigs,btnRefresh,"INPROGRESS")){
+				waitForElement(taskDayOfConfigs);	
+				jsClick(taskDayOfConfigs);
+				}
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Click dayOfConfigs Task", " dayOfConfigs Task Clicked");
 			}
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Click dayOfConfigs Task", " dayOfConfigs Task Clicked");
 		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void notifyCustomerOfSI() throws InterruptedException{
-		if(waitForElement(taskNotifyCustomerOfSI)){
-			if(checkifStatusChanged(taskNotifyCustomerOfSI,btnRefresh,"INPROGRESS")){
-			waitForElement(taskNotifyCustomerOfSI);	
-			jsClick(taskNotifyCustomerOfSI);
+	public boolean notifyCustomerOfSI() throws InterruptedException{
+		mstatus = true;
+		try{
+			if(waitForElement(taskNotifyCustomerOfSI)){
+				if(checkifStatusChanged(taskNotifyCustomerOfSI,btnRefresh,"INPROGRESS")){
+				waitForElement(taskNotifyCustomerOfSI);	
+				jsClick(taskNotifyCustomerOfSI);
+				}
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Click notifyCustomerOfSI Task", " notifyCustomerOfSI Task Clicked");
 			}
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Click notifyCustomerOfSI Task", " notifyCustomerOfSI Task Clicked");
 		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void createOrderBillingPackage() throws InterruptedException{
-		if(waitForElement(taskCreateOrderBillingPackage)){
-			if(checkifStatusChanged(taskCreateOrderBillingPackage,btnRefresh,"INPROGRESS")){
-			waitForElement(taskCreateOrderBillingPackage);	
-			jsClick(taskCreateOrderBillingPackage);
+	public boolean createOrderBillingPackage() throws InterruptedException{
+		mstatus = true;
+		try{
+			if(waitForElement(taskCreateOrderBillingPackage)){
+				if(checkifStatusChanged(taskCreateOrderBillingPackage,btnRefresh,"INPROGRESS")){
+				waitForElement(taskCreateOrderBillingPackage);	
+				jsClick(taskCreateOrderBillingPackage);
+				}
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Click createOrderBillingPackage Task", " createOrderBillingPackage Task Clicked");
 			}
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Click createOrderBillingPackage Task", " createOrderBillingPackage Task Clicked");
 		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void startBilling() throws InterruptedException{
-		if(waitForElement(taskStartBilling)){
-			if(checkifStatusChanged(taskStartBilling,btnRefresh,"COMPLETED")){
-			waitForElement(taskStartBilling);	
-			//jsClick(taskStartBilling);
+	public boolean startBilling() throws InterruptedException{
+		mstatus = true;
+		try{				
+			if(waitForElement(taskStartBilling)){
+				if(checkifStatusChanged(taskStartBilling,btnRefresh,"COMPLETED")){
+				waitForElement(taskStartBilling);	
+				//jsClick(taskStartBilling);
+				}
+				//waitforPageLoadComplete();
+				report.reportDoneEvent("Complete startBilling Task", " startBilling Task auto completed");
 			}
-			//waitforPageLoadComplete();
-			report.reportDoneEvent("Complete startBilling Task", " startBilling Task auto completed");
+		}	
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;
 		}
+		return mstatus;
 	}
 	
 	
-	public void ClickBackButton() throws InterruptedException{
-		if(waitForElement(btnBack)){
-			clickndRelease(btnBack);
-			//btnBack.click();
-			waitforPageLoadComplete();
-			waitForElementDisappear(elementLoading);
-			report.updateTestLog("Validate", "BGP Flow Completed", Status.SCREENSHOT);
+	public boolean ClickBackButton() throws InterruptedException{
+		mstatus = true;
+		try{
+			if(waitForElement(btnBack)){
+				clickndRelease(btnBack);
+				//btnBack.click();
+				waitforPageLoadComplete();
+				waitForElementDisappear(elementLoading);
+				report.updateTestLog("Validate", "BGP Flow Completed", Status.SCREENSHOT);
+			}
 		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;
+		}
+		return mstatus;
 	}
-	
-	
-	
-	
-	
-	
-	
 
 }

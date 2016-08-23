@@ -44,32 +44,66 @@ public class BULBATaskPage extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
-	public void BULBA(ServiceLevelTaskInfo serviceLevelTaskInfo){
-		if(waitForElement(txtLBCustomerAccountNumber)){
-			txtLBCustomerAccountNumber.sendKeys(serviceLevelTaskInfo.localBillerCustomerAccountNumber);
-			this.ClickCompleteButton();
+	private boolean mstatus;
+	
+	public boolean BULBA(ServiceLevelTaskInfo serviceLevelTaskInfo){
+		mstatus = true;
+		try{
+			if(waitForElement(txtLBCustomerAccountNumber)){
+				txtLBCustomerAccountNumber.sendKeys(serviceLevelTaskInfo.localBillerCustomerAccountNumber);
+				this.ClickCompleteButton();
+			}
 		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;			
+		}
+		return mstatus;
 	}
 	
-	public void ClickBackButton(){
-		if(waitForElement(btnBack)){
-			btnBack.click();
+	public boolean ClickBackButton(){
+		mstatus = true;
+		try{
+			if(waitForElement(btnBack)){
+				btnBack.click();
+			}
 		}
-	}
-	
-	public void ClickSaveButton(){
-		if(waitForElement(btnSave)){
-			btnSave.click();
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;			
 		}
-	}
-	
-	public void ClickCompleteButton(){
-		if(waitForElement(btnComplete)){
-			btnComplete.click();
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Complete BULBA Task", " BULBA Task Completed");
-		}
+		return mstatus;
 		
+	}
+	
+	public boolean ClickSaveButton(){
+		mstatus = true;
+		try{
+			if(waitForElement(btnSave)){
+				btnSave.click();
+			}
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;			
+		}
+		return mstatus;
+	}
+	
+	public boolean ClickCompleteButton(){
+		mstatus = true;
+		try{	
+			if(waitForElement(btnComplete)){
+				btnComplete.click();
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Complete BULBA Task", " BULBA Task Completed");
+			}
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;			
+		}
+		return mstatus;
 	}
 
 }

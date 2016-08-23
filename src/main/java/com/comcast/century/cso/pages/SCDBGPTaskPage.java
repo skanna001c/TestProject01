@@ -55,26 +55,42 @@ public class SCDBGPTaskPage extends Page {
 	@FindBy(xpath = "//button[text()='Today']")
 	private List<WebElement> btnToday ;
 	
-	public void setCriticalDates(){
-		if(waitForElement(cpeInstallDate)){
-			cpeInstallDate.click();
-			btnToday.get(0).click();
-			CustomerNotificationDate.click();
-			btnToday.get(1).click();
-			focDate.click();
-			btnToday.get(2).click();
-			this.ClickCompleteButton();
+	private boolean mstatus=true;
+	
+	public boolean setCriticalDates(){
+		try{
+			if(waitForElement(cpeInstallDate)){
+				cpeInstallDate.click();
+				btnToday.get(0).click();
+				CustomerNotificationDate.click();
+				btnToday.get(1).click();
+				focDate.click();
+				btnToday.get(2).click();
+				this.ClickCompleteButton();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
 	
 	
-	public void ClickCompleteButton(){
-		if(waitForElement(btnComplete)){
-			btnComplete.click();
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Complete SetCriticalDates Task", " SetCriticalDates Task Completed");
+	public boolean ClickCompleteButton(){
+		try{
+			if(waitForElement(btnComplete)){
+				btnComplete.click();
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Complete SetCriticalDates Task", " SetCriticalDates Task Completed");
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 		
 	}
 

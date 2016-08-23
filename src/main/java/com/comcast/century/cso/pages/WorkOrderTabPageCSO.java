@@ -138,68 +138,89 @@ public class WorkOrderTabPageCSO extends Page {
 	@FindBy(xpath = "//*[@value='Ok']")
 	private WebElement ButtonOk ;
 	
-	
+	private boolean mstatus=true;
 
-	public void SearchForOrderInSO(String SRID){
-		//WaitandSwitchToFrame(fra)
-		waitforPageLoadComplete();
-	    waitForElement(btnExpand);
-		btnExpand.click();
-		btnExpandOrderSearch.click();
-		LinkServiceOrder.click();
-		waitforPageLoadComplete();
-		WaitandSwitchToFrame(frameRight);
-		waitForElementDisappear(elementLoading);
-		if(waitForElement(txtSrId)){
-			System.out.println("Search box present");
-			txtSrId.sendKeys(SRID);		
-		}
-		if(waitForElement(linkAdvancedSearch)){
-			linkAdvancedSearch.click();
+	public boolean SearchForOrderInSO(String SRID){
+		try{
+			//WaitandSwitchToFrame(fra)
 			waitforPageLoadComplete();
-			WaitandSwitchToFrame(frameSOAdvancedSearch);
-			waitForElement(btnSearchAdvancedSearch);
-			btnSearchAdvancedSearch.click();
-			browser.switchTo().defaultContent();
+		    waitForElement(btnExpand);
+			btnExpand.click();
+			btnExpandOrderSearch.click();
+			LinkServiceOrder.click();
+			waitforPageLoadComplete();
+			WaitandSwitchToFrame(frameRight);
 			waitForElementDisappear(elementLoading);
-			report.updateTestLog("Search for Order", "Order Searched Successfully", Status.SCREENSHOT);
+			if(waitForElement(txtSrId)){
+				System.out.println("Search box present");
+				txtSrId.sendKeys(SRID);		
+			}
+			if(waitForElement(linkAdvancedSearch)){
+				linkAdvancedSearch.click();
+				waitforPageLoadComplete();
+				WaitandSwitchToFrame(frameSOAdvancedSearch);
+				waitForElement(btnSearchAdvancedSearch);
+				btnSearchAdvancedSearch.click();
+				browser.switchTo().defaultContent();
+				waitForElementDisappear(elementLoading);
+				report.updateTestLog("Search for Order", "Order Searched Successfully", Status.SCREENSHOT);
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
  }
 	
-	public void SearchForOrderInPostSales(String SRID){
-		waitforPageLoadComplete();
-		waitForElement(btnExpandWorklist);
-		btnExpandWorklist.click();
-		LinkPostSalesWorklist.click();
-		waitforPageLoadComplete();
-		WaitandSwitchToFrame(frameRight);
-		waitForElementDisappear(elementLoading);
-		if(waitForElement(txtPostSalesSrId)){
-			txtPostSalesSrId.sendKeys(SRID);
-		}
-		if(waitForElement(linkAdvancedSearchWL)){
-			linkAdvancedSearchWL.click();
+	public boolean SearchForOrderInPostSales(String SRID){
+		try{
 			waitforPageLoadComplete();
-			WaitandSwitchToFrame(frameWLAdvancedSearch);
-			waitForElement(btnSearchAdvancedSearch);
-			btnSearchAdvancedSearch.click();
-			browser.switchTo().defaultContent();
+			waitForElement(btnExpandWorklist);
+			btnExpandWorklist.click();
+			LinkPostSalesWorklist.click();
+			waitforPageLoadComplete();
+			WaitandSwitchToFrame(frameRight);
 			waitForElementDisappear(elementLoading);
-			report.updateTestLog("Search for Order", "Order Searched Successfully", Status.SCREENSHOT);
+			if(waitForElement(txtPostSalesSrId)){
+				txtPostSalesSrId.sendKeys(SRID);
+			}
+			if(waitForElement(linkAdvancedSearchWL)){
+				linkAdvancedSearchWL.click();
+				waitforPageLoadComplete();
+				WaitandSwitchToFrame(frameWLAdvancedSearch);
+				waitForElement(btnSearchAdvancedSearch);
+				btnSearchAdvancedSearch.click();
+				browser.switchTo().defaultContent();
+				waitForElementDisappear(elementLoading);
+				report.updateTestLog("Search for Order", "Order Searched Successfully", Status.SCREENSHOT);
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 			
-	public void ClickFirstSiteFlow(){
-		WaitandSwitchToFrame(frameRight);
-		/*if(waitForElement(linkSiteFlow.get(0))){
-			linkSiteFlow.get(0).click();
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Click on Site level flow", "Site level flow Clicked");
-		}*/
+	public boolean ClickFirstSiteFlow(){
+		try{
+			WaitandSwitchToFrame(frameRight);
+			/*if(waitForElement(linkSiteFlow.get(0))){
+				linkSiteFlow.get(0).click();
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Click on Site level flow", "Site level flow Clicked");
+			}*/
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
 	
-	public void ClickSecondSiteFlow(){
+	public boolean ClickSecondSiteFlow(){
 		try{
 			if(waitForElement(linkSiteFlow.get(1))){
 				linkSiteFlow.get(0).sendKeys(Keys.chord(Keys.CONTROL,Keys.END ));
@@ -209,63 +230,100 @@ public class WorkOrderTabPageCSO extends Page {
 			}
 		}catch(Exception e){
 			System.out.println(e.getMessage());
+			mstatus = false;
 		}
+		return mstatus;
 			
 	}
 	
-	public void ClickEDIFlow() throws InterruptedException{
-		if(waitForElement(linkEDIFlow)){
-			//linkEDIFlow.click();
-			clickndRelease(linkEDIFlow);
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Click on Service level flow", "Service level flow Clicked");
+	public boolean ClickEDIFlow() throws InterruptedException{
+		try{
+			if(waitForElement(linkEDIFlow)){
+				//linkEDIFlow.click();
+				clickndRelease(linkEDIFlow);
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Click on Service level flow", "Service level flow Clicked");
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
 	
-	public void ClickEPLFlow() throws InterruptedException{
-		
-		if(waitForElement(linkEPLFlow)){
-			//linkEDIFlow.click();
-			clickndRelease(linkEPLFlow);
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Click on Service level flow", "Service level flow Clicked");
+	public boolean ClickEPLFlow() throws InterruptedException{
+		try{
+			if(waitForElement(linkEPLFlow)){
+				//linkEDIFlow.click();
+				clickndRelease(linkEPLFlow);
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Click on Service level flow", "Service level flow Clicked");
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickEquipmentFeeFlow() throws InterruptedException{
-		if(waitForElement(linkEquipmentFeeFlow)){
-			clickndRelease(linkEquipmentFeeFlow);
-			//linkEquipmentFeeFlow.click();
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Click on Equipment Fee flow", "Equipment Fee flow Clicked");
+	public boolean ClickEquipmentFeeFlow() throws InterruptedException{
+		try{
+			if(waitForElement(linkEquipmentFeeFlow)){
+				clickndRelease(linkEquipmentFeeFlow);
+				//linkEquipmentFeeFlow.click();
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Click on Equipment Fee flow", "Equipment Fee flow Clicked");
+			}
 		}
-	}
-	
-	
-	public void ClickBGPFlow() throws InterruptedException{
-		if(waitForElement(linkBGPFlow)){
-			clickndRelease(linkBGPFlow);
-			//linkEquipmentFeeFlow.click();
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Click on BGP flow", "BGP flow Clicked");
+		catch(Exception ex)
+		{
+			mstatus = false;
 		}
-	}
-	
-	public void ClickTrunkPRIFlow() throws InterruptedException{
-		if(waitForElement(linkTrunkPRIFlow)){
-			clickndRelease(linkTrunkPRIFlow);
-			//linkEquipmentFeeFlow.click();
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Click on PRI flow", "PRI flow Clicked");
-		}
+		return mstatus;
 	}
 	
 	
+	public boolean ClickBGPFlow() throws InterruptedException{
+		try{
+			if(waitForElement(linkBGPFlow)){
+				clickndRelease(linkBGPFlow);
+				//linkEquipmentFeeFlow.click();
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Click on BGP flow", "BGP flow Clicked");
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
 	
-	public void SearchForSurveyInPreSales(String SurveyID){
-		   waitforPageLoadComplete();
-		   waitForElement(btnExpand);
+	public boolean ClickTrunkPRIFlow() throws InterruptedException{
+		try{
+			if(waitForElement(linkTrunkPRIFlow)){
+				clickndRelease(linkTrunkPRIFlow);
+				//linkEquipmentFeeFlow.click();
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Click on PRI flow", "PRI flow Clicked");
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	
+	
+	public boolean SearchForSurveyInPreSales(String SurveyID){
+		try{
+		    waitforPageLoadComplete();
+		    waitForElement(btnExpand);
 			btnExpand.click();
 			waitForElement(LinkPreSalesWorklist);
 			LinkPreSalesWorklist.click();
@@ -286,11 +344,24 @@ public class WorkOrderTabPageCSO extends Page {
 				report.updateTestLog("Search for Order", "Order Searched Successfully", Status.SCREENSHOT);
 			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+		}
 	
-	public void ClickAllTask(){
-		WaitandSwitchToFrame(frameRight);
-		waitForElement(radioButtonAllTask);
-		radioButtonAllTask.click();
-		waitForElementDisappear(elementLoading);
+	public boolean ClickAllTask(){
+		try{
+			WaitandSwitchToFrame(frameRight);
+			waitForElement(radioButtonAllTask);
+			radioButtonAllTask.click();
+			waitForElementDisappear(elementLoading);
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 }

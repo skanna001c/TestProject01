@@ -61,42 +61,72 @@ public class ObtainFiberPlantPermitsTaskPage extends Page {
 	@FindBy(xpath = "//button[text()='Yes']")
 	private WebElement btnYes ;
 	
-	public void ObtainFiberPlantPermits(){
-		waitForElementDisappear(elementLoading);
-		scrollDown();
-		if(waitForElement(ddPermitType)){
-			new Select(ddPermitType).selectByVisibleText("Zoning");
-			PermitAppliedDate.click();
-			btnToday.get(0).click();
-			PermitActualApprovedDate.click();
-			btnToday.get(1).click();
-			this.ClickCompleteButton();
-			
+	private boolean mstatus=true;
+	
+	public boolean ObtainFiberPlantPermits(){
+		try{
+			waitForElementDisappear(elementLoading);
+			scrollDown();
+			if(waitForElement(ddPermitType)){
+				new Select(ddPermitType).selectByVisibleText("Zoning");
+				PermitAppliedDate.click();
+				btnToday.get(0).click();
+				PermitActualApprovedDate.click();
+				btnToday.get(1).click();
+				this.ClickCompleteButton();
+				
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
 	
-	public void ClickBackButton(){
-		if(waitForElement(btnBack)){
-			btnBack.click();
+	public boolean ClickBackButton(){
+		try{
+			if(waitForElement(btnBack)){
+				btnBack.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickSaveButton(){
-		if(waitForElement(btnSave)){
-			btnSave.click();
+	public boolean ClickSaveButton(){
+		try{
+			if(waitForElement(btnSave)){
+				btnSave.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickCompleteButton(){
-		if(waitForElement(btnComplete)){
-			btnComplete.click();
-			waitforPageLoadComplete();
-			waitForElement(btnYes);
-			btnYes.click();
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Complete ObtainFiberPlantPermits Task", " ObtainFiberPlantPermits Task Completed");
+	public boolean ClickCompleteButton(){
+		try{
+			if(waitForElement(btnComplete)){
+				btnComplete.click();
+				waitforPageLoadComplete();
+				waitForElement(btnYes);
+				btnYes.click();
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Complete ObtainFiberPlantPermits Task", " ObtainFiberPlantPermits Task Completed");
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 		
 	}
 	

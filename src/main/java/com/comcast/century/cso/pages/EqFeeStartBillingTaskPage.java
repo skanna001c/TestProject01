@@ -46,33 +46,63 @@ public class EqFeeStartBillingTaskPage extends Page {
 	@FindBy(xpath = "//button[text()='Today']")
 	private WebElement btnToday ;
 	
-	public void EqFeeStartBilling() throws InterruptedException{
-		if(waitForElement(actualBillingStartDate)){
-			clickndRelease(actualBillingStartDate);
-			clickndRelease(btnToday);
-			this.ClickCompleteButton();
+	private boolean mstatus = true;
+	
+	public boolean EqFeeStartBilling() throws InterruptedException{
+		try{
+			if(waitForElement(actualBillingStartDate)){
+				clickndRelease(actualBillingStartDate);
+				clickndRelease(btnToday);
+				this.ClickCompleteButton();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickBackButton(){
-		if(waitForElement(btnBack)){
-			btnBack.click();
+	public boolean ClickBackButton(){
+		try{
+			if(waitForElement(btnBack)){
+				btnBack.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickSaveButton(){
-		if(waitForElement(btnSave)){
-			btnSave.click();
+	public boolean ClickSaveButton(){
+		try{
+			if(waitForElement(btnSave)){
+				btnSave.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickCompleteButton(){
-		if(waitForElement(btnComplete)){
-			btnComplete.click();
-			waitforPageLoadComplete();
-			waitForElementDisappear(elementLoading);
-			report.reportDoneEvent("Complete EqFeeStartBilling Task", " EqFeeStartBilling Task Completed");
+	public boolean ClickCompleteButton(){
+		try{
+			if(waitForElement(btnComplete)){
+				btnComplete.click();
+				waitforPageLoadComplete();
+				waitForElementDisappear(elementLoading);
+				report.reportDoneEvent("Complete EqFeeStartBilling Task", " EqFeeStartBilling Task Completed");
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;		
 		
 	}
 

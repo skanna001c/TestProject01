@@ -45,34 +45,62 @@ public class CompleteFiberPlantBuildTaskPage extends Page {
 	@FindBy(xpath = "//*[@id='RightFrame' and contains(@src,'MyOrder.exc')]")
 	private WebElement frameRight;
 
+	private boolean mstatus=true;
 	
-	
-	public void ClickBackButton(){
-		if(waitForElement(btnBack)){
-			btnBack.click();
+	public boolean ClickBackButton(){
+		try{
+			if(waitForElement(btnBack)){
+				btnBack.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickSaveButton(){
-		if(waitForElement(btnSave)){
-			btnSave.click();
+	public boolean ClickSaveButton(){
+		try{
+			if(waitForElement(btnSave)){
+				btnSave.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickCompleteButton(){
-		if(waitForElement(btnComplete)){
-			windowHandle=browser.getWindowHandle();
-			System.out.println("main windowHandle" +windowHandle);
-			btnComplete.click();
-			waitforPageLoadComplete();
-			//closeAllOtherWindows(windowHandle);
-			report.reportDoneEvent("Complete CompleteFiberPlantBuild Task", " CompleteFiberPlantBuild Task Completed");
+	public boolean ClickCompleteButton(){
+		try{
+			if(waitForElement(btnComplete)){
+				windowHandle=browser.getWindowHandle();
+				System.out.println("main windowHandle" +windowHandle);
+				btnComplete.click();
+				waitforPageLoadComplete();
+				//closeAllOtherWindows(windowHandle);
+				report.reportDoneEvent("Complete CompleteFiberPlantBuild Task", " CompleteFiberPlantBuild Task Completed");
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void closePopup() throws InterruptedException
-	{
-		ClosePopUpndSwitchtoFrame(windowHandle,frameRight);
+	public boolean closePopup() throws InterruptedException
+	{	
+		try{
+			ClosePopUpndSwitchtoFrame(windowHandle,frameRight);
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
 

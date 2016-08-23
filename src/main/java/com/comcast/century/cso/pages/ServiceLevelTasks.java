@@ -97,251 +97,405 @@ public class ServiceLevelTasks extends Page {
 	/*@FindBy(xpath = "//*[text()='Start Billing']")
 	private WebElement taskEqFeeStartBilling;*/
 	
+	private boolean mstatus=true;
 	
 	
-	
-	public void ClickRefreshButton() throws InterruptedException{
-		if(waitForElement(btnRefresh)){
-			clickndRelease(btnRefresh);
-		}
-	}
-	
-	public void BULBA() throws InterruptedException{
-		if(waitForElement(taskBULBA.get(0))){
-			if(checkifStatusChanged(taskBULBA.get(0),btnRefresh,"INPROGRESS")){
-			taskBULBA.get(0).click();
-			report.reportDoneEvent("Click BULBA Task", " BULBA Task Clicked");
+	public boolean ClickRefreshButton() throws InterruptedException{
+		try{
+			if(waitForElement(btnRefresh)){
+				clickndRelease(btnRefresh);
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void BULBA2() throws InterruptedException{
-		if(waitForElement(taskBULBA2)){
-			taskBULBA2.click();
-			waitforPageLoadComplete();
-		}
-	}
-	
-	
-	public void ShipCPE() throws InterruptedException{
-		if(waitForElement(taskShipCPE)){
-			if(checkifStatusChanged(taskShipCPE,btnRefresh,"INPROGRESS")){
-				waitForElement(taskShipCPE);
-				jsClick(taskShipCPE);
-				report.reportDoneEvent("Click ShipCPE Task", " ShipCPE Task Clicked");
-			//taskShipCPE.click();
+	public boolean BULBA() throws InterruptedException{
+		try{
+			if(waitForElement(taskBULBA.get(0))){
+				if(checkifStatusChanged(taskBULBA.get(0),btnRefresh,"INPROGRESS")){
+				taskBULBA.get(0).click();
+				report.reportDoneEvent("Click BULBA Task", " BULBA Task Clicked");
+				}
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void CAE() throws InterruptedException{
-		if(waitForElement(taskCAE)){
-			if(checkifStatusChanged(taskCAE,btnRefresh,"INPROGRESS")){
-				waitForElement(taskCAE);
-				jsClick(taskCAE);
-				report.reportDoneEvent("Click CAE Task", " CAE Task Clicked");
-			//taskCAE.click();
+	public boolean BULBA2() throws InterruptedException{
+		try{
+			if(waitForElement(taskBULBA2)){
+				taskBULBA2.click();
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ADI() throws InterruptedException{
-		if(waitForElement(taskADI)){
-			if(checkifStatusChanged(taskADI,btnRefresh,"INPROGRESS")){
-				waitForElement(taskADI);
-				jsClick(taskADI);
-				report.reportDoneEvent("Click ADI Task", " ADI Task Clicked");
-			//taskADI.click();
+	
+	public boolean ShipCPE() throws InterruptedException{
+		try{
+			if(waitForElement(taskShipCPE)){
+				if(checkifStatusChanged(taskShipCPE,btnRefresh,"INPROGRESS")){
+					waitForElement(taskShipCPE);
+					jsClick(taskShipCPE);
+					report.reportDoneEvent("Click ShipCPE Task", " ShipCPE Task Clicked");
+				//taskShipCPE.click();
+				}
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void GenerateCoreConfigs() throws InterruptedException{
-		if(waitForElement(taskGenerateCoreConfigs)){
-			if(checkifStatusChanged(taskGenerateCoreConfigs,btnRefresh,"INPROGRESS")){
-				waitForElement(taskGenerateCoreConfigs);
-				jsClick(taskGenerateCoreConfigs);
-				report.reportDoneEvent("Click GenerateCoreConfigs Task", " GenerateCoreConfigs Task Clicked");
-			//taskGenerateCoreConfigs.click();
+	public boolean CAE() throws InterruptedException{
+		try{
+			if(waitForElement(taskCAE)){
+				if(checkifStatusChanged(taskCAE,btnRefresh,"INPROGRESS")){
+					waitForElement(taskCAE);
+					jsClick(taskCAE);
+					report.reportDoneEvent("Click CAE Task", " CAE Task Clicked");
+				//taskCAE.click();
+				}
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void GenerateCPEConfigs() throws InterruptedException{
-		if(waitForElement(taskGenerateCPEConfigs)){
-			if(checkifStatusChanged(taskGenerateCPEConfigs,btnRefresh,"INPROGRESS")){
-				waitForElement(taskGenerateCPEConfigs);
-				jsClick(taskGenerateCPEConfigs);
-				report.reportDoneEvent("Click GenerateCPEConfigs Task", " GenerateCPEConfigs Task Clicked");
-			//taskGenerateCPEConfigs.click();
+	public boolean ADI() throws InterruptedException{
+		try{
+			if(waitForElement(taskADI)){
+				if(checkifStatusChanged(taskADI,btnRefresh,"INPROGRESS")){
+					waitForElement(taskADI);
+					jsClick(taskADI);
+					report.reportDoneEvent("Click ADI Task", " ADI Task Clicked");
+				//taskADI.click();
+				}
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void LoadCoreConfigs() throws InterruptedException{
-		if(waitForElement(taskLoadCoreConfigs)){
-			if(checkifStatusChanged(taskLoadCoreConfigs,btnRefresh,"INPROGRESS")){
-				waitForElement(taskLoadCoreConfigs);
-				jsClick(taskLoadCoreConfigs);
-				report.reportDoneEvent("Click LoadCoreConfigs Task", " LoadCoreConfigs Task Clicked");
-			//taskLoadCoreConfigs.click();
+	public boolean GenerateCoreConfigs() throws InterruptedException{
+		try{
+			if(waitForElement(taskGenerateCoreConfigs)){
+				if(checkifStatusChanged(taskGenerateCoreConfigs,btnRefresh,"INPROGRESS")){
+					waitForElement(taskGenerateCoreConfigs);
+					jsClick(taskGenerateCoreConfigs);
+					report.reportDoneEvent("Click GenerateCoreConfigs Task", " GenerateCoreConfigs Task Clicked");
+				//taskGenerateCoreConfigs.click();
+				}
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void InstallCPE() throws InterruptedException{
-		while(!isElementPresent(taskInstallCPE)){
-			Thread.sleep(1000);
-		}
-		if(waitForElement(taskInstallCPE)){
-			if(checkifStatusChanged(taskInstallCPE,btnRefresh,"INPROGRESS")){
-				waitForElement(taskInstallCPE);
-				jsClick(taskInstallCPE);
-				report.reportDoneEvent("Click InstallCPE Task", " InstallCPE Task Clicked");
-			//taskInstallCPE.click();
+	public boolean GenerateCPEConfigs() throws InterruptedException{
+		try{
+			if(waitForElement(taskGenerateCPEConfigs)){
+				if(checkifStatusChanged(taskGenerateCPEConfigs,btnRefresh,"INPROGRESS")){
+					waitForElement(taskGenerateCPEConfigs);
+					jsClick(taskGenerateCPEConfigs);
+					report.reportDoneEvent("Click GenerateCPEConfigs Task", " GenerateCPEConfigs Task Clicked");
+				//taskGenerateCPEConfigs.click();
+				}
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void InstallCPE2() throws InterruptedException{
-		if(waitForElement(taskInstallCPE2)){
-			taskInstallCPE2.click();
-			waitforPageLoadComplete();
-		}
-	}
-	
-	
-	public void SetCriticalDates() throws InterruptedException{
-		if(waitForElement(taskSetCriticalDates)){
-			if(checkifStatusChanged(taskSetCriticalDates,btnRefresh,"INPROGRESS")){
-				waitForElement(taskSetCriticalDates);
-				jsClick(taskSetCriticalDates);
-				report.reportDoneEvent("Click SetCriticalDates Task", " SetCriticalDates Task Clicked");
-			//taskSetCriticalDates.click();
+	public boolean LoadCoreConfigs() throws InterruptedException{
+		try{
+			if(waitForElement(taskLoadCoreConfigs)){
+				if(checkifStatusChanged(taskLoadCoreConfigs,btnRefresh,"INPROGRESS")){
+					waitForElement(taskLoadCoreConfigs);
+					jsClick(taskLoadCoreConfigs);
+					report.reportDoneEvent("Click LoadCoreConfigs Task", " LoadCoreConfigs Task Clicked");
+				//taskLoadCoreConfigs.click();
+				}
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void DayofConfigs() throws InterruptedException{
-		if(waitForElement(taskDayofConfigs)){
-			if(checkifStatusChanged(taskDayofConfigs,btnRefresh,"INPROGRESS")){
-				waitForElement(taskDayofConfigs);
-				jsClick(taskDayofConfigs);
-				report.reportDoneEvent("Click DayofConfigs Task", " DayofConfigs Task Clicked");
-			//taskDayofConfigs.click();
+	public boolean InstallCPE() throws InterruptedException{
+		try{
+			while(!isElementPresent(taskInstallCPE)){
+				Thread.sleep(1000);
 			}
-			waitforPageLoadComplete();
+			if(waitForElement(taskInstallCPE)){
+				if(checkifStatusChanged(taskInstallCPE,btnRefresh,"INPROGRESS")){
+					waitForElement(taskInstallCPE);
+					jsClick(taskInstallCPE);
+					report.reportDoneEvent("Click InstallCPE Task", " InstallCPE Task Clicked");
+				//taskInstallCPE.click();
+				}
+				waitforPageLoadComplete();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ActivateService() throws InterruptedException{
-		if(waitForElement(taskActivateService)){
-			if(checkifStatusChanged(taskActivateService,btnRefresh,"INPROGRESS")){
-				waitForElement(taskActivateService);
-				jsClick(taskActivateService);
-				report.reportDoneEvent("Click ActivateService Task", " ActivateService Task Clicked");
-			//taskActivateService.click();
+	public boolean InstallCPE2() throws InterruptedException{
+		try{
+			if(waitForElement(taskInstallCPE2)){
+				taskInstallCPE2.click();
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void NotifyCustomerofServiceInstallation() throws InterruptedException{
-		if(waitForElement(taskNotifyCustomerofServiceInstallation)){
-			if(checkifStatusChanged(taskNotifyCustomerofServiceInstallation,btnRefresh,"INPROGRESS")){
-				waitForElement(taskNotifyCustomerofServiceInstallation);
-				jsClick(taskNotifyCustomerofServiceInstallation);
-				report.reportDoneEvent("Click NotifyCustomerofServiceInstallation Task", " NotifyCustomerofServiceInstallation Task Clicked");
-			//taskNotifyCustomerofServiceInstallation.click();
+	
+	public boolean SetCriticalDates() throws InterruptedException{
+		try{
+			if(waitForElement(taskSetCriticalDates)){
+				if(checkifStatusChanged(taskSetCriticalDates,btnRefresh,"INPROGRESS")){
+					waitForElement(taskSetCriticalDates);
+					jsClick(taskSetCriticalDates);
+					report.reportDoneEvent("Click SetCriticalDates Task", " SetCriticalDates Task Clicked");
+				//taskSetCriticalDates.click();
+				}
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void CCAT() throws InterruptedException{
-		if(waitForElement(taskCCAT)){
-			if(checkifStatusChanged(taskCCAT,btnRefresh,"INPROGRESS")){
-				waitForElement(taskCCAT);
-				jsClick(taskCCAT);
-				report.reportDoneEvent("Click CCAT Task", " CCAT Task Clicked");
-			//taskCCAT.click();
+	public boolean DayofConfigs() throws InterruptedException{
+		try{
+			if(waitForElement(taskDayofConfigs)){
+				if(checkifStatusChanged(taskDayofConfigs,btnRefresh,"INPROGRESS")){
+					waitForElement(taskDayofConfigs);
+					jsClick(taskDayofConfigs);
+					report.reportDoneEvent("Click DayofConfigs Task", " DayofConfigs Task Clicked");
+				//taskDayofConfigs.click();
+				}
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void CreateOrderBillingPackage() throws InterruptedException{
-		if(waitForElement(taskCreateOrderBillingPackage)){
-			if(checkifStatusChanged(taskCreateOrderBillingPackage,btnRefresh,"INPROGRESS")){
-				waitForElement(taskCreateOrderBillingPackage);
-				jsClick(taskCreateOrderBillingPackage);
-				report.reportDoneEvent("Click CreateOrderBillingPackage Task", " CreateOrderBillingPackage Task Clicked");
-			//taskCreateOrderBillingPackage.click();
+	public boolean ActivateService() throws InterruptedException{
+		try{
+			if(waitForElement(taskActivateService)){
+				if(checkifStatusChanged(taskActivateService,btnRefresh,"INPROGRESS")){
+					waitForElement(taskActivateService);
+					jsClick(taskActivateService);
+					report.reportDoneEvent("Click ActivateService Task", " ActivateService Task Clicked");
+				//taskActivateService.click();
+				}
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void StartBilling() throws InterruptedException{
-		if(waitForElement(taskStartBilling)){
-			if(checkifStatusChanged(taskStartBilling,btnRefresh,"COMPLETED")){
-				waitForElement(taskStartBilling);
-				jsClick(taskStartBilling);
-				report.reportDoneEvent("Complete StartBilling Task", " StartBilling Task auto completed");
+	public boolean NotifyCustomerofServiceInstallation() throws InterruptedException{
+		try{
+			if(waitForElement(taskNotifyCustomerofServiceInstallation)){
+				if(checkifStatusChanged(taskNotifyCustomerofServiceInstallation,btnRefresh,"INPROGRESS")){
+					waitForElement(taskNotifyCustomerofServiceInstallation);
+					jsClick(taskNotifyCustomerofServiceInstallation);
+					report.reportDoneEvent("Click NotifyCustomerofServiceInstallation Task", " NotifyCustomerofServiceInstallation Task Clicked");
+				//taskNotifyCustomerofServiceInstallation.click();
+				}
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	/*public void EqFeeStartBilling() throws InterruptedException{
-		if(waitForElement(taskEqFeeStartBilling)){
-			if(checkifStatusChanged(taskEqFeeStartBilling,btnRefresh,"INPROGRESS")){
-				waitForElement(taskEqFeeStartBilling);
-				Thread.sleep(10*1000);
-				jsClick(taskEqFeeStartBilling);
-				report.reportDoneEvent("Click EqFeeStartBilling Task", " EqFeeStartBilling Task Clicked");
+	public boolean CCAT() throws InterruptedException{
+		try{
+			if(waitForElement(taskCCAT)){
+				if(checkifStatusChanged(taskCCAT,btnRefresh,"INPROGRESS")){
+					waitForElement(taskCCAT);
+					jsClick(taskCCAT);
+					report.reportDoneEvent("Click CCAT Task", " CCAT Task Clicked");
+				//taskCCAT.click();
+				}
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	public boolean CreateOrderBillingPackage() throws InterruptedException{
+		try{
+			if(waitForElement(taskCreateOrderBillingPackage)){
+				if(checkifStatusChanged(taskCreateOrderBillingPackage,btnRefresh,"INPROGRESS")){
+					waitForElement(taskCreateOrderBillingPackage);
+					jsClick(taskCreateOrderBillingPackage);
+					report.reportDoneEvent("Click CreateOrderBillingPackage Task", " CreateOrderBillingPackage Task Clicked");
+				//taskCreateOrderBillingPackage.click();
+				}
+				waitforPageLoadComplete();
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	public boolean StartBilling() throws InterruptedException{
+		try{
+			if(waitForElement(taskStartBilling)){
+				if(checkifStatusChanged(taskStartBilling,btnRefresh,"COMPLETED")){
+					waitForElement(taskStartBilling);
+					jsClick(taskStartBilling);
+					report.reportDoneEvent("Complete StartBilling Task", " StartBilling Task auto completed");
+				}
+				waitforPageLoadComplete();
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	/*public boolean EqFeeStartBilling() throws InterruptedException{
+	 * try{
+			if(waitForElement(taskEqFeeStartBilling)){
+				if(checkifStatusChanged(taskEqFeeStartBilling,btnRefresh,"INPROGRESS")){
+					waitForElement(taskEqFeeStartBilling);
+					Thread.sleep(10*1000);
+					jsClick(taskEqFeeStartBilling);
+					report.reportDoneEvent("Click EqFeeStartBilling Task", " EqFeeStartBilling Task Clicked");
+				}
+				waitforPageLoadComplete();
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}*/
 	
-	public void UpdateDesign() throws InterruptedException{
-		if(waitForElement(taskUpdateDesign)){
-			if(checkifStatusChanged(taskUpdateDesign,btnRefresh,"INPROGRESS")){
-			taskUpdateDesign.click();
-			report.reportDoneEvent("Click UpdateDesign Task", " UpdateDesign Task Clicked");
+	public boolean UpdateDesign() throws InterruptedException{
+		try{
+			if(waitForElement(taskUpdateDesign)){
+				if(checkifStatusChanged(taskUpdateDesign,btnRefresh,"INPROGRESS")){
+				taskUpdateDesign.click();
+				report.reportDoneEvent("Click UpdateDesign Task", " UpdateDesign Task Clicked");
+				}
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ContactCustomer() throws InterruptedException{
-		if(waitForElement(taskContactCustomer)){
-			if(checkifStatusChanged(taskContactCustomer,btnRefresh,"INPROGRESS")){
-			taskContactCustomer.click();
-			report.reportDoneEvent("Click ContactCustomer Task", " ContactCustomer Task Clicked");
+	public boolean ContactCustomer() throws InterruptedException{
+		try{
+			if(waitForElement(taskContactCustomer)){
+				if(checkifStatusChanged(taskContactCustomer,btnRefresh,"INPROGRESS")){
+				taskContactCustomer.click();
+				report.reportDoneEvent("Click ContactCustomer Task", " ContactCustomer Task Clicked");
+				}
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickBackButton() throws InterruptedException{
-		if(waitForElement(btnBack)){
-			clickndRelease(btnBack);
-			//btnBack.click();
-			waitforPageLoadComplete();
-			waitForElementDisappear(elementLoading);
-			report.updateTestLog("Validate", "Service Level Tasks Completed", Status.SCREENSHOT);
+	public boolean ClickBackButton() throws InterruptedException{
+		try{
+			if(waitForElement(btnBack)){
+				clickndRelease(btnBack);
+				//btnBack.click();
+				waitforPageLoadComplete();
+				waitForElementDisappear(elementLoading);
+				report.updateTestLog("Validate", "Service Level Tasks Completed", Status.SCREENSHOT);
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 
 }

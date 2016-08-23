@@ -65,111 +65,190 @@ public class SiteLevelTasks extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
-	public void ClickRefreshButton() throws InterruptedException{
-		if(waitForElement(btnRefresh)){
-			clickndRelease(btnRefresh);
-		}
-	}
+	private boolean mstatus = true;
 	
-	public void ConductSiteSurvey() throws InterruptedException{
-		if(waitForElement(taskConductSiteSurvey)){
-			if(checkifStatusChanged(taskConductSiteSurvey,btnRefresh,"INPROGRESS")){
-				taskConductSiteSurvey.click();
-				report.reportDoneEvent("Click ConductSiteSurvey Task", " ConductSiteSurvey Task Clicked");
+	public boolean ClickRefreshButton() throws InterruptedException{
+		try{
+			if(waitForElement(btnRefresh)){
+				clickndRelease(btnRefresh);
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ObtainSiteAgreement() throws InterruptedException{
-		if(waitForElement(taskObtainSiteAgreement)){
-			if(checkifStatusChanged(taskObtainSiteAgreement,btnRefresh,"INPROGRESS")){
-				taskObtainSiteAgreement.click();
-				report.reportDoneEvent("Click ObtainSiteAgreement Task", " ObtainSiteAgreement Task Clicked");
+	public boolean ConductSiteSurvey() throws InterruptedException{
+		try{
+			if(waitForElement(taskConductSiteSurvey)){
+				if(checkifStatusChanged(taskConductSiteSurvey,btnRefresh,"INPROGRESS")){
+					taskConductSiteSurvey.click();
+					report.reportDoneEvent("Click ConductSiteSurvey Task", " ConductSiteSurvey Task Clicked");
+				}
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ConductFiberPlantSurvey() throws InterruptedException{
-		if(waitForElement(taskConductFiberPlantSurvey)){
-			if(checkifStatusChanged(taskConductFiberPlantSurvey,btnRefresh,"INPROGRESS")){
-			taskConductFiberPlantSurvey.click();
-			report.reportDoneEvent("Click ConductFiberPlantSurvey Task", " ConductFiberPlantSurvey Task Clicked");
-		   }
-			waitforPageLoadComplete();
-		}
-	}
-	
-	public void BuildHouseAccount() throws InterruptedException{
-		if(waitForElement(taskBuildHouseAccount)){
-			if(checkifStatusChanged(taskBuildHouseAccount,btnRefresh,"INPROGRESS")){
-			taskBuildHouseAccount.click();
-			report.reportDoneEvent("Click BuildHouseAccount Task", " BuildHouseAccount Task Clicked");
+	public boolean ObtainSiteAgreement() throws InterruptedException{
+		try{
+			if(waitForElement(taskObtainSiteAgreement)){
+				if(checkifStatusChanged(taskObtainSiteAgreement,btnRefresh,"INPROGRESS")){
+					taskObtainSiteAgreement.click();
+					report.reportDoneEvent("Click ObtainSiteAgreement Task", " ObtainSiteAgreement Task Clicked");
+				}
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void CompleteWavelengthReservation() throws InterruptedException{
-		if(waitForElement(taskCompleteWavelengthReservation)){
-			if(checkifStatusChanged(taskCompleteWavelengthReservation,btnRefresh,"INPROGRESS")){
-			taskCompleteWavelengthReservation.click();
-			report.reportDoneEvent("Click CompleteWavelengthReservation Task", " CompleteWavelengthReservation Task Clicked");
+	public boolean ConductFiberPlantSurvey() throws InterruptedException{
+		try{
+			if(waitForElement(taskConductFiberPlantSurvey)){
+				if(checkifStatusChanged(taskConductFiberPlantSurvey,btnRefresh,"INPROGRESS")){
+				taskConductFiberPlantSurvey.click();
+				report.reportDoneEvent("Click ConductFiberPlantSurvey Task", " ConductFiberPlantSurvey Task Clicked");
+			   }
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ObtainSitePermits() throws InterruptedException{
-		if(waitForElement(taskObtainSitePermits)){
-			if(checkifStatusChanged(taskObtainSitePermits,btnRefresh,"INPROGRESS")){
-			taskObtainSitePermits.click();
+	public boolean BuildHouseAccount() throws InterruptedException{
+		try{
+			if(waitForElement(taskBuildHouseAccount)){
+				if(checkifStatusChanged(taskBuildHouseAccount,btnRefresh,"INPROGRESS")){
+				taskBuildHouseAccount.click();
+				report.reportDoneEvent("Click BuildHouseAccount Task", " BuildHouseAccount Task Clicked");
+				}
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void CompleteSiteBuild() throws InterruptedException{
-		if(waitForElement(taskCompleteSiteBuild)){
-			if(checkifStatusChanged(taskCompleteSiteBuild,btnRefresh,"INPROGRESS")){
-			taskCompleteSiteBuild.click();
-			report.reportDoneEvent("Click CompleteSiteBuild Task", " CompleteSiteBuild Task Clicked");
+	public boolean CompleteWavelengthReservation() throws InterruptedException{
+		try{
+			if(waitForElement(taskCompleteWavelengthReservation)){
+				if(checkifStatusChanged(taskCompleteWavelengthReservation,btnRefresh,"INPROGRESS")){
+				taskCompleteWavelengthReservation.click();
+				report.reportDoneEvent("Click CompleteWavelengthReservation Task", " CompleteWavelengthReservation Task Clicked");
+				}
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ObtainFiberPlantPermits() throws InterruptedException{
-		if(waitForElement(taskObtainFiberPlantPermits)){
-			if(checkifStatusChanged(taskObtainFiberPlantPermits,btnRefresh,"INPROGRESS")){
-			taskObtainFiberPlantPermits.click();
-			report.reportDoneEvent("Click ObtainFiberPlantPermits Task", " ObtainFiberPlantPermits Task Clicked");
+	public boolean ObtainSitePermits() throws InterruptedException{
+		try{
+			if(waitForElement(taskObtainSitePermits)){
+				if(checkifStatusChanged(taskObtainSitePermits,btnRefresh,"INPROGRESS")){
+				taskObtainSitePermits.click();
+				}
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void CompleteFiberPlantBuild() throws InterruptedException{
-		if(waitForElement(taskCompleteFiberPlantBuild)){
-			if(checkifStatusChanged(taskCompleteFiberPlantBuild,btnRefresh,"INPROGRESS")){
-			waitForElement(taskCompleteFiberPlantBuild);	
-			jsClick(taskCompleteFiberPlantBuild);
-			 //taskCompleteFiberPlantBuild.click();
+	public boolean CompleteSiteBuild() throws InterruptedException{
+		try{
+			if(waitForElement(taskCompleteSiteBuild)){
+				if(checkifStatusChanged(taskCompleteSiteBuild,btnRefresh,"INPROGRESS")){
+				taskCompleteSiteBuild.click();
+				report.reportDoneEvent("Click CompleteSiteBuild Task", " CompleteSiteBuild Task Clicked");
+				}
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Click CompleteFiberPlantBuild Task", " CompleteFiberPlantBuild Task Clicked");
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickBackButton() throws InterruptedException{
-		if(waitForElement(btnBack)){
-			clickndRelease(btnBack);
-			//btnBack.click();
-			waitforPageLoadComplete();
-			waitForElementDisappear(elementLoading);
-			report.updateTestLog("Validate", "Site Level Tasks Completed", Status.SCREENSHOT);
+	public boolean ObtainFiberPlantPermits() throws InterruptedException{
+		try{
+			if(waitForElement(taskObtainFiberPlantPermits)){
+				if(checkifStatusChanged(taskObtainFiberPlantPermits,btnRefresh,"INPROGRESS")){
+				taskObtainFiberPlantPermits.click();
+				report.reportDoneEvent("Click ObtainFiberPlantPermits Task", " ObtainFiberPlantPermits Task Clicked");
+				}
+				waitforPageLoadComplete();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	public boolean CompleteFiberPlantBuild() throws InterruptedException{
+		try{
+			if(waitForElement(taskCompleteFiberPlantBuild)){
+				if(checkifStatusChanged(taskCompleteFiberPlantBuild,btnRefresh,"INPROGRESS")){
+				waitForElement(taskCompleteFiberPlantBuild);	
+				jsClick(taskCompleteFiberPlantBuild);
+				 //taskCompleteFiberPlantBuild.click();
+				}
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Click CompleteFiberPlantBuild Task", " CompleteFiberPlantBuild Task Clicked");
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	public boolean ClickBackButton() throws InterruptedException{
+		try{
+			if(waitForElement(btnBack)){
+				clickndRelease(btnBack);
+				//btnBack.click();
+				waitforPageLoadComplete();
+				waitForElementDisappear(elementLoading);
+				report.updateTestLog("Validate", "Site Level Tasks Completed", Status.SCREENSHOT);
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 
 }
