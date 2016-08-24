@@ -228,6 +228,17 @@ public class TestSettings {
 		return GRIDstatus;
 	}
 	
+	public String getClearTmpFilesNdChngeProxy(){
+		String getClearTmpFilesNdChngeProxy;
+		//= System.getenv("GRID");
+		getClearTmpFilesNdChngeProxy=properties.getProperty("ClearTmpFilesNdChngeProxy","NOPROXY");
+		
+		if(getClearTmpFilesNdChngeProxy==null || getClearTmpFilesNdChngeProxy == ""){
+			getClearTmpFilesNdChngeProxy="NOPROXY";
+		}
+		
+		return getClearTmpFilesNdChngeProxy;
+	}
 	
 	/**
 	 * Get the getFailRunRetryCount for each test to avoid False Positives

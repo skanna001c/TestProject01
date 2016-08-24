@@ -153,6 +153,7 @@ public class newConnect extends ComcastTest {
 		(new ServiceLevelTasks(browser, report)).UpdateDesign();
 		(new UpdateDesignTaskPage(browser, report)).UpdateDesign();
 		(new SiteLevelTasks(browser, report)).ClickBackButton();
+		
 		(new WorkOrderTabPageCSO(browser, report)).ClickEDIFlow();
 		serviceLevelTaskInfo = ServiceLevelTaskInfo.loadFromDatatable(dataTable);
 		(new ServiceLevelTasks(browser, report)).BULBA();
@@ -663,6 +664,7 @@ public class newConnect extends ComcastTest {
 		(new ServiceLevelTasks(browser, report)).UpdateDesign();
 		(new UpdateDesignTaskPage(browser, report)).UpdateDesign();
 		(new SiteLevelTasks(browser, report)).ClickBackButton();
+		
 		(new WorkOrderTabPageCSO(browser, report)).ClickEPLFlow();
 		serviceLevelTaskInfo = ServiceLevelTaskInfo.loadFromDatatable(dataTable);
 		(new ServiceLevelTasks(browser, report)).BULBA();

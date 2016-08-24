@@ -44,7 +44,9 @@ import org.testng.SkipException;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -265,8 +267,9 @@ public class ComcastTest {
     	    	
 		//if(settings==null) // added by harsh on 8/2/2016
 			settings=new TestSettings();	
+			ClearTempFilesndChngeProxy();
 			userDetails = new UserDetails();
-			userDetails.loadData();
+			userDetails.loadData();			
 			//if(browser==null)
 			browser=getDriver(settings.getBrowser());
 		
@@ -278,7 +281,8 @@ public class ComcastTest {
 		//updated by harsh on 8/3/2016
 		try{
 				dataTable = new DataTable(testCaseName);
-				dataDump = new DataDump(testCaseName);				
+				dataDump = new DataDump(testCaseName);
+				
 				if(settings.getPERerunStatus().equalsIgnoreCase("true")){				
 					dataDump.loadData();
 				}
@@ -472,7 +476,7 @@ public class ComcastTest {
 				}
 				ThreadDriver.set(driver); 
 			}
-
+			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		}
 		if(browserName.equalsIgnoreCase("chrome")){
 			System.setProperty("webdriver.chrome.driver", 
@@ -506,7 +510,7 @@ public class ComcastTest {
 						}
 						
 					}
-					
+					driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);		
 		}
 		if(browserName.equalsIgnoreCase("iexplore") || browserName.equalsIgnoreCase("ie"))
 		{
@@ -532,7 +536,7 @@ public class ComcastTest {
 				capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
 						true);
 				capabilities.setCapability(InternetExplorerDriver.FORCE_CREATE_PROCESS, true);
-				capabilities.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION,true);
+				capabilities.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION,true);				
 				/*capabilities.setCapability(InternetExplorerDriver.IE_SWITCHES, "-private");*/
 				capabilities.setCapability("ACCEPT_SSL_CERTS", true);
 			
@@ -559,7 +563,7 @@ public class ComcastTest {
 					}
 					
 				}
-		
+				driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		}
 		if(browserName.equalsIgnoreCase("safari")){
 			/*dCaps = new DesiredCapabilities();
@@ -601,7 +605,7 @@ public class ComcastTest {
 			
 			
 		}
-		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+		//driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		return driver;
 	}
 	
@@ -844,7 +848,40 @@ public class ComcastTest {
 				 
 	}
 			 
+public void ClearTempFilesndChngeProxy()  {
+	String tmp;
+	//String[] comcast={"cmd.exe", "/C", "Start", TestUtils.getRelativePath() + "/src/main/resources/ClearTmpFilesNdChngeComcastProxy.bat"};
+	String comcast=TestUtils.getRelativePath() + "/src/main/resources/ClearTmpFilesNdChngeComcastProxy.bat";
+	//String[] cognizant={"cmd.exe", "/C", "Start", TestUtils.getRelativePath() + "/src/main/resources/ClearTmpFilesNdChngeCognizantProxy.bat"};
+	String cognizant=TestUtils.getRelativePath() + "/src/main/resources/ClearTmpFilesNdChngeCognizantProxy.bat";
 	
+	if(!settings.getGRIDstatus().equalsIgnoreCase("true"))
+	{	tmp=settings.getClearTmpFilesNdChngeProxy();
+	
+		if(tmp.equalsIgnoreCase("comcast"))
+	
+		{
+			
+			executeScript(comcast);
+		}		
+		else if (tmp.equalsIgnoreCase("cognizant")) {
+			
+			executeScript(cognizant);
+		}
+	
+	}
+}
 
+
+public static void executeScript(String script) {
+    try {
+        ProcessBuilder pb = new ProcessBuilder(script);
+        Process p = pb.start(); // Start the process.
+        p.waitFor(); // Wait for the process to finish.
+        System.out.println("Script executed successfully");
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
 	 
 }

@@ -50,7 +50,7 @@ public class LogInPage extends Page {
 	//@FindBy(xpath="//*[@type='button']")
 	private WebElement chkBxWarning;	
 	
-	@FindBy(xpath="//input[@id='logButton']")
+	@FindBy(id="logButton")
 	private WebElement btnLogin;	
 	
 	//a[.='Home']

@@ -1,12 +1,12 @@
 package com.comcast.century.cm.pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.data.CustomerInfo;
 import com.comcast.reporting.Status;
-import com.comcast.utils.ComcastTest;
 import com.comcast.utils.PerfTransaction;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
@@ -27,8 +27,11 @@ public class CustomerTabPageCM extends Page {
 	
 	private String customerName;
 	
-	@FindBy(css = "span#Customer")
-	private WebElement tabCustomer;
+	@FindBy(css = "#Customer")
+	private WebElement tabCustomer;	
+	
+	@FindBy(xpath=".//*[@class='x-tab-strip-text' and .='Customer']")
+	private WebElement subtabCustomer;
 	
 	@FindBy(xpath = "//*[@id='mainFrame']")
 	private WebElement frameMain;
@@ -148,19 +151,32 @@ public class CustomerTabPageCM extends Page {
 	  public String customerInformation(CustomerInfo customerInfo){		  
 		  waitforPageLoadComplete();
 		  waitForElement(tabCustomer);
-		  tabCustomer.click();
+		  //tabCustomer.click();
+		  doubleClick(tabCustomer);
 		  report.reportDoneEvent("Click on Customer Tab", "Customer Tab is present");
 		  waitforPageLoadComplete();
 		  if(WaitandSwitchToFrame(frameMain)){
-		  WaitandSwitchToFrame(frameCustomer);
+			 // WaitandSwitchToFrame(frameCustomer);
+			  
+			  do{
+				  if(waitForElement(tabCustomer,1)){
+					  doubleClick(tabCustomer);
+				  }
+			  }while(!WaitandSwitchToFrame(frameCustomer,1));
 		  }
-		  waitForElement(txtCustomerName);
-		  txtCustomerName.click();
-		  txtCustomerName.clear();
-		  //updated by harsh to store runtime data into datadump - 8/5/2016
-		  customerName = customerInfo.customerName + getTimestamp();
-		  txtCustomerName.sendKeys(customerName);
-
+		  
+		 while(!waitForElement(txtCustomerName,1)){};
+		 customerName = customerInfo.customerName + getTimestamp();
+		 do 
+		 {    txtCustomerName.click();
+			  txtCustomerName.clear();
+			  //updated by harsh to store runtime data into datadump - 8/5/2016
+			  
+			  txtCustomerName.sendKeys(customerName);
+		 }
+		 	while(txtCustomerName.getAttribute("value").length()<1);
+		 
+		 System.out.println("txtCustomerName.getAttribute"+txtCustomerName.getAttribute("value"));
 		  //ComcastTest.getDataDump().setValue("CustomerName_RT", customerName); //commented by harsh on 8/16 - need to find a way to push data to datadump
 		  		  
 		  waitforPageLoadComplete();
@@ -189,9 +205,9 @@ public class CustomerTabPageCM extends Page {
 			  report.reportDoneEvent("Enter Zipcode", "Zipcode Entered as ->" +customerInfo.zipCode);
 			  imgZipcodeSearch.click();
 			  waitforPageLoadComplete();
-			  WaitandSwitchToFrame(frameCondition);
-			  waitForElement(txtCity);
-			  iterateThroughtableAndSelectCity(customerInfo.city);
+			  while(!WaitandSwitchToFrame(frameCondition)){}			  
+			  while(!waitForElement(txtCity)){}
+			  while(!iterateThroughtableAndSelectCity(customerInfo.city)){};
 			  btnOk.click();
 			  browser.switchTo().defaultContent();
 			  if(WaitandSwitchToFrame(frameMain)){
@@ -234,16 +250,17 @@ public class CustomerTabPageCM extends Page {
 			  report.reportDoneEvent("Enter Zipcode", "Zipcode Entered as ->" +customerInfo.zipCode);
 			  imgZipcodeSearch.click();
 			  waitforPageLoadComplete();
-			  WaitandSwitchToFrame(frameCondition);
-			  waitForElement(txtCity);
-			  iterateThroughtableAndSelectCity(customerInfo.city);
-			  btnOk.click();
+			  //WaitandSwitchToFrame(frameCondition);
+			  while(!WaitandSwitchToFrame(frameCondition)){}			  
+			  while(!waitForElement(txtCity)){}
+			  while(!iterateThroughtableAndSelectCity(customerInfo.city)){};
+			  btnOk.sendKeys(Keys.ENTER);
 			  browser.switchTo().defaultContent();
 			  if(WaitandSwitchToFrame(frameMain)){
 				  WaitandSwitchToFrame(frameCustomer);
 				  }
 			  waitForElement(btnCreate);
-			  btnCreate.click();
+			  btnCreate.click();			  
 			  waitforPageLoadComplete();
 			  waitForElement(btnSelectValidSite);
 			  btnSelectValidSite.click();

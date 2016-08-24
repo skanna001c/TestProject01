@@ -37,6 +37,11 @@ public class ContactTabPageCM extends Page {
 		// TODO Auto-generated method stub
 		
 	}
+	@FindBy(xpath = "//*[@id='AccountFrame' and @src='account.exc']")
+	private WebElement frameAccount; 
+	
+	@FindBy(xpath = "//*[@id='addcontact-toolEl']")
+	private WebElement BtnAddContact ;
 	
 	@FindBy(xpath = "//*[@id='mainFrame']")
 	private WebElement frameMain;
@@ -142,10 +147,23 @@ public class ContactTabPageCM extends Page {
 
 	public boolean CreateAccountPrimaryContact(ContactInfo contactInfo) throws InterruptedException{
 		mstatus = true;
+		scrollDown();
+		while(!WaitandSwitchToFrame(frameMain,1)){}
+		while(!WaitandSwitchToFrame(frameAccount,1)){}
 		try{
-			 if (WaitandSwitchToFrame(frameMain)){
+			 do{
+				 if(waitForElement(BtnAddContact,1))
+				 {	
+					BtnAddContact.click();
+				 	waitforPageLoadComplete();
+				 }
+				 
+			 }while(!WaitandSwitchToFrame(frameMain,1));
+			 
+			 report.reportDoneEvent("Click on Add Contact", "Add Contact Clicked");
 			 ddValueSelect(ddTextContactType,ddValueContactType1,contactInfo.contactType1);
 		     report.reportDoneEvent("Select Contact Type", "Selected Contact Type as->" +contactInfo.contactType1);
+		     
 			 txtFirstName.sendKeys(contactInfo.firstName);
 		     report.reportDoneEvent("Enter First Name", "Entered First Name as->" +contactInfo.firstName);
 		     String lastName = contactInfo.lastName+getTimestamp();
@@ -163,7 +181,7 @@ public class ContactTabPageCM extends Page {
 			 report.updateTestLog("Create Account Primary Contact", "Account Primary Contact Created Successfully", Status.SCREENSHOT);
 			 browser.switchTo().defaultContent();
 			 }
-			}
+			
 		 catch(Exception ex)
 		 {
 			 mstatus=false;
@@ -273,9 +291,11 @@ public class ContactTabPageCM extends Page {
 	public boolean ClickOnBackBtn() {
 		mstatus = true;
 		try{
-			WaitandSwitchToFrame(frameMain);
-			waitForElement(btnBack);
-			btnBack.click();
+			while (!WaitandSwitchToFrame(frameMain,1)) {
+				if(waitForElement(btnBack,1))
+				btnBack.click();
+			}
+			
 			report.reportDoneEvent("Click on Back Button", "Back Button Clicked");
 			waitforPageLoadComplete();
 			browser.switchTo().defaultContent(); 

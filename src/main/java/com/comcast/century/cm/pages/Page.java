@@ -874,6 +874,16 @@ public abstract class Page {
 		return true;
 	}
 	
+	protected Boolean WaitandSwitchToFrame(WebElement we,int sec) {
+		try {
+			new WebDriverWait(browser, sec).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(we));
+
+		} catch (RuntimeException ex) {
+			return false;
+		}
+		return true;
+	}
+	
 	protected Boolean ShortWaitandSwitchToFrame(WebElement we) {
 		try {
 			new WebDriverWait(browser, 5).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(we));
@@ -3040,18 +3050,24 @@ public abstract class Page {
 			 }
 		 }
 		 
-		 public void iterateThroughtableAndSelectCity(String city) throws InterruptedException{
+		 public boolean  iterateThroughtableAndSelectCity(String city) throws InterruptedException{
 			 int rowId=-1;
-			 
-			 while(!isElementPresent(browser.findElement(By.tagName("tbody")))){
+			String cityXpath="//*[.='State']/ancestor-or-self::form/descendant::div[.='"+city+"']" ;
+			waitforPageLoadComplete();
+			Thread.sleep(5000);
+			while(!isElementPresent(browser.findElement(By.xpath(cityXpath)))){
 				 Thread.sleep(2000);
 			 }
-			 WebElement table = browser.findElement(By.tagName("tbody"));
+			/* while(!isElementPresent(browser.findElement(By.tagName("tbody")))){
+				 Thread.sleep(2000);
+			 }
+			
 			 
 			 while(!isElementPresent(table.findElements(By.tagName("tr")).get(0))){
 				 Thread.sleep(2000);
 			 }
-			 
+			 */
+			 WebElement table = browser.findElement(By.tagName("tbody"));
 			 List<WebElement> allRows = table.findElements(By.tagName("tr"));
 			 
 			 
@@ -3074,6 +3090,7 @@ public abstract class Page {
 			 		 report.reportFailEvent("City selection", "City not found");
 			 	 } 
 		
+		return (rowId>-1); 	 
 }
 		 
 }

@@ -148,15 +148,24 @@ public class AccountTabPageCM extends Page {
 		mstatus = true;
 		try{			
 			 waitforPageLoadComplete();
-			 WaitandSwitchToFrame(frameMain);
-			 waitForElement(tabAccount);
-			 tabAccount.click();
-			 jsClick(tabAccount);
+			 while(!WaitandSwitchToFrame(frameMain)){}
+			 while(!waitForElement(tabAccount)){}
+			 do
+			 {
+				 tabAccount.click();
+				 jsClick(tabAccount);
+			 }while(!WaitandSwitchToFrame(frameAccount,1));			 
 			 report.reportDoneEvent("Click on Account tab", "Account tab clicked");
-			 WaitandSwitchToFrame(frameAccount);
-			 txtAccnName.click();
-			 txtAccnName.clear();
-			 txtAccnName.sendKeys(accountInfo.serviceAccName);
+			 while(!waitForElement(txtAccnName)){}
+			 
+			 do 
+			 {   txtAccnName.click();
+				 txtAccnName.clear();
+				 txtAccnName.sendKeys(accountInfo.serviceAccName);
+			 }
+			 	while(txtAccnName.getAttribute("value").length()<1);
+			 
+			 
 			 report.reportDoneEvent("Enter Service Account Name", "Entered Service Account Name as->" +accountInfo.serviceAccName);
 			 waitforPageLoadComplete();
 			 ddValueSelect(ddTextLegalEntity,ddValueLegalEntity,accountInfo.legalEntity);
@@ -174,13 +183,14 @@ public class AccountTabPageCM extends Page {
 			 createAccountBtn.click();
 			 waitforPageLoadComplete();	
 			 report.updateTestLog("Create Service Account", "Service Account Created Successfully", Status.SCREENSHOT);
-			 waitForElement(BtnAddContact);
-			 BtnAddContact.click();	
+			 browser.switchTo().defaultContent();			 
+			/* BtnAddContact.click();	
 			 report.reportDoneEvent("Click on Add Contact", "Add Contact Clicked");
-			 waitforPageLoadComplete();
+			 waitforPageLoadComplete();*/
 		}
 		catch(Exception ex)
-		{
+		{  System.out.println(ex.getMessage());
+			ex.printStackTrace();
 			mstatus = false;
 		}
 		return mstatus;
@@ -243,7 +253,7 @@ public class AccountTabPageCM extends Page {
 					 if(waitForElement(btnCreateNewAcc)) {
 						 System.out.println("Create new Acc exists");
 						 btnCreateNewAcc.click();
-						 jsClickWE(btnCreateNewAcc);
+						 //jsClickWE(btnCreateNewAcc);
 						 report.reportDoneEvent("Click on Create New Account", "Create New Account Clicked");
 						 waitforPageLoadComplete();
 					 }
