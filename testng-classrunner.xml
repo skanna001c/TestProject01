@@ -5,13 +5,13 @@
 	<listener class-name="com.comcast.utils.TestFilter"/>
 	
 </listeners>
-  <test name="New_Connect_ME_EDI_New_connect">
+  <!--test name="New_Connect_ME_EDI_New_connect">
     <classes>
       <class name="com.comcast.century.newConnect.NewConnectTest">
       
       </class>
     </classes>
-  </test> <!-- Test -->
+  </test--> <!-- Test -->
   
   <!--test name="New_Connect_ME_ENS_New_connect">
     <classes>
@@ -28,4 +28,12 @@
       </class>
     </classes>
   </test--> <!-- Test -->
+  
+  <test name="EOD_NC_ME_EDI_NewConnect_ERate">
+    <classes>
+      <class name="com.comcast.century.newConnect.EOD_NC_ME_EDI_NewConnect_ERate">
+      
+      </class>
+    </classes>
+  </test> <!-- Test -->
 </suite> <!-- Suite -->

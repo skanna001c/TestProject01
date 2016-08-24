@@ -38,11 +38,17 @@ public class SiteLevelTasks extends Page {
 	@FindBy(xpath = "//a[text()='Conduct Site Survey']")
 	private WebElement taskConductSiteSurvey;
 	
+	@FindBy(xpath = "//a[text()='Conduct Site Survey(Coax)']")
+	private WebElement taskConductSiteSurveyCoax;
+	
 	@FindBy(xpath = "//a[text()='Obtain Site Agreement(s)']")
 	private WebElement taskObtainSiteAgreement;
 	
 	@FindBy(xpath = "//a[text()='Conduct Fiber Plant Survey']")
 	private WebElement taskConductFiberPlantSurvey;
+	
+	@FindBy(xpath = "//a[text()='Conduct Coax Survey']")
+	private WebElement taskConductCoaxSurvey;
 	
 	@FindBy(xpath = "//a[text()='Build House Account']")
 	private WebElement taskBuildHouseAccount;
@@ -53,14 +59,23 @@ public class SiteLevelTasks extends Page {
 	@FindBy(xpath = "//a[text()='Obtain Site Permits']")
 	private WebElement taskObtainSitePermits;
 	
+	@FindBy(xpath = "//a[text()='Obtain Coax Permits']")
+	private WebElement taskObtainCoaxPermits;
+	
 	@FindBy(xpath = "//a[text()='Complete Site Build']")
 	private WebElement taskCompleteSiteBuild;
+	
+	@FindBy(xpath = "//a[text()='Complete Site Build(Coax)']")
+	private WebElement taskCompleteSiteBuildCoax;
 	
 	@FindBy(xpath = "//a[text()='Obtain Fiber Plant Permits']")
 	private WebElement taskObtainFiberPlantPermits;
 	
 	@FindBy(xpath = "//*[text()='Complete Fiber Plant Build']")
 	private WebElement taskCompleteFiberPlantBuild;
+	
+	@FindBy(xpath = "//*[text()='Complete Coax Build']")
+	private WebElement taskCompleteCoaxBuild;
 	
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
@@ -71,6 +86,23 @@ public class SiteLevelTasks extends Page {
 		try{
 			if(waitForElement(btnRefresh)){
 				clickndRelease(btnRefresh);
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	/* Conduct Site Survey(Coax) task launch */
+	public boolean ConductSiteSurveyCoax() throws InterruptedException{
+		try{
+			if(waitForElement(taskConductSiteSurveyCoax)){
+				if(checkifStatusChanged(taskConductSiteSurveyCoax,btnRefresh,"INPROGRESS")){
+					taskConductSiteSurveyCoax.click();
+					report.reportDoneEvent("Click ConductSiteSurveyCoax Task", " ConductSiteSurveyCoax Task Clicked");
+				}
+				waitforPageLoadComplete();
 			}
 		}
 		catch(Exception ex)
@@ -120,6 +152,23 @@ public class SiteLevelTasks extends Page {
 				if(checkifStatusChanged(taskConductFiberPlantSurvey,btnRefresh,"INPROGRESS")){
 				taskConductFiberPlantSurvey.click();
 				report.reportDoneEvent("Click ConductFiberPlantSurvey Task", " ConductFiberPlantSurvey Task Clicked");
+			   }
+				waitforPageLoadComplete();
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	public boolean ConductCoaxSurvey() throws InterruptedException{
+		try{
+			if(waitForElement(taskConductCoaxSurvey)){
+				if(checkifStatusChanged(taskConductCoaxSurvey,btnRefresh,"INPROGRESS")){
+					taskConductCoaxSurvey.click();
+				report.reportDoneEvent("Click ConductCoaxSurvey Task", "ConductCoaxSurvey Task Clicked");
 			   }
 				waitforPageLoadComplete();
 			}
@@ -181,11 +230,27 @@ public class SiteLevelTasks extends Page {
 		return mstatus;
 	}
 	
+	public boolean ObtainCoaxPermits() throws InterruptedException{
+		try{
+			if(waitForElement(taskObtainCoaxPermits)){
+				if(checkifStatusChanged(taskObtainCoaxPermits,btnRefresh,"INPROGRESS")){
+					taskObtainCoaxPermits.click();
+				}
+				waitforPageLoadComplete();
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
 	public boolean CompleteSiteBuild() throws InterruptedException{
 		try{
 			if(waitForElement(taskCompleteSiteBuild)){
 				if(checkifStatusChanged(taskCompleteSiteBuild,btnRefresh,"INPROGRESS")){
-				taskCompleteSiteBuild.click();
+					taskCompleteSiteBuild.click();
 				report.reportDoneEvent("Click CompleteSiteBuild Task", " CompleteSiteBuild Task Clicked");
 				}
 				waitforPageLoadComplete();
@@ -198,6 +263,23 @@ public class SiteLevelTasks extends Page {
 		return mstatus;
 	}
 	
+	
+	public boolean CompleteSiteBuildCoax() throws InterruptedException{
+		try{
+			if(waitForElement(taskCompleteSiteBuildCoax)){
+				if(checkifStatusChanged(taskCompleteSiteBuildCoax,btnRefresh,"INPROGRESS")){
+					taskCompleteSiteBuildCoax.click();
+				report.reportDoneEvent("Click CompleteSiteBuildCoax Task", " CompleteSiteBuildCoax Task Clicked");
+				}
+				waitforPageLoadComplete();
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
 	public boolean ObtainFiberPlantPermits() throws InterruptedException{
 		try{
 			if(waitForElement(taskObtainFiberPlantPermits)){
@@ -225,6 +307,25 @@ public class SiteLevelTasks extends Page {
 				}
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Click CompleteFiberPlantBuild Task", " CompleteFiberPlantBuild Task Clicked");
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	public boolean CompleteCoaxBuild() throws InterruptedException{
+		try{
+			if(waitForElement(taskCompleteCoaxBuild)){
+				if(checkifStatusChanged(taskCompleteCoaxBuild,btnRefresh,"INPROGRESS")){
+				waitForElement(taskCompleteCoaxBuild);	
+				jsClick(taskCompleteCoaxBuild);
+				 //taskCompleteFiberPlantBuild.click();
+				}
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Click CompleteCoaxBuild Task", " CompleteCoaxBuild Task Clicked");
 			}
 		}
 		catch(Exception ex)

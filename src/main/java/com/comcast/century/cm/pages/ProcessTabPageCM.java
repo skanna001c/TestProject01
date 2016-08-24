@@ -99,6 +99,9 @@ public class ProcessTabPageCM extends Page {
 		@FindBy(xpath = "//input[@id='backToProcess']")
 		private WebElement btnOK;
 		
+		@FindBy(xpath = ".//select[@paramname='Transport Type']")
+		private WebElement TransportType;
+		
 		@FindBy(xpath = "//select[@paramname='Aggregator Needed']")
 		private WebElement ddAggregatorNeeded;
 		
@@ -195,7 +198,7 @@ public class ProcessTabPageCM extends Page {
 			if(waitForElement(ddSelectTerms)){
 			System.out.println("Terms Present");
 			}
-			new Select(ddSelectTerms).selectByValue(processInfo.terms);
+			new Select(ddSelectTerms).selectByVisibleText(processInfo.terms);
 			btnSave.click();
 			report.reportDoneEvent("Save Terms", "Terms Saved");
 			waitForElementDisappear(elementLoading);
@@ -218,7 +221,7 @@ public class ProcessTabPageCM extends Page {
 				if(waitForElement(ddSelectTerms)){
 					System.out.println("Terms Present");
 					}
-					new Select(ddSelectTerms).selectByValue(processInfo.terms);
+					new Select(ddSelectTerms).selectByVisibleText(processInfo.terms);
 					btnSave.click();
 					report.reportDoneEvent("Save Terms", "Terms Saved");
 					waitForElementDisappear(elementLoading);
@@ -258,7 +261,8 @@ public class ProcessTabPageCM extends Page {
 				 }
 				 browser.switchTo().defaultContent();
 				 WaitandSwitchToFrame(frameMain);
-				 new Select(ddAggregatorNeeded).selectByValue("No");
+				 new Select(TransportType).selectByVisibleText(processInfo.UNITransportType);
+				 new Select(ddAggregatorNeeded).selectByVisibleText("No");
 				 waitForElement(ddtxtSURCILI);
 				 ddtxtSURCILI.clear();
 				 ddtxtSURCILI.click();	 
@@ -338,7 +342,8 @@ public class ProcessTabPageCM extends Page {
 				 }
 				 browser.switchTo().defaultContent();
 				 WaitandSwitchToFrame(frameMain);
-				 new Select(ddAggregatorNeeded).selectByValue("No");
+				 new Select(TransportType).selectByVisibleText(processInfo.UNITransportType);
+				 new Select(ddAggregatorNeeded).selectByVisibleText("No");
 				 waitForElement(ddtxtSURCILI);
 				 ddValue(ddtxtSURCILI,processInfo.surCILI2);
 				 WebElement ddvalueSURCILI2 = browser.findElement(By.xpath("//li[text()='"+processInfo.surCILI2+"']"));
@@ -390,6 +395,7 @@ public class ProcessTabPageCM extends Page {
 				 }
 				 browser.switchTo().defaultContent();
 				 WaitandSwitchToFrame(frameMain);
+				 new Select(TransportType).selectByVisibleText(processInfo.UNITransportType);
 				 new Select(ddAggregatorNeeded).selectByVisibleText("No");
 				 waitForElement(ddtxtSURCILI);
 				 ddValue(ddtxtSURCILI,processInfo.surCILI3);
@@ -398,7 +404,7 @@ public class ProcessTabPageCM extends Page {
 				 ddvalueSURCILI3.click();
 				 waitForElement(txtUNInumber);
 				 txtUNInumber.sendKeys(randomNumber(5));
-				 new Select(ddUNIPortSpeed).selectByValue("No");;
+				 new Select(ddUNIPortSpeed).selectByVisibleText("No");;
 				 btnSave.click();
 				 report.reportDoneEvent("Save UNI~3 Configuration", "UNI~3 Configuration Saved");
 				 waitForElementDisappear(elementLoading);
@@ -533,11 +539,11 @@ public class ProcessTabPageCM extends Page {
 				 waitForElement(ddArrwLocationZuni);
 				 ddArrwLocationZuni.click();
 				 ddvalueLocationZuni.get(0).click();
-				 new Select(ddExistingEVC).selectByValue("No");
-				 new Select(ddEVCAreaType).selectByValue(processInfo.evcAreaType);
+				 new Select(ddExistingEVC).selectByVisibleText("No");
+				 new Select(ddEVCAreaType).selectByVisibleText(processInfo.evcAreaType);
 				 txtEVCnumber.sendKeys(randomNumber(5));
 				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
-				 new Select(ddMaxUNIExceeded).selectByValue("No");
+				 new Select(ddMaxUNIExceeded).selectByVisibleText("No");
 				 btnSave.click();
 				 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
 				 waitForElementDisappear(elementLoading);
@@ -598,9 +604,9 @@ public class ProcessTabPageCM extends Page {
 				 ddvalueLocationZuni.get(3).click();           //Select 2nd site at location Z UNI
 				 waitForElement(txtEVCnumber);
 				 txtEVCnumber.sendKeys(randomNumber(5));
-				 new Select(ddEVCAreaType).selectByValue(processInfo.evcAreaType);
+				 new Select(ddEVCAreaType).selectByVisibleText(processInfo.evcAreaType);
 				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
-				 new Select(ddMaxEVCExceeded).selectByValue("No");
+				 new Select(ddMaxEVCExceeded).selectByVisibleText("No");
 				 btnSave.click();
 				 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
 				 waitForElementDisappear(elementLoading);
@@ -633,9 +639,9 @@ public class ProcessTabPageCM extends Page {
 				 ddvalueLocationZuni.get(4).click();              //Select 2nd site at location Z UNI
 				 waitForElement(txtEVCnumber);
 				 txtEVCnumber.sendKeys(randomNumber(5));
-				 new Select(ddEVCAreaType).selectByValue(processInfo.evcAreaType);
+				 new Select(ddEVCAreaType).selectByVisibleText(processInfo.evcAreaType);
 				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
-				 new Select(ddMaxEVCExceeded).selectByValue("No");
+				 new Select(ddMaxEVCExceeded).selectByVisibleText("No");
 				 txtCustomerVLANInfo.sendKeys(processInfo.customerVLANInfo);
 				 btnSave.click();
 				 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
@@ -669,9 +675,9 @@ public class ProcessTabPageCM extends Page {
 				 ddvalueLocationZuni.get(5).click();                 //Select 3rd site at location Z UNI
 				 waitForElement(txtEVCnumber);
 				 txtEVCnumber.sendKeys(randomNumber(5));
-				 new Select(ddEVCAreaType).selectByValue(processInfo.evcAreaType);
+				 new Select(ddEVCAreaType).selectByVisibleText(processInfo.evcAreaType);
 				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
-				 new Select(ddMaxEVCExceeded).selectByValue("No");
+				 new Select(ddMaxEVCExceeded).selectByVisibleText("No");
 				 txtCustomerVLANInfo.sendKeys(processInfo.customerVLANInfo);
 				 btnSave.click();
 				 report.reportDoneEvent("Save EVC~2 Configuration", "EVC~2 Configuration Saved");

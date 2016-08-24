@@ -173,7 +173,16 @@ public class AccountTabPageCM extends Page {
 			 report.reportDoneEvent("Select Legal Entity", "Selected Legal Entity as->" +accountInfo.legalEntity);
 			 ddValueSelect(ddTextLOB,ddValueLOB,accountInfo.lineOfBusiness);
 			 report.reportDoneEvent("Select Line of Business", "Selected Line of Business as->" +accountInfo.lineOfBusiness);
-			 ddValueSelect(ddTextVMarket,ddValueVMarket,accountInfo.verticalMarket);
+			 if((accountInfo.eRate).equalsIgnoreCase("Yes")){
+				 ddValueSelect(ddTextErate,ddValueErate,"Yes");
+				 report.reportDoneEvent("Select Erate dropdown", "Dropdown Selected");
+				 ddValueSelect(ddTextVMarketErate,ddValueVMarketErate,accountInfo.verticalMarket);
+			 }
+			 else
+			 {
+				 ddValueSelect(ddTextVMarket,ddValueVMarket,accountInfo.verticalMarket);
+			 } 
+			 
 			 report.reportDoneEvent("Select Vertical Market", "Selected Vertical Market as->" +accountInfo.verticalMarket);
 			 waitforPageLoadComplete();
 			 waitForElement(useCustomerAddress);
