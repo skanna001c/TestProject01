@@ -1,5 +1,6 @@
 package com.comcast.century.cm.pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -289,13 +290,13 @@ public class ContactTabPageCM extends Page {
 			
   }
 	public boolean ClickOnBackBtn() {
+		browser.switchTo().defaultContent();
 		mstatus = true;
 		try{
-			while (!WaitandSwitchToFrame(frameMain,1)) {
-				if(waitForElement(btnBack,1))
-				btnBack.click();
-			}
+			while (!WaitandSwitchToFrame(frameMain,1)) {}	
 			
+			if(waitForElement(btnBack,1))				
+				btnBack.sendKeys(Keys.ENTER);
 			report.reportDoneEvent("Click on Back Button", "Back Button Clicked");
 			waitforPageLoadComplete();
 			browser.switchTo().defaultContent(); 

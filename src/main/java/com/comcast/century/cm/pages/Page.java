@@ -187,6 +187,8 @@ public abstract class Page {
 		}
 	}
 
+	
+
 	/*
 	 * public void authenticateHelp(LoginDetails loginInfo) throws IOException {
 	 * 
@@ -3092,7 +3094,29 @@ public abstract class Page {
 		
 		return (rowId>-1); 	 
 }
+	
+		 public void iClick(WebElement we)
+		 {
+		 	if(testSettings.getBrowser().equalsIgnoreCase("ie")||testSettings.getBrowser().equalsIgnoreCase("iexplore"))
+		 	{
+		 		we.sendKeys(Keys.ENTER);
+		 	}
+		 	else we.click();
+		 		
+		 }
 		 
+		 public void iSendKeys(WebElement we,String text)
+		 {	
+			do
+			{
+				we.click();
+				we.clear();
+			 	we.sendKeys(text);
+			}while(we.getAttribute("value").equalsIgnoreCase(text));
+		 	
+		 	
+		 		
+		 }
 }
 		 
 

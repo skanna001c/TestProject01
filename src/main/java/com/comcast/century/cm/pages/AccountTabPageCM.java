@@ -1,5 +1,6 @@
 package com.comcast.century.cm.pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -251,8 +252,8 @@ public class AccountTabPageCM extends Page {
 			 if (WaitandSwitchToFrame(frameMain)){
 				 if (WaitandSwitchToFrame(frameAccount)){
 					 if(waitForElement(btnCreateNewAcc)) {
-						 System.out.println("Create new Acc exists");
-						 btnCreateNewAcc.click();
+						 System.out.println("Create new Acc exists");						 
+						 btnCreateNewAcc.sendKeys(Keys.ENTER);
 						 //jsClickWE(btnCreateNewAcc);
 						 report.reportDoneEvent("Click on Create New Account", "Create New Account Clicked");
 						 waitforPageLoadComplete();
