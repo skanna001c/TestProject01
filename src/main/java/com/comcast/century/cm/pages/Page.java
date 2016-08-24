@@ -3112,7 +3112,7 @@ public abstract class Page {
 				we.click();
 				we.clear();
 			 	we.sendKeys(text);
-			}while(we.getAttribute("value").equalsIgnoreCase(text));
+			}while(!we.getAttribute("value").equalsIgnoreCase(text));
 		 	
 		 	
 		 		
