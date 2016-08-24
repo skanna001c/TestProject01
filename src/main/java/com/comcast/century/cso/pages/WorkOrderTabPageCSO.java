@@ -206,11 +206,11 @@ public class WorkOrderTabPageCSO extends Page {
 	public boolean ClickFirstSiteFlow(){
 		try{
 			WaitandSwitchToFrame(frameRight);
-			/*if(waitForElement(linkSiteFlow.get(0))){
+			if(waitForElement(linkSiteFlow.get(0))){
 				linkSiteFlow.get(0).click();
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Click on Site level flow", "Site level flow Clicked");
-			}*/
+			}
 		}
 		catch(Exception ex)
 		{

@@ -3096,8 +3096,9 @@ public abstract class Page {
 }
 	
 		 public void iClick(WebElement we)
-		 {
-		 	if(testSettings.getBrowser().equalsIgnoreCase("ie")||testSettings.getBrowser().equalsIgnoreCase("iexplore"))
+		 {	
+		 	if((new TestSettings()).getBrowser().equalsIgnoreCase("iexplore")
+		 			||(new TestSettings()).getBrowser().equalsIgnoreCase("ie"))
 		 	{
 		 		we.sendKeys(Keys.ENTER);
 		 	}
@@ -3105,6 +3106,9 @@ public abstract class Page {
 		 		
 		 }
 		 
+		 
+//#############################################################################################		 
+//CustomMethods 		 
 		 public void iSendKeys(WebElement we,String text)
 		 {	
 			do
@@ -3115,8 +3119,88 @@ public abstract class Page {
 			}while(!we.getAttribute("value").equalsIgnoreCase(text));
 		 	
 		 	
-		 		
 		 }
+		 
+		 public String getValue(WebElement we)
+		 {
+			 return we.getAttribute("value");
+		 }
+		 
+		 public void iSubmit(WebElement we) {
+				// TODO Auto-generated method stub
+			 	we.submit();
+		 }
+			
+			
+			
+		 /*public void iclear(WebElement we) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public String igetTagName(WebElement we) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			public String igetAttribute(String iname) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			public boolean isSelected(WebElement we) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+			
+			public boolean isEnabled(WebElement we) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+			
+			public String igetText(WebElement we) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			public List<WebElement> findElements(By by) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			public WebElement findElement(By by) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			public boolean isDisplayed(WebElement we) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+			
+			public Point getLocation(WebElement we) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			/*public Dimension getSize(WebElement we) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			public Rectangle getRect(WebElement we) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			public String igetCssValue(String ipropertyName) {
+				// TODO Auto-generated method stub
+				return null;
+			}*/
+//################################################		
+
+		 
+		 
 }
 		 
 

@@ -58,7 +58,7 @@ public class ServiceTabPageCM extends Page {
 	@FindBy(xpath = "//input[@name='EPL']")
 	private WebElement selectCheckBoxEPL;
 	
-	@FindBy(xpath = "//input[@name='Equipment Fee']")
+	@FindBy(xpath = "//*[@name='Equipment Fee']")
 	private WebElement selectCheckBoxEqFee;
 	
 	@FindBy(xpath = "//div[text()='Equipment Fee']/../following-sibling::td/child::div/child::input[@type='text']")
@@ -83,7 +83,7 @@ public class ServiceTabPageCM extends Page {
 		try {
 			waitforPageLoadComplete();
 			 if (waitForElement(tabService)){
-				  tabService.click();
+				  iClick(tabService);
 				  report.reportDoneEvent("Click On Service Tab", "Service Tab Clicked");
 				  waitforPageLoadComplete();
 			  }
@@ -96,10 +96,11 @@ public class ServiceTabPageCM extends Page {
 	
 	public boolean SelectPricePlan() throws InterruptedException{
 		boolean mStatus = true;
+		
 		if (WaitandSwitchToFrame(frameMain)){
 			  if(waitForElement(btnContinueAvailProduct)){
-			  btnContinueAvailProduct.click();
-			  jsClickWE(btnContinueAvailProduct);
+			  iClick(btnContinueAvailProduct);
+			  //jsClickWE(btnContinueAvailProduct);
 			  //scrollToElementandclick(btnContinueAvailProduct); 
 				waitForElementDisappear(elementLoading);
 				//scrollDown();

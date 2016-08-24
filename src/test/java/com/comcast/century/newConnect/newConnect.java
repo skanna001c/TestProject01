@@ -96,17 +96,18 @@ public class newConnect extends ComcastTest {
 		customerInfo = CustomerInfo.loadFromDatatable(dataTable);
 		(new CustomerTabPageCM(browser, report)).createCustomer(customerInfo);
 		accountInfo = AccountInfo.loadFromDatatable(dataTable);
-		(new AccountTabPageCM(browser, report)).CreateServiceAccount(accountInfo);
+		(new AccountTabPageCM(browser, report)).CreateServiceAccount(accountInfo);		
 		contactInfo = ContactInfo.loadFromDatatable(dataTable);
 		(new ContactTabPageCM(browser, report)).CreateAccountPrimaryContact(contactInfo);
-		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();
-		(new AccountTabPageCM(browser, report)).CreateBillingAccount(accountInfo);
-		(new ContactTabPageCM(browser, report)).CreateBillingContact(contactInfo);
-		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();
-		siteInfo = SiteInfo.loadFromDatatable(dataTable);
-		(new AddressTabPageCM(browser, report)).ClickAddressTab(siteInfo);
+		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();		
+		(new AccountTabPageCM(browser, report)).CreateBillingAccount(accountInfo);		
+		(new ContactTabPageCM(browser, report)).CreateBillingContact(contactInfo);		
+		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();		
+		siteInfo = SiteInfo.loadFromDatatable(dataTable);		
+		(new AddressTabPageCM(browser, report)).ClickAddressTab(siteInfo);		
 		Site1 = (new AddressTabPageCM(browser, report)).EnterSiteDetailsValid(siteInfo);
 		(new ContactTabPageCM(browser, report)).CreateSiteTechnicalContact(contactInfo);
+		
 		(new ServiceTabPageCM(browser, report)).ClickOnServiceTab();
 		(new ServiceTabPageCM(browser, report)).SelectPricePlan();
 		(new ServiceTabPageCM(browser, report)).EDI();

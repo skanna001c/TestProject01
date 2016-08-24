@@ -179,12 +179,13 @@ public class AddressTabPageCM extends Page {
 		mstatus = true;
 		try{
 		  waitforPageLoadComplete();
-		  WaitandSwitchToFrame(frameMain);
-		  waitForElement(tabAddress);
-		  tabAddress.click();
-		  jsClick(tabAddress);
+		  WaitandSwitchToFrame(frameMain,120);
+		  waitForElement(tabAddress,120);
+		  do{
+			  tabAddress.click();		  
+		  	}
+		  while(!WaitandSwitchToFrame(frameAddress,2));
 		  report.reportDoneEvent("Click on Address Tab", "Address Tab Clicked");
-		  WaitandSwitchToFrame(frameAddress);
 		}
 		catch(Exception ex)
 		{
@@ -220,7 +221,7 @@ public class AddressTabPageCM extends Page {
 	public String EnterSiteDetailsValid(SiteInfo siteInfo) throws InterruptedException{
 		waitForElement(txtSiteName);
 		String siteName = siteInfo.siteName + getTimestamp();
-		txtSiteName.sendKeys(siteName);
+		iSendKeys(txtSiteName,siteName);
 		report.reportDoneEvent("Enter Site Name", "Entered Site Name as->" + siteName);
 		this.siteAddressValid(siteInfo);
 		this.headEndInformation(siteInfo);
@@ -232,8 +233,10 @@ public class AddressTabPageCM extends Page {
 		btnContinue.click();
 		waitforPageLoadComplete();
 		report.updateTestLog("Create Address", "Address Created Successfully", Status.SCREENSHOT);
-		waitForElement(BtnAddContact);
-	    BtnAddContact.click();
+		while(waitForElement(BtnAddContact,2))
+		{
+			BtnAddContact.click();
+		}
 	    report.reportDoneEvent("Click on Add Contact", "Add Contact Clicked");
 	    waitforPageLoadComplete();	
 		return siteName;
@@ -284,9 +287,9 @@ public class AddressTabPageCM extends Page {
 			waitforPageLoadComplete();
 			WaitandSwitchToFrame(frameCondition);
 			waitForElement(txtCity);
-			iterateThroughtableAndSelectCity(siteInfo.city);
+			while(!iterateThroughtableAndSelectCity(siteInfo.city)){}
 			waitForElement(btnOk);
-			btnOk.click();
+			iClick(btnOk);
 			browser.switchTo().defaultContent();
 		}
 		catch(Exception ex)
@@ -325,7 +328,7 @@ public class AddressTabPageCM extends Page {
 		mstatus = true;
 		try{
 			if(waitForElement(btnCreate)){
-				btnCreate.click();
+				iClick(btnCreate);
 				waitforPageLoadComplete();
 			}
 		}
@@ -344,7 +347,7 @@ public class AddressTabPageCM extends Page {
 			 if(waitForElement(BtnAddContact)){
 				 System.out.println("Btn exist");
 			 }
-			 BtnAddContact.sendKeys(Keys.ENTER);
+			 iClick(BtnAddContact);
 			 report.reportDoneEvent("Click on Add Contact", "Add Contact Clicked");
 			 waitforPageLoadComplete();
 		}
@@ -362,9 +365,10 @@ public class AddressTabPageCM extends Page {
 			waitforPageLoadComplete();
 			if(WaitandSwitchToFrame(frameMain)){
 				WaitandSwitchToFrame(frameAddress);
-				waitForElement(BtnCreateNewAddress);
-				BtnCreateNewAddress.click();
-				 jsClickWE(BtnCreateNewAddress);
+				while(waitForElement(BtnCreateNewAddress,1))
+				{
+					iClick(BtnCreateNewAddress);
+				}
 				 waitforPageLoadComplete();
 			}
 		}

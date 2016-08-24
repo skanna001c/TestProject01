@@ -276,7 +276,11 @@ public class CustomerTabPageCM extends Page {
 		return mstatus;
 	  }
 	  
-
+	  
+	  /**
+		 *Creates Customer
+		 *
+		 **/
 	  @PerfTransaction(name="CreateCustomer")
 	  public String createCustomer(CustomerInfo customerInfo) throws InterruptedException{
 		  String custName = customerInformation(customerInfo);

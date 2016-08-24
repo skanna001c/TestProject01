@@ -20,6 +20,7 @@ import java.util.zip.ZipOutputStream;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
+import org.apache.log4j.Logger;
 import org.junit.Rule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
@@ -89,7 +90,7 @@ public class ComcastTest {
 	protected  TestSettings settings; 
 	protected  IUserDetails userDetails;
 	private  CenturyApplication centuryApplication;
-	private String userName;
+	private String userName;	
 	
 	public IDataDump getDataDump(){
 		return dataDump;
@@ -112,6 +113,7 @@ public class ComcastTest {
 		 
 	      @Override
 	      protected synchronized void failed(Throwable e, Description description) {
+	    	  System.out.println("Inside" +"synchronized void failed");
 	    	  String reportPath=ReportPath.getInstance().getReportPath();
 	    	  String testCaseQCName=testName.getName();
 	    	  createResultFile(reportPath,"Failed");
@@ -163,6 +165,7 @@ public class ComcastTest {
 
 	      @Override
 	      protected synchronized void succeeded(Description description) {
+	    	  System.out.println("Inside" +"synchronized void failed");
 	    	  String reportPath=ReportPath.getInstance().getReportPath();
 	    	  String testCaseQCName=testName.getName();
 	    	  //System.out.println("Before zipping");
@@ -269,7 +272,10 @@ public class ComcastTest {
 			settings=new TestSettings();	
 			ClearTempFilesndChngeProxy();
 			userDetails = new UserDetails();
-			userDetails.loadData();			
+			userDetails.loadData();		
+			 
+			 
+			 
 			//if(browser==null)
 			browser=getDriver(settings.getBrowser());
 		
@@ -374,7 +380,7 @@ public class ComcastTest {
 	}
 
 	
-	@AfterMethod(alwaysRun=true)
+	@AfterMethod
 	public synchronized void tearDown(ITestResult result){
 		
 		String methodStatus;
@@ -606,6 +612,7 @@ public class ComcastTest {
 			
 		}
 		//driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+		driver.manage().deleteAllCookies();
 		return driver;
 	}
 	

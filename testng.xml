@@ -7,16 +7,7 @@
 </listeners>
   <test name="New_Connect_ME_EDI_New_connect">
     <classes>
-      <class name="com.comcast.century.newConnect.NewConnectTest">
-      	<methods>
-      		<include name="createCustomer"/>
-      		<include name="createAccount"/>
-      		<include name="createAddress"/>
-      		<include name="selectService"/>
-      		<include name="processService"/>
-      		<include name="submitOrder"/>
-      	</methods>
-      
+      <class name="com.comcast.century.newConnect.newConnect">
       </class>
     </classes>
   </test> <!-- Test -->

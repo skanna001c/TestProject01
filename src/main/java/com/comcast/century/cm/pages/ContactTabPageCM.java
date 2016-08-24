@@ -193,7 +193,14 @@ public class ContactTabPageCM extends Page {
 	public boolean CreateBillingContact(ContactInfo contactInfo) throws InterruptedException{
 		mstatus = true;
 		try{
-			 if (WaitandSwitchToFrame(frameMain)){
+			 do{
+				 if(waitForElement(BtnAddContact,1))
+					 {iClick(BtnAddContact);}
+				 waitforPageLoadComplete();				 
+			 }while(!WaitandSwitchToFrame(frameMain,1));
+			 
+			 if (WaitandSwitchToFrame(frameMain,1))
+			 {
 			 ddValueSelect(ddTextContactType,ddValueContactType4,"Billing");
 		     report.reportDoneEvent("Select Contact Type", "Selected Contact Type as->" +contactInfo.contactType1);
 			 txtFirstName.sendKeys(contactInfo.firstName);
@@ -207,8 +214,9 @@ public class ContactTabPageCM extends Page {
 			 report.reportDoneEvent("Enter EmailID","Entered EmailID as->" +contactInfo.emailId );
 			 txtPrimaryPhone.sendKeys(contactInfo.primaryPhoneNum);
 			 report.reportDoneEvent("Enter Primary Phone Number", "Entered Primary Phone Number as->" +contactInfo.primaryPhoneNum);
-			 waitForElement(btnCreate);
-			 btnCreate.click();
+			 while(waitForElement(btnCreate,2))
+			 { iClick(btnCreate);			 
+			 }
 			 waitforPageLoadComplete();
 			 report.updateTestLog("Create Billing Contact", "Billing Contact Created Successfully", Status.SCREENSHOT);
 			 browser.switchTo().defaultContent();
@@ -221,7 +229,13 @@ public class ContactTabPageCM extends Page {
 		return mstatus;			 
     }
 		
-		
+	/**
+	 * Check if the element is present in the page
+	 * 
+	 * @param Frames
+	 *            frameMain,default content
+	 * @return 
+	 */
 	public boolean CreateSiteTechnicalContact(ContactInfo contactInfo) throws InterruptedException{
 		mstatus=true;
 		try{			
@@ -240,7 +254,7 @@ public class ContactTabPageCM extends Page {
 			 txtPrimaryPhone.sendKeys(contactInfo.primaryPhoneNum);
 			 report.reportDoneEvent("Enter Primary Phone Number", "Entered Primary Phone Number as->" +contactInfo.primaryPhoneNum);
 			 waitForElement(btnCreate);
-			 btnCreate.click();
+			 iClick(btnCreate);
 			 waitforPageLoadComplete();
 			 report.updateTestLog("Create Site Technical Contact", "Site Technical Contact Created Successfully", Status.SCREENSHOT);
 			 browser.switchTo().defaultContent(); 
@@ -260,7 +274,7 @@ public class ContactTabPageCM extends Page {
 		try{
 			 if (WaitandSwitchToFrame(frameMain)){
 				 waitForElement(btnAddNewContact);
-				 btnAddNewContact.click();
+				 iClick(btnAddNewContact);
 				 waitforPageLoadComplete();
 				 waitForElement(ddTextContactType);
 		         ddValueSelect(ddTextContactType,ddValueContactType3,contactInfo.contactType3);
@@ -276,7 +290,7 @@ public class ContactTabPageCM extends Page {
 				 txtPrimaryPhone.sendKeys(contactInfo.primaryPhoneNum);
 				 report.reportDoneEvent("Enter Primary Phone Number", "Entered Primary Phone Number as->" +contactInfo.primaryPhoneNum);
 				 waitForElement(btnCreate);
-				 btnCreate.click();
+				 iClick(btnCreate);
 				 waitforPageLoadComplete();
 				 report.updateTestLog("Create Shipping Contact", "Shipping Contact Created Successfully", Status.SCREENSHOT);
 				 browser.switchTo().defaultContent(); 
@@ -296,7 +310,8 @@ public class ContactTabPageCM extends Page {
 			while (!WaitandSwitchToFrame(frameMain,1)) {}	
 			
 			if(waitForElement(btnBack,1))				
-				btnBack.sendKeys(Keys.ENTER);
+				//btnBack.sendKeys(Keys.ENTER);
+				iClick(btnBack);
 			report.reportDoneEvent("Click on Back Button", "Back Button Clicked");
 			waitforPageLoadComplete();
 			browser.switchTo().defaultContent(); 

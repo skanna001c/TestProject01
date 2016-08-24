@@ -181,7 +181,7 @@ public class AccountTabPageCM extends Page {
 			 report.reportDoneEvent("Check Use Customer Address", "Use Customer Address Checked");
 			 waitforPageLoadComplete();
 			 waitForElement(createAccountBtn);
-			 createAccountBtn.click();
+			 iClick(createAccountBtn);
 			 waitforPageLoadComplete();	
 			 report.updateTestLog("Create Service Account", "Service Account Created Successfully", Status.SCREENSHOT);
 			 browser.switchTo().defaultContent();			 
@@ -253,11 +253,15 @@ public class AccountTabPageCM extends Page {
 				 if (WaitandSwitchToFrame(frameAccount)){
 					 if(waitForElement(btnCreateNewAcc)) {
 						 System.out.println("Create new Acc exists");						 
-						 btnCreateNewAcc.sendKeys(Keys.ENTER);
-						 //jsClickWE(btnCreateNewAcc);
-						 report.reportDoneEvent("Click on Create New Account", "Create New Account Clicked");
-						 waitforPageLoadComplete();
+						 
 					 }
+					 
+					do{
+						iClick(btnCreateNewAcc);
+						waitforPageLoadComplete();
+					}while(getValue(txtBillingAccnName).length()>1);
+					 
+					 report.reportDoneEvent("Click on Create New Account", "Create New Account Clicked");
 					 ddValueSelect(ddTextAccountType,ddValueAccountTypeBilling,accountInfo.accountType);
 					 report.reportDoneEvent("Select Account Type", "Selected Account Type as->" +accountInfo.accountType);
 					 waitforPageLoadComplete();
@@ -276,11 +280,11 @@ public class AccountTabPageCM extends Page {
 					 useCustomerAddress.click();
 					 waitforPageLoadComplete();
 					 waitForElement(createAccountBtn);
-					 createAccountBtn.click();
+					 iClick(createAccountBtn);
 					 waitforPageLoadComplete();	
 					 report.updateTestLog("Create Billing Account", "Billing Account Created Successfully", Status.SCREENSHOT);
-					 waitForElement(BtnAddContact);
-					 BtnAddContact.click();	
+					 waitForElement(BtnAddContact);					 
+					 iClick(BtnAddContact);
 					 waitforPageLoadComplete();	
 					 //browser.switchTo().defaultContent();
 					 

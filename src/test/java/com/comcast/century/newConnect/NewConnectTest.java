@@ -100,7 +100,7 @@ public class NewConnectTest extends ComcastTest {
   public void createServiceAccount() throws InterruptedException{
 	  if((new AccountTabPageCM(browser, report)).CreateServiceAccount(accountInfo)){
 		  if((new ContactTabPageCM(browser, report)).CreateAccountPrimaryContact(contactInfo)){
-			  if((new ContactTabPageCM(browser, report)).ClickOnBackBtn()){
+			  if((new ContactTabPageCM(browser, report)).ClickOnBackBtn()){ 
 				  
 			  }else Assert.fail("Click on back button failed");
 		  }else Assert.fail("Create account primary contact failed");
@@ -206,7 +206,7 @@ public class NewConnectTest extends ComcastTest {
   public void Conduct_Site_Survey() throws InterruptedException {	
 	  if (getDataDump().getValue("Conduct_Site_Survey_status").equalsIgnoreCase("fail"))
 	  {
-		  CSOSearchForOrderInSO();
+		  StartCSO();
 	  }
 	  (new SiteLevelTasks(browser, report)).ConductSiteSurvey();
 	  (new ConductSiteSurveyTaskPage(browser, report)).ConductSiteSurvey(siteLevelTaskInfo);
@@ -214,14 +214,14 @@ public class NewConnectTest extends ComcastTest {
   
   @Test(priority=10)
   public void Obtain_Site_Agreement(Method method) throws InterruptedException {
-	  (new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
-	  (new WorkOrderTabPageCSO(browser, report)).ClickFirstSiteFlow();
+	  CSOSearchForOrderInSO();
 	  (new SiteLevelTasks(browser, report)).ObtainSiteAgreement();
 	  (new ObtainSiteAgreementTaskPage(browser, report)).ObtainSiteAgreement(siteLevelTaskInfo);
   }	
   
   @Test(priority=11)
   public void Conduct_Fiber_Plant_Survey() throws InterruptedException, AWTException {
+	  CSOSearchForOrderInSO();
 	  (new SiteLevelTasks(browser, report)).ConductFiberPlantSurvey();
 	 (new ConductFiberPlantSurveyTaskPage(browser, report)).ConductFiberPlantSurvey(siteLevelTaskInfo);
 		
@@ -280,7 +280,7 @@ public class NewConnectTest extends ComcastTest {
   
   public void CSOSearchForOrderInSO()
   {
-	  (new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(SRID);
+	  (new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
 	  (new WorkOrderTabPageCSO(browser, report)).ClickFirstSiteFlow();
 	  
   }
