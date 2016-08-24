@@ -65,43 +65,73 @@ public class ObtainSiteAgreementTaskPage extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
-	public void ObtainSiteAgreement(SiteLevelTaskInfo siteLevelTaskInfo) throws InterruptedException{
-		if(waitForElement(tabSiteAgreementInfo)){
-			tabSiteAgreementInfo.click();
-			waitForElementDisappear(elementLoading);
-			scrollDown();
-			waitForElement(txtAgreementName);
-			txtAgreementName.sendKeys(siteLevelTaskInfo.agreementName+randomNumber(5));
-			SubmittedDate.click();
-			btnToday.get(0).click();
-			clickndRelease(ActualReceivedDate);
-			//ActualReceivedDate.click();
-			btnToday.get(1).click();	
-			this.ClickCompleteButton();
+	private boolean mstatus=true;
+	
+	public boolean ObtainSiteAgreement(SiteLevelTaskInfo siteLevelTaskInfo) throws InterruptedException{
+		try{
+			if(waitForElement(tabSiteAgreementInfo)){
+				tabSiteAgreementInfo.click();
+				waitForElementDisappear(elementLoading);
+				scrollDown();
+				waitForElement(txtAgreementName);
+				txtAgreementName.sendKeys(siteLevelTaskInfo.agreementName+randomNumber(5));
+				SubmittedDate.click();
+				btnToday.get(0).click();
+				clickndRelease(ActualReceivedDate);
+				//ActualReceivedDate.click();
+				btnToday.get(1).click();	
+				this.ClickCompleteButton();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickBackButton(){
-		if(waitForElement(btnBack)){
-			btnBack.click();
+	public boolean ClickBackButton(){
+		try{
+			if(waitForElement(btnBack)){
+				btnBack.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickSaveButton(){
-		if(waitForElement(btnSave)){
-			btnSave.click();
+	public boolean ClickSaveButton(){
+		try{
+			if(waitForElement(btnSave)){
+				btnSave.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickCompleteButton(){
-		if(waitForElement(btnComplete)){
-			btnComplete.click();
-			waitforPageLoadComplete();
-			waitForElement(btnYes);
-			btnYes.click();
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Complete ObtainSiteAgreement Task", " ObtainSiteAgreement Task Completed");
+	public boolean ClickCompleteButton(){
+		try{
+			if(waitForElement(btnComplete)){
+				btnComplete.click();
+				waitforPageLoadComplete();
+				waitForElement(btnYes);
+				btnYes.click();
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Complete ObtainSiteAgreement Task", " ObtainSiteAgreement Task Completed");
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 
 }

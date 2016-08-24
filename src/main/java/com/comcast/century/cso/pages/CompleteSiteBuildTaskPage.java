@@ -46,34 +46,64 @@ public class CompleteSiteBuildTaskPage extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
-	public void ClickBackButton(){
-		if(waitForElement(btnBack)){
-			btnBack.click();
+	private boolean mstatus = true;
+	
+	public boolean ClickBackButton(){
+		try{
+			if(waitForElement(btnBack)){
+				btnBack.click();
+			}		
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickSaveButton(){
-		if(waitForElement(btnSave)){
-			btnSave.click();
+	public boolean ClickSaveButton(){
+		try{
+			if(waitForElement(btnSave)){
+				btnSave.click();
+			}
 		}
-	}
-	
-	public void ClickCompleteButton(){		
 		
-		if(waitForElement(btnComplete)){
-			windowHandle=browser.getWindowHandle();
-		//	System.out.println("main windowHandle "+windowHandle);
-			btnComplete.click();
-			//ClosePopUp();
-			waitforPageLoadComplete();
-			//closeAllOtherWindows(windowHandle);
-			report.reportDoneEvent("Completed CompleteSiteBuild Task", " CompleteSiteBuild Task Completed");
+		catch(Exception ex)
+		{
+			mstatus = false;
 		}
+		return mstatus;
+}
+	
+	public boolean ClickCompleteButton(){		
+		try{
+			if(waitForElement(btnComplete)){
+				windowHandle=browser.getWindowHandle();
+			//	System.out.println("main windowHandle "+windowHandle);
+				btnComplete.click();
+				//ClosePopUp();
+				waitforPageLoadComplete();
+				//closeAllOtherWindows(windowHandle);
+				report.reportDoneEvent("Completed CompleteSiteBuild Task", " CompleteSiteBuild Task Completed");
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void closePopup() throws InterruptedException
-	{
-		ClosePopUpndSwitchtoFrame(windowHandle,frameRight);
+	public boolean closePopup() throws InterruptedException
+	{	
+		try{
+			ClosePopUpndSwitchtoFrame(windowHandle,frameRight);
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
 

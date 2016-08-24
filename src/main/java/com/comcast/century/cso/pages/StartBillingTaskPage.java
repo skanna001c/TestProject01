@@ -56,16 +56,25 @@ public class StartBillingTaskPage extends Page {
 	@FindBy(xpath = "//span[.='NOTES']/preceding-sibling::div[3]")
 	private WebElement closeNotes ;
 	
-	public void StartBilling() throws InterruptedException{
-		if(waitForElement(actualBillingStartDate)){
-			clickndRelease(actualBillingStartDate);
-			clickndRelease(btnToday);
-			this.ClickCompleteButton();
+	private boolean mstatus = true;
+	
+	public boolean StartBilling() throws InterruptedException{
+		try{
+			if(waitForElement(actualBillingStartDate)){
+				clickndRelease(actualBillingStartDate);
+				clickndRelease(btnToday);
+				this.ClickCompleteButton();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
 	
-	public void verifyNotes(){
+	public boolean verifyNotes(){
 		try{
 			waitForElement(imgNotes);
 			imgNotes.click();
@@ -76,28 +85,51 @@ public class StartBillingTaskPage extends Page {
 			this.ClickBackButton();
 		}catch(Exception e){
 			System.out.println(e.getMessage());
+			mstatus = false;
 		}
+		return mstatus;
 	}
 	
-	public void ClickBackButton(){
-		if(waitForElement(btnBack)){
-			btnBack.click();
+	public boolean ClickBackButton(){
+		try{
+			if(waitForElement(btnBack)){
+				btnBack.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickSaveButton(){
-		if(waitForElement(btnSave)){
-			btnSave.click();
+	public boolean ClickSaveButton(){
+		try{
+			if(waitForElement(btnSave)){
+				btnSave.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickCompleteButton(){
-		if(waitForElement(btnComplete)){
-			btnComplete.click();
-			waitforPageLoadComplete();
-			waitForElementDisappear(elementLoading);
-			report.reportDoneEvent("Complete StartBilling Task", " StartBilling Task Completed");
+	public boolean ClickCompleteButton(){
+		try{
+			if(waitForElement(btnComplete)){
+				btnComplete.click();
+				waitforPageLoadComplete();
+				waitForElementDisappear(elementLoading);
+				report.reportDoneEvent("Complete StartBilling Task", " StartBilling Task Completed");
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 		
 	}
 

@@ -77,48 +77,77 @@ public class ConductFiberPlantSurveyTaskPage extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
+	private boolean mstatus = true;
 	
-	public void ConductFiberPlantSurvey(SiteLevelTaskInfo siteLevelTaskInfo) throws AWTException, InterruptedException{
-		if(waitForElement(tabFiberInformation)){
-			clickndRelease(tabFiberInformation);
-			waitForElement(SurveyCompletionDate);
-			SurveyCompletionDate.click();
-			btnToday.click();
-			new Select(ddPermitRequired).selectByVisibleText("Yes");
-			new Select(ddConstructionRequired).selectByVisibleText("Yes");
-			waitForElement(tabFiberSurveyResults);
-			clickndRelease(tabFiberSurveyResults);
-			waitForElement(txtHeadEndDistance);
-			txtHeadEndDistance.sendKeys(randomNumber(5));
-			txtNodeNumber.sendKeys(randomNumber(5));
-			new Select(ddServiceable).selectByVisibleText("No");
-			this.ClickCompleteButton();
+	public boolean ConductFiberPlantSurvey(SiteLevelTaskInfo siteLevelTaskInfo) throws AWTException, InterruptedException{
+		try{
+			if(waitForElement(tabFiberInformation)){
+				clickndRelease(tabFiberInformation);
+				waitForElement(SurveyCompletionDate);
+				SurveyCompletionDate.click();
+				btnToday.click();
+				new Select(ddPermitRequired).selectByVisibleText("Yes");
+				new Select(ddConstructionRequired).selectByVisibleText("Yes");
+				waitForElement(tabFiberSurveyResults);
+				clickndRelease(tabFiberSurveyResults);
+				waitForElement(txtHeadEndDistance);
+				txtHeadEndDistance.sendKeys(randomNumber(5));
+				txtNodeNumber.sendKeys(randomNumber(5));
+				new Select(ddServiceable).selectByVisibleText("No");
+				this.ClickCompleteButton();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickBackButton(){
-		if(waitForElement(btnBack)){
-			btnBack.click();
+	public boolean ClickBackButton(){
+		try{
+			if(waitForElement(btnBack)){
+				btnBack.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickSaveButton(){
-		if(waitForElement(btnSave)){
-			btnSave.click();
+	public boolean ClickSaveButton(){
+		try{
+			if(waitForElement(btnSave)){
+				btnSave.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickCompleteButton(){
-		if(waitForElement(btnComplete)){
-			btnComplete.click();
-			waitforPageLoadComplete();
-			waitForElement(btnYes);
-			btnYes.click();
-			waitforPageLoadComplete();
-			btnYes.click();
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Complete ConductFiberPlantSurvey Task", " ConductFiberPlantSurvey Task Completed");
+	public boolean ClickCompleteButton(){
+		try{
+			if(waitForElement(btnComplete)){
+				btnComplete.click();
+				waitforPageLoadComplete();
+				waitForElement(btnYes);
+				btnYes.click();
+				waitforPageLoadComplete();
+				btnYes.click();
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Complete ConductFiberPlantSurvey Task", " ConductFiberPlantSurvey Task Completed");
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
 	

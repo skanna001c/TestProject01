@@ -62,7 +62,10 @@ public class BuildHouseAccountTaskPage extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
-	public void BuildHouseAccount(SiteLevelTaskInfo siteLevelTaskInfo){
+	private boolean mstatus;	
+	
+	public boolean BuildHouseAccount(SiteLevelTaskInfo siteLevelTaskInfo){
+		mstatus = true;
 		try{
 			waitforPageLoadComplete();
 			waitForElement(txtLocalBillerName);
@@ -74,27 +77,53 @@ public class BuildHouseAccountTaskPage extends Page {
 			this.ClickCompleteButton();
 		}catch(Exception e){
 			System.out.println(e.getMessage());
+			mstatus = false;			
 		}
+		return mstatus;
 	}
 
-	public void ClickBackButton(){
-		if(waitForElement(btnBack)){
-			btnBack.click();
+	public boolean ClickBackButton(){
+		mstatus = true;
+		try{
+			if(waitForElement(btnBack)){
+				btnBack.click();
+			}
 		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;			
+		}
+		return mstatus;
 	}
 	
-	public void ClickSaveButton(){
-		if(waitForElement(btnSave)){
-			btnSave.click();
+	public boolean ClickSaveButton(){
+		mstatus = true;
+		try{
+			if(waitForElement(btnSave)){
+				btnSave.click();
+			}
 		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;			
+		}
+		return mstatus;
 	}
 	
-	public void ClickCompleteButton(){
-		if(waitForElement(btnComplete)){
-			btnComplete.click();
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Complete BuildHouseAccount Task", " BuildHouseAccount Task Completed");
+	public boolean ClickCompleteButton(){
+		mstatus = true;
+		try{
+			if(waitForElement(btnComplete)){
+				btnComplete.click();
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Complete BuildHouseAccount Task", " BuildHouseAccount Task Completed");
+			}
 		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;			
+		}
+		return mstatus;
 	}
 	
 	

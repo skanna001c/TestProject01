@@ -70,41 +70,70 @@ public class ConductSiteSurveyTaskPage extends Page {
 	@FindBy(xpath = "//input[@value='Reset']")
 	private WebElement btnReset;
 	
-	public void ConductSiteSurvey(SiteLevelTaskInfo siteLevelTaskInfo){
-		if(waitForElement(ScheduledSurveyDate)){
-			ScheduledSurveyDate.click();
-			btnToday.get(0).click();
-			SurveyCompletionDate.click();
-			btnToday.get(1).click();
-			waitForElement(ddSitePermitRequired);
-			new Select(ddSitePermitRequired).selectByVisibleText("No");
-			new Select(ddCPElocationType).selectByVisibleText("Raw Land Site");
-			new Select(ddPowerStatus).selectByVisibleText("Existing Power");
-			new Select(ddEquipmentLocationDescription).selectByVisibleText("Leased Area");
-			this.ClickCompleteButton();
+	private boolean mstatus= true;
+	public boolean ConductSiteSurvey(SiteLevelTaskInfo siteLevelTaskInfo){
+		try{
+			if(waitForElement(ScheduledSurveyDate)){
+				ScheduledSurveyDate.click();
+				btnToday.get(0).click();
+				SurveyCompletionDate.click();
+				btnToday.get(1).click();
+				waitForElement(ddSitePermitRequired);
+				new Select(ddSitePermitRequired).selectByVisibleText("No");
+				new Select(ddCPElocationType).selectByVisibleText("Raw Land Site");
+				new Select(ddPowerStatus).selectByVisibleText("Existing Power");
+				new Select(ddEquipmentLocationDescription).selectByVisibleText("Leased Area");
+				this.ClickCompleteButton();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickBackButton(){
-		if(waitForElement(btnBack)){
-			btnBack.click();
+	public boolean ClickBackButton(){
+		try{
+			if(waitForElement(btnBack)){
+				btnBack.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickSaveButton(){
-		if(waitForElement(btnSave)){
-			btnSave.click();
+	public boolean ClickSaveButton(){
+		try{
+			if(waitForElement(btnSave)){
+				btnSave.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickCompleteButton(){
-		if(waitForElement(btnComplete)){
-			btnComplete.click();
-			waitforPageLoadComplete();
-			waitForElement(btnYes);
-			btnYes.click();
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Complete ConductSiteSurvey Task", " ConductSiteSurvey Task Completed");
+	public boolean ClickCompleteButton(){
+		try{
+			if(waitForElement(btnComplete)){
+				btnComplete.click();
+				waitforPageLoadComplete();
+				waitForElement(btnYes);
+				btnYes.click();
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Complete ConductSiteSurvey Task", " ConductSiteSurvey Task Completed");
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 }

@@ -46,21 +46,37 @@ public class NotifyCustomerofServiceInstallationTaskPage extends Page {
 	@FindBy(xpath = "//button[text()='Today']")
 	private WebElement btnToday ;
 	
-	public void NotifyCustomerofServiceInstallation(){
-		if(waitForElement(customerNotificationDate)){
-			customerNotificationDate.click();
-			btnToday.click();
-			this.ClickCompleteButton();
+	private boolean mstatus=true;
+	
+	public boolean NotifyCustomerofServiceInstallation(){
+		try{
+			if(waitForElement(customerNotificationDate)){
+				customerNotificationDate.click();
+				btnToday.click();
+				this.ClickCompleteButton();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 
 	
-	public void ClickCompleteButton(){
-		if(waitForElement(btnComplete)){
-			btnComplete.click();
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Complete NotifyCustomerofServiceInstallation Task", " NotifyCustomerofServiceInstallation Task Completed");
+	public boolean ClickCompleteButton(){
+		try{
+			if(waitForElement(btnComplete)){
+				btnComplete.click();
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Complete NotifyCustomerofServiceInstallation Task", " NotifyCustomerofServiceInstallation Task Completed");
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 		
 	}
 

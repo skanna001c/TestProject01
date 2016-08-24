@@ -61,27 +61,36 @@ public class PresalesTasksPageCSO extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
-	public void ConductCoaxSurvey() throws InterruptedException{
-		if(waitForElement(taskConductCoaxSurvey)){
-			taskConductCoaxSurvey.click();
-			waitforPageLoadComplete();
-			waitForElement(surveyCompletionDate);
-			surveyCompletionDate.click();
-			btnToday.click();
-			clickndRelease(tabCoaxSurveyResults);
-			waitForElement(ddArrwHeadendName);
-			ddArrwHeadendName.click();
-		    Thread.sleep(5*1000);
-		    ddValueHeadendName.click();
-			txtNodeNumber.sendKeys(randomNumber(5));
-			new Select(ddServiceable).selectByValue("Yes");
-			waitForElement(btnComplete);
-			btnComplete.click();
-			btnYes.click();
-			waitforPageLoadComplete();
-			btnYes.click();
-			waitforPageLoadComplete();	
+	private boolean mstatus=true;
+	
+	public boolean ConductCoaxSurvey() throws InterruptedException{
+		try{
+			if(waitForElement(taskConductCoaxSurvey)){
+				taskConductCoaxSurvey.click();
+				waitforPageLoadComplete();
+				waitForElement(surveyCompletionDate);
+				surveyCompletionDate.click();
+				btnToday.click();
+				clickndRelease(tabCoaxSurveyResults);
+				waitForElement(ddArrwHeadendName);
+				ddArrwHeadendName.click();
+			    Thread.sleep(5*1000);
+			    ddValueHeadendName.click();
+				txtNodeNumber.sendKeys(randomNumber(5));
+				new Select(ddServiceable).selectByValue("Yes");
+				waitForElement(btnComplete);
+				btnComplete.click();
+				btnYes.click();
+				waitforPageLoadComplete();
+				btnYes.click();
+				waitforPageLoadComplete();	
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
 	

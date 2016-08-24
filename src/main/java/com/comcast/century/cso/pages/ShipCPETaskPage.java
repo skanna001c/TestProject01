@@ -58,39 +58,67 @@ public class ShipCPETaskPage extends Page {
 	@FindBy(css = "div[class*='lovcombo']")
 	private WebElement  ddvalueChkSiteAddress;
 	
+	private boolean mstatus=true;
 	
-	
-	public void ShipCPE(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
-		if(waitForElement(txtPackingSlipNumber)){
-			txtPackingSlipNumber.sendKeys(randomNumber(5));
-			CPEShipDate.click();
-			btnToday.click();
-			ddSiteAddress.click();
-			ddvalueChkSiteAddress.click();
-			this.ClickCompleteButton();
+	public boolean ShipCPE(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
+		try{
+			if(waitForElement(txtPackingSlipNumber)){
+				txtPackingSlipNumber.sendKeys(randomNumber(5));
+				CPEShipDate.click();
+				btnToday.click();
+				ddSiteAddress.click();
+				ddvalueChkSiteAddress.click();
+				this.ClickCompleteButton();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
 	
 	
-	public void ClickBackButton(){
-		if(waitForElement(btnBack)){
-			btnBack.click();
+	public boolean ClickBackButton(){
+		try{
+			if(waitForElement(btnBack)){
+				btnBack.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickSaveButton(){
-		if(waitForElement(btnSave)){
-			btnSave.click();
+	public boolean ClickSaveButton(){
+		try{
+			if(waitForElement(btnSave)){
+				btnSave.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickCompleteButton(){
-		if(waitForElement(btnComplete)){
-			btnComplete.click();
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Complete ShipCPE Task", " ShipCPE Task Completed");
+	public boolean ClickCompleteButton(){
+		try{
+			if(waitForElement(btnComplete)){
+				btnComplete.click();
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Complete ShipCPE Task", " ShipCPE Task Completed");
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 		
 	}
 

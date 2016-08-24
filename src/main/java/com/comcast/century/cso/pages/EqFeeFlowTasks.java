@@ -38,26 +38,42 @@ public class EqFeeFlowTasks extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
-	public void EqFeeStartBilling() throws InterruptedException{
-		if(waitForElement(taskEqFeeStartBilling)){
-			if(checkifStatusChanged(taskEqFeeStartBilling,btnRefresh,"COMPLETED")){
-				waitForElement(taskEqFeeStartBilling);
-				Thread.sleep(5*1000);
-				jsClick(taskEqFeeStartBilling);
-				report.reportDoneEvent("Click EqFeeStartBilling Task", " EqFeeStartBilling Task Clicked");
+	private boolean mstatus= true;
+	
+	public boolean EqFeeStartBilling() throws InterruptedException{
+		try{
+			if(waitForElement(taskEqFeeStartBilling)){
+				if(checkifStatusChanged(taskEqFeeStartBilling,btnRefresh,"COMPLETED")){
+					waitForElement(taskEqFeeStartBilling);
+					Thread.sleep(5*1000);
+					jsClick(taskEqFeeStartBilling);
+					report.reportDoneEvent("Click EqFeeStartBilling Task", " EqFeeStartBilling Task Clicked");
+				}
+				waitforPageLoadComplete();
 			}
-			waitforPageLoadComplete();
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickBackButton() throws InterruptedException{
-		if(waitForElement(btnBack)){
-			clickndRelease(btnBack);
-			//btnBack.click();
-			waitforPageLoadComplete();
-			waitForElementDisappear(elementLoading);
-			report.updateTestLog("Validate", "EqFee Flow Task Completed", Status.SCREENSHOT);
+	public boolean ClickBackButton() throws InterruptedException{
+		try{
+			if(waitForElement(btnBack)){
+				clickndRelease(btnBack);
+				//btnBack.click();
+				waitforPageLoadComplete();
+				waitForElementDisappear(elementLoading);
+				report.updateTestLog("Validate", "EqFee Flow Task Completed", Status.SCREENSHOT);
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 
 }

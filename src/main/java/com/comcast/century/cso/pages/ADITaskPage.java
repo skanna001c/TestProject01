@@ -64,60 +64,102 @@ public class ADITaskPage extends Page {
 	@FindBy(xpath = "//b[contains(normalize-space(text()),normalize-space(concat(\"Retrieve Circuit \",\"ID's\")))]")
 	private WebElement linkRetrieveCircuitID ;
 	
-	public void ADI(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
-		if(waitForElement(tabCircuitMapping)){
-			tabCircuitMapping.click();
-			waitForElementDisappear(elementLoading);
-			Thread.sleep(2*1000);
-			scrollToElementandclick(elementDash.get(0));
-			waitForElement(txtServiceID);
-			txtServiceID.sendKeys(randomNumber(6));
-			txtEVCid.sendKeys(serviceLevelTaskInfo.EVC1);
-			txtProjectName.clear();
-			txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
-			linkRetrieveCircuitID.click();
-			Thread.sleep(5*1000);
-			this.ClickCompleteButton();
+	private boolean mstatus;
+	
+	public boolean ADI(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
+		mstatus = true;
+		try{
+			if(waitForElement(tabCircuitMapping)){
+				tabCircuitMapping.click();
+				waitForElementDisappear(elementLoading);
+				Thread.sleep(2*1000);
+				scrollToElementandclick(elementDash.get(0));
+				waitForElement(txtServiceID);
+				txtServiceID.sendKeys(randomNumber(6));
+				txtEVCid.sendKeys(serviceLevelTaskInfo.EVC1);
+				txtProjectName.clear();
+				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
+				linkRetrieveCircuitID.click();
+				Thread.sleep(5*1000);
+				this.ClickCompleteButton();
+			}
 		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void assignDesignInformationPRI(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
-		if(waitForElement(tabCircuitMapping)){
-			tabCircuitMapping.click();
-			waitForElementDisappear(elementLoading);
-			Thread.sleep(2*1000);
-			scrollToElementandclick(elementDash.get(1));
-			waitForElement(txtServiceID);
-			txtServiceID.sendKeys(randomNumber(6));
-			txtEVCid.sendKeys(serviceLevelTaskInfo.EVC2);
-			txtProjectName.clear();
-			txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
-			linkRetrieveCircuitID.click();
-			Thread.sleep(5*1000);
-			this.ClickCompleteButton();
+	public boolean assignDesignInformationPRI(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
+		mstatus = true;
+		try{
+			if(waitForElement(tabCircuitMapping)){
+				tabCircuitMapping.click();
+				waitForElementDisappear(elementLoading);
+				Thread.sleep(2*1000);
+				scrollToElementandclick(elementDash.get(1));
+				waitForElement(txtServiceID);
+				txtServiceID.sendKeys(randomNumber(6));
+				txtEVCid.sendKeys(serviceLevelTaskInfo.EVC2);
+				txtProjectName.clear();
+				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
+				linkRetrieveCircuitID.click();
+				Thread.sleep(5*1000);
+				this.ClickCompleteButton();
+			}
 		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
 	
 	
-	public void ClickBackButton(){
-		if(waitForElement(btnBack)){
-			btnBack.click();
+	public boolean ClickBackButton(){
+		mstatus = true;
+		try{
+			if(waitForElement(btnBack)){
+				btnBack.click();
+			}
 		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickSaveButton(){
-		if(waitForElement(btnSave)){
-			btnSave.click();
+	public boolean ClickSaveButton(){
+		mstatus = true;
+		try{
+			if(waitForElement(btnSave)){
+				btnSave.click();
+			}
 		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickCompleteButton(){
-		if(waitForElement(btnComplete)){
-			btnComplete.click();
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Complete ADI Task", " ADI Task Completed");
+	public boolean ClickCompleteButton(){
+		mstatus = true;
+		try{
+			if(waitForElement(btnComplete)){
+				btnComplete.click();
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Complete ADI Task", " ADI Task Completed");
+			}
 		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;
+		}
+		return mstatus;
 		
 	}
 

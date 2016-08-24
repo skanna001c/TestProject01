@@ -50,41 +50,69 @@ public class UpdateDesignTaskPage extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
+	private boolean mstatus = true;
 	
-	
-	public void UpdateDesign(){
-		if(waitForElement(ddDesignChanged)){
-			new Select(ddDesignChanged).selectByValue("No");
+	public boolean UpdateDesign(){
+		try{
+			if(waitForElement(ddDesignChanged)){
+				new Select(ddDesignChanged).selectByValue("No");
+			}
+			
+			waitForElement(tabBOMChangeDetails);
+			tabBOMChangeDetails.click();
+			if(waitForElement(ddBOMChanged)){
+				new Select(ddBOMChanged).selectByValue("No");
+			}
+			this.ClickCompleteButton();
+		}	
+		catch(Exception ex)
+		{
+			mstatus = false;
 		}
-		
-		waitForElement(tabBOMChangeDetails);
-		tabBOMChangeDetails.click();
-		if(waitForElement(ddBOMChanged)){
-			new Select(ddBOMChanged).selectByValue("No");
-		}
-		this.ClickCompleteButton();
+		return mstatus;
 	}
 	
 	
-	public void ClickBackButton(){
-		if(waitForElement(btnBack)){
-			btnBack.click();
+	public boolean ClickBackButton(){
+		try{
+			if(waitForElement(btnBack)){
+				btnBack.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickSaveButton(){
-		if(waitForElement(btnSave)){
-			btnSave.click();
+	public boolean ClickSaveButton(){
+		try{
+			if(waitForElement(btnSave)){
+				btnSave.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickCompleteButton(){
-		if(waitForElement(btnComplete)){
-			btnComplete.click();
-			waitforPageLoadComplete();
-			waitForElementDisappear(elementLoading);
-			report.reportDoneEvent("Complete UpdateDesign Task", " UpdateDesign Task Completed");
+	public boolean ClickCompleteButton(){
+		try{
+			if(waitForElement(btnComplete)){
+				btnComplete.click();
+				waitforPageLoadComplete();
+				waitForElementDisappear(elementLoading);
+				report.reportDoneEvent("Complete UpdateDesign Task", " UpdateDesign Task Completed");
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 		
 	}
 

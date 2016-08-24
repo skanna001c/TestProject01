@@ -58,32 +58,55 @@ public class SetCriticalDatesTaskPage extends Page {
 	@FindBy(xpath = "//button[text()='Today']")
 	private List<WebElement> btnToday ;
 	
-	public void SetCriticalDates(){
-		if(waitForElement(CustomerNotificationDate)){
-			CustomerNotificationDate.click();
-			btnToday.get(0).click();
-			new Select(ddHotCut).selectByValue("Yes");;
+	private boolean mstatus=true;
+	
+	public boolean SetCriticalDates(){
+		try{
+			if(waitForElement(CustomerNotificationDate)){
+				CustomerNotificationDate.click();
+				btnToday.get(0).click();
+				new Select(ddHotCut).selectByValue("Yes");;
+				focDate.click();
+				btnToday.get(1).click();
+				this.ClickCompleteButton();
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	public boolean setCriticalDatesPRI(){
+		try{
+			waitForElement(ddHotCut);
+			new Select(ddHotCut).selectByValue("Yes");
 			focDate.click();
 			btnToday.get(1).click();
 			this.ClickCompleteButton();
 		}
-	}
-	
-	public void setCriticalDatesPRI(){
-		waitForElement(ddHotCut);
-		new Select(ddHotCut).selectByValue("Yes");
-		focDate.click();
-		btnToday.get(1).click();
-		this.ClickCompleteButton();
-	}
-	
-	
-	public void ClickCompleteButton(){
-		if(waitForElement(btnComplete)){
-			btnComplete.click();
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Complete SetCriticalDates Task", " SetCriticalDates Task Completed");
+		catch(Exception ex)
+		{
+			mstatus = false;
 		}
+		return mstatus;
+	}
+	
+	
+	public boolean ClickCompleteButton(){
+		try{
+			if(waitForElement(btnComplete)){
+				btnComplete.click();
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Complete SetCriticalDates Task", " SetCriticalDates Task Completed");
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 		
 	}
 

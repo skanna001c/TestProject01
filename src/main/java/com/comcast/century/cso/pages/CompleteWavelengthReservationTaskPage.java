@@ -56,37 +56,67 @@ public class CompleteWavelengthReservationTaskPage extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
-	public void CompleteWavelengthReservation(SiteLevelTaskInfo siteLevelTaskInfo) throws InterruptedException{
-		if(waitForElement(ddWDMType)){
-			ddWDMType.click();
-			waitForElementDisappear(elementLoading);
-			ddValueWDMType.click();
-			waitForElement(ddWavelength);
-			ddWavelength.click();
-			waitForElementDisappear(elementLoading);
-			ddValueWavelength.click();
-			this.ClickCompleteButton();
+	private boolean mstatus = true;
+	
+	public boolean CompleteWavelengthReservation(SiteLevelTaskInfo siteLevelTaskInfo) throws InterruptedException{
+		try{
+			if(waitForElement(ddWDMType)){
+				ddWDMType.click();
+				waitForElementDisappear(elementLoading);
+				ddValueWDMType.click();
+				waitForElement(ddWavelength);
+				ddWavelength.click();
+				waitForElementDisappear(elementLoading);
+				ddValueWavelength.click();
+				this.ClickCompleteButton();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickBackButton(){
-		if(waitForElement(btnBack)){
-			btnBack.click();
+	public boolean ClickBackButton(){
+		try{
+			if(waitForElement(btnBack)){
+				btnBack.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickSaveButton(){
-		if(waitForElement(btnSave)){
-			btnSave.click();
+	public boolean ClickSaveButton(){
+		try{
+			if(waitForElement(btnSave)){
+				btnSave.click();
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 	}
 	
-	public void ClickCompleteButton(){
-		if(waitForElement(btnComplete)){
-			btnComplete.click();
-			waitforPageLoadComplete();
-			report.reportDoneEvent("Complete CompleteWavelengthReservation Task", " CompleteWavelengthReservation Task Completed");
+	public boolean ClickCompleteButton(){
+		try{
+			if(waitForElement(btnComplete)){
+				btnComplete.click();
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Complete CompleteWavelengthReservation Task", " CompleteWavelengthReservation Task Completed");
+			}
 		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
 		
 	}
 	
