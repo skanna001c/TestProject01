@@ -30,10 +30,46 @@
   </test--> <!-- Test -->
   
   <test name="EOD_NC_ME_EDI_NewConnect_ERate">
-    <classes>
-      <class name="com.comcast.century.newConnect.EOD_NC_ME_EDI_NewConnect_ERate">
-      
+    <classes>             
+      <class name="com.comcast.century.newConnect.NewConnectTest">
+        <methods>
+          <include name="CreateCustomer"/>
+          <include name="CreateServiceAccount" />
+          <include name="CreateBillingAccount" />
+          <include name="CreateAddress" />          
+        </methods>
+       </class>    
+      <class name="com.comcast.century.newConnect.EOD_NC_ME_EDI_NewConnect_ERate">    
+         <methods>
+          <include name="SelectServiceEDIOnly"/>
+          <include name="ProcessServiceEDIOnly" />
+          <include name="submitOrderErate" />          
+        </methods> 
       </class>
+      <class name="com.comcast.century.newConnect.NewConnectTest">
+        <methods>
+          <include name="StartCSO"/>                 
+        </methods> 
+      </class>
+      <class name="com.comcast.century.newConnect.EOD_NC_ME_EDI_NewConnect_ERate">    
+         <methods>
+          <include name="Conduct_Site_Survey_Coax"/>
+          <include name="Obtain_Site_Agreement" />
+          <include name="Conduct_Coax_Survey" />          
+        </methods> 
+      </class>
+      <class name="com.comcast.century.newConnect.NewConnectTest">
+        <methods>
+          <include name="Build_House_Account"/>                 
+        </methods> 
+      </class>
+      <class name="com.comcast.century.newConnect.EOD_NC_ME_EDI_NewConnect_ERate">    
+         <methods>
+          <include name="Obtains_Coax_Permits"/>
+          <include name="Complete_Site_Build_Coax" />
+          <include name="Complete_Coax_Build" />          
+        </methods>
+       </class>              
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

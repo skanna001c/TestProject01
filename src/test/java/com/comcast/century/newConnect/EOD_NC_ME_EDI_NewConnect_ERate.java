@@ -85,66 +85,11 @@ public class EOD_NC_ME_EDI_NewConnect_ERate extends ComcastTest {
 	  	loadData();
 //Search for customer if rerun - added by harsh on 8/8/16
 		
-  }
+  } 
   
   @Test(priority=10)
-  @PerfTransaction(name="CreateCustomer")
-  public void createCustomer(){
-	    String customerName;
-		try {
-			customerName = (new CustomerTabPageCM(browser, report)).createCustomer(customerInfo);
-			getDataDump().setValue("CustomerName_RT", customerName);
-		//	getDataDump().setValue("userName","custpmauto");
-			//getDataDump().getValue("CM_Status")
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-  }
-  
-  @Test(priority=20)
-  @PerfTransaction(name="CreateServiceAccount")
-  public void createServiceAccount() throws InterruptedException{
-	  if((new AccountTabPageCM(browser, report)).CreateServiceAccount(accountInfo)){
-		  if((new ContactTabPageCM(browser, report)).CreateAccountPrimaryContact(contactInfo)){
-			  if((new ContactTabPageCM(browser, report)).ClickOnBackBtn()){
-				  
-			  }else Assert.fail("Click on back button failed");
-		  }else Assert.fail("Create account primary contact failed");
-	  }else Assert.fail("Create service account failed");
-  }
-  
-  @Test(priority=30)
-  @PerfTransaction(name="CreateBillingAccount")
-  public void createBillingAccount(){			
-	try {
-		if((new AccountTabPageCM(browser, report)).CreateBillingAccount(accountInfo)){
-			try {
-				if((new ContactTabPageCM(browser, report)).CreateBillingContact(contactInfo)){
-					if((new ContactTabPageCM(browser, report)).ClickOnBackBtn()){							
-					} else Assert.fail("Click on back button failed");
-				}else Assert.fail("Create Billing Contact failed");
-			} catch (InterruptedException e) {						
-				e.printStackTrace();
-			}
-		}else Assert.fail("Create Billing Account failed");
-	} catch (InterruptedException e) {				
-		e.printStackTrace();
-	} 
-  }
-  
-  @Test(priority=40)
-  @PerfTransaction(name="CreateAddress")
-  public void createAddress() throws InterruptedException {
-		if((new AddressTabPageCM(browser, report)).ClickAddressTab(siteInfo)){
-			Site1 = (new AddressTabPageCM(browser, report)).EnterSiteDetailsValid(siteInfo);
-			if((new ContactTabPageCM(browser, report)).CreateSiteTechnicalContact(contactInfo)){
-			}else Assert.fail("Create site technical Contact failed");
-		}else Assert.fail("click on address tab failed");		
-  }
-  
-  @Test(priority=50)
-  @PerfTransaction(name="SelectService")
-  public void selectService() throws InterruptedException{
+  @PerfTransaction(name="SelectServiceEDIOnly")
+  public void SelectServiceEDIOnly() throws InterruptedException{
 	  (new ServiceTabPageCM(browser, report)).ClickOnServiceTab();
 		if((new ServiceTabPageCM(browser, report)).SelectPricePlan()){
 			if((new ServiceTabPageCM(browser, report)).EDI()){				
@@ -156,12 +101,12 @@ public class EOD_NC_ME_EDI_NewConnect_ERate extends ComcastTest {
 	  
   }
   
-  @Test(priority=60)
-  @PerfTransaction(name="ProcessService")
-  public void processService() throws InterruptedException{
-	  	if(getDataDump().getValue("processService_status").equalsIgnoreCase("FAIL"))
+  @Test(priority=20)
+  @PerfTransaction(name="ProcessServiceEDIOnly")
+  public void ProcessServiceEDIOnly() throws InterruptedException{
+	  	if(getDataDump().getValue("ProcessServiceEDIOnly_status").equalsIgnoreCase("FAIL"))
 	  	{
-	  		selectService();
+	  		SelectServiceEDIOnly();
 	  	}
 		SRID = (new ProcessTabPageCM(browser, report)).ProcessConfiguration(processInfo);
 		getDataDump().setValue("SRID_RT", SRID);
@@ -174,13 +119,13 @@ public class EOD_NC_ME_EDI_NewConnect_ERate extends ComcastTest {
   }	  
   
   
-  @Test(priority=70)
-  @PerfTransaction(name="submitOrder")
+  @Test(priority=30)
+  @PerfTransaction(name="submitOrderErate")
   public void submitOrder() throws InterruptedException, AWTException{
 	 if(getDataDump().getValue("submitOrder_status").equalsIgnoreCase("FAIL"))
 	  	{
-	  		selectService();
-	  		processService();
+		 SelectServiceEDIOnly();
+	  		ProcessServiceEDIOnly();
 	  	}
 	   
 		if((new OrderSummaryTabCMPage(browser, report)).assignLabel(orderSummaryInfo)){
@@ -195,18 +140,9 @@ public class EOD_NC_ME_EDI_NewConnect_ERate extends ComcastTest {
 			}else Assert.fail("Entering order detrails failed");
 		}else Assert.fail("Assigning label failed");	
 	
-  }
-
-  @Test(priority=80)
-  @PerfTransaction(name="StartCSO")
-  public void StartCSO() {
-	//(new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);  
-	 (new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
-	 (new WorkOrderTabPageCSO(browser, report)).ClickFirstSiteFlow();
-	 
-  }	 
+  } 
   
-  @Test(priority=90)
+  @Test(priority=40)
   @PerfTransaction(name="Conduct_Site_Survey_Coax")
   public void Conduct_Site_SurveyCoax() throws InterruptedException {	
 	  if (getDataDump().getValue("Conduct_Site_Survey_Coax_status").equalsIgnoreCase("fail"))
