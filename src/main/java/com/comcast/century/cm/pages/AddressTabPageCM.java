@@ -236,6 +236,7 @@ public class AddressTabPageCM extends Page {
 		while(waitForElement(BtnAddContact,2))
 		{
 			BtnAddContact.click();
+			break;
 		}
 	    report.reportDoneEvent("Click on Add Contact", "Add Contact Clicked");
 	    waitforPageLoadComplete();	
