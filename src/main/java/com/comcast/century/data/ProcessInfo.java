@@ -4,6 +4,7 @@ import com.comcast.utils.DataTable;
 
 public class ProcessInfo {
 	public String terms;
+	public String UNITransportType;
 	public String surCILI1;
 	public String surCILI2;
 	public String surCILI3;
@@ -15,8 +16,9 @@ public class ProcessInfo {
 	  
 	
 
-	public ProcessInfo(String terms, String surCILI1,String surCILI2,String surCILI3,String surCILIPRI, String basicCosBandwidth, String ipAddressAllocation,String evcAreaType, String customerVLANInfo  ) {
+	public ProcessInfo(String terms, String UNITransportType, String surCILI1,String surCILI2,String surCILI3,String surCILIPRI, String basicCosBandwidth, String ipAddressAllocation,String evcAreaType, String customerVLANInfo  ) {
 		this.terms = terms;
+		this.UNITransportType = UNITransportType;
 		this.surCILI1 = surCILI1;
 		this.surCILI2 = surCILI2;
 		this.surCILI3 = surCILI3;
@@ -30,6 +32,7 @@ public class ProcessInfo {
 	
 	public static ProcessInfo loadFromDatatable(DataTable dataTable){
 		return new ProcessInfo(dataTable.getValue("terms"),
+				dataTable.getValue("UNITransportType"),
                 dataTable.getValue("surCILI1"),
                 dataTable.getValue("surCILI2"),
                 dataTable.getValue("surCILI3"),
