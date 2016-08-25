@@ -800,7 +800,7 @@ public class ComcastTest {
 		 }
 		
 		 
-		 if((getDataDump().getValue("CMLoggedIN").equalsIgnoreCase("PASS"))) 
+  		 if((getDataDump().getValue("CMLoggedIN").equalsIgnoreCase("PASS"))) 
 		 {
 			 if (!(getDataDump().getValue("currentUser").equalsIgnoreCase(userName)))
 				 {

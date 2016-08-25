@@ -84,22 +84,24 @@ public class WorkOrderTabPageCSO extends Page {
 	@FindBy(xpath = "//input[@value='Search']")
 	private WebElement btnSearchAdvancedSearch;
 	
-	@FindBy(xpath = "//div[.='EDI']/../preceding-sibling::*/child::*/a")
+	@FindBy(xpath = "//div[.='EDI']/../../descendant::a")
 	private WebElement linkEDIFlow ;
 	
-	@FindBy(xpath = "//div[.='EPL']/../preceding-sibling::*/child::*/a")
+	@FindBy(xpath = "//div[.='EPL']/../../descendant::a")
 	private WebElement linkEPLFlow ;
 	
-	@FindBy(xpath = "//*[.='Site']/../preceding-sibling::td[1]/child::*/child::*")
+	//@FindBy(xpath = "//*[.='Site']/../preceding-sibling::td[1]/child::*/child::*")
+	//div[.='Site']/../../descendant::a
+	@FindBy(xpath = "//div[.='Site']/../../descendant::a")
 	private List<WebElement> linkSiteFlow ;
 	
-	@FindBy(xpath = "//div[.='Equipment Fee']/../preceding-sibling::*/child::*/a")
+	@FindBy(xpath = "//div[.='Equipment Fee']/../../descendant::a")
 	private WebElement linkEquipmentFeeFlow ;
 	
-	@FindBy(xpath = "//div[.='BGP']/../preceding-sibling::*/child::*/a")
+	@FindBy(xpath = "//div[.='BGP']/../../descendant::a")
 	private WebElement linkBGPFlow ;
 	
-	@FindBy(xpath = "//div[.='Trunk PRI']/../preceding-sibling::*/child::*/a")
+	@FindBy(xpath = "//div[.='Trunk PRI']/../../descendant::a")
 	private WebElement linkTrunkPRIFlow ;
 	
 	@FindBy(xpath = "//div[text()='loading...']")

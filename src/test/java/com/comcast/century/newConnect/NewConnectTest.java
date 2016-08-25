@@ -214,14 +214,15 @@ public class NewConnectTest extends ComcastTest {
   
   @Test(priority=10)
   public void Obtain_Site_Agreement(Method method) throws InterruptedException {
-	  CSOSearchForOrderInSO();
+	  //CSOSearchForOrderInSO();
+	  StartCSO();
 	  (new SiteLevelTasks(browser, report)).ObtainSiteAgreement();
 	  (new ObtainSiteAgreementTaskPage(browser, report)).ObtainSiteAgreement(siteLevelTaskInfo);
   }	
   
   @Test(priority=11)
   public void Conduct_Fiber_Plant_Survey() throws InterruptedException, AWTException {
-	  CSOSearchForOrderInSO();
+	  StartCSO();
 	  (new SiteLevelTasks(browser, report)).ConductFiberPlantSurvey();
 	 (new ConductFiberPlantSurveyTaskPage(browser, report)).ConductFiberPlantSurvey(siteLevelTaskInfo);
 		
