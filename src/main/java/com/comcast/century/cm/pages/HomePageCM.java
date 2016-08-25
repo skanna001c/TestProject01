@@ -83,6 +83,9 @@ public class HomePageCM extends Page {
 	@FindBy(xpath = "//input[@id='customerNameCombo-inputEl']")
 	private WebElement txtCustomerName;
 	
+	@FindBy(xpath = "//*[@id='SEARCH_SERVICEORDERID']")
+	private WebElement txtSRID;
+	
 	//*[@id='splitbutton-1011-btnIconEl']
 	
 	@FindBy(xpath = "//span[text()='Search']/following-sibling::span")
@@ -164,6 +167,27 @@ public class HomePageCM extends Page {
 		 //clickServiceAcc.click();
 		return mstatus;
 		}
+	
+	public boolean searchSRID(String SRID){
+		mstatus = true;
+		
+		try{
+			waitforPageLoadComplete();
+			WaitandSwitchToFrame(frameMain);
+			txtSRID.sendKeys(SRID);
+			btnSearch.click();
+			waitforPageLoadComplete();
+			browser.findElement(By.xpath("//span[contains(.,'"+SRID+"')]")).click();
+			waitForElementDisappear(elementLoading);
+			browser.switchTo().defaultContent();
+		}catch (Exception e) {
+			e.printStackTrace();
+			mstatus = false;
+		}
+		
+		
+		return mstatus;
+	}
 
 	
 	}

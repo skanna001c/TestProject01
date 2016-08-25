@@ -47,6 +47,9 @@ public class WorkOrderTabPageCSO extends Page {
 	@FindBy(xpath = "//span[@id='serviceorder']/a")
 	private WebElement LinkServiceOrder ;
 	
+	@FindBy(xpath = "//*[@id='servicerequest']/a")
+	private WebElement LinkServiceRequest ;
+	
 	@FindBy(xpath = "//*[@id='Presalesworklist']/a")
 	private WebElement LinkPreSalesWorklist ;
 	
@@ -57,6 +60,9 @@ public class WorkOrderTabPageCSO extends Page {
 	
 	@FindBy(xpath = "//input[@id='serviceRequestID']")
 	private WebElement txtSrId ;
+	
+	@FindBy(xpath = "//*[@id='servicereqId']")
+	private WebElement txtServiceReqId ;
 	
 	@FindBy(xpath = "//input[@id='serv_req_id']")
 	private WebElement txtPostSalesSrId ;
@@ -140,7 +146,37 @@ public class WorkOrderTabPageCSO extends Page {
 	@FindBy(xpath = "//*[@value='Ok']")
 	private WebElement ButtonOk ;
 	
+	@FindBy(xpath = "a[onclick*='callServOrder']")
+	private WebElement linkSOCount ;
+	
 	private boolean mstatus=true;
+	
+	
+	public boolean verifySOCount(String SRID){
+		try{
+			waitforPageLoadComplete();
+		    waitForElement(btnExpand);
+			btnExpand.click();
+			btnExpandOrderSearch.click();
+			LinkServiceRequest.click();
+			waitforPageLoadComplete();
+			WaitandSwitchToFrame(frameRight);
+			waitForElementDisappear(elementLoading);
+			waitForElement(txtServiceReqId);
+			txtServiceReqId.sendKeys(SRID);
+			waitForElement(btnSearch);
+			iClick(btnSearch);
+			waitForElementDisappear(elementLoading);
+			waitForElement(linkSOCount);
+			iClick(linkSOCount);
+			waitforPageLoadComplete();
+			browser.switchTo().defaultContent();
+		}catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
 
 	public boolean SearchForOrderInSO(String SRID){
 		try{

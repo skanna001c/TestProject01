@@ -3106,6 +3106,15 @@ public abstract class Page {
 		 		
 		 }
 		 
+		 public boolean waitUntilElementPresent(By by,int sec)
+		 {   int counter=0;
+			 while((!isElementPresent(browser.findElement(by))) && counter<=sec)
+		  {
+	  		 sleep(1000);
+	  		 counter++;
+		  }
+			return isElementPresent(browser.findElement(by)); 
+		 }
 		 
 //#############################################################################################		 
 //CustomMethods 		 

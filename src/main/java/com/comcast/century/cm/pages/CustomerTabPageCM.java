@@ -1,5 +1,6 @@
 package com.comcast.century.cm.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,6 +11,8 @@ import com.comcast.reporting.Status;
 import com.comcast.utils.PerfTransaction;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
+
+import junit.framework.Assert;
 
 public class CustomerTabPageCM extends Page {
 
@@ -35,6 +38,12 @@ public class CustomerTabPageCM extends Page {
 	
 	@FindBy(xpath = "//*[@id='mainFrame']")
 	private WebElement frameMain;
+	
+	@FindBy(xpath = "//*[@id='leftFrame']")
+	private WebElement frameLeft;
+	
+	@FindBy(xpath = "//*[@class[contains(.,'expand')]]")
+	private WebElement btnExpand ;
 
 	@FindBy(xpath = "//*[@id='CustomerFrame']")
 	private WebElement frameCustomer;
@@ -129,6 +138,17 @@ public class CustomerTabPageCM extends Page {
 	@FindBy(xpath = "//input[@value='Continue']")
 	private WebElement btnContinue;
 	
+	@FindBy(xpath = "//span[.='Order']")
+	private WebElement tabOrder;
+	
+	@FindBy(xpath = "//tr[contains(@title,'In-Progress')]/child::td[@class='standartTreeImage']/child::img[contains(@src,'images/csh_bluebooks/plus')]")
+	private WebElement plusButtonInProgress;
+	
+	@FindBy(xpath = "//span[contains(.,'SR ID')]")
+	private WebElement linkSRID;
+	
+	
+	
 	private boolean mstatus;	
 	
 	
@@ -150,12 +170,19 @@ public class CustomerTabPageCM extends Page {
 	
 	  public String customerInformation(CustomerInfo customerInfo){		  
 		  waitforPageLoadComplete();
-		  waitForElement(tabCustomer);
+		  /*waitForElement(tabCustomer);
 		  //tabCustomer.click();
-		  doubleClick(tabCustomer);
-		  report.reportDoneEvent("Click on Customer Tab", "Customer Tab is present");
-		  waitforPageLoadComplete();
-		  if(WaitandSwitchToFrame(frameMain)){
+		   * doubleClick(tabCustomer);*/
+		  do{
+			  browser.switchTo().defaultContent();
+			  if(waitForElement(tabCustomer,1)){
+				  doubleClick(tabCustomer);
+			  }
+			  WaitandSwitchToFrame(frameMain);
+		  }while(!WaitandSwitchToFrame(frameCustomer,1));
+		  
+		  
+		 /* if(WaitandSwitchToFrame(frameMain)){
 			 // WaitandSwitchToFrame(frameCustomer);
 			  
 			  do{
@@ -163,8 +190,10 @@ public class CustomerTabPageCM extends Page {
 					  doubleClick(tabCustomer);
 				  }
 			  }while(!WaitandSwitchToFrame(frameCustomer,1));
-		  }
+		  }*/
 		  
+		  report.reportDoneEvent("Click on Customer Tab", "Customer Tab is present");
+		  waitforPageLoadComplete(); 
 		 while(!waitForElement(txtCustomerName,1)){};
 		 customerName = customerInfo.customerName + getTimestamp();
 		 do 
@@ -288,9 +317,42 @@ public class CustomerTabPageCM extends Page {
 		  return custName;
 		  
 	  }
+	  
+	  public boolean serachOrderHierarchy(String custName){
+		  mstatus = true;
+		  String xpath="//tr[@title='"+custName+"']/child::td[@class='standartTreeImage']/child::"
+		  		+ "img[contains(@src,'images/csh_bluebooks/plus')";
+		  try{
+			  waitForElement(btnExpand);
+			  iClick(btnExpand);
+			  waitforPageLoadComplete();
+			  WaitandSwitchToFrame(frameLeft);
+			  waitForElement(tabOrder);
+			  iClick(tabOrder);
+			  waitforPageLoadComplete();
+			  if(waitUntilElementPresent(By.xpath(xpath),60)){
+				  iClick(browser.findElement(By.xpath(xpath)));
+			  }else{
+				  Assert.fail("Plus button not clicked");
+			  }
+			  waitforPageLoadComplete();
+			  waitForElement(plusButtonInProgress);
+			  iClick(plusButtonInProgress);
+			  waitforPageLoadComplete();
+			  waitForElement(linkSRID);
+			  iClick(linkSRID);  
+			  waitforPageLoadComplete();
+			  browser.switchTo().defaultContent();
+		  }catch (Exception e) {
+				mstatus = true;
+				e.printStackTrace();
+	  }
 	
-
+         return mstatus;
 	}
+	  
+}
+
 
 	
 	

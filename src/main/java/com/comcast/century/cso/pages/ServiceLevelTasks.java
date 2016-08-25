@@ -91,6 +91,25 @@ public class ServiceLevelTasks extends Page {
 	@FindBy(xpath = "//a[text()='Contact Customer']")
 	private WebElement taskContactCustomer;
 	
+	@FindBy(xpath = "//a[text()='Update Local Biller']")
+	private WebElement taskUpdateLocalBiller;
+	
+	@FindBy(xpath = "//a[text()='Remove Core Configs']")
+	private WebElement taskRemoveCoreConfigs;
+	
+	@FindBy(xpath = "//a[text()='Schedule CPE Pickup']")
+	private WebElement taskScheduleCPEPickup;
+	
+	@FindBy(xpath = "//a[text()='Pick up CPE']")
+	private WebElement taskPickupCPE;
+	
+	@FindBy(xpath = "//a[text()='Reclamation of Physical Equipment']")
+	private WebElement taskReclamationofPhysicalEq;
+	
+	@FindBy(xpath = "//a[text()='Submit ASR']")
+	private WebElement taskSubmitASR;
+	
+	
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
@@ -480,6 +499,93 @@ public class ServiceLevelTasks extends Page {
 		}
 		return mstatus;
 	}
+	
+	public boolean updateLocalBiller() throws InterruptedException{
+		try{
+			if(waitForElement(taskUpdateLocalBiller)){
+				if(checkifStatusChanged(taskUpdateLocalBiller,btnRefresh,"INPROGRESS")){
+					taskUpdateLocalBiller.click();
+				report.reportDoneEvent("Click UpdateLocalBiller Task", "UpdateLocalBiller Task Clicked");
+				}
+				waitforPageLoadComplete();
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	public boolean removeCoreConfigs() throws InterruptedException{
+		try{
+			if(waitForElement(taskRemoveCoreConfigs)){
+				if(checkifStatusChanged(taskRemoveCoreConfigs,btnRefresh,"INPROGRESS")){
+					taskRemoveCoreConfigs.click();
+				report.reportDoneEvent("Click RemoveCoreConfigs Task", "RemoveCoreConfigs Task Clicked");
+				}
+				waitforPageLoadComplete();
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	public boolean scheduleCPEPickup() throws InterruptedException{
+		try{
+			if(waitForElement(taskScheduleCPEPickup)){
+				if(checkifStatusChanged(taskScheduleCPEPickup,btnRefresh,"INPROGRESS")){
+					taskScheduleCPEPickup.click();
+				report.reportDoneEvent("Click ScheduleCPEPickup Task", "ScheduleCPEPickup Task Clicked");
+				}
+				waitforPageLoadComplete();
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	public boolean pickupCPE() throws InterruptedException{
+		try{
+			if(waitForElement(taskPickupCPE)){
+				if(checkifStatusChanged(taskPickupCPE,btnRefresh,"INPROGRESS")){
+					taskPickupCPE.click();
+				report.reportDoneEvent("Click PickupCPE Task", "PickupCPE Task Clicked");
+				}
+				waitforPageLoadComplete();
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	public boolean reclamationofPhysicalEq() throws InterruptedException{
+		try{
+			if(waitForElement(taskReclamationofPhysicalEq)){
+				if(checkifStatusChanged(taskReclamationofPhysicalEq,btnRefresh,"INPROGRESS")){
+					taskReclamationofPhysicalEq.click();
+				report.reportDoneEvent("Click ReclamationofPhysicalEq Task", "ReclamationofPhysicalEq Task Clicked");
+				}
+				waitforPageLoadComplete();
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	
 	
 	public boolean ClickBackButton() throws InterruptedException{
 		try{

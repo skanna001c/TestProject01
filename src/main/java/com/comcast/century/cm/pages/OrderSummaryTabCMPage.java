@@ -309,5 +309,26 @@ public class OrderSummaryTabCMPage extends Page {
 		
 	}
 	
+	public boolean cancelSupSubmitOrder(){
+		mstatus = true;	
+		try{
+			WaitandSwitchToFrame(frameMain);
+			waitForElement(dtCustomerOrderSig);
+			dtCustomerOrderSig.click();
+			btnToday.get(0).click();
+			dtSalesOrderAcceptance.click();
+			btnToday.get(1).click();
+			dtSalesOrderSubmitted.click();
+			btnToday.get(2).click();
+			waitForElement(btnsubmitOrder);
+			iClick(btnsubmitOrder);
+			waitforPageLoadComplete();	
+			browser.switchTo().defaultContent();
+		}catch (Exception e) {
+			mstatus = false;
+	}
+	
+	return mstatus;
+}
 	
 }
