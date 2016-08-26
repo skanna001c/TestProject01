@@ -6,25 +6,18 @@ import java.lang.reflect.Method;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import com.comcast.century.cm.pages.AccountTabPageCM;
-import com.comcast.century.cm.pages.AddressTabPageCM;
-import com.comcast.century.cm.pages.ContactTabPageCM;
-import com.comcast.century.cm.pages.CustomerTabPageCM;
+
 import com.comcast.century.cm.pages.FeatureTabPageCM;
-import com.comcast.century.cm.pages.HomePageCM;
 import com.comcast.century.cm.pages.OrderSummaryTabCMPage;
 import com.comcast.century.cm.pages.ProcessTabPageCM;
 import com.comcast.century.cm.pages.ServiceTabPageCM;
-import com.comcast.century.commons.CenturyApplication;
 import com.comcast.century.cso.pages.BuildHouseAccountTaskPage;
 import com.comcast.century.cso.pages.CompleteCoaxBuildTaskPage;
 import com.comcast.century.cso.pages.CompleteSiteBuildCoaxTaskPage;
 import com.comcast.century.cso.pages.ConductCoaxSurveyTaskPage;
-import com.comcast.century.cso.pages.ConductFiberPlantSurveyTaskPage;
 import com.comcast.century.cso.pages.ConductSiteSurveyCoaxTaskPage;
-import com.comcast.century.cso.pages.ConductSiteSurveyTaskPage;
 import com.comcast.century.cso.pages.ObtainCoaxPermitsTaskPage;
 import com.comcast.century.cso.pages.ObtainSiteAgreementTaskPage;
 import com.comcast.century.cso.pages.SiteLevelTasks;
@@ -34,13 +27,11 @@ import com.comcast.century.data.ContactInfo;
 import com.comcast.century.data.CustomerInfo;
 import com.comcast.century.data.OrderSummaryInfo;
 import com.comcast.century.data.ProcessInfo;
-import com.comcast.century.data.ServiceLevelTaskInfo;
 import com.comcast.century.data.SiteInfo;
 import com.comcast.century.data.SiteLevelTaskInfo;
-import com.comcast.utils.ComcastTest;
 import com.comcast.utils.PerfTransaction;
 
-public class EOD_NC_ME_EDI_NewConnect_ERate extends ComcastTest {
+public class EOD_NC_ME_EDI_NewConnect_ERate extends NewConnectTest {
 	
 	private CustomerInfo customerInfo;
 	private AccountInfo accountInfo;
@@ -79,17 +70,17 @@ public class EOD_NC_ME_EDI_NewConnect_ERate extends ComcastTest {
 		 }
   }*/
   
-  @BeforeTest
-  public void beforeTest() {
+  @BeforeClass
+  public void beforeClassTest() {
 			  
-	  	loadData();
+	  	loadDataTest();
 //Search for customer if rerun - added by harsh on 8/8/16
 		
   } 
   
-  @Test(priority=10)
+  @Test(priority=500)
   @PerfTransaction(name="SelectServiceEDIOnly")
-  public void SelectServiceEDIOnly() throws InterruptedException{
+  public void selectService() throws InterruptedException{
 	  (new ServiceTabPageCM(browser, report)).ClickOnServiceTab();
 		if((new ServiceTabPageCM(browser, report)).SelectPricePlan()){
 			if((new ServiceTabPageCM(browser, report)).EDI()){				
@@ -101,12 +92,12 @@ public class EOD_NC_ME_EDI_NewConnect_ERate extends ComcastTest {
 	  
   }
   
-  @Test(priority=20)
+  @Test(priority=600)
   @PerfTransaction(name="ProcessServiceEDIOnly")
-  public void ProcessServiceEDIOnly() throws InterruptedException{
+  public void processService() throws InterruptedException{
 	  	if(getDataDump().getValue("ProcessServiceEDIOnly_status").equalsIgnoreCase("FAIL"))
 	  	{
-	  		SelectServiceEDIOnly();
+	  		selectService();
 	  	}
 		SRID = (new ProcessTabPageCM(browser, report)).ProcessConfiguration(processInfo);
 		getDataDump().setValue("SRID_RT", SRID);
@@ -119,13 +110,13 @@ public class EOD_NC_ME_EDI_NewConnect_ERate extends ComcastTest {
   }	  
   
   
-  @Test(priority=30)
+  @Test(priority=700)
   @PerfTransaction(name="submitOrderErate")
   public void submitOrder() throws InterruptedException, AWTException{
 	 if(getDataDump().getValue("submitOrder_status").equalsIgnoreCase("FAIL"))
 	  	{
-		 SelectServiceEDIOnly();
-	  		ProcessServiceEDIOnly();
+		selectService();
+	  		processService();
 	  	}
 	   
 		if((new OrderSummaryTabCMPage(browser, report)).assignLabel(orderSummaryInfo)){
@@ -142,7 +133,7 @@ public class EOD_NC_ME_EDI_NewConnect_ERate extends ComcastTest {
 	
   } 
   
-  @Test(priority=40)
+  @Test(priority=801)
   @PerfTransaction(name="Conduct_Site_Survey_Coax")
   public void Conduct_Site_SurveyCoax() throws InterruptedException {	
 	  if (getDataDump().getValue("Conduct_Site_Survey_Coax_status").equalsIgnoreCase("fail"))
@@ -273,7 +264,7 @@ public class EOD_NC_ME_EDI_NewConnect_ERate extends ComcastTest {
   public void afterTest() {
   }
 
-  public void loadData(){
+  public void loadDataTest(){
 		accountInfo = AccountInfo.loadFromDatatable(dataTable);
 	//	loginInfo = LoginDetails.loadFromDatatable(dataTable);
 		siteInfo = SiteInfo.loadFromDatatable(dataTable);

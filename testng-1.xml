@@ -7,10 +7,7 @@
 </listeners>
   <test name="EOD_NC_ME_EDI_NewConnect_ERate">
     <classes>             
-      <class name="com.comcast.century.newConnect.NewConnectAccount">
-      	<methods>
-      		<exclude name="createAddress"></exclude>
-      	</methods>
+      <class name="com.comcast.century.newConnect.EOD_NC_ME_EDI_NewConnect_ERate">
       </class>  
            
     </classes>

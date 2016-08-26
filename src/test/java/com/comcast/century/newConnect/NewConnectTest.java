@@ -6,18 +6,17 @@ import java.lang.reflect.Method;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 import com.comcast.century.cm.pages.AccountTabPageCM;
 import com.comcast.century.cm.pages.AddressTabPageCM;
 import com.comcast.century.cm.pages.ContactTabPageCM;
 import com.comcast.century.cm.pages.CustomerTabPageCM;
 import com.comcast.century.cm.pages.FeatureTabPageCM;
-import com.comcast.century.cm.pages.HomePageCM;
 import com.comcast.century.cm.pages.OrderSummaryTabCMPage;
 import com.comcast.century.cm.pages.ProcessTabPageCM;
 import com.comcast.century.cm.pages.ServiceTabPageCM;
-import com.comcast.century.commons.CenturyApplication;
 import com.comcast.century.cso.pages.ConductFiberPlantSurveyTaskPage;
 import com.comcast.century.cso.pages.ConductSiteSurveyTaskPage;
 import com.comcast.century.cso.pages.ObtainSiteAgreementTaskPage;
@@ -28,7 +27,6 @@ import com.comcast.century.data.ContactInfo;
 import com.comcast.century.data.CustomerInfo;
 import com.comcast.century.data.OrderSummaryInfo;
 import com.comcast.century.data.ProcessInfo;
-import com.comcast.century.data.ServiceLevelTaskInfo;
 import com.comcast.century.data.SiteInfo;
 import com.comcast.century.data.SiteLevelTaskInfo;
 import com.comcast.utils.ComcastTest;
@@ -73,15 +71,15 @@ public class NewConnectTest extends ComcastTest {
 		 }
   }*/
   
-  @BeforeTest
+  @BeforeClass
   public void beforeTest() {
 			  
-	  	loadData();
+	  	loadDataNewConnect();
 //Search for customer if rerun - added by harsh on 8/8/16
 		
   }
   
-  @Test(priority=1)
+  @Test(priority=100)
   @PerfTransaction(name="CreateCustomer")
   public void createCustomer(){
 	    String customerName;
@@ -95,7 +93,7 @@ public class NewConnectTest extends ComcastTest {
 		}
   }
   
-  @Test(priority=2)
+  @Test(priority=200)
   @PerfTransaction(name="CreateServiceAccount")
   public void createServiceAccount() throws InterruptedException{
 	  if((new AccountTabPageCM(browser, report)).CreateServiceAccount(accountInfo)){
@@ -107,7 +105,7 @@ public class NewConnectTest extends ComcastTest {
 	  }else Assert.fail("Create service account failed");
   }
   
-  @Test(priority=3)
+  @Test(priority=300)
   @PerfTransaction(name="CreateBillingAccount")
   public void createBillingAccount(){			
 	try {
@@ -126,7 +124,7 @@ public class NewConnectTest extends ComcastTest {
 	} 
   }
   
-  @Test(priority=4)
+  @Test(priority=400)
   @PerfTransaction(name="CreateAddress")
   public void createAddress() throws InterruptedException {
 		if((new AddressTabPageCM(browser, report)).ClickAddressTab(siteInfo)){
@@ -136,7 +134,7 @@ public class NewConnectTest extends ComcastTest {
 		}else Assert.fail("click on address tab failed");		
   }
   
-  @Test(priority=5)
+  @Test(priority=500)
   @PerfTransaction(name="SelectService")
   public void selectService() throws InterruptedException{
 	  (new ServiceTabPageCM(browser, report)).ClickOnServiceTab();
@@ -152,7 +150,7 @@ public class NewConnectTest extends ComcastTest {
 	  
   }
   
-  @Test(priority=6)
+  @Test(priority=600)
   @PerfTransaction(name="ProcessService")
   public void processService() throws InterruptedException{
 	  	if(getDataDump().getValue("processService_status").equalsIgnoreCase("FAIL"))
@@ -172,8 +170,8 @@ public class NewConnectTest extends ComcastTest {
   }	  
   
   
-  @Test(priority=7)    
-  public void submitOrder() throws InterruptedException{
+  @Test(priority=700)    
+  public void submitOrder() throws InterruptedException, AWTException{
 	 if(getDataDump().getValue("submitOrder_status").equalsIgnoreCase("FAIL"))
 	  	{
 	  		selectService();
@@ -194,7 +192,7 @@ public class NewConnectTest extends ComcastTest {
 	
   }
 
-  @Test(priority=8)
+  @Test(priority=800)
   public void StartCSO() {
 	//(new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);  
 	 (new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
@@ -202,7 +200,7 @@ public class NewConnectTest extends ComcastTest {
 	 
   }	 
   
-  @Test(priority=9)
+  @Test(priority=900)
   public void Conduct_Site_Survey() throws InterruptedException {	
 	  if (getDataDump().getValue("Conduct_Site_Survey_status").equalsIgnoreCase("fail"))
 	  {
@@ -212,7 +210,7 @@ public class NewConnectTest extends ComcastTest {
 	  (new ConductSiteSurveyTaskPage(browser, report)).ConductSiteSurvey(siteLevelTaskInfo);
   }	
   
-  @Test(priority=10)
+  @Test(priority=1000)
   public void Obtain_Site_Agreement(Method method) throws InterruptedException {
 	  //CSOSearchForOrderInSO();
 	  StartCSO();
@@ -220,7 +218,7 @@ public class NewConnectTest extends ComcastTest {
 	  (new ObtainSiteAgreementTaskPage(browser, report)).ObtainSiteAgreement(siteLevelTaskInfo);
   }	
   
-  @Test(priority=11)
+  @Test(priority=1100)
   public void Conduct_Fiber_Plant_Survey() throws InterruptedException, AWTException {
 	  StartCSO();
 	  (new SiteLevelTasks(browser, report)).ConductFiberPlantSurvey();
@@ -297,7 +295,7 @@ public class NewConnectTest extends ComcastTest {
   public void afterTest() {
   }
 
-  public void loadData(){
+  public void loadDataNewConnect(){
 		accountInfo = AccountInfo.loadFromDatatable(dataTable);
 	//	loginInfo = LoginDetails.loadFromDatatable(dataTable);
 		siteInfo = SiteInfo.loadFromDatatable(dataTable);
