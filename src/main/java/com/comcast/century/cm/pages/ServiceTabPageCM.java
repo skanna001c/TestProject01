@@ -197,6 +197,26 @@ public class ServiceTabPageCM extends Page {
 				}
 			return mStatus;	
 			}
+			
+			
+			public boolean EquipmentFeeOnly() throws InterruptedException{
+				boolean mStatus = true;
+				if(waitForElement(selectCheckBoxEqFee)){
+					selectCheckBoxEqFee.click();
+					/*Thread.sleep(2*1000);
+					if(waitForElement(txtEqFeeqt)){
+					txtEqFeeqt.click();	
+					txtEqFeeqt.clear();
+					txtEqFeeqt.sendKeys(EqFeeqt);*/
+					report.updateTestLog("Select Equipment Fee", "Equipment Fee Selected", Status.SCREENSHOT);
+					}else mStatus = false;
+				
+			return mStatus;	
+			}
+
+			
+			
+			
      
 			
 			public boolean BVE(){

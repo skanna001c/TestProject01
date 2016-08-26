@@ -90,24 +90,25 @@ public class WorkOrderTabPageCSO extends Page {
 	@FindBy(xpath = "//input[@value='Search']")
 	private WebElement btnSearchAdvancedSearch;
 	
-	@FindBy(xpath = "//div[.='EDI']/../../descendant::a")
+	// //div[.='EVPL']/../../descendant::a[contains(@onclick,'SOTaskView')][contains(@onclick,'SOTaskview')]
+	@FindBy(xpath = "//div[.='EDI']/../../descendant::a[contains(@onclick,'SOTaskView')]")
 	private WebElement linkEDIFlow ;
 	
-	@FindBy(xpath = "//div[.='EPL']/../../descendant::a")
+	@FindBy(xpath = "//div[.='EPL']/../../descendant::a[contains(@onclick,'SOTaskView')]")
 	private WebElement linkEPLFlow ;
 	
 	//@FindBy(xpath = "//*[.='Site']/../preceding-sibling::td[1]/child::*/child::*")
-	//div[.='Site']/../../descendant::a
-	@FindBy(xpath = "//div[.='Site']/../../descendant::a")
+	//div[.='Site']/../../descendant::a[contains(@onclick,'SOTaskView')]
+	@FindBy(xpath = "//div[.='Site']/../../descendant::a[contains(@onclick,'SOTaskView')]")
 	private List<WebElement> linkSiteFlow ;
 	
-	@FindBy(xpath = "//div[.='Equipment Fee']/../../descendant::a")
+	@FindBy(xpath = "//div[.='Equipment Fee']/../../descendant::a[contains(@onclick,'SOTaskView')]")
 	private WebElement linkEquipmentFeeFlow ;
 	
-	@FindBy(xpath = "//div[.='BGP']/../../descendant::a")
+	@FindBy(xpath = "//div[.='BGP']/../../descendant::a[contains(@onclick,'SOTaskView')]")
 	private WebElement linkBGPFlow ;
 	
-	@FindBy(xpath = "//div[.='Trunk PRI']/../../descendant::a")
+	@FindBy(xpath = "//div[.='Trunk PRI']/../../descendant::a[contains(@onclick,'SOTaskView')]")
 	private WebElement linkTrunkPRIFlow ;
 	
 	@FindBy(xpath = "//div[text()='loading...']")

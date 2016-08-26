@@ -207,6 +207,26 @@ public class AccountTabPageCM extends Page {
 	}
 	
 	
+	public boolean clickOnAddContact(){
+		mstatus = true;
+		try{
+			 while(!WaitandSwitchToFrame(frameMain)){}
+			 while(!WaitandSwitchToFrame(frameAccount)){}
+			 while(!waitForElement(BtnAddContact)){
+				 
+			 }
+			 iClick(BtnAddContact);
+			 waitforPageLoadComplete();
+			 //browser.switchTo().defaultContent();
+		}catch(Exception ex){
+			System.out.println(ex.getMessage());
+			ex.printStackTrace();
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	
 	public boolean CreateErateServiceAccount(AccountInfo accountInfo) throws InterruptedException{
 		mstatus = true;
 		try{				
@@ -292,10 +312,10 @@ public class AccountTabPageCM extends Page {
 					 iClick(createAccountBtn);
 					 waitforPageLoadComplete();	
 					 report.updateTestLog("Create Billing Account", "Billing Account Created Successfully", Status.SCREENSHOT);
-					 waitForElement(BtnAddContact);					 
+					/* waitForElement(BtnAddContact);					 
 					 iClick(BtnAddContact);
-					 waitforPageLoadComplete();	
-					 //browser.switchTo().defaultContent();
+					 waitforPageLoadComplete();	*/
+					 browser.switchTo().defaultContent();
 					 
 			 }
 		 }

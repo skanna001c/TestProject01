@@ -261,7 +261,7 @@ public class ProcessTabPageCM extends Page {
 				 }
 				 browser.switchTo().defaultContent();
 				 WaitandSwitchToFrame(frameMain);
-				 new Select(TransportType).selectByVisibleText(processInfo.UNITransportType);
+				 new Select(TransportType).selectByVisibleText(processInfo.UNITransportType1);
 				 new Select(ddAggregatorNeeded).selectByVisibleText("No");
 				 waitForElement(ddtxtSURCILI);
 				 ddtxtSURCILI.clear();
@@ -342,7 +342,7 @@ public class ProcessTabPageCM extends Page {
 				 }
 				 browser.switchTo().defaultContent();
 				 WaitandSwitchToFrame(frameMain);
-				 new Select(TransportType).selectByVisibleText(processInfo.UNITransportType);
+				 new Select(TransportType).selectByVisibleText(processInfo.UNITransportType2);
 				 new Select(ddAggregatorNeeded).selectByVisibleText("No");
 				 waitForElement(ddtxtSURCILI);
 				 ddValue(ddtxtSURCILI,processInfo.surCILI2);
@@ -395,7 +395,7 @@ public class ProcessTabPageCM extends Page {
 				 }
 				 browser.switchTo().defaultContent();
 				 WaitandSwitchToFrame(frameMain);
-				 new Select(TransportType).selectByVisibleText(processInfo.UNITransportType);
+				 new Select(TransportType).selectByVisibleText(processInfo.UNITransportType3);
 				 new Select(ddAggregatorNeeded).selectByVisibleText("No");
 				 waitForElement(ddtxtSURCILI);
 				 ddValue(ddtxtSURCILI,processInfo.surCILI3);
