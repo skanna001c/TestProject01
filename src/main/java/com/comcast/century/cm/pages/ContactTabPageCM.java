@@ -148,7 +148,7 @@ public class ContactTabPageCM extends Page {
 
 	public boolean CreateAccountPrimaryContact(ContactInfo contactInfo) throws InterruptedException{
 		mstatus = true;
-		scrollDown();
+		/*scrollDown();
 		while(!WaitandSwitchToFrame(frameMain,1)){}
 		while(!WaitandSwitchToFrame(frameAccount,1)){}
 		try{
@@ -159,9 +159,11 @@ public class ContactTabPageCM extends Page {
 				 	waitforPageLoadComplete();
 				 }
 				 
-			 }while(!WaitandSwitchToFrame(frameMain,1));
+			 }*/try{
+				 
+				 while(!WaitandSwitchToFrame(frameMain,1)){}
 			 
-			 report.reportDoneEvent("Click on Add Contact", "Add Contact Clicked");
+			 //report.reportDoneEvent("Click on Add Contact", "Add Contact Clicked");
 			 ddValueSelect(ddTextContactType,ddValueContactType1,contactInfo.contactType1);
 		     report.reportDoneEvent("Select Contact Type", "Selected Contact Type as->" +contactInfo.contactType1);
 		     
@@ -193,14 +195,14 @@ public class ContactTabPageCM extends Page {
 	public boolean CreateBillingContact(ContactInfo contactInfo) throws InterruptedException{
 		mstatus = true;
 		try{
-			 do{
+			 /*do{
 				 if(waitForElement(BtnAddContact,1))
 					 {iClick(BtnAddContact);}
 				 waitforPageLoadComplete();				 
-			 }while(!WaitandSwitchToFrame(frameMain,1));
+			 }*/while(!WaitandSwitchToFrame(frameMain,1)){}
 			 
-			 if (WaitandSwitchToFrame(frameMain,1))
-			 {
+			 /*if (WaitandSwitchToFrame(frameMain,1))
+			 {*/
 			 ddValueSelect(ddTextContactType,ddValueContactType4,"Billing");
 		     report.reportDoneEvent("Select Contact Type", "Selected Contact Type as->" +contactInfo.contactType1);
 			 txtFirstName.sendKeys(contactInfo.firstName);
@@ -221,7 +223,7 @@ public class ContactTabPageCM extends Page {
 			 report.updateTestLog("Create Billing Contact", "Billing Contact Created Successfully", Status.SCREENSHOT);
 			 browser.switchTo().defaultContent();
 			 } 
-		}
+		
 		catch(Exception ex)
 		{
 			mstatus = false;
@@ -304,7 +306,7 @@ public class ContactTabPageCM extends Page {
 			
   }
 	public boolean ClickOnBackBtn() {
-		browser.switchTo().defaultContent();
+		//browser.switchTo().defaultContent();
 		mstatus = true;
 		try{
 			while (!WaitandSwitchToFrame(frameMain,1)) {}	

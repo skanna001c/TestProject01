@@ -71,31 +71,26 @@ public class CancelSupEPLService extends ComcastTest {
 	  @PerfTransaction(name="CreateServiceAccount")
 	  public void createServiceAccount() throws InterruptedException{
 		  if((new AccountTabPageCM(browser, report)).CreateServiceAccount(accountInfo)){
+			  if((new AccountTabPageCM(browser, report)).clickOnAddContact()){
 			  if((new ContactTabPageCM(browser, report)).CreateAccountPrimaryContact(contactInfo)){
 				  if((new ContactTabPageCM(browser, report)).ClickOnBackBtn()){
-					  
 				  }else Assert.fail("Click on back button failed");
 			  }else Assert.fail("Create account primary contact failed");
+			  }else Assert.fail("Click on add contact failed");
 		  }else Assert.fail("Create service account failed");
 	  }
 	  
 	  @Test(priority=3)
 	  @PerfTransaction(name="CreateBillingAccount")
-	  public void createBillingAccount(){			
-		try {
-			if((new AccountTabPageCM(browser, report)).CreateBillingAccount(accountInfo)){
-				try {
-					if((new ContactTabPageCM(browser, report)).CreateBillingContact(contactInfo)){
-						if((new ContactTabPageCM(browser, report)).ClickOnBackBtn()){							
-						} else Assert.fail("Click on back button failed");
-					}else Assert.fail("Create Billing Contact failed");
-				} catch (InterruptedException e) {						
-					e.printStackTrace();
-				}
-			}else Assert.fail("Create Billing Account failed");
-		} catch (InterruptedException e) {				
-			e.printStackTrace();
-		} 
+	  public void createBillingAccount() throws InterruptedException{			
+		  if((new AccountTabPageCM(browser, report)).CreateBillingAccount(accountInfo)){
+			  if((new AccountTabPageCM(browser, report)).clickOnAddContact()){
+			  if((new ContactTabPageCM(browser, report)).CreateBillingContact(contactInfo)){
+				  if((new ContactTabPageCM(browser, report)).ClickOnBackBtn()){
+				  }else Assert.fail("Click on back button failed");
+			  }else Assert.fail("Create billing contact failed");
+			  }else Assert.fail("Click on add contact failed");
+		  }else Assert.fail("Create billing account failed");
 	  }
 	  
 	  @Test(priority=4)
@@ -126,15 +121,16 @@ public class CancelSupEPLService extends ComcastTest {
 		  (new ServiceTabPageCM(browser, report)).ClickOnServiceTab();
 			if((new ServiceTabPageCM(browser, report)).SelectPricePlan()){
 				if((new ServiceTabPageCM(browser, report)).EPL()){
-					if((new ServiceTabPageCM(browser, report)).EquipmentFee()){
+					if((new ServiceTabPageCM(browser, report)).EquipmentFeeOnly()){
 						if((new ServiceTabPageCM(browser, report)).ClickOnContinueButton()){
 							(new FeatureTabPageCM(browser, report)).ClickOnContinueButton();					
 						}else Assert.fail("Click continue button failed");
-					}else Assert.fail("Equipment fee failed");
+					}else Assert.fail("Select Equipment fee failed");
 				}else Assert.fail(" Select EPL plan failed");
 			}else Assert.fail(" Select service plan failed");
-		  
 	  }
+		  
+	  
 	  
 	  @Test(priority=7)
 	  @PerfTransaction(name="ProcessService")
@@ -149,10 +145,8 @@ public class CancelSupEPLService extends ComcastTest {
 				if((new ProcessTabPageCM(browser,report)).UNI2Configuration(processInfo, Site2)){
 				   if((new ProcessTabPageCM(browser, report)).EVCConfiguration_EPL(processInfo)){
 					  if((new ProcessTabPageCM(browser, report)).EqFeeConfiguration(processInfo)){
-						  if((new ProcessTabPageCM(browser, report)).EqFee2Configuration(processInfo)){
 						    if((new ProcessTabPageCM(browser, report)).ClickOnContinueButton()){
 						 }else Assert.fail("Click on continue button failed");
-				       }else Assert.fail("Equipment fee2 configuration failed");
 					}else Assert.fail("Equipment fee configuration failed");
 				}else Assert.fail("EVC configuration failed");
 			}else Assert.fail("UNI2 configuration failed");

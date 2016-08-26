@@ -233,10 +233,15 @@ public class AddressTabPageCM extends Page {
 		btnContinue.click();
 		waitforPageLoadComplete();
 		report.updateTestLog("Create Address", "Address Created Successfully", Status.SCREENSHOT);
-		while(waitForElement(BtnAddContact,2))
+		/*while(waitForElement(BtnAddContact,2))
 		{
 			BtnAddContact.click();
-		}
+		}*/
+		
+		 while(!waitForElement(BtnAddContact)){
+			 
+		 }
+		 iClick(BtnAddContact);
 	    report.reportDoneEvent("Click on Add Contact", "Add Contact Clicked");
 	    waitforPageLoadComplete();	
 		return siteName;
