@@ -242,6 +242,7 @@ public class AddressTabPageCM extends Page {
 			 
 		 }
 		 iClick(BtnAddContact);
+
 	    report.reportDoneEvent("Click on Add Contact", "Add Contact Clicked");
 	    waitforPageLoadComplete();	
 		return siteName;
