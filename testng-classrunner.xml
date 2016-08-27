@@ -21,15 +21,23 @@
     </classes>
   </test--> <!-- Test -->
   
-  <!--test name="New_Connect_ME_EPL_New_connect">
+  <test name="Validate_Related_Order_ID_attribute_MetroE_New Connect">
     <classes>
       <class name="com.comcast.century.newConnect.NewConnectTest">
-      
+      <methods>
+          <include name="CreateCustomer"/>
+          <include name="CreateServiceAccount" />
+          <include name="CreateBillingAccount" />
+          <include name="CreateAddress" />   
+          <include name="SelectService"/>
+          <include name="ProcessService"/>
+         <!--  <include name="SubmitOrder"/>
+          <include name="StartCSO"/>  -->
+          </methods> 
       </class>
     </classes>
-  </test--> <!-- Test -->
-  
-  <test name="EOD_NC_ME_EDI_NewConnect_ERate">
+  </test>
+  <!-- <test name="EOD_NC_ME_EDI_NewConnect_ERate">
     <classes>             
       <class name="com.comcast.century.newConnect.NewConnectTest">
         <methods>
@@ -71,5 +79,5 @@
         </methods>
        </class>              
     </classes>
-  </test> <!-- Test -->
+  </test> Test -->
 </suite> <!-- Suite -->

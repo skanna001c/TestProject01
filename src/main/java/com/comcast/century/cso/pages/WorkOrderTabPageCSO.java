@@ -29,6 +29,9 @@ public class WorkOrderTabPageCSO extends Page {
 		
 	}
 	
+	@FindBy(css = "span#workorder")
+	private WebElement tabWorkorder;
+	
 	@FindBy(xpath = "//*[@id='RightFrame']")
 	private WebElement frameRight;
 	

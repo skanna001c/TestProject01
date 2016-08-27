@@ -814,6 +814,7 @@ public class ProcessTabPageCM extends Page {
 				 if (waitForElement(btnContinue)){
 					 btnContinue.click();
 					 waitforPageLoadComplete();
+					 browser.switchTo().defaultContent();
 				  }
 			} catch (Exception e) {
 				mstatus= false;

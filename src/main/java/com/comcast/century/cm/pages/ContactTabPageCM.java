@@ -311,9 +311,10 @@ public class ContactTabPageCM extends Page {
 		try{
 			while (!WaitandSwitchToFrame(frameMain,1)) {}	
 			
-			if(waitForElement(btnBack,1))				
+			while(!waitForElement(btnBack,1)){}				
 				//btnBack.sendKeys(Keys.ENTER);
 				iClick(btnBack);
+			
 			report.reportDoneEvent("Click on Back Button", "Back Button Clicked");
 			waitforPageLoadComplete();
 			browser.switchTo().defaultContent(); 

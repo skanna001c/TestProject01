@@ -186,7 +186,7 @@ public class OrderSummaryTabCMPage extends Page {
 			waitForElement(btnOk);
 			btnOk.click();
 			browser.switchTo().defaultContent();
-			WaitandSwitchToFrame(frameMain);
+			//WaitandSwitchToFrame(frameMain);
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 			mstatus = false;
@@ -277,7 +277,7 @@ public class OrderSummaryTabCMPage extends Page {
 	public boolean ClickSubmitOrderButton(){
 		mstatus = true;		
 		try {
-			ShortWaitandSwitchToFrame(frameMain);
+			//ShortWaitandSwitchToFrame(frameMain);
 			if(waitForElement(btnsubmitOrder)){
 				btnsubmitOrder.click();
 				waitforPageLoadComplete();	
