@@ -5,9 +5,9 @@
 	<listener class-name="com.comcast.utils.TestFilter"/>
 	<listener class-name="com.comcast.utils.CustomAnnotationListener"></listener>
 </listeners>
-  <test name="CancelSup_EPL_Service_Coax">
+  <test name="New_Connect_ME_EDI_New_connect">
     <classes>
-      <class name="com.comcast.century.newConnect.CancelSupEPLService">
+      <class name="com.comcast.century.newConnect.NewConnectTest">
       </class>
     </classes>
   </test> <!-- Test -->

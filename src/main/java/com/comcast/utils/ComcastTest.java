@@ -291,6 +291,8 @@ public class ComcastTest {
 				
 				if(settings.getPERerunStatus().equalsIgnoreCase("true")){				
 					dataDump.loadData();
+					/*dataDump.deleteValue("CSOLoggedIN");
+					dataDump.deleteValue("CMLoggedIN");	*/
 				}
 			
 		}catch(Exception e){				
@@ -421,6 +423,8 @@ public class ComcastTest {
 	@AfterTest(alwaysRun=true)
 	public synchronized void afterTestMain(){
 		try {
+			dataDump.deleteValue("CSOLoggedIN");
+			dataDump.deleteValue("CMLoggedIN");
 			dataDump.dumpData();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

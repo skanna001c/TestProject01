@@ -23,10 +23,10 @@ public class TestFilter implements IMethodInterceptor {
 			dataDump.loadData();
 			
 			for(IMethodInstance method: methods){
-
+				
 				if(dataDump.getValue(method.getMethod().getMethodName()+"_status").equalsIgnoreCase("pass")){
 					System.out.println("Test method: "+method.getMethod().getMethodName()+" already passed and not required to be rerun");
-				}else{
+				}else{					
 					finalMethods.add(method);
 				}
 			}
