@@ -170,8 +170,9 @@ public class LogInPage extends Page {
 		try{
 			browser.switchTo().defaultContent();
 			if (waitForElement(btnSignout,5)){
-			btnSignout.click();
+			
 			browser.manage().deleteAllCookies();
+			btnSignout.click();
 			waitforPageLoadComplete();
 			waitForElement(txtUserName);
 			}

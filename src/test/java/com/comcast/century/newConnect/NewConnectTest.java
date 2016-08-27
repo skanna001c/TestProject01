@@ -17,10 +17,18 @@ import com.comcast.century.cm.pages.FeatureTabPageCM;
 import com.comcast.century.cm.pages.OrderSummaryTabCMPage;
 import com.comcast.century.cm.pages.ProcessTabPageCM;
 import com.comcast.century.cm.pages.ServiceTabPageCM;
+import com.comcast.century.cso.pages.BuildHouseAccountTaskPage;
+import com.comcast.century.cso.pages.CompleteFiberPlantBuildTaskPage;
+import com.comcast.century.cso.pages.CompleteSiteBuildTaskPage;
+import com.comcast.century.cso.pages.CompleteWavelengthReservationTaskPage;
 import com.comcast.century.cso.pages.ConductFiberPlantSurveyTaskPage;
 import com.comcast.century.cso.pages.ConductSiteSurveyTaskPage;
+import com.comcast.century.cso.pages.ContactCustomerTaskPage;
+import com.comcast.century.cso.pages.ObtainFiberPlantPermitsTaskPage;
 import com.comcast.century.cso.pages.ObtainSiteAgreementTaskPage;
+import com.comcast.century.cso.pages.ServiceLevelTasks;
 import com.comcast.century.cso.pages.SiteLevelTasks;
+import com.comcast.century.cso.pages.UpdateDesignTaskPage;
 import com.comcast.century.cso.pages.WorkOrderTabPageCSO;
 import com.comcast.century.data.AccountInfo;
 import com.comcast.century.data.ContactInfo;
@@ -215,31 +223,86 @@ public class NewConnectTest extends ComcastTest {
   
   @Test(priority=1100)
   public void Conduct_Fiber_Plant_Survey() throws InterruptedException, AWTException {
+	  
 	  StartCSO();
 	  (new SiteLevelTasks(browser, report)).ConductFiberPlantSurvey();
 	 (new ConductFiberPlantSurveyTaskPage(browser, report)).ConductFiberPlantSurvey(siteLevelTaskInfo);
 		
   }	
     
-/*	(new SiteLevelTasks(browser, report)).ConductFiberPlantSurvey();
-	(new ConductFiberPlantSurveyTaskPage(browser, report)).ConductFiberPlantSurvey(siteLevelTaskInfo);
-	(new SiteLevelTasks(browser, report)).BuildHouseAccount();
-	(new BuildHouseAccountTaskPage(browser, report)).BuildHouseAccount(siteLevelTaskInfo);
-	(new SiteLevelTasks(browser, report)).CompleteWavelengthReservation();
-	(new CompleteWavelengthReservationTaskPage(browser, report)).CompleteWavelengthReservation(siteLevelTaskInfo);
-	(new SiteLevelTasks(browser, report)).CompleteSiteBuild();
-	(new CompleteSiteBuildTaskPage(browser, report)).ClickCompleteButton();
-	(new CompleteSiteBuildTaskPage(browser, report)).closePopup();
-	(new SiteLevelTasks(browser, report)).ObtainFiberPlantPermits();
-	(new ObtainFiberPlantPermitsTaskPage(browser, report)).ObtainFiberPlantPermits();
-	(new SiteLevelTasks(browser, report)).CompleteFiberPlantBuild();
-	(new CompleteFiberPlantBuildTaskPage(browser, report)).ClickCompleteButton();
-	(new CompleteFiberPlantBuildTaskPage(browser, report)).closePopup();
-	(new ServiceLevelTasks(browser, report)).ContactCustomer();
-	(new ContactCustomerTaskPage(browser, report)).ContactCustomer();
-	(new ServiceLevelTasks(browser, report)).UpdateDesign();
-	(new UpdateDesignTaskPage(browser, report)).UpdateDesign();
-	(new SiteLevelTasks(browser, report)).ClickBackButton();
+  @Test(priority=1200)
+  public void Build_House_Account() throws InterruptedException, AWTException {
+	  StartCSO();
+	  (new SiteLevelTasks(browser, report)).BuildHouseAccount();
+	  (new BuildHouseAccountTaskPage(browser, report)).BuildHouseAccount(siteLevelTaskInfo);
+		
+  }	
+	
+  @Test(priority=1300)
+  public void Complete_Wavelength_Reservation() throws InterruptedException, AWTException {
+	  StartCSO();
+	  (new SiteLevelTasks(browser, report)).CompleteWavelengthReservation();
+	  (new CompleteWavelengthReservationTaskPage(browser, report)).CompleteWavelengthReservation(siteLevelTaskInfo);
+		
+  }	
+	
+  @Test(priority=1400)
+  public void Complete_Site_Build() throws InterruptedException, AWTException {
+	 
+	  if (getDataDump().getValue("Complete_Site_Build_status").equalsIgnoreCase("fail"))
+	  {
+		  StartCSO();
+	  }
+	   (new SiteLevelTasks(browser, report)).CompleteSiteBuild();
+		(new CompleteSiteBuildTaskPage(browser, report)).ClickCompleteButton();
+		(new CompleteSiteBuildTaskPage(browser, report)).closePopup();
+		
+  }	
+  
+  @Test(priority=1500)
+  public void Obtain_Fiber_Plant_Permit() throws InterruptedException, AWTException {
+	  if (getDataDump().getValue("Obtain_Fiber_Plant_Permit_status").equalsIgnoreCase("fail"))
+	  {
+		  StartCSO();
+	  }
+	  (new SiteLevelTasks(browser, report)).ObtainFiberPlantPermits();
+	  (new ObtainFiberPlantPermitsTaskPage(browser, report)).ObtainFiberPlantPermits();
+		
+  }	
+    
+  @Test(priority=1600)
+  public void Complete_Fiber_Plant_Build() throws InterruptedException, AWTException {
+	  if (getDataDump().getValue("Complete_Fiber_Plant_Build_status").equalsIgnoreCase("fail"))
+	  {
+		  StartCSO();
+	  }
+	    (new SiteLevelTasks(browser, report)).CompleteFiberPlantBuild();
+		(new CompleteFiberPlantBuildTaskPage(browser, report)).ClickCompleteButton();
+		(new CompleteFiberPlantBuildTaskPage(browser, report)).closePopup();
+		
+  }	
+    
+  @Test(priority=1600)
+  public void Contact_Customer() throws InterruptedException, AWTException {
+	    StartCSO();
+	  
+	    (new ServiceLevelTasks(browser, report)).ContactCustomer();
+		(new ContactCustomerTaskPage(browser, report)).ContactCustomer();
+		
+  }	
+    	
+  @Test(priority=1600)
+  public void Update_Design() throws InterruptedException, AWTException {
+	  
+	  (new ServiceLevelTasks(browser, report)).UpdateDesign();
+		(new UpdateDesignTaskPage(browser, report)).UpdateDesign();
+		(new SiteLevelTasks(browser, report)).ClickBackButton();
+  }	
+    	
+	
+	
+	
+/*
 	(new WorkOrderTabPageCSO(browser, report)).ClickEDIFlow();
 	serviceLevelTaskInfo = ServiceLevelTaskInfo.loadFromDatatable(dataTable);
 	(new ServiceLevelTasks(browser, report)).BULBA();
