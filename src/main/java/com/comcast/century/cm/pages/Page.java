@@ -2754,7 +2754,8 @@ public abstract class Page {
 			rb.keyPress(KeyEvent.VK_V);
 			rb.keyRelease(KeyEvent.VK_V);
 			rb.keyRelease(KeyEvent.VK_CONTROL);
-			
+			rb.keyPress(KeyEvent.VK_TAB);
+			rb.keyRelease(KeyEvent.VK_TAB);
 			rb.keyPress(KeyEvent.VK_ENTER);
 			rb.keyRelease(KeyEvent.VK_ENTER);
 			sleep(5000);

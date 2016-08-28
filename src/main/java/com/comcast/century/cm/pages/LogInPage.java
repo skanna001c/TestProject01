@@ -170,7 +170,6 @@ public class LogInPage extends Page {
 		try{
 			browser.switchTo().defaultContent();
 			if (waitForElement(btnSignout,5)){
-			
 			browser.manage().deleteAllCookies();
 			btnSignout.click();
 			waitforPageLoadComplete();
@@ -257,6 +256,7 @@ public class LogInPage extends Page {
 			
 			if(isElementPresent(btnLogin)){
 				btnLogin.sendKeys(Keys.ENTER);
+				waitforPageLoadComplete();
 				report.reportDoneEvent("Click on Login", "Login Clicked successfully");
 			}
 			/*waitForElement(userHomePage);
