@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import com.comcast.century.data.ServiceInfo;
 import com.comcast.reporting.Status;
 import com.comcast.utils.SeleniumReport;
 
@@ -29,7 +30,7 @@ public class ServiceTabPageCM extends Page {
 		
 	}
 	
-	private static String EqFeeqt;
+	
 	
 	@FindBy(xpath = "//a[.='Service']")
 	private WebElement tabService;
@@ -113,7 +114,6 @@ public class ServiceTabPageCM extends Page {
 			  boolean mStatus = true; 
 			  if (waitForElement(selectCheckBoxEDI)){
 				  selectCheckBoxEDI.click();
-				  EqFeeqt="1";
 				  report.updateTestLog("Select EDI Service", "EDI Service Selected", Status.SCREENSHOT);
 			  }else mStatus = false;
 			  return mStatus;
@@ -124,7 +124,6 @@ public class ServiceTabPageCM extends Page {
 				 try {
 					if(waitForElement(selectCheckBoxENS)){
 						 selectCheckBoxENS.click();
-						 EqFeeqt="2";
 					 }
 				} catch (Exception e) {
 					mstatus= false;
@@ -137,7 +136,6 @@ public class ServiceTabPageCM extends Page {
 				try {
 					if(waitForElement(selectCheckBoxEPL)){
 						 selectCheckBoxEPL.click();
-						 EqFeeqt="2";
 					 }
 				} catch (Exception e) {
 					mstatus= false;
@@ -154,7 +152,6 @@ public class ServiceTabPageCM extends Page {
 					}
 					if(waitForElement(selectCheckBoxEVPL)){
 						 selectCheckBoxEVPL.click();
-						 EqFeeqt="3";
 						
 					 }
 				} catch (Exception e) {
@@ -183,7 +180,7 @@ public class ServiceTabPageCM extends Page {
 				}
 			}*/
 			
-			public boolean EquipmentFee() throws InterruptedException{
+			public boolean EquipmentFee(ServiceInfo serviceInfo) throws InterruptedException{
 				boolean mStatus = true;
 				if(waitForElement(selectCheckBoxEqFee)){
 					selectCheckBoxEqFee.click();
@@ -191,33 +188,13 @@ public class ServiceTabPageCM extends Page {
 					if(waitForElement(txtEqFeeqt)){
 					txtEqFeeqt.click();	
 					txtEqFeeqt.clear();
-					txtEqFeeqt.sendKeys(EqFeeqt);
+					txtEqFeeqt.sendKeys(serviceInfo.equipmentFee);
 					report.updateTestLog("Select Equipment Fee", "Equipment Fee Selected", Status.SCREENSHOT);
 					}else mStatus = false;
 				}
 			return mStatus;	
 			}
 			
-			
-			public boolean EquipmentFeeOnly() throws InterruptedException{
-				boolean mStatus = true;
-				if(waitForElement(selectCheckBoxEqFee)){
-					selectCheckBoxEqFee.click();
-					/*Thread.sleep(2*1000);
-					if(waitForElement(txtEqFeeqt)){
-					txtEqFeeqt.click();	
-					txtEqFeeqt.clear();
-					txtEqFeeqt.sendKeys(EqFeeqt);*/
-					report.updateTestLog("Select Equipment Fee", "Equipment Fee Selected", Status.SCREENSHOT);
-					}else mStatus = false;
-				
-			return mStatus;	
-			}
-
-			
-			
-			
-     
 			
 			public boolean BVE(){
 				mstatus = true;

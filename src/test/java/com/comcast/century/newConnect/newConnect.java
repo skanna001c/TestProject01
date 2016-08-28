@@ -56,6 +56,7 @@ import com.comcast.century.data.CustomerInfo;
 import com.comcast.century.data.LoginDetails;
 import com.comcast.century.data.OrderSummaryInfo;
 import com.comcast.century.data.ProcessInfo;
+import com.comcast.century.data.ServiceInfo;
 import com.comcast.century.data.ServiceLevelTaskInfo;
 import com.comcast.century.data.SiteInfo;
 import com.comcast.century.data.SiteLevelTaskInfo;
@@ -71,6 +72,7 @@ public class newConnect extends ComcastTest {
 	private AccountInfo accountInfo;
 	private ContactInfo contactInfo;
 	private SiteInfo siteInfo;
+	private ServiceInfo serviceInfo;
 	private ProcessInfo processInfo;
 	private OrderSummaryInfo orderSummaryInfo;
 	private SiteLevelTaskInfo siteLevelTaskInfo;
@@ -111,7 +113,7 @@ public class newConnect extends ComcastTest {
 		(new ServiceTabPageCM(browser, report)).ClickOnServiceTab();
 		(new ServiceTabPageCM(browser, report)).SelectPricePlan();
 		(new ServiceTabPageCM(browser, report)).EDI();
-		(new ServiceTabPageCM(browser, report)).EquipmentFee();
+		(new ServiceTabPageCM(browser, report)).EquipmentFee(serviceInfo);
 		(new ServiceTabPageCM(browser, report)).ClickOnContinueButton();
 		(new FeatureTabPageCM(browser, report)).ClickOnContinueButton();
 		processInfo = ProcessInfo.loadFromDatatable(dataTable);
@@ -211,7 +213,7 @@ public class newConnect extends ComcastTest {
 		(new ServiceTabPageCM(browser, report)).ClickOnServiceTab();
 		(new ServiceTabPageCM(browser, report)).SelectPricePlan();
 		(new ServiceTabPageCM(browser, report)).EDI();
-		(new ServiceTabPageCM(browser, report)).EquipmentFee();
+		(new ServiceTabPageCM(browser, report)).EquipmentFee(serviceInfo);
 		(new ServiceTabPageCM(browser, report)).ClickOnContinueButton();
 		(new FeatureTabPageCM(browser, report)).BGP();
 		(new FeatureTabPageCM(browser, report)).ClickOnContinueButton();
@@ -322,7 +324,7 @@ public class newConnect extends ComcastTest {
 		(new ServiceTabPageCM(browser, report)).ClickOnServiceTab();
 		(new ServiceTabPageCM(browser, report)).SelectPricePlan();
 		(new ServiceTabPageCM(browser, report)).EDI();
-		(new ServiceTabPageCM(browser, report)).EquipmentFee();
+		(new ServiceTabPageCM(browser, report)).EquipmentFee(serviceInfo);
 		(new ServiceTabPageCM(browser, report)).ClickOnContinueButton();
 		(new FeatureTabPageCM(browser, report)).ClickOnContinueButton();
 		processInfo = ProcessInfo.loadFromDatatable(dataTable);
@@ -422,7 +424,7 @@ public class newConnect extends ComcastTest {
 		(new ServiceTabPageCM(browser, report)).ClickOnServiceTab();
 		(new ServiceTabPageCM(browser, report)).SelectPricePlan();
 		(new ServiceTabPageCM(browser, report)).EDI();
-		(new ServiceTabPageCM(browser, report)).EquipmentFee();
+		(new ServiceTabPageCM(browser, report)).EquipmentFee(serviceInfo);
 		(new ServiceTabPageCM(browser, report)).TrunkPRI();
 		(new ServiceTabPageCM(browser, report)).ClickOnContinueButton();
 		(new FeatureTabPageCM(browser, report)).ClickOnContinueButton();
@@ -554,7 +556,7 @@ public class newConnect extends ComcastTest {
 		(new ServiceTabPageCM(browser, report)).ClickOnServiceTab();
 		(new ServiceTabPageCM(browser, report)).SelectPricePlan();
 		(new ServiceTabPageCM(browser, report)).ENS();
-		(new ServiceTabPageCM(browser, report)).EquipmentFee();
+		(new ServiceTabPageCM(browser, report)).EquipmentFee(serviceInfo);
 		(new ServiceTabPageCM(browser, report)).ClickOnContinueButton();
 		(new FeatureTabPageCM(browser, report)).ENS();
 		processInfo = ProcessInfo.loadFromDatatable(dataTable);
@@ -602,7 +604,7 @@ public class newConnect extends ComcastTest {
 		(new ServiceTabPageCM(browser, report)).ClickOnServiceTab();
 		(new ServiceTabPageCM(browser, report)).SelectPricePlan();
 		(new ServiceTabPageCM(browser, report)).EPL();
-		(new ServiceTabPageCM(browser, report)).EquipmentFee();
+		(new ServiceTabPageCM(browser, report)).EquipmentFee(serviceInfo);
 		(new ServiceTabPageCM(browser, report)).ClickOnContinueButton();
 		(new FeatureTabPageCM(browser, report)).ClickOnContinueButton();
 		processInfo = ProcessInfo.loadFromDatatable(dataTable);
@@ -732,7 +734,7 @@ public class newConnect extends ComcastTest {
 		/*(new ServiceTabPageCM(browser, report)).ClickOnServiceTab();
 		(new ServiceTabPageCM(browser, report)).SelectPricePlan();
 		(new ServiceTabPageCM(browser, report)).EVPL();
-		(new ServiceTabPageCM(browser, report)).EquipmentFee();
+		(new ServiceTabPageCM(browser, report)).EquipmentFee(serviceInfo);
 		(new ServiceTabPageCM(browser, report)).ClickOnContinueButton();
 		(new FeatureTabPageCM(browser, report)).EVPL();
 		processInfo = ProcessInfo.loadFromDatatable(dataTable);
@@ -775,7 +777,7 @@ public class newConnect extends ComcastTest {
 		(new ServiceTabPageCM(browser, report)).ClickOnServiceTab();
 		(new ServiceTabPageCM(browser, report)).SelectPricePlan();
 		(new ServiceTabPageCM(browser, report)).EDI();
-		(new ServiceTabPageCM(browser, report)).EquipmentFee();
+		(new ServiceTabPageCM(browser, report)).EquipmentFee(serviceInfo);
 		(new ServiceTabPageCM(browser, report)).ClickOnContinueButton();
 		(new FeatureTabPageCM(browser, report)).ClickOnContinueButton();
 		processInfo = ProcessInfo.loadFromDatatable(dataTable);

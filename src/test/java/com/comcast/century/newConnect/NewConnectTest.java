@@ -57,6 +57,7 @@ import com.comcast.century.data.ContactInfo;
 import com.comcast.century.data.CustomerInfo;
 import com.comcast.century.data.OrderSummaryInfo;
 import com.comcast.century.data.ProcessInfo;
+import com.comcast.century.data.ServiceInfo;
 import com.comcast.century.data.ServiceLevelTaskInfo;
 import com.comcast.century.data.SiteInfo;
 import com.comcast.century.data.SiteLevelTaskInfo;
@@ -69,6 +70,7 @@ public class NewConnectTest extends ComcastTest {
 	private AccountInfo accountInfo;
 	private ContactInfo contactInfo;
 	private SiteInfo siteInfo;
+	private ServiceInfo serviceInfo;
 	private ProcessInfo processInfo;
 	private OrderSummaryInfo orderSummaryInfo;
 	private SiteLevelTaskInfo siteLevelTaskInfo;
@@ -77,6 +79,8 @@ public class NewConnectTest extends ComcastTest {
 	String SRID;
 	String SurveyID;
 	String Site1;
+	String Site2;
+	String Site3;
 		
   /*@BeforeMethod
   public void beforeMethod() {
@@ -152,13 +156,78 @@ public class NewConnectTest extends ComcastTest {
   }
   
   @Test(priority=400)
-  @PerfTransaction(name="CreateAddress")
-  public void createAddress() throws InterruptedException {
+  @PerfTransaction(name="CreateAddress1")
+  public void createAddress1() throws InterruptedException {
 		if((new AddressTabPageCM(browser, report)).ClickAddressTab(siteInfo)){
 			Site1 = (new AddressTabPageCM(browser, report)).EnterSiteDetailsValid(siteInfo);
 			if((new ContactTabPageCM(browser, report)).CreateSiteTechnicalContact(contactInfo)){
+				if((new ContactTabPageCM(browser, report)).ClickOnBackBtn()){
 			}else Assert.fail("Create site technical Contact failed");
-		}else Assert.fail("click on address tab failed");		
+		}else Assert.fail("click on address tab failed");
+		}else Assert.fail("click on back button failed");
+  }
+  
+  @Test(priority=410)
+  @PerfTransaction(name="CreateAddress2")
+  public void createAddress2() throws InterruptedException {
+	  if((new AddressTabPageCM(browser, report).CreateNewAddress())){
+			Site2 = (new AddressTabPageCM(browser, report)).EnterSiteDetailsValid(siteInfo);
+			if((new ContactTabPageCM(browser, report)).CreateSiteTechnicalContact(contactInfo)){
+				if((new ContactTabPageCM(browser, report)).ClickOnBackBtn()){
+			}else Assert.fail("Create site technical Contact failed");
+		}else Assert.fail("click on back button failed");
+	  }else Assert.fail("click on create new address failed");
+  }
+  
+  
+  @Test(priority=411)
+  @PerfTransaction(name="SelectServiceEPLCoax")
+  public void selectServiceEPLCoax() throws InterruptedException{
+	  (new ServiceTabPageCM(browser, report)).ClickOnServiceTab();
+		if((new ServiceTabPageCM(browser, report)).SelectPricePlan()){
+			if((new ServiceTabPageCM(browser, report)).EPL()){
+				if((new ServiceTabPageCM(browser, report)).EquipmentFee(serviceInfo)){
+					if((new ServiceTabPageCM(browser, report)).ClickOnContinueButton()){
+						(new FeatureTabPageCM(browser, report)).ClickOnContinueButton();					
+					}else Assert.fail("Click continue button failed");
+				}else Assert.fail("Equipment fee failed");
+			}else Assert.fail(" Select EPL plan failed");
+		}else Assert.fail(" Select service plan failed");
+	  
+  }
+  
+  
+  @Test(priority=412)
+  @PerfTransaction(name="ProcessServiceEPLCoax")
+  public void processServiceEPLCoax() throws InterruptedException{
+	  	if(getDataDump().getValue("processService_status").equalsIgnoreCase("FAIL"))
+	  	{
+	  		selectService();
+	  	}
+		SRID = (new ProcessTabPageCM(browser, report)).ProcessConfiguration(processInfo);
+		getDataDump().setValue("SRID_RT", SRID);
+		if((new ProcessTabPageCM(browser, report)).UNIConfiguration(processInfo, Site1)){
+			if((new ProcessTabPageCM(browser, report)).UNI2Configuration(processInfo, Site2)){
+			if((new ProcessTabPageCM(browser, report)).EVCConfiguration_EPL(processInfo)){
+				if((new ProcessTabPageCM(browser, report)).EqFeeConfiguration(processInfo)){
+					if((new ProcessTabPageCM(browser, report)).ClickOnContinueButton()){
+					}else Assert.fail("Click on continue button failed");
+				}else Assert.fail("Equipment fee configuration failed");
+			}else Assert.fail("EVC configuration failed");
+			}else Assert.fail("UNI2 configuration failed");
+		}else Assert.fail("UNI configuration failed");
+  }	
+  
+  
+  
+  @Test(priority=420)
+  @PerfTransaction(name="CreateAddress3")
+  public void createAddress3() throws InterruptedException {
+	  if((new AddressTabPageCM(browser, report).CreateNewAddress())){
+			Site3 = (new AddressTabPageCM(browser, report)).EnterSiteDetailsValid(siteInfo);
+			if((new ContactTabPageCM(browser, report)).CreateSiteTechnicalContact(contactInfo)){
+			}else Assert.fail("Create site technical Contact failed");
+	  }else Assert.fail("click on create new address failed");
   }
   
   @Test(priority=500)
@@ -167,7 +236,7 @@ public class NewConnectTest extends ComcastTest {
 	  (new ServiceTabPageCM(browser, report)).ClickOnServiceTab();
 		if((new ServiceTabPageCM(browser, report)).SelectPricePlan()){
 			if((new ServiceTabPageCM(browser, report)).EDI()){
-				if((new ServiceTabPageCM(browser, report)).EquipmentFee()){
+				if((new ServiceTabPageCM(browser, report)).EquipmentFee(serviceInfo)){
 					if((new ServiceTabPageCM(browser, report)).ClickOnContinueButton()){
 						(new FeatureTabPageCM(browser, report)).ClickOnContinueButton();					
 					}else Assert.fail("Click continue button failed");
@@ -649,6 +718,7 @@ public void EqFeeStartBilling() throws InterruptedException {
 		siteInfo = SiteInfo.loadFromDatatable(dataTable);
 		customerInfo = CustomerInfo.loadFromDatatable(dataTable);
 		contactInfo = ContactInfo.loadFromDatatable(dataTable);
+		serviceInfo = ServiceInfo.loadFromDatatable(dataTable);
 		processInfo = ProcessInfo.loadFromDatatable(dataTable);
 		orderSummaryInfo = OrderSummaryInfo.loadFromDatatable(dataTable);
 		siteLevelTaskInfo = SiteLevelTaskInfo.loadFromDatatable(dataTable);

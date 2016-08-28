@@ -166,7 +166,44 @@ public class OrderSummaryTabCMPage extends Page {
 	@FindBy(xpath = "//span[text()='OK']/following-sibling::span")
 	private WebElement btnOk ;
 	
-	private boolean mstatus;
+	@FindBy(xpath = "//div[.='Related Order ID'][contains(@id,'legendTitle')]/preceding-sibling::*")
+	private WebElement btnExpandRelatedOrderID ;
+	
+	@FindBy(xpath = "//*[@id='relatedOrderID']")
+	private WebElement txtRelatedOrderID ;
+	
+	private boolean mstatus=true;
+	
+	private String relatedOrderIDValue;
+	
+	
+	public String verifyRelatedOrderIDAttribute(){
+		try{
+			ShortWaitandSwitchToFrame(frameMain);
+			waitForElement(btnExpandRelatedOrderID);
+			iClick(btnExpandRelatedOrderID);
+			waitForElementDisappear(elementLoading);
+			if(waitForElement(txtRelatedOrderID)){
+				report.reportPassEvent("Verify Related Order ID attribute", " Related Order ID attribute present");
+				report.updateTestLog(" Related Order ID attribute", "Related Order ID attribute present", Status.SCREENSHOT);
+			}else{
+				report.reportFailEvent("Verify Related Order ID attribute", "Related Order ID attribute not present");
+			}
+		   relatedOrderIDValue = "456258965412589aswedfrthg@#$%t";
+		   txtRelatedOrderID.sendKeys(relatedOrderIDValue);
+		   if(txtRelatedOrderID.getAttribute("maxlength").equalsIgnoreCase("30")){
+			   report.reportPassEvent("Verify Related Order ID attribute takes max of 30 char ", "Verified successfully");
+		   }else{
+			   report.reportFailEvent("Verify Related Order ID attribute takes max of 30 char", "Verification fails");
+		   }
+		   scrollUp();
+		   browser.switchTo().defaultContent();
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;
+		}
+		return relatedOrderIDValue;
+	}
 	
 	
 	public boolean assignLabel(OrderSummaryInfo orderSummaryInfo){

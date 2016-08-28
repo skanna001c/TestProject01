@@ -5,30 +5,51 @@
 	<listener class-name="com.comcast.utils.TestFilter"/>
 	
 </listeners>
- <test name="Validate_Related_Order_ID_attribute_MetroE_New Connect">
+ <!-- <test name="Validate_Related_Order_ID_attribute_MetroE_New Connect">
     <classes>
-      <class name="com.comcast.century.newConnect.NewConnectTest">
+      <class name="com.comcast.century.newConnect.Validate_Related_Order_ID_attribute">
       <methods>
-          <include name="CreateCustomer"/>
-          <include name="CreateServiceAccount" />
-          <include name="CreateBillingAccount" />
-          <include name="CreateAddress" />   
-          <include name="SelectService"/>
-          <include name="ProcessService"/>
-          <include name="SubmitOrder"/>
+          <include name="createCustomer"/>
+          <include name="createServiceAccount" />
+          <include name="createBillingAccount" />
+          <include name="createAddress1" />   
+          <include name="selectService"/>
+          <include name="processService"/>
+          <include name="relatedOrderIDAttribute"></include>
+          <include name="submitOrder"/>
+          <include name="StartCSO"/> 
+           <include name="validateRelatedOrderID"></include>
+          </methods> 
+      </class>
+    </classes>
+  </test>
+   -->
+  <test name="CancelSup_EPL_Service_Coax">
+    <classes>
+      <class name="com.comcast.century.newConnect.CancelSupEPLService">
+      <methods>
+          <include name="createCustomer"/>
+          <include name="createServiceAccount" />
+          <include name="createBillingAccount" />
+          <include name="createAddress1" />  
+          <include name="createAddress2"></include> 
+          <include name="selectServiceEPLCoax"/>
+          <include name="processServiceEPLCoax"/>
+          <include name="submitOrder"></include>
           <include name="StartCSO"/> 
           </methods> 
       </class>
     </classes>
   </test>
-  	<test name="EOD_NC_ME_EDI_NewConnect_ERate">
+  
+  <!-- 	<test name="EOD_NC_ME_EDI_NewConnect_ERate">
 		<classes>
 			<class name="com.comcast.century.newConnect.NewConnectTest">
 				<methods>
 					<include name="createCustomer"/>
 					<include name="createServiceAccount" />
 					<include name="createBillingAccount" />
-					<include name="createAddress" /> 
+					<include name="createAddress1" /> 
 					<include name="selectServiceEDIOnly"/>
 					<include name="processServiceEDIOnly" />
 					<include name="submitOrderErate" /> 
@@ -58,5 +79,5 @@
 				</methods>
 			</class>
 		</classes>
-	</test>  
+	</test>   -->
 </suite> <!-- Suite -->

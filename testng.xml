@@ -7,7 +7,7 @@
 </listeners>
   <test name="New_Connect_ME_EDI_New_connect">
     <classes>
-      <class name="com.comcast.century.newConnect.NewConnectTest">
+      <class name="NewConnectTest">
       </class>
     </classes>
   </test> <!-- Test -->

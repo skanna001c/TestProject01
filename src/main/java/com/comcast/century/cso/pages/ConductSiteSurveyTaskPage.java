@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import com.comcast.century.cm.pages.Page;
 import com.comcast.century.data.SiteLevelTaskInfo;
+import com.comcast.reporting.Status;
 import com.comcast.utils.SeleniumReport;
 
 public class ConductSiteSurveyTaskPage extends Page {
@@ -70,7 +71,44 @@ public class ConductSiteSurveyTaskPage extends Page {
 	@FindBy(xpath = "//input[@value='Reset']")
 	private WebElement btnReset;
 	
+	@FindBy(xpath = "//div[text()='loading...']")
+	private WebElement elementLoading ;
+	
+	@FindBy(xpath = "//*[.='General Information']")
+	private WebElement tabGeneralInformation;
+	
+	@FindBy(xpath = "//*[.='Order Details']")
+	private WebElement tabOrderDetails;
+	
+	@FindBy(xpath = "//b[.='External Related Order ID']/../following-sibling::td")
+	private WebElement valueRelatedOrderID;
+	
+	
 	private boolean mstatus= true;
+	
+	
+	public boolean validateRelatedOrderIDAttribute(String relatedOrderIDValue){
+		try{
+			waitForElement(tabGeneralInformation);
+			iClick(tabGeneralInformation);
+			waitForElementDisappear(elementLoading);
+			iClick(tabOrderDetails);
+			scrollDown();
+			waitForElement(valueRelatedOrderID);
+			if(valueRelatedOrderID.getText().equalsIgnoreCase(relatedOrderIDValue)){
+			   report.reportPassEvent("Validate Realted Order ID Value", "Realted Order ID Value Validated");
+			   report.updateTestLog("Validate Realted Order ID Value", "Realted Order ID Value Validated", Status.SCREENSHOT);
+			}else{
+				report.reportFailEvent("Validatec Realted Order ID Value", "Realted Order ID Value not Validated");
+			}
+			
+			
+		}catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
 	public boolean ConductSiteSurvey(SiteLevelTaskInfo siteLevelTaskInfo){
 		try{
 			if(waitForElement(ScheduledSurveyDate)){
