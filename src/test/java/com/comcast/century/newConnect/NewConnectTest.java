@@ -215,6 +215,7 @@ public class NewConnectTest extends ComcastTest {
   @Test(priority=800)
   public void StartCSO() {
 	//(new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);  
+	  
 	 (new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
 	 (new WorkOrderTabPageCSO(browser, report)).ClickFirstSiteFlow();
 	 
@@ -454,15 +455,11 @@ public void Start_Billing() throws InterruptedException {
 	EDIFlow();	  
 	(new ServiceLevelTasks(browser, report)).StartBilling();
 	(new ServiceLevelTasks(browser, report)).ClickBackButton();
-	(new ServiceLevelTasks(browser, report)).ClickBackButton();
 }
 
-@Test(priority=4200)
+
 public void EquipmentFeeFlow() throws InterruptedException {
-	if (getDataDump().getValue("EquipmentFeeFlow_status").equalsIgnoreCase("fail"))
-	  {
-		  EDIFlow();
-	  }
+	
 		//(new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);  
 	(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
 	(new WorkOrderTabPageCSO(browser, report)).ClickEquipmentFeeFlow();
@@ -470,14 +467,12 @@ public void EquipmentFeeFlow() throws InterruptedException {
 
 @Test(priority=4300)
 public void EqFeeStartBilling() throws InterruptedException {
-	if (getDataDump().getValue("EqFeeStartBilling_status").equalsIgnoreCase("fail"))
-	  {
-		  EDIFlow();
-	  }	  
+	EquipmentFeeFlow();	 	  
 	(new EqFeeFlowTasks(browser, report)).EqFeeStartBilling();
 	(new EqFeeStartBillingTaskPage(browser, report)).EqFeeStartBilling();
 	(new EqFeeFlowTasks(browser, report)).ClickBackButton();
 }
+
 /*
 	(new WorkOrderTabPageCSO(browser, report)).ClickEDIFlow();
 	
