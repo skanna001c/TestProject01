@@ -5,23 +5,7 @@
 	<listener class-name="com.comcast.utils.TestFilter"/>
 	
 </listeners>
-  <!--test name="New_Connect_ME_EDI_New_connect">
-    <classes>
-      <class name="com.comcast.century.newConnect.NewConnectTest">
-      
-      </class>
-    </classes>
-  </test--> <!-- Test -->
-  
-  <!--test name="New_Connect_ME_ENS_New_connect">
-    <classes>
-      <class name="com.comcast.century.newConnect.NewConnectTest">
-      
-      </class>
-    </classes>
-  </test--> <!-- Test -->
-  
-  <test name="Validate_Related_Order_ID_attribute_MetroE_New Connect">
+ <!--  <test name="Validate_Related_Order_ID_attribute_MetroE_New Connect">
     <classes>
       <class name="com.comcast.century.newConnect.NewConnectTest">
       <methods>
@@ -31,53 +15,48 @@
           <include name="CreateAddress" />   
           <include name="SelectService"/>
           <include name="ProcessService"/>
-         <!--  <include name="SubmitOrder"/>
-          <include name="StartCSO"/>  -->
+          <include name="SubmitOrder"/>
+          <include name="StartCSO"/> 
           </methods> 
       </class>
     </classes>
-  </test>
-  <!-- <test name="EOD_NC_ME_EDI_NewConnect_ERate">
-    <classes>             
-      <class name="com.comcast.century.newConnect.NewConnectTest">
-        <methods>
-          <include name="CreateCustomer"/>
-          <include name="CreateServiceAccount" />
-          <include name="CreateBillingAccount" />
-          <include name="CreateAddress" />          
-        </methods>
-       </class>    
-      <class name="com.comcast.century.newConnect.EOD_NC_ME_EDI_NewConnect_ERate">    
-         <methods>
-          <include name="SelectServiceEDIOnly"/>
-          <include name="ProcessServiceEDIOnly" />
-          <include name="submitOrderErate" />          
-        </methods> 
-      </class>
-      <class name="com.comcast.century.newConnect.NewConnectTest">
-        <methods>
-          <include name="StartCSO"/>                 
-        </methods> 
-      </class>
-      <class name="com.comcast.century.newConnect.EOD_NC_ME_EDI_NewConnect_ERate">    
-         <methods>
-          <include name="Conduct_Site_Survey_Coax"/>
-          <include name="Obtain_Site_Agreement" />
-          <include name="Conduct_Coax_Survey" />          
-        </methods> 
-      </class>
-      <class name="com.comcast.century.newConnect.NewConnectTest">
-        <methods>
-          <include name="Build_House_Account"/>                 
-        </methods> 
-      </class>
-      <class name="com.comcast.century.newConnect.EOD_NC_ME_EDI_NewConnect_ERate">    
-         <methods>
-          <include name="Obtains_Coax_Permits"/>
-          <include name="Complete_Site_Build_Coax" />
-          <include name="Complete_Coax_Build" />          
-        </methods>
-       </class>              
-    </classes>
-  </test> Test -->
+  </test> -->
+  	<test name="EOD_NC_ME_EDI_NewConnect_ERate">
+		<classes>
+			<class name="com.comcast.century.newConnect.NewConnectTest">
+				<methods>
+					<include name="createCustomer"/>
+					<include name="createServiceAccount" />
+					<include name="createBillingAccount" />
+					<include name="createAddress" /> 
+					<include name="selectServiceEDIOnly"/>
+					<include name="processServiceEDIOnly" />
+					<include name="submitOrderErate" /> 
+					<include name="Conduct_Site_Survey_Coax"/>
+					<include name="Obtain_Site_Agreement" />
+					<include name="Conduct_Coax_Survey" />
+					<include name="Build_House_Account"/> 
+					<include name="Obtain_Coax_Permit"/>
+					<include name="Complete_Site_Build_Coax" />
+					<include name="Contact_Customer" />
+					<include name="Update_Design" />
+					<include name="Build_Update_Local_Biller_Account" />
+					<include name="Ship_CPE" />
+					<include name="Create_Account_and_Equipment" />
+					<include name="Assign_Design_Info" />
+					<include name="Generate_CPE_Config" />
+					<include name="Generate_Core_Config" />
+					<include name="Load_Core_Config" />
+					<include name="Install_CPE_Coax" />
+					<include name="Set_Critical_Dates" />
+					<include name="Day_of_Configs" />
+					<include name="Activate_Service" />
+					<include name="Notify_Customer_of_Service_Installation" />
+					<include name="Complete_Customer_Acceptance_Testing" />
+					<include name="Create_Order_Billing_Package" />
+					<include name="Start_Billing" />
+				</methods>
+			</class>
+		</classes>
+	</test>  
 </suite> <!-- Suite -->

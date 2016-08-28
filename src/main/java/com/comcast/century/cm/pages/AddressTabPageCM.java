@@ -312,16 +312,21 @@ public class AddressTabPageCM extends Page {
 		try{
 			if( WaitandSwitchToFrame(frameMain)){
 				 WaitandSwitchToFrame(frameAddress);
-				 waitForElement(ddtxtHeadendName);
-				 ddValueSelect(ddtxtHeadendName,ddValueHeadendName,siteInfo.headendName);
-//				 ddValue(ddtxtHeadendName,siteInfo.headendName);
-//				// WebElement ddValueHeadendName = browser.findElement(By.xpath("//li[text()='"+siteInfo.headendName+"']"));
-//				 //arneysmount.nj ddValueHeadendName
-//				 waitForElement(ddValueHeadendName);
-//				 ddValueHeadendName.click();
-				 report.reportDoneEvent("Select Headend Name", "Selected Headend Name as->" +siteInfo.headendName);
-				 Thread.sleep(4000);
-			}
+				 scrollDown();				 
+					do{
+						if(waitForElement(ddtxtHeadendName)){							
+							do{
+								ddValue(ddtxtHeadendName,siteInfo.headendName);
+							
+							}
+							while (!isElementPresent(browser.findElement(By.xpath("//li[text()='"+siteInfo.headendName+"']"))));
+							
+							 browser.findElement(By.xpath("//li[text()='"+siteInfo.headendName+"']")).click();			
+							 report.reportDoneEvent("Select Headend Name", "Selected Headend Name as->" +siteInfo.headendName);
+							 Thread.sleep(4000);
+							}
+						}while(ddtxtHeadendName.getAttribute("value").length()<1);
+			}				 
 		}
 		catch(Exception ex)
 		{
