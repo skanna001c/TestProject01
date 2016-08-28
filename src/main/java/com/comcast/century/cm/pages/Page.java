@@ -2897,7 +2897,8 @@ public abstract class Page {
 			 int counter = 0;
 			 int reqminutes=7;
 			 
-			if(!(we1.getAttribute("onclick").contains("COMPLETED")))  
+			if((!(we1.getAttribute("onclick").contains("COMPLETED")))
+					||(!(we1.getAttribute("onclick").contains("DEFERRED"))))  
 				{ while(!(browser.findElement(By.xpath("//*[text()='"+we1.getText()+"']")).getAttribute("onclick").contains(status)) && counter<reqminutes*6)  
 				{	 
 					 Thread.sleep(10*1000);
