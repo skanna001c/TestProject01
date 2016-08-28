@@ -52,6 +52,7 @@ public class CenturyApplication {
 			{	
 				browser.get(cso_url);
 				browser.manage().window().maximize();
+//				(new LogInPage(browser,report)).Signout();
 			}
 			this.password= userDetails.getPassword(userName);
 			this.domain=  settings.getAPPDOMAIN();
@@ -76,8 +77,9 @@ public class CenturyApplication {
 				
 			if (!alreadySameApp)
 			{
-				browser.get(cm_url);
+				browser.get(cm_url);				
 				browser.manage().window().maximize();
+				(new LogInPage(browser,report)).Signout();
 			}
 			this.password= userDetails.getPassword(userName);
 			this.domain= settings.getAPPDOMAIN();

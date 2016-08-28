@@ -280,6 +280,7 @@ public class WorkOrderTabPageCSO extends Page {
 	
 	public boolean ClickEDIFlow() throws InterruptedException{
 		try{
+			WaitandSwitchToFrame(frameRight);
 			if(waitForElement(linkEDIFlow)){
 				//linkEDIFlow.click();
 				clickndRelease(linkEDIFlow);

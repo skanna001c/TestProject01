@@ -168,6 +168,7 @@ public class LogInPage extends Page {
 	public boolean Signout(){
 		mstatus = true;
 		try{
+			waitforPageLoadComplete();
 			browser.switchTo().defaultContent();
 			if (waitForElement(btnSignout,5)){
 			

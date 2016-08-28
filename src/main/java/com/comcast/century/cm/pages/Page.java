@@ -2888,30 +2888,37 @@ public abstract class Page {
 		 * @throws InterruptedException
 		 */
 		 
-		 protected boolean checkifStatusChanged(WebElement we1,WebElement we2,String status) throws InterruptedException 
-		 {  String str;
-			
+		 protected boolean checkifStatusChanged(WebElement we1,WebElement we2,String status) throws InterruptedException
+		 
+		 {   
+			 boolean fn_status=false;
+			 System.out.println("Task ::"+we1.getText());
 			 int counter = 0;
 			 int reqminutes=7;
-			 while(!(browser.findElement(By.xpath("//*[text()='"+we1.getText()+"']")).getAttribute("onclick").contains(status)) && counter<reqminutes*6)  
-			{	 
-				 Thread.sleep(10*1000);
-				 we2.click();
-				 System.out.println("inside counter "+counter);
-				 counter++;			
-			}
 			 
-			if(we1.getAttribute("onclick").contains(status))
-			{
-			  waitForElement(we1);
-			  return true;
-			}
+			if(!(we1.getAttribute("onclick").contains("COMPLETED")))  
+				{ while(!(browser.findElement(By.xpath("//*[text()='"+we1.getText()+"']")).getAttribute("onclick").contains(status)) && counter<reqminutes*6)  
+				{	 
+					 Thread.sleep(10*1000);
+					 we2.click();
+					 System.out.println("inside counter "+counter);
+					 counter++;			
+				}
+				 
+				if(we1.getAttribute("onclick").contains(status))
+				{
+				  waitForElement(we1);
+				  fn_status=true;
+				}
 			else
 			{	
 				report.reportFailEvent(we1.getText()+" clicked failed", we1.getText()+"task not coming to in progress after 7 mins");
-				return false;
+				
 				
 			}
+		}
+			
+		return fn_status;
 			 
 			 
 		 } 
