@@ -5,7 +5,7 @@
 	<listener class-name="com.comcast.utils.TestFilter"/>
 	
 </listeners>
- <!--  <test name="Validate_Related_Order_ID_attribute_MetroE_New Connect">
+ <test name="Validate_Related_Order_ID_attribute_MetroE_New Connect">
     <classes>
       <class name="com.comcast.century.newConnect.NewConnectTest">
       <methods>
@@ -20,7 +20,7 @@
           </methods> 
       </class>
     </classes>
-  </test> -->
+  </test>
   	<test name="EOD_NC_ME_EDI_NewConnect_ERate">
 		<classes>
 			<class name="com.comcast.century.newConnect.NewConnectTest">
