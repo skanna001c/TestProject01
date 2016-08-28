@@ -1,6 +1,7 @@
 package com.comcast.century.cso.pages;
 
 import java.awt.AWTException;
+import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -41,10 +42,10 @@ public class ConductCoaxSurveyTaskPage extends Page {
 	@FindBy(xpath = ".//*[@id='surveyCompDate']/following-sibling::*")
 	private WebElement SurveyCompletionDate;
 
-	@FindBy(xpath = "//span[text()='Today']")
-	private WebElement btnToday;
+	@FindBy(xpath = "//*[text()='Today']")
+	private List<WebElement> btnToday;
 	
-	@FindBy(xpath = "//select[@id='permitReqd']")
+	@FindBy(xpath = "//select[@id='ospPermitReqd']")
 	private WebElement ddOSPPermitRequired;
 	
 	@FindBy(xpath = "//select[@id='ospConstReq']")
@@ -85,7 +86,7 @@ public class ConductCoaxSurveyTaskPage extends Page {
 				clickndRelease(tabCoaxServeyInformation);
 				waitForElement(SurveyCompletionDate);
 				SurveyCompletionDate.click();
-				btnToday.click();
+				iClick(btnToday.get(0));
 				new Select(ddOSPPermitRequired).selectByVisibleText("Yes");
 				new Select(ddConstructionRequired).selectByVisibleText("Yes");
 				waitForElement(tabCoaxSurveyResults);
@@ -93,7 +94,7 @@ public class ConductCoaxSurveyTaskPage extends Page {
 				/*waitForElement(txtTotalDistanceFt);
 				txtTotalDistanceFt.sendKeys(randomNumber(5)); */ // Commented by Kesavan as we can't enter any values in that field
 				txtNodeNumber.sendKeys(randomNumber(5));
-				new Select(ddServiceable).selectByVisibleText("No");
+				new Select(ddServiceable).selectByVisibleText("Yes");
 				this.ClickCompleteButton();
 			}
 		}

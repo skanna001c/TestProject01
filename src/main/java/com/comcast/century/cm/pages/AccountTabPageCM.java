@@ -193,10 +193,7 @@ public class AccountTabPageCM extends Page {
 			 iClick(createAccountBtn);
 			 waitforPageLoadComplete();	
 			 report.updateTestLog("Create Service Account", "Service Account Created Successfully", Status.SCREENSHOT);
-			 browser.switchTo().defaultContent();			 
-			/* BtnAddContact.click();	
-			 report.reportDoneEvent("Click on Add Contact", "Add Contact Clicked");
-			 waitforPageLoadComplete();*/
+			 browser.switchTo().defaultContent();
 		}
 		catch(Exception ex)
 		{  System.out.println(ex.getMessage());
@@ -259,10 +256,7 @@ public class AccountTabPageCM extends Page {
 			createAccountBtn.click();
 			waitforPageLoadComplete();	
 			report.updateTestLog("Create Service Account", "Service Account Created Successfully", Status.SCREENSHOT);
-			waitForElement(BtnAddContact);
-			BtnAddContact.click();	
-			report.reportDoneEvent("Click on Add Contact", "Add Contact Clicked");
-			waitforPageLoadComplete();
+			browser.switchTo().defaultContent();
 		}
 		catch(Exception ex)
 		{
