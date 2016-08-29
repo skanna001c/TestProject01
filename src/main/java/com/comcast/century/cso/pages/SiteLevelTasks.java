@@ -181,11 +181,14 @@ public class SiteLevelTasks extends Page {
 	}
 	
 	public boolean BuildHouseAccount() throws InterruptedException{
+		mstatus=false;
 		try{
+			
 			if(waitForElement(taskBuildHouseAccount)){
-				if(checkifStatusChanged(taskBuildHouseAccount,btnRefresh,"INPROGRESS")){
+			  if(checkifStatusChanged(taskBuildHouseAccount,btnRefresh,"INPROGRESS")){
 				taskBuildHouseAccount.click();
 				report.reportDoneEvent("Click BuildHouseAccount Task", " BuildHouseAccount Task Clicked");
+				mstatus=true;
 				}
 				waitforPageLoadComplete();
 			}

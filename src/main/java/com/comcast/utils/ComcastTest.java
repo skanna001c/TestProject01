@@ -310,7 +310,7 @@ public class ComcastTest {
     // updated the logic to check if datatable is null, then instantiate it
 	@BeforeMethod
 	public synchronized void setupData(Method testName) {
-		System.out.println("before method main");
+		System.out.println("In method :"+testName.getName());
 		//System.out.println("inside comcast test before method: "+ testName.getName());
 		startTime = System.currentTimeMillis();
 		if(settings==null)
@@ -487,7 +487,7 @@ public class ComcastTest {
 				}
 				ThreadDriver.set(driver); 
 			}
-			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
 		}
 		if(browserName.equalsIgnoreCase("chrome")){
 			System.setProperty("webdriver.chrome.driver", 

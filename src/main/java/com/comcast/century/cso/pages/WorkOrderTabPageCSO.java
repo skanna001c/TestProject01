@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -69,6 +70,9 @@ public class WorkOrderTabPageCSO extends Page {
 	
 	@FindBy(xpath = "//input[@id='serv_req_id']")
 	private WebElement txtPostSalesSrId ;
+	
+	@FindBy(xpath = "//img[@title='Back']")
+	private WebElement btnBack;
 	
 	@FindBy(xpath = "//*[@id='surveyId']")
 	private WebElement txtSurveyId ;
@@ -185,28 +189,41 @@ public class WorkOrderTabPageCSO extends Page {
 	public boolean SearchForOrderInSO(String SRID){
 		try{
 			//WaitandSwitchToFrame(fra)
-			waitforPageLoadComplete();
-		    waitForElement(btnExpand);
-			btnExpand.click();
-			btnExpandOrderSearch.click();
-			LinkServiceOrder.click();
-			waitforPageLoadComplete();
-			WaitandSwitchToFrame(frameRight);
-			waitForElementDisappear(elementLoading);
-			if(waitForElement(txtSrId)){
-				System.out.println("Search box present");
-				txtSrId.sendKeys(SRID);		
-			}
-			if(waitForElement(linkAdvancedSearch)){
-				linkAdvancedSearch.click();
+			/*if(!(ClickBackButton(3)))
+			{
+				WaitandSwitchToFrame(frameRight,5);
+				System.out.println("switched to RightFrame");
+			}*/
+			if(!ClickBackButton(3))
+			{
 				waitforPageLoadComplete();
-				WaitandSwitchToFrame(frameSOAdvancedSearch);
-				waitForElement(btnSearchAdvancedSearch);
-				btnSearchAdvancedSearch.click();
-				browser.switchTo().defaultContent();
+			    if (waitForElement(btnExpand,5))
+			    {
+			     btnExpand.click();
+			     btnExpandOrderSearch.click();
+			     LinkServiceOrder.click();
+			     WaitandSwitchToFrame(frameRight,5);			     
+			    }
+			}  
+				waitforPageLoadComplete();
+				//WaitandSwitchToFrame(frameRight);
 				waitForElementDisappear(elementLoading);
-				report.updateTestLog("Search for Order", "Order Searched Successfully", Status.SCREENSHOT);
-			}
+				if(waitForElement(txtSrId)){
+					System.out.println("Search box present");
+					txtSrId.clear();
+					txtSrId.sendKeys(SRID);		
+				}
+				if(waitForElement(linkAdvancedSearch)){
+					linkAdvancedSearch.click();
+					waitforPageLoadComplete();
+					WaitandSwitchToFrame(frameSOAdvancedSearch);
+					waitForElement(btnSearchAdvancedSearch);
+					btnSearchAdvancedSearch.click();
+					browser.switchTo().defaultContent();
+					waitForElementDisappear(elementLoading);
+					report.updateTestLog("Search for Order", "Order Searched Successfully", Status.SCREENSHOT);
+				}
+			
 		}
 		catch(Exception ex)
 		{
@@ -261,8 +278,70 @@ public class WorkOrderTabPageCSO extends Page {
 		return mstatus;
 	}
 	
+	public boolean ClickCoaxSiteFlow(String coaxSite1){
+		/*if(!(ClickBackButton(3)))
+			{
+				
+			}*/
+		WaitandSwitchToFrame(frameRight);
+		try{
+			if(!(coaxSite1.equalsIgnoreCase(""))){
+				String xpath="//div[.='Site']/../../descendant::"
+						+ "div[.='"+coaxSite1+"']/../../"
+								+ "descendant::a[contains(@onclick,'SOTaskView')]"; //"FiberSite1_RT" //"CoaxSite1_RT"
+				//WaitandSwitchToFrame(frameRight);
+				
+				if (waitUntilElementPresent(By.xpath(xpath),60)){
+				
+				if(waitForElement(browser.findElement(By.xpath(xpath)),1)){
+					browser.findElement(By.xpath(xpath)).click();
+					waitforPageLoadComplete();
+				report.reportDoneEvent("Clicked on Coax Site level flow", "Site level flow Clicked");
+			}
+			}
+			}
+			else ClickFirstSiteFlow();
+				
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	public boolean ClickFiberSiteFlow(String fiberSite1){
+		/*if(!(ClickBackButton(3)))
+		{
+			WaitandSwitchToFrame(frameRight);
+		}*/
+		try{
+			if(!(fiberSite1.equalsIgnoreCase(""))){
+				String xpath="//div[.='Site']/../../descendant::"
+					+ "div[.='"+fiberSite1+"']/../../"
+							+ "descendant::a[contains(@onclick,'SOTaskView')]"; //"FiberSite1_RT" //"CoaxSite1_RT"
+			 WaitandSwitchToFrame(frameRight,5);
+			
+			if (waitUntilElementPresent(By.xpath(xpath),30)){
+			
+			if(waitForElement(browser.findElement(By.xpath(xpath)),1)){
+				browser.findElement(By.xpath(xpath)).click();
+				waitforPageLoadComplete();
+				report.reportDoneEvent("Click on Fiber Site level flow", "Site level flow Clicked");
+			}
+			}
+			}
+			else	ClickFirstSiteFlow();
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
 	
 	public boolean ClickSecondSiteFlow(){
+		
 		try{
 			if(waitForElement(linkSiteFlow.get(1))){
 				linkSiteFlow.get(0).sendKeys(Keys.chord(Keys.CONTROL,Keys.END ));
@@ -407,4 +486,20 @@ public class WorkOrderTabPageCSO extends Page {
 		}
 		return mstatus;
 	}
+	
+	public boolean ClickBackButton(int waitForSecs){
+		mstatus=false;
+		try{
+			if(waitForElement(btnBack,waitForSecs)){
+				btnBack.click();
+				mstatus=true;
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
 }

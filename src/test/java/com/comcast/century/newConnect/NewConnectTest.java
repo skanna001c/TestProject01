@@ -92,7 +92,7 @@ public class NewConnectTest extends ComcastTest {
 	  else userName=getDataDump().getValue("userName");
 	  
 	   centuryApplication = new CenturyApplication(browser, report);
-		// CM nd CSO login -> added by rijin on 8/18/2016
+		// CM nd CSO login -> added by rijin on 8/18/2056
 		 if (getDataDump().getValue("CM_Status").equalsIgnoreCase("PASS")
 				 	&& !(getDataDump().getValue("CSOLoggedIN").equalsIgnoreCase("PASS")))
 		 {
@@ -197,26 +197,6 @@ public class NewConnectTest extends ComcastTest {
   }
   
   
-  @Test(priority=412)
-  @PerfTransaction(name="ProcessServiceEPLCoax")
-  public void processServiceEPLCoax() throws InterruptedException{
-	  	if(getDataDump().getValue("processService_status").equalsIgnoreCase("FAIL"))
-	  	{
-	  		selectService();
-	  	}
-		SRID = (new ProcessTabPageCM(browser, report)).ProcessConfiguration(processInfo);
-		getDataDump().setValue("SRID_RT", SRID);
-		if((new ProcessTabPageCM(browser, report)).UNIConfiguration(processInfo, Site1)){
-			if((new ProcessTabPageCM(browser, report)).UNI2Configuration(processInfo, Site2)){
-			if((new ProcessTabPageCM(browser, report)).EVCConfiguration_EPL(processInfo)){
-				if((new ProcessTabPageCM(browser, report)).EqFeeConfiguration(processInfo)){
-					if((new ProcessTabPageCM(browser, report)).ClickOnContinueButton()){
-					}else Assert.fail("Click on continue button failed");
-				}else Assert.fail("Equipment fee configuration failed");
-			}else Assert.fail("EVC configuration failed");
-			}else Assert.fail("UNI2 configuration failed");
-		}else Assert.fail("UNI configuration failed");
-  }	
   
   
   
@@ -246,7 +226,7 @@ public class NewConnectTest extends ComcastTest {
 	  
   }
   
-  @Test(priority=501)
+  @Test(priority=505)
   @PerfTransaction(name="SelectServiceEDIOnly")
   public void selectServiceEDIOnly() throws InterruptedException{
 		(new ServiceTabPageCM(browser, report)).ClickOnServiceTab();
@@ -258,7 +238,7 @@ public class NewConnectTest extends ComcastTest {
 			}else Assert.fail(" Select EDI plan failed");
 		}else Assert.fail(" Select service plan failed");
   }
-  
+//###########################################################  
   @Test(priority=600)
   @PerfTransaction(name="ProcessService")
   public void processService() throws InterruptedException{
@@ -278,7 +258,7 @@ public class NewConnectTest extends ComcastTest {
 		}else Assert.fail("UNI configuration failed");
   }	  
   
-  @Test(priority=601)
+  @Test(priority=605)
   @PerfTransaction(name="ProcessServiceEDIOnly")
   public void processServiceEDIOnly() throws InterruptedException{
 	  	if(getDataDump().getValue("ProcessServiceEDIOnly_status").equalsIgnoreCase("FAIL"))
@@ -295,15 +275,40 @@ public class NewConnectTest extends ComcastTest {
 		}else Assert.fail("UNI configuration failed");
   }
   
+  
+  @Test(priority=612)
+  @PerfTransaction(name="ProcessServiceEPLCoax")
+  public void processServiceEPLCoax() throws InterruptedException{
+	  	if(getDataDump().getValue("processService_status").equalsIgnoreCase("FAIL"))
+	  	{
+	  		selectService();
+	  	}
+		SRID = (new ProcessTabPageCM(browser, report)).ProcessConfiguration(processInfo);
+		getDataDump().setValue("SRID_RT", SRID);
+		if((new ProcessTabPageCM(browser, report)).UNIConfiguration(processInfo, Site1)){
+			getDataDump().setValue(processInfo.UNITransportType1+"Site1_RT", Site1); //"FiberSite1_RT"
+			if((new ProcessTabPageCM(browser, report)).UNI2Configuration(processInfo, Site2)){
+				getDataDump().setValue(processInfo.UNITransportType2+"Site1_RT", Site2);////"CoaxSite1_RT"
+			if((new ProcessTabPageCM(browser, report)).EVCConfiguration_EPL(processInfo)){
+				if((new ProcessTabPageCM(browser, report)).EqFeeConfiguration(processInfo)){
+					if((new ProcessTabPageCM(browser, report)).ClickOnContinueButton()){
+					}else Assert.fail("Click on continue button failed");
+				}else Assert.fail("Equipment fee configuration failed");
+			}else Assert.fail("EVC configuration failed");
+			}else Assert.fail("UNI2 configuration failed");
+		}else Assert.fail("UNI configuration failed");
+  }	
+  
+  
   @Test(priority=700)    
   public void submitOrder() throws InterruptedException, AWTException{
 	 if(getDataDump().getValue("submitOrder_status").equalsIgnoreCase("FAIL"))
 	  	{
-	  		selectService();
-	  		processService();
+		 selectService();
+		 processService();
 	  	}
 	   
-		if((new OrderSummaryTabCMPage(browser, report)).assignLabel(orderSummaryInfo)){
+		//if((new OrderSummaryTabCMPage(browser, report)).assignLabel(orderSummaryInfo)){
 			if((new OrderSummaryTabCMPage(browser, report)).enterOrderDetails(orderSummaryInfo)){
 				if((new OrderSummaryTabCMPage(browser, report)).mrcNrc_Value(orderSummaryInfo)){
 					if((new OrderSummaryTabCMPage(browser, report)).ClickSubmitOrderButton()){
@@ -313,11 +318,11 @@ public class NewConnectTest extends ComcastTest {
 				}else Assert.fail("Order submission failed");
 				}else Assert.fail("Entering NRC values failed");
 			}else Assert.fail("Entering order detrails failed");
-		}else Assert.fail("Assigning label failed");	
+		}//else Assert.fail("Assigning label failed");	
 	
-  }
   
-  @Test(priority=701)
+  
+  @Test(priority=705)
   @PerfTransaction(name="submitOrderErate")
   public void submitOrderErate() throws InterruptedException, AWTException{
 	 if(getDataDump().getValue("submitOrder_status").equalsIgnoreCase("FAIL"))
@@ -338,40 +343,105 @@ public class NewConnectTest extends ComcastTest {
 		}else Assert.fail("Assigning label failed");
   }
 
-  @Test(priority=800)
-  public void StartCSO() {
+  
+  /*@Test(priority=800)
+  public void SearchOrderndClickFirstFiberSiteFlow() {
 	//(new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);  
-	  
 	 (new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
-	 (new WorkOrderTabPageCSO(browser, report)).ClickFirstSiteFlow();
+	 (new WorkOrderTabPageCSO(browser, report)).ClickFirstFiberSiteFlow(getDataDump().getValue("FiberSite1_RT"));
+	 
+  }	
+  */
+
+  public void SearchOrderndLaunchFiberSiteFlow() {
+	//(new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);
+	  	//(new WorkOrderTabPageCSO(browser, report)).ClickBackButton(2);	
+		  for (int i = 1; i < Integer.parseInt(settings.getValue("MAXNOOFFIBERSITES")); i++) {
+			  if(!(getDataDump().getValue("FiberSiteFlow"+i).equalsIgnoreCase("pass")))
+				{
+				  (new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
+				  (new WorkOrderTabPageCSO(browser, report)).ClickFiberSiteFlow(getDataDump().getValue("FiberSite"+i+"_RT"));
+				  break;
+
+				}
+		  }
+			
+	}
+	 	 
+ 
+
+  public void SearchOrderndLaunchCoaxSiteFlow() {
+	//(new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);
+	 // (new WorkOrderTabPageCSO(browser, report)).ClickBackButton(2);	
+		  for (int i = 1; i < Integer.parseInt(settings.getValue("MAXNOOFFIBERSITES")); i++) {
+			  if(!(getDataDump().getValue("FiberSiteFlow"+i).equalsIgnoreCase("pass")))
+				{
+				  (new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
+				  (new WorkOrderTabPageCSO(browser, report)).ClickCoaxSiteFlow(getDataDump().getValue("CoaxSite"+i+"_RT"));
+				  break;
+				}
+		  }
+			
+	}
+	 
+  
+  public void SearchOrderndLaunchServiceRequest() {
+	//(new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);
+	  			  (new WorkOrderTabPageCSO(browser, report)).ClickBackButton(2);	  			  
+				  (new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
+				  (new WorkOrderTabPageCSO(browser, report)).ClickFirstSiteFlow();
+			
+	}
+	 	
+  
+ /* @Test(priority=810)
+  public void SearchOrderndClickFirstCoaxSiteFlow() {
+	//(new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);  
+	 (new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
+	 (new WorkOrderTabPageCSO(browser, report)).ClickFirstCoaxSiteFlow(getDataDump().getValue("CoaxSite1_RT"));
 	 
   }	 
   
+  @Test(priority=815)
+  public void SearchOrderndClickSecondCoaxSiteFlow() {
+	//(new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);  
+	 (new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
+	 (new WorkOrderTabPageCSO(browser, report)).ClickFirstCoaxSiteFlow(getDataDump().getValue("CoaxSite2_RT"));
+	 
+  }	 */
+  
   @Test(priority=900)
   public void Conduct_Site_Survey() throws InterruptedException {	
-	  if (getDataDump().getValue("Conduct_Site_Survey_status").equalsIgnoreCase("fail"))
-	  {
-		  StartCSO();
-	  }
+	   SearchOrderndLaunchFiberSiteFlow();	  
 	  (new SiteLevelTasks(browser, report)).ConductSiteSurvey();
 	  (new ConductSiteSurveyTaskPage(browser, report)).ConductSiteSurvey(siteLevelTaskInfo);
+	  
   }	
+  
+  
 
-  @Test(priority=901)
+  
+  
+  @Test(priority=910)
   @PerfTransaction(name="Conduct_Site_Survey_Coax")
   public void Conduct_Site_Survey_Coax() throws InterruptedException {
-	  if (getDataDump().getValue("Conduct_Site_Survey_Coax_status").equalsIgnoreCase("fail"))
-	  {
-		  StartCSO();
-	  }
+	   SearchOrderndLaunchCoaxSiteFlow();	  
 	  (new SiteLevelTasks(browser, report)).ConductSiteSurveyCoax();
 	  (new ConductSiteSurveyCoaxTaskPage(browser, report)).ConductSiteSurveyCoax(siteLevelTaskInfo);
   }
 
   @Test(priority=1000)
-  public void Obtain_Site_Agreement(Method method) throws InterruptedException {
+  public void Obtain_Site_Agreement() throws InterruptedException {
 	  //CSOSearchForOrderInSO();
-	  StartCSO();
+	  SearchOrderndLaunchFiberSiteFlow();
+	  (new SiteLevelTasks(browser, report)).ObtainSiteAgreement();
+	  (new ObtainSiteAgreementTaskPage(browser, report)).ObtainSiteAgreement(siteLevelTaskInfo);
+  }	
+  
+  @Test(priority=1050)
+  public void Obtain_Site_Agreement_Coax() throws InterruptedException {
+	  //CSOSearchForOrderInSO();
+	  SearchOrderndLaunchCoaxSiteFlow();
 	  (new SiteLevelTasks(browser, report)).ObtainSiteAgreement();
 	  (new ObtainSiteAgreementTaskPage(browser, report)).ObtainSiteAgreement(siteLevelTaskInfo);
   }	
@@ -379,38 +449,51 @@ public class NewConnectTest extends ComcastTest {
   @Test(priority=1100)
   public void Conduct_Fiber_Plant_Survey() throws InterruptedException, AWTException {
 	  
-	  StartCSO();
+	  SearchOrderndLaunchFiberSiteFlow();
 	  (new SiteLevelTasks(browser, report)).ConductFiberPlantSurvey();
 	 (new ConductFiberPlantSurveyTaskPage(browser, report)).ConductFiberPlantSurvey(siteLevelTaskInfo);
 		
   }	
   
-  @Test(priority=1101)
+  @Test(priority=1105)
   @PerfTransaction(name="Conduct_Coax_Survey")
   public void Conduct_Coax_Survey() throws InterruptedException, AWTException {
-	  if (getDataDump().getValue("Conduct_Coax_Survey_status").equalsIgnoreCase("fail"))
-	  {
-		  StartCSO();
-	  }
+	 /* if (getDataDump().getValue("Conduct_Coax_Survey_status").equalsIgnoreCase("fail"))
+	  {*/
+		  SearchOrderndLaunchCoaxSiteFlow();
+	  //}
 	 (new SiteLevelTasks(browser, report)).ConductCoaxSurvey();
 	 (new ConductCoaxSurveyTaskPage(browser, report)).ConductCoaxSurvey(siteLevelTaskInfo);
   }
  
   @Test(priority=1200)
   public void Build_House_Account() throws InterruptedException, AWTException {
-	  StartCSO();
-	  (new SiteLevelTasks(browser, report)).BuildHouseAccount();
-	  (new BuildHouseAccountTaskPage(browser, report)).BuildHouseAccount(siteLevelTaskInfo);
+	  SearchOrderndLaunchFiberSiteFlow();
+	 if( (new SiteLevelTasks(browser, report)).BuildHouseAccount()){
+		 (new BuildHouseAccountTaskPage(browser, report)).BuildHouseAccount(siteLevelTaskInfo);
+	  }
+	  
 		
   }	
 
-  @Test(priority=1201)
+  @Test(priority=1210)
+  public void Build_House_Account_Coax() throws InterruptedException, AWTException {
+	  SearchOrderndLaunchCoaxSiteFlow();
+	 if( (new SiteLevelTasks(browser, report)).BuildHouseAccount()){
+		 (new BuildHouseAccountTaskPage(browser, report)).BuildHouseAccount(siteLevelTaskInfo);
+	  }
+	  
+		
+  }	
+  
+  
+  @Test(priority=1220)
   @PerfTransaction(name="Obtain_Coax_Permit")
   public void Obtain_Coax_Permit() throws InterruptedException, AWTException {
-	  if (getDataDump().getValue("Obtain_Coax_Permit_status").equalsIgnoreCase("fail"))
-	  {
-		  StartCSO();
-	  }
+	 /* if (getDataDump().getValue("Obtain_Coax_Permit_status").equalsIgnoreCase("fail"))
+	  {*/
+		  SearchOrderndLaunchCoaxSiteFlow();
+	//  }
 	  (new SiteLevelTasks(browser, report)).ObtainCoaxPermits();
 	  (new ObtainCoaxPermitsTaskPage(browser, report)).ObtainCoaxPermits();
   }
@@ -418,7 +501,7 @@ public class NewConnectTest extends ComcastTest {
   
   @Test(priority=1300)
   public void Complete_Wavelength_Reservation() throws InterruptedException, AWTException {
-	  StartCSO();
+	  SearchOrderndLaunchFiberSiteFlow();
 	  (new SiteLevelTasks(browser, report)).CompleteWavelengthReservation();
 	  (new CompleteWavelengthReservationTaskPage(browser, report)).CompleteWavelengthReservation(siteLevelTaskInfo);
 		
@@ -427,22 +510,22 @@ public class NewConnectTest extends ComcastTest {
   @Test(priority=1400)
   public void Complete_Site_Build() throws InterruptedException, AWTException {
 	 
-	  if (getDataDump().getValue("Complete_Site_Build_status").equalsIgnoreCase("fail"))
-	  {
-		  StartCSO();
-	  }
+	//  if (getDataDump().getValue("Complete_Site_Build_status").equalsIgnoreCase("fail"))
+	//  {
+		  SearchOrderndLaunchFiberSiteFlow();
+	//  }
 	   (new SiteLevelTasks(browser, report)).CompleteSiteBuild();
 		(new CompleteSiteBuildTaskPage(browser, report)).ClickCompleteButton();
 		(new CompleteSiteBuildTaskPage(browser, report)).closePopup();
 		
   }	
-  @Test(priority=1401)
+  @Test(priority=1405)
   @PerfTransaction(name="Complete_Site_Build_Coax")
   public void Complete_Site_Build_Coax() throws InterruptedException, AWTException {
-	  if (getDataDump().getValue("Complete_Site_Build_Coax_status").equalsIgnoreCase("fail"))
-	  {
-		  StartCSO();
-	  }
+	 // if (getDataDump().getValue("Complete_Site_Build_Coax_status").equalsIgnoreCase("fail"))
+	 // {
+		  SearchOrderndLaunchCoaxSiteFlow();
+	 // }
 	  (new SiteLevelTasks(browser, report)).CompleteSiteBuildCoax();
 	  (new CompleteSiteBuildCoaxTaskPage(browser, report)).ClickCompleteButton();
 	  (new CompleteSiteBuildCoaxTaskPage(browser, report)).closePopup();
@@ -450,10 +533,10 @@ public class NewConnectTest extends ComcastTest {
   
   @Test(priority=1500)
   public void Obtain_Fiber_Plant_Permit() throws InterruptedException, AWTException {
-	  if (getDataDump().getValue("Obtain_Fiber_Plant_Permit_status").equalsIgnoreCase("fail"))
-	  {
-		  StartCSO();
-	  }
+	//  if (getDataDump().getValue("Obtain_Fiber_Plant_Permit_status").equalsIgnoreCase("fail"))
+	//  {
+		  SearchOrderndLaunchFiberSiteFlow();
+	 // }
 	  (new SiteLevelTasks(browser, report)).ObtainFiberPlantPermits();
 	  (new ObtainFiberPlantPermitsTaskPage(browser, report)).ObtainFiberPlantPermits();
 		
@@ -461,31 +544,58 @@ public class NewConnectTest extends ComcastTest {
     
   @Test(priority=1600)
   public void Complete_Fiber_Plant_Build() throws InterruptedException, AWTException {
-	  if (getDataDump().getValue("Complete_Fiber_Plant_Build_status").equalsIgnoreCase("fail"))
-	  {
-		  StartCSO();
-	  }
+	 // if (getDataDump().getValue("Complete_Fiber_Plant_Build_status").equalsIgnoreCase("fail"))
+	 // {
+		  SearchOrderndLaunchFiberSiteFlow();
+	 // }
 	    (new SiteLevelTasks(browser, report)).CompleteFiberPlantBuild();
 		(new CompleteFiberPlantBuildTaskPage(browser, report)).ClickCompleteButton();
-		(new CompleteFiberPlantBuildTaskPage(browser, report)).closePopup();
+	if(new CompleteFiberPlantBuildTaskPage(browser, report).closePopup()){
+		UpdateRespectiveFiberSiteFlows();
+	}
 		
   }
   
-  @Test(priority=1601)
+  private void UpdateRespectiveFiberSiteFlows() {
+	  
+	  for (int i = 1; i < Integer.parseInt(settings.getValue("MAXNOOFFIBERSITES")); i++) {
+		  if(!(getDataDump().getValue("FiberSiteFlow"+i).equalsIgnoreCase("pass")))
+			{
+				getDataDump().setValue("FiberSiteFlow"+i, "PASS");
+			}
+	  }
+		
+}
+
+  
+ private void UpdateRespectiveCoaxSiteFlows() {
+	  
+	  for (int i = 1; i < Integer.parseInt(settings.getValue("MAXNOOFCOAXSITES")); i++) {
+		  if(!(getDataDump().getValue("CoaxSiteFlow"+i).equalsIgnoreCase("pass")))
+			{
+				getDataDump().setValue("CoaxSiteFlow"+i, "PASS");
+			}
+	  }
+		
+}
+@Test(priority=1605)
   @PerfTransaction(name="Complete_Coax_Build")
   public void Complete_Coax_Build() throws InterruptedException, AWTException {
-	  if (getDataDump().getValue("Complete_Coax_Build_status").equalsIgnoreCase("fail"))
-	  {
-		  StartCSO();
-	  }
+	//  if (getDataDump().getValue("Complete_Coax_Build_status").equalsIgnoreCase("fail"))
+	//  {
+		  SearchOrderndLaunchCoaxSiteFlow();
+	//  }
 	  (new SiteLevelTasks(browser, report)).CompleteCoaxBuild();
 	  (new CompleteCoaxBuildTaskPage(browser, report)).ClickCompleteButton();
-	  (new CompleteCoaxBuildTaskPage(browser, report)).closePopup();
+	  if(new CompleteCoaxBuildTaskPage(browser, report).closePopup())
+		{ UpdateRespectiveCoaxSiteFlows();
+		}
+  
   }
   
   @Test(priority=1700)
   public void Contact_Customer() throws InterruptedException, AWTException {
-	    StartCSO();	  
+	  	SearchOrderndLaunchServiceRequest();	  
 	    (new ServiceLevelTasks(browser, report)).ContactCustomer();
 		(new ContactCustomerTaskPage(browser, report)).ContactCustomer();
 		
@@ -493,7 +603,7 @@ public class NewConnectTest extends ComcastTest {
     	
   @Test(priority=1800)
   public void Update_Design() throws InterruptedException, AWTException {
-	  	StartCSO();
+	  	SearchOrderndLaunchServiceRequest();
 	    (new ServiceLevelTasks(browser, report)).UpdateDesign();
 		(new UpdateDesignTaskPage(browser, report)).UpdateDesign();
 		(new SiteLevelTasks(browser, report)).ClickBackButton();
@@ -538,10 +648,10 @@ public class NewConnectTest extends ComcastTest {
   @Test(priority=2200)
   public void Assign_Design_Info() throws InterruptedException {
 		//(new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);  
-	  if (getDataDump().getValue("Assign_Design_Info_status").equalsIgnoreCase("fail"))
-	  {
+	 // if (getDataDump().getValue("Assign_Design_Info_status").equalsIgnoreCase("fail"))
+	//  {
 		  EDIFlow();
-	  }
+	//  }
 	  	(new ServiceLevelTasks(browser, report)).ADI();
 		(new ADITaskPage(browser, report)).ADI(serviceLevelTaskInfo);
 		 
@@ -549,10 +659,10 @@ public class NewConnectTest extends ComcastTest {
   
   @Test(priority=2300)
   public void Generate_Core_Config() throws InterruptedException {
-	  if (getDataDump().getValue("Generate_Core_Config_status").equalsIgnoreCase("fail"))
-	  {
+	//  if (getDataDump().getValue("Generate_Core_Config_status").equalsIgnoreCase("fail"))
+	//  {
 		  EDIFlow();
-	  }
+	//  }
 		//(new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);  
 	  (new ServiceLevelTasks(browser, report)).GenerateCoreConfigs();
 	  (new GenerateCoreConfigsTaskPage(browser, report)).ClickCompleteButton();
@@ -561,10 +671,10 @@ public class NewConnectTest extends ComcastTest {
   
   @Test(priority=2400)
   public void Generate_CPE_Config() throws InterruptedException {
-	  if (getDataDump().getValue("Generate_CPE_Config_status").equalsIgnoreCase("fail"))
-	  {
+	//  if (getDataDump().getValue("Generate_CPE_Config_status").equalsIgnoreCase("fail"))
+	//  {
 		  EDIFlow();
-	  }
+	//  }
 		//(new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);  
 	  (new ServiceLevelTasks(browser, report)).GenerateCPEConfigs();
 	  (new GenerateCPEConfigsTaskPage(browser, report)).ClickCompleteButton();
@@ -586,13 +696,13 @@ public class NewConnectTest extends ComcastTest {
 		(new InstallCPETaskPage(browser, report)).InstallCPE();
 	  }	
 
-  @Test(priority=2601)
+  @Test(priority=2605)
   @PerfTransaction(name="Install_CPE_Coax")
   public void Install_CPE_Coax() throws InterruptedException, AWTException {
-	  if (getDataDump().getValue("Install_CPE_Coax_status").equalsIgnoreCase("fail"))
-	  {
+	//  if (getDataDump().getValue("Install_CPE_Coax_status").equalsIgnoreCase("fail"))
+	//  {
 		  EDIFlow();
-	  }
+	//  }
 	  (new ServiceLevelTasks(browser, report)).InstallCPE();
 	  (new InstallCPE_CoaxTaskPage(browser, report)).InstallCPE();
   }
@@ -613,20 +723,20 @@ public class NewConnectTest extends ComcastTest {
   
  @Test(priority=2900)
   public void Activate_Service() throws InterruptedException {
-	 if (getDataDump().getValue("Activate_Service_status").equalsIgnoreCase("fail"))
-	  {
+	// if (getDataDump().getValue("Activate_Service_status").equalsIgnoreCase("fail"))
+	//  {
 		  EDIFlow();
-	  }  
+	//  }  
 	  (new ServiceLevelTasks(browser, report)).ActivateService();
 	  (new ActivateServiceTaskPage(browser, report)).ActivateService(serviceLevelTaskInfo);
  }
   
  @Test(priority=3000)
  public void Notify_Customer_of_Service_Installation() throws InterruptedException {
-	 if (getDataDump().getValue("Notify_Customer_of_Service_Installation_status").equalsIgnoreCase("fail"))
-	  {
+	// if (getDataDump().getValue("Notify_Customer_of_Service_Installation_status").equalsIgnoreCase("fail"))
+	//  {
 		  EDIFlow();
-	  }  	  
+	//  }  	  
 	 (new ServiceLevelTasks(browser, report)).NotifyCustomerofServiceInstallation();
 	 (new NotifyCustomerofServiceInstallationTaskPage(browser, report)).NotifyCustomerofServiceInstallation();
 }
@@ -634,11 +744,11 @@ public class NewConnectTest extends ComcastTest {
 @Test(priority=3100)
  public void Complete_Customer_Acceptance_Testing(Method method) throws InterruptedException {
 	System.out.println("method: " + method);
-	if (getDataDump().getValue("Complete_Customer_Acceptance_Testing_status").equalsIgnoreCase("fail")
-			||getDataDump().getValue("Complete_Customer_Acceptance_Testing_status").equalsIgnoreCase(""))
-	  {
+	//if (getDataDump().getValue("Complete_Customer_Acceptance_Testing_status").equalsIgnoreCase("fail")
+	//		||getDataDump().getValue("Complete_Customer_Acceptance_Testing_status").equalsIgnoreCase(""))
+	//  {
 		  EDIFlow();
-	  } 	  
+	 // } 	  
 	(new ServiceLevelTasks(browser, report)).CCAT();
 	(new CCATTaskPage(browser, report)).ClickCompleteButton();
 }
@@ -646,10 +756,10 @@ public class NewConnectTest extends ComcastTest {
 @Test(priority=3200)
 @PerfTransaction(name="Create_Order_Billing_Package")
 public void Create_Order_Billing_Package() throws AWTException, InterruptedException {
-	  if (getDataDump().getValue("Create_Order_Billing_Package_status").equalsIgnoreCase("fail"))
-	  {
+	//  if (getDataDump().getValue("Create_Order_Billing_Package_status").equalsIgnoreCase("fail"))
+	//  {
 		  EDIFlow();
-	  }
+	//  }
 		(new ServiceLevelTasks(browser, report)).CreateOrderBillingPackage();
 		(new CreateOrderBillingPackageTaskPage(browser, report)).CreateOrderBillingPackage();
   }
@@ -659,11 +769,15 @@ public void Start_Billing() throws InterruptedException {
 	EDIFlow();	  
 	(new ServiceLevelTasks(browser, report)).StartBilling();
 	(new ServiceLevelTasks(browser, report)).ClickBackButton();
+	(new ServiceLevelTasks(browser, report)).ClickBackButton();
 }
 
 @Test(priority=3400)
 public void EquipmentFeeFlow() throws InterruptedException {
-	
+	//if (getDataDump().getValue("EquipmentFeeFlow_status").equalsIgnoreCase("fail"))
+	//  {
+		  EDIFlow();
+	//  }
 		//(new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);  
 	(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
 	(new WorkOrderTabPageCSO(browser, report)).ClickEquipmentFeeFlow();
@@ -671,12 +785,14 @@ public void EquipmentFeeFlow() throws InterruptedException {
 
 @Test(priority=3500)
 public void EqFeeStartBilling() throws InterruptedException {
-	EquipmentFeeFlow();	 	  
+	//if (getDataDump().getValue("EqFeeStartBilling_status").equalsIgnoreCase("fail"))
+//	  {
+		  EDIFlow();
+	//  }	  
 	(new EqFeeFlowTasks(browser, report)).EqFeeStartBilling();
 	(new EqFeeStartBillingTaskPage(browser, report)).EqFeeStartBilling();
 	(new EqFeeFlowTasks(browser, report)).ClickBackButton();
 }
-
 /*
 	(new WorkOrderTabPageCSO(browser, report)).ClickEDIFlow();
 	

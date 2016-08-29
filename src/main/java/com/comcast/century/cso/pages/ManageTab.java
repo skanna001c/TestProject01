@@ -10,9 +10,9 @@ import com.comcast.century.cm.pages.Page;
 import com.comcast.reporting.Status;
 import com.comcast.utils.SeleniumReport;
 
-public class ManageTabCSO extends Page {
+public class ManageTab extends Page {
 
-	protected ManageTabCSO(WebDriver browser, SeleniumReport report) {
+	public ManageTab(WebDriver browser, SeleniumReport report) {
 		super(browser, report);
 		// TODO Auto-generated constructor stub
 	}
@@ -81,7 +81,7 @@ public class ManageTabCSO extends Page {
 	@FindBy(xpath = "//span[.='OK']/following-sibling::*")
 	private WebElement btnOK;
 	
-	public boolean clickOnManageTabCSO(){
+	public boolean clickOnManageTab(){
 		
 		try{
 			waitforPageLoadComplete();
@@ -95,8 +95,9 @@ public class ManageTabCSO extends Page {
 		return mstatus;
 	}
 	
-	public String createLabelCSO(){
+	public boolean goToLabelPageCSO(){
 		try{
+			
 			waitForElement(btnExpand);
 			iClick(btnExpand);
 			waitForElement(btnExpandLabels);
@@ -105,6 +106,17 @@ public class ManageTabCSO extends Page {
 			iClick(LinkLabels);
 			waitforPageLoadComplete();
 			WaitandSwitchToFrame(frameRight);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			mstatus=false;
+		}
+		return mstatus;
+	}
+	
+	public String createLabel(){
+		try{
+			
 			waitForElement(ddTextMoreActions);
 			ddValueSelect(ddTextMoreActions,ddValueCreateLabel,"Create Label");
 			iClick(btnGO);

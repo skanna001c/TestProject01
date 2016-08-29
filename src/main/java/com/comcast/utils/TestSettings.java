@@ -53,6 +53,13 @@ public class TestSettings {
 		return browser;
 	}
 	
+	public String getValue(String key){
+		String value= System.getenv(key);
+		if(value==null || value == ""){
+			value=properties.getProperty(key, "3");
+		}
+		return value;
+	}
 	
 	/**
 	 * Get the TestSetID in which will have tests to be run

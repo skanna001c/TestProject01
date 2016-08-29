@@ -144,6 +144,19 @@ public class ConductSiteSurveyTaskPage extends Page {
 		return mstatus;
 	}
 	
+	public boolean ClickBackButton(int sec){
+		try{
+			if(waitForElement(btnBack,2)){
+				btnBack.click();
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
 	public boolean ClickSaveButton(){
 		try{
 			if(waitForElement(btnSave)){

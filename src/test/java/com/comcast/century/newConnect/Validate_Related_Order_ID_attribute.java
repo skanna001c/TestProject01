@@ -27,7 +27,7 @@ public class Validate_Related_Order_ID_attribute extends NewConnectTest {
 	  public void validateRelatedOrderID() throws InterruptedException {	
 		  if (getDataDump().getValue("Conduct_Site_Survey_status").equalsIgnoreCase("fail"))
 		  {
-			  StartCSO();
+			  SearchOrderndLaunchFiberSiteFlow();
 		  }
 		  (new SiteLevelTasks(browser, report)).ConductSiteSurvey();
 		  (new ConductSiteSurveyTaskPage(browser, report)).validateRelatedOrderIDAttribute(getDataDump().getValue("relatedOrderIDValue_RT"));
