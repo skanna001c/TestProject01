@@ -324,11 +324,11 @@ public class CustomerTabPageCM extends Page {
 		  		+ "img[contains(@src,'images/csh_bluebooks/plus')";
 		  try{
 			  waitForElement(btnExpand);
-			  iClick(btnExpand);
+			  iClick(btnExpand,null,"ExpandSOHierarchyButton: CSO Page: ExpandButton");
 			  waitforPageLoadComplete();
 			  WaitandSwitchToFrame(frameLeft);
 			  waitForElement(tabOrder);
-			  iClick(tabOrder);
+			  iClick(tabOrder,null,"OrderButton: CSO Page: ExpandButton");
 			  waitforPageLoadComplete();
 			  if(waitUntilElementPresent(By.xpath(xpath),60)){
 				  iClick(browser.findElement(By.xpath(xpath)));

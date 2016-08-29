@@ -68,6 +68,8 @@ public class SetCriticalDatesTaskPage extends Page {
 				new Select(ddHotCut).selectByValue("Yes");;
 				focDate.click();
 				btnToday.get(1).click();
+				ScheduleCPEInstallDate.click();
+				btnToday.get(2).click();
 				this.ClickCompleteButton();
 			}
 		}

@@ -27,143 +27,143 @@ public class WorkOrderTabPageCSO extends Page {
 	@Override
 	protected void waitForPageLoad() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	@FindBy(css = "span#workorder")
 	private WebElement tabWorkorder;
-	
+
 	@FindBy(xpath = "//*[@id='RightFrame']")
 	private WebElement frameRight;
-	
+
 	@FindBy(xpath = "//*[@id='codition' and contains(@src,'getWorklists.exc')]")
 	private WebElement frameCodition;
-	
+
 	@FindBy(xpath = "//img[@class[contains(.,'expand-right')]]")
-	private WebElement btnExpand ;
+	private WebElement btnExpand;
 
 	@FindBy(xpath = "//div[text()='Order Search']/../../following-sibling::*/child::*")
-	private WebElement btnExpandOrderSearch ;
-	
+	private WebElement btnExpandOrderSearch;
+
 	@FindBy(xpath = "//div[text()='Worklist']/../../following-sibling::*/child::*")
-	private WebElement btnExpandWorklist ;
-	
+	private WebElement btnExpandWorklist;
+
 	@FindBy(xpath = "//span[@id='serviceorder']/a")
-	private WebElement LinkServiceOrder ;
-	
+	private WebElement LinkServiceOrder;
+
 	@FindBy(xpath = "//*[@id='servicerequest']/a")
-	private WebElement LinkServiceRequest ;
-	
+	private WebElement LinkServiceRequest;
+
 	@FindBy(xpath = "//*[@id='Presalesworklist']/a")
-	private WebElement LinkPreSalesWorklist ;
-	
+	private WebElement LinkPreSalesWorklist;
+
 	@FindBy(xpath = "//*[@id='Postsalesworklist']/a")
-	private WebElement LinkPostSalesWorklist ;
-	
-	//*[@id='serviceRequestID']
-	
+	private WebElement LinkPostSalesWorklist;
+
+	// *[@id='serviceRequestID']
+
 	@FindBy(xpath = "//input[@id='serviceRequestID']")
-	private WebElement txtSrId ;
-	
+	private WebElement txtSrId;
+
 	@FindBy(xpath = "//*[@id='servicereqId']")
-	private WebElement txtServiceReqId ;
-	
+	private WebElement txtServiceReqId;
+
 	@FindBy(xpath = "//input[@id='serv_req_id']")
-	private WebElement txtPostSalesSrId ;
-	
+	private WebElement txtPostSalesSrId;
+
 	@FindBy(xpath = "//img[@title='Back']")
 	private WebElement btnBack;
-	
+
 	@FindBy(xpath = "//*[@id='surveyId']")
-	private WebElement txtSurveyId ;
-	
-	//span[text()='Search']
-	
+	private WebElement txtSurveyId;
+
+	// span[text()='Search']
+
 	@FindBy(xpath = "//span[text()='Search']/following-sibling::*")
-	private WebElement btnSearch ;
-	
+	private WebElement btnSearch;
+
 	@FindBy(xpath = "//a[text()='Advanced Search']")
-	private WebElement linkAdvancedSearch ;
-	
+	private WebElement linkAdvancedSearch;
+
 	@FindBy(xpath = "//*[@id='advance_search_WL']")
-	private WebElement linkAdvancedSearchWL ;
-	
+	private WebElement linkAdvancedSearchWL;
+
 	@FindBy(xpath = "//iframe[@id='soadvcodition']")
 	private WebElement frameSOAdvancedSearch;
-	
+
 	@FindBy(xpath = "//iframe[@id='wlAdvSearch']")
 	private WebElement frameWLAdvancedSearch;
-	
+
 	@FindBy(xpath = "//input[@value='Search']")
 	private WebElement btnSearchAdvancedSearch;
-	
+
 	// //div[.='EVPL']/../../descendant::a[contains(@onclick,'SOTaskView')][contains(@onclick,'SOTaskview')]
 	@FindBy(xpath = "//div[.='EDI']/../../descendant::a[contains(@onclick,'SOTaskView')]")
-	private WebElement linkEDIFlow ;
-	
+	private WebElement linkEDIFlow;
+
 	@FindBy(xpath = "//div[.='EPL']/../../descendant::a[contains(@onclick,'SOTaskView')]")
-	private WebElement linkEPLFlow ;
-	
-	//@FindBy(xpath = "//*[.='Site']/../preceding-sibling::td[1]/child::*/child::*")
-	//div[.='Site']/../../descendant::a[contains(@onclick,'SOTaskView')]
+	private WebElement linkEPLFlow;
+
+	// @FindBy(xpath =
+	// "//*[.='Site']/../preceding-sibling::td[1]/child::*/child::*")
+	// div[.='Site']/../../descendant::a[contains(@onclick,'SOTaskView')]
 	@FindBy(xpath = "//div[.='Site']/../../descendant::a[contains(@onclick,'SOTaskView')]")
-	private List<WebElement> linkSiteFlow ;
-	
+	private List<WebElement> linkSiteFlow;
+
 	@FindBy(xpath = "//div[.='Equipment Fee']/../../descendant::a[contains(@onclick,'SOTaskView')]")
-	private WebElement linkEquipmentFeeFlow ;
-	
+	private WebElement linkEquipmentFeeFlow;
+
 	@FindBy(xpath = "//div[.='BGP']/../../descendant::a[contains(@onclick,'SOTaskView')]")
-	private WebElement linkBGPFlow ;
-	
+	private WebElement linkBGPFlow;
+
 	@FindBy(xpath = "//div[.='Trunk PRI']/../../descendant::a[contains(@onclick,'SOTaskView')]")
-	private WebElement linkTrunkPRIFlow ;
-	
+	private WebElement linkTrunkPRIFlow;
+
 	@FindBy(xpath = "//div[text()='loading...']")
-	private WebElement elementLoading ;
-	
+	private WebElement elementLoading;
+
 	@FindBy(xpath = "//*[@value='othersTask']")
-	private WebElement radioButtonAllTask ;
-	
+	private WebElement radioButtonAllTask;
+
 	@FindBy(xpath = "//*[@value='userGroupTasks']")
-	private WebElement radioButtonUserGroupTask ;
-	
+	private WebElement radioButtonUserGroupTask;
+
 	@FindBy(xpath = "//*[@value='myTasks']")
-	private WebElement radioButtonMyTask ;
+	private WebElement radioButtonMyTask;
 
 	@FindBy(xpath = "//*[@value='---More Actions---']")
-	private WebElement ddtxtMoreActions ;
-	
+	private WebElement ddtxtMoreActions;
+
 	@FindBy(xpath = "//*[@value='---More Actions---']/../following-sibling::td/child::div")
-	private WebElement ddArrwMoreActions ;
-	
+	private WebElement ddArrwMoreActions;
+
 	@FindBy(xpath = "//li[text()='Complete']")
-	private WebElement ddValueComplete ;
-	
+	private WebElement ddValueComplete;
+
 	@FindBy(xpath = "//li[text()='Transfer']")
-	private WebElement ddValueTransfer ;
-	
+	private WebElement ddValueTransfer;
+
 	@FindBy(xpath = "//*[@value='Go']")
-	private WebElement btnGo ;
-	
+	private WebElement btnGo;
+
 	@FindBy(xpath = "//*[@id='self']")
-	private WebElement radioButtonSelfTransfer ;
-	
+	private WebElement radioButtonSelfTransfer;
+
 	@FindBy(xpath = "//*[@id='transferTask']")
-	private WebElement ButtonTransfer ;
-	
+	private WebElement ButtonTransfer;
+
 	@FindBy(xpath = "//*[@value='Ok']")
-	private WebElement ButtonOk ;
-	
+	private WebElement ButtonOk;
+
 	@FindBy(xpath = "a[onclick*='callServOrder']")
-	private WebElement linkSOCount ;
-	
-	private boolean mstatus=true;
-	
-	
-	public boolean verifySOCount(String SRID){
-		try{
+	private WebElement linkSOCount;
+
+	private boolean mstatus = true;
+
+	public boolean verifySOCount(String SRID) {
+		try {
 			waitforPageLoadComplete();
-		    waitForElement(btnExpand);
+			waitForElement(btnExpand);
 			btnExpand.click();
 			btnExpandOrderSearch.click();
 			LinkServiceRequest.click();
@@ -179,61 +179,55 @@ public class WorkOrderTabPageCSO extends Page {
 			iClick(linkSOCount);
 			waitforPageLoadComplete();
 			browser.switchTo().defaultContent();
-		}catch(Exception ex)
-		{
+		} catch (Exception ex) {
 			mstatus = false;
 		}
 		return mstatus;
 	}
 
-	public boolean SearchForOrderInSO(String SRID){
-		try{
-			//WaitandSwitchToFrame(fra)
-			/*if(!(ClickBackButton(3)))
-			{
-				WaitandSwitchToFrame(frameRight,5);
-				System.out.println("switched to RightFrame");
-			}*/
-			if(!ClickBackButton(3))
-			{
+	public boolean SearchForOrderInSO(String SRID) {
+		try {
+			// WaitandSwitchToFrame(fra)
+			/*
+			 * if(!(ClickBackButton(3))) { WaitandSwitchToFrame(frameRight,5);
+			 * System.out.println("switched to RightFrame"); }
+			 */
+			if (!ClickBackButton(3)) {
 				waitforPageLoadComplete();
-			    if (waitForElement(btnExpand,5))
-			    {
-			     btnExpand.click();
-			     btnExpandOrderSearch.click();
-			     LinkServiceOrder.click();
-			     WaitandSwitchToFrame(frameRight,5);			     
-			    }
-			}  
+				if (waitForElement(btnExpand, 5)) {
+					btnExpand.click();
+					btnExpandOrderSearch.click();
+					LinkServiceOrder.click();
+					WaitandSwitchToFrame(frameRight, 5);
+				}
+			}
+			waitforPageLoadComplete();
+			// WaitandSwitchToFrame(frameRight);
+			waitForElementDisappear(elementLoading);
+			if (waitForElement(txtSrId)) {
+				System.out.println("Search box present");
+				txtSrId.clear();
+				txtSrId.sendKeys(SRID);
+			}
+			if (waitForElement(linkAdvancedSearch)) {
+				linkAdvancedSearch.click();
 				waitforPageLoadComplete();
-				//WaitandSwitchToFrame(frameRight);
+				WaitandSwitchToFrame(frameSOAdvancedSearch);
+				waitForElement(btnSearchAdvancedSearch);
+				btnSearchAdvancedSearch.click();
+				browser.switchTo().defaultContent();
 				waitForElementDisappear(elementLoading);
-				if(waitForElement(txtSrId)){
-					System.out.println("Search box present");
-					txtSrId.clear();
-					txtSrId.sendKeys(SRID);		
-				}
-				if(waitForElement(linkAdvancedSearch)){
-					linkAdvancedSearch.click();
-					waitforPageLoadComplete();
-					WaitandSwitchToFrame(frameSOAdvancedSearch);
-					waitForElement(btnSearchAdvancedSearch);
-					btnSearchAdvancedSearch.click();
-					browser.switchTo().defaultContent();
-					waitForElementDisappear(elementLoading);
-					report.updateTestLog("Search for Order", "Order Searched Successfully", Status.SCREENSHOT);
-				}
-			
-		}
-		catch(Exception ex)
-		{
+				report.updateTestLog("Search for Order", "Order Searched Successfully", Status.SCREENSHOT);
+			}
+
+		} catch (Exception ex) {
 			mstatus = false;
 		}
 		return mstatus;
- }
-	
-	public boolean SearchForOrderInPostSales(String SRID){
-		try{
+	}
+
+	public boolean SearchForOrderInPostSales(String SRID) {
+		try {
 			waitforPageLoadComplete();
 			waitForElement(btnExpandWorklist);
 			btnExpandWorklist.click();
@@ -241,10 +235,10 @@ public class WorkOrderTabPageCSO extends Page {
 			waitforPageLoadComplete();
 			WaitandSwitchToFrame(frameRight);
 			waitForElementDisappear(elementLoading);
-			if(waitForElement(txtPostSalesSrId)){
+			if (waitForElement(txtPostSalesSrId)) {
 				txtPostSalesSrId.sendKeys(SRID);
 			}
-			if(waitForElement(linkAdvancedSearchWL)){
+			if (waitForElement(linkAdvancedSearchWL)) {
 				linkAdvancedSearchWL.click();
 				waitforPageLoadComplete();
 				WaitandSwitchToFrame(frameWLAdvancedSearch);
@@ -254,208 +248,186 @@ public class WorkOrderTabPageCSO extends Page {
 				waitForElementDisappear(elementLoading);
 				report.updateTestLog("Search for Order", "Order Searched Successfully", Status.SCREENSHOT);
 			}
-		}
-		catch(Exception ex)
-		{
+		} catch (Exception ex) {
 			mstatus = false;
 		}
 		return mstatus;
 	}
-			
-	public boolean ClickFirstSiteFlow(){
-		try{
+
+	public boolean ClickFirstSiteFlow() {
+		try {
 			WaitandSwitchToFrame(frameRight);
-			if(waitForElement(linkSiteFlow.get(0))){
+			if (waitForElement(linkSiteFlow.get(0))) {
 				linkSiteFlow.get(0).click();
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Click on Site level flow", "Site level flow Clicked");
 			}
-		}
-		catch(Exception ex)
-		{
+		} catch (Exception ex) {
 			mstatus = false;
 		}
 		return mstatus;
 	}
-	
-	public boolean ClickCoaxSiteFlow(String coaxSite1){
-		/*if(!(ClickBackButton(3)))
-			{
-				
-			}*/
+
+	public boolean ClickCoaxSiteFlow(String coaxSite1) {
+		/*
+		 * if(!(ClickBackButton(3))) {
+		 * 
+		 * }
+		 */
 		WaitandSwitchToFrame(frameRight);
-		try{
-			if(!(coaxSite1.equalsIgnoreCase(""))){
-				String xpath="//div[.='Site']/../../descendant::"
-						+ "div[.='"+coaxSite1+"']/../../"
-								+ "descendant::a[contains(@onclick,'SOTaskView')]"; //"FiberSite1_RT" //"CoaxSite1_RT"
-				//WaitandSwitchToFrame(frameRight);
-				
-				if (waitUntilElementPresent(By.xpath(xpath),60)){
-				
-				if(waitForElement(browser.findElement(By.xpath(xpath)),1)){
-					browser.findElement(By.xpath(xpath)).click();
-					waitforPageLoadComplete();
-				report.reportDoneEvent("Clicked on Coax Site level flow", "Site level flow Clicked");
-			}
-			}
-			}
-			else ClickFirstSiteFlow();
-				
-		}
-		catch(Exception ex)
-		{
+		try {
+			if (!(coaxSite1.equalsIgnoreCase(""))) {
+				String xpath = "//div[.='Site']/../../descendant::" + "div[.='" + coaxSite1 + "']/../../"
+						+ "descendant::a[contains(@onclick,'SOTaskView')]"; // "FiberSite1_RT"
+																			// //"CoaxSite1_RT"
+				// WaitandSwitchToFrame(frameRight);
+
+				if (waitUntilElementPresent(By.xpath(xpath), 60)) {
+
+					if (waitForElement(browser.findElement(By.xpath(xpath)), 1)) {
+						browser.findElement(By.xpath(xpath)).click();
+						waitforPageLoadComplete();
+						report.reportDoneEvent("Clicked on Coax Site level flow", "Site level flow Clicked");
+					}
+				}
+			} else
+				ClickFirstSiteFlow();
+
+		} catch (Exception ex) {
 			mstatus = false;
 		}
 		return mstatus;
 	}
-	
-	public boolean ClickFiberSiteFlow(String fiberSite1){
-		/*if(!(ClickBackButton(3)))
-		{
-			WaitandSwitchToFrame(frameRight);
-		}*/
-		try{
-			if(!(fiberSite1.equalsIgnoreCase(""))){
-				String xpath="//div[.='Site']/../../descendant::"
-					+ "div[.='"+fiberSite1+"']/../../"
-							+ "descendant::a[contains(@onclick,'SOTaskView')]"; //"FiberSite1_RT" //"CoaxSite1_RT"
-			 WaitandSwitchToFrame(frameRight,5);
-			
-			if (waitUntilElementPresent(By.xpath(xpath),30)){
-			
-			if(waitForElement(browser.findElement(By.xpath(xpath)),1)){
-				browser.findElement(By.xpath(xpath)).click();
-				waitforPageLoadComplete();
-				report.reportDoneEvent("Click on Fiber Site level flow", "Site level flow Clicked");
-			}
-			}
-			}
-			else	ClickFirstSiteFlow();
-		}
-		catch(Exception ex)
-		{
+
+	public boolean ClickFiberSiteFlow(String fiberSite1) {
+		/*
+		 * if(!(ClickBackButton(3))) { WaitandSwitchToFrame(frameRight); }
+		 */
+		try {
+			if (!(fiberSite1.equalsIgnoreCase(""))) {
+				String xpath = "//div[.='Site']/../../descendant::" + "div[.='" + fiberSite1 + "']/../../"
+						+ "descendant::a[contains(@onclick,'SOTaskView')]"; // "FiberSite1_RT"
+																			// //"CoaxSite1_RT"
+				WaitandSwitchToFrame(frameRight, 5);
+
+				if (waitUntilElementPresent(By.xpath(xpath), 30)) {
+
+					if (waitForElement(browser.findElement(By.xpath(xpath)), 1)) {
+						browser.findElement(By.xpath(xpath)).click();
+						waitforPageLoadComplete();
+						report.reportDoneEvent("Click on Fiber Site level flow", "Site level flow Clicked");
+					}
+				}
+			} else
+				ClickFirstSiteFlow();
+		} catch (Exception ex) {
 			mstatus = false;
 		}
 		return mstatus;
 	}
-	
-	public boolean ClickSecondSiteFlow(){
-		
-		try{
-			if(waitForElement(linkSiteFlow.get(1))){
-				linkSiteFlow.get(0).sendKeys(Keys.chord(Keys.CONTROL,Keys.END ));
+
+	public boolean ClickSecondSiteFlow() {
+
+		try {
+			if (waitForElement(linkSiteFlow.get(1))) {
+				linkSiteFlow.get(0).sendKeys(Keys.chord(Keys.CONTROL, Keys.END));
 				clickndRelease(linkSiteFlow.get(1));
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Click on Site level flow", "Site level flow Clicked");
 			}
-		}catch(Exception e){
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
-			
+
 	}
-	
-	public boolean ClickEDIFlow() throws InterruptedException{
-		try{
+
+	public boolean ClickEDIFlow() throws InterruptedException {
+		try {
 			WaitandSwitchToFrame(frameRight);
-			if(waitForElement(linkEDIFlow)){
-				//linkEDIFlow.click();
+			if (waitForElement(linkEDIFlow)) {
+				// linkEDIFlow.click();
 				clickndRelease(linkEDIFlow);
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Click on Service level flow", "Service level flow Clicked");
 			}
-		}
-		catch(Exception ex)
-		{
+		} catch (Exception ex) {
 			mstatus = false;
 		}
 		return mstatus;
 	}
-	
-	
-	public boolean ClickEPLFlow() throws InterruptedException{
-		try{
-			if(waitForElement(linkEPLFlow)){
-				//linkEDIFlow.click();
+
+	public boolean ClickEPLFlow() throws InterruptedException {
+		try {
+			if (waitForElement(linkEPLFlow)) {
+				// linkEDIFlow.click();
 				clickndRelease(linkEPLFlow);
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Click on Service level flow", "Service level flow Clicked");
 			}
-		}
-		catch(Exception ex)
-		{
+		} catch (Exception ex) {
 			mstatus = false;
 		}
 		return mstatus;
 	}
-	
-	public boolean ClickEquipmentFeeFlow() throws InterruptedException{
-		try{
-			if(waitForElement(linkEquipmentFeeFlow)){
+
+	public boolean ClickEquipmentFeeFlow() throws InterruptedException {
+		try {
+			if (waitForElement(linkEquipmentFeeFlow)) {
 				clickndRelease(linkEquipmentFeeFlow);
-				//linkEquipmentFeeFlow.click();
+				// linkEquipmentFeeFlow.click();
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Click on Equipment Fee flow", "Equipment Fee flow Clicked");
 			}
-		}
-		catch(Exception ex)
-		{
+		} catch (Exception ex) {
 			mstatus = false;
 		}
 		return mstatus;
 	}
-	
-	
-	public boolean ClickBGPFlow() throws InterruptedException{
-		try{
-			if(waitForElement(linkBGPFlow)){
+
+	public boolean ClickBGPFlow() throws InterruptedException {
+		try {
+			if (waitForElement(linkBGPFlow)) {
 				clickndRelease(linkBGPFlow);
-				//linkEquipmentFeeFlow.click();
+				// linkEquipmentFeeFlow.click();
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Click on BGP flow", "BGP flow Clicked");
 			}
-		}
-		catch(Exception ex)
-		{
+		} catch (Exception ex) {
 			mstatus = false;
 		}
 		return mstatus;
 	}
-	
-	public boolean ClickTrunkPRIFlow() throws InterruptedException{
-		try{
-			if(waitForElement(linkTrunkPRIFlow)){
+
+	public boolean ClickTrunkPRIFlow() throws InterruptedException {
+		try {
+			if (waitForElement(linkTrunkPRIFlow)) {
 				clickndRelease(linkTrunkPRIFlow);
-				//linkEquipmentFeeFlow.click();
+				// linkEquipmentFeeFlow.click();
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Click on PRI flow", "PRI flow Clicked");
 			}
-		}
-		catch(Exception ex)
-		{
+		} catch (Exception ex) {
 			mstatus = false;
 		}
 		return mstatus;
 	}
-	
-	
-	
-	public boolean SearchForSurveyInPreSales(String SurveyID){
-		try{
-		    waitforPageLoadComplete();
-		    waitForElement(btnExpand);
+
+	public boolean SearchForSurveyInPreSales(String SurveyID) {
+		try {
+			waitforPageLoadComplete();
+			waitForElement(btnExpand);
 			btnExpand.click();
 			waitForElement(LinkPreSalesWorklist);
 			LinkPreSalesWorklist.click();
 			waitforPageLoadComplete();
 			WaitandSwitchToFrame(frameRight);
 			waitForElementDisappear(elementLoading);
-			if(waitForElement(txtSurveyId)){
+			if (waitForElement(txtSurveyId)) {
 				txtSurveyId.sendKeys(SurveyID);
 			}
-			if(waitForElement(linkAdvancedSearch)){
+			if (waitForElement(linkAdvancedSearch)) {
 				linkAdvancedSearch.click();
 				waitforPageLoadComplete();
 				WaitandSwitchToFrame(frameWLAdvancedSearch);
@@ -465,41 +437,35 @@ public class WorkOrderTabPageCSO extends Page {
 				waitForElementDisappear(elementLoading);
 				report.updateTestLog("Search for Order", "Order Searched Successfully", Status.SCREENSHOT);
 			}
-		}
-		catch(Exception ex)
-		{
+		} catch (Exception ex) {
 			mstatus = false;
 		}
 		return mstatus;
-		}
-	
-	public boolean ClickAllTask(){
-		try{
+	}
+
+	public boolean ClickAllTask() {
+		try {
 			WaitandSwitchToFrame(frameRight);
 			waitForElement(radioButtonAllTask);
 			radioButtonAllTask.click();
 			waitForElementDisappear(elementLoading);
-		}
-		catch(Exception ex)
-		{
+		} catch (Exception ex) {
 			mstatus = false;
 		}
 		return mstatus;
 	}
-	
-	public boolean ClickBackButton(int waitForSecs){
-		mstatus=false;
-		try{
-			if(waitForElement(btnBack,waitForSecs)){
+
+	public boolean ClickBackButton(int waitForSecs) {
+		mstatus = false;
+		try {
+			if (waitForElement(btnBack, waitForSecs)) {
 				btnBack.click();
-				mstatus=true;
+				mstatus = true;
 			}
-		}
-		catch(Exception ex)
-		{
+		} catch (Exception ex) {
 			mstatus = false;
 		}
 		return mstatus;
 	}
-	
+
 }

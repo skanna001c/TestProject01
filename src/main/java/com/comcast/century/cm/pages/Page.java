@@ -2748,12 +2748,14 @@ public abstract class Page {
 			Robot rb = new Robot();
 
 			// Enter user name by ctrl-v
-			StringSelection fpath = new StringSelection(filePath);
+			StringSelection fpath = new StringSelection(System.getProperty("user.dir") + "\\src\\test\\resources\\attachements.txt");
 			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(fpath, null);
 			rb.keyPress(KeyEvent.VK_CONTROL);
 			rb.keyPress(KeyEvent.VK_V);
 			rb.keyRelease(KeyEvent.VK_V);
 			rb.keyRelease(KeyEvent.VK_CONTROL);
+			rb.keyPress(KeyEvent.VK_TAB);
+			rb.keyRelease(KeyEvent.VK_TAB);
 			rb.keyPress(KeyEvent.VK_TAB);
 			rb.keyRelease(KeyEvent.VK_TAB);
 			rb.keyPress(KeyEvent.VK_ENTER);
@@ -3113,6 +3115,32 @@ public abstract class Page {
 		 		we.sendKeys(Keys.ENTER);
 		 	}
 		 	else we.click();
+		 		
+		 }
+		 
+		 
+		 /**
+		  * Method to click any Web Element on the page 
+		  * @param we The element in which we want to perform the action
+		  * @param waitForElement [Optional] Synchronization point in which we want to sync after the button click
+		  * @param description Description about the action performed on the UI.
+		  */
+		 public void iClick(WebElement we, WebElement waitForElement, String description)
+		 {	
+		 	if((new TestSettings()).getBrowser().equalsIgnoreCase("iexplore")
+		 			||(new TestSettings()).getBrowser().equalsIgnoreCase("ie"))
+		 	{
+		 		we.sendKeys(Keys.ENTER);
+		 	}
+		 	else we.click();
+		 	waitforPageLoadComplete();
+		 	if(!(waitForElement==null))
+		 	{
+		 		waitForElement(waitForElement);
+		 		report.reportPassEvent(we + "Click", description);
+		 	}
+		 	
+		 	
 		 		
 		 }
 		 

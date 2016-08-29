@@ -190,8 +190,8 @@ public class AccountTabPageCM extends Page {
 			 report.reportDoneEvent("Check Use Customer Address", "Use Customer Address Checked");
 			 waitforPageLoadComplete();
 			 waitForElement(createAccountBtn);
-			 iClick(createAccountBtn);
-			 waitforPageLoadComplete();	
+			 iClick(createAccountBtn, null, "Create_Customer: CustomerPage: CreateButton");
+			 waitforPageLoadComplete();
 			 report.updateTestLog("Create Service Account", "Service Account Created Successfully", Status.SCREENSHOT);
 			 browser.switchTo().defaultContent();
 		}
@@ -212,7 +212,7 @@ public class AccountTabPageCM extends Page {
 			 while(!waitForElement(BtnAddContact)){
 				 
 			 }
-			 iClick(BtnAddContact);
+			 iClick(BtnAddContact, null, "Add Conatct: CotactPage: AddContactButton");
 			 waitforPageLoadComplete();
 			 //browser.switchTo().defaultContent();
 		}catch(Exception ex){
@@ -280,7 +280,7 @@ public class AccountTabPageCM extends Page {
 					 }
 					 
 					do{
-						iClick(btnCreateNewAcc);
+						iClick(btnCreateNewAcc, null, "CreateAccount: AccountPage: CreateNewAccountButton");
 						waitforPageLoadComplete();
 					}while(getValue(txtBillingAccnName).length()>1);
 					 
@@ -303,7 +303,7 @@ public class AccountTabPageCM extends Page {
 					 useCustomerAddress.click();
 					 waitforPageLoadComplete();
 					 waitForElement(createAccountBtn);
-					 iClick(createAccountBtn);
+					 iClick(createAccountBtn, null, "Create_Account: AccountPage: CreateAccountButton");
 					 waitforPageLoadComplete();	
 					 report.updateTestLog("Create Billing Account", "Billing Account Created Successfully", Status.SCREENSHOT);
 					/* waitForElement(BtnAddContact);					 

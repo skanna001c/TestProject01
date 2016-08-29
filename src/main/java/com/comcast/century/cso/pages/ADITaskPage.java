@@ -81,6 +81,11 @@ public class ADITaskPage extends Page {
 				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
 				linkRetrieveCircuitID.click();
 				Thread.sleep(5*1000);
+				/* Sometimes after clicking the above link EVC id is changed to 500.
+				 As a workaround we have setting the value again and before  clicking the complete button.*/				
+				waitForElement(txtEVCid);
+				txtEVCid.clear();
+				txtEVCid.sendKeys(serviceLevelTaskInfo.EVC1);
 				this.ClickCompleteButton();
 			}
 		}
