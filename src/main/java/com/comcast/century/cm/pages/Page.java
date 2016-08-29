@@ -68,7 +68,7 @@ public abstract class Page {
 	private TestSettings testSettings;
 	private String env;
 	protected String title;
-	
+
 	protected abstract boolean isValidPage();
 
 	protected abstract void waitForPageLoad();
@@ -83,7 +83,7 @@ public abstract class Page {
 		this.browser = browser;
 		this.report = report;
 		PageFactory.initElements(browser, this);
-		//waitForPageLoad();
+		// waitForPageLoad();
 		verifyApplicationInCorrectPage();
 	}
 
@@ -155,21 +155,22 @@ public abstract class Page {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Method to check Element id displayed in the page by its id value
+	 * 
 	 * @param ElementName
 	 */
-	
-	protected boolean isElementDisplayed(String ElementName){
-        try {
-              new WebDriverWait(browser,50).until(ExpectedConditions.elementToBeClickable(By.id(ElementName)));   
-             
-        } catch (RuntimeException ex) {
-             return false;
-        }
-        return true;
-    }
+
+	protected boolean isElementDisplayed(String ElementName) {
+		try {
+			new WebDriverWait(browser, 50).until(ExpectedConditions.elementToBeClickable(By.id(ElementName)));
+
+		} catch (RuntimeException ex) {
+			return false;
+		}
+		return true;
+	}
 
 	/**
 	 * Check if the element is present in the page
@@ -187,8 +188,6 @@ public abstract class Page {
 			return false;
 		}
 	}
-
-	
 
 	/*
 	 * public void authenticateHelp(LoginDetails loginInfo) throws IOException {
@@ -508,7 +507,7 @@ public abstract class Page {
 			for (String windowHandle : handles) {
 				if (!windowHandle.equals(parentWindow)) {
 					browser.switchTo().window(windowHandle);
-					title=browser.getTitle();
+					title = browser.getTitle();
 					browser.manage().window().maximize();
 					sleep(5000);
 					report.updateTestLog("NavigateTo" + pageName, "Successfully navigated to " + pageName + " page",
@@ -521,7 +520,7 @@ public abstract class Page {
 					"Not able to navigate to " + pageName + " Exception caught :" + ex.getMessage(), Status.FAIL);
 		}
 	}
-	
+
 	/***
 	 * Method to switch to child window
 	 * 
@@ -537,7 +536,7 @@ public abstract class Page {
 			for (String windowHandle : handles) {
 				if (!windowHandle.equals(parentWindow)) {
 					browser.switchTo().window(windowHandle);
-					pageTitle=browser.getTitle();
+					pageTitle = browser.getTitle();
 					browser.manage().window().maximize();
 					sleep(5000);
 					report.updateTestLog("NavigateTo" + pageName, "Successfully navigated to " + pageName + " page",
@@ -705,13 +704,11 @@ public abstract class Page {
 			if ((new TestSettings()).getBrowser().equalsIgnoreCase("iexplore")) {
 				Actions builder = new Actions(browser);
 				builder.doubleClick(element).build().perform();
-				
-				
-					
+
 				report.reportDoneEvent("ClickOn" + element.getText().trim(),
 						"Successfully clicked on " + element.getText().trim());
 			} else {
-				//element.click();
+				// element.click();
 				Actions builder = new Actions(browser);
 				builder.doubleClick(element).build().perform();
 				report.reportDoneEvent("ClickOn" + element.getText().trim(),
@@ -743,7 +740,7 @@ public abstract class Page {
 			System.out.print("\nAlert is displayed...");
 			Alert alert = browser.switchTo().alert();
 			alertMessage = alert.getText();
-			System.out.print("\nMessage: " + alertMessage);			
+			System.out.print("\nMessage: " + alertMessage);
 			alert.accept();
 			report.reportPassEvent("alertMessage", "alertMessage displayed is->" + alertMessage);
 		} catch (Exception Ex) {
@@ -820,8 +817,6 @@ public abstract class Page {
 	// waits
 	// *****************************************************************************************************************//
 
-	
-
 	/**
 	 * Method to wait for element to load in the page
 	 * 
@@ -846,8 +841,8 @@ public abstract class Page {
 		}
 		return true;
 	}
-	
-	protected Boolean waitForElement(WebElement we,int sec) {
+
+	protected Boolean waitForElement(WebElement we, int sec) {
 		try {
 			new WebDriverWait(browser, sec).until(ExpectedConditions.visibilityOf(we));
 
@@ -856,7 +851,7 @@ public abstract class Page {
 		}
 		return true;
 	}
-	
+
 	protected Boolean miniWaitForElement(WebElement we) {
 		try {
 			new WebDriverWait(browser, 5).until(ExpectedConditions.visibilityOf(we));
@@ -866,7 +861,7 @@ public abstract class Page {
 		}
 		return true;
 	}
-	
+
 	protected Boolean WaitandSwitchToFrame(WebElement we) {
 		try {
 			new WebDriverWait(browser, 60).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(we));
@@ -876,8 +871,8 @@ public abstract class Page {
 		}
 		return true;
 	}
-	
-	protected Boolean WaitandSwitchToFrame(WebElement we,int sec) {
+
+	protected Boolean WaitandSwitchToFrame(WebElement we, int sec) {
 		try {
 			new WebDriverWait(browser, sec).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(we));
 
@@ -886,7 +881,7 @@ public abstract class Page {
 		}
 		return true;
 	}
-	
+
 	protected Boolean ShortWaitandSwitchToFrame(WebElement we) {
 		try {
 			new WebDriverWait(browser, 5).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(we));
@@ -896,7 +891,8 @@ public abstract class Page {
 		}
 		return true;
 	}
-//frameToBeAvailableAndSwitchToIt
+
+	// frameToBeAvailableAndSwitchToIt
 	/**
 	 * Method to wait for element to load in the page
 	 * 
@@ -958,30 +954,29 @@ public abstract class Page {
 	protected Boolean waitForElement(WebElement we) {
 		try {
 			new WebDriverWait(browser, 60).until(ExpectedConditions.elementToBeClickable(we));
-		//	new WebDriverWait(browser, 60).until(ExpectedConditions.fram
+			// new WebDriverWait(browser, 60).until(ExpectedConditions.fram
 			return true;
 		} catch (RuntimeException ex) {
 			return false;
 		}
 	}
-	
+
 	protected Boolean waitForVisibilityOfElement(WebElement we) {
 		try {
 			new WebDriverWait(browser, 60).until(ExpectedConditions.visibilityOfElementLocated((By) we));
-		//	new WebDriverWait(browser, 60).until(ExpectedConditions.fram
+			// new WebDriverWait(browser, 60).until(ExpectedConditions.fram
 			return true;
 		} catch (RuntimeException ex) {
 			return false;
 		}
 	}
-	
-	
+
 	protected void jsClickWE(WebElement we) {
 		try {
 			JavascriptExecutor executor = (JavascriptExecutor) browser;
 			executor.executeScript("arguments[0].click();", we);
 		} catch (RuntimeException ex) {
-			report.reportDoneEvent("DropDownClicked","Failed");
+			report.reportDoneEvent("DropDownClicked", "Failed");
 		}
 	}
 
@@ -989,11 +984,9 @@ public abstract class Page {
 	 * Method to search customer with the invalid Combinations
 	 * 
 	 * @param :
-	 * @return :
-	 * @author : Kumar (kpokha001c)
-	 * @throws 
+	 * 			@return : @author : Kumar (kpokha001c) @throws
 	 ***/
-	protected void isPresent(WebElement we){
+	protected void isPresent(WebElement we) {
 		WebDriverWait wait = new WebDriverWait(browser, 10);
 		try {
 			wait.until(ExpectedConditions.visibilityOf(we));
@@ -1002,11 +995,11 @@ public abstract class Page {
 		} catch (NoSuchElementException nse) {
 			report.reportDoneEvent("HomePage::" + we.getAttribute("innerHTML") + " Object Verification",
 					"The object " + we.getAttribute("innerHTML") + " is NOT present.");
-			//System.out.println("" + we + " No such element");
+			// System.out.println("" + we + " No such element");
 		} catch (TimeoutException toe) {
 			report.reportDoneEvent("HomePage::" + we.getAttribute("innerHTML") + " Object Verification",
 					"The object " + we.getAttribute("innerHTML") + " is NOT present.");
-			//System.out.println("" + we + " TimeOut");
+			// System.out.println("" + we + " TimeOut");
 		}
 
 	}
@@ -1032,7 +1025,7 @@ public abstract class Page {
 					"The object " + we.getAttribute("innerHTML") + " is NOT present.");
 		}
 	}
-	
+
 	protected Boolean longwaitForElement(By by) {
 		try {
 			int count = 0;
@@ -1142,7 +1135,6 @@ public abstract class Page {
 			report.updateTestLog("ElementIsNotAvailable", element.getText() + "is not available", Status.FAIL);
 		}
 	}
-	
 
 	/***
 	 * Method to check if element is enabled(element_name) with a boolean return
@@ -1163,7 +1155,6 @@ public abstract class Page {
 		}
 
 	}
-
 
 	/***
 	 * Method to check if element is enabled(element_name)
@@ -1560,33 +1551,33 @@ public abstract class Page {
 		((JavascriptExecutor) browser).executeScript("arguments[0].scrollIntoView(true);", we);
 	}
 
-	
 	private void beforePageLoad() {
-	    JavascriptExecutor js = (JavascriptExecutor) browser;
-	    js.executeScript("document.mpPageReloaded='notYet';");
+		JavascriptExecutor js = (JavascriptExecutor) browser;
+		js.executeScript("document.mpPageReloaded='notYet';");
 	}
-
 
 	public void waitforPageLoadComplete() {
-		 WebDriverWait wait = new WebDriverWait(browser, 60);
+		WebDriverWait wait = new WebDriverWait(browser, 60);
 
-	    wait.until(new ExpectedCondition<Boolean>() {
-	        public Boolean apply(WebDriver wdriver) {
-	            return ((JavascriptExecutor) browser).executeScript(
-	                "return document.readyState"
-	            ).equals("complete");
-	        }
-	    });
+		wait.until(new ExpectedCondition<Boolean>() {
+			public Boolean apply(WebDriver wdriver) {
+				return ((JavascriptExecutor) browser).executeScript("return document.readyState").equals("complete");
+			}
+		});
 	}
-		//Actions builder = new Actions(browser);
-		//builder.moveToElement(we).click().perform();
-		/*new WebDriverWait(browser, 30).until(((JavascriptExecutor) browser).executeScript("return document.readyState").equals("complete"));
-				//<Boolean>) wd -> ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-		//new WebDriverWait(browser, 30).until(ExpectedConditions.elementToBeClickable(by));
-		((JavascriptExecutor) browser).executeScript("arguments[0].scrollIntoView(true);", we);
-	*/
+	// Actions builder = new Actions(browser);
+	// builder.moveToElement(we).click().perform();
+	/*
+	 * new WebDriverWait(browser, 30).until(((JavascriptExecutor)
+	 * browser).executeScript("return document.readyState").equals("complete"));
+	 * //<Boolean>) wd -> ((JavascriptExecutor) wd).executeScript(
+	 * "return document.readyState").equals("complete")); //new
+	 * WebDriverWait(browser,
+	 * 30).until(ExpectedConditions.elementToBeClickable(by));
+	 * ((JavascriptExecutor)
+	 * browser).executeScript("arguments[0].scrollIntoView(true);", we);
+	 */
 
-	
 	/**
 	 * Check if the element is present in the page
 	 * 
@@ -2156,7 +2147,7 @@ public abstract class Page {
 		robot.mouseMove(650, 650);
 
 	}
-	
+
 	public boolean checkUncheck(WebElement element) {
 		waitForElement(element);
 		if (element.getAttribute("class").contains("Checked")) {
@@ -2184,85 +2175,54 @@ public abstract class Page {
 	 * @author : Omkar (oraghu001c)
 	 */
 
-	/*public void clickonHelpButtonAndVerify(WebElement HelpButton, String expectedtitle) {
-		try {
-			HelpPageLoginData helpPageLoginData = new HelpPageLoginData();
-			TestSettings testSettings = new TestSettings();
-			String[] filepath = new String[] { TestUtils.getRelativePath() + "\\src\\main\\resources\\AutoIt\\QALoginAll.exe",
-					testSettings.getBrowser(), helpPageLoginData.username, helpPageLoginData.password };
-			try {
-				Runtime.getRuntime().exec(filepath);
-
-			} catch (IOException e) {
-				System.out.println("Unable to close");
-			}
-			waitForElement(HelpButton);
-			//HelpButton.click();
-			jsClick(HelpButton);
-			report.reportDoneEvent("ClickHelpButton", "Help button in is clicked");
-
-			//sleep(10000);
-			String strHelp = null;
-			Set<String> windows = browser.getWindowHandles();
-			for (String window : windows) {
-				browser.switchTo().window(window);
-				try {
-					strHelp = browser.getCurrentUrl();
-					if (strHelp.contains("Help")) {
-						break;
-					}
-				} catch (UnhandledAlertException Ex) {
-					sleep(10000);
-					strHelp = browser.getCurrentUrl();
-					if (strHelp.contains("Help")) {
-						break;
-					}
-				}
-			}
-			try {
-				new WebDriverWait(browser, 50).until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
-			} catch (UnhandledAlertException Ex) {
-				try {
-					Alert alert = browser.switchTo().alert();
-					alert.dismiss();
-					sleep(3000);
-				} catch (Exception ex) {
-					// do nothing
-				}
-			} catch (Exception Ex) {
-				// do nothing
-			}
-			if (isElementPresent(By.id("username"))) {
-				browser.findElement(By.id("username")).sendKeys(helpPageLoginData.username);
-				browser.findElement(By.id("password")).sendKeys(helpPageLoginData.password);
-				browser.findElement(By.id("SubmitCreds")).click();
-				System.out.println(browser.getTitle().toLowerCase());
-				System.out.println(expectedtitle.toLowerCase());
-			}
-			sleep(5000);
-			waitForElement(By.xpath("//div[@class='cdclvAssistTitle']"));
-			report.reportPassEvent("CheckHelpLink", "The window with URL: " + browser.getCurrentUrl() + " is opened");
-			report.updateTestLog("CheckHelpLink", "The window with URL: " + browser.getCurrentUrl() + " is opened",
-					Status.SCREENSHOT);
-			if (browser.getTitle().toLowerCase().contains(expectedtitle.toLowerCase())) {
-				report.reportPassEvent("Check title of Help Page", " Help page loaded with title" + browser.getTitle());
-				report.updateTestLog("Check title of Help Page", " Help page loaded with title" + browser.getTitle(),
-						Status.SCREENSHOT);
-			} else {
-				report.reportFailEvent("Check title of Help Page",
-						" Title of help page : actual Title:" + browser.getTitle());
-			}
-
-		} catch (UnhandledAlertException Ex) {
-			try {
-				Alert alert = browser.switchTo().alert();
-				alert.dismiss();
-				sleep(3000);
-			} catch (Exception ex) {
-				// do nothing
-			}
-		}
-	}*/
+	/*
+	 * public void clickonHelpButtonAndVerify(WebElement HelpButton, String
+	 * expectedtitle) { try { HelpPageLoginData helpPageLoginData = new
+	 * HelpPageLoginData(); TestSettings testSettings = new TestSettings();
+	 * String[] filepath = new String[] { TestUtils.getRelativePath() +
+	 * "\\src\\main\\resources\\AutoIt\\QALoginAll.exe",
+	 * testSettings.getBrowser(), helpPageLoginData.username,
+	 * helpPageLoginData.password }; try { Runtime.getRuntime().exec(filepath);
+	 * 
+	 * } catch (IOException e) { System.out.println("Unable to close"); }
+	 * waitForElement(HelpButton); //HelpButton.click(); jsClick(HelpButton);
+	 * report.reportDoneEvent("ClickHelpButton", "Help button in is clicked");
+	 * 
+	 * //sleep(10000); String strHelp = null; Set<String> windows =
+	 * browser.getWindowHandles(); for (String window : windows) {
+	 * browser.switchTo().window(window); try { strHelp =
+	 * browser.getCurrentUrl(); if (strHelp.contains("Help")) { break; } } catch
+	 * (UnhandledAlertException Ex) { sleep(10000); strHelp =
+	 * browser.getCurrentUrl(); if (strHelp.contains("Help")) { break; } } } try
+	 * { new WebDriverWait(browser,
+	 * 50).until(ExpectedConditions.presenceOfElementLocated(By.id("username")))
+	 * ; } catch (UnhandledAlertException Ex) { try { Alert alert =
+	 * browser.switchTo().alert(); alert.dismiss(); sleep(3000); } catch
+	 * (Exception ex) { // do nothing } } catch (Exception Ex) { // do nothing }
+	 * if (isElementPresent(By.id("username"))) {
+	 * browser.findElement(By.id("username")).sendKeys(helpPageLoginData.
+	 * username);
+	 * browser.findElement(By.id("password")).sendKeys(helpPageLoginData.
+	 * password); browser.findElement(By.id("SubmitCreds")).click();
+	 * System.out.println(browser.getTitle().toLowerCase());
+	 * System.out.println(expectedtitle.toLowerCase()); } sleep(5000);
+	 * waitForElement(By.xpath("//div[@class='cdclvAssistTitle']"));
+	 * report.reportPassEvent("CheckHelpLink", "The window with URL: " +
+	 * browser.getCurrentUrl() + " is opened");
+	 * report.updateTestLog("CheckHelpLink", "The window with URL: " +
+	 * browser.getCurrentUrl() + " is opened", Status.SCREENSHOT); if
+	 * (browser.getTitle().toLowerCase().contains(expectedtitle.toLowerCase()))
+	 * { report.reportPassEvent("Check title of Help Page",
+	 * " Help page loaded with title" + browser.getTitle());
+	 * report.updateTestLog("Check title of Help Page",
+	 * " Help page loaded with title" + browser.getTitle(), Status.SCREENSHOT);
+	 * } else { report.reportFailEvent("Check title of Help Page",
+	 * " Title of help page : actual Title:" + browser.getTitle()); }
+	 * 
+	 * } catch (UnhandledAlertException Ex) { try { Alert alert =
+	 * browser.switchTo().alert(); alert.dismiss(); sleep(3000); } catch
+	 * (Exception ex) { // do nothing } } }
+	 */
 
 	/***
 	 * Method to close frame with a message and check the message
@@ -2682,7 +2642,7 @@ public abstract class Page {
 		}
 		return null;
 	}
-	
+
 	/***
 	 * Method to enterCredentialsThruRobotClass
 	 * 
@@ -2728,10 +2688,9 @@ public abstract class Page {
 			report.updateTestLog("Open Application", ex.getMessage(), Status.FAIL);
 			throw ex;
 		}
-		
-		
+
 	}
-	
+
 	/***
 	 * Method to uploadAttachments
 	 * 
@@ -2740,15 +2699,16 @@ public abstract class Page {
 	 * @author : jluthr001c
 	 * @throws AWTException
 	 ***/
-	
-	public void uploadAttachments(String filePath) throws AWTException{
+
+	public void uploadAttachments(String filePath) throws AWTException {
 		try {
 			// wait
 			sleep(15000);
 			Robot rb = new Robot();
 
 			// Enter user name by ctrl-v
-			StringSelection fpath = new StringSelection(filePath);
+			StringSelection fpath = new StringSelection(
+					System.getProperty("user.dir") + "\\src\\test\\resources\\attachements.txt");
 			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(fpath, null);
 			rb.keyPress(KeyEvent.VK_CONTROL);
 			rb.keyPress(KeyEvent.VK_V);
@@ -2756,36 +2716,34 @@ public abstract class Page {
 			rb.keyRelease(KeyEvent.VK_CONTROL);
 			rb.keyPress(KeyEvent.VK_TAB);
 			rb.keyRelease(KeyEvent.VK_TAB);
+			rb.keyPress(KeyEvent.VK_TAB);
+			rb.keyRelease(KeyEvent.VK_TAB);
 			rb.keyPress(KeyEvent.VK_ENTER);
 			rb.keyRelease(KeyEvent.VK_ENTER);
 			sleep(5000);
-	}catch (RuntimeException ex) {
-		report.updateTestLog("Upload failed", ex.getMessage(), Status.FAIL);
-		throw ex;
+		} catch (RuntimeException ex) {
+			report.updateTestLog("Upload failed", ex.getMessage(), Status.FAIL);
+			throw ex;
+		}
+
 	}
-	
-	
-}
-	
-	public void keyPress(int key,int counter) throws AWTException{
+
+	public void keyPress(int key, int counter) throws AWTException {
 		try {
 			Robot rb = new Robot();
 
 			for (int i = 0; i < counter; i++) {
-				rb.keyPress(key);	
+				rb.keyPress(key);
 				rb.keyRelease(key);
-			}  
-			
-	}catch (RuntimeException ex) {
-		report.updateTestLog("Failed", ex.getMessage(), Status.FAIL);
-		throw ex;
-	}
-	
-	
-}
+			}
 
-	
-	
+		} catch (RuntimeException ex) {
+			report.updateTestLog("Failed", ex.getMessage(), Status.FAIL);
+			throw ex;
+		}
+
+	}
+
 	/***
 	 * Method to pass Random Value
 	 * 
@@ -2799,431 +2757,407 @@ public abstract class Page {
 		int hour = now.get(Calendar.HOUR_OF_DAY);
 		int minute = now.get(Calendar.MINUTE);
 		int second = now.get(Calendar.SECOND);
-	//	int millis = now.get(Calendar.MILLISECOND);
-		return  Integer.toString(year)+Integer.toString(month)+Integer.toString(day)
-		+Integer.toString(hour)+Integer.toString(minute)+Integer.toString(second);
+		// int millis = now.get(Calendar.MILLISECOND);
+		return Integer.toString(year) + Integer.toString(month) + Integer.toString(day) + Integer.toString(hour)
+				+ Integer.toString(minute) + Integer.toString(second);
 	}
-	
-	protected String randomNumber(int limit) {			
-		return Double.toString(Math.random()).substring(2,2+limit);			
-		}
-	
+
+	protected String randomNumber(int limit) {
+		return Double.toString(Math.random()).substring(2, 2 + limit);
+	}
+
 	/****
 	 * Method to handle drop downs
+	 * 
 	 * @param ddTxtWE
 	 * @param ddValueWE
 	 * @param Str
 	 * @throws InterruptedException
 	 */
-			 
-		protected void ddValueSelect(WebElement ddTxtWE,WebElement ddValueWE,String Str) throws InterruptedException {
-            do{
-                   waitForElement(ddTxtWE);
-                   ddTxtWE.clear();
-                   ddTxtWE.sendKeys(Str);
-                   ddTxtWE.sendKeys(Keys.ARROW_DOWN);                    
-                    Thread.sleep(1000);
-          }while(! waitForElement(ddValueWE) );
-            ddValueWE.click();
-            }
-		
-		public void ddValue(WebElement ddTxtWE,String Str) throws InterruptedException{
-			 waitForElement(ddTxtWE);
-             ddTxtWE.clear();
-             ddTxtWE.sendKeys(Str);
-             ddTxtWE.sendKeys(Keys.ARROW_DOWN);                    
-              Thread.sleep(1000);
-		}
-		
-		/***
-		 * Method to close the pop ups
-		 * 
-		 * @param windowHandle
-		 * @param we
-		 * @throws InterruptedException
-		 */
 
-		protected void ClosePopUpndSwitchtoFrame(String windowHandle,WebElement we) throws InterruptedException{
-			String homePage,currentWindowId;
-			homePage= windowHandle;
-			Thread.sleep(5*1000);
-			Set<String> windows = browser.getWindowHandles();
-			System.out.println("size "+windows.size());
-			//while size<=1
-			//Thread.sleep(1)
-			//Set<String> windows = browser.getWindowHandles();
-			
-			Iterator<String> iterator = windows.iterator();			
-			while(iterator.hasNext()){
-				
-				currentWindowId = iterator.next().toString();
- 			System.out.println("currentWindowId "+currentWindowId);
-				if(!currentWindowId.equals(homePage)){
-					browser.switchTo().window(currentWindowId);
-					browser.close();
-				}
+	protected void ddValueSelect(WebElement ddTxtWE, WebElement ddValueWE, String Str) throws InterruptedException {
+		do {
+			waitForElement(ddTxtWE);
+			ddTxtWE.clear();
+			ddTxtWE.sendKeys(Str);
+			ddTxtWE.sendKeys(Keys.ARROW_DOWN);
+			Thread.sleep(1000);
+		} while (!waitForElement(ddValueWE));
+		ddValueWE.click();
+	}
+
+	public void ddValue(WebElement ddTxtWE, String Str) throws InterruptedException {
+		waitForElement(ddTxtWE);
+		ddTxtWE.clear();
+		ddTxtWE.sendKeys(Str);
+		ddTxtWE.sendKeys(Keys.ARROW_DOWN);
+		Thread.sleep(1000);
+	}
+
+	/***
+	 * Method to close the pop ups
+	 * 
+	 * @param windowHandle
+	 * @param we
+	 * @throws InterruptedException
+	 */
+
+	protected void ClosePopUpndSwitchtoFrame(String windowHandle, WebElement we) throws InterruptedException {
+		String homePage, currentWindowId;
+		homePage = windowHandle;
+		Thread.sleep(5 * 1000);
+		Set<String> windows = browser.getWindowHandles();
+		System.out.println("size " + windows.size());
+		// while size<=1
+		// Thread.sleep(1)
+		// Set<String> windows = browser.getWindowHandles();
+
+		Iterator<String> iterator = windows.iterator();
+		while (iterator.hasNext()) {
+
+			currentWindowId = iterator.next().toString();
+			System.out.println("currentWindowId " + currentWindowId);
+			if (!currentWindowId.equals(homePage)) {
+				browser.switchTo().window(currentWindowId);
+				browser.close();
 			}
-			
-			browser.switchTo().window(homePage);
-			WaitandSwitchToFrame(we);
 		}
-		
-		 protected void RobotClick(WebElement we) throws AWTException
-		 { 
-			 Point coordinates = we.getLocation();
-			 Robot robot = new Robot();
-			/* WebElement markNews = we;
-			 markNews.click();*/
-			 robot.mouseMove(coordinates.x,coordinates.y+80);		 
-			 robot.mousePress(InputEvent.BUTTON1_MASK); // Left Mouse click - Press 
-			 robot.mouseRelease(InputEvent.BUTTON1_MASK); 
-			 //robot.
-		 } 
-	
-		/***Method to wait for a task to become in progress & click
-		 * 
-		 * @param we1
-		 * @param we2
-		 * @param status
-		 * @return
-		 * @throws InterruptedException
+
+		browser.switchTo().window(homePage);
+		WaitandSwitchToFrame(we);
+	}
+
+	protected void RobotClick(WebElement we) throws AWTException {
+		Point coordinates = we.getLocation();
+		Robot robot = new Robot();
+		/*
+		 * WebElement markNews = we; markNews.click();
 		 */
-		 
-		 protected boolean checkifStatusChanged(WebElement we1,WebElement we2,String status) throws InterruptedException
-		 
-		 {   
-			 boolean fn_status=false;
-			 System.out.println("Task ::"+we1.getText());
-			 int counter = 0;
-			 int reqminutes=7;
-			 
-			if((!(we1.getAttribute("onclick").contains("COMPLETED")))
-					||(!(we1.getAttribute("onclick").contains("DEFERRED"))))  
-				{ while(!(browser.findElement(By.xpath("//*[text()='"+we1.getText()+"']")).getAttribute("onclick").contains(status)) && counter<reqminutes*6)  
-				{	 
-					 Thread.sleep(10*1000);
-					 we2.click();
-					 System.out.println("inside counter "+counter);
-					 counter++;			
-				}
-				 
-				if(we1.getAttribute("onclick").contains(status))
-				{
-				  waitForElement(we1);
-				  fn_status=true;
-				}
-			else
-			{	
-				report.reportFailEvent(we1.getText()+" clicked failed", we1.getText()+"task not coming to in progress after 7 mins");
-				
-				
+		robot.mouseMove(coordinates.x, coordinates.y + 80);
+		robot.mousePress(InputEvent.BUTTON1_MASK); // Left Mouse click - Press
+		robot.mouseRelease(InputEvent.BUTTON1_MASK);
+		// robot.
+	}
+
+	/***
+	 * Method to wait for a task to become in progress & click
+	 * 
+	 * @param we1
+	 * @param we2
+	 * @param status
+	 * @return
+	 * @throws InterruptedException
+	 */
+
+	protected boolean checkifStatusChanged(WebElement we1, WebElement we2, String status) throws InterruptedException
+
+	{
+		boolean fn_status = false;
+		System.out.println("Task ::" + we1.getText());
+		int counter = 0;
+		int reqminutes = 7;
+
+		if ((!(we1.getAttribute("onclick").contains("COMPLETED")))
+				|| (!(we1.getAttribute("onclick").contains("DEFERRED")))) {
+			while (!(browser.findElement(By.xpath("//*[text()='" + we1.getText() + "']")).getAttribute("onclick")
+					.contains(status)) && counter < reqminutes * 6) {
+				Thread.sleep(10 * 1000);
+				we2.click();
+				System.out.println("inside counter " + counter);
+				counter++;
+			}
+
+			if (we1.getAttribute("onclick").contains(status)) {
+				waitForElement(we1);
+				fn_status = true;
+			} else {
+				report.reportFailEvent(we1.getText() + " clicked failed",
+						we1.getText() + "task not coming to in progress after 7 mins");
+
 			}
 		}
-			
+
 		return fn_status;
-			 
-			 
-		 } 
-		 
-		 public void clickndRelease(WebElement link) throws InterruptedException {
-				try {
-					waitForElement(link);
-					if (isElementPresent(link)) {
-						Actions action = new Actions(browser);
-						action.clickAndHold(link);
-						Thread.sleep(250);
-						action.release();
-						action.perform();
-						
-					}
-				} catch (RuntimeException ex) {
-					
+
+	}
+
+	public void clickndRelease(WebElement link) throws InterruptedException {
+		try {
+			waitForElement(link);
+			if (isElementPresent(link)) {
+				Actions action = new Actions(browser);
+				action.clickAndHold(link);
+				Thread.sleep(250);
+				action.release();
+				action.perform();
+
+			}
+		} catch (RuntimeException ex) {
+
+		}
+	}
+
+	public void closeAllOtherWindows(String openWindowHandle) {
+
+		Set<String> allWindowHandles = browser.getWindowHandles();
+		for (String currentWindowHandle : allWindowHandles) {
+			if (!currentWindowHandle.equals(openWindowHandle)) {
+				browser.switchTo().window(currentWindowHandle);
+				browser.close();
+			}
+		}
+
+		browser.switchTo().window(openWindowHandle);
+	}
+
+	/***
+	 * Method to scroll up down to page
+	 * 
+	 */
+
+	protected void scrollDown() {
+		JavascriptExecutor js = (JavascriptExecutor) browser;
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+	}
+
+	protected void scrollUp() {
+		JavascriptExecutor js = (JavascriptExecutor) browser;
+		js.executeScript("scroll(0, -250);");
+	}
+
+	protected void jsSendKeys(WebElement we, String Str) {
+		String id;
+		JavascriptExecutor executor = (JavascriptExecutor) browser;
+		id = we.getAttribute("id");
+		executor.executeScript("document.getElementById('" + id + "').value='" + Str + "'");
+	}
+
+	public WebElement iterateThroughFrames(WebElement we) {
+
+		List<WebElement> frameList = browser.findElements(By.tagName("iframe"));
+		for (WebElement frame : frameList) {
+			if (ShortWaitandSwitchToFrame(frame)) {
+				if (miniWaitForElement(we)) {
+					return frame;
 				}
 			}
-		
-		
-		 public  void closeAllOtherWindows(String openWindowHandle) {
-			 
-				Set<String> allWindowHandles = browser.getWindowHandles();
-				for (String currentWindowHandle : allWindowHandles) {
-					if (!currentWindowHandle.equals(openWindowHandle)) {
-						browser.switchTo().window(currentWindowHandle);
-						browser.close();
-					}
-				}
-				
-				browser.switchTo().window(openWindowHandle);
-			} 
-		 
-		 /***Method to scroll up down to page
-		  * 
-		  */
-		 
-		 protected void scrollDown(){
-			 JavascriptExecutor js = (JavascriptExecutor) browser;
-			 js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		 }
+		}
+		return null;
+	}
 
-		 
-		 protected void scrollUp(){
-			 JavascriptExecutor js = (JavascriptExecutor) browser;
-			 js.executeScript("scroll(0, -250);");
-		 }
-		 
-		 
-		 protected void jsSendKeys(WebElement we, String Str){
-			 String id;
-			 JavascriptExecutor executor = (JavascriptExecutor) browser;
-			 id = we.getAttribute("id");			 
-			 executor.executeScript("document.getElementById('"+id+"').value='"+Str+"'");
-		 }
-		 
-		 
-		 public WebElement iterateThroughFrames( WebElement we ){
-			 
-			 List<WebElement>frameList=browser.findElements(By.tagName("iframe"));
-			 for(WebElement frame :frameList ){
-				 if(ShortWaitandSwitchToFrame(frame)){
-					 if(miniWaitForElement(we)){
+	public WebElement iterateThroughFramesinsideFrame(WebElement we, WebElement parentframe) {
+		System.out.println("Inside iterateThroughFramesinsideFrame");
+		List<WebElement> frameList = null;
+		int counter = 0;
+		System.out.println("parentframe " + parentframe.getAttribute("id"));
+		browser.switchTo().defaultContent();
+		do {
+			parentframe = browser.findElement(By.xpath("//*[@id='mainFrame']"));
+			if (ShortWaitandSwitchToFrame(parentframe)) {
+				System.out.println("main frame found");
+				frameList = browser.findElements(By.tagName("iframe"));
+				counter++;
+			}
+
+		} while (frameList.size() == 0 && counter <= 5);
+
+		if (frameList.size() != 0) {
+
+			System.out.println("No. of frames " + frameList.size());
+			for (WebElement frame : frameList) {
+				if (ShortWaitandSwitchToFrame(frame)) {
+					System.out.println("inside frame ");
+					if (miniWaitForElement(we)) {
+						browser.switchTo().defaultContent();
+						browser.switchTo().frame(parentframe);
 						return frame;
-					 }
-				 }
-			 }
-			return null;
-		 }
-		 
-		 
-		public WebElement iterateThroughFramesinsideFrame( WebElement we ,WebElement parentframe){
-			System.out.println("Inside iterateThroughFramesinsideFrame");
-			List<WebElement>frameList=null;
-			int counter=0;
-			System.out.println("parentframe "+parentframe.getAttribute("id"));
-			browser.switchTo().defaultContent();
-			do {
-				 parentframe=browser.findElement(By.xpath("//*[@id='mainFrame']"));
-				 if(ShortWaitandSwitchToFrame(parentframe))
-				 {       System.out.println("main frame found");
-						 frameList=browser.findElements(By.tagName("iframe"));
-						 counter++;
-				 }
-				
-				 
-			} while (frameList.size()==0 && counter<=5);
-			
-			 
-			if(frameList.size()!=0){				
-			
-			 System.out.println("No. of frames "+frameList.size());
-			 for(WebElement frame :frameList ){
-				 if(ShortWaitandSwitchToFrame(frame)){
-					 System.out.println("inside frame ");
-					 if(miniWaitForElement(we)){
-						 browser.switchTo().defaultContent();
-						 browser.switchTo().frame(parentframe);
-						 return frame;
-					 }
-					 browser.switchTo().defaultContent();
-					 browser.switchTo().frame(parentframe);
-				 }
-			 }
-			}
-			return null;
-		 }
-		
-		/*Method to enter MRC , NRC Value on order summary page
-		 * 
-		 * 
-		 * 
-		 */
-	
-		 public void enterValue(List<WebElement> we, WebElement we1, String value) throws InterruptedException{
-			 
-			 for(int i=0; i<we.size(); i++){
-				 waitForElement(we.get(i));
-				 doubleClick(we.get(i));
-				 Thread.sleep(1500);
-				 waitForElement(we1);
-				 we1.click();
-				 we1.clear();
-				 we1.sendKeys(value);
-				 we1.sendKeys(Keys.ENTER);
-				 Thread.sleep(2500);
-			 }
-			 
-		 }
-		 
-		 
-		 protected void enterQuantity(WebElement we, String value){
-			 if(waitForElement(we)){
-				 we.click();
-				 we.clear();
-				 we.sendKeys(value);
-				 we.sendKeys(Keys.TAB);
-			 }
-		 }
-		 
-		 public boolean  iterateThroughtableAndSelectCity(String city) throws InterruptedException{
-			 int rowId=-1;
-			String cityXpath="//*[.='State']/ancestor-or-self::form/descendant::div[.='"+city+"']" ;
-			waitforPageLoadComplete();
-			Thread.sleep(5000);
-			while(!isElementPresent(browser.findElement(By.xpath(cityXpath)))){
-				 Thread.sleep(2000);
-			 }
-			/* while(!isElementPresent(browser.findElement(By.tagName("tbody")))){
-				 Thread.sleep(2000);
-			 }
-			
-			 
-			 while(!isElementPresent(table.findElements(By.tagName("tr")).get(0))){
-				 Thread.sleep(2000);
-			 }
-			 */
-			 WebElement table = browser.findElement(By.tagName("tbody"));
-			 List<WebElement> allRows = table.findElements(By.tagName("tr"));
-			 
-			 
-			 for (int i = 0; i < allRows.size(); i++){
-				
-				List<WebElement> cells = allRows.get(i).findElements(By.tagName("td"));
-				
-				if(city.equalsIgnoreCase(cells.get(2).getText())){
-				      rowId = i;
-				      break;
+					}
+					browser.switchTo().defaultContent();
+					browser.switchTo().frame(parentframe);
 				}
 			}
-			 	 if(rowId>-1){
-			 		 
-			 		 while(!isElementPresent( browser.findElement(By.id(Integer.toString(rowId))))){
-			 			 Thread.sleep(2000);
-			 		 } browser.findElement(By.id(Integer.toString(rowId))).click();
-			 				
-			 	 } else{
-			 		 report.reportFailEvent("City selection", "City not found");
-			 	 } 
-		
-		return (rowId>-1); 	 
-}
-	
-		 public void iClick(WebElement we)
-		 {	
-		 	if((new TestSettings()).getBrowser().equalsIgnoreCase("iexplore")
-		 			||(new TestSettings()).getBrowser().equalsIgnoreCase("ie"))
-		 	{
-		 		we.sendKeys(Keys.ENTER);
-		 	}
-		 	else we.click();
-		 		
-		 }
-		 
-		 public boolean waitUntilElementPresent(By by,int sec)
-		 {   int counter=0;
-			 while((!isElementPresent(browser.findElement(by))) && counter<=sec)
-		  {
-	  		 sleep(1000);
-	  		 counter++;
-		  }
-			return isElementPresent(browser.findElement(by)); 
-		 }
-		 
-//#############################################################################################		 
-//CustomMethods 		 
-		 public void iSendKeys(WebElement we,String text)
-		 {	
-			do
-			{
-				we.click();
-				we.clear();
-			 	we.sendKeys(text);
-			}while(!we.getAttribute("value").equalsIgnoreCase(text));
-		 	
-		 	
-		 }
-		 
-		 public String getValue(WebElement we)
-		 {
-			 return we.getAttribute("value");
-		 }
-		 
-		 public void iSubmit(WebElement we) {
-				// TODO Auto-generated method stub
-			 	we.submit();
-		 }
-		 
-		 
-		 
-		
-			
-			
-			
-		 /*public void iclear(WebElement we) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			public String igetTagName(WebElement we) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			public String igetAttribute(String iname) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			public boolean isSelected(WebElement we) {
-				// TODO Auto-generated method stub
-				return false;
-			}
-			
-			public boolean isEnabled(WebElement we) {
-				// TODO Auto-generated method stub
-				return false;
-			}
-			
-			public String igetText(WebElement we) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			public List<WebElement> findElements(By by) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			public WebElement findElement(By by) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			public boolean isDisplayed(WebElement we) {
-				// TODO Auto-generated method stub
-				return false;
-			}
-			
-			public Point getLocation(WebElement we) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			/*public Dimension getSize(WebElement we) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			public Rectangle getRect(WebElement we) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			public String igetCssValue(String ipropertyName) {
-				// TODO Auto-generated method stub
-				return null;
-			}*/
-//################################################		
+		}
+		return null;
+	}
 
-		 
-		 
-}
-		 
+	/*
+	 * Method to enter MRC , NRC Value on order summary page
+	 * 
+	 * 
+	 * 
+	 */
 
+	public void enterValue(List<WebElement> we, WebElement we1, String value) throws InterruptedException {
+
+		for (int i = 0; i < we.size(); i++) {
+			waitForElement(we.get(i));
+			doubleClick(we.get(i));
+			Thread.sleep(1500);
+			waitForElement(we1);
+			we1.click();
+			we1.clear();
+			we1.sendKeys(value);
+			we1.sendKeys(Keys.ENTER);
+			Thread.sleep(2500);
+		}
+
+	}
+
+	protected void enterQuantity(WebElement we, String value) {
+		if (waitForElement(we)) {
+			we.click();
+			we.clear();
+			we.sendKeys(value);
+			we.sendKeys(Keys.TAB);
+		}
+	}
+
+	public boolean iterateThroughtableAndSelectCity(String city) throws InterruptedException {
+		int rowId = -1;
+		String cityXpath = "//*[.='State']/ancestor-or-self::form/descendant::div[.='" + city + "']";
+		waitforPageLoadComplete();
+		Thread.sleep(5000);
+		while (!isElementPresent(browser.findElement(By.xpath(cityXpath)))) {
+			Thread.sleep(2000);
+		}
+		/*
+		 * while(!isElementPresent(browser.findElement(By.tagName("tbody")))){
+		 * Thread.sleep(2000); }
+		 * 
+		 * 
+		 * while(!isElementPresent(table.findElements(By.tagName("tr")).get(0)))
+		 * { Thread.sleep(2000); }
+		 */
+		WebElement table = browser.findElement(By.tagName("tbody"));
+		List<WebElement> allRows = table.findElements(By.tagName("tr"));
+
+		for (int i = 0; i < allRows.size(); i++) {
+
+			List<WebElement> cells = allRows.get(i).findElements(By.tagName("td"));
+
+			if (city.equalsIgnoreCase(cells.get(2).getText())) {
+				rowId = i;
+				break;
+			}
+		}
+		if (rowId > -1) {
+
+			while (!isElementPresent(browser.findElement(By.id(Integer.toString(rowId))))) {
+				Thread.sleep(2000);
+			}
+			browser.findElement(By.id(Integer.toString(rowId))).click();
+
+		} else {
+			report.reportFailEvent("City selection", "City not found");
+		}
+
+		return (rowId > -1);
+	}
+
+	public void iClick(WebElement we) {
+		if ((new TestSettings()).getBrowser().equalsIgnoreCase("iexplore")
+				|| (new TestSettings()).getBrowser().equalsIgnoreCase("ie")) {
+			we.sendKeys(Keys.ENTER);
+		} else
+			we.click();
+
+	}
+
+	/**
+	 * Method to click any Web Element on the page
+	 * 
+	 * @param we
+	 *            The element in which we want to perform the action
+	 * @param waitForElement
+	 *            [Optional] Synchronization point in which we want to sync
+	 *            after the button click
+	 * @param description
+	 *            Description about the action performed on the UI.
+	 */
+	public void iClick(WebElement we, WebElement waitForElement, String description) {
+		if ((new TestSettings()).getBrowser().equalsIgnoreCase("iexplore")
+				|| (new TestSettings()).getBrowser().equalsIgnoreCase("ie")) {
+			we.sendKeys(Keys.ENTER);
+		} else
+			we.click();
+		waitforPageLoadComplete();
+		if (!(waitForElement == null)) {
+			waitForElement(waitForElement);
+		}
+		report.reportPassEvent("Button Click", description);
+
+	}
+
+	public boolean waitUntilElementPresent(By by, int sec) {
+		int counter = 0;
+		while ((!isElementPresent(browser.findElement(by))) && counter <= sec) {
+			sleep(1000);
+			counter++;
+		}
+		return isElementPresent(browser.findElement(by));
+	}
+
+	// #############################################################################################
+	// CustomMethods
+	public void iSendKeys(WebElement we, String text) {
+		do {
+			we.click();
+			we.clear();
+			we.sendKeys(text);
+		} while (!we.getAttribute("value").equalsIgnoreCase(text));
+
+	}
+
+	public String getValue(WebElement we) {
+		return we.getAttribute("value");
+	}
+
+	public void iSubmit(WebElement we) {
+		// TODO Auto-generated method stub
+		we.submit();
+	}
+
+	/*
+	 * public void iclear(WebElement we) { // TODO Auto-generated method stub
+	 * 
+	 * }
+	 * 
+	 * public String igetTagName(WebElement we) { // TODO Auto-generated method
+	 * stub return null; }
+	 * 
+	 * public String igetAttribute(String iname) { // TODO Auto-generated method
+	 * stub return null; }
+	 * 
+	 * public boolean isSelected(WebElement we) { // TODO Auto-generated method
+	 * stub return false; }
+	 * 
+	 * public boolean isEnabled(WebElement we) { // TODO Auto-generated method
+	 * stub return false; }
+	 * 
+	 * public String igetText(WebElement we) { // TODO Auto-generated method
+	 * stub return null; }
+	 * 
+	 * public List<WebElement> findElements(By by) { // TODO Auto-generated
+	 * method stub return null; }
+	 * 
+	 * public WebElement findElement(By by) { // TODO Auto-generated method stub
+	 * return null; }
+	 * 
+	 * public boolean isDisplayed(WebElement we) { // TODO Auto-generated method
+	 * stub return false; }
+	 * 
+	 * public Point getLocation(WebElement we) { // TODO Auto-generated method
+	 * stub return null; }
+	 * 
+	 * /*public Dimension getSize(WebElement we) { // TODO Auto-generated method
+	 * stub return null; }
+	 * 
+	 * public Rectangle getRect(WebElement we) { // TODO Auto-generated method
+	 * stub return null; }
+	 * 
+	 * public String igetCssValue(String ipropertyName) { // TODO Auto-generated
+	 * method stub return null; }
+	 */
+	// ################################################
+
+}

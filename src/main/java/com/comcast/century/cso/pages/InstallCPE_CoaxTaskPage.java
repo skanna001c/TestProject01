@@ -59,7 +59,7 @@ public class InstallCPE_CoaxTaskPage extends Page {
 	
 	private boolean mstatus = true;
 	
-	public boolean InstallCPE() throws InterruptedException{
+	public boolean InstallCPECoax() throws InterruptedException{
 		try{
 			if(waitForElement(SchCPEInstallDate)){
 				clickndRelease(SchCPEInstallDate);

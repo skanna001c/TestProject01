@@ -61,6 +61,9 @@ public class ServiceLevelTasks extends Page {
 	@FindBy(xpath = "//*[text()='Install CPE']")
 	private WebElement taskInstallCPE;
 	
+	@FindBy(xpath = "//*[text()='Install CPE (Coax)']")
+	private WebElement taskInstallCPECoax;
+
 	@FindBy(css = "a[onclick*='InstallCPE'][onclick*='INPROGRESS']")
 	private WebElement taskInstallCPE2;
 	
@@ -300,6 +303,27 @@ public class ServiceLevelTasks extends Page {
 		return mstatus;
 	}
 	
+	public boolean InstallCPECoax() throws InterruptedException{
+		try{
+			while(!isElementPresent(taskInstallCPECoax)){
+				Thread.sleep(1000);
+			}
+			if(waitForElement(taskInstallCPECoax)){
+				if(checkifStatusChanged(taskInstallCPECoax,btnRefresh,"INPROGRESS")){
+					waitForElement(taskInstallCPECoax);
+					jsClick(taskInstallCPECoax);
+					report.reportDoneEvent("Click InstallCPECoax Task", " InstallCPECoax Task Clicked");
+				}
+				waitforPageLoadComplete();
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
+
 	public boolean InstallCPE2() throws InterruptedException{
 		try{
 			if(waitForElement(taskInstallCPE2)){

@@ -11,6 +11,7 @@ import com.comcast.century.cm.pages.Page;
 import com.comcast.century.data.OrderSummaryInfo;
 import com.comcast.reporting.Status;
 import com.comcast.utils.SeleniumReport;
+import com.comcast.utils.TestUtils;
 
 public class CreateOrderBillingPackageTaskPage extends Page {
 
@@ -51,7 +52,7 @@ public class CreateOrderBillingPackageTaskPage extends Page {
 	@FindBy(xpath = "//button[text()='Today']")
 	private WebElement btnToday ;
 	
-	@FindBy(xpath = "//img[@id='.//*[@id='attachImg']")
+	@FindBy(xpath = ".//*[@id='attachImg']")
 	private WebElement linkAttachments ;
 	
 	@FindBy(css = "img#noteImg")
@@ -59,6 +60,9 @@ public class CreateOrderBillingPackageTaskPage extends Page {
 	
 	@FindBy(css = "iframe#notesframe")
 	private WebElement frameNotes;
+
+	@FindBy(css = "iframe#rightFrame")
+	private WebElement rightFrame;
 
 	@FindBy(xpath = "//select[@id='attachMode']")
 	private WebElement ddAttachmentRepository ;
@@ -85,9 +89,7 @@ public class CreateOrderBillingPackageTaskPage extends Page {
 			if(waitForElement(customerAcceptanceReceivedDate)){
 				clickndRelease(customerAcceptanceReceivedDate);
 				clickndRelease(btnToday);
-				OrderSummaryInfo orderSummaryInfo;
-				orderSummaryInfo = OrderSummaryInfo.loadFromDatatable(dataTable);
-				Attachments(orderSummaryInfo);
+				Attachments();
 				this.ClickCompleteButton();
 			}
 		}
@@ -157,7 +159,7 @@ public class CreateOrderBillingPackageTaskPage extends Page {
 		return mstatus;
 		
 	}
-	public boolean Attachments(OrderSummaryInfo orderSummaryInfo) throws AWTException, InterruptedException{
+	public boolean Attachments() throws AWTException, InterruptedException{
 		mstatus = true;
 		try {
 			waitForElement(linkAttachments);
@@ -165,18 +167,18 @@ public class CreateOrderBillingPackageTaskPage extends Page {
 			waitforPageLoadComplete();
 			WaitandSwitchToFrame(frameNotes);
 			waitForElement(ddAttachmentRepository);
-			new Select(ddAttachmentRepository).selectByVisibleText(orderSummaryInfo.attachmentRepository);
+			new Select(ddAttachmentRepository).selectByVisibleText("Century");
 			waitForElement(btnBrowse);
 			clickndRelease(btnBrowse);
 			Thread.sleep(5000);
-			uploadAttachments(orderSummaryInfo.filePath);
+			uploadAttachments(System.getProperty("user.dir") + "\\src\\test\\resources\\attachements.txt");
 			waitForElement(ddAttachmentType);
 			new Select(ddAttachmentType).selectByVisibleText("Customer Acceptance Doc");
 			waitForElement(btnAdd);
 			clickndRelease(btnAdd);
 			Thread.sleep(15000);
 			browser.switchTo().defaultContent();	
-			//WaitandSwitchToFrame(frameMain);
+			WaitandSwitchToFrame(rightFrame);
 			waitForElement(closeAttachmentWindow);
 			clickndRelease(closeAttachmentWindow);
 		} catch (Exception e) {
