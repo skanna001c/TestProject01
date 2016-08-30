@@ -78,7 +78,7 @@ public class CompleteFiberPlantBuildTaskPage extends Page {
 			if(waitForElement(btnComplete)){
 				windowHandle=browser.getWindowHandle();
 				System.out.println("main windowHandle" +windowHandle);
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete CompleteFiberPlantBuild Task: Complete CompleteFiberPlantBuild Task page: CompleteButton");
 				waitforPageLoadComplete();
 				//closeAllOtherWindows(windowHandle);
 				report.reportDoneEvent("Complete CompleteFiberPlantBuild Task", " CompleteFiberPlantBuild Task Completed");

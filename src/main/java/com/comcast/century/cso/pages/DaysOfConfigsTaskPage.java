@@ -45,7 +45,7 @@ public class DaysOfConfigsTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete DayofConfigs Task: Complete DayofConfigs Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete DayofConfigs Task", " DayofConfigs Task Completed");
 			}

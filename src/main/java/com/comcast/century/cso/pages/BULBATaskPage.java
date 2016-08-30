@@ -94,7 +94,7 @@ public class BULBATaskPage extends Page {
 		mstatus = true;
 		try{	
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete BULBA Task: Complete BULBA Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete BULBA Task", " BULBA Task Completed");
 			}

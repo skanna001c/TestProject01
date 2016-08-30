@@ -155,7 +155,7 @@ public class ADITaskPage extends Page {
 		mstatus = true;
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null, "Assign Design Information Task Complete: Assign Design Information Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete ADI Task", " ADI Task Completed");
 			}

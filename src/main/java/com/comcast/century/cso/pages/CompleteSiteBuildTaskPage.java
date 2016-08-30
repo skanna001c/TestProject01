@@ -80,7 +80,7 @@ public class CompleteSiteBuildTaskPage extends Page {
 			if(waitForElement(btnComplete)){
 				windowHandle=browser.getWindowHandle();
 			//	System.out.println("main windowHandle "+windowHandle);
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete CompleteSiteBuild Task: Complete CompleteSiteBuild Task page: CompleteButton");
 				//ClosePopUp();
 				waitforPageLoadComplete();
 				//closeAllOtherWindows(windowHandle);

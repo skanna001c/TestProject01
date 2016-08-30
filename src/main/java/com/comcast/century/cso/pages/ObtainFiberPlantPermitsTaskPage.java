@@ -114,7 +114,7 @@ public class ObtainFiberPlantPermitsTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete ObtainFiberPlantPermits Task: Complete ObtainFiberPlantPermits Task: CompleteButton");
 				waitforPageLoadComplete();
 				waitForElement(btnYes);
 				btnYes.click();

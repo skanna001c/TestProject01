@@ -153,6 +153,7 @@ public class ActivateServiceTaskPage extends Page {
 		mstatus = true;
 		try{
 			if(waitForElement(btnComplete)){
+				iClick(btnComplete, null, "Complete Activate Service: Activate service task page: CompleteButton");
 				btnComplete.click();
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete ActivateService Task", " ActivateService Task Completed");

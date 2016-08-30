@@ -109,7 +109,7 @@ public class ShipCPETaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete ShipCPE Task: Complete ShipCPE Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete ShipCPE Task", " ShipCPE Task Completed");
 			}

@@ -71,7 +71,7 @@ public class CCATTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete CCAT Task: Complete CCAT Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete CCAT Task", " CCAT Task Completed");
 			}

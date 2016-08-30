@@ -71,7 +71,7 @@ public class GenerateCPEConfigsTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete GenerateCPEConfigs Task: Complete GenerateCPEConfigs Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete GenerateCPEConfigs Task", " GenerateCPEConfigs Task Completed");
 			}

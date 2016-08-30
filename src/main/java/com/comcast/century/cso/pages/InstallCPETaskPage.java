@@ -132,7 +132,7 @@ public class InstallCPETaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete InstallCPE Task: Complete InstallCPE Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete InstallCPE Task", " InstallCPE Task Completed");
 			}

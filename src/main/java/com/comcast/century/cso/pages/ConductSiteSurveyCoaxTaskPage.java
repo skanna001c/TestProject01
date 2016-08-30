@@ -125,7 +125,7 @@ public class ConductSiteSurveyCoaxTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete ConductSiteSurveyCoax Task: Complete ConductSiteSurveyCoax Task page: CompleteButton");
 				waitforPageLoadComplete();
 				waitForElement(btnYes);
 				btnYes.click();

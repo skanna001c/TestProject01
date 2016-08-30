@@ -114,7 +114,7 @@ public class ObtainCoaxPermitsTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete ObtainCoaxPermits Task: Complete ObtainCoaxPermits Task page: CompleteButton");
 				waitforPageLoadComplete();
 				waitForElement(btnYes);
 				btnYes.click();

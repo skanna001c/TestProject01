@@ -132,9 +132,9 @@ public class InstallCPE_CoaxTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete InstallCPE_Coax Task: Complete InstallCPE_Coax Task page: CompleteButton");
 				waitforPageLoadComplete();
-				report.reportDoneEvent("Complete InstallCPE Task", " InstallCPE Task Completed");
+				report.reportDoneEvent("Complete InstallCPE_Coax Task", " InstallCPE Task Completed");
 			}
 		}
 		catch(Exception ex)

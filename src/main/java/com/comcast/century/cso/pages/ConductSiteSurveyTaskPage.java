@@ -173,7 +173,7 @@ public class ConductSiteSurveyTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete ConductSiteSurvey Task: Complete ConductSiteSurvey Task page: CompleteButton");
 				waitforPageLoadComplete();
 				waitForElement(btnYes);
 				btnYes.click();

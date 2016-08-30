@@ -71,7 +71,7 @@ public class GenerateCoreConfigsTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete GenerateCoreConfigs Task: Complete GenerateCoreConfigs Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete GenerateCoreConfigs Task", " GenerateCoreConfigs Task Completed");
 			}

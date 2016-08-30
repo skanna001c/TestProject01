@@ -171,7 +171,7 @@ public class CAETaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null ,"Complete CAE Task: Complete CAE Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete CAE Task", " CAE Task Completed");
 			}

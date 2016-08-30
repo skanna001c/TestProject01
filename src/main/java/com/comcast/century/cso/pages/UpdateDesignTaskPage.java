@@ -102,7 +102,7 @@ public class UpdateDesignTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null, "omplete UpdateDesign Task: omplete UpdateDesign Task Page: CompleteButton");
 				waitforPageLoadComplete();
 				waitForElementDisappear(elementLoading);
 				report.reportDoneEvent("Complete UpdateDesign Task", " UpdateDesign Task Completed");

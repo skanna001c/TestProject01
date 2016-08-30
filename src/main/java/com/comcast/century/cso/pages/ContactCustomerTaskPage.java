@@ -93,7 +93,7 @@ public class ContactCustomerTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete ContactCustomer Task: Complete ContactCustomer Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete ContactCustomer Task", " ContactCustomer Task Completed");
 			}

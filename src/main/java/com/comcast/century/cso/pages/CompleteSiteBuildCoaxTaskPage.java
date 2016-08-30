@@ -80,7 +80,7 @@ public class CompleteSiteBuildCoaxTaskPage extends Page {
 			if(waitForElement(btnComplete)){
 				windowHandle=browser.getWindowHandle();
 			//	System.out.println("main windowHandle "+windowHandle);
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete CompleteSiteBuildCoax Task: Complete CompleteSiteBuildCoax Task: CompleteButton");
 				//ClosePopUp();
 				waitforPageLoadComplete();
 				//closeAllOtherWindows(windowHandle);

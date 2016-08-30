@@ -119,7 +119,7 @@ public class StartBillingTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete StartBilling Task: Complete StartBilling Task Page: CompleteButton");
 				waitforPageLoadComplete();
 				waitForElementDisappear(elementLoading);
 				report.reportDoneEvent("Complete StartBilling Task", " StartBilling Task Completed");

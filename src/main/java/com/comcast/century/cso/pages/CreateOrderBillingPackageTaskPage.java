@@ -146,7 +146,7 @@ public class CreateOrderBillingPackageTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete StartBilling Task: Complete StartBilling Task page: CompleteButton");
 				waitforPageLoadComplete();
 				waitForElementDisappear(elementLoading);
 				report.reportDoneEvent("Complete StartBilling Task", " StartBilling Task Completed");

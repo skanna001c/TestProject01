@@ -71,7 +71,7 @@ public class LoadCoreConfigsTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete LoadCoreConfigs Task: Complete LoadCoreConfigs Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete LoadCoreConfigs Task", " LoadCoreConfigs Task Completed");
 			}

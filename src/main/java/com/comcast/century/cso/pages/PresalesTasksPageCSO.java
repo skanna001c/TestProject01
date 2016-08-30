@@ -79,7 +79,7 @@ public class PresalesTasksPageCSO extends Page {
 				txtNodeNumber.sendKeys(randomNumber(5));
 				new Select(ddServiceable).selectByValue("Yes");
 				waitForElement(btnComplete);
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete ConductCoaxServey Task: Complete ConductCoaxServey Task Page: CompleteButton");
 				btnYes.click();
 				waitforPageLoadComplete();
 				btnYes.click();

@@ -67,7 +67,7 @@ public class NotifyCustomerofServiceInstallationTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete NotifyCustomerofServiceInstallation Task: Complete NotifyCustomerofServiceInstallation Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete NotifyCustomerofServiceInstallation Task", " NotifyCustomerofServiceInstallation Task Completed");
 			}

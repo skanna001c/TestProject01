@@ -107,7 +107,7 @@ public class CompleteWavelengthReservationTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete CompleteWavelengthReservation Task: Complete CompleteWavelengthReservation Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete CompleteWavelengthReservation Task", " CompleteWavelengthReservation Task Completed");
 			}

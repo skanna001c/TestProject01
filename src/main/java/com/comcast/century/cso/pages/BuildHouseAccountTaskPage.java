@@ -114,7 +114,7 @@ public class BuildHouseAccountTaskPage extends Page {
 		mstatus = true;
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete BuildHouseAccount Task: omplete BuildHouseAccount Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete BuildHouseAccount Task", " BuildHouseAccount Task Completed");
 			}
