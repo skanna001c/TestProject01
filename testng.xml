@@ -5,10 +5,23 @@
 	<listener class-name="com.comcast.utils.TestFilter"/>
 	<listener class-name="com.comcast.utils.CustomAnnotationListener"></listener>
 </listeners>
-  <test name="New_Connect_ME_EDI_New_connect">
+  
+  
+   <test name="New_Connect_ME_ENS_New_connect">
     <classes>
-      <class name="com.comcast.century.newConnect.NewConnectTest">     
+      <class name="com.comcast.century.newConnect.NewConnectTest">
+      <methods>
+          <include name="createCustomer"/>
+          <include name="createServiceAccount" />
+          <include name="createBillingAccount" />
+          <include name="createAddress1" />  
+          <include name="createAddress2"></include> 
+          <include name="selectServiceENS"/>
+          <include name="processServiceENS"></include>
+          <include name="submitOrder"/> 
+          </methods> 
       </class>
     </classes>
-  </test> <!-- Test -->
+  </test>
+  
 </suite> <!-- Suite -->

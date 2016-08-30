@@ -24,7 +24,7 @@
     </classes>
   </test>
    -->
-  <test name="CancelSup_EPL_Service_Coax">
+ <!--  <test name="CancelSup_EPL_Service_Coax">
     <classes>
       <class name="com.comcast.century.newConnect.CancelSupEPLService">
       <methods>
@@ -55,7 +55,45 @@
           </methods> 
       </class>
     </classes>
+  </test> -->
+  
+   <test name="New_Connect_ME_EVPL_New_connect">
+    <classes>
+      <class name="com.comcast.century.newConnect.NewConnectTest">
+      <methods>
+          <include name="createCustomer"/>
+          <include name="createServiceAccount" />
+          <include name="createBillingAccount" />
+          <include name="createAddress1" />  
+          <include name="createAddress2"></include> 
+          <include name="createAddress3"/>
+          <include name="selectServiceEVPL"/>
+          <include name="processServiceEVPL"></include>
+          <include name="submitOrder"/> 
+          </methods> 
+      </class>
+    </classes>
   </test>
+  
+  
+  
+  
+   <!-- <test name="LabelFunctionality_CM">
+    <classes>
+      <class name="com.comcast.century.labelFunctionality.LabelFunctionalityCM">
+      <methods>
+          <include name="createLabelCM"></include>
+          <include name="createCustomer"/>
+          <include name="createServiceAccount" />
+          <include name="createBillingAccount" />
+          <include name="createAddress1" />  
+          <include name="selectService"></include> 
+          <include name="processService"/>
+          <include name="submitOrder"></include>
+          </methods> 
+      </class>
+    </classes>
+  </test> -->
   
   <!-- 	<test name="EOD_NC_ME_EDI_NewConnect_ERate">
 		<classes>

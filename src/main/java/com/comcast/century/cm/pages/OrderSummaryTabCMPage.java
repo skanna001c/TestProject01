@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -172,6 +173,9 @@ public class OrderSummaryTabCMPage extends Page {
 	@FindBy(xpath = "//*[@id='relatedOrderID']")
 	private WebElement txtRelatedOrderID ;
 	
+	@FindBy(xpath = "//div[.='Label(s) applied successfully']")
+	private WebElement msgLabelAppliedSuccessfully ;
+	
 	private boolean mstatus=true;
 	
 	private String relatedOrderIDValue;
@@ -206,7 +210,9 @@ public class OrderSummaryTabCMPage extends Page {
 	}
 	
 	
-	public boolean assignLabel(OrderSummaryInfo orderSummaryInfo){
+	public boolean assignLabelCM(String labelName){
+		
+		String xpathLabel="//div[text()='"+labelName+"']/../preceding-sibling::td/child::div/child::div";
 		mstatus = true;
 		try{
 			ShortWaitandSwitchToFrame(frameMain);
@@ -216,14 +222,20 @@ public class OrderSummaryTabCMPage extends Page {
 			waitforPageLoadComplete();
 			WaitandSwitchToFrame(frameCondition);
 			waitForElement(txtSelectLabel);
-			txtSelectLabel.sendKeys("CAT Test Orders");
-			waitForElement(chkboxCatTestOrders);
-			chkboxCatTestOrders.click();
+			txtSelectLabel.sendKeys(labelName);
+			waitUntilElementPresent(By.xpath(xpathLabel), 10);
+			WebElement chkboxLabelName= browser.findElement(By.xpath(xpathLabel));
+			chkboxLabelName.click();
 			btnApply.click();
+			if(waitForElement(msgLabelAppliedSuccessfully)){
+				report.reportPassEvent("Verify status", "label applied successfully");
+				report.updateTestLog("Verify status", "label applied successfully", Status.SCREENSHOT);
+			}else{
+				report.reportFailEvent("Verify status", "label not applied");
+			}
 			waitForElement(btnOk);
 			btnOk.click();
 			browser.switchTo().defaultContent();
-			//WaitandSwitchToFrame(frameMain);
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 			mstatus = false;

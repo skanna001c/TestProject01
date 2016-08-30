@@ -107,7 +107,24 @@ public class HomePageCM extends Page {
 	@FindBy(xpath = "//*[@id='CustomerFrame']")
 	private WebElement frameCustomer;
 	
+	@FindBy(css = "select#SEARCH_SERVICESTATUS")
+	private WebElement ddOrderStatus;
+	
 	private boolean mstatus;
+	
+	
+	public boolean clickOnHomeTab(){
+		try{
+			waitforPageLoadComplete();
+			waitForElement(tabHome);
+			iClick(tabHome);
+			waitforPageLoadComplete();
+		}catch(Exception e){
+			e.printStackTrace();
+			mstatus=false;
+		}
+		return mstatus;
+	}
 	
 	
 	
@@ -194,6 +211,12 @@ public class HomePageCM extends Page {
 	public String searchForHeldOrder(){
 		 String SRID = null;
 		try{
+			
+			WaitandSwitchToFrame(frameMain);
+			waitForElement(ddOrderStatus);
+			new Select(ddOrderStatus).selectByVisibleText("Held");
+			btnSearch.click();
+			
 			
 		}catch (Exception e) {
 			e.printStackTrace();

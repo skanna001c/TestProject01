@@ -119,7 +119,7 @@ public class EOD_NC_ME_EDI_NewConnect_ERate extends NewConnectTest {
 	  		processService();
 	  	}
 	   
-		if((new OrderSummaryTabCMPage(browser, report)).assignLabel(orderSummaryInfo)){
+		//if((new OrderSummaryTabCMPage(browser, report)).assignLabel(orderSummaryInfo)){
 			if((new OrderSummaryTabCMPage(browser, report)).enterOrderDetails(orderSummaryInfo)){
 				if((new OrderSummaryTabCMPage(browser, report)).mrcNrc_Value(orderSummaryInfo)){
 					if((new OrderSummaryTabCMPage(browser, report)).Attachments(orderSummaryInfo)){
@@ -129,9 +129,9 @@ public class EOD_NC_ME_EDI_NewConnect_ERate extends NewConnectTest {
 					}else Assert.fail("Uploading the Tax Excemption form failed");
 				}else Assert.fail("Entering NRC values failed");
 			}else Assert.fail("Entering order detrails failed");
-		}else Assert.fail("Assigning label failed");	
+		}//else Assert.fail("Assigning label failed");	
 	
-  } 
+   
   
   @Test(priority=801)
   @PerfTransaction(name="Conduct_Site_Survey_Coax")

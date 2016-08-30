@@ -116,10 +116,11 @@ public class ManageTab extends Page {
 	
 	public String createLabel(){
 		try{
-			
+			Thread.sleep(15000);
 			waitForElement(ddTextMoreActions);
 			ddValueSelect(ddTextMoreActions,ddValueCreateLabel,"Create Label");
 			iClick(btnGO);
+			Thread.sleep(2000);
 			waitForElement(textLabelName);
 			labelName="CATTest_Label"+randomNumber(5);
 			textLabelName.sendKeys(labelName);
