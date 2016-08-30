@@ -17,7 +17,7 @@ public class TestFilter implements IMethodInterceptor {
 
 		String testName = context.getCurrentXmlTest().getName();
 		TestSettings settings = new TestSettings();
-		IDataDump dataDump = new DataDump(testName);
+		IDataDump dataDump = new DataDump(testName,settings.getDumpLocation());
 
 		if(settings.getPERerunStatus().equalsIgnoreCase("true")){
 			dataDump.loadData();

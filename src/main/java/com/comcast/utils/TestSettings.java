@@ -194,6 +194,9 @@ public class TestSettings {
 	
 	// added by harsh for PE_Rerun
 	//83/2016
+	/**
+	 * Get the Packaged Execution rerun variable
+	 */
 	public String getPERerunStatus(){
 		String rerunstatus= System.getenv("PE_RERUN");
 		if(rerunstatus==null || rerunstatus == ""){
@@ -206,19 +209,56 @@ public class TestSettings {
 		return rerunstatus;
 	}
 	
+	// added by harsh for Alm update
+	//8/30/2016
+	/**
+	 * Get the update alm flag variable
+	 */
+	public String getUpdateALM(){
+		String update_alm= System.getenv("alm_update");
+		if(update_alm==null || update_alm == ""){
+			update_alm=properties.getProperty("alm_update","");
+		}
+		if(update_alm==null || update_alm == ""){
+			update_alm="false";
+		}
+		
+		return update_alm;
+	}
+	
+	// added by harsh for Alm update
+		//8/30/2016
+	/**
+	 * Get dump location for PE
+	 */
+	public String getDumpLocation(){
+		String dump_location= System.getenv("dump_location");
+		if(dump_location==null || dump_location == ""){
+			dump_location=properties.getProperty("dump_location","");
+		}
+		if(dump_location==null || dump_location == ""){
+			dump_location="false";
+		}
+		
+		return dump_location;
+	}
+	
 	// added by harsh for PE_Rerun
 		//8/15/2016
-		public String getGridIP(){
-			String rerunstatus= System.getenv("grid_ip");
-			if(rerunstatus==null || rerunstatus == ""){
-				rerunstatus=properties.getProperty("grid_ip","");
-			}
-			if(rerunstatus==null || rerunstatus == ""){
-				rerunstatus="false";
-			}
-			
-			return rerunstatus;
+	/**
+	 * Get the Packaged Execution rerun variable
+	 */
+	public String getGridIP(){
+		String rerunstatus= System.getenv("grid_ip");
+		if(rerunstatus==null || rerunstatus == ""){
+			rerunstatus=properties.getProperty("grid_ip","");
 		}
+		if(rerunstatus==null || rerunstatus == ""){
+			rerunstatus="false";
+		}
+		
+		return rerunstatus;
+	}
 	
 	/**
 	 * Get the if rerun is true or false
