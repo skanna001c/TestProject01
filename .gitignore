@@ -24,9 +24,6 @@ local.properties
 .factorypath
 
 
-# sbteclipse plugin
-.target
-
 # Tern plugin
 .tern-project
 
@@ -44,9 +41,11 @@ local.properties
 .Results
 
 *.class
+*.MF
 
 target/**
 Results/**
 test-output/**
 logs/**
+
 

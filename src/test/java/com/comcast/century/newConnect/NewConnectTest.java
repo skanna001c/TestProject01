@@ -254,6 +254,7 @@ public class NewConnectTest extends ComcastTest {
 		} else
 			Assert.fail(" Select service plan failed");
 	}
+
 	
 	@Test(priority = 510)
 	@PerfTransaction(name = "SelectServiceEVPL")
@@ -297,6 +298,7 @@ public class NewConnectTest extends ComcastTest {
 	
 	
 
+
 	// ###########################################################
 	@Test(priority = 600)
 	@PerfTransaction(name = "ProcessService")
@@ -307,6 +309,9 @@ public class NewConnectTest extends ComcastTest {
 		SRID = (new ProcessTabPageCM(browser, report)).ProcessConfiguration(processInfo);
 		getDataDump().setValue("SRID_RT", SRID);
 		if ((new ProcessTabPageCM(browser, report)).UNIConfiguration(processInfo, Site1)) {
+
+			getDataDump().setValue(processInfo.UNITransportType1 + "Site1_RT", Site1);
+
 			if ((new ProcessTabPageCM(browser, report)).EVCConfiguration_EDI(processInfo)) {
 				if ((new ProcessTabPageCM(browser, report)).EqFeeConfiguration(processInfo)) {
 					if ((new ProcessTabPageCM(browser, report)).ClickOnContinueButton()) {
@@ -328,7 +333,12 @@ public class NewConnectTest extends ComcastTest {
 		}
 		SRID = (new ProcessTabPageCM(browser, report)).ProcessConfiguration(processInfo);
 		getDataDump().setValue("SRID_RT", SRID);
+
 		if ((new ProcessTabPageCM(browser, report)).UNIConfiguration(processInfo, Site1)) {
+
+		if ((new ProcessTabPageCM(browser, report)).UNIConfiguration(processInfo, Site1))//CoaxSite1_RT
+			{getDataDump().setValue(processInfo.UNITransportType1 + "Site1_RT", Site1);
+
 			if ((new ProcessTabPageCM(browser, report)).EVCConfiguration_EDI(processInfo)) {
 				if ((new ProcessTabPageCM(browser, report)).ClickOnContinueButton()) {
 				} else
@@ -337,6 +347,8 @@ public class NewConnectTest extends ComcastTest {
 				Assert.fail("EVC configuration failed");
 		} else
 			Assert.fail("UNI configuration failed");
+	}
+		
 	}
 
 	@Test(priority = 612)
@@ -365,6 +377,7 @@ public class NewConnectTest extends ComcastTest {
 		} else
 			Assert.fail("UNI configuration failed");
 	}
+
 	
 	
 	@Test(priority = 620)
@@ -427,6 +440,7 @@ public class NewConnectTest extends ComcastTest {
 			Assert.fail("UNI configuration failed");
 	}
 
+
 	@Test(priority = 700)
 	public void submitOrder() throws InterruptedException, AWTException {
 		if (getDataDump().getValue("submitOrder_status").equalsIgnoreCase("FAIL")) {
@@ -472,7 +486,11 @@ public class NewConnectTest extends ComcastTest {
 				Assert.fail("Entering NRC values failed");
 		} else
 			Assert.fail("Entering order details failed");
+
 	}// else Assert.fail("Assigning label failed");
+
+		// }else Assert.fail("Assigning label failed");
+
 
 	/*
 	 * @Test(priority=800) public void SearchOrderndClickFirstFiberSiteFlow() {
@@ -506,9 +524,10 @@ public class NewConnectTest extends ComcastTest {
 	public void SearchOrderndLaunchCoaxSiteFlow() {
 		// (new OrderSummaryTabCMPage(browser,
 		// report)).NavigateToCSO(orderSummaryInfo);
-		// (new WorkOrderTabPageCSO(browser, report)).ClickBackButton(2);
-		for (int i = 1; i < Integer.parseInt(settings.getValue("MAXNOOFFIBERSITES")); i++) {
-			if (!(getDataDump().getValue("FiberSiteFlow" + i).equalsIgnoreCase("pass"))) {
+		// (new WorkOrderTabPageCSO(browser, report)).ClickBackButton(2)
+		for (int i = 1; i < Integer.parseInt(settings.getValue("MAXNOOFCOAXSITES")); i++) {
+			if (!(getDataDump().getValue("CoaxSiteFlow" + i).equalsIgnoreCase("pass"))) {
+
 				(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
 				(new WorkOrderTabPageCSO(browser, report))
 						.ClickCoaxSiteFlow(getDataDump().getValue("CoaxSite" + i + "_RT"));
@@ -517,6 +536,9 @@ public class NewConnectTest extends ComcastTest {
 		}
 
 	}
+		
+		
+	
 
 	public void SearchOrderndLaunchServiceRequest() {
 		// (new OrderSummaryTabCMPage(browser,
@@ -855,7 +877,9 @@ public class NewConnectTest extends ComcastTest {
 		EDIFlow();
 		// }
 		(new ServiceLevelTasks(browser, report)).InstallCPE();
-		(new InstallCPE_CoaxTaskPage(browser, report)).InstallCPE();
+
+		(new InstallCPE_CoaxTaskPage(browser, report)).InstallCPECoax();
+
 	}
 
 	@Test(priority = 2700)
@@ -883,6 +907,7 @@ public class NewConnectTest extends ComcastTest {
 		(new ActivateServiceTaskPage(browser, report)).ActivateService(serviceLevelTaskInfo);
 	}
 
+
 	@Test(priority = 3000)
 	public void Notify_Customer_of_Service_Installation() throws InterruptedException {
 		// if
@@ -893,6 +918,10 @@ public class NewConnectTest extends ComcastTest {
 		(new ServiceLevelTasks(browser, report)).NotifyCustomerofServiceInstallation();
 		(new NotifyCustomerofServiceInstallationTaskPage(browser, report)).NotifyCustomerofServiceInstallation();
 	}
+
+
+
+	
 
 	@Test(priority = 3100)
 	public void Complete_Customer_Acceptance_Testing(Method method) throws InterruptedException {
@@ -919,6 +948,7 @@ public class NewConnectTest extends ComcastTest {
 		(new CreateOrderBillingPackageTaskPage(browser, report)).CreateOrderBillingPackage();
 	}
 
+
 	@Test(priority = 3300)
 	public void Start_Billing() throws InterruptedException {
 		EDIFlow();
@@ -926,6 +956,7 @@ public class NewConnectTest extends ComcastTest {
 		(new ServiceLevelTasks(browser, report)).ClickBackButton();
 		(new ServiceLevelTasks(browser, report)).ClickBackButton();
 	}
+
 
 	@Test(priority = 3400)
 	public void EquipmentFeeFlow() throws InterruptedException {
