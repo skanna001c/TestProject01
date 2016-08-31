@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -54,6 +55,7 @@ public class NotifyCustomerofServiceInstallationTaskPage extends Page {
 				customerNotificationDate.click();
 				btnToday.click();
 				this.ClickCompleteButton();
+				waitForElement(browser.findElement(By.xpath("//*[text()='Notify Customer of Service Installation' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)
@@ -67,7 +69,7 @@ public class NotifyCustomerofServiceInstallationTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, btnBack, "Complete NotifyCustomerofServiceInstallation Task: Complete NotifyCustomerofServiceInstallation Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete NotifyCustomerofServiceInstallation Task", " NotifyCustomerofServiceInstallation Task Completed");
 			}

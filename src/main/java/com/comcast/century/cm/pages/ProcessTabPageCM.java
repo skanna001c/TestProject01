@@ -10,9 +10,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import com.comcast.century.cso.pages.WorkOrderTabPageCSO;
 import com.comcast.century.data.ProcessInfo;
+import com.comcast.century.data.ServiceInfo;
 import com.comcast.reporting.Status;
+import com.comcast.utils.DataDump;
+import com.comcast.utils.IDataDump;
 import com.comcast.utils.SeleniumReport;
+import com.comcast.utils.TestSettings;
 
 public class ProcessTabPageCM extends Page {
 
@@ -185,6 +190,98 @@ public class ProcessTabPageCM extends Page {
 		
 		private boolean mstatus;
 		
+		
+		public IDataDump processServices(ServiceInfo serviceInfo,ProcessInfo processInfo, IDataDump iDataDump){
+			
+			IDataDump localiDataDump=iDataDump;
+			try{
+				switch(serviceInfo.serviceName)
+				{
+				case "EDI" :
+					this.UNIConfiguration(processInfo,iDataDump.getValue("SITE1_RT"));
+					iDataDump=SetSite(processInfo.UNITransportType1,iDataDump.getValue("SITE1_RT"),iDataDump);
+					this.EVCConfiguration_EDI(processInfo);
+					break;
+				case "EPL" :
+					this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT") );
+					localiDataDump=SetSite(processInfo.UNITransportType1,localiDataDump.getValue("SITE1_RT"),localiDataDump);
+					this.UNI2Configuration(processInfo,localiDataDump.getValue("SITE2_RT"));
+					localiDataDump=SetSite(processInfo.UNITransportType2,localiDataDump.getValue("SITE2_RT"),localiDataDump);
+					this.EVCConfiguration_EPL(processInfo);
+					break;
+				case "ENS" :
+					this.UNIConfiguration(processInfo,iDataDump.getValue("SITE1_RT") );
+					iDataDump=SetSite(processInfo.UNITransportType1,iDataDump.getValue("SITE1_RT"),iDataDump);
+					this.UNI2Configuration(processInfo, iDataDump.getValue("SITE2_RT"));
+					iDataDump=SetSite(processInfo.UNITransportType2,iDataDump.getValue("SITE2_RT"),iDataDump);
+					this.EVCConfiguration_ENS(processInfo);
+					this.EVC2Configuration_ENS(processInfo);
+					break;
+				case "EVPL" :
+					this.UNIConfiguration(processInfo,iDataDump.getValue("SITE1_RT") );
+					iDataDump=SetSite(processInfo.UNITransportType1,iDataDump.getValue("SITE1_RT"),iDataDump);
+					this.UNI2Configuration(processInfo,iDataDump.getValue("SITE2_RT"));
+					iDataDump.setValue(processInfo.UNITransportType2+"SITE2_RT", iDataDump.getValue("SITE2_RT"));
+					this.UNI3Configuration(processInfo,iDataDump.getValue("SITE3_RT"));
+					iDataDump.setValue(processInfo.UNITransportType3+"SITE3_RT", iDataDump.getValue("SITE3_RT"));
+					this.EVCConfiguration_EVPL(processInfo);
+					this.EVC2Configuration_EVPL(processInfo);
+					break;
+				default :
+					System.out.println("Invalid Service");
+				}
+				
+				if( serviceInfo.equipmentFee.equalsIgnoreCase("0") || serviceInfo.equipmentFee ==null || serviceInfo.equipmentFee =="" ){
+					this.ClickOnContinueButton();
+				}
+				else if (serviceInfo.equipmentFee.equalsIgnoreCase("1")){
+					this.EqFeeConfiguration(processInfo);
+					this.ClickOnContinueButton();
+				}else if(serviceInfo.equipmentFee.equalsIgnoreCase("2")){
+					this.EqFeeConfiguration(processInfo);
+					this.EqFee2Configuration(processInfo);
+					this.ClickOnContinueButton();
+				}else if(serviceInfo.equipmentFee.equalsIgnoreCase("3")){
+					this.EqFeeConfiguration(processInfo);
+					this.EqFee2Configuration(processInfo);
+					this.EqFee3Configuration(processInfo);
+					this.ClickOnContinueButton();
+				}
+				
+				
+			}catch(Exception e){
+				e.printStackTrace();
+				return null;
+			}
+			return localiDataDump;
+		}
+		
+		
+		public IDataDump SetSite(String TT,String Site,IDataDump iDataDump)
+		{  int maxFiber=Integer.parseInt((new TestSettings().getValue("MAXNOOFFIBERSITES")));
+		   int maxCoax=Integer.parseInt((new TestSettings().getValue("MAXNOOFCOAXSITES")));
+		 if (TT.equalsIgnoreCase("fiber"))
+		 {
+		   for (int i = 1; i <= maxFiber; i++) {
+				if ((iDataDump.getValue("FiberSite" + i+"_RT").equalsIgnoreCase(""))) {
+					 iDataDump.setValue("FiberSite" + i+"_RT",Site);
+					 break;
+
+				}
+			}
+		  		}
+		 
+		 if (TT.equalsIgnoreCase("coax"))
+		 {
+		   for (int i = 1; i <= maxCoax; i++) {
+				if ((iDataDump.getValue("CoaxSite" + i+"_RT").equalsIgnoreCase(""))) {
+					 iDataDump.setValue("CoaxSite" + i+"_RT",Site);
+					 break;
+				}
+			}
+		  		}
+		 return iDataDump;
+		}
 		
 		/*Method to save terms on process page
 		 * 
@@ -698,6 +795,8 @@ public class ProcessTabPageCM extends Page {
 		
 		public boolean EqFeeConfiguration(ProcessInfo processInfo){
 			mstatus= true;
+			
+			
 			 try {
 				if(waitForElement(LinkEquipmentFee)){
 				 LinkEquipmentFee.click();

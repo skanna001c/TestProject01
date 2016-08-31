@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -80,11 +81,12 @@ public class CompleteSiteBuildCoaxTaskPage extends Page {
 			if(waitForElement(btnComplete)){
 				windowHandle=browser.getWindowHandle();
 			//	System.out.println("main windowHandle "+windowHandle);
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete CompleteSiteBuildCoax Task: Complete CompleteSiteBuildCoax Task: CompleteButton");
 				//ClosePopUp();
 				waitforPageLoadComplete();
 				//closeAllOtherWindows(windowHandle);
 				report.reportDoneEvent("Completed CompleteSiteBuildCoax Task", " CompleteSiteBuildCoax Task Completed");
+				waitForElement(browser.findElement(By.xpath("//*[text()='Complete Site Build(Coax)' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)

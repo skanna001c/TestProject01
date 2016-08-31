@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -64,6 +65,7 @@ public class UpdateDesignTaskPage extends Page {
 				new Select(ddBOMChanged).selectByValue("No");
 			}
 			this.ClickCompleteButton();
+			waitForElement(browser.findElement(By.xpath("//*[text()='Update Design' and contains(@onclick, 'COMPLETED')]")));
 		}	
 		catch(Exception ex)
 		{
@@ -102,7 +104,7 @@ public class UpdateDesignTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, btnBack, "omplete UpdateDesign Task: omplete UpdateDesign Task Page: CompleteButton");
 				waitforPageLoadComplete();
 				waitForElementDisappear(elementLoading);
 				report.reportDoneEvent("Complete UpdateDesign Task", " UpdateDesign Task Completed");

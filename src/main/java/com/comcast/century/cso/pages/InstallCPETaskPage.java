@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -69,6 +70,7 @@ public class InstallCPETaskPage extends Page {
 				//ActualCompletionDate.click();
 				btnToday.get(1).click();
 				this.ClickCompleteButton();
+				waitForElement(browser.findElement(By.xpath("//*[text()='Install CPE' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)
@@ -132,7 +134,7 @@ public class InstallCPETaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, btnBack, "Complete InstallCPE Task: Complete InstallCPE Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete InstallCPE Task", " InstallCPE Task Completed");
 			}

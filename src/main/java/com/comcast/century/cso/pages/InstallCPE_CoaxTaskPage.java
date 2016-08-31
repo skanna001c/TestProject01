@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -69,6 +70,7 @@ public class InstallCPE_CoaxTaskPage extends Page {
 				//ActualCompletionDate.click();
 				btnToday.get(1).click();
 				this.ClickCompleteButton();
+				waitForElement(browser.findElement(By.xpath("//*[text()='Install CPE (Coax)' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)
@@ -132,9 +134,9 @@ public class InstallCPE_CoaxTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, btnBack, "Complete InstallCPE_Coax Task: Complete InstallCPE_Coax Task page: CompleteButton");
 				waitforPageLoadComplete();
-				report.reportDoneEvent("Complete InstallCPE Task", " InstallCPE Task Completed");
+				report.reportDoneEvent("Complete InstallCPE_Coax Task", " InstallCPE Task Completed");
 			}
 		}
 		catch(Exception ex)

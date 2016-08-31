@@ -81,7 +81,7 @@ public class SCDBGPTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, btnBack, "Complete SetCriticalDates Task: Complete SetCriticalDates Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete SetCriticalDates Task", " SetCriticalDates Task Completed");
 			}

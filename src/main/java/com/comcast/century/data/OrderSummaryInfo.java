@@ -9,7 +9,6 @@ public class OrderSummaryInfo {
 	public String valueMRC;
 	public String valueNRC;
 	public String valueEqFeeMRC;
-	public String filePath;
 	public String goToApplication;
 	public String attachmentRepository;
 	public String attachmentType;
@@ -18,7 +17,7 @@ public class OrderSummaryInfo {
 	  
 	
 
-	public OrderSummaryInfo(String taxJurisdiction, String salesChannel, String soldRegion,String valueMRC,String valueNRC,String valueEqFeeMRC, String goToApplication,String filePath,String attachmentRepository, String attachmentType, String opportunityId ) {
+	public OrderSummaryInfo(String taxJurisdiction, String salesChannel, String soldRegion,String valueMRC,String valueNRC,String valueEqFeeMRC, String goToApplication,String attachmentRepository, String attachmentType, String opportunityId ) {
 		this.taxJurisdiction = taxJurisdiction;
 		this.salesChannel = salesChannel;
 		this.soldRegion = soldRegion;
@@ -26,7 +25,6 @@ public class OrderSummaryInfo {
 		this.valueNRC = valueNRC;
 		this.valueEqFeeMRC = valueEqFeeMRC;
 		this.goToApplication = goToApplication;
-		this.filePath = filePath;
 		this.attachmentRepository = attachmentRepository;
 		this.attachmentType = attachmentType;
 		this.opportunityId = opportunityId;
@@ -41,7 +39,6 @@ public class OrderSummaryInfo {
                 dataTable.getValue("valueNRC"),
                 dataTable.getValue("valueEqFeeMRC"),
                 dataTable.getValue("goToApplication"),
-                dataTable.getValue("filePath"),
                 dataTable.getValue("attachmentRepository"),
                 dataTable.getValue("attachmentType"),
                 dataTable.getValue("opportunityId"));

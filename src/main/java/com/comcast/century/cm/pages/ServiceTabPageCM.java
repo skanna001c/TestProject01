@@ -38,7 +38,7 @@ public class ServiceTabPageCM extends Page {
 	@FindBy(xpath = "//*[@id='mainFrame' and contains(@src,'loadServOrderManagementPanel.exc')]")
 	private WebElement frameMain;
 	
-	@FindBy(xpath = "//input[@id='loadAvailProduct']") //xpath = "//input[@id='loadAvailProduct']"
+	@FindBy(xpath = "//input[@id='loadAvailProduct']") 
 	private WebElement btnContinueAvailProduct;
 	
 	@FindBy(xpath = "//*[@id='loadSelectedProducts']")
@@ -77,7 +77,7 @@ public class ServiceTabPageCM extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
-	private boolean mstatus;
+	public boolean mstatus;
 	
 	public boolean ClickOnServiceTab(){
 		mstatus= true;
@@ -96,19 +96,63 @@ public class ServiceTabPageCM extends Page {
 	
 	
 	public boolean SelectPricePlan() throws InterruptedException{
-		boolean mStatus = true;
+		mstatus = true;
+		try{
+			WaitandSwitchToFrame(frameMain);
+			waitForElement(btnContinueAvailProduct);
+			iClick(btnContinueAvailProduct); 
+			waitForElementDisappear(elementLoading);
+		}catch(Exception e){
+			e.printStackTrace();
+			mstatus=false;
+		}
+		return mstatus;
+	}
 		
-		if (WaitandSwitchToFrame(frameMain)){
-			  if(waitForElement(btnContinueAvailProduct)){
-			  iClick(btnContinueAvailProduct);
-			  //jsClickWE(btnContinueAvailProduct);
-			  //scrollToElementandclick(btnContinueAvailProduct); 
-				waitForElementDisappear(elementLoading);
-				//scrollDown();
-				}else mStatus =false;
-			  }
-		  return mStatus;
-		  }
+		 
+	
+	
+	public boolean selectServices(ServiceInfo serviceInfo) throws InterruptedException{
+		mstatus=true;
+		try{
+			
+			this.ClickOnServiceTab();
+			this.SelectPricePlan();
+			switch(serviceInfo.serviceName)
+			{
+			case "EDI" :
+				this.EDI();
+				this.EquipmentFee(serviceInfo);
+				this.ClickOnContinueButton();
+				break;
+			case "EPL" :
+				this.EPL();
+				this.EquipmentFee(serviceInfo);
+				this.ClickOnContinueButton();
+				break;
+			case "ENS" :
+				this.ENS();
+				this.EquipmentFee(serviceInfo);
+				this.ClickOnContinueButton();
+				break;
+			case "EVPL" :
+				this.EVPL();
+				this.EquipmentFee(serviceInfo);
+				this.ClickOnContinueButton();
+				break;
+			default :
+				System.out.println("Invalid Service");
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			mstatus=false;
+		}	
+		return mstatus;
+	}
+	
+	
+	
 	
 			 public boolean EDI(){
 			  boolean mStatus = true; 
@@ -182,15 +226,17 @@ public class ServiceTabPageCM extends Page {
 			
 			public boolean EquipmentFee(ServiceInfo serviceInfo) throws InterruptedException{
 				boolean mStatus = true;
-				if(waitForElement(selectCheckBoxEqFee)){
-					selectCheckBoxEqFee.click();
-					Thread.sleep(2*1000);
-					if(waitForElement(txtEqFeeqt)){
-					txtEqFeeqt.click();	
-					txtEqFeeqt.clear();
-					txtEqFeeqt.sendKeys(serviceInfo.equipmentFee);
-					report.updateTestLog("Select Equipment Fee", "Equipment Fee Selected", Status.SCREENSHOT);
-					}else mStatus = false;
+				if((Integer.parseInt(serviceInfo.equipmentFee))>0){
+					if(waitForElement(selectCheckBoxEqFee)){
+						selectCheckBoxEqFee.click();
+						Thread.sleep(2*1000);
+						if(waitForElement(txtEqFeeqt)){
+						txtEqFeeqt.click();	
+						txtEqFeeqt.clear();
+						txtEqFeeqt.sendKeys(serviceInfo.equipmentFee);
+						report.updateTestLog("Select Equipment Fee", "Equipment Fee Selected", Status.SCREENSHOT);
+						}else mStatus = false;
+					}
 				}
 			return mStatus;	
 			}

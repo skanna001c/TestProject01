@@ -14,7 +14,7 @@ public class Validate_Related_Order_ID_attribute extends NewConnectTest {
 	
 	
 
-	 @Test(priority=650)
+	 @Test(priority=4600)
 	  @PerfTransaction(name="RelateOrderID")
 	  public void relatedOrderIDAttribute() throws InterruptedException{
 		  String relatedOrderIDValue;
@@ -23,7 +23,7 @@ public class Validate_Related_Order_ID_attribute extends NewConnectTest {
 	  }
 	 
 	 
-	 @Test(priority=850)
+	 @Test(priority=5100)
 	  public void validateRelatedOrderID() throws InterruptedException {	
 		  if (getDataDump().getValue("Conduct_Site_Survey_status").equalsIgnoreCase("fail"))
 		  {

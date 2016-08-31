@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import com.comcast.century.data.AccountInfo;
 import com.comcast.century.data.OrderSummaryInfo;
 import com.comcast.reporting.Status;
 import com.comcast.utils.SeleniumReport;
@@ -184,6 +185,25 @@ public class OrderSummaryTabCMPage extends Page {
 
 
 	private String relatedOrderIDValue;
+	
+	
+	public boolean submitOrder(OrderSummaryInfo orderSummaryInfo,String eRate){
+		try{
+
+			this.enterOrderDetails(orderSummaryInfo);
+			this.mrcNrc_Value(orderSummaryInfo);
+			if(eRate.equalsIgnoreCase("Yes")){
+				this.Attachments(orderSummaryInfo);
+			}
+			this.ClickSubmitOrderButton();
+			
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
 
 	public String verifyRelatedOrderIDAttribute() {
 		try {
@@ -302,7 +322,7 @@ public class OrderSummaryTabCMPage extends Page {
 			waitForElement(btnBrowse);
 			clickndRelease(btnBrowse);
 			Thread.sleep(5000);
-			uploadAttachments(orderSummaryInfo.filePath);
+			uploadAttachments(System.getProperty("user.dir") + "\\src\\test\\resources\\attachements.txt");
 			waitForElement(ddAttachmentType);
 			new Select(ddAttachmentType).selectByVisibleText(orderSummaryInfo.attachmentType);
 			waitForElement(btnAdd);

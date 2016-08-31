@@ -36,6 +36,12 @@ public class ManageTab extends Page {
 	@FindBy(css = "span#Manage")
 	private WebElement tabManage;
 	
+	@FindBy(xpath = "//iframe[@id='mainFrame']")
+	private WebElement frameMain;
+	
+	@FindBy(xpath = "//iframe[@id='LabelsFrame']")
+	private WebElement frameLabels;
+	
 	@FindBy(xpath = "//img[@class[contains(.,'expand-right')]]")
 	private WebElement btnExpand ;
 	
@@ -116,8 +122,10 @@ public class ManageTab extends Page {
 	
 	public String createLabel(){
 		try{
-			Thread.sleep(15000);
-			waitForElement(ddTextMoreActions);
+			if(WaitandSwitchToFrame(frameMain)){
+				WaitandSwitchToFrame(frameLabels);
+			}
+			while(!waitForElement(ddTextMoreActions)){}
 			ddValueSelect(ddTextMoreActions,ddValueCreateLabel,"Create Label");
 			iClick(btnGO);
 			Thread.sleep(2000);

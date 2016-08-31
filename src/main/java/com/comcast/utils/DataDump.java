@@ -19,13 +19,15 @@ public class DataDump implements IDataDump {
 	private Hashtable<String, String> dumpTable;
 	private Properties properties;
 	private String testName;
+	private String dumpLocation;
 	
 	
-	public DataDump(String testName){
+	public DataDump(String testName, String dumpLoc){
 		
 		properties = new Properties();
 		dumpTable = new Hashtable<String,String>();
 		this.testName = testName;
+		this.dumpLocation = dumpLoc;
 		
 	}
 	
@@ -71,13 +73,13 @@ public class DataDump implements IDataDump {
 			properties.put(key,dumpTable.get(key));
 			
 		}
-		File file = new File("C:\\dump\\dump_"+ testName + ".properties");
+		File file = new File(dumpLocation+"\\dump_"+ testName + ".properties");
 		if(!file.exists()){
 			file.getParentFile().mkdirs();
 			file.createNewFile();
 		}
 		
-		properties.store(new FileOutputStream("C:\\dump\\dump_"+ testName + ".properties"), "Dumping data to properties file");
+		properties.store(new FileOutputStream(dumpLocation+"\\dump_"+ testName + ".properties"), "Dumping data to properties file");
 	}
 	
 	/* (non-Javadoc)
@@ -87,7 +89,7 @@ public class DataDump implements IDataDump {
 	public Hashtable<String,String> loadData(){
 		
 		try {
-			properties.load(new FileInputStream("C:\\dump\\dump_"+ testName + ".properties"));
+			properties.load(new FileInputStream(dumpLocation+"\\dump_"+ testName + ".properties"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

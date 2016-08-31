@@ -92,7 +92,7 @@ public class EqFeeStartBillingTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, btnBack, "Complete EqFeeStartBilling Task: Complete EqFeeStartBilling Task page: CompleteButton");
 				waitforPageLoadComplete();
 				waitForElementDisappear(elementLoading);
 				report.reportDoneEvent("Complete EqFeeStartBilling Task", " EqFeeStartBilling Task Completed");

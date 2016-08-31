@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -81,6 +82,7 @@ public class ActivateServiceTaskPage extends Page {
 			}
 		}
 		this.ClickCompleteButton();
+		waitForElement(browser.findElement(By.xpath("//*[text()='Activate Service' and contains(@onclick, 'COMPLETED')]")));
 		}
 		catch(Exception Ex)
 		{
@@ -153,6 +155,7 @@ public class ActivateServiceTaskPage extends Page {
 		mstatus = true;
 		try{
 			if(waitForElement(btnComplete)){
+				iClick(btnComplete, btnBack, "Complete Activate Service: Activate service task page: CompleteButton");
 				btnComplete.click();
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete ActivateService Task", " ActivateService Task Completed");

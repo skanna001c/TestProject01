@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -71,9 +72,10 @@ public class GenerateCPEConfigsTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, btnBack, "Complete GenerateCPEConfigs Task: Complete GenerateCPEConfigs Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete GenerateCPEConfigs Task", " GenerateCPEConfigs Task Completed");
+				waitForElement(browser.findElement(By.xpath("//*[text()='Generate cpr Configs' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)

@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -45,9 +46,10 @@ public class DaysOfConfigsTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, btnBack, "Complete DayofConfigs Task: Complete DayofConfigs Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete DayofConfigs Task", " DayofConfigs Task Completed");
+				waitForElement(browser.findElement(By.xpath("//*[text()='Day of Configs' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)

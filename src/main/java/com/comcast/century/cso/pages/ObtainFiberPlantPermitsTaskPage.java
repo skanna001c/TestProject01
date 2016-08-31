@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -74,7 +75,7 @@ public class ObtainFiberPlantPermitsTaskPage extends Page {
 				PermitActualApprovedDate.click();
 				btnToday.get(1).click();
 				this.ClickCompleteButton();
-				
+				waitForElement(browser.findElement(By.xpath("//*[text()='Obtain Fiber Plant Permits' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)
@@ -114,7 +115,7 @@ public class ObtainFiberPlantPermitsTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete ObtainFiberPlantPermits Task: Complete ObtainFiberPlantPermits Task: CompleteButton");
 				waitforPageLoadComplete();
 				waitForElement(btnYes);
 				btnYes.click();

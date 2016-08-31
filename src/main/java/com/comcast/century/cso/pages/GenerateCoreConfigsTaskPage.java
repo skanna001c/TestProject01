@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -71,9 +72,10 @@ public class GenerateCoreConfigsTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, btnBack, "Complete GenerateCoreConfigs Task: Complete GenerateCoreConfigs Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete GenerateCoreConfigs Task", " GenerateCoreConfigs Task Completed");
+				waitForElement(browser.findElement(By.xpath("//*[text()='Generate Core Configs' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)

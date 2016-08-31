@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.awt.AWTException;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -91,6 +92,7 @@ public class CreateOrderBillingPackageTaskPage extends Page {
 				clickndRelease(btnToday);
 				Attachments();
 				this.ClickCompleteButton();
+				waitForElement(browser.findElement(By.xpath("//*[text()='Create Order Billing Package' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)
@@ -146,7 +148,7 @@ public class CreateOrderBillingPackageTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, btnBack, "Complete StartBilling Task: Complete StartBilling Task page: CompleteButton");
 				waitforPageLoadComplete();
 				waitForElementDisappear(elementLoading);
 				report.reportDoneEvent("Complete StartBilling Task", " StartBilling Task Completed");

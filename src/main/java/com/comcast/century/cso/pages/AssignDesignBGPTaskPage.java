@@ -76,7 +76,7 @@ public class AssignDesignBGPTaskPage extends Page {
 		mstatus = true;
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, btnBack, "Complete AssignDesignBGP Task: Complete AssignDesignBGP task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete AssignDesignBGP Task", " AssignDesignBGP Task Completed");
 			}

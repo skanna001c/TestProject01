@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -81,6 +82,7 @@ public class ObtainSiteAgreementTaskPage extends Page {
 				//ActualReceivedDate.click();
 				btnToday.get(1).click();	
 				this.ClickCompleteButton();
+				waitForElement(browser.findElement(By.xpath("//*[text()='Obtain Site Agreement(s)' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)
@@ -119,7 +121,7 @@ public class ObtainSiteAgreementTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				btnComplete.click();
+				iClick(btnComplete, null, "Complete ObtainSiteAgreement Task: Complete ObtainSiteAgreement Task Page: CompleteButton");
 				waitforPageLoadComplete();
 				waitForElement(btnYes);
 				btnYes.click();

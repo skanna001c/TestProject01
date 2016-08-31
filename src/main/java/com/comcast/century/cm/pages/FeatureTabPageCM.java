@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import com.comcast.century.data.ServiceInfo;
 import com.comcast.utils.SeleniumReport;
 
 public class FeatureTabPageCM extends Page {
@@ -101,7 +102,6 @@ public class FeatureTabPageCM extends Page {
 		try {
 			waitForElementDisappear(elementLoading);
 			if(waitForElement(txtUNIqt)){
-				//Thread.sleep(8000);
 				txtUNIqt.click();
 				txtUNIqt.clear();
 				keyPress(KeyEvent.VK_NUMPAD3,1);
@@ -140,6 +140,34 @@ public class FeatureTabPageCM extends Page {
 		
 	}
 	
+	
+	public boolean configureServices(ServiceInfo serviceInfo){
+		mstatus=true;
+		try{
+			
+			switch(serviceInfo.serviceName)
+			{
+			case "EDI" :
+				this.ClickOnContinueButton();
+				break;
+			case "EPL" :
+				this.ClickOnContinueButton();
+				break;
+			case "ENS" :
+				this.ENS();
+				break;
+			case "EVPL" :
+				this.EVPL();
+				break;
+			default :
+				System.out.println("Invalid Service");
+			}
+		}catch(Exception e){
+			mstatus=false;
+		}
+		return mstatus;
+	}
+	
 	public boolean ClickOnContinueButton() throws InterruptedException{
 		mstatus = true;		
 		try {
@@ -148,7 +176,6 @@ public class FeatureTabPageCM extends Page {
 			waitForElement(btnContinue);
 			waitForElement(btnContinue);
 			btnContinue.click();
-			//btnContinue.sendKeys(Keys.ENTER); Updated with click method for continue button By krajam003c
 		    waitForElementDisappear(elementLoading);			 
 	
 	} catch (Exception e) {
