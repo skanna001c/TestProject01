@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -71,9 +72,10 @@ public class CCATTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				iClick(btnComplete, null, "Complete CCAT Task: Complete CCAT Task page: CompleteButton");
+				iClick(btnComplete, btnBack, "Complete CCAT Task: Complete CCAT Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete CCAT Task", " CCAT Task Completed");
+				waitForElement(browser.findElement(By.xpath("//*[text()='Complete Customer Acceptance Testing' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}		
 		catch(Exception ex)

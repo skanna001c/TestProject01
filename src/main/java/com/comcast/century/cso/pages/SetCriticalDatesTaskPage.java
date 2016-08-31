@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -71,6 +72,7 @@ public class SetCriticalDatesTaskPage extends Page {
 				ScheduleCPEInstallDate.click();
 				btnToday.get(2).click();
 				this.ClickCompleteButton();
+				waitForElement(browser.findElement(By.xpath("//*[text()='Set Critical Dates' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)
@@ -99,7 +101,7 @@ public class SetCriticalDatesTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				iClick(btnComplete, null, "Complete SetCriticalDates Task: Complete SetCriticalDates Task page: CompleteButton");
+				iClick(btnComplete, btnBack, "Complete SetCriticalDates Task: Complete SetCriticalDates Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete SetCriticalDates Task", " SetCriticalDates Task Completed");
 			}

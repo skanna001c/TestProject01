@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -55,6 +56,8 @@ public class ContactCustomerTaskPage extends Page {
 				NextContactDate.click();
 				btnToday.click();
 				this.ClickCompleteButton();
+				waitForElement(btnBack);
+				waitForElement(browser.findElement(By.xpath("//*[text()='Contact Customer' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)
@@ -93,8 +96,10 @@ public class ContactCustomerTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				iClick(btnComplete, null, "Complete ContactCustomer Task: Complete ContactCustomer Task page: CompleteButton");
+				//iClick(btnComplete, null, "Complete ContactCustomer Task: Complete ContactCustomer Task page: CompleteButton");
+				doubleClick(btnComplete);
 				waitforPageLoadComplete();
+				sleep(5000);
 				report.reportDoneEvent("Complete ContactCustomer Task", " ContactCustomer Task Completed");
 			}
 		}

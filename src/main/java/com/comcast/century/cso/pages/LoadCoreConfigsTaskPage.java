@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -71,9 +72,10 @@ public class LoadCoreConfigsTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				iClick(btnComplete, null, "Complete LoadCoreConfigs Task: Complete LoadCoreConfigs Task page: CompleteButton");
+				iClick(btnComplete, btnBack, "Complete LoadCoreConfigs Task: Complete LoadCoreConfigs Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete LoadCoreConfigs Task", " LoadCoreConfigs Task Completed");
+				waitForElement(browser.findElement(By.xpath("//*[text()='Load Core Configs' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)

@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -87,6 +88,7 @@ public class ConductSiteSurveyCoaxTaskPage extends Page {
 				new Select(ddPowerStatus).selectByVisibleText("Existing Power");
 				new Select(ddEquipmentLocationDescription).selectByVisibleText("Leased Area");
 				this.ClickCompleteButton();
+				waitForElement(browser.findElement(By.xpath("//*[text()='Conduct Site Survey(Coax)' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)

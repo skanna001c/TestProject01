@@ -3,6 +3,7 @@ package com.comcast.century.cso.pages;
 import java.awt.AWTException;
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -60,7 +61,7 @@ public class ConductCoaxSurveyTaskPage extends Page {
 	@FindBy(xpath = "//select[@id='serviceable']")
 	private WebElement ddServiceable;
 	
-	@FindBy(xpath = "//span[text()='Yes']/following-sibling::*")
+	@FindBy(xpath = ".//Button[text()='Yes']")
 	private WebElement btnYes ;
 	
 	@FindBy(xpath = "//img[@title='Back']")
@@ -96,6 +97,7 @@ public class ConductCoaxSurveyTaskPage extends Page {
 				txtNodeNumber.sendKeys(randomNumber(5));
 				new Select(ddServiceable).selectByVisibleText("Yes");
 				this.ClickCompleteButton();
+				waitForElement(browser.findElement(By.xpath("//*[text()='Conduct Coax Survey' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)
@@ -139,6 +141,7 @@ public class ConductCoaxSurveyTaskPage extends Page {
 				waitForElement(btnYes);
 				btnYes.click();
 				//waitforPageLoadComplete();
+				waitForElement(btnYes);
 				btnYes.click();
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete ConductCoaxSurvey Task", " ConductCoaxSurvey Task Completed");

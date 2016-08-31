@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -78,10 +79,11 @@ public class CompleteFiberPlantBuildTaskPage extends Page {
 			if(waitForElement(btnComplete)){
 				windowHandle=browser.getWindowHandle();
 				System.out.println("main windowHandle" +windowHandle);
-				iClick(btnComplete, null, "Complete CompleteFiberPlantBuild Task: Complete CompleteFiberPlantBuild Task page: CompleteButton");
+				iClick(btnComplete, frameRight, "Complete CompleteFiberPlantBuild Task: Complete CompleteFiberPlantBuild Task page: CompleteButton");
 				waitforPageLoadComplete();
 				//closeAllOtherWindows(windowHandle);
 				report.reportDoneEvent("Complete CompleteFiberPlantBuild Task", " CompleteFiberPlantBuild Task Completed");
+				waitForElement(browser.findElement(By.xpath("//*[text()='Complete Fiber Plant Build' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)

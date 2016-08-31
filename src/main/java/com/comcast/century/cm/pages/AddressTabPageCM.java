@@ -316,6 +316,7 @@ public class AddressTabPageCM extends Page {
 					do{
 						if(waitForElement(ddtxtHeadendName)){							
 							do{
+								scrollDown();
 								ddValue(ddtxtHeadendName,siteInfo.headendName);
 							
 							}

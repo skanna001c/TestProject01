@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -78,11 +79,18 @@ public class CAETaskPage extends Page {
 				waitForElement(txtUNIid);
 				txtUNIid.sendKeys(serviceLevelTaskInfo.UNI1);
 				txtSiteCili.sendKeys(serviceLevelTaskInfo.siteCili);
+				this.ClickSaveButton();
+				waitForElement(linkRetrieveCircuitID);
 				linkRetrieveCircuitID.click();
 				Thread.sleep(5*1000);
 				txtProjectName.clear();
-				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
+				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);								
 				this.ClickCompleteButton();
+				if(waitForElement(btnComplete,5))
+				{
+					this.ClickCompleteButton();
+				}
+				waitForElement(browser.findElement(By.xpath("//*[text()='Create Account and Equipment' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception e){
@@ -171,7 +179,7 @@ public class CAETaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				iClick(btnComplete, null ,"Complete CAE Task: Complete CAE Task page: CompleteButton");
+				iClick(btnComplete, btnBack,"Complete CAE Task: Complete CAE Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete CAE Task", " CAE Task Completed");
 			}

@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -75,6 +76,7 @@ public class BuildHouseAccountTaskPage extends Page {
 			waitForElement(txtLBHouseAccountNumber);
 			txtLBHouseAccountNumber.sendKeys(siteLevelTaskInfo.localBillerHouseAccountNumber);
 			this.ClickCompleteButton();
+			waitForElement(browser.findElement(By.xpath("//*[text()='Build House Account' and contains(@onclick, 'COMPLETED')]")));
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 			mstatus = false;			
@@ -114,7 +116,7 @@ public class BuildHouseAccountTaskPage extends Page {
 		mstatus = true;
 		try{
 			if(waitForElement(btnComplete)){
-				iClick(btnComplete, null, "Complete BuildHouseAccount Task: omplete BuildHouseAccount Task page: CompleteButton");
+				iClick(btnComplete, frameRight, "Complete BuildHouseAccount Task: omplete BuildHouseAccount Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete BuildHouseAccount Task", " BuildHouseAccount Task Completed");
 			}

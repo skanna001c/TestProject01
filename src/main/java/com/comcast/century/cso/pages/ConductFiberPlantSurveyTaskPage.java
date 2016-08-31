@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.awt.AWTException;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -95,6 +96,7 @@ public class ConductFiberPlantSurveyTaskPage extends Page {
 				txtNodeNumber.sendKeys(randomNumber(5));
 				new Select(ddServiceable).selectByVisibleText("No");
 				this.ClickCompleteButton();
+				waitForElement(browser.findElement(By.xpath("//*[text()='Conduct Fiber Plant Survey' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)

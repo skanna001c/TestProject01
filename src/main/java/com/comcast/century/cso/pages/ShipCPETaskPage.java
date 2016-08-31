@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -69,6 +70,7 @@ public class ShipCPETaskPage extends Page {
 				ddSiteAddress.click();
 				ddvalueChkSiteAddress.click();
 				this.ClickCompleteButton();
+				waitForElement(browser.findElement(By.xpath("//*[text()='Ship CPE' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)
@@ -109,7 +111,7 @@ public class ShipCPETaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				iClick(btnComplete, null, "Complete ShipCPE Task: Complete ShipCPE Task page: CompleteButton");
+				iClick(btnComplete, btnBack, "Complete ShipCPE Task: Complete ShipCPE Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete ShipCPE Task", " ShipCPE Task Completed");
 			}

@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -87,6 +88,7 @@ public class ADITaskPage extends Page {
 				txtEVCid.clear();
 				txtEVCid.sendKeys(serviceLevelTaskInfo.EVC1);
 				this.ClickCompleteButton();
+				waitForElement(browser.findElement(By.xpath("//*[text()='Assign Design Information' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception e){
@@ -155,7 +157,7 @@ public class ADITaskPage extends Page {
 		mstatus = true;
 		try{
 			if(waitForElement(btnComplete)){
-				iClick(btnComplete, null, "Assign Design Information Task Complete: Assign Design Information Task page: CompleteButton");
+				iClick(btnComplete, btnBack, "Assign Design Information Task Complete: Assign Design Information Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete ADI Task", " ADI Task Completed");
 			}

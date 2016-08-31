@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -52,6 +53,7 @@ public class BULBATaskPage extends Page {
 			if(waitForElement(txtLBCustomerAccountNumber)){
 				txtLBCustomerAccountNumber.sendKeys(serviceLevelTaskInfo.localBillerCustomerAccountNumber);
 				this.ClickCompleteButton();
+				waitForElement(browser.findElement(By.xpath("//*[text()='Build Update Local Biller Account' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception e){
@@ -94,7 +96,7 @@ public class BULBATaskPage extends Page {
 		mstatus = true;
 		try{	
 			if(waitForElement(btnComplete)){
-				iClick(btnComplete, null, "Complete BULBA Task: Complete BULBA Task page: CompleteButton");
+				iClick(btnComplete, btnBack, "Complete BULBA Task: Complete BULBA Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete BULBA Task", " BULBA Task Completed");
 			}

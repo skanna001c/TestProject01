@@ -3081,8 +3081,8 @@ public abstract class Page {
 		} else
 			we.click();
 		waitforPageLoadComplete();
-		if (!(waitForElement == null)) {
-			waitForElement(waitForElement);
+		if (!(waitForElement == null)) {		
+			isElementClickable(waitForElement);
 		}
 		report.reportPassEvent("Button Click", description);
 

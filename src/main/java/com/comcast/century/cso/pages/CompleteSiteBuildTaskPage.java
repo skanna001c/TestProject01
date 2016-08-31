@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -80,11 +81,12 @@ public class CompleteSiteBuildTaskPage extends Page {
 			if(waitForElement(btnComplete)){
 				windowHandle=browser.getWindowHandle();
 			//	System.out.println("main windowHandle "+windowHandle);
-				iClick(btnComplete, null, "Complete CompleteSiteBuild Task: Complete CompleteSiteBuild Task page: CompleteButton");
+				iClick(btnComplete, frameRight, "Complete CompleteSiteBuild Task: Complete CompleteSiteBuild Task page: CompleteButton");
 				//ClosePopUp();
 				waitforPageLoadComplete();
 				//closeAllOtherWindows(windowHandle);
 				report.reportDoneEvent("Completed CompleteSiteBuild Task", " CompleteSiteBuild Task Completed");
+				waitForElement(browser.findElement(By.xpath("//*[text()='Complete Site Build' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)

@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -69,6 +70,7 @@ public class CompleteWavelengthReservationTaskPage extends Page {
 				waitForElementDisappear(elementLoading);
 				ddValueWavelength.click();
 				this.ClickCompleteButton();
+				waitForElement(browser.findElement(By.xpath("//*[text()='Complete Wavelength Reservation' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)
@@ -107,7 +109,7 @@ public class CompleteWavelengthReservationTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				iClick(btnComplete, null, "Complete CompleteWavelengthReservation Task: Complete CompleteWavelengthReservation Task page: CompleteButton");
+				iClick(btnComplete, frameRight, "Complete CompleteWavelengthReservation Task: Complete CompleteWavelengthReservation Task page: CompleteButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete CompleteWavelengthReservation Task", " CompleteWavelengthReservation Task Completed");
 			}
