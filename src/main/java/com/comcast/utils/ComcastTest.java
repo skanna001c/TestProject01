@@ -65,8 +65,14 @@ import com.comcast.reporting.Status;
  * Base class for all Comcast Test
  *
  */
+/**
+ * @author hbolak01c
+ *
+ */
 public class ComcastTest {
 	private long startTime;
+	private long startTestTime;
+	private String testStatus;
 	private long endTime;
 	private static long timeTaken1;
 	private static String watchedLog;
@@ -267,6 +273,7 @@ public class ComcastTest {
     	testStatusTable = new Hashtable<String,String>();
     	initializeSummaryReport();
     	testCaseName = context.getCurrentXmlTest().getName();
+    	testStatus = "Passed";
     	    	
 		//if(settings==null) // added by harsh on 8/2/2016
 			settings=new TestSettings();	
@@ -281,14 +288,14 @@ public class ComcastTest {
 			browser=getDriver(settings.getBrowser());
 		
     	initializeReport(testCaseName);
-		startTime = System.currentTimeMillis();
+		startTestTime = System.currentTimeMillis();
 		centuryApplication = new CenturyApplication(browser, report);
 		System.out.println("******Test Case Name :" +testCaseName+ "******");
 		
 		//updated by harsh on 8/3/2016
 		try{
 				dataTable = new DataTable(testCaseName);
-				dataDump = new DataDump(testCaseName);
+				dataDump = new DataDump(testCaseName,settings.getDumpLocation());
 				
 				if(settings.getPERerunStatus().equalsIgnoreCase("true")){				
 					dataDump.loadData();
@@ -400,6 +407,7 @@ public class ComcastTest {
 			methodStatus = "PASS";
 		}else{
 			methodStatus = "FAIL";
+			testStatus = "Failed";
 		}
 		
 		System.out.println("The transaction with name: " + result.getMethod().getMethodName() + " took :" + time);
@@ -423,6 +431,8 @@ public class ComcastTest {
 	//added by harsh on 8/3/2016
 	@AfterTest(alwaysRun=true)
 	public synchronized void afterTestMain(){
+		if(settings.getUpdateALM().equalsIgnoreCase("true"))
+			almRestUpdateStatus(); // added by harsh on 8/30/2016
 		try {
 			dataDump.deleteValue("CSOLoggedIN");
 			dataDump.deleteValue("CMLoggedIN");
@@ -894,6 +904,58 @@ public static void executeScript(String script) {
     } catch (Exception e) {
         e.printStackTrace();
     }
+}
+
+/**
+ * MethodName:almRestUpdateStatus
+ * Description: updates the status of the test in ALM with the corresponding execution test status
+ * 
+ */
+public void almRestUpdateStatus(){
+	
+	System.out.println("Inside ALM Rest Update");
+	  String reportPath=ReportPath.getInstance().getReportPath();
+	  //String testCaseQCName=testName.getName();
+	  createResultFile(reportPath,testStatus);
+	  System.out.println(testStatus);
+	  createZipFileOfReport(reportPath,testCaseName);	   
+	  
+	  endTime=System.currentTimeMillis();
+	  Long timeTaken=endTime-startTestTime;
+	  timeTaken1 = timeTaken1 + timeTaken;
+	    int h = (int) ((timeTaken / 1000) / 3600);
+		int m = (int) (((timeTaken / 1000) / 60) % 60);
+		int s = (int) ((timeTaken / 1000) % 60);
+		String time=""+m+":mm "+s+":ss";
+		
+		
+	  	timeTaken = timeTaken/1000; //Converting to seconds
+	    String duration = timeTaken.toString();
+	    //++nTestsFailed;	 	
+
+	  String testSetID=settings.getTestSetID();
+	  if (!(testSetID == null || testSetID ==""))
+	  {
+		  	ALMTestInformation ALMInfo= new ALMTestInformation();
+		  	ALMUpdaterClient ALMUpdate= new ALMUpdaterClient();
+	  		String testID;
+			try {
+			    testSetID=settings.getTestSetID();		    	
+		    	testID = ALMInfo.GetTestID(testCaseName);
+		    	ALMUpdate.createTestRUN(testSetID,testCaseName, testID, testStatus, duration);
+		    
+		    	String component = ALMInfo.getTestComponent(testID);
+		  		reportSummary.updateResultSummary(component, testCaseName, time, testStatus);
+					
+		  	
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	  }
+	  
+	
+	
 }
 	 
 }

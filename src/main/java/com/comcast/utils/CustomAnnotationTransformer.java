@@ -31,7 +31,7 @@ public class CustomAnnotationTransformer  implements IAnnotationTransformer{
 	
 		
 		System.out.println("inside transform method: "+testMethod.getName() + " inside: " + annotation.getTestName());
-		this.dumpTable = new DataDump(TestUtils.TestName);
+		this.dumpTable = new DataDump(TestUtils.TestName,settings.getDumpLocation());
 		dumpTable.loadData();
 
 			if(settings.getPERerunStatus().equalsIgnoreCase("true")){
