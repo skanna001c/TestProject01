@@ -26,8 +26,8 @@ public class ALMUpdaterClient extends ComcastTest {
        private static final String ALM_USER_NAME = Constants.USERNAME;
        private static final String ALM_PASSWORD = Constants.PASSWORD;
 
-       private static final String DOMAIN = "CET_SIT";
-       private static final String PROJECT = "SA_SIT";
+       private static final String DOMAIN = Constants.DOMAIN; //"CET_SIT";
+       private static final String PROJECT = Constants.PROJECT;//"CET_SIT_TEST";
 
   
        

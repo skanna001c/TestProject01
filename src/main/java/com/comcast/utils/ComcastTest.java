@@ -944,7 +944,8 @@ public void almRestUpdateStatus(){
 		  	ALMUpdaterClient ALMUpdate= new ALMUpdaterClient();
 	  		String testID;
 			try {
-			    testSetID=settings.getTestSetID();		    	
+			    testSetID=settings.getTestSetID();
+				//String testCaseNameToSend = "\""+testCaseName+"\"";
 		    	testID = ALMInfo.GetTestID(testCaseName);
 		    	ALMUpdate.createTestRUN(testSetID,testCaseName, testID, testStatus, duration);
 		    
