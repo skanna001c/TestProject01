@@ -92,7 +92,7 @@ public class SeleniumReport extends Report {
 	 * @param description
 	 */
 	public void reportPassEvent(String stepName,String description){
-		this.updateTestLog(stepName, description, Status.PASS);
+		this.updateTestLog(stepName, description, Status.DONE);
 	}
 	
 	/**

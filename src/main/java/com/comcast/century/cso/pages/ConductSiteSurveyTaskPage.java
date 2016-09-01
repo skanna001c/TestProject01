@@ -84,6 +84,9 @@ public class ConductSiteSurveyTaskPage extends Page {
 	@FindBy(xpath = "//b[.='External Related Order ID']/../following-sibling::td")
 	private WebElement valueRelatedOrderID;
 	
+	@FindBy(xpath = "//div[contains(.,'CATTest_Label')]")
+	private WebElement labelDisplay ;
+	
 	
 	private boolean mstatus= true;
 	
@@ -110,6 +113,29 @@ public class ConductSiteSurveyTaskPage extends Page {
 		}
 		return mstatus;
 	}
+	
+	
+	public boolean validateDisplayLabelInTask(String labelName){
+		
+		try{
+			
+			waitForElement(labelDisplay);
+			if(labelDisplay.getText().equalsIgnoreCase(labelName)){
+				report.updateTestLog("Verify label display at task level", "Display label Verified at task level", Status.SCREENSHOT);
+			}else report.reportFailEvent("Verify label display at task level", "Display label not Verified");
+			
+			
+		}catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	
+	
+	
+	
 	public boolean ConductSiteSurvey(SiteLevelTaskInfo siteLevelTaskInfo){
 		try{
 			if(waitForElement(ScheduledSurveyDate)){

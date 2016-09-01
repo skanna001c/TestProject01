@@ -5,7 +5,7 @@
 		<listener class-name="com.comcast.utils.TestFilter" />
 
 	</listeners>
-	 <test name="001_Validate Related Order ID attribute_Metro E New Connect"> 
+	 <!-- <test name="001_Validate Related Order ID attribute_Metro E New Connect"> 
 		<classes>
 			<class name="com.comcast.century.newConnect.Validate_Related_Order_ID_attribute"> 
 				<methods>
@@ -22,9 +22,31 @@
 				</methods>
 			</class>
 		</classes>
+	</test> -->
+	
+	<test name="002-Label_Functionality-CM"> 
+		<classes>
+			<class name="com.comcast.century.labelFunctionality.LabelFunctionalityCM"> 
+				<methods>
+				    <include name="createLabelCM"/>
+					<include name="createCustomer" /> 
+					<include name="createServiceAccount" /> 
+					<include name="createBillingAccount" />
+					<include name="createAddress1" />
+					<include name="selectService" />
+					<include name="configureService"/>
+					<include name="processService" />
+					<include name="assignLabelCM"/>					
+					<include name="submitOrderAndVerifyNotes"/>
+					<include name="verifyLabelCountCM"/>
+					<include name="verifyLabelCSO"/>	
+				</methods>
+			</class>
+		</classes>
 	</test>
+	
 
-	<test name="002 - EPL service">
+	<!-- <test name="002 - EPL service">
 		<classes>
 			<class name="com.comcast.century.newConnect.NewConnectTest">
 				<methods>
@@ -98,6 +120,6 @@
 				</methods>
 			</class>
 		</classes>
-	</test>
+	</test> -->
 	
 </suite> <!-- Suite -->

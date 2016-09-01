@@ -157,6 +157,9 @@ public class WorkOrderTabPageCSO extends Page {
 	@FindBy(xpath = "a[onclick*='callServOrder']")
 	private WebElement linkSOCount ;
 	
+	@FindBy(xpath = "//div[contains(.,'CATTest_Label')]")
+	private WebElement labelDisplay ;
+	
 	private boolean mstatus=true;
 	
 	
@@ -500,6 +503,23 @@ public class WorkOrderTabPageCSO extends Page {
 			mstatus = false;
 		}
 		return mstatus;
+	}
+	
+	public boolean verifyDisplayOfLabelName(String labelName,String fiberSite1){
+		mstatus=true;
+		try{
+			
+			this.ClickFiberSiteFlow(fiberSite1);
+			waitForElement(labelDisplay);
+			if(labelDisplay.getText().equalsIgnoreCase(labelName)){
+				report.updateTestLog("Verify label display", "Display label Verified", Status.SCREENSHOT);
+			}else report.reportFailEvent("Verify label display", "Display label Verified");
+			
+		}catch(Exception e){
+			mstatus = false;
+		}
+		return mstatus;
+		
 	}
 	
 }
