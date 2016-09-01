@@ -1,5 +1,6 @@
 package com.comcast.utils;
 
+import org.openqa.selenium.internal.Base64Encoder;
 import org.testng.annotations.Test;
 import java.io.File;
 import java.io.FileInputStream;
@@ -116,10 +117,12 @@ public class TestSettings {
 	 * Get the ALM Password for the rest API call
 	 */
 	public String getALM_Password(){
-		String ALM_Password= System.getenv("ALM_Password");
+/*		String ALM_Password= System.getenv("ALM_Password");
 		if(ALM_Password==null || ALM_Password == ""){
 			ALM_Password=properties.getProperty("ALM_Password","");
-		}
+		}*/
+		String ALM_ENC_Password = properties.getProperty("ALM_Password", "");
+		String ALM_Password = DecodeString(ALM_ENC_Password);
 		
 		return ALM_Password;
 	}
@@ -570,5 +573,12 @@ public class TestSettings {
 		}
 		
 		return DOMAIN;
+	}
+	
+	public String DecodeString(String input) {
+		if (input != null && !input.equals(""))
+			return new String(new Base64Encoder().decode(input));
+		else
+			return "";
 	}
 }
