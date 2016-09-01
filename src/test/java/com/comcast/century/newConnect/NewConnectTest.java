@@ -50,6 +50,7 @@ import com.comcast.century.cso.pages.ServiceLevelTasks;
 import com.comcast.century.cso.pages.SetCriticalDatesTaskPage;
 import com.comcast.century.cso.pages.ShipCPETaskPage;
 import com.comcast.century.cso.pages.SiteLevelTasks;
+import com.comcast.century.cso.pages.StartBillingTaskPage;
 import com.comcast.century.cso.pages.UpdateDesignTaskPage;
 import com.comcast.century.cso.pages.WorkOrderTabPageCSO;
 import com.comcast.century.data.AccountInfo;
@@ -388,15 +389,22 @@ public class NewConnectTest extends ComcastTest {
 	
 	@Test(priority = 14000)
 	public void Build_Update_Local_Biller_Account() throws InterruptedException {
-		EDIFlow();
+		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).BULBA();
+		(new BULBATaskPage(browser, report)).BULBA(serviceLevelTaskInfo);
+
+	}
+	@Test(priority = 14100)
+	public void Build_Update_Local_Biller_Account_2() throws InterruptedException {
+		SearchOrderndLaunchServiceFlow();
+		(new ServiceLevelTasks(browser, report)).BULBA2();
 		(new BULBATaskPage(browser, report)).BULBA(serviceLevelTaskInfo);
 
 	}
 
 	@Test(priority = 14500)
 	public void Ship_CPE() throws InterruptedException {
-		EDIFlow();
+		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).ShipCPE();
 		(new ShipCPETaskPage(browser, report)).ShipCPE(serviceLevelTaskInfo);
 
@@ -404,15 +412,23 @@ public class NewConnectTest extends ComcastTest {
 
 	@Test(priority = 15000)
 	public void Create_Account_and_Equipment() throws InterruptedException {
-		EDIFlow();
+		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).CAE();
 		(new CAETaskPage(browser, report)).CAE(serviceLevelTaskInfo);
+
+	}
+	
+	@Test(priority = 15100)
+	public void Create_Account_and_Equipment_EPL() throws InterruptedException {
+		SearchOrderndLaunchServiceFlow();
+		(new ServiceLevelTasks(browser, report)).CAE();
+		(new CAETaskPage(browser, report)).CAE_EPL(serviceLevelTaskInfo);
 
 	}
 
 	@Test(priority = 15500)
 	public void Assign_Design_Info() throws InterruptedException {
-		EDIFlow();
+		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).ADI();
 		(new ADITaskPage(browser, report)).ADI(serviceLevelTaskInfo);
 
@@ -420,7 +436,7 @@ public class NewConnectTest extends ComcastTest {
 
 	@Test(priority = 16000)
 	public void Generate_Core_Config() throws InterruptedException {
-		EDIFlow();
+		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).GenerateCoreConfigs();
 		(new GenerateCoreConfigsTaskPage(browser, report)).ClickCompleteButton();
 
@@ -428,21 +444,21 @@ public class NewConnectTest extends ComcastTest {
 
 	@Test(priority = 16500)
 	public void Generate_CPE_Config() throws InterruptedException {
-		EDIFlow();
+		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).GenerateCPEConfigs();
 		(new GenerateCPEConfigsTaskPage(browser, report)).ClickCompleteButton();
 	}
 
 	@Test(priority = 17000)
 	public void Load_Core_Config() throws InterruptedException {
-		EDIFlow();
+		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).LoadCoreConfigs();
 		(new LoadCoreConfigsTaskPage(browser, report)).ClickCompleteButton();
 	}
 
 	@Test(priority = 17500)
 	public void Install_CPE() throws InterruptedException {
-		EDIFlow();
+		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).InstallCPE();
 		(new InstallCPETaskPage(browser, report)).InstallCPE();
 	}
@@ -450,37 +466,53 @@ public class NewConnectTest extends ComcastTest {
 	@Test(priority = 18000)
 	@PerfTransaction(name = "Install_CPE_Coax")
 	public void Install_CPE_Coax() throws InterruptedException, AWTException {
-		EDIFlow();
+		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).InstallCPECoax();
 		(new InstallCPE_CoaxTaskPage(browser, report)).InstallCPECoax();
+
+	}
+	
+	@Test(priority = 18100)
+	@PerfTransaction(name = "Install_CPE_2")
+	public void Install_CPE_2() throws InterruptedException, AWTException {
+		SearchOrderndLaunchServiceFlow();
+		(new ServiceLevelTasks(browser, report)).InstallCPE2();
+		(new InstallCPETaskPage(browser, report)).ClickCompleteButton();
 
 	}
 
 	@Test(priority = 18500)
 	public void Set_Critical_Dates() throws InterruptedException {
-		EDIFlow();
+		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).SetCriticalDates();
 		(new SetCriticalDatesTaskPage(browser, report)).SetCriticalDates();
 	}
 
 	@Test(priority = 19000)
 	public void Day_of_Configs() throws InterruptedException {
-		EDIFlow();
+		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).DayofConfigs();
 		(new DaysOfConfigsTaskPage(browser, report)).ClickCompleteButton();
 	}
 
 	@Test(priority = 19500)
 	public void Activate_Service() throws InterruptedException {
-		EDIFlow();
+		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).ActivateService();
 		(new ActivateServiceTaskPage(browser, report)).ActivateService(serviceLevelTaskInfo);
+	}
+	
+	@Test(priority = 19600)
+	public void Activate_Service_EPL() throws InterruptedException {
+		SearchOrderndLaunchServiceFlow();
+		(new ServiceLevelTasks(browser, report)).ActivateService();
+		(new ActivateServiceTaskPage(browser, report)).ActivateService_EPL(serviceLevelTaskInfo);
 	}
 
 
 	@Test(priority = 20000)
 	public void Notify_Customer_of_Service_Installation() throws InterruptedException {
-		 EDIFlow();
+		 SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).NotifyCustomerofServiceInstallation();
 		(new NotifyCustomerofServiceInstallationTaskPage(browser, report)).NotifyCustomerofServiceInstallation();
 	}
@@ -488,7 +520,7 @@ public class NewConnectTest extends ComcastTest {
 	
 	@Test(priority = 20500)
 	public void Complete_Customer_Acceptance_Testing(Method method) throws InterruptedException {
-		EDIFlow();
+		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).CCAT();
 		(new CCATTaskPage(browser, report)).ClickCompleteButton();
 	}
@@ -496,7 +528,7 @@ public class NewConnectTest extends ComcastTest {
 	@Test(priority = 21000)
 	@PerfTransaction(name = "Create_Order_Billing_Package")
 	public void Create_Order_Billing_Package() throws AWTException, InterruptedException {
-		EDIFlow();
+		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).CreateOrderBillingPackage();
 		(new CreateOrderBillingPackageTaskPage(browser, report)).CreateOrderBillingPackage();
 	}
@@ -504,23 +536,23 @@ public class NewConnectTest extends ComcastTest {
 
 	@Test(priority = 21500)
 	public void Start_Billing() throws InterruptedException {
-		EDIFlow();
+		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).StartBilling();
-		(new ServiceLevelTasks(browser, report)).ClickBackButton();
+		(new StartBillingTaskPage(browser,report)).verifyNotes();
 		(new ServiceLevelTasks(browser, report)).ClickBackButton();
 	}
 
 
 	@Test(priority = 22000)
 	public void EquipmentFeeFlow() throws InterruptedException {
-		EDIFlow();
+		SearchOrderndLaunchServiceFlow();
 		(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
 		(new WorkOrderTabPageCSO(browser, report)).ClickEquipmentFeeFlow();
 	}
 
 	@Test(priority = 22500)
 	public void EqFeeStartBilling() throws InterruptedException {
-		EDIFlow();
+		SearchOrderndLaunchServiceFlow();
 		(new EqFeeFlowTasks(browser, report)).EqFeeStartBilling();
 		(new EqFeeStartBillingTaskPage(browser, report)).EqFeeStartBilling();
 		(new EqFeeFlowTasks(browser, report)).ClickBackButton();
@@ -556,63 +588,49 @@ public class NewConnectTest extends ComcastTest {
 				(new WorkOrderTabPageCSO(browser, report))
 						.ClickFiberSiteFlow(getDataDump().getValue("FiberSite" + i + "_RT"));
 				break;
-
 			}
 		}
-
 	}
 	
 	public void SearchOrderndLaunchCoaxSiteFlow() {
 		for (int i = 1; i <= Integer.parseInt(settings.getValue("MAXNOOFCOAXSITES")); i++) {
 			if (!(getDataDump().getValue("CoaxSiteFlow" + i).equalsIgnoreCase("pass"))) {
-
 				(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
 				(new WorkOrderTabPageCSO(browser, report))
 						.ClickCoaxSiteFlow(getDataDump().getValue("CoaxSite" + i + "_RT"));
 				break;
 			}
 		}
-
 	}
 	
-	
 	private void UpdateRespectiveFiberSiteFlows() {
-
 		for (int i = 1; i <= Integer.parseInt(settings.getValue("MAXNOOFFIBERSITES")); i++) {
 			if (!(getDataDump().getValue("FiberSiteFlow" + i).equalsIgnoreCase("pass"))) {
 				getDataDump().setValue("FiberSiteFlow" + i, "PASS");
 				break;
 			}
 		}
-
 	}
 
 	private void UpdateRespectiveCoaxSiteFlows() {
-
 		for (int i = 1; i <= Integer.parseInt(settings.getValue("MAXNOOFCOAXSITES")); i++) {
 			if (!(getDataDump().getValue("CoaxSiteFlow" + i).equalsIgnoreCase("pass"))) {
 				getDataDump().setValue("CoaxSiteFlow" + i, "PASS");
 				break;
 			}
-		}
-
+		}		
 	}
 	
-	public void EDIFlow() throws InterruptedException {
+	public void SearchOrderndLaunchServiceFlow() throws InterruptedException {
 		(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
-		(new WorkOrderTabPageCSO(browser, report)).ClickEDIFlow();
-
+		(new WorkOrderTabPageCSO(browser, report)).ClickServiceFlow();
 	}
 	
 	public void SearchOrderndLaunchServiceRequest() {
 		(new WorkOrderTabPageCSO(browser, report)).ClickBackButton(2);
 		(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
 		(new WorkOrderTabPageCSO(browser, report)).ClickFirstSiteFlow();
-
 	}
-	
-	
-	
 }
 
 
