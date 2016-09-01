@@ -124,6 +124,9 @@ public class OrderSummaryTabCMPage extends Page {
 
 	@FindBy(xpath = "//img[@id='manageattach-toolEl']")
 	private WebElement linkAttachments;
+	
+	@FindBy(css = "img[id*='managenotes']")
+	private WebElement linkNotes;
 
 	@FindBy(xpath = "//*[@id='notesframe']")
 	private WebElement frameNotes;
@@ -142,6 +145,9 @@ public class OrderSummaryTabCMPage extends Page {
 
 	@FindBy(xpath = "//span[text()='ATTACHMENTS']/../following-sibling::div[3]/child::img")
 	private WebElement closeAttachmentWindow;
+	
+	@FindBy(xpath = "//span[text()='NOTES']/../following-sibling::div[3]/child::img")
+	private WebElement closeNotesWindow;
 
 	@FindBy(xpath = "//*[@id='cmbcomboworkListActions-inputEl']")
 	private WebElement ddTextMoreActions;
@@ -177,12 +183,12 @@ public class OrderSummaryTabCMPage extends Page {
 	@FindBy(xpath = "//div[.='Label(s) applied successfully']")
 	private WebElement msgLabelAppliedSuccessfully ;
 	
+	@FindBy(xpath = "//div[contains(.,'OrderManagementBAT1 has assigned CATTest_Label')]")
+	private WebElement msgLabelNotes ;
+	
+	
+	
 	private boolean mstatus=true;
-
-
-
-
-
 
 	private String relatedOrderIDValue;
 	
@@ -266,10 +272,32 @@ public class OrderSummaryTabCMPage extends Page {
 
 		}catch(Exception e){
 
-			// WaitandSwitchToFrame(frameMain);
-
 			System.out.println(e.getMessage());
 			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	public boolean verifyNotesForLabels(){
+		mstatus=true;
+		try{
+			WaitandSwitchToFrame(frameMain);
+			waitForElement(linkNotes);
+			clickndRelease(linkNotes);
+			waitforPageLoadComplete();
+			WaitandSwitchToFrame(frameNotes);
+			while(!waitForElement(msgLabelNotes)){}
+			scrollDown();
+			if(isElementDisplayed(msgLabelNotes)){
+				report.updateTestLog("Verify if notes generated for label assigned", "Notes verified succesfully",Status.SCREENSHOT);
+			}else report.reportFailEvent("Verify if notes generated for label assigned", "Notes verification failed");
+			browser.switchTo().defaultContent();
+			WaitandSwitchToFrame(frameMain);
+			waitForElement(closeNotesWindow);
+			clickndRelease(closeNotesWindow);
+			browser.switchTo().defaultContent();
+		}catch(Exception e){
+			mstatus=false;
 		}
 		return mstatus;
 	}

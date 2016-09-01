@@ -501,7 +501,7 @@ public class ProcessTabPageCM extends Page {
 				 ddvalueSURCILI3.click();
 				 waitForElement(txtUNInumber);
 				 txtUNInumber.sendKeys(randomNumber(5));
-				 new Select(ddUNIPortSpeed).selectByVisibleText("No");;
+				 new Select(ddUNIPortSpeed).selectByVisibleText("10/100");;
 				 btnSave.click();
 				 report.reportDoneEvent("Save UNI~3 Configuration", "UNI~3 Configuration Saved");
 				 waitForElementDisappear(elementLoading);

@@ -66,7 +66,7 @@ public class ManageTab extends Page {
 	@FindBy(css = "input#labelName")
 	private WebElement textLabelName;
 	
-	@FindBy(css = "div[id='labelColorPalette']>div>div")
+	@FindBy(xpath = "//*[contains(@id,'splitbutton')]")
 	private WebElement btnLabelColor;
 	
 	@FindBy(css = "div[id*='colorpicker']>a")
@@ -122,9 +122,9 @@ public class ManageTab extends Page {
 	
 	public String createLabel(){
 		try{
-			if(WaitandSwitchToFrame(frameMain)){
-				WaitandSwitchToFrame(frameLabels);
-			}
+			
+			while(!WaitandSwitchToFrame(frameMain)){}
+			while(!WaitandSwitchToFrame(frameLabels)){}
 			while(!waitForElement(ddTextMoreActions)){}
 			ddValueSelect(ddTextMoreActions,ddValueCreateLabel,"Create Label");
 			iClick(btnGO);
@@ -132,9 +132,10 @@ public class ManageTab extends Page {
 			waitForElement(textLabelName);
 			labelName="CATTest_Label"+randomNumber(5);
 			textLabelName.sendKeys(labelName);
-			iClick(btnLabelColor);
-			waitForElement(labelColor.get(2));
-			iClick(labelColor.get(2));
+			sleep(5000);
+			/*jsClick(btnLabelColor);
+			while(!waitForElement(labelColor.get(2))){}
+			iClick(labelColor.get(2));*/
 			waitForElement(ddTextLabelPriority);
 			ddValueSelect(ddTextLabelPriority,ddValueLabelPriority,"2");
 			iClick(btnCreateLabel);
@@ -149,6 +150,7 @@ public class ManageTab extends Page {
 			browser.switchTo().defaultContent();
 		}catch(Exception e){
 			e.printStackTrace();
+		
 		}
 		return labelName;
 	}

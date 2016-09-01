@@ -110,12 +110,17 @@ public class HomePageCM extends Page {
 	@FindBy(css = "select#SEARCH_SERVICESTATUS")
 	private WebElement ddOrderStatus;
 	
+	@FindBy(css = "a[onClick*='callLabel']")
+	private WebElement labelCount;
+	
+	@FindBy(css = "img[src*='progress']")
+	private WebElement orderStatus;
+	
 	private boolean mstatus;
 	
 	
 	public boolean clickOnHomeTab(){
 		try{
-			waitforPageLoadComplete();
 			waitForElement(tabHome);
 			iClick(tabHome);
 			waitforPageLoadComplete();
@@ -149,20 +154,8 @@ public class HomePageCM extends Page {
 		 return mstatus;
 	}
 	
-	//added by harsh on 8/8 to ensure continuity in packaged execution
-	//commented by harsh on 8/16 as we need to find an alternate way tor ead data from data dump
 	public boolean searchCustomer(String custName){
 		mstatus = true;
-		//String custName = ComcastTest.getDataDump().getValue("CustomerName_RT");
-		//leftframe
-		//itforPageLoadComplete();
-		/*WaitandSwitchToFrame(frameLeft);
-		WebElement elem = browser.findElement(By.xpath("//span[@class=\"standartTreeRow\" and contains(.,'"+custName+"')]"));
-		if(shortWaitForElement(elem)) {
-			elem.click();
-			
-		}else{*/
-			//span[@class="standartTreeRow" and contains(.,'ProdTest_ENT_R16.07_EDI_NC56515')]
 		try{
 			waitforPageLoadComplete();
 			WaitandSwitchToFrame(frameMain);			 
@@ -177,11 +170,6 @@ public class HomePageCM extends Page {
 				e.printStackTrace();
 				mstatus = false;
 			}
-			 //WaitandSwitchToFrame(frameMain);
-			 //WaitandSwitchToFrame(frameCustomer);
-			 //waitForElement(browser.findElement(By.xpath(".//*[@id='busiCustBean.businessName']")));
-				
-		 //clickServiceAcc.click();
 		return mstatus;
 		}
 	
@@ -189,13 +177,10 @@ public class HomePageCM extends Page {
 		mstatus = true;
 		
 		try{
-			waitforPageLoadComplete();
 			WaitandSwitchToFrame(frameMain);
 			txtSRID.sendKeys(SRID);
 			btnSearch.click();
 			waitforPageLoadComplete();
-			browser.findElement(By.xpath("//span[contains(.,'"+SRID+"')]")).click();
-			waitForElementDisappear(elementLoading);
 			browser.switchTo().defaultContent();
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -206,24 +191,30 @@ public class HomePageCM extends Page {
 		return mstatus;
 	}
 	
-	
-	
-	public String searchForHeldOrder(){
-		 String SRID = null;
+	public boolean verifyLabelCountAndOrderStatus(){
+		mstatus = true;
 		try{
 			
 			WaitandSwitchToFrame(frameMain);
-			waitForElement(ddOrderStatus);
-			new Select(ddOrderStatus).selectByVisibleText("Held");
-			btnSearch.click();
+			waitForElement(labelCount);
+			if(labelCount.getText().equalsIgnoreCase("1")){
+				report.reportDoneEvent("Verify label count", "label count verified");
+			}else report.reportFailEvent("Verify label count", "label count not verified");
+			if(isElementDisplayed(orderStatus)){
+				report.updateTestLog("Verify order status as INPROGRESS", "Status verified",Status.SCREENSHOT);
+			}else report.reportFailEvent("Verify order status as INPROGRESS", "Status not verified");
+			browser.switchTo().defaultContent();
 			
-			
-		}catch (Exception e) {
+		}catch(Exception e){
 			e.printStackTrace();
 			mstatus = false;
 		}
-		return SRID;
+		return mstatus;
 	}
+	
+	
+	
+	
 
 	
 	}

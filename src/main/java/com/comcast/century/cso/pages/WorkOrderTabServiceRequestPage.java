@@ -1,5 +1,7 @@
 package com.comcast.century.cso.pages;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,7 +13,7 @@ import com.comcast.utils.SeleniumReport;
 
 public class WorkOrderTabServiceRequestPage extends Page {
 
-	protected WorkOrderTabServiceRequestPage(WebDriver browser, SeleniumReport report) {
+	public WorkOrderTabServiceRequestPage(WebDriver browser, SeleniumReport report) {
 		super(browser, report);
 		// TODO Auto-generated constructor stub
 	}
@@ -70,6 +72,9 @@ public class WorkOrderTabServiceRequestPage extends Page {
 	@FindBy(xpath = "//*[@id='srDetailCodition']")
 	private WebElement frameDetailCondition;
 	
+	@FindBy(xpath = "img[class*='close']")
+	private WebElement closeLabelWindow;
+	
 	@FindBy(xpath = "//input[@placeholder='---Select Label---']")
 	private WebElement txtSelectLabel;
 	
@@ -85,8 +90,8 @@ public class WorkOrderTabServiceRequestPage extends Page {
 	@FindBy(xpath = "//a[contains(@onclick,'callLabel')]")
 	private WebElement labelCount ;
 	
-	@FindBy(xpath = "//div[.='Doe, John']")
-	private WebElement labeladdedBy ;
+	@FindBy(xpath = "//div[contains(@style,'!important')]")
+	private List<WebElement> labelContent ;
 	
 	@FindBy(xpath = "//a[contains(@onclick,'callServOrder')]")
 	private WebElement linkSOCount ;
@@ -108,6 +113,42 @@ public class WorkOrderTabServiceRequestPage extends Page {
 		}
 		return mstatus;
 	}
+ 
+ 
+	public boolean verifyLabelCSO(String SRID,String labelName) {
+		mstatus = true;
+		try {
+			
+			waitforPageLoadComplete();
+			waitForElement(btnExpand);
+			btnExpand.click();
+			btnExpandOrderSearch.click();
+			LinkServiceRequest.click();
+			waitforPageLoadComplete();
+			WaitandSwitchToFrame(frameRight);
+			waitForElementDisappear(elementLoading);
+			waitForElement(txtServiceReqId);
+			txtServiceReqId.sendKeys(SRID);
+			waitForElement(btnSearch);
+			iClick(btnSearch);
+			waitForElementDisappear(elementLoading);
+            browser.switchTo().defaultContent();
+            this.verifyLabelContent(labelName);
+            waitForElement(linkSOCount);
+			iClick(linkSOCount);
+			waitforPageLoadComplete();
+			waitForElement(labelCount);
+			if(labelCount.getText().equalsIgnoreCase("1")){
+				report.updateTestLog("Verify label count in SO", "Label count Verified", Status.SCREENSHOT);
+			} else report.reportFailEvent("Verify label count in SO", "Label count not  Verified");
+		} catch (Exception e) {
+			e.printStackTrace();
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	 
+ 
 	
 	public boolean assignLabel(String SRID,String labelName){
 		
@@ -155,36 +196,29 @@ public class WorkOrderTabServiceRequestPage extends Page {
 		  return mstatus;
 	  }
 	
-	public boolean verifyLabels(String SRID, String labelName ){
-		String labelAddedBy = "Doe, John";
+	public boolean verifyLabelContent(String labelName){
+		
 		try{
 			WaitandSwitchToFrame(frameRight);
-			if(waitForElement(labelCount)){
+			waitForElement(labelCount);
 				if(labelCount.getText().equalsIgnoreCase("1")){
-				report.reportPassEvent("Verify label count", "Label count verified");
-			}else{
-			    report.reportFailEvent("Verify label count","Label count not verified" );}
-			}
+				report.updateTestLog("Verify label count", "Label count verified",Status.SCREENSHOT);
+			}else  report.reportFailEvent("Verify label count","Label count not verified" );
 			iClick(labelCount);
 			waitforPageLoadComplete();
 			WaitandSwitchToFrame(frameDetailCondition);
-			WebElement LabelName = browser.findElement(By.xpath("//div[text()='"+labelName+"']"));
-			if(waitForElement(LabelName)){
-				if(LabelName.getText().equalsIgnoreCase(labelName)){
-					report.reportPassEvent("Verify lable name", "Label Name Verified");
-					report.updateTestLog("Verify lable name", "Label Name Verified", Status.SCREENSHOT);
-				}else{
-					report.reportFailEvent("Verify lable name", "Label Name not verified");
-				}
-			}if(waitForElement(labeladdedBy)){
-				if(labeladdedBy.getText().equalsIgnoreCase(labelAddedBy)){
-					report.reportPassEvent("Verify lable added by", "Label added by verified");
-				}else{
-					report.reportFailEvent("Verify lable added by", "Label added by not verified");
-				}
-			
-		}
+			if(labelContent.get(0).getText().equalsIgnoreCase(labelName)){
+				if(labelContent.get(1).getText().equalsIgnoreCase("Doe, John")){
+					if(isElementDisplayed(labelContent.get(2))){
+						report.reportPassEvent("Verify label added date & time", "label added date & time present");
+					}else report.reportFailEvent("Verify label added date & time", "label added date & time not present");
+					report.reportPassEvent("Verify label added by", "label added by verified");
+				}else report.reportFailEvent("Verify label added by", "label added by not verified");
+				report.updateTestLog("Verify label name", "label name verified",Status.SCREENSHOT);
+			}else report.reportFailEvent("Verify label name", "label name not verified");
 			browser.switchTo().defaultContent();
+			WaitandSwitchToFrame(frameRight);
+			closeLabelWindow.click();
 		}catch(Exception e){
 			e.printStackTrace();
 			mstatus=false;

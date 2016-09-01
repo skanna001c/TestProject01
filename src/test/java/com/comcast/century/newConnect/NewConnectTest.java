@@ -68,15 +68,15 @@ import com.comcast.utils.PerfTransaction;
 
 public class NewConnectTest extends ComcastTest {
 
-	private CustomerInfo customerInfo;
-	private AccountInfo accountInfo;
-	private ContactInfo contactInfo;
-	private SiteInfo siteInfo;
-	private ServiceInfo serviceInfo;
-	private ProcessInfo processInfo;
-	private OrderSummaryInfo orderSummaryInfo;
-	private SiteLevelTaskInfo siteLevelTaskInfo;
-	private ServiceLevelTaskInfo serviceLevelTaskInfo;
+	protected CustomerInfo customerInfo;
+	protected AccountInfo accountInfo;
+	protected ContactInfo contactInfo;
+	protected SiteInfo siteInfo;
+	protected ServiceInfo serviceInfo;
+	protected ProcessInfo processInfo;
+	protected OrderSummaryInfo orderSummaryInfo;
+	protected SiteLevelTaskInfo siteLevelTaskInfo;
+	protected ServiceLevelTaskInfo serviceLevelTaskInfo;
 
 	String SRID;
 	String SurveyID;

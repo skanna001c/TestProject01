@@ -104,11 +104,13 @@ public class FeatureTabPageCM extends Page {
 			if(waitForElement(txtUNIqt)){
 				txtUNIqt.click();
 				txtUNIqt.clear();
-				keyPress(KeyEvent.VK_NUMPAD3,1);
+				iSendKeys(txtUNIqt, "3");
+				//keyPress(KeyEvent.VK_NUMPAD3,1);
 				waitForElement(txtUNIandEVCqt.get(0));
 				txtUNIandEVCqt.get(0).click();
 				txtUNIandEVCqt.get(0).clear();
-				keyPress(KeyEvent.VK_NUMPAD2,1);
+				//keyPress(KeyEvent.VK_NUMPAD2,1);
+				iSendKeys(txtUNIandEVCqt.get(0), "2");
 				scrollDown();
 				waitForElement(btnContinue);
 				clickndRelease(btnContinue);
