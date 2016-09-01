@@ -23,7 +23,7 @@
 		</classes>
 	</test>
 
-	<test name="002 - EPL service">
+	<test name="002-EPL_service">
 		<classes>
 			<class name="com.comcast.century.newConnect.NewConnectTest">
 				<methods>
