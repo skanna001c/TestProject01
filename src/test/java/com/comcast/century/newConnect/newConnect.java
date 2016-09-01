@@ -157,7 +157,7 @@ public class newConnect extends ComcastTest {
 		(new UpdateDesignTaskPage(browser, report)).UpdateDesign();
 		(new SiteLevelTasks(browser, report)).ClickBackButton();
 		
-		(new WorkOrderTabPageCSO(browser, report)).ClickEDIFlow();
+		(new WorkOrderTabPageCSO(browser, report)).ClickServiceFlow();
 		serviceLevelTaskInfo = ServiceLevelTaskInfo.loadFromDatatable(dataTable);
 		(new ServiceLevelTasks(browser, report)).BULBA();
 		(new BULBATaskPage(browser, report)).BULBA(serviceLevelTaskInfo);
@@ -255,7 +255,7 @@ public class newConnect extends ComcastTest {
 		(new ServiceLevelTasks(browser, report)).UpdateDesign();
 		(new UpdateDesignTaskPage(browser, report)).UpdateDesign();
 		(new SiteLevelTasks(browser, report)).ClickBackButton();
-		(new WorkOrderTabPageCSO(browser, report)).ClickEDIFlow();
+		(new WorkOrderTabPageCSO(browser, report)).ClickServiceFlow();
 		serviceLevelTaskInfo = ServiceLevelTaskInfo.loadFromDatatable(dataTable);
 		(new ServiceLevelTasks(browser, report)).BULBA();
 		(new BULBATaskPage(browser, report)).BULBA(serviceLevelTaskInfo);
@@ -365,7 +365,7 @@ public class newConnect extends ComcastTest {
 		(new ServiceLevelTasks(browser, report)).UpdateDesign();
 		(new UpdateDesignTaskPage(browser, report)).UpdateDesign();
 		(new SiteLevelTasks(browser, report)).ClickBackButton();
-		(new WorkOrderTabPageCSO(browser, report)).ClickEDIFlow();
+		(new WorkOrderTabPageCSO(browser, report)).ClickServiceFlow();
 		serviceLevelTaskInfo = ServiceLevelTaskInfo.loadFromDatatable(dataTable);
 		(new ServiceLevelTasks(browser, report)).BULBA();
 		(new BULBATaskPage(browser, report)).BULBA(serviceLevelTaskInfo);
@@ -468,7 +468,7 @@ public class newConnect extends ComcastTest {
 		(new ServiceLevelTasks(browser, report)).UpdateDesign();
 		(new UpdateDesignTaskPage(browser, report)).UpdateDesign();
 		(new SiteLevelTasks(browser, report)).ClickBackButton();
-		(new WorkOrderTabPageCSO(browser, report)).ClickEDIFlow();
+		(new WorkOrderTabPageCSO(browser, report)).ClickServiceFlow();
 		serviceLevelTaskInfo = ServiceLevelTaskInfo.loadFromDatatable(dataTable);
 		(new ServiceLevelTasks(browser, report)).BULBA();
 		(new BULBATaskPage(browser, report)).BULBA(serviceLevelTaskInfo);
@@ -818,7 +818,7 @@ public class newConnect extends ComcastTest {
 		(new ServiceLevelTasks(browser, report)).UpdateDesign();
 		(new UpdateDesignTaskPage(browser, report)).UpdateDesign();
 		(new SiteLevelTasks(browser, report)).ClickBackButton();
-		(new WorkOrderTabPageCSO(browser, report)).ClickEDIFlow();
+		(new WorkOrderTabPageCSO(browser, report)).ClickServiceFlow();
 		
 	}
 

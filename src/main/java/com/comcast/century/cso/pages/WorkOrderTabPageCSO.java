@@ -98,11 +98,17 @@ public class WorkOrderTabPageCSO extends Page {
 	private WebElement btnSearchAdvancedSearch;
 	
 	// //div[.='EVPL']/../../descendant::a[contains(@onclick,'SOTaskView')][contains(@onclick,'SOTaskview')]
-	@FindBy(xpath = "//div[.='EDI']/../../descendant::a[contains(@onclick,'SOTaskView')]")
-	private WebElement linkEDIFlow ;
+	@FindBy(xpath = "//div[.='EDI']/../../descendant::img[contains(@src,'progress') or contains(@src,'activated')]/../../../descendant::a[contains(@onclick,'SOTaskView')]")
+	private List<WebElement> linkEDIFlow ;
 	
-	@FindBy(xpath = "//div[.='EPL']/../../descendant::a[contains(@onclick,'SOTaskView')]")
-	private WebElement linkEPLFlow ;
+	@FindBy(xpath = "//div[.='EPL']/../../descendant::img[contains(@src,'progress') or contains(@src,'activated')]/../../../descendant::a[contains(@onclick,'SOTaskView')]")
+	private List<WebElement> linkEPLFlow ;
+	
+	@FindBy(xpath = "//div[.='EVPL']/../../descendant::img[contains(@src,'progress') or contains(@src,'activated')]/../../../descendant::a[contains(@onclick,'SOTaskView')]")
+	private List<WebElement> linkEVPLFlow ;
+	
+	@FindBy(xpath = "//div[.='ENS']/../../descendant::img[contains(@src,'progress') or contains(@src,'activated')]/../../../descendant::a[contains(@onclick,'SOTaskView')]")
+	private List<WebElement> linkENSFlow ;
 	
 	//@FindBy(xpath = "//*[.='Site']/../preceding-sibling::td[1]/child::*/child::*")
 	//div[.='Site']/../../descendant::a[contains(@onclick,'SOTaskView')]
@@ -357,15 +363,34 @@ public class WorkOrderTabPageCSO extends Page {
 			
 	}
 	
-	public boolean ClickEDIFlow() throws InterruptedException{
+	public boolean ClickServiceFlow() throws InterruptedException, IndexOutOfBoundsException{
+		WebElement elementToClick=null;
+		Boolean found = false;
 		try{
 			WaitandSwitchToFrame(frameRight);
-			if(waitForElement(linkEDIFlow)){
-				//linkEDIFlow.click();
-				clickndRelease(linkEDIFlow);
-				waitforPageLoadComplete();
-				report.reportDoneEvent("Click on Service level flow", "Service level flow Clicked");
+			try {
+				if(waitForElement(linkENSFlow.get(0), 2)){				
+					elementToClick = linkENSFlow.get(0);
+					found = true;
+				}
+			} catch (Exception e) {		
+				
+			} 
+			try {	
+				if(waitForElement(linkEVPLFlow.get(0), 2)){				
+					elementToClick = linkEVPLFlow.get(0);
+					found = true;
+				}
+			}catch (Exception e) {				
+				
 			}
+			if(!found)
+			{
+				elementToClick = linkSiteFlow.get(0);
+			}
+			clickndRelease(elementToClick);
+			waitforPageLoadComplete();
+			report.reportDoneEvent("Click on Service level flow", "Service level flow Clicked");
 		}
 		catch(Exception ex)
 		{
@@ -377,9 +402,9 @@ public class WorkOrderTabPageCSO extends Page {
 	
 	public boolean ClickEPLFlow() throws InterruptedException{
 		try{
-			if(waitForElement(linkEPLFlow)){
+			if(waitForElement(linkEPLFlow.get(0))){
 				//linkEDIFlow.click();
-				clickndRelease(linkEPLFlow);
+				clickndRelease(linkEPLFlow.get(0));
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Click on Service level flow", "Service level flow Clicked");
 			}

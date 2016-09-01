@@ -109,8 +109,8 @@ public class CAETaskPage extends Page {
 				waitForElement(txtUNIid);
 				txtUNIid.sendKeys(serviceLevelTaskInfo.UNI1);
 				txtSiteCili.sendKeys(serviceLevelTaskInfo.siteCili);
-				/*txtProjectName.clear();
-				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);*/
+				txtProjectName.clear();
+				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
 				linkRetrieveCircuitID.click();
 				Thread.sleep(5*1000);
 				btnSave.click();
@@ -123,11 +123,12 @@ public class CAETaskPage extends Page {
 				waitForElement(txtUNIid);
 				txtUNIid.sendKeys(serviceLevelTaskInfo.UNI2);
 				txtSiteCili.sendKeys(serviceLevelTaskInfo.siteCili);
-				/*txtProjectName.clear();
-				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);*/
+				txtProjectName.clear();
+				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
 				linkRetrieveCircuitID.click();
 				Thread.sleep(5*1000);
-				this.ClickCompleteButton();
+				btnSave.click();
+																this.ClickCompleteButton();
 				
 			}
 		}	
