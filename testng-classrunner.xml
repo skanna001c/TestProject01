@@ -4,7 +4,7 @@
 	<listeners>
 		<listener class-name="com.comcast.utils.TestFilter" />
 	</listeners>
-	 <test name="001_Validate Related Order ID attribute_Metro E New Connect"> 
+	 <!-- <test name="001_Validate Related Order ID attribute_Metro E New Connect"> 
 		<classes>
 			<class name="com.comcast.century.newConnect.Validate_Related_Order_ID_attribute"> 
 				<methods>
@@ -42,11 +42,11 @@
 				</methods>
 			</class>
 		</classes>
-	</test>
+	</test> -->
 
 	 <test name="002-EPL_service">
 		<classes>
-			<class name="com.comcast.century.newConnect.NewConnectTest">
+			<class name="com.comcast.century.newConnect.CancelSupEPLService">
 				<methods>
 					<include name="createCustomer" />
 					<include name="createServiceAccount" />
@@ -74,12 +74,22 @@
 					<include name="Complete_Coax_Build"/>
 					<include name="Contact_Customer"/>
 					<include name="Update_Design"/>
+					<include name="Build_Update_Local_Biller_Account"/>
+					<include name="Build_Update_Local_Biller_Account_2"/>
+					<include name="Ship_CPE"/>
+					<include name="Create_Account_and_Equipment_EPL"/>
+					<include name="Assign_Design_Info"/>
+					<include name="Generate_Core_Config"/>
+					<include name="Generate_CPE_Config"/>
+					<include name="Load_Core_Config" />
+					<include name="Install_CPE" />
+					<include name="Install_CPE_2" />
 				</methods>
 			</class>
 		</classes>
 	</test>
 	
-	<test name="004-ME_EDI-NewConnect-ERate">
+	<!-- <test name="004-ME_EDI-NewConnect-ERate">
 		<classes>
 			<class name="com.comcast.century.newConnect.NewConnectTest">
 				<methods>
@@ -226,6 +236,6 @@
 				</methods>
 			</class>
 		</classes>
-	</test>
+	</test> -->
 </suite>
 

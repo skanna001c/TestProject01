@@ -71,7 +71,35 @@ public class CAETaskPage extends Page {
 	@FindBy(xpath = "//input[@id='projectName']")
 	private WebElement txtProjectName ;
 	
+	@FindBy(xpath = "//span[.='Order Services']")
+	private WebElement tabOrderServices ;
+	
+	@FindBy(xpath = "//div[.='New']/../Preceding-sibling::td[1]/Child::div")
+	private WebElement resourceComponentID ;
+	
+	
+	
+	
+	
 	private boolean mstatus = true;
+	
+	public String getResourceComponentID(){
+		
+		String RCID=null;
+		
+		try{
+			waitForElement(tabOrderServices);
+			iClick(tabOrderServices);
+			waitForElementDisappear(elementLoading);
+			RCID=resourceComponentID.getText();
+		}catch(Exception e){
+		   System.out.println(e.getMessage());
+		   
+		}
+		return RCID;
+	}
+	
+	
 	
 	public boolean CAE(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
 		try{
