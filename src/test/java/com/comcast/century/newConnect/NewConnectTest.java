@@ -369,6 +369,48 @@ public class NewConnectTest extends ComcastTest {
 		}
 
 	}
+	/* 
+	 * Coax second site flow from 12505 to 12535
+	 */
+	
+	@Test(priority = 12505)
+	public void Conduct_Site_Survey_CoaxSite2() throws InterruptedException {
+		this.Conduct_Site_Survey_Coax();		
+	}
+	
+	@Test(priority = 12510)
+	public void Obtain_Site_Agreement_CoaxSite2() throws InterruptedException {
+		this.Obtain_Site_Agreement_Coax();		
+	}
+	
+	@Test(priority = 12515)	
+	public void Conduct_Coax_Survey_CoaxSite2() throws InterruptedException, AWTException {
+		this.Conduct_Coax_Survey();		
+	}
+	
+	@Test(priority = 12520)
+	public void Build_House_Account_CoaxSite2() throws InterruptedException, AWTException {
+		this.Build_House_Account_Coax();		
+
+	}
+	
+	@Test(priority = 12525)	
+	public void Obtain_Coax_Permit_CoaxSite2() throws InterruptedException, AWTException {
+		this.Obtain_Coax_Permit();		
+	}
+	
+	@Test(priority = 12530)	
+	public void Complete_Site_Build_CoaxSite2() throws InterruptedException, AWTException {
+		this.Complete_Site_Build_Coax();
+	}
+	
+	
+	@Test(priority = 12535)	
+	public void Complete_Coax_Build_CoaxSite2() throws InterruptedException, AWTException {
+		this.Complete_Coax_Build();		
+
+	}
+	
 	
 	@Test(priority = 13000)
 	public void Contact_Customer() throws InterruptedException, AWTException {
@@ -425,12 +467,28 @@ public class NewConnectTest extends ComcastTest {
 		(new CAETaskPage(browser, report)).CAE_EPL(serviceLevelTaskInfo);
 
 	}
+	
+	@Test(priority = 15200)
+	public void Create_Account_and_Equipment_EVPL() throws InterruptedException {
+		SearchOrderndLaunchServiceFlow();
+		(new ServiceLevelTasks(browser, report)).CAE();
+		(new CAETaskPage(browser, report)).CAE_EVPL(serviceLevelTaskInfo);
+
+	}
 
 	@Test(priority = 15500)
 	public void Assign_Design_Info() throws InterruptedException {
 		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).ADI();
 		(new ADITaskPage(browser, report)).ADI(serviceLevelTaskInfo);
+
+	}
+	
+	@Test(priority = 15550)
+	public void Assign_Design_Info_EVPL() throws InterruptedException {
+		SearchOrderndLaunchServiceFlow();
+		(new ServiceLevelTasks(browser, report)).ADI();
+		(new ADITaskPage(browser, report)).ADI_EVPL(serviceLevelTaskInfo);
 
 	}
 
@@ -508,6 +566,13 @@ public class NewConnectTest extends ComcastTest {
 		(new ServiceLevelTasks(browser, report)).ActivateService();
 		(new ActivateServiceTaskPage(browser, report)).ActivateService_EPL(serviceLevelTaskInfo);
 	}
+	
+	@Test(priority = 19700)
+	public void Activate_Service_EVPL() throws InterruptedException {
+		SearchOrderndLaunchServiceFlow();
+		(new ServiceLevelTasks(browser, report)).ActivateService();
+		(new ActivateServiceTaskPage(browser, report)).ActivateService_EVPL(serviceLevelTaskInfo);
+	}
 
 
 	@Test(priority = 20000)
@@ -538,6 +603,7 @@ public class NewConnectTest extends ComcastTest {
 	public void Start_Billing() throws InterruptedException {
 		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).StartBilling();
+		(new StartBillingTaskPage(browser,report)).StartBilling();
 		(new StartBillingTaskPage(browser,report)).verifyNotes();
 		(new ServiceLevelTasks(browser, report)).ClickBackButton();
 	}

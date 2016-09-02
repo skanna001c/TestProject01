@@ -199,22 +199,27 @@
 					<include name="Build_House_Account_Coax"/>
 					<include name="Obtain_Coax_Permit"/>
 					<include name="Complete_Site_Build_Coax"/>
-					<include name="Complete_Coax_Build"/>
+					<include name="Complete_Coax_Build"/>					
+					<include name="Conduct_Site_Survey_CoaxSite2"/>
+					<include name="Obtain_Site_Agreement_CoaxSite2"/>
+					<include name="Conduct_Coax_Survey_CoaxSite2"/>
+					<include name="Build_House_Account_CoaxSite2"/>
+					<include name="Obtain_Coax_Permit_CoaxSite2"/>
+					<include name="Complete_Site_Build_CoaxSite2"/>
+					<include name="Complete_Coax_Build_CoaxSite2"/>					
 					<include name="Contact_Customer"/>
 					<include name="Update_Design"/>
-					<include name="Build_Update_Local_Biller_Account"/>
-					<include name="Build_Update_Local_Biller_Account_2"/>
+					<include name="Build_Update_Local_Biller_Account"/>					
 					<include name="Ship_CPE"/>
-					<include name="Create_Account_and_Equipment_EPL"/>
-					<include name="Assign_Design_Info"/>
+					<include name="Create_Account_and_Equipment_EVPL"/>
+					<include name="Assign_Design_Info_EVPL"/>
 					<include name="Generate_Core_Config"/>
 					<include name="Generate_CPE_Config"/>
 					<include name="Load_Core_Config" />
-					<include name="Install_CPE" />
-					<include name="Install_CPE_2" />
+					<include name="Install_CPE_Coax" />					
 					<include name="Set_Critical_Dates" />
 					<include name="Day_of_Configs" />
-					<include name="Activate_Service_EPL" />
+					<include name="Activate_Service_EVPL" />
 					<include name="Notify_Customer_of_Service_Installation" />
 					<include name="Complete_Customer_Acceptance_Testing" />
 					<include name="Start_Billing" />
@@ -222,4 +227,4 @@
 			</class>
 		</classes>
 	</test>
-</suite> <!-- Suite -->
+</suite>

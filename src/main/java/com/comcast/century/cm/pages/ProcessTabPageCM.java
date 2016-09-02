@@ -198,8 +198,8 @@ public class ProcessTabPageCM extends Page {
 				switch(serviceInfo.serviceName)
 				{
 				case "EDI" :
-					this.UNIConfiguration(processInfo,iDataDump.getValue("SITE1_RT"));
-					iDataDump=SetSite(processInfo.UNITransportType1,iDataDump.getValue("SITE1_RT"),iDataDump);
+					this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT"));
+					localiDataDump=SetSite(processInfo.UNITransportType1,localiDataDump.getValue("SITE1_RT"),localiDataDump);
 					this.EVCConfiguration_EDI(processInfo);
 					break;
 				case "EPL" :
@@ -210,20 +210,20 @@ public class ProcessTabPageCM extends Page {
 					this.EVCConfiguration_EPL(processInfo);
 					break;
 				case "ENS" :
-					this.UNIConfiguration(processInfo,iDataDump.getValue("SITE1_RT") );
-					iDataDump=SetSite(processInfo.UNITransportType1,iDataDump.getValue("SITE1_RT"),iDataDump);
-					this.UNI2Configuration(processInfo, iDataDump.getValue("SITE2_RT"));
-					iDataDump=SetSite(processInfo.UNITransportType2,iDataDump.getValue("SITE2_RT"),iDataDump);
+					this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT") );
+					localiDataDump=SetSite(processInfo.UNITransportType1,localiDataDump.getValue("SITE1_RT"),localiDataDump);
+					this.UNI2Configuration(processInfo, localiDataDump.getValue("SITE2_RT"));
+					localiDataDump=SetSite(processInfo.UNITransportType2,localiDataDump.getValue("SITE2_RT"),localiDataDump);
 					this.EVCConfiguration_ENS(processInfo);
 					this.EVC2Configuration_ENS(processInfo);
 					break;
 				case "EVPL" :
-					this.UNIConfiguration(processInfo,iDataDump.getValue("SITE1_RT") );
-					iDataDump=SetSite(processInfo.UNITransportType1,iDataDump.getValue("SITE1_RT"),iDataDump);
-					this.UNI2Configuration(processInfo,iDataDump.getValue("SITE2_RT"));
-					iDataDump.setValue(processInfo.UNITransportType2+"SITE2_RT", iDataDump.getValue("SITE2_RT"));
-					this.UNI3Configuration(processInfo,iDataDump.getValue("SITE3_RT"));
-					iDataDump.setValue(processInfo.UNITransportType3+"SITE3_RT", iDataDump.getValue("SITE3_RT"));
+					this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT") );
+					localiDataDump=SetSite(processInfo.UNITransportType1, localiDataDump.getValue("SITE1_RT"),localiDataDump);
+					this.UNI2Configuration(processInfo,localiDataDump.getValue("SITE2_RT"));
+					localiDataDump=SetSite(processInfo.UNITransportType2, localiDataDump.getValue("SITE2_RT"), localiDataDump);
+					this.UNI3Configuration(processInfo,localiDataDump.getValue("SITE3_RT"));
+					localiDataDump=SetSite(processInfo.UNITransportType3, localiDataDump.getValue("SITE3_RT"), localiDataDump);
 					this.EVCConfiguration_EVPL(processInfo);
 					this.EVC2Configuration_EVPL(processInfo);
 					break;
