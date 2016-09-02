@@ -425,7 +425,7 @@ public class NewConnectTest extends ComcastTest {
 		SearchOrderndLaunchServiceRequest();
 		(new ServiceLevelTasks(browser, report)).UpdateDesign();
 		(new UpdateDesignTaskPage(browser, report)).UpdateDesign();
-		(new SiteLevelTasks(browser, report)).ClickBackButton();
+		//(new SiteLevelTasks(browser, report)).ClickBackButton();
 	}
 	
 	
@@ -619,6 +619,107 @@ public class NewConnectTest extends ComcastTest {
 	@Test(priority = 22500)
 	public void EqFeeStartBilling() throws InterruptedException {
 		SearchOrderndLaunchServiceFlow();
+		(new EqFeeFlowTasks(browser, report)).EqFeeStartBilling();
+		(new EqFeeStartBillingTaskPage(browser, report)).EqFeeStartBilling();
+		(new EqFeeFlowTasks(browser, report)).ClickBackButton();
+	}
+	
+	/**
+	 	* EVPL second service level task flow
+	 	* @throws InterruptedException
+	 	*/
+	@Test(priority = 22510)
+	public void Build_Update_Local_Biller_Account_EVPL2_1() throws InterruptedException {
+		this.Build_Update_Local_Biller_Account();		
+
+	}
+	@Test(priority = 22520)
+	public void Build_Update_Local_Biller_AccountEVPL2_2() throws InterruptedException {
+		this.Build_Update_Local_Biller_Account_2();
+	}
+	
+	
+	@Test(priority = 22530)
+	public void Ship_CPE_EVPL2() throws InterruptedException {
+		this.Ship_CPE();
+	}
+	
+	@Test(priority = 22540)
+	public void Create_Account_and_Equipment_EVPL2() throws InterruptedException {
+		this.Create_Account_and_Equipment_EVPL();
+	}
+	
+	@Test(priority = 22550)
+	public void Assign_Design_Info_EVPL2() throws InterruptedException {
+		this.Assign_Design_Info_EVPL();
+
+	}
+	
+	@Test(priority = 22560)
+	public void Generate_Core_Config_EVPL2() throws InterruptedException {
+		this.Generate_Core_Config();
+
+	}
+
+	@Test(priority = 22570)
+	public void Generate_CPE_Config_EVPL2() throws InterruptedException {
+		this.Generate_CPE_Config();
+	}
+
+	@Test(priority = 22580)
+	public void Load_Core_Config_EVPL2() throws InterruptedException {
+		this.Load_Core_Config();
+	}
+	
+	@Test(priority = 22590)
+	public void Install_CPE_EVPL2() throws InterruptedException {
+		this.Install_CPE();
+	}
+
+	@Test(priority = 22600)	
+	public void Install_CPE_Coax_EVPL2() throws InterruptedException, AWTException {
+		this.Install_CPE_Coax();
+
+	}
+	
+	@Test(priority = 22610)
+	public void Set_Critical_Dates_EVPL2() throws InterruptedException {
+		this.Set_Critical_Dates();
+	}
+
+	@Test(priority = 22620)
+	public void Day_of_Configs_EVPL2() throws InterruptedException {
+		this.Day_of_Configs();
+	}
+	
+	
+	@Test(priority = 22630)
+	public void Activate_Service_EVPL2() throws InterruptedException {
+		this.Activate_Service_EVPL();
+	}
+
+
+	@Test(priority = 22640)
+	public void Notify_Customer_of_Service_Installation_EVPL2() throws InterruptedException {
+		this.Notify_Customer_of_Service_Installation();
+	}
+
+	
+	@Test(priority = 22650)
+	public void Complete_Customer_Acceptance_Testing_EVPL2(Method method) throws InterruptedException {
+		this.Complete_Customer_Acceptance_Testing(method);
+	}
+
+
+	@Test(priority = 22660)
+	public void Start_Billing_EVPL2() throws InterruptedException {
+		this.Start_Billing();
+	}
+
+	@Test(priority = 22670)
+	public void EqFeeStartBilling_EVPL2() throws InterruptedException {
+		(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
+		(new WorkOrderTabPageCSO(browser, report)).ClickEquipmentFeeFlow();
 		(new EqFeeFlowTasks(browser, report)).EqFeeStartBilling();
 		(new EqFeeStartBillingTaskPage(browser, report)).EqFeeStartBilling();
 		(new EqFeeFlowTasks(browser, report)).ClickBackButton();

@@ -148,6 +148,7 @@ public class ADITaskPage extends Page {
 				linkRetrieveCircuitID.click();
 				Thread.sleep(5*1000);
 				this.ClickCompleteButton();
+				waitForElement(browser.findElement(By.xpath("//*[text()='Assign Design Information' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception e){

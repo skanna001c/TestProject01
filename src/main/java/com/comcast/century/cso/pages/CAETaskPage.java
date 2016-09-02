@@ -162,7 +162,7 @@ public class CAETaskPage extends Page {
 				waitforPageLoadComplete();
 				Thread.sleep(2*1000);
 				this.ClickCompleteButton();
-				
+				waitForElement(browser.findElement(By.xpath("//*[text()='Create Account and Equipment' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}	
 		catch(Exception e){
@@ -202,7 +202,7 @@ public class CAETaskPage extends Page {
 				linkRetrieveCircuitID.click();
 				Thread.sleep(5*1000);				
 				this.ClickCompleteButton();
-				
+				waitForElement(browser.findElement(By.xpath("//*[text()='Create Account and Equipment' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}	
 		catch(Exception e){

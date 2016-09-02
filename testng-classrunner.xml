@@ -4,7 +4,8 @@
 	<listeners>
 		<listener class-name="com.comcast.utils.TestFilter" />
 	</listeners>
-	 <!-- <test name="001_Validate Related Order ID attribute_Metro E New Connect"> 
+
+	<test name="001_Validate Related Order ID attribute_Metro E New Connect"> 
 		<classes>
 			<class name="com.comcast.century.newConnect.Validate_Related_Order_ID_attribute"> 
 				<methods>
@@ -42,7 +43,7 @@
 				</methods>
 			</class>
 		</classes>
-	</test> -->
+	</test>
 
 	 <test name="002-EPL_service">
 		<classes>
@@ -89,7 +90,7 @@
 		</classes>
 	</test>
 	
-	<!-- <test name="004-ME_EDI-NewConnect-ERate">
+	<test name="004-ME_EDI-NewConnect-ERate">
 		<classes>
 			<class name="com.comcast.century.newConnect.NewConnectTest">
 				<methods>
@@ -233,9 +234,26 @@
 					<include name="Notify_Customer_of_Service_Installation" />
 					<include name="Complete_Customer_Acceptance_Testing" />
 					<include name="Start_Billing" />
+					<include name="Build_Update_Local_Biller_Account_EVPL2_1"/>
+					<include name="Build_Update_Local_Biller_Account_EVPL2_2"/>
+					<include name="Ship_CPE_EVPL2"/>
+					<include name="Create_Account_and_Equipment_EVPL2"/>
+					<include name="Assign_Design_Info_EVPL2"/>
+					<include name="Generate_Core_Config_EVPL2"/>
+					<include name="Generate_CPE_Config_EVPL2"/>
+					<include name="Load_Core_Config_EVPL2" />
+					<include name="Install_CPE_EVPL2" />
+					<include name="Install_CPE_Coax_EVPL2" />
+					<include name="Set_Critical_Dates_EVPL2" />
+					<include name="Day_of_Configs_EVPL2" />
+					<include name="Activate_Service_EVPL2" />
+					<include name="Notify_Customer_of_Service_Installation_EVPL2" />
+					<include name="Complete_Customer_Acceptance_Testing_EVPL2" />
+					<include name="Start_Billing_EVPL2" />
+					<include name="EqFeeStartBilling_EVPL2"/>
 				</methods>
 			</class>
 		</classes>
-	</test> -->
+	</test>
 </suite>
 
