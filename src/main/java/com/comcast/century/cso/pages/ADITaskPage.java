@@ -50,6 +50,9 @@ public class ADITaskPage extends Page {
 	@FindBy(xpath = "//div[text()='EDI']")
 	private WebElement elementEDI ;
 	
+	@FindBy(xpath = "//*[text()='EVPL']")
+	private List<WebElement> elementEVPL ;
+	
 	@FindBy(xpath = "//*[text()='-']")
 	private List<WebElement> elementDash ;
 
@@ -75,6 +78,37 @@ public class ADITaskPage extends Page {
 				waitForElementDisappear(elementLoading);
 				Thread.sleep(2*1000);
 				scrollToElementandclick(elementDash.get(0));
+				waitForElement(txtServiceID);
+				txtServiceID.sendKeys(randomNumber(6));
+				txtEVCid.sendKeys(serviceLevelTaskInfo.EVC1);
+				txtProjectName.clear();
+				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
+				linkRetrieveCircuitID.click();
+				Thread.sleep(5*1000);
+				/* Sometimes after clicking the above link EVC id is changed to 500.
+				 As a workaround we have setting the value again and before  clicking the complete button.*/				
+				waitForElement(txtEVCid);
+				txtEVCid.clear();
+				txtEVCid.sendKeys(serviceLevelTaskInfo.EVC1);
+				this.ClickCompleteButton();
+				waitForElement(browser.findElement(By.xpath("//*[text()='Assign Design Information' and contains(@onclick, 'COMPLETED')]")));
+			}
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	public boolean ADI_EVPL(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
+		mstatus = true;
+		try{
+			if(waitForElement(tabCircuitMapping)){
+				tabCircuitMapping.click();
+				waitForElementDisappear(elementLoading);
+				Thread.sleep(2*1000);
+				scrollToElementandclick(elementEVPL.get(0));
 				waitForElement(txtServiceID);
 				txtServiceID.sendKeys(randomNumber(6));
 				txtEVCid.sendKeys(serviceLevelTaskInfo.EVC1);

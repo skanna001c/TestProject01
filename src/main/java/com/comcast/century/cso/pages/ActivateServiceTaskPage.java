@@ -63,6 +63,9 @@ public class ActivateServiceTaskPage extends Page {
 	@FindBy(xpath = "//div[text()='EPL']")
 	private List<WebElement> elementEPL ;
 	
+	@FindBy(xpath = "//div[text()='EVPL']")
+	private List<WebElement> elementEVPL ;
+	
 	private boolean mstatus;
 	
 	public boolean ActivateService(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
@@ -113,6 +116,38 @@ public class ActivateServiceTaskPage extends Page {
 			waitForElementDisappear(elementLoading);
 			waitForElement(elementEPL.get(1));
 			elementEPL.get(1).click();
+			waitForElement(ddStatus);
+			new Select(ddStatus).selectByValue(serviceLevelTaskInfo.status);
+			this.ClickCompleteButton();
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	public boolean ActivateService_EVPL(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
+		mstatus = true;
+		try{
+			scrollDown();
+			waitForElement(edpCompletionDate);
+			edpCompletionDate.click();
+			btnToday.get(0).click();
+			internalTestingCompletionDate.click();
+			btnToday.get(1).click();
+			waitForElement(tabCircuitTestingDetails);
+			tabCircuitTestingDetails.click();
+			waitForElementDisappear(elementLoading);
+			waitForElement(ddStatus);
+			new Select(ddStatus).selectByValue(serviceLevelTaskInfo.status);
+			btnSave.click();
+			waitforPageLoadComplete();
+			sleep(2000);
+			waitForElement(tabCircuitTestingDetails);
+			tabCircuitTestingDetails.click();
+			waitForElementDisappear(elementLoading);
+			waitForElement(elementEVPL.get(1));
+			elementEVPL.get(1).click();
 			waitForElement(ddStatus);
 			new Select(ddStatus).selectByValue(serviceLevelTaskInfo.status);
 			this.ClickCompleteButton();
