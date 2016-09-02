@@ -289,12 +289,14 @@ public class CustomerTabPageCM extends Page {
 				  WaitandSwitchToFrame(frameCustomer);
 				  }
 			  waitForElement(btnCreate);
-			  btnCreate.click();			  
+			  //btnCreate.click();	
+			  iClick(btnCreate,btnSelectValidSite,"CreateCustomer: Customer Page: CreateButton");//updated by harsh on 9/2/2016
 			  waitforPageLoadComplete();
 			  waitForElement(btnSelectValidSite);
 			  btnSelectValidSite.click();
 			  waitForElement(btnContinue);
-			  btnContinue.click();
+			  //btnContinue.click();
+			  iClick(btnContinue,txtAddressLine2,"CreateCustomer: Address Verification: Continue_Button"); //updated by harsh on 9/2/2016
 			  waitforPageLoadComplete();
 			  browser.switchTo().defaultContent();
 			  report.updateTestLog("Create Customer", "Customer Created Successfully", Status.SCREENSHOT);

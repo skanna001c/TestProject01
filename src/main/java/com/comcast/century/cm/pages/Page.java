@@ -3075,6 +3075,7 @@ public abstract class Page {
 	 *            Description about the action performed on the UI.
 	 */
 	public void iClick(WebElement we, WebElement waitForElement, String description) {
+		//System.out.println("inside iclick");
 		if ((new TestSettings()).getBrowser().equalsIgnoreCase("iexplore")
 				|| (new TestSettings()).getBrowser().equalsIgnoreCase("ie")) {
 			we.sendKeys(Keys.ENTER);
