@@ -120,6 +120,7 @@ public class HomePageCM extends Page {
 	
 	
 	public boolean clickOnHomeTab(){
+		  mstatus=true;
 		try{
 			waitForElement(tabHome);
 			iClick(tabHome);
@@ -181,6 +182,7 @@ public class HomePageCM extends Page {
 			txtSRID.sendKeys(SRID);
 			btnSearch.click();
 			waitforPageLoadComplete();
+			waitForElementDisappear(elementLoading);
 			browser.switchTo().defaultContent();
 		}catch (Exception e) {
 			e.printStackTrace();

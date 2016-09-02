@@ -84,7 +84,7 @@ public class ConductSiteSurveyTaskPage extends Page {
 	@FindBy(xpath = "//b[.='External Related Order ID']/../following-sibling::td")
 	private WebElement valueRelatedOrderID;
 	
-	@FindBy(xpath = "//div[contains(.,'CATTest_Label')]")
+	@FindBy(xpath = "//*[@id='dynaDiv']/child::div[contains(.,'CATTest_Label')]")
 	private WebElement labelDisplay ;
 	
 	
@@ -116,7 +116,7 @@ public class ConductSiteSurveyTaskPage extends Page {
 	
 	
 	public boolean validateDisplayLabelInTask(String labelName){
-		
+		mstatus=true;
 		try{
 			
 			waitForElement(labelDisplay);

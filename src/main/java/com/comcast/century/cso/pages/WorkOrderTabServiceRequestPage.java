@@ -72,7 +72,7 @@ public class WorkOrderTabServiceRequestPage extends Page {
 	@FindBy(xpath = "//*[@id='srDetailCodition']")
 	private WebElement frameDetailCondition;
 	
-	@FindBy(xpath = "img[class*='close']")
+	@FindBy(css = "img[class*='close']")
 	private WebElement closeLabelWindow;
 	
 	@FindBy(xpath = "//input[@placeholder='---Select Label---']")
@@ -137,6 +137,7 @@ public class WorkOrderTabServiceRequestPage extends Page {
             waitForElement(linkSOCount);
 			iClick(linkSOCount);
 			waitforPageLoadComplete();
+			waitForElementDisappear(elementLoading);
 			waitForElement(labelCount);
 			if(labelCount.getText().equalsIgnoreCase("1")){
 				report.updateTestLog("Verify label count in SO", "Label count Verified", Status.SCREENSHOT);
@@ -197,7 +198,7 @@ public class WorkOrderTabServiceRequestPage extends Page {
 	  }
 	
 	public boolean verifyLabelContent(String labelName){
-		
+		mstatus=true;
 		try{
 			WaitandSwitchToFrame(frameRight);
 			waitForElement(labelCount);

@@ -163,7 +163,7 @@ public class WorkOrderTabPageCSO extends Page {
 	@FindBy(xpath = "a[onclick*='callServOrder']")
 	private WebElement linkSOCount ;
 	
-	@FindBy(xpath = "//div[contains(.,'CATTest_Label')]")
+	@FindBy(xpath = "//*[@id='dynaDiv']/child::div[contains(.,'CATTest_Label')]")
 	private WebElement labelDisplay ;
 	
 	private boolean mstatus=true;

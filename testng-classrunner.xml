@@ -4,7 +4,7 @@
 	<listeners>
 		<listener class-name="com.comcast.utils.TestFilter" />
 	</listeners>
-	 <test name="001_Validate Related Order ID attribute_Metro E New Connect"> 
+	 <!-- <test name="001_Validate Related Order ID attribute_Metro E New Connect"> 
 		<classes>
 			<class name="com.comcast.century.newConnect.Validate_Related_Order_ID_attribute"> 
 				<methods>
@@ -21,9 +21,9 @@
 				</methods>
 			</class>
 		</classes>
-	</test>
+	</test> -->
 	
-	<test name="002-Label_Functionality-CM"> 
+	<!-- <test name="002-Label_Functionality-CM"> 
 		<classes>
 			<class name="com.comcast.century.labelFunctionality.LabelFunctionalityCM"> 
 				<methods>
@@ -42,9 +42,9 @@
 				</methods>
 			</class>
 		</classes>
-	</test>
+	</test> -->
 
-	<test name="002-EPL_service">
+	 <test name="002-EPL_service">
 		<classes>
 			<class name="com.comcast.century.newConnect.NewConnectTest">
 				<methods>
@@ -79,7 +79,7 @@
 		</classes>
 	</test>
 	
-	<test name="004-ME_EDI-NewConnect-ERate">
+	<!--<test name="004-ME_EDI-NewConnect-ERate">
 		<classes>
 			<class name="com.comcast.century.newConnect.NewConnectTest">
 				<methods>
@@ -221,5 +221,5 @@
 				</methods>
 			</class>
 		</classes>
-	</test>
+	</test> -->
 </suite> <!-- Suite -->

@@ -70,13 +70,12 @@ public class LabelFunctionalityCM extends NewConnectTest {
 	@Test(priority=4670)
 	  @PerfTransaction(name="VerifyLabelCountCSO")
 	  public void verifyLabelCSO() throws InterruptedException{
-		
 		if((new WorkOrderTabServiceRequestPage(browser,report)).verifyLabelCSO(getDataDump().getValue("SRID_RT"), getDataDump().getValue("LabelName_RT"))){
 			if((new WorkOrderTabPageCSO(browser,report)).verifyDisplayOfLabelName(getDataDump().getValue("LabelName_RT"),getDataDump().getValue("FiberSite1_RT"))){
 				(new SiteLevelTasks(browser, report)).ConductSiteSurvey();
 				(new ConductSiteSurveyTaskPage(browser, report)).validateDisplayLabelInTask(getDataDump().getValue("LabelName_RT"));
 			} else Assert.fail("Display label failed");
-		}else Assert.fail("Label count verified");
+		}else Assert.fail("Verify label CSO Failed");
 		
 	}
 	

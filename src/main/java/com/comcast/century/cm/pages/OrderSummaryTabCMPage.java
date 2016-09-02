@@ -287,7 +287,7 @@ public class OrderSummaryTabCMPage extends Page {
 			waitforPageLoadComplete();
 			WaitandSwitchToFrame(frameNotes);
 			while(!waitForElement(msgLabelNotes)){}
-			scrollDown();
+			msgLabelNotes.sendKeys(Keys.ARROW_DOWN);
 			if(isElementDisplayed(msgLabelNotes)){
 				report.updateTestLog("Verify if notes generated for label assigned", "Notes verified succesfully",Status.SCREENSHOT);
 			}else report.reportFailEvent("Verify if notes generated for label assigned", "Notes verification failed");
