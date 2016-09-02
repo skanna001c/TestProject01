@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -34,10 +35,10 @@ public class ServiceLevelTasks extends Page {
 	@FindBy(xpath = "//div[@class[contains(.,'refresh')]]")
 	private WebElement btnRefresh;
 	
-	@FindBy(xpath = "//*[text()='Build Update Local Biller Account']")
+	@FindBy(xpath = "//*[text()='Build Update Local Biller Account' and contains(@onclick, 'PROGRESS')]")
 	private List<WebElement> taskBULBA;
 	
-	@FindBy(css = "a[onclick*='BuildUpdateLocalBillerAccount'][onClick*='INPROGRESS']")
+	@FindBy(xpath = "//*[text()='Build Update Local Biller Account' and contains(@onclick, 'PROGRESS')]")
 	private WebElement taskBULBA2;
 	
 	@FindBy(xpath = "//*[text()='Ship CPE']")

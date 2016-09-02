@@ -421,6 +421,7 @@ public class WorkOrderTabPageCSO extends Page {
 	
 	public boolean ClickEquipmentFeeFlow() throws InterruptedException{
 		try{
+			WaitandSwitchToFrame(frameRight);
 			if(waitForElement(linkEquipmentFeeFlow)){
 				clickndRelease(linkEquipmentFeeFlow);
 				//linkEquipmentFeeFlow.click();
