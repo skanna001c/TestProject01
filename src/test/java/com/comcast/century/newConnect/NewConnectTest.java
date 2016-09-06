@@ -63,6 +63,7 @@ import com.comcast.century.data.ServiceLevelTaskInfo;
 import com.comcast.century.data.SiteInfo;
 import com.comcast.century.data.SiteLevelTaskInfo;
 import com.comcast.utils.ComcastTest;
+import com.comcast.utils.DataDump;
 import com.comcast.utils.IDataDump;
 import com.comcast.utils.PerfTransaction;
 
@@ -197,7 +198,9 @@ public class NewConnectTest extends ComcastTest {
 	@Test(priority = 4000)
 	@PerfTransaction(name = "ConfigureService")
 	public void configureService() throws InterruptedException {
-		
+		if (getDataDump().getValue("configureService_status").equalsIgnoreCase("FAIL")) {
+			selectService();
+		}
 		if((new FeatureTabPageCM(browser,report)).configureServices(serviceInfo)){
 		}else Assert.fail("Configure Services Failed");
 	
@@ -456,7 +459,7 @@ public class NewConnectTest extends ComcastTest {
 	public void Create_Account_and_Equipment() throws InterruptedException {
 		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).CAE();
-		(new CAETaskPage(browser, report)).CAE(serviceLevelTaskInfo);
+		(new CAETaskPage(browser, report)).cAETask(serviceInfo, serviceLevelTaskInfo, (DataDump) getDataDump());
 
 	}
 	
@@ -557,10 +560,10 @@ public class NewConnectTest extends ComcastTest {
 	public void Activate_Service() throws InterruptedException {
 		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).ActivateService();
-		(new ActivateServiceTaskPage(browser, report)).ActivateService(serviceLevelTaskInfo);
+		(new ActivateServiceTaskPage(browser, report)).activateService(serviceInfo,serviceLevelTaskInfo);
 	}
 	
-	@Test(priority = 19600)
+	/*@Test(priority = 19600)
 	public void Activate_Service_EPL() throws InterruptedException {
 		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).ActivateService();
@@ -572,7 +575,7 @@ public class NewConnectTest extends ComcastTest {
 		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).ActivateService();
 		(new ActivateServiceTaskPage(browser, report)).ActivateService_EVPL(serviceLevelTaskInfo);
-	}
+	}*/
 
 
 	@Test(priority = 20000)
@@ -695,7 +698,7 @@ public class NewConnectTest extends ComcastTest {
 	
 	@Test(priority = 22630)
 	public void Activate_Service_EVPL2() throws InterruptedException {
-		this.Activate_Service_EVPL();
+		this.Activate_Service();
 	}
 
 

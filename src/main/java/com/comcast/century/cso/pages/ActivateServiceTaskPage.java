@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 import com.comcast.century.cm.pages.Page;
+import com.comcast.century.data.ServiceInfo;
 import com.comcast.century.data.ServiceLevelTaskInfo;
 import com.comcast.utils.SeleniumReport;
 
@@ -68,7 +69,33 @@ public class ActivateServiceTaskPage extends Page {
 	
 	private boolean mstatus;
 	
-	public boolean ActivateService(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
+	
+	public boolean activateService(ServiceInfo serviceInfo,ServiceLevelTaskInfo serviceLevelTaskInfo){
+		mstatus=true;
+		try{
+		switch(serviceInfo.serviceName){
+		case "EDI" :
+			this.ActivateService_EDI(serviceLevelTaskInfo);
+			break;
+		case "EPL" :
+			this.ActivateService_EPL(serviceLevelTaskInfo);
+			break;
+		case "EVPL" :
+			this.ActivateService_EVPL(serviceLevelTaskInfo);
+			break;
+		default :
+			System.out.println("Activate Service task not found");
+		}
+		
+		}catch(Exception e){
+			e.printStackTrace();
+			mstatus = false;
+		}
+		return mstatus;
+		
+	}
+	
+	public boolean ActivateService_EDI(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
 		mstatus = true;
 		try{
 		scrollDown();

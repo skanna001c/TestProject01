@@ -208,7 +208,13 @@ public class AccountTabPageCM extends Page {
 
 			}
 			scrollDown();
-			iClick(BtnAddContact, null, "Add Contact: ContactPage: AddContactButton");
+			BtnAddContact.click();
+			/**
+			  * Here Keys.ENTER is not working in IE. So we are using normal click for all the browsers.
+			  * Updated by Kesavan on 06th Sep 2016			  
+			    //iClick(BtnAddContact, null, "Add Contact: ContactPage: AddContactButton");
+			 */
+			
 			waitforPageLoadComplete();
 			// browser.switchTo().defaultContent();
 		} catch (Exception ex) {

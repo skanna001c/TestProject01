@@ -177,6 +177,7 @@ public class CustomerTabPageCM extends Page {
 			  browser.switchTo().defaultContent();
 			  if(waitForElement(tabCustomer,1)){
 				  doubleClick(tabCustomer);
+				  waitforPageLoadComplete();
 			  }
 			  WaitandSwitchToFrame(frameMain);
 		  }while(!WaitandSwitchToFrame(frameCustomer,1));
@@ -193,8 +194,9 @@ public class CustomerTabPageCM extends Page {
 		  }*/
 		  
 		  report.reportDoneEvent("Click on Customer Tab", "Customer Tab is present");
-		  waitforPageLoadComplete(); 
-		 while(!waitForElement(txtCustomerName,1)){};
+		  waitforPageLoadComplete();
+		  waitForElement(txtCustomerName);
+		 //while(!waitForElement(txtCustomerName,1)){};
 		 customerName = customerInfo.customerName + getTimestamp();
 		 do 
 		 {    txtCustomerName.click();

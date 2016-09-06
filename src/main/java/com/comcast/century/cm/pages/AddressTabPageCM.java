@@ -233,15 +233,8 @@ public class AddressTabPageCM extends Page {
 		iClick(btnContinue, null, "Select City and continue: Site Address Page: ContinueButton");	
 		waitforPageLoadComplete();
 		report.updateTestLog("Create Address", "Address Created Successfully", Status.SCREENSHOT);
-		/*while(waitForElement(BtnAddContact,2))
-		{
-			BtnAddContact.click();
-		}*/
-		
-		 while(!waitForElement(BtnAddContact)){
-			 
-		 }
-		iClick(BtnAddContact, null, "Adding Contact: Contact Page: AddContactButton");	
+		browser.switchTo().defaultContent();
+		this.clickAddContact();
 	    report.reportDoneEvent("Click on Add Contact", "Add Contact Clicked");
 	    waitforPageLoadComplete();	
 		return siteName;
@@ -358,7 +351,12 @@ public class AddressTabPageCM extends Page {
 			 if(waitForElement(BtnAddContact)){
 				 System.out.println("Btn exist");
 			 }
-			 iClick(BtnAddContact, null, "Add Contact: ContactPage: AddContactButton");
+			 BtnAddContact.click();
+			 /**
+			  * Here Keys.ENTER is not working in IE. So we are using normal click for all the browsers.
+			  * Updated by Kesavan on 06th Sep 2016			  
+			    iClick(BtnAddContact, null, "Add Contact: ContactPage: AddContactButton");
+			 */
 			 report.reportDoneEvent("Click on Add Contact", "Add Contact Clicked");
 			 waitforPageLoadComplete();
 		}
