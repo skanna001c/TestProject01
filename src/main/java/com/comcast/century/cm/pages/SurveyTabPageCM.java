@@ -164,8 +164,8 @@ public class SurveyTabPageCM extends Page {
 					 browser.switchTo().defaultContent();	 
 				 }
 				 WaitandSwitchToFrame(frameMain);
-				 waitForElement(BtnAddContact);	 
-				 BtnAddContact.click();
+				 waitForElement(BtnAddContact);
+				 iClick(BtnAddContact, null, "Add Contact: Contact page: ContactButton");				 
 				 waitforPageLoadComplete();
 			}
 		} catch (Exception e) {

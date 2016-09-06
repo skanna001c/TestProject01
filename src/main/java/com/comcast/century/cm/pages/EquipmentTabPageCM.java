@@ -43,9 +43,8 @@ public class EquipmentTabPageCM extends Page {
 			waitForElementDisappear(elementLoading);
 			enterQuantity(txtPolycomDevice,"5");
 			scrollDown();
-			waitForElement(btnContinue);
-			waitForElement(btnContinue);
-			btnContinue.sendKeys(Keys.ENTER);
+			waitForElement(btnContinue);			
+			iClick(btnContinue,null,"Click on Continue button: Equipment quantity configuration: ContinueButton");			
 			waitForElementDisappear(elementLoading);
 		} catch (Exception e) {
 			mstatus = true;

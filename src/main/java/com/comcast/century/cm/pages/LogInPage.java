@@ -172,7 +172,7 @@ public class LogInPage extends Page {
 			browser.switchTo().defaultContent();
 			if (waitForElement(btnSignout,5)){
 			browser.manage().deleteAllCookies();
-			btnSignout.click();
+			iClick(btnSignout,txtUserName,"Click on signout: Home page: SignoutButton");			
 			waitforPageLoadComplete();
 			waitForElement(txtUserName);
 			}
@@ -209,7 +209,7 @@ public class LogInPage extends Page {
 			report.updateTestLog("Enter Login Details","Login Details Entered",Status.SCREENSHOT);		
 			
 			if(isElementPresent(btnLogin)){
-				btnLogin.sendKeys(Keys.ENTER);
+				iClick(btnLogin,tabHome,"Click on Login button: Login page: LoginButton");				
 				report.reportDoneEvent("Click on Login", "Login Clicked successfully");
 			}
 			/*waitForElement(userHomePage);
@@ -256,7 +256,7 @@ public class LogInPage extends Page {
 			report.updateTestLog("Enter Login Details","Login Details Entered",Status.SCREENSHOT);		
 			
 			if(isElementPresent(btnLogin)){
-				btnLogin.sendKeys(Keys.ENTER);
+				iClick(btnLogin,null,"Click on Login button: Login page: LoginButton");
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Click on Login", "Login Clicked successfully");
 			}

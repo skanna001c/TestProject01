@@ -179,7 +179,7 @@ public class ContactTabPageCM extends Page {
 			 txtPrimaryPhone.sendKeys(contactInfo.primaryPhoneNum);
 			 report.reportDoneEvent("Enter Primary Phone Number", "Entered Primary Phone Number as->" +contactInfo.primaryPhoneNum);
 			 waitForElement(btnCreate);
-			 btnCreate.click();
+			 iClick(btnCreate, null, "Create Primary Contact: Contact Page: CreateButton");			 
 			 waitforPageLoadComplete();
 			 report.updateTestLog("Create Account Primary Contact", "Account Primary Contact Created Successfully", Status.SCREENSHOT);
 			 browser.switchTo().defaultContent();
@@ -217,7 +217,7 @@ public class ContactTabPageCM extends Page {
 			 txtPrimaryPhone.sendKeys(contactInfo.primaryPhoneNum);
 			 report.reportDoneEvent("Enter Primary Phone Number", "Entered Primary Phone Number as->" +contactInfo.primaryPhoneNum);
 			 while(waitForElement(btnCreate,2))
-			 { iClick(btnCreate);			 
+			 { iClick(btnCreate, null, "Create Billing Contact: Contact Page: CreateButton");		 
 			 }
 			 waitforPageLoadComplete();
 			 report.updateTestLog("Create Billing Contact", "Billing Contact Created Successfully", Status.SCREENSHOT);
@@ -256,7 +256,7 @@ public class ContactTabPageCM extends Page {
 			 txtPrimaryPhone.sendKeys(contactInfo.primaryPhoneNum);
 			 report.reportDoneEvent("Enter Primary Phone Number", "Entered Primary Phone Number as->" +contactInfo.primaryPhoneNum);
 			 waitForElement(btnCreate);
-			 iClick(btnCreate);
+			 iClick(btnCreate, null, "Create site technical Contact: Contact Page: CreateButton");			 
 			 waitforPageLoadComplete();
 			 report.updateTestLog("Create Site Technical Contact", "Site Technical Contact Created Successfully", Status.SCREENSHOT);
 			 browser.switchTo().defaultContent(); 
@@ -276,8 +276,7 @@ public class ContactTabPageCM extends Page {
 		try{
 			 if (WaitandSwitchToFrame(frameMain)){
 				 waitForElement(btnAddNewContact);
-				 iClick(btnAddNewContact);
-				 waitforPageLoadComplete();
+				 iClick(btnAddNewContact, ddTextContactType, "Create Shipping Contact: Contact Page: CreateButton");				 
 				 waitForElement(ddTextContactType);
 		         ddValueSelect(ddTextContactType,ddValueContactType3,contactInfo.contactType3);
 				 report.reportDoneEvent("Select Contact Type", "Selected Contact Type as->" +contactInfo.contactType2);
@@ -292,7 +291,7 @@ public class ContactTabPageCM extends Page {
 				 txtPrimaryPhone.sendKeys(contactInfo.primaryPhoneNum);
 				 report.reportDoneEvent("Enter Primary Phone Number", "Entered Primary Phone Number as->" +contactInfo.primaryPhoneNum);
 				 waitForElement(btnCreate);
-				 iClick(btnCreate);
+				 iClick(btnCreate, null, "Create Shipping Contact: Contact Page: CreateButton");				
 				 waitforPageLoadComplete();
 				 report.updateTestLog("Create Shipping Contact", "Shipping Contact Created Successfully", Status.SCREENSHOT);
 				 browser.switchTo().defaultContent(); 
@@ -306,14 +305,14 @@ public class ContactTabPageCM extends Page {
 			
   }
 	public boolean ClickOnBackBtn() {
-		//browser.switchTo().defaultContent();
+		
 		mstatus = true;
 		try{
 			while (!WaitandSwitchToFrame(frameMain,1)) {}	
 			
-			while(!waitForElement(btnBack,1)){}				
-				//btnBack.sendKeys(Keys.ENTER);
-				iClick(btnBack);			
+			while(!waitForElement(btnBack,1)){}			
+				
+			iClick(btnBack, null, "Click on back button: Contact Page: BackButton");							
 			report.reportDoneEvent("Click on Back Button", "Back Button Clicked");
 			waitforPageLoadComplete();
 			browser.switchTo().defaultContent(); 

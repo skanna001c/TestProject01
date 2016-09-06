@@ -87,7 +87,7 @@ public class FeatureTabPageCM extends Page {
 				txtUNIandEVCqt.get(1).clear();
 				txtUNIandEVCqt.get(1).sendKeys("2");
 				waitForElement(btnContinue);
-				clickndRelease(btnContinue);
+				iClick(btnContinue,null,"Click on continue in feature tab: feature tab: ContinueButton");
 				waitForElementDisappear(elementLoading);
 				
 			}
@@ -113,7 +113,7 @@ public class FeatureTabPageCM extends Page {
 				iSendKeys(txtUNIandEVCqt.get(0), "2");
 				scrollDown();
 				waitForElement(btnContinue);
-				clickndRelease(btnContinue);
+				iClick(btnContinue,null,"Click on continue in feature tab: feature tab: ContinueButton");
 				waitForElementDisappear(elementLoading);
 			}
 		} catch (Exception e) {
@@ -131,9 +131,8 @@ public class FeatureTabPageCM extends Page {
 		enterQuantity(txtUCSeat,"3");
 		enterQuantity(txtTfn,"1");
 		scrollDown();
-		waitForElement(btnContinue);
-		waitForElement(btnContinue);
-		btnContinue.sendKeys(Keys.ENTER);
+		waitForElement(btnContinue);		
+		iClick(btnContinue,null,"Click on continue in feature tab: feature tab: ContinueButton");		
 	    waitForElementDisappear(elementLoading);
 		} catch (Exception e) {
 			mstatus = false;
@@ -176,8 +175,7 @@ public class FeatureTabPageCM extends Page {
 			waitForElementDisappear(elementLoading);
 			scrollDown();
 			waitForElement(btnContinue);
-			waitForElement(btnContinue);
-			btnContinue.click();
+			iClick(btnContinue,null,"Click on continue in feature tab: feature tab: ContinueButton");			
 		    waitForElementDisappear(elementLoading);			 
 	
 	} catch (Exception e) {

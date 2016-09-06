@@ -185,7 +185,7 @@ public class AccountTabPageCM extends Page {
 			report.reportDoneEvent("Check Use Customer Address", "Use Customer Address Checked");
 			waitforPageLoadComplete();
 			waitForElement(createAccountBtn);
-			iClick(createAccountBtn, null, "Create_Customer: CustomerPage: CreateButton");
+			iClick(createAccountBtn, null, "Create Service Account: CustomerPage: CreateButton");
 			waitforPageLoadComplete();
 			report.updateTestLog("Create Service Account", "Service Account Created Successfully", Status.SCREENSHOT);
 			browser.switchTo().defaultContent();
@@ -207,6 +207,7 @@ public class AccountTabPageCM extends Page {
 			while (!waitForElement(BtnAddContact)) {
 
 			}
+			scrollDown();
 			iClick(BtnAddContact, null, "Add Contact: ContactPage: AddContactButton");
 			waitforPageLoadComplete();
 			// browser.switchTo().defaultContent();
@@ -248,7 +249,7 @@ public class AccountTabPageCM extends Page {
 			report.reportDoneEvent("Check Use Customer Address", "Use Customer Address Checked");
 			waitforPageLoadComplete();
 			waitForElement(createAccountBtn);
-			createAccountBtn.click();
+			iClick(createAccountBtn, null, "Create ERate Service Account: CustomerPage: CreateButton");
 			waitforPageLoadComplete();
 			report.updateTestLog("Create Service Account", "Service Account Created Successfully", Status.SCREENSHOT);
 			browser.switchTo().defaultContent();
@@ -298,14 +299,10 @@ public class AccountTabPageCM extends Page {
 					useCustomerAddress.click();
 					waitforPageLoadComplete();
 					waitForElement(createAccountBtn);
-					iClick(createAccountBtn, null, "Create_Account: AccountPage: CreateAccountButton");
+					iClick(createAccountBtn, null, "Create Billing Account: AccountPage: CreateAccountButton");
 					waitforPageLoadComplete();
 					report.updateTestLog("Create Billing Account", "Billing Account Created Successfully",
 							Status.SCREENSHOT);
-					/*
-					 * waitForElement(BtnAddContact); iClick(BtnAddContact);
-					 * waitforPageLoadComplete();
-					 */
 					browser.switchTo().defaultContent();
 
 				}
@@ -355,7 +352,7 @@ public class AccountTabPageCM extends Page {
 			useCustomerAddress.click();
 			waitforPageLoadComplete();
 			waitForElement(createAccountBtn);
-			createAccountBtn.click();
+			iClick(createAccountBtn, null, "Create Billing Account: CustomerPage: CreateButton");
 			waitforPageLoadComplete();
 			report.updateTestLog("Create Billing Account", "Billing Account Created Successfully", Status.SCREENSHOT);
 			browser.switchTo().defaultContent();

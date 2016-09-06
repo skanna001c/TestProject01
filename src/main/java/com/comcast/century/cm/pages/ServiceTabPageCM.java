@@ -84,7 +84,7 @@ public class ServiceTabPageCM extends Page {
 		try {
 			waitforPageLoadComplete();
 			 if (waitForElement(tabService)){
-				  iClick(tabService);
+				  doubleClick(tabService);				  
 				  report.reportDoneEvent("Click On Service Tab", "Service Tab Clicked");
 				  waitforPageLoadComplete();
 			  }
@@ -100,7 +100,7 @@ public class ServiceTabPageCM extends Page {
 		try{
 			WaitandSwitchToFrame(frameMain);
 			waitForElement(btnContinueAvailProduct);
-			iClick(btnContinueAvailProduct); 
+			iClick(btnContinueAvailProduct, null, "Click on continue button to navigate to select a service plan: service page: ContinueButton");			 
 			waitForElementDisappear(elementLoading);
 		}catch(Exception e){
 			e.printStackTrace();
@@ -271,7 +271,7 @@ public class ServiceTabPageCM extends Page {
 				
 				if(waitForElement(btnContinueSelectedProduct)){
 					System.out.println("Continue selected button present");
-					btnContinueSelectedProduct.sendKeys(Keys.ENTER);
+					iClick(btnContinueSelectedProduct, null, "Click on continue button to navigate to feature tab: service page: ContinueButton");					
 					waitforPageLoadComplete();
 					waitForElementDisappear(elementLoading);
 					report.reportDoneEvent("Click Continue", "Continue Clicked");

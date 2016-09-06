@@ -140,14 +140,12 @@ public class HomePageCM extends Page {
 			waitforPageLoadComplete();
 			 WaitandSwitchToFrame(frameMain);
 			 txtCustomerName.sendKeys("CustName123420862016");
-			 btnSearch.click();
+			 iClick(btnSearch,clickSRid,"Click on search button: Home page: SearchButton");			 
 			 waitforPageLoadComplete();
-			 clickSRid.click();
-			 //clickServiceAcc.click();
+			 clickSRid.click();			 
 			 waitforPageLoadComplete();
 			 browser.switchTo().defaultContent();
-			 Thread.sleep(10000);
-			 //waitforPageLoadComplete(); 
+			 Thread.sleep(10000);			  
 		} catch (Exception e) {
 			e.printStackTrace();
 			mstatus = false;
@@ -161,7 +159,7 @@ public class HomePageCM extends Page {
 			waitforPageLoadComplete();
 			WaitandSwitchToFrame(frameMain);			 
 			txtCustomerName.sendKeys(custName);
-			btnSearch.click();
+			iClick(btnSearch,null,"Search Customer: Home page: SearchButton");
 			waitforPageLoadComplete();
 			browser.findElement(By.xpath("//span[contains(.,'"+custName+"')]")).click();
 			waitforPageLoadComplete();
@@ -180,7 +178,7 @@ public class HomePageCM extends Page {
 		try{
 			WaitandSwitchToFrame(frameMain);
 			txtSRID.sendKeys(SRID);
-			btnSearch.click();
+			iClick(btnSearch,null,"Search SR ID: Home page: SearchButton");			
 			waitforPageLoadComplete();
 			waitForElementDisappear(elementLoading);
 			browser.switchTo().defaultContent();
