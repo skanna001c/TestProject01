@@ -214,8 +214,8 @@ public class OrderSummaryTabCMPage extends Page {
 	public String verifyRelatedOrderIDAttribute() {
 		try {
 			ShortWaitandSwitchToFrame(frameMain);
-			waitForElement(btnExpandRelatedOrderID);
-			iClick(btnExpandRelatedOrderID);
+			waitForElement(btnExpandRelatedOrderID);			
+			iClick(btnExpandRelatedOrderID, null, "Expand related order ID: Order summary page: ExpandRelatedOrderIDButton");
 			waitForElementDisappear(elementLoading);
 			if (waitForElement(txtRelatedOrderID)) {
 				report.reportPassEvent("Verify Related Order ID attribute", " Related Order ID attribute present");
@@ -251,7 +251,7 @@ public class OrderSummaryTabCMPage extends Page {
 			ShortWaitandSwitchToFrame(frameMain);
 			waitForElement(ddTextMoreActions);
 			ddValueSelect(ddTextMoreActions, ddValueMoreActions, "Assign Label");
-			btnGo.click();
+			iClick(btnGo, null, "Click on Assign label GO button: Order summary page: GoButton");			
 			waitforPageLoadComplete();
 			WaitandSwitchToFrame(frameCondition);
 			waitForElement(txtSelectLabel);
@@ -259,7 +259,7 @@ public class OrderSummaryTabCMPage extends Page {
 			waitUntilElementPresent(By.xpath(xpathLabel), 10);
 			WebElement chkboxLabelName= browser.findElement(By.xpath(xpathLabel));
 			chkboxLabelName.click();
-			btnApply.click();
+			iClick(btnApply, msgLabelAppliedSuccessfully, "Click on Apply button in assign label: Order summary page: ApplyButton");			
 			if(waitForElement(msgLabelAppliedSuccessfully)){
 				report.reportPassEvent("Verify status", "label applied successfully");
 				report.updateTestLog("Verify status", "label applied successfully", Status.SCREENSHOT);
@@ -267,7 +267,7 @@ public class OrderSummaryTabCMPage extends Page {
 				report.reportFailEvent("Verify status", "label not applied");
 			}
 			waitForElement(btnOk);
-			btnOk.click();
+			iClick(btnOk, null, "Click on OK button in assign label: Order summary page: OKButton");
 			browser.switchTo().defaultContent();
 
 		}catch(Exception e){
@@ -283,7 +283,7 @@ public class OrderSummaryTabCMPage extends Page {
 		try{
 			WaitandSwitchToFrame(frameMain);
 			waitForElement(linkNotes);
-			clickndRelease(linkNotes);
+			iClick(linkNotes, null, "Click on Notes Link: Order summary page: NotesLink");			
 			waitforPageLoadComplete();
 			WaitandSwitchToFrame(frameNotes);
 			while(!waitForElement(msgLabelNotes)){}
@@ -388,7 +388,7 @@ public class OrderSummaryTabCMPage extends Page {
 		try {
 			// ShortWaitandSwitchToFrame(frameMain);
 			if (waitForElement(btnsubmitOrder)) {
-				btnsubmitOrder.click();
+				iClick(btnsubmitOrder, null, "Submit Order: Order Summary Page: SubmitButton");				
 				waitforPageLoadComplete();
 			}
 			browser.switchTo().defaultContent();
@@ -431,7 +431,7 @@ public class OrderSummaryTabCMPage extends Page {
 			dtSalesOrderSubmitted.click();
 			btnToday.get(2).click();
 			waitForElement(btnsubmitOrder);
-			iClick(btnsubmitOrder);
+			iClick(btnsubmitOrder, null, "Submit Order: Order Summary Page: SubmitButton");
 			waitforPageLoadComplete();
 			browser.switchTo().defaultContent();
 		} catch (Exception e) {

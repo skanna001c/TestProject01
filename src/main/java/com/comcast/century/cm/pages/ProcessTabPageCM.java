@@ -296,7 +296,7 @@ public class ProcessTabPageCM extends Page {
 			System.out.println("Terms Present");
 			}
 			new Select(ddSelectTerms).selectByVisibleText(processInfo.terms);
-			btnSave.click();
+			iClick(btnSave, null, "Click on save button: Process page: SaveButton");			
 			report.reportDoneEvent("Save Terms", "Terms Saved");
 			waitForElementDisappear(elementLoading);
 			return SRID;
@@ -319,7 +319,7 @@ public class ProcessTabPageCM extends Page {
 					System.out.println("Terms Present");
 					}
 					new Select(ddSelectTerms).selectByVisibleText(processInfo.terms);
-					btnSave.click();
+					iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 					report.reportDoneEvent("Save Terms", "Terms Saved");
 					waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
@@ -373,7 +373,7 @@ public class ProcessTabPageCM extends Page {
 				 txtUNInumber.clear();
 				 txtUNInumber.sendKeys(randomNumber(5));
 				 new Select(ddUNIPortSpeed).selectByVisibleText("10/100");
-				 btnSave.click();
+				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 report.reportDoneEvent("Save UNI Configuration", "UNI Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
@@ -399,7 +399,7 @@ public class ProcessTabPageCM extends Page {
 				 LinkBGP.click();
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(btnSave);
-				 btnSave.click();
+				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
 				mstatus= false;
@@ -449,7 +449,7 @@ public class ProcessTabPageCM extends Page {
 				 waitForElement(txtUNInumber);
 				 txtUNInumber.sendKeys(randomNumber(5));
 				 new Select(ddUNIPortSpeed).selectByVisibleText("10/100");
-				 btnSave.click();
+				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 report.reportDoneEvent("Save UNI~2 Configuration", "UNI~2 Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
@@ -502,7 +502,7 @@ public class ProcessTabPageCM extends Page {
 				 waitForElement(txtUNInumber);
 				 txtUNInumber.sendKeys(randomNumber(5));
 				 new Select(ddUNIPortSpeed).selectByVisibleText("10/100");;
-				 btnSave.click();
+				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 report.reportDoneEvent("Save UNI~3 Configuration", "UNI~3 Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
@@ -549,7 +549,7 @@ public class ProcessTabPageCM extends Page {
 				 waitForElement(txtUNInumber);
 				 txtUNInumber.sendKeys(randomNumber(5));
 				 new Select(ddUNIPortSpeed).selectByVisibleText("10/100");
-				 btnSave.click();
+				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 report.reportDoneEvent("Save UNI Configuration", "UNI Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
@@ -576,7 +576,7 @@ public class ProcessTabPageCM extends Page {
 				 ddArrwLocationZuni.click();
 				 ddvalueLocationZuni.get(0).click();
 				 txtEVCnumber.sendKeys(randomNumber(5));
-				 btnSave.click();
+				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
@@ -610,7 +610,7 @@ public class ProcessTabPageCM extends Page {
 				 new Select(ddIpBlockChange).selectByVisibleText("No");
 				 new Select(ddIpAddressAllocation).selectByVisibleText(processInfo.ipAddressAllocation);
 				 new Select(ddAdditionalIpAddress).selectByVisibleText("No");
-				 btnSave.click();
+				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
@@ -641,7 +641,7 @@ public class ProcessTabPageCM extends Page {
 				 txtEVCnumber.sendKeys(randomNumber(5));
 				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
 				 new Select(ddMaxUNIExceeded).selectByVisibleText("No");
-				 btnSave.click();
+				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
@@ -669,7 +669,7 @@ public class ProcessTabPageCM extends Page {
 				 ddArrwLocationZuni.click();
 				 ddvalueLocationZuni.get(1).click();
 				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
-				 btnSave.click();
+				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 report.reportDoneEvent("Save EVC~2 Configuration", "EVC~2 Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
@@ -704,7 +704,7 @@ public class ProcessTabPageCM extends Page {
 				 new Select(ddEVCAreaType).selectByVisibleText(processInfo.evcAreaType);
 				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
 				 new Select(ddMaxEVCExceeded).selectByVisibleText("No");
-				 btnSave.click();
+				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
@@ -740,7 +740,7 @@ public class ProcessTabPageCM extends Page {
 				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
 				 new Select(ddMaxEVCExceeded).selectByVisibleText("No");
 				 txtCustomerVLANInfo.sendKeys(processInfo.customerVLANInfo);
-				 btnSave.click();
+				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
@@ -776,7 +776,7 @@ public class ProcessTabPageCM extends Page {
 				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
 				 new Select(ddMaxEVCExceeded).selectByVisibleText("No");
 				 txtCustomerVLANInfo.sendKeys(processInfo.customerVLANInfo);
-				 btnSave.click();
+				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 report.reportDoneEvent("Save EVC~2 Configuration", "EVC~2 Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
@@ -803,7 +803,7 @@ public class ProcessTabPageCM extends Page {
 				 }
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(btnSave);
-				 btnSave.click();
+				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 waitForElementDisappear(elementLoading);
 				 
 				 if (waitForElement(LinkEquipmentFeeConfiguration.get(0))){
@@ -814,7 +814,7 @@ public class ProcessTabPageCM extends Page {
 					 ddArrwEqFeeServiceLocation.click();
 					 ddValueEqFeeServiceLocation.get(0).click();
 				  }
-				 btnSave.click();
+				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 waitForElementDisappear(elementLoading);
 				 report.reportDoneEvent("Save Equipment Fee Configuration", "Equipment Fee Configuration Saved");
 			} catch (Exception e) {
@@ -839,7 +839,7 @@ public class ProcessTabPageCM extends Page {
 				 }
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(btnSave);
-				 btnSave.click();
+				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 waitForElementDisappear(elementLoading);
 				 
 				 if (waitForElement(LinkEquipmentFeeConfiguration.get(1))){
@@ -850,7 +850,7 @@ public class ProcessTabPageCM extends Page {
 					 ddArrwEqFeeServiceLocation.click();
 					 ddValueEqFeeServiceLocation.get(1).click();
 				  }
-				 btnSave.click();
+				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 waitForElementDisappear(elementLoading);
 				 report.reportDoneEvent("Save Equipment Fee~2 Configuration", "Equipment Fee~2 Configuration Saved");
 			} catch (Exception e) {
@@ -875,7 +875,7 @@ public class ProcessTabPageCM extends Page {
 				 }
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(btnSave);
-				 btnSave.click();
+				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 waitForElementDisappear(elementLoading);
 				 
 				 if (waitForElement(LinkEquipmentFeeConfiguration.get(2))){
@@ -886,7 +886,7 @@ public class ProcessTabPageCM extends Page {
 					 ddArrwEqFeeServiceLocation.click();
 					 ddValueEqFeeServiceLocation.get(2).click();
 				  }
-				 btnSave.click();
+				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 waitForElementDisappear(elementLoading);
 				 report.reportDoneEvent("Save Equipment Fee~3 Configuration", "Equipment Fee~3 Configuration Saved");
 			} catch (Exception e) {
@@ -911,7 +911,7 @@ public class ProcessTabPageCM extends Page {
 			 try {
 				report.updateTestLog("Save Process Configuration", "Process Configuration Saved", Status.SCREENSHOT);
 				 if (waitForElement(btnContinue)){
-					 btnContinue.click();
+					 iClick(btnContinue, null, "Click on continue button: Process page: ContinueButton");					 
 					 waitforPageLoadComplete();
 					 browser.switchTo().defaultContent();
 				  }

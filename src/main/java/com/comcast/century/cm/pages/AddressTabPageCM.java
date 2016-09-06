@@ -203,12 +203,12 @@ public class AddressTabPageCM extends Page {
 		this.headEndInformation(siteInfo);
 		this.clickCreateButton();
 		waitForElement(btnMore);
-		btnMore.click();
+		iClick(btnMore, null, "Select City: Site Address Page: MoreButton");		
 		WaitandSwitchToFrame(frameCondition);
 		waitForElement(chkDisclaimer);
 		chkDisclaimer.click();
 	    waitForElement(btnContinue);
-		btnContinue.click();
+	    iClick(btnContinue, null, "Select City and continue: Site Address Page: ContinueButton");		
 		waitforPageLoadComplete();
 		Thread.sleep(3*1000);
 		report.updateTestLog("Create Address", "Address Created Successfully", Status.SCREENSHOT);
@@ -230,7 +230,7 @@ public class AddressTabPageCM extends Page {
 		waitForElement(btnSelectValidSite);
 		btnSelectValidSite.click();
 		waitForElement(btnContinue);
-		btnContinue.click();
+		iClick(btnContinue, null, "Select City and continue: Site Address Page: ContinueButton");	
 		waitforPageLoadComplete();
 		report.updateTestLog("Create Address", "Address Created Successfully", Status.SCREENSHOT);
 		/*while(waitForElement(BtnAddContact,2))
@@ -241,8 +241,7 @@ public class AddressTabPageCM extends Page {
 		 while(!waitForElement(BtnAddContact)){
 			 
 		 }
-		 iClick(BtnAddContact);
-
+		iClick(BtnAddContact, null, "Adding Contact: Contact Page: AddContactButton");	
 	    report.reportDoneEvent("Click on Add Contact", "Add Contact Clicked");
 	    waitforPageLoadComplete();	
 		return siteName;
@@ -265,7 +264,7 @@ public class AddressTabPageCM extends Page {
 			waitForElement(txtCity);
 			iterateThroughtableAndSelectCity(siteInfo.city);
 			waitForElement(btnOk);
-			btnOk.click();
+			iClick(btnOk, null, "Select City and click OK: Customer Page: OKButton");
 			browser.switchTo().defaultContent();
 		}
 		catch(Exception ex)
@@ -295,7 +294,7 @@ public class AddressTabPageCM extends Page {
 			waitForElement(txtCity);
 			while(!iterateThroughtableAndSelectCity(siteInfo.city)){}
 			waitForElement(btnOk);
-			iClick(btnOk);
+			iClick(btnOk, null, "Select City and click OK: Customer Page: OKButton");
 			browser.switchTo().defaultContent();
 		}
 		catch(Exception ex)
@@ -340,7 +339,7 @@ public class AddressTabPageCM extends Page {
 		mstatus = true;
 		try{
 			if(waitForElement(btnCreate)){
-				iClick(btnCreate);
+				iClick(btnCreate, null, "Create Address: Customer Page: CreateButton");
 				waitforPageLoadComplete();
 			}
 		}
@@ -359,7 +358,7 @@ public class AddressTabPageCM extends Page {
 			 if(waitForElement(BtnAddContact)){
 				 System.out.println("Btn exist");
 			 }
-			 iClick(BtnAddContact);
+			 iClick(BtnAddContact, null, "Add Contact: ContactPage: AddContactButton");
 			 report.reportDoneEvent("Click on Add Contact", "Add Contact Clicked");
 			 waitforPageLoadComplete();
 		}
@@ -379,7 +378,7 @@ public class AddressTabPageCM extends Page {
 				WaitandSwitchToFrame(frameAddress);
 				while(waitForElement(BtnCreateNewAddress,1))
 				{
-					iClick(BtnCreateNewAddress);
+					iClick(BtnCreateNewAddress, null, "Create New Address: AddressPage: CreateNewAddressButton");					
 				}
 				 waitforPageLoadComplete();
 			}

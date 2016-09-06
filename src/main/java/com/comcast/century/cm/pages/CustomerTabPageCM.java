@@ -237,22 +237,22 @@ public class CustomerTabPageCM extends Page {
 			  while(!WaitandSwitchToFrame(frameCondition)){}			  
 			  while(!waitForElement(txtCity)){}
 			  while(!iterateThroughtableAndSelectCity(customerInfo.city)){};
-			  btnOk.click();
+			  iClick(btnOk, null, "Select City and click OK: Customer Page: OKButton");			  
 			  browser.switchTo().defaultContent();
 			  if(WaitandSwitchToFrame(frameMain)){
 				  WaitandSwitchToFrame(frameCustomer);
 				  }
 			  waitForElement(btnCreate);
-			  btnCreate.click();
+			  iClick(btnCreate, btnMore, "Create Customer: Customer Page: CreateButton");			  
 			  waitforPageLoadComplete();
 			  waitForElement(btnMore);
-			  btnMore.click();
+			  iClick(btnMore, null, "Create Customer: Customer Page: MoreButton");			  
 			  waitforPageLoadComplete();
 			  WaitandSwitchToFrame(frameCondition);
 			  waitForElement(chkDisclaimer);
 			  chkDisclaimer.click();
 			  waitForElement(btnContinue);
-			  btnContinue.click();
+			  iClick(btnContinue, null, "Create Customer: Customer Page: ContinueButton");			  
 			  browser.switchTo().defaultContent();
 			  waitforPageLoadComplete();
 			  Thread.sleep(3000);
@@ -339,10 +339,10 @@ public class CustomerTabPageCM extends Page {
 			  }
 			  waitforPageLoadComplete();
 			  waitForElement(plusButtonInProgress);
-			  iClick(plusButtonInProgress);
+			  iClick(plusButtonInProgress,linkSRID,"Click on + button: CSO Page: InProgress + button");			  
 			  waitforPageLoadComplete();
 			  waitForElement(linkSRID);
-			  iClick(linkSRID);  
+			  iClick(linkSRID,null,"Click on SRID link: CSO Page: SRID Link");			  
 			  waitforPageLoadComplete();
 			  browser.switchTo().defaultContent();
 		  }catch (Exception e) {
