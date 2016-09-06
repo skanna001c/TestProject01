@@ -8,8 +8,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.cm.pages.Page;
+import com.comcast.century.data.ServiceInfo;
 import com.comcast.century.data.ServiceLevelTaskInfo;
+import com.comcast.utils.DataDump;
 import com.comcast.utils.SeleniumReport;
+import com.comcast.utils.SoapTest;
 
 public class CAETaskPage extends Page {
 
@@ -74,7 +77,7 @@ public class CAETaskPage extends Page {
 	@FindBy(xpath = "//span[.='Order Services']")
 	private WebElement tabOrderServices ;
 	
-	@FindBy(xpath = "//div[.='New']/../Preceding-sibling::td[1]/Child::div")
+	@FindBy(xpath = "//div[.='New']/../preceding-sibling::td[1]/div")
 	private WebElement resourceComponentID ;
 	
 	
@@ -99,6 +102,40 @@ public class CAETaskPage extends Page {
 		return RCID;
 	}
 	
+	
+	public boolean cAETask(ServiceInfo serviceInfo, ServiceLevelTaskInfo serviceLevelTaskInfo, DataDump dataDump){
+		try{
+			String request = null;			
+			String RCID = this.getResourceComponentID();
+			switch(serviceInfo.serviceName){			
+			case "EDI" :
+				request = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:sit=\"http://www.excelacom.com/century/cramer/beans/siteDesignNotification\">"
+						+ "<soapenv:Header/>" + "<soapenv:Body>" + "<sit:siteDesignNotification>"
+						+ "<sit:resourceComponent resourceComponentId=\"" + RCID + "\">"
+						+ "<sit:site uniNumber=\"" + dataDump.getValue("UNINo1_RT") + "\" uniID=\"" + serviceLevelTaskInfo.UNI1 + "\" siteCLLI=\"" + serviceLevelTaskInfo.siteCili+ "\"/>" 
+						+"</sit:resourceComponent>" + "</sit:siteDesignNotification>" + "</soapenv:Body>"
+						+ "</soapenv:Envelope>";				
+				(new SoapTest()).soapCAETask(request);
+			case "EPL" :
+				request = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:sit=\"http://www.excelacom.com/century/cramer/beans/siteDesignNotification\">"
+						+ "<soapenv:Header/>" + "<soapenv:Body>" + "<sit:siteDesignNotification>"
+						+ "<sit:resourceComponent resourceComponentId=\"" + RCID + "\">"
+						+ "<sit:site uniNumber=\"" + dataDump.getValue("UNINo1_RT") + "\" uniID=\"" + serviceLevelTaskInfo.UNI1 + "\" siteCLLI=\"" + serviceLevelTaskInfo.siteCili+ "\"/>" 
+						+ "<sit:site uniNumber=\"" + dataDump.getValue("UNINo2_RT") + "\" uniID=\"" + serviceLevelTaskInfo.UNI2 + "\" siteCLLI=\"" + serviceLevelTaskInfo.siteCili+ "\"/>" 
+						+ "</sit:resourceComponent>" + "</sit:siteDesignNotification>" + "</soapenv:Body>"
+						+ "</soapenv:Envelope>";
+				(new SoapTest()).soapCAETask(request);
+			
+			}
+			this.ClickCompleteButton();
+			
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			mstatus=false;
+		}
+		return mstatus;
+	}
 	
 	
 	public boolean CAE(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{

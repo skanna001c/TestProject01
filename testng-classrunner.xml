@@ -173,7 +173,7 @@
 					<include name="Install_CPE_2" />
 					<include name="Set_Critical_Dates" />
 					<include name="Day_of_Configs" />
-					<include name="Activate_Service_EPL" />
+					<include name="Activate_Service" />
 					<include name="Notify_Customer_of_Service_Installation" />
 					<include name="Complete_Customer_Acceptance_Testing" />
 					<include name="Start_Billing" />
@@ -230,7 +230,7 @@
 					<include name="Install_CPE_Coax" />					
 					<include name="Set_Critical_Dates" />
 					<include name="Day_of_Configs" />
-					<include name="Activate_Service_EVPL" />
+					<include name="Activate_Service" />
 					<include name="Notify_Customer_of_Service_Installation" />
 					<include name="Complete_Customer_Acceptance_Testing" />
 					<include name="Start_Billing" />

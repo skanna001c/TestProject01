@@ -180,7 +180,7 @@ public class newConnect extends ComcastTest {
 		(new ServiceLevelTasks(browser, report)).DayofConfigs();
 		(new DaysOfConfigsTaskPage(browser, report)).ClickCompleteButton();
 		(new ServiceLevelTasks(browser, report)).ActivateService();
-		(new ActivateServiceTaskPage(browser, report)).ActivateService(serviceLevelTaskInfo);
+		(new ActivateServiceTaskPage(browser, report)).activateService(serviceInfo,serviceLevelTaskInfo);
 		(new ServiceLevelTasks(browser, report)).NotifyCustomerofServiceInstallation();
 		(new NotifyCustomerofServiceInstallationTaskPage(browser, report)).NotifyCustomerofServiceInstallation();
 		(new ServiceLevelTasks(browser, report)).CCAT();
@@ -278,7 +278,7 @@ public class newConnect extends ComcastTest {
 		(new ServiceLevelTasks(browser, report)).DayofConfigs();
 		(new DaysOfConfigsTaskPage(browser, report)).ClickCompleteButton();
 		(new ServiceLevelTasks(browser, report)).ActivateService();
-		(new ActivateServiceTaskPage(browser, report)).ActivateService(serviceLevelTaskInfo);
+		(new ActivateServiceTaskPage(browser, report)).activateService(serviceInfo,serviceLevelTaskInfo);
 		(new ServiceLevelTasks(browser, report)).NotifyCustomerofServiceInstallation();
 		(new NotifyCustomerofServiceInstallationTaskPage(browser, report)).NotifyCustomerofServiceInstallation();
 		(new ServiceLevelTasks(browser, report)).CCAT();
@@ -388,7 +388,7 @@ public class newConnect extends ComcastTest {
 		(new ServiceLevelTasks(browser, report)).DayofConfigs();
 		(new DaysOfConfigsTaskPage(browser, report)).ClickCompleteButton();
 		(new ServiceLevelTasks(browser, report)).ActivateService();
-		(new ActivateServiceTaskPage(browser, report)).ActivateService(serviceLevelTaskInfo);
+		(new ActivateServiceTaskPage(browser, report)).activateService(serviceInfo,serviceLevelTaskInfo);
 		(new ServiceLevelTasks(browser, report)).NotifyCustomerofServiceInstallation();
 		(new NotifyCustomerofServiceInstallationTaskPage(browser, report)).NotifyCustomerofServiceInstallation();
 		(new ServiceLevelTasks(browser, report)).CCAT();
@@ -491,7 +491,7 @@ public class newConnect extends ComcastTest {
 		(new ServiceLevelTasks(browser, report)).DayofConfigs();
 		(new DaysOfConfigsTaskPage(browser, report)).ClickCompleteButton();
 		(new ServiceLevelTasks(browser, report)).ActivateService();
-		(new ActivateServiceTaskPage(browser, report)).ActivateService(serviceLevelTaskInfo);
+		(new ActivateServiceTaskPage(browser, report)).activateService(serviceInfo,serviceLevelTaskInfo);
 		(new ServiceLevelTasks(browser, report)).NotifyCustomerofServiceInstallation();
 		(new NotifyCustomerofServiceInstallationTaskPage(browser, report)).NotifyCustomerofServiceInstallation();
 		(new ServiceLevelTasks(browser, report)).CCAT();
@@ -524,7 +524,7 @@ public class newConnect extends ComcastTest {
 		(new ServiceLevelTasks(browser, report)).DayofConfigs();
 		(new DaysOfConfigsTaskPage(browser, report)).ClickCompleteButton();
 		(new ServiceLevelTasks(browser, report)).ActivateService();
-		(new ActivateServiceTaskPage(browser, report)).ActivateService(serviceLevelTaskInfo);
+		(new ActivateServiceTaskPage(browser, report)).activateService(serviceInfo,serviceLevelTaskInfo);;
 		(new ServiceLevelTasks(browser, report)).ClickBackButton();
 		
 		

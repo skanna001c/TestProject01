@@ -192,38 +192,46 @@ public class ProcessTabPageCM extends Page {
 		
 		
 		public IDataDump processServices(ServiceInfo serviceInfo,ProcessInfo processInfo, IDataDump iDataDump){
-			
+			String UNINo1, UNINo2, UNINo3;
 			IDataDump localiDataDump=iDataDump;
 			try{
 				switch(serviceInfo.serviceName)
 				{
 				case "EDI" :
-					this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT"));
+					UNINo1 = this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT"));
 					localiDataDump=SetSite(processInfo.UNITransportType1,localiDataDump.getValue("SITE1_RT"),localiDataDump);
 					this.EVCConfiguration_EDI(processInfo);
+					localiDataDump.setValue("UNINo1_RT",UNINo1);
 					break;
 				case "EPL" :
-					this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT") );
+					UNINo1 = this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT") );
 					localiDataDump=SetSite(processInfo.UNITransportType1,localiDataDump.getValue("SITE1_RT"),localiDataDump);
-					this.UNI2Configuration(processInfo,localiDataDump.getValue("SITE2_RT"));
+					localiDataDump.setValue("UNINo1_RT",UNINo1);
+					UNINo2=this.UNI2Configuration(processInfo,localiDataDump.getValue("SITE2_RT"));
 					localiDataDump=SetSite(processInfo.UNITransportType2,localiDataDump.getValue("SITE2_RT"),localiDataDump);
+					localiDataDump.setValue("UNINo2_RT",UNINo2);
 					this.EVCConfiguration_EPL(processInfo);
 					break;
 				case "ENS" :
-					this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT") );
+					UNINo1=this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT") );
 					localiDataDump=SetSite(processInfo.UNITransportType1,localiDataDump.getValue("SITE1_RT"),localiDataDump);
-					this.UNI2Configuration(processInfo, localiDataDump.getValue("SITE2_RT"));
+					localiDataDump.setValue("UNINo1_RT",UNINo1);
+					UNINo2=this.UNI2Configuration(processInfo, localiDataDump.getValue("SITE2_RT"));
 					localiDataDump=SetSite(processInfo.UNITransportType2,localiDataDump.getValue("SITE2_RT"),localiDataDump);
+					localiDataDump.setValue("UNINo2_RT",UNINo2);
 					this.EVCConfiguration_ENS(processInfo);
 					this.EVC2Configuration_ENS(processInfo);
 					break;
 				case "EVPL" :
-					this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT") );
+					UNINo1=this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT") );
 					localiDataDump=SetSite(processInfo.UNITransportType1, localiDataDump.getValue("SITE1_RT"),localiDataDump);
-					this.UNI2Configuration(processInfo,localiDataDump.getValue("SITE2_RT"));
+					localiDataDump.setValue("UNINo1_RT",UNINo1);
+					UNINo2=this.UNI2Configuration(processInfo,localiDataDump.getValue("SITE2_RT"));
 					localiDataDump=SetSite(processInfo.UNITransportType2, localiDataDump.getValue("SITE2_RT"), localiDataDump);
-					this.UNI3Configuration(processInfo,localiDataDump.getValue("SITE3_RT"));
+					localiDataDump.setValue("UNINo2_RT",UNINo2);
+					UNINo3=this.UNI3Configuration(processInfo,localiDataDump.getValue("SITE3_RT"));
 					localiDataDump=SetSite(processInfo.UNITransportType3, localiDataDump.getValue("SITE3_RT"), localiDataDump);
+					localiDataDump.setValue("UNINo3_RT",UNINo3);
 					this.EVCConfiguration_EVPL(processInfo);
 					this.EVC2Configuration_EVPL(processInfo);
 					break;
@@ -335,9 +343,8 @@ public class ProcessTabPageCM extends Page {
 		 * 
 		 */
 		
-		public boolean UNIConfiguration(ProcessInfo processInfo, String Site) throws InterruptedException{
-			mstatus= true;
-			
+		public String UNIConfiguration(ProcessInfo processInfo, String Site) throws InterruptedException{			
+			String UNINo1=null;
 			try {
 				waitForElement(LinkUNI);
 				LinkUNI.click();
@@ -371,15 +378,16 @@ public class ProcessTabPageCM extends Page {
 				 ddvalueSURCILI1.click();*/
 				 waitForElement(txtUNInumber);
 				 txtUNInumber.clear();
-				 txtUNInumber.sendKeys(randomNumber(5));
+				 UNINo1 = randomNumber(5);
+				 txtUNInumber.sendKeys(UNINo1);				 
 				 new Select(ddUNIPortSpeed).selectByVisibleText("10/100");
 				 btnSave.click();
 				 report.reportDoneEvent("Save UNI Configuration", "UNI Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
-				mstatus= false;
+				UNINo1= null;
 			}
-			return mstatus;
+			return UNINo1;
 		}
 		
 		
@@ -415,9 +423,8 @@ public class ProcessTabPageCM extends Page {
 		 * 
 		 */
 		
-		public boolean UNI2Configuration(ProcessInfo processInfo,String Site) throws InterruptedException{
-			mstatus= true;
-			
+		public String UNI2Configuration(ProcessInfo processInfo,String Site) throws InterruptedException{
+			String UNINo2=null;
 			try {
 				waitForElement(LinkUNI2);
 				LinkUNI2.click();
@@ -447,15 +454,16 @@ public class ProcessTabPageCM extends Page {
 				 waitForElement(ddvalueSURCILI2);
 				 ddvalueSURCILI2.click();
 				 waitForElement(txtUNInumber);
-				 txtUNInumber.sendKeys(randomNumber(5));
+				 UNINo2=randomNumber(5);
+				 txtUNInumber.sendKeys(UNINo2);
 				 new Select(ddUNIPortSpeed).selectByVisibleText("10/100");
 				 btnSave.click();
 				 report.reportDoneEvent("Save UNI~2 Configuration", "UNI~2 Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
-				mstatus= false;
+				UNINo2= null;
 			}
-			return mstatus;
+			return UNINo2;
 		}
 		
 		
@@ -467,8 +475,8 @@ public class ProcessTabPageCM extends Page {
 		 */
 		
 		
-		public boolean UNI3Configuration(ProcessInfo processInfo,String Site) throws InterruptedException{
-			mstatus= true;
+		public String  UNI3Configuration(ProcessInfo processInfo,String Site) throws InterruptedException{
+		String UNINo3;
 			try {
 				waitForElement(LinkUNI3);
 				LinkUNI3.click();
@@ -500,15 +508,16 @@ public class ProcessTabPageCM extends Page {
 				 waitForElement(ddvalueSURCILI3);
 				 ddvalueSURCILI3.click();
 				 waitForElement(txtUNInumber);
-				 txtUNInumber.sendKeys(randomNumber(5));
+				 UNINo3=randomNumber(5);
+				 txtUNInumber.sendKeys(UNINo3);
 				 new Select(ddUNIPortSpeed).selectByVisibleText("10/100");;
 				 btnSave.click();
 				 report.reportDoneEvent("Save UNI~3 Configuration", "UNI~3 Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
-				mstatus= false;
+				UNINo3= null;
 			}
-			return mstatus;
+			return UNINo3;
 		}
 		
 		
