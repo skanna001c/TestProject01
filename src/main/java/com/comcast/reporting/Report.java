@@ -23,6 +23,15 @@ import com.comcast.reporting.Util;
 public class Report
 {
 	private ReportSettings reportSettings;
+	public ReportSettings getReportSettings() {
+		return reportSettings;
+	}
+
+
+	public void setReportSettings(ReportSettings reportSettings) {
+		this.reportSettings = reportSettings;
+	}
+
 	private ReportTheme reportTheme;
 	
 	private int stepNumber;

@@ -3076,6 +3076,7 @@ public abstract class Page {
 	 */
 	public void iClick(WebElement we, WebElement waitForElement, String description) {
 		//System.out.println("inside iclick");
+		String testName = report.getReportSettings().getReportName(); // added by harsh on 9/6/2016 to get the test name
 		if ((new TestSettings()).getBrowser().equalsIgnoreCase("iexplore")
 				|| (new TestSettings()).getBrowser().equalsIgnoreCase("ie")) {
 			we.sendKeys(Keys.ENTER);
@@ -3086,6 +3087,7 @@ public abstract class Page {
 			isElementClickable(waitForElement);
 		}
 		report.reportPassEvent("Button Click", description);
+		
 
 	}
 

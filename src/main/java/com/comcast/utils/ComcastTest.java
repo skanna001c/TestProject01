@@ -110,12 +110,12 @@ public class ComcastTest {
 		return userDetails;
 	}
 	
-	 @Rule
+	 /*@Rule
 	 
-	 /***
+	 *//***
 	     * Added Rule to Rerun failed tests till threshold FailRunRetryCount
 	     * If the test is passed before the threshold run count,remaining runs will be disregarded
-	 ***/
+	 ***//*
 	  public JUnitRetry retry = new JUnitRetry();
 	 
 	 @Rule
@@ -226,7 +226,7 @@ public class ComcastTest {
 	      
 	      }
 	     };
-	
+*/	
 	// changed to before suite from beforeclass - Harsh 
     
     public void initializeSummaryReport()
