@@ -201,50 +201,51 @@ public class ProcessTabPageCM extends Page {
 				case "EDI" :
 					UNINo1 = this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT"));
 					localiDataDump=SetSite(processInfo.UNITransportType1,localiDataDump.getValue("SITE1_RT"),localiDataDump);					
-					EVCNo1=this.EVCConfiguration_EDI(processInfo);
-					localiDataDump.setValue("UNINo1_RT",UNINo1);
-					localiDataDump.setValue("EVCNo1_RT",EVCNo1);
-
+					EVCNo1 = this.EVCConfiguration_EDI(processInfo);					
+					localiDataDump.setValue("EVCcount_RT","1");
 					break;
 				case "EPL" :
 					UNINo1 = this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT") );
-					localiDataDump=SetSite(processInfo.UNITransportType1,localiDataDump.getValue("SITE1_RT"),localiDataDump);
-					localiDataDump.setValue("UNINo1_RT",UNINo1);
-					UNINo2=this.UNI2Configuration(processInfo,localiDataDump.getValue("SITE2_RT"));
-					localiDataDump=SetSite(processInfo.UNITransportType2,localiDataDump.getValue("SITE2_RT"),localiDataDump);
-					localiDataDump.setValue("UNINo2_RT",UNINo2);
-					EVCNo1=this.EVCConfiguration_EPL(processInfo);
-					localiDataDump.setValue("EVCNo1_RT",EVCNo1);
+					localiDataDump=SetSite(processInfo.UNITransportType1,localiDataDump.getValue("SITE1_RT"),localiDataDump);					
+					UNINo2 = this.UNI2Configuration(processInfo,localiDataDump.getValue("SITE2_RT"));
+					localiDataDump=SetSite(processInfo.UNITransportType2,localiDataDump.getValue("SITE2_RT"),localiDataDump);					
+					EVCNo1 = this.EVCConfiguration_EPL(processInfo);					
+					localiDataDump.setValue("EVCcount_RT","1");
 					break;
 				case "ENS" :
-					UNINo1=this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT") );
-					localiDataDump=SetSite(processInfo.UNITransportType1,localiDataDump.getValue("SITE1_RT"),localiDataDump);
-					localiDataDump.setValue("UNINo1_RT",UNINo1);
-					UNINo2=this.UNI2Configuration(processInfo, localiDataDump.getValue("SITE2_RT"));
-					localiDataDump=SetSite(processInfo.UNITransportType2,localiDataDump.getValue("SITE2_RT"),localiDataDump);
-					localiDataDump.setValue("UNINo2_RT",UNINo2);
-					EVCNo1=this.EVCConfiguration_ENS(processInfo);
-					localiDataDump.setValue("EVCNo1_RT",EVCNo1);
-					this.EVC2Configuration_ENS(processInfo);
+					UNINo1 = this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT") );
+					localiDataDump=SetSite(processInfo.UNITransportType1,localiDataDump.getValue("SITE1_RT"),localiDataDump);					
+					UNINo2 = this.UNI2Configuration(processInfo, localiDataDump.getValue("SITE2_RT"));
+					localiDataDump=SetSite(processInfo.UNITransportType2,localiDataDump.getValue("SITE2_RT"),localiDataDump);					
+					EVCNo1 = this.EVCConfiguration_ENS(processInfo);
+					EVCNo2 = this.EVC2Configuration_ENS(processInfo);
+					localiDataDump.setValue("EVCcount_RT","2");
 					break;
 				case "EVPL" :
-					UNINo1=this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT") );
-					localiDataDump=SetSite(processInfo.UNITransportType1, localiDataDump.getValue("SITE1_RT"),localiDataDump);
-					localiDataDump.setValue("UNINo1_RT",UNINo1);
-					UNINo2=this.UNI2Configuration(processInfo,localiDataDump.getValue("SITE2_RT"));
-					localiDataDump=SetSite(processInfo.UNITransportType2, localiDataDump.getValue("SITE2_RT"), localiDataDump);
-					localiDataDump.setValue("UNINo2_RT",UNINo2);
-					UNINo3=this.UNI3Configuration(processInfo,localiDataDump.getValue("SITE3_RT"));
-					localiDataDump=SetSite(processInfo.UNITransportType3, localiDataDump.getValue("SITE3_RT"), localiDataDump);
-					localiDataDump.setValue("UNINo3_RT",UNINo3);
-					EVCNo1=this.EVCConfiguration_EVPL(processInfo);
-					localiDataDump.setValue("EVCNo1_RT",EVCNo1);
-					EVCNo2=this.EVC2Configuration_EVPL(processInfo);
-					localiDataDump.setValue("EVCNo2_RT",EVCNo2);
+					UNINo1 = this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT") );
+					localiDataDump=SetSite(processInfo.UNITransportType1, localiDataDump.getValue("SITE1_RT"),localiDataDump);					
+					UNINo2 = this.UNI2Configuration(processInfo,localiDataDump.getValue("SITE2_RT"));
+					localiDataDump=SetSite(processInfo.UNITransportType2, localiDataDump.getValue("SITE2_RT"), localiDataDump);					
+					UNINo3 = this.UNI3Configuration(processInfo,localiDataDump.getValue("SITE3_RT"));
+					localiDataDump=SetSite(processInfo.UNITransportType3, localiDataDump.getValue("SITE3_RT"), localiDataDump);					
+					EVCNo1 = this.EVCConfiguration_EVPL(processInfo);					
+					EVCNo2 = this.EVC2Configuration_EVPL(processInfo);					
+					localiDataDump.setValue("EVCcount_RT","2");
 					break;
 				default :
 					System.out.println("Invalid Service");
 				}
+				
+				int FiberCount = 0;
+				int CoaxCount = 0;
+				
+				// Calculation of Fiber/Coax site count and update it in dump
+				//Added by Kesavan on 07th Sep 2016
+				if (processInfo.UNITransportType1.equalsIgnoreCase("fiber")) FiberCount++; else CoaxCount++;
+				if (processInfo.UNITransportType2.equalsIgnoreCase("fiber")) FiberCount++; else CoaxCount++;
+				if (processInfo.UNITransportType3.equalsIgnoreCase("fiber")) FiberCount++; else CoaxCount++;
+				localiDataDump.setValue("Fibercount_RT",Integer.toString(FiberCount));		
+				localiDataDump.setValue("Coaxcount_RT",Integer.toString(CoaxCount));
 				
 				if( serviceInfo.equipmentFee.equalsIgnoreCase("0") || serviceInfo.equipmentFee ==null || serviceInfo.equipmentFee =="" ){
 					this.ClickOnContinueButton();
@@ -677,23 +678,27 @@ public class ProcessTabPageCM extends Page {
 		 * 
 		 */
 		
-		public boolean EVC2Configuration_ENS(ProcessInfo processInfo){
-			mstatus= true;
+		public String EVC2Configuration_ENS(ProcessInfo processInfo){
+			String EVCNo2=null;
 			 try {
-				waitForElement(LinkEVC2);
+				 waitForElement(LinkEVC2);
 				 LinkEVC2.click();
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(ddArrwLocationZuni);
 				 ddArrwLocationZuni.click();
 				 ddvalueLocationZuni.get(1).click();
+				 new Select(ddExistingEVC).selectByVisibleText("No");
+				 new Select(ddEVCAreaType).selectByVisibleText(processInfo.evcAreaType);
+				 EVCNo2=randomNumber(5);
+				 txtEVCnumber.sendKeys(EVCNo2);
 				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
 				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 report.reportDoneEvent("Save EVC~2 Configuration", "EVC~2 Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
-				mstatus= false;
+				EVCNo2= null;
 			}
-			 return mstatus;
+			 return EVCNo2;
 			 
 		}
 		

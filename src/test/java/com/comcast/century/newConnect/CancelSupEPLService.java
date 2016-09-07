@@ -31,7 +31,7 @@ import com.comcast.century.data.SiteLevelTaskInfo;
 import com.comcast.utils.ComcastTest;
 import com.comcast.utils.PerfTransaction;
 
-public class CancelSupEPLService extends NewConnectTest {
+public class CancelSupEPLService extends CoaxTaskFlow {
 	
 	
 	

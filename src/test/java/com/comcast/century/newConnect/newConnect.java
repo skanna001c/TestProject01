@@ -1,4 +1,4 @@
-package com.comcast.century.newConnect;
+/*package com.comcast.century.newConnect;
 
 
 import org.testng.annotations.Test;
@@ -719,7 +719,7 @@ public class newConnect extends ComcastTest {
 		(new AccountTabPageCM(browser, report)).CreateBillingAccount(accountInfo);
 		(new ContactTabPageCM(browser, report)).CreateBillingContact(contactInfo);
 		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();
-		/*siteInfo = SiteInfo.loadFromDatatable(dataTable);
+		siteInfo = SiteInfo.loadFromDatatable(dataTable);
 		(new AddressTabPageCM(browser, report)).ClickAddressTab(siteInfo);
 		Site1 = (new AddressTabPageCM(browser, report)).EnterSiteDetailsValid(siteInfo);
 		(new ContactTabPageCM(browser, report)).CreateSiteTechnicalContact(contactInfo);
@@ -730,8 +730,8 @@ public class newConnect extends ComcastTest {
 		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();
 		(new AddressTabPageCM(browser, report)).CreateNewAddress();
 		Site3 = (new AddressTabPageCM(browser, report)).EnterSiteDetailsValid(siteInfo);
-		(new ContactTabPageCM(browser, report)).CreateSiteTechnicalContact(contactInfo);*/
-		/*(new ServiceTabPageCM(browser, report)).ClickOnServiceTab();
+		(new ContactTabPageCM(browser, report)).CreateSiteTechnicalContact(contactInfo);
+		(new ServiceTabPageCM(browser, report)).ClickOnServiceTab();
 		(new ServiceTabPageCM(browser, report)).SelectPricePlan();
 		(new ServiceTabPageCM(browser, report)).EVPL();
 		(new ServiceTabPageCM(browser, report)).EquipmentFee(serviceInfo);
@@ -753,7 +753,7 @@ public class newConnect extends ComcastTest {
 		(new OrderSummaryTabCMPage(browser, report)).mrcNrc_Value(orderSummaryInfo);
 		(new OrderSummaryTabCMPage(browser, report)).ClickSubmitOrderButton();
 		(new OrderSummaryTabCMPage(browser, report)).NavigateToCSO(orderSummaryInfo);
-		(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(SRID);*/
+		(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(SRID);
 	}
 	
 	@Test
@@ -863,7 +863,7 @@ public class newConnect extends ComcastTest {
 		(new ContactTabPageCM(browser, report)).CreateSiteTechnicalContact(contactInfo);
 		(new ContactTabPageCM(browser, report)).ClickOnBackBtn();
 		SurveyID = (new SurveyTabPageCM(browser, report)).SubmitSurveyRequest();
-		/*
+		
 		 * orderSummaryInfo = OrderSummaryInfo.loadFromDatatable(dataTable);
 		 * (new
 		 * OrderSummaryTabCMPage(browser,report)).NavigateToCSO(orderSummaryInfo
@@ -872,17 +872,18 @@ public class newConnect extends ComcastTest {
 		 * WorkOrderTabPageCSO(browser, report)).ClickWLAdvancedSearch(); (new
 		 * WorkOrderTabPageCSO(browser, report)).ClickAllTask(); (new
 		 * PresalesTasksPageCSO(browser,report)).ConductCoaxSurvey();
-		 */
+		 
 	}
 
 	
 	
-	/*@After
+	@After
 	public void closeApplication() throws IOException, Exception{
 		centuryApplication = new CenturyApplication(browser, report);
 		centuryApplication.close();
-	}*/
+	}
 
 	
 
 }
+*/

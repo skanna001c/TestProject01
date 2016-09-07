@@ -366,22 +366,22 @@ public class WorkOrderTabPageCSO extends Page {
 			
 	}
 	
-	public boolean ClickServiceFlow() throws InterruptedException, IndexOutOfBoundsException{
+	public boolean ClickServiceFlow(int i) throws InterruptedException, IndexOutOfBoundsException{
 		WebElement elementToClick=null;
 		Boolean found = false;
 		try{
 			WaitandSwitchToFrame(frameRight);
 			try {
-				if(waitForElement(linkENSFlow.get(0), 2)){				
-					elementToClick = linkENSFlow.get(0);
+				if(waitForElement(linkENSFlow.get(i), 2)){				
+					elementToClick = linkENSFlow.get(i);
 					found = true;
 				}
 			} catch (Exception e) {		
 				
 			} 
 			try {	
-				if(waitForElement(linkEVPLFlow.get(0), 2)){				
-					elementToClick = linkEVPLFlow.get(0);
+				if(waitForElement(linkEVPLFlow.get(i), 2)){				
+					elementToClick = linkEVPLFlow.get(i);
 					found = true;
 				}
 			}catch (Exception e) {				
@@ -547,5 +547,7 @@ public class WorkOrderTabPageCSO extends Page {
 		return mstatus;
 		
 	}
+
+	
 	
 }

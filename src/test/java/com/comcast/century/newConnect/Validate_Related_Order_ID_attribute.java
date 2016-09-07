@@ -24,10 +24,12 @@ public class Validate_Related_Order_ID_attribute extends NewConnectTest {
 	 
 	 
 	 @Test(priority=5100)
-	  public void validateRelatedOrderID() throws InterruptedException {		  
-		  SearchOrderndLaunchFiberSiteFlow();		
-		  (new SiteLevelTasks(browser, report)).ConductSiteSurvey();
-		  (new ConductSiteSurveyTaskPage(browser, report)).validateRelatedOrderIDAttribute(getDataDump().getValue("relatedOrderIDValue_RT"));
+	  public void validateRelatedOrderID() throws InterruptedException {	
+		  for(int i=1; i <= Integer.parseInt(getDataDump().getValue("Fibercount_RT")); i++){
+				SearchOrderndLaunchFiberSiteFlow(getDataDump().getValue("FiberSite" + i + "_RT"));		
+				(new SiteLevelTasks(browser, report)).ConductSiteSurvey();
+				(new ConductSiteSurveyTaskPage(browser, report)).validateRelatedOrderIDAttribute(getDataDump().getValue("relatedOrderIDValue_RT"));
+			}
 	  }	
 	
 }
