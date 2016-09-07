@@ -459,7 +459,7 @@ public class NewConnectTest extends ComcastTest {
 	public void Create_Account_and_Equipment() throws InterruptedException {
 		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).CAE();
-		(new CAETaskPage(browser, report)).CAETask(serviceInfo, serviceLevelTaskInfo, (DataDump) getDataDump());
+		(new CAETaskPage(browser, report)).CAETask(serviceInfo);
 
 	}
 	
@@ -483,7 +483,7 @@ public class NewConnectTest extends ComcastTest {
 	public void Assign_Design_Info() throws InterruptedException {
 		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).ADI();
-		(new ADITaskPage(browser, report)).ADITask(serviceInfo, serviceLevelTaskInfo, (DataDump) getDataDump());
+		(new ADITaskPage(browser, report)).ADITask(serviceInfo);
 
 	}
 	

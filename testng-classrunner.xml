@@ -219,11 +219,11 @@
 					<include name="Complete_Site_Build_CoaxSite2"/>
 					<include name="Complete_Coax_Build_CoaxSite2"/>					
 					<include name="Contact_Customer"/>
-					<include name="Update_Design"/>
+					<include name="Update_Design"/> 
 					<include name="Build_Update_Local_Biller_Account"/>					
 					<include name="Ship_CPE"/>
-					<include name="Create_Account_and_Equipment_EVPL"/>
-					<include name="Assign_Design_Info_EVPL"/>
+					<include name="Create_Account_and_Equipment"/>
+					<include name="Assign_Design_Info"/>
 					<include name="Generate_Core_Config"/>
 					<include name="Generate_CPE_Config"/>
 					<include name="Load_Core_Config" />

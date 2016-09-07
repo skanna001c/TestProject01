@@ -80,7 +80,8 @@ public class CAETaskPage extends Page {
 	@FindBy(xpath = "//div[.='New']/../preceding-sibling::td[1]/div")
 	private WebElement resourceComponentID ;
 	
-	
+	@FindBy(xpath = "//div[.='10/100']/../preceding-sibling::td[1]/child::*")
+	private List<WebElement> UNINo ;
 	
 	
 	
@@ -95,6 +96,9 @@ public class CAETaskPage extends Page {
 			iClick(tabOrderServices);
 			waitForElementDisappear(elementLoading);
 			RCID=resourceComponentID.getText();
+			waitForElement(tabOnnetServiceCI);
+			iClick(tabOnnetServiceCI);
+			waitForElementDisappear(elementLoading);
 		}catch(Exception e){
 		   System.out.println(e.getMessage());
 		   
@@ -102,7 +106,8 @@ public class CAETaskPage extends Page {
 		return RCID;
 	}
 	
-	public boolean CAETask(ServiceInfo serviceInfo, ServiceLevelTaskInfo serviceLevelTaskInfo, DataDump dataDump){
+	
+	public boolean CAETask(ServiceInfo serviceInfo){
 
 		try{
 			String request = null;			
@@ -112,7 +117,7 @@ public class CAETaskPage extends Page {
 				request = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:sit=\"http://www.excelacom.com/century/cramer/beans/siteDesignNotification\">"
 						+ "<soapenv:Header/>" + "<soapenv:Body>" + "<sit:siteDesignNotification>"
 						+ "<sit:resourceComponent resourceComponentId=\"" + RCID + "\">"
-						+ "<sit:site uniNumber=\"" + dataDump.getValue("UNINo1_RT") + "\" uniID=\"" + serviceLevelTaskInfo.UNI1 + "\" siteCLLI=\"" + serviceLevelTaskInfo.siteCili+ "\"/>" 
+						+ "<sit:site uniNumber=\"" + UNINo.get(1).getText()   + "\" uniID=\"30.KRGS." + randomNumber(6) + "..CBCL.." + "\" siteCLLI=\"JNBOGAEM\"/>" 
 						+"</sit:resourceComponent>" + "</sit:siteDesignNotification>" + "</soapenv:Body>"
 						+ "</soapenv:Envelope>";				
 				(new SoapTest()).webServicesTask(request, "CAE");
@@ -120,12 +125,20 @@ public class CAETaskPage extends Page {
 				request = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:sit=\"http://www.excelacom.com/century/cramer/beans/siteDesignNotification\">"
 						+ "<soapenv:Header/>" + "<soapenv:Body>" + "<sit:siteDesignNotification>"
 						+ "<sit:resourceComponent resourceComponentId=\"" + RCID + "\">"
-						+ "<sit:site uniNumber=\"" + dataDump.getValue("UNINo1_RT") + "\" uniID=\"" + serviceLevelTaskInfo.UNI1 + "\" siteCLLI=\"" + serviceLevelTaskInfo.siteCili+ "\"/>" 
-						+ "<sit:site uniNumber=\"" + dataDump.getValue("UNINo2_RT") + "\" uniID=\"" + serviceLevelTaskInfo.UNI2 + "\" siteCLLI=\"" + serviceLevelTaskInfo.siteCili+ "\"/>" 
+						+ "<sit:site uniNumber=\"" + UNINo.get(1).getText()  + "\" uniID=\"30.KRGS." + randomNumber(6) + "..CBCL.." + "\" siteCLLI=\"JNBOGAEM\"/>" 
+						+ "<sit:site uniNumber=\"" + UNINo.get(2).getText()  + "\" uniID=\"30.KRGS." + randomNumber(6) + "..CBCL.." + "\" siteCLLI=\"JNBOGAEM\"/>" 
 						+ "</sit:resourceComponent>" + "</sit:siteDesignNotification>" + "</soapenv:Body>"
 						+ "</soapenv:Envelope>";
 				(new SoapTest()).webServicesTask(request, "CAE");
-			
+			case "EVPL" :
+				request = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:sit=\"http://www.excelacom.com/century/cramer/beans/siteDesignNotification\">"
+						+ "<soapenv:Header/>" + "<soapenv:Body>" + "<sit:siteDesignNotification>"
+						+ "<sit:resourceComponent resourceComponentId=\"" + RCID + "\">"
+						+ "<sit:site uniNumber=\"" + UNINo.get(1).getText() + "\" uniID=\"30.KRGS."  + randomNumber(6) + "..CBCL.." + "\" siteCLLI=\"JNBOGAEM\"/>" 
+						+ "<sit:site uniNumber=\"" + UNINo.get(2).getText() + "\" uniID=\"30.KRGS."  + randomNumber(6) + "..CBCL.." + "\" siteCLLI=\"JNBOGAEM\"/>" 
+						+ "</sit:resourceComponent>" + "</sit:siteDesignNotification>" + "</soapenv:Body>"
+						+ "</soapenv:Envelope>";
+				(new SoapTest()).webServicesTask(request, "CAE");
 			}
 			iClick(btnBack,null, "CAE task complete:CAE task complete page: BackButton ");
 			waitForElement(browser.findElement(By.xpath("//*[text()='Create Account and Equipment' and contains(@onclick, 'COMPLETED')]")));

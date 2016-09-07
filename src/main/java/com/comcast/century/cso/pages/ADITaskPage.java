@@ -77,6 +77,9 @@ public class ADITaskPage extends Page {
 	@FindBy(xpath = "//*[.='Enterprise']/preceding-sibling::td[3]/child::*")
 	private WebElement resourceComponentID ;
 	
+	@FindBy(xpath = "//*[.='Enterprise']/following-sibling::td[1]/child::*")
+	private WebElement EVCNo ;
+	
 	private boolean mstatus;
 	
 	
@@ -97,7 +100,7 @@ public String getResourceComponentID(){
 	}
 	
 
-public boolean ADITask(ServiceInfo serviceInfo, ServiceLevelTaskInfo serviceLevelTaskInfo, DataDump dataDump){
+public boolean ADITask(ServiceInfo serviceInfo){
 	try{
 		String request = null;			
 		String RCID = this.getResourceComponentID();
@@ -109,12 +112,25 @@ public boolean ADITask(ServiceInfo serviceInfo, ServiceLevelTaskInfo serviceLeve
 				        + "<soapenv:Body>" 
 						+ "<ser:serviceDesignNotification>"
 						+ "<ser:resourceComponent resourceComponentId=\"" + RCID + "\">"
-						+ "<ser:service evcNumber=\"" + dataDump.getValue("EVCNo1_RT")+ "\" evcID=\""+serviceLevelTaskInfo.EVC1 + "\" serviceID=\""+randomNumber(7)+"\"/>"
+						+ "<ser:service evcNumber=\"" + EVCNo.getText() + "\" evcID=\"30.VLXM."+ randomNumber(6) + "..CBCL.."+ "\" serviceID=\""+randomNumber(7)+"\"/>"
 						+ "</ser:resourceComponent>" 
 						+ "</ser:serviceDesignNotification>" 
 						+ "</soapenv:Body>"
 						+ "</soapenv:Envelope>";			
 			(new SoapTest()).webServicesTask(request, "ADI");
+		
+		case "EVPL" :
+			  request =  "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"http://www.excelacom.com/century/cramer/beans/ServiceDesignNotification\">"
+						+ "<soapenv:Header/>" 
+				        + "<soapenv:Body>" 
+						+ "<ser:serviceDesignNotification>"
+						+ "<ser:resourceComponent resourceComponentId=\"" + RCID + "\">"
+						+ "<ser:service evcNumber=\"" +EVCNo.getText() + "\" evcID=\"30.VLXM."+ randomNumber(6) +"..CBCL.."+ "\" serviceID=\""+randomNumber(7)+"\"/>"
+						+ "</ser:resourceComponent>" 
+						+ "</ser:serviceDesignNotification>" 
+						+ "</soapenv:Body>"
+						+ "</soapenv:Envelope>";
+			  (new SoapTest()).webServicesTask(request, "ADI");
 		}
 		iClick(btnBack,null, "ADI task complete:ADI task complete page: BackButton ");
 		waitForElement(browser.findElement(By.xpath("//*[text()='Assign Design Information' and contains(@onclick, 'COMPLETED')]")));
@@ -128,141 +144,4 @@ public boolean ADITask(ServiceInfo serviceInfo, ServiceLevelTaskInfo serviceLeve
 }
 
 
-	
-	
-	/*public boolean ADI(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
-		mstatus = true;
-		try{
-			if(waitForElement(tabCircuitMapping)){
-				tabCircuitMapping.click();
-				waitForElementDisappear(elementLoading);
-				Thread.sleep(2*1000);
-				scrollToElementandclick(elementDash.get(0));
-				waitForElement(txtServiceID);
-				txtServiceID.sendKeys(randomNumber(6));
-				txtEVCid.sendKeys(serviceLevelTaskInfo.EVC1);
-				txtProjectName.clear();
-				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
-				linkRetrieveCircuitID.click();
-				Thread.sleep(5*1000);
-				 Sometimes after clicking the above link EVC id is changed to 500.
-				 As a workaround we have setting the value again and before  clicking the complete button.				
-				waitForElement(txtEVCid);
-				txtEVCid.clear();
-				txtEVCid.sendKeys(serviceLevelTaskInfo.EVC1);
-				this.ClickCompleteButton();
-				waitForElement(browser.findElement(By.xpath("//*[text()='Assign Design Information' and contains(@onclick, 'COMPLETED')]")));
-			}
-		}
-		catch(Exception e){
-			System.out.println(e.getMessage());
-			mstatus = false;
-		}
-		return mstatus;
-	}
-	
-	public boolean ADI_EVPL(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
-		mstatus = true;
-		try{
-			if(waitForElement(tabCircuitMapping)){
-				tabCircuitMapping.click();
-				waitForElementDisappear(elementLoading);
-				Thread.sleep(2*1000);
-				scrollToElementandclick(elementEVPL.get(0));
-				waitForElement(txtServiceID);
-				txtServiceID.sendKeys(randomNumber(6));
-				txtEVCid.sendKeys(serviceLevelTaskInfo.EVC1);
-				txtProjectName.clear();
-				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
-				linkRetrieveCircuitID.click();
-				Thread.sleep(5*1000);
-				 Sometimes after clicking the above link EVC id is changed to 500.
-				 As a workaround we have setting the value again and before  clicking the complete button.				
-				waitForElement(txtEVCid);
-				txtEVCid.clear();
-				txtEVCid.sendKeys(serviceLevelTaskInfo.EVC1);
-				this.ClickCompleteButton();
-				waitForElement(browser.findElement(By.xpath("//*[text()='Assign Design Information' and contains(@onclick, 'COMPLETED')]")));
-			}
-		}
-		catch(Exception e){
-			System.out.println(e.getMessage());
-			mstatus = false;
-		}
-		return mstatus;
-	}
-	
-	public boolean assignDesignInformationPRI(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
-		mstatus = true;
-		try{
-			if(waitForElement(tabCircuitMapping)){
-				tabCircuitMapping.click();
-				waitForElementDisappear(elementLoading);
-				Thread.sleep(2*1000);
-				scrollToElementandclick(elementDash.get(1));
-				waitForElement(txtServiceID);
-				txtServiceID.sendKeys(randomNumber(6));
-				txtEVCid.sendKeys(serviceLevelTaskInfo.EVC2);
-				txtProjectName.clear();
-				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
-				linkRetrieveCircuitID.click();
-				Thread.sleep(5*1000);
-				this.ClickCompleteButton();
-				waitForElement(browser.findElement(By.xpath("//*[text()='Assign Design Information' and contains(@onclick, 'COMPLETED')]")));
-			}
-		}
-		catch(Exception e){
-			System.out.println(e.getMessage());
-			mstatus = false;
-		}
-		return mstatus;
-	}
-	
-	
-	
-	public boolean ClickBackButton(){
-		mstatus = true;
-		try{
-			if(waitForElement(btnBack)){
-				btnBack.click();
-			}
-		}
-		catch(Exception e){
-			System.out.println(e.getMessage());
-			mstatus = false;
-		}
-		return mstatus;
-	}
-	
-	public boolean ClickSaveButton(){
-		mstatus = true;
-		try{
-			if(waitForElement(btnSave)){
-				btnSave.click();
-			}
-		}
-		catch(Exception e){
-			System.out.println(e.getMessage());
-			mstatus = false;
-		}
-		return mstatus;
-	}
-	
-	public boolean ClickCompleteButton(){
-		mstatus = true;
-		try{
-			if(waitForElement(btnComplete)){
-				iClick(btnComplete, btnBack, "Assign Design Information Task Complete: Assign Design Information Task page: CompleteButton");
-				waitforPageLoadComplete();
-				report.reportDoneEvent("Complete ADI Task", " ADI Task Completed");
-			}
-		}
-		catch(Exception e){
-			System.out.println(e.getMessage());
-			mstatus = false;
-		}
-		return mstatus;
-		
-	}
-*/
 }
