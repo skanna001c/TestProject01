@@ -192,7 +192,7 @@ public class ProcessTabPageCM extends Page {
 		
 		
 		public IDataDump processServices(ServiceInfo serviceInfo,ProcessInfo processInfo, IDataDump iDataDump){
-			String UNINo1, UNINo2, UNINo3;
+			String UNINo1, UNINo2, UNINo3,EVCNo1,EVCNo2;
 			IDataDump localiDataDump=iDataDump;
 			try{
 				switch(serviceInfo.serviceName)
@@ -200,8 +200,9 @@ public class ProcessTabPageCM extends Page {
 				case "EDI" :
 					UNINo1 = this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT"));
 					localiDataDump=SetSite(processInfo.UNITransportType1,localiDataDump.getValue("SITE1_RT"),localiDataDump);
-					this.EVCConfiguration_EDI(processInfo);
+					EVCNo1=this.EVCConfiguration_EDI(processInfo);
 					localiDataDump.setValue("UNINo1_RT",UNINo1);
+					localiDataDump.setValue("EVCNo1_RT",EVCNo1);
 					break;
 				case "EPL" :
 					UNINo1 = this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT") );
@@ -210,7 +211,8 @@ public class ProcessTabPageCM extends Page {
 					UNINo2=this.UNI2Configuration(processInfo,localiDataDump.getValue("SITE2_RT"));
 					localiDataDump=SetSite(processInfo.UNITransportType2,localiDataDump.getValue("SITE2_RT"),localiDataDump);
 					localiDataDump.setValue("UNINo2_RT",UNINo2);
-					this.EVCConfiguration_EPL(processInfo);
+					EVCNo1=this.EVCConfiguration_EPL(processInfo);
+					localiDataDump.setValue("EVCNo1_RT",EVCNo1);
 					break;
 				case "ENS" :
 					UNINo1=this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT") );
@@ -219,7 +221,8 @@ public class ProcessTabPageCM extends Page {
 					UNINo2=this.UNI2Configuration(processInfo, localiDataDump.getValue("SITE2_RT"));
 					localiDataDump=SetSite(processInfo.UNITransportType2,localiDataDump.getValue("SITE2_RT"),localiDataDump);
 					localiDataDump.setValue("UNINo2_RT",UNINo2);
-					this.EVCConfiguration_ENS(processInfo);
+					EVCNo1=this.EVCConfiguration_ENS(processInfo);
+					localiDataDump.setValue("EVCNo1_RT",EVCNo1);
 					this.EVC2Configuration_ENS(processInfo);
 					break;
 				case "EVPL" :
@@ -232,8 +235,10 @@ public class ProcessTabPageCM extends Page {
 					UNINo3=this.UNI3Configuration(processInfo,localiDataDump.getValue("SITE3_RT"));
 					localiDataDump=SetSite(processInfo.UNITransportType3, localiDataDump.getValue("SITE3_RT"), localiDataDump);
 					localiDataDump.setValue("UNINo3_RT",UNINo3);
-					this.EVCConfiguration_EVPL(processInfo);
-					this.EVC2Configuration_EVPL(processInfo);
+					EVCNo1=this.EVCConfiguration_EVPL(processInfo);
+					localiDataDump.setValue("EVCNo1_RT",EVCNo1);
+					EVCNo2=this.EVC2Configuration_EVPL(processInfo);
+					localiDataDump.setValue("EVCNo2_RT",EVCNo2);
 					break;
 				default :
 					System.out.println("Invalid Service");
@@ -604,8 +609,8 @@ public class ProcessTabPageCM extends Page {
 		 */
 		
 		
-		public boolean EVCConfiguration_EDI(ProcessInfo processInfo){
-			 mstatus = true;
+		public String EVCConfiguration_EDI(ProcessInfo processInfo){
+			String EVCNo1=null;
 			
 			 try {
 				waitForElement(LinkEVC);
@@ -614,7 +619,8 @@ public class ProcessTabPageCM extends Page {
 				 waitForElement(ddArrwLocationZuni);
 				 ddArrwLocationZuni.click();
 				 ddvalueLocationZuni.get(0).click();
-				 txtEVCnumber.sendKeys(randomNumber(5));
+				 EVCNo1=randomNumber(5);
+				 txtEVCnumber.sendKeys(EVCNo1);
 				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
 				 new Select(ddIpBlockChange).selectByVisibleText("No");
 				 new Select(ddIpAddressAllocation).selectByVisibleText(processInfo.ipAddressAllocation);
@@ -623,9 +629,9 @@ public class ProcessTabPageCM extends Page {
 				 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
-				mstatus= false;
+				EVCNo1= null;
 			}
-			 return mstatus;
+			 return EVCNo1;
 		}
 		
 		
@@ -636,8 +642,8 @@ public class ProcessTabPageCM extends Page {
 		 * 
 		 */
 		
-		public boolean EVCConfiguration_ENS(ProcessInfo processInfo){
-			mstatus= true;
+		public String EVCConfiguration_ENS(ProcessInfo processInfo){
+			String EVCNo1=null;
 			 try {
 				waitForElement(LinkEVC);
 				 LinkEVC.click();
@@ -647,16 +653,17 @@ public class ProcessTabPageCM extends Page {
 				 ddvalueLocationZuni.get(0).click();
 				 new Select(ddExistingEVC).selectByVisibleText("No");
 				 new Select(ddEVCAreaType).selectByVisibleText(processInfo.evcAreaType);
-				 txtEVCnumber.sendKeys(randomNumber(5));
+				 EVCNo1=randomNumber(5);
+				 txtEVCnumber.sendKeys(EVCNo1);
 				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
 				 new Select(ddMaxUNIExceeded).selectByVisibleText("No");
 				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
-				mstatus= false;
+				EVCNo1= null;
 			}
-			 return mstatus;
+			 return EVCNo1;
 			 
 		}
 		
@@ -696,8 +703,8 @@ public class ProcessTabPageCM extends Page {
 		 * 
 		 */
 		
-		public boolean EVCConfiguration_EPL(ProcessInfo processInfo){
-			mstatus= true;
+		public String EVCConfiguration_EPL(ProcessInfo processInfo){
+			String EVCNo1=null;
 			 try {
 				waitForElement(LinkEVC);
 				 LinkEVC.click();
@@ -709,7 +716,8 @@ public class ProcessTabPageCM extends Page {
 				 ddArrwLocationZuni.click();
 				 ddvalueLocationZuni.get(3).click();           //Select 2nd site at location Z UNI
 				 waitForElement(txtEVCnumber);
-				 txtEVCnumber.sendKeys(randomNumber(5));
+				 EVCNo1=randomNumber(5);
+				 txtEVCnumber.sendKeys(EVCNo1);
 				 new Select(ddEVCAreaType).selectByVisibleText(processInfo.evcAreaType);
 				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
 				 new Select(ddMaxEVCExceeded).selectByVisibleText("No");
@@ -717,9 +725,9 @@ public class ProcessTabPageCM extends Page {
 				 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
-				mstatus= false;
+				EVCNo1= null;
 			}
-			 return mstatus;
+			 return EVCNo1;
 		}
 		
 		
@@ -731,8 +739,8 @@ public class ProcessTabPageCM extends Page {
 		 */
 		
 		
-		public boolean EVCConfiguration_EVPL(ProcessInfo processInfo){
-			mstatus= true;
+		public String EVCConfiguration_EVPL(ProcessInfo processInfo){
+			String EVCNo1=null;
 			 try {
 				waitForElement(LinkEVC);
 				 LinkEVC.click();
@@ -744,7 +752,8 @@ public class ProcessTabPageCM extends Page {
 				 ddArrwLocationZuni.click();
 				 ddvalueLocationZuni.get(4).click();              //Select 2nd site at location Z UNI
 				 waitForElement(txtEVCnumber);
-				 txtEVCnumber.sendKeys(randomNumber(5));
+				 EVCNo1=randomNumber(5);
+				 txtEVCnumber.sendKeys(EVCNo1);
 				 new Select(ddEVCAreaType).selectByVisibleText(processInfo.evcAreaType);
 				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
 				 new Select(ddMaxEVCExceeded).selectByVisibleText("No");
@@ -753,9 +762,9 @@ public class ProcessTabPageCM extends Page {
 				 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
-				mstatus= false;
+				EVCNo1= null;
 			}
-			 return mstatus;
+			 return EVCNo1;
 		}
 		
 		
@@ -767,8 +776,8 @@ public class ProcessTabPageCM extends Page {
 		 */
 		
 		
-		public boolean EVC2Configuration_EVPL(ProcessInfo processInfo){
-			mstatus= true;
+		public String EVC2Configuration_EVPL(ProcessInfo processInfo){
+			String EVCNo2= null;
 			 try {
 				waitForElement(LinkEVC2);
 				 LinkEVC2.click();
@@ -780,7 +789,8 @@ public class ProcessTabPageCM extends Page {
 				 ddArrwLocationZuni.click();
 				 ddvalueLocationZuni.get(5).click();                 //Select 3rd site at location Z UNI
 				 waitForElement(txtEVCnumber);
-				 txtEVCnumber.sendKeys(randomNumber(5));
+				 EVCNo2=randomNumber(5);
+				 txtEVCnumber.sendKeys(EVCNo2);
 				 new Select(ddEVCAreaType).selectByVisibleText(processInfo.evcAreaType);
 				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
 				 new Select(ddMaxEVCExceeded).selectByVisibleText("No");
@@ -789,9 +799,9 @@ public class ProcessTabPageCM extends Page {
 				 report.reportDoneEvent("Save EVC~2 Configuration", "EVC~2 Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
-				mstatus= false;
+				EVCNo2= null;
 			}
-			 return mstatus;
+			 return EVCNo2;
 		}
 		
 		

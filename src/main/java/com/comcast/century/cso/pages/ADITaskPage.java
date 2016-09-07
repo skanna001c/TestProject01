@@ -8,8 +8,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.cm.pages.Page;
+import com.comcast.century.data.ServiceInfo;
 import com.comcast.century.data.ServiceLevelTaskInfo;
+import com.comcast.utils.DataDump;
 import com.comcast.utils.SeleniumReport;
+import com.comcast.utils.SoapTest;
 
 public class ADITaskPage extends Page {
 
@@ -68,9 +71,66 @@ public class ADITaskPage extends Page {
 	@FindBy(xpath = "//b[contains(normalize-space(text()),normalize-space(concat(\"Retrieve Circuit \",\"ID's\")))]")
 	private WebElement linkRetrieveCircuitID ;
 	
+	@FindBy(xpath = "//*[@id='oitab']")
+	private WebElement tabOrderInfo ;
+	
+	@FindBy(xpath = "//*[.='Enterprise']/preceding-sibling::td[3]/child::*")
+	private WebElement resourceComponentID ;
+	
 	private boolean mstatus;
 	
-	public boolean ADI(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
+	
+public String getResourceComponentID(){
+		
+		String RCID=null;
+		
+		try{
+			waitForElement(tabOrderInfo);
+			iClick(tabOrderInfo);
+			waitForElementDisappear(elementLoading);
+			RCID=resourceComponentID.getText();
+		}catch(Exception e){
+		   System.out.println(e.getMessage());
+		   
+		}
+		return RCID;
+	}
+	
+
+public boolean ADITask(ServiceInfo serviceInfo, ServiceLevelTaskInfo serviceLevelTaskInfo, DataDump dataDump){
+	try{
+		String request = null;			
+		String RCID = this.getResourceComponentID();
+		switch(serviceInfo.serviceName){			
+		case "EDI" :
+		case "EPL" :
+				request = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"http://www.excelacom.com/century/cramer/beans/ServiceDesignNotification\">"
+						+ "<soapenv:Header/>" 
+				        + "<soapenv:Body>" 
+						+ "<ser:serviceDesignNotification>"
+						+ "<ser:resourceComponent resourceComponentId=\"" + RCID + "\">"
+						+ "<ser:service evcNumber=\"" + dataDump.getValue("EVCNo1_RT")+ "\" evcID=\""+serviceLevelTaskInfo.EVC1 + "\" serviceID=\""+randomNumber(7)+"\"/>"
+						+ "</ser:resourceComponent>" 
+						+ "</ser:serviceDesignNotification>" 
+						+ "</soapenv:Body>"
+						+ "</soapenv:Envelope>";			
+			(new SoapTest()).webServicesTask(request, "ADI");
+		}
+		iClick(btnBack,null, "ADI task complete:ADI task complete page: BackButton ");
+		waitForElement(browser.findElement(By.xpath("//*[text()='Assign Design Information' and contains(@onclick, 'COMPLETED')]")));
+
+		
+	}catch(Exception e){
+		e.printStackTrace();
+		mstatus=false;
+	}
+	return mstatus;
+}
+
+
+	
+	
+	/*public boolean ADI(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
 		mstatus = true;
 		try{
 			if(waitForElement(tabCircuitMapping)){
@@ -85,8 +145,8 @@ public class ADITaskPage extends Page {
 				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
 				linkRetrieveCircuitID.click();
 				Thread.sleep(5*1000);
-				/* Sometimes after clicking the above link EVC id is changed to 500.
-				 As a workaround we have setting the value again and before  clicking the complete button.*/				
+				 Sometimes after clicking the above link EVC id is changed to 500.
+				 As a workaround we have setting the value again and before  clicking the complete button.				
 				waitForElement(txtEVCid);
 				txtEVCid.clear();
 				txtEVCid.sendKeys(serviceLevelTaskInfo.EVC1);
@@ -116,8 +176,8 @@ public class ADITaskPage extends Page {
 				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
 				linkRetrieveCircuitID.click();
 				Thread.sleep(5*1000);
-				/* Sometimes after clicking the above link EVC id is changed to 500.
-				 As a workaround we have setting the value again and before  clicking the complete button.*/				
+				 Sometimes after clicking the above link EVC id is changed to 500.
+				 As a workaround we have setting the value again and before  clicking the complete button.				
 				waitForElement(txtEVCid);
 				txtEVCid.clear();
 				txtEVCid.sendKeys(serviceLevelTaskInfo.EVC1);
@@ -204,5 +264,5 @@ public class ADITaskPage extends Page {
 		return mstatus;
 		
 	}
-
+*/
 }

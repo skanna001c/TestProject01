@@ -459,11 +459,11 @@ public class NewConnectTest extends ComcastTest {
 	public void Create_Account_and_Equipment() throws InterruptedException {
 		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).CAE();
-		(new CAETaskPage(browser, report)).cAETask(serviceInfo, serviceLevelTaskInfo, (DataDump) getDataDump());
+		(new CAETaskPage(browser, report)).CAETask(serviceInfo, serviceLevelTaskInfo, (DataDump) getDataDump());
 
 	}
 	
-	@Test(priority = 15100)
+	/*@Test(priority = 15100)
 	public void Create_Account_and_Equipment_EPL() throws InterruptedException {
 		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).CAE();
@@ -477,23 +477,23 @@ public class NewConnectTest extends ComcastTest {
 		(new ServiceLevelTasks(browser, report)).CAE();
 		(new CAETaskPage(browser, report)).CAE_EVPL(serviceLevelTaskInfo);
 
-	}
+	}*/
 
 	@Test(priority = 15500)
 	public void Assign_Design_Info() throws InterruptedException {
 		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).ADI();
-		(new ADITaskPage(browser, report)).ADI(serviceLevelTaskInfo);
+		(new ADITaskPage(browser, report)).ADITask(serviceInfo, serviceLevelTaskInfo, (DataDump) getDataDump());
 
 	}
 	
-	@Test(priority = 15550)
+/*	@Test(priority = 15550)
 	public void Assign_Design_Info_EVPL() throws InterruptedException {
 		SearchOrderndLaunchServiceFlow();
 		(new ServiceLevelTasks(browser, report)).ADI();
 		(new ADITaskPage(browser, report)).ADI_EVPL(serviceLevelTaskInfo);
 
-	}
+	}*/
 
 	@Test(priority = 16000)
 	public void Generate_Core_Config() throws InterruptedException {
@@ -647,16 +647,16 @@ public class NewConnectTest extends ComcastTest {
 		this.Ship_CPE();
 	}
 	
-	@Test(priority = 22540)
+	/*@Test(priority = 22540)
 	public void Create_Account_and_Equipment_EVPL2() throws InterruptedException {
 		this.Create_Account_and_Equipment_EVPL();
-	}
+	}*/
 	
-	@Test(priority = 22550)
+	/*@Test(priority = 22550)
 	public void Assign_Design_Info_EVPL2() throws InterruptedException {
 		this.Assign_Design_Info_EVPL();
 
-	}
+	}*/
 	
 	@Test(priority = 22560)
 	public void Generate_Core_Config_EVPL2() throws InterruptedException {
