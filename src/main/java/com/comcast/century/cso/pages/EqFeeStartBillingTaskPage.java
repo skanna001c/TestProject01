@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -54,6 +55,7 @@ public class EqFeeStartBillingTaskPage extends Page {
 				clickndRelease(actualBillingStartDate);
 				clickndRelease(btnToday);
 				this.ClickCompleteButton();
+				waitForElement(browser.findElement(By.xpath("//*[text()='Start Billing' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)

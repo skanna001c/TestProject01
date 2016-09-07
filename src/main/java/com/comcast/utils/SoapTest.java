@@ -10,12 +10,15 @@ import java.security.Security;
 
 public class SoapTest {
 
-	public void soapCAETask(String request) {
+
+	public void webServicesTask(String request,String task) {
 		
 		  String Endpoint;
 	      
 	      String Response;
-	      String cibaResponse=null;
+
+	      String soapResponse=null;
+
 
 
 	Endpoint = "http://omwebsvc-dt-as-vip.sys.comcast.net/cif/services/CramerSoapPort";
@@ -23,7 +26,9 @@ public class SoapTest {
 	     
 	    
 	System.out.println("--------------------------------------");
-	System.out.println("CIBA Request : "+request);
+
+	System.out.println("SOAP Request : "+request);
+
 	    System.setProperty("java.protocol.handler.pkgs",
 	           "com.sun.net.ssl.internal.www.protocol");
 	Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
@@ -34,7 +39,15 @@ public class SoapTest {
 	                  .openConnection();
 	    httpConn.setRequestProperty("Content-Type",
 	                  "text/xml; charset=utf-8");
+
+	    if(task.equalsIgnoreCase("CAE")){
 	    httpConn.setRequestProperty("SOAPAction", "http://www.excelacom.com/century/cramer/service/getSiteDesignNotification");
+	}else if(task.equalsIgnoreCase("ADI")){
+		httpConn.setRequestProperty("SOAPAction", "http://www.excelacom.com/century/cramer/service/ServiceDesignNotification");
+		
+
+	}
+
 	    httpConn.setRequestMethod("POST");
 	    httpConn.setDoOutput(true);
 	    httpConn.setDoInput(true);
@@ -64,7 +77,9 @@ public class SoapTest {
 
 	    // Write the SOAP message response to a String.
 	    while ((Response = in.readLine()) != null) {
-	            cibaResponse = Response;
+
+	            soapResponse = Response;
+
 	    }
 	    //System.out.println("postCIBAResponse :" +cibaResponse);
 	    //System.out.println(cibaResponse);
@@ -72,7 +87,9 @@ public class SoapTest {
 	    e.printStackTrace();
 	}
 
-	System.out.println(cibaResponse);
+
+	System.out.println(soapResponse);
+
 
 	}
 

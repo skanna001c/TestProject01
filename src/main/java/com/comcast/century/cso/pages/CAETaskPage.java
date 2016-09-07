@@ -102,8 +102,8 @@ public class CAETaskPage extends Page {
 		return RCID;
 	}
 	
-	
-	public boolean cAETask(ServiceInfo serviceInfo, ServiceLevelTaskInfo serviceLevelTaskInfo, DataDump dataDump){
+	public boolean CAETask(ServiceInfo serviceInfo, ServiceLevelTaskInfo serviceLevelTaskInfo, DataDump dataDump){
+
 		try{
 			String request = null;			
 			String RCID = this.getResourceComponentID();
@@ -115,7 +115,7 @@ public class CAETaskPage extends Page {
 						+ "<sit:site uniNumber=\"" + dataDump.getValue("UNINo1_RT") + "\" uniID=\"" + serviceLevelTaskInfo.UNI1 + "\" siteCLLI=\"" + serviceLevelTaskInfo.siteCili+ "\"/>" 
 						+"</sit:resourceComponent>" + "</sit:siteDesignNotification>" + "</soapenv:Body>"
 						+ "</soapenv:Envelope>";				
-				(new SoapTest()).soapCAETask(request);
+				(new SoapTest()).webServicesTask(request, "CAE");
 			case "EPL" :
 				request = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:sit=\"http://www.excelacom.com/century/cramer/beans/siteDesignNotification\">"
 						+ "<soapenv:Header/>" + "<soapenv:Body>" + "<sit:siteDesignNotification>"
@@ -124,11 +124,12 @@ public class CAETaskPage extends Page {
 						+ "<sit:site uniNumber=\"" + dataDump.getValue("UNINo2_RT") + "\" uniID=\"" + serviceLevelTaskInfo.UNI2 + "\" siteCLLI=\"" + serviceLevelTaskInfo.siteCili+ "\"/>" 
 						+ "</sit:resourceComponent>" + "</sit:siteDesignNotification>" + "</soapenv:Body>"
 						+ "</soapenv:Envelope>";
-				(new SoapTest()).soapCAETask(request);
+				(new SoapTest()).webServicesTask(request, "CAE");
 			
 			}
-			this.ClickCompleteButton();
-			
+			iClick(btnBack,null, "CAE task complete:CAE task complete page: BackButton ");
+			waitForElement(browser.findElement(By.xpath("//*[text()='Create Account and Equipment' and contains(@onclick, 'COMPLETED')]")));
+
 			
 		}catch(Exception e){
 			e.printStackTrace();
@@ -137,170 +138,4 @@ public class CAETaskPage extends Page {
 		return mstatus;
 	}
 	
-	
-	public boolean CAE(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
-		try{
-			if(waitForElement(tabOnnetServiceCI)){
-				tabOnnetServiceCI.click();
-				Thread.sleep(2*1000);
-				scrollToElementandclick(elementEDI);
-				waitForElement(txtUNIid);
-				txtUNIid.sendKeys(serviceLevelTaskInfo.UNI1);
-				txtSiteCili.sendKeys(serviceLevelTaskInfo.siteCili);
-				this.ClickSaveButton();
-				waitForElement(linkRetrieveCircuitID);
-				linkRetrieveCircuitID.click();
-				Thread.sleep(5*1000);
-				txtProjectName.clear();
-				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);								
-				this.ClickCompleteButton();
-				if(waitForElement(btnComplete,5))
-				{
-					this.ClickCompleteButton();
-				}
-				waitForElement(browser.findElement(By.xpath("//*[text()='Create Account and Equipment' and contains(@onclick, 'COMPLETED')]")));
-			}
-		}
-		catch(Exception e){
-			System.out.println(e.getMessage());
-			mstatus = false;			
-		}
-		return mstatus;
-	}
-	
-	public boolean CAE_EPL(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
-		try{
-			if(waitForElement(tabOnnetServiceCI)){
-				tabOnnetServiceCI.click();
-				Thread.sleep(2*1000);
-				scrollToElementandclick(elementEPL);
-				waitForElement(txtUNIid);
-				txtUNIid.sendKeys(serviceLevelTaskInfo.UNI1);
-				txtSiteCili.sendKeys(serviceLevelTaskInfo.siteCili);
-				txtProjectName.clear();
-				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
-				btnSave.click();
-				waitforPageLoadComplete();
-				Thread.sleep(2*1000);
-				linkRetrieveCircuitID.click();
-				Thread.sleep(5*1000);				
-				waitForElement(tabOnnetServiceCI);
-				tabOnnetServiceCI.click();
-				Thread.sleep(2*1000);
-				scrollToElementandclick(elementEPL);
-				waitForElement(txtUNIid);
-				txtUNIid.sendKeys(serviceLevelTaskInfo.UNI2);
-				txtSiteCili.sendKeys(serviceLevelTaskInfo.siteCili);
-				txtProjectName.clear();
-				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
-				btnSave.click();
-				linkRetrieveCircuitID.click();
-				Thread.sleep(5*1000);
-				waitforPageLoadComplete();
-				Thread.sleep(2*1000);
-				this.ClickCompleteButton();
-				waitForElement(browser.findElement(By.xpath("//*[text()='Create Account and Equipment' and contains(@onclick, 'COMPLETED')]")));
-			}
-		}	
-		catch(Exception e){
-			System.out.println(e.getMessage());
-			mstatus = false;			
-		}
-		return mstatus;
-}
-	
-	public boolean CAE_EVPL(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
-		try{
-			if(waitForElement(tabOnnetServiceCI)){
-				tabOnnetServiceCI.click();
-				Thread.sleep(2*1000);
-				scrollToElementandclick(elementEVPL);
-				waitForElement(txtUNIid);
-				txtUNIid.sendKeys(serviceLevelTaskInfo.UNI1);
-				txtSiteCili.sendKeys(serviceLevelTaskInfo.siteCili);
-				txtProjectName.clear();
-				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
-				btnSave.click();
-				waitforPageLoadComplete();
-				linkRetrieveCircuitID.click();
-				Thread.sleep(5*1000);				
-				Thread.sleep(2*1000);
-				waitForElement(tabOnnetServiceCI);
-				tabOnnetServiceCI.click();
-				Thread.sleep(2*1000);
-				scrollToElementandclick(elementEVPL);
-				waitForElement(txtUNIid);
-				txtUNIid.sendKeys(serviceLevelTaskInfo.UNI2);
-				txtSiteCili.sendKeys(serviceLevelTaskInfo.siteCili);
-				txtProjectName.clear();
-				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
-				btnSave.click();
-				waitforPageLoadComplete();
-				linkRetrieveCircuitID.click();
-				Thread.sleep(5*1000);				
-				this.ClickCompleteButton();
-				waitForElement(browser.findElement(By.xpath("//*[text()='Create Account and Equipment' and contains(@onclick, 'COMPLETED')]")));
-			}
-		}	
-		catch(Exception e){
-			System.out.println(e.getMessage());
-			mstatus = false;			
-		}
-		return mstatus;
-}
-	
-	public boolean cAE_PRI(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
-		try{
-			if(waitForElement(tabOnnetServiceCI)){
-				tabOnnetServiceCI.click();
-				Thread.sleep(2*1000);
-				scrollToElementandclick(elementPRI);
-				waitForElement(txtUNIid);
-				txtUNIid.sendKeys(serviceLevelTaskInfo.UNI2);
-				txtSiteCili.sendKeys(serviceLevelTaskInfo.siteCili);
-				linkRetrieveCircuitID.click();
-				Thread.sleep(5*1000);
-				txtProjectName.clear();
-				txtProjectName.sendKeys(serviceLevelTaskInfo.projectName);
-				this.ClickCompleteButton();
-			}
-		}
-		catch(Exception e){
-			System.out.println(e.getMessage());
-			mstatus = false;			
-		}
-		return mstatus;
-		
-	}
-	
-	
-	public boolean ClickSaveButton(){
-		try{
-			if(waitForElement(btnSave)){
-				btnSave.click();
-			}
-		}
-		catch(Exception e){
-			System.out.println(e.getMessage());
-			mstatus = false;			
-		}
-		return mstatus;
-	}
-	
-	public boolean ClickCompleteButton(){
-		try{
-			if(waitForElement(btnComplete)){
-				iClick(btnComplete, btnBack,"Complete CAE Task: Complete CAE Task page: CompleteButton");
-				waitforPageLoadComplete();
-				report.reportDoneEvent("Complete CAE Task", " CAE Task Completed");
-			}
-		}
-		catch(Exception e){
-			System.out.println(e.getMessage());
-			mstatus = false;			
-		}
-		return mstatus;
-		
-	}
-
 }

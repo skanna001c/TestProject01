@@ -94,6 +94,7 @@ public class InstallCPETaskPage extends Page {
 				clickndRelease(ActualIADDate);
 				btnToday.get(3).click();
 				this.ClickCompleteButton();
+				waitForElement(browser.findElement(By.xpath("//*[text()='Install CPE' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)
@@ -136,6 +137,7 @@ public class InstallCPETaskPage extends Page {
 			if(waitForElement(btnComplete)){
 				iClick(btnComplete, btnBack, "Complete InstallCPE Task: Complete InstallCPE Task page: CompleteButton");
 				waitforPageLoadComplete();
+				waitForElement(browser.findElement(By.xpath("//*[text()='Install CPE' and contains(@onclick, 'COMPLETED')]")));
 				report.reportDoneEvent("Complete InstallCPE Task", " InstallCPE Task Completed");
 			}
 		}

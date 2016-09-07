@@ -78,7 +78,7 @@
 					<include name="Build_Update_Local_Biller_Account"/>
 					<include name="Build_Update_Local_Biller_Account_2"/>
 					<include name="Ship_CPE"/>
-					<include name="Create_Account_and_Equipment_EPL"/>
+					<include name="Create_Account_and_Equipment"/>
 					<include name="Assign_Design_Info"/>
 					<include name="Generate_Core_Config"/>
 					<include name="Generate_CPE_Config"/>
@@ -90,7 +90,7 @@
 		</classes>
 	</test>
 	
-	<test name="004-ME_EDI-NewConnect-ERate">
+	 <test name="004-ME_EDI-NewConnect-ERate">
 		<classes>
 			<class name="com.comcast.century.newConnect.NewConnectTest">
 				<methods>
@@ -164,7 +164,7 @@
 					<include name="Build_Update_Local_Biller_Account"/>
 					<include name="Build_Update_Local_Biller_Account_2"/>
 					<include name="Ship_CPE"/>
-					<include name="Create_Account_and_Equipment_EPL"/>
+					<include name="Create_Account_and_Equipment"/>
 					<include name="Assign_Design_Info"/>
 					<include name="Generate_Core_Config"/>
 					<include name="Generate_CPE_Config"/>

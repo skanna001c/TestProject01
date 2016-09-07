@@ -56,7 +56,7 @@ public class ContactCustomerTaskPage extends Page {
 				NextContactDate.click();
 				btnToday.click();
 				this.ClickCompleteButton();
-				waitForElement(btnBack);
+				//waitForElement(btnBack);
 				waitForElement(browser.findElement(By.xpath("//*[text()='Contact Customer' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
