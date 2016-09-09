@@ -29,6 +29,10 @@ public class TestSettings {
 		return properties.getProperty(key);
 	}
 	
+	public Properties getProperties(){
+		return this.properties;
+	}
+	
 	/**
 	 * Get property value 
 	 * @param key property key

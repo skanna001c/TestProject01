@@ -6,22 +6,21 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
 //DB Validation
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
-import org.openqa.selenium.TimeoutException;
+
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -30,30 +29,24 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.comcast.century.commons.CenturyApplication;
-import com.comcast.century.data.OrderSummaryInfo;
 import com.comcast.century.data.LoginDetails;
-import com.comcast.reporting.Report;
 import com.comcast.reporting.Status;
 import com.comcast.utils.DataTable;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
-import com.comcast.utils.TestUtils;
-
-import cucumber.api.java.eo.Do;
-import net.sourceforge.htmlunit.corejs.javascript.ast.WhileLoop;
 
 /**
  * Base class for all the pages.
@@ -66,7 +59,9 @@ public abstract class Page {
 	public LogInPage logInPage;
 	protected DataTable dataTable;
 	private TestSettings testSettings;
+	private Properties properties;
 	private String env;
+	private String browserVersion;
 	protected String title;
 
 	protected abstract boolean isValidPage();
@@ -85,6 +80,13 @@ public abstract class Page {
 		PageFactory.initElements(browser, this);
 		// waitForPageLoad();
 		verifyApplicationInCorrectPage();
+		//added by harsh on 9/9 to get the browserversion
+		browserVersion = (String) ((JavascriptExecutor) browser).executeScript("return navigator.userAgent;");
+		testSettings = new TestSettings();
+		properties = testSettings.getProperties();
+		properties.put("browser_version", browserVersion);
+		//System.out.println(properties);
+		
 	}
 
 	/**
