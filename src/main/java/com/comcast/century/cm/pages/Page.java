@@ -47,6 +47,7 @@ import com.comcast.reporting.Status;
 import com.comcast.utils.DataTable;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
+import com.comcast.utils.TestSettingsSingleton;
 
 /**
  * Base class for all the pages.
@@ -81,10 +82,10 @@ public abstract class Page {
 		// waitForPageLoad();
 		verifyApplicationInCorrectPage();
 		//added by harsh on 9/9 to get the browserversion
-		browserVersion = (String) ((JavascriptExecutor) browser).executeScript("return navigator.userAgent;");
+		/*browserVersion = (String) ((JavascriptExecutor) browser).executeScript("return navigator.userAgent;");
 		testSettings = new TestSettings();
 		properties = testSettings.getProperties();
-		properties.put("browser_version", browserVersion);
+		properties.put("browser_version", browserVersion);*/
 		//System.out.println(properties);
 		
 	}
@@ -3080,6 +3081,7 @@ public abstract class Page {
 	 */
 	public void iClick(WebElement we, WebElement waitForElement, String description) {
 		//System.out.println("inside iclick");
+		System.out.println(TestSettingsSingleton.getInstance().getProperties());
 		String testName = report.getReportSettings().getReportName(); // added by harsh on 9/6/2016 to get the test name
 		if ((new TestSettings()).getBrowser().equalsIgnoreCase("iexplore")
 				|| (new TestSettings()).getBrowser().equalsIgnoreCase("ie")) {
