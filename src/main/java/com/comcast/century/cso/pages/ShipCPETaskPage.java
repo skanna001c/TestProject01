@@ -63,15 +63,16 @@ public class ShipCPETaskPage extends Page {
 	
 	public boolean ShipCPE(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
 		try{
-			if(waitForElement(txtPackingSlipNumber)){
+			if(waitForElement(txtPackingSlipNumber, 5)){
 				txtPackingSlipNumber.sendKeys(randomNumber(5));
 				CPEShipDate.click();
 				btnToday.click();
 				ddSiteAddress.click();
 				ddvalueChkSiteAddress.click();
-				this.ClickCompleteButton();
-				waitForElement(browser.findElement(By.xpath("//*[text()='Ship CPE' and contains(@onclick, 'COMPLETED')]")));
 			}
+			this.ClickCompleteButton();
+			waitForElement(browser.findElement(By.xpath("//*[text()='Ship CPE' and contains(@onclick, 'COMPLETED')]")));
+			
 		}
 		catch(Exception ex)
 		{

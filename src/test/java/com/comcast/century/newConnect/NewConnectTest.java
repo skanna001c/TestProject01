@@ -324,11 +324,13 @@ public class NewConnectTest extends ComcastTest {
 	@Test(priority = 14000)
 	public void Build_Update_Local_Biller_Account() throws InterruptedException {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
-			SearchOrderndLaunchServiceFlow(i);			
+			SearchOrderndLaunchServiceFlow(i);
+			int j=0;
 			while(browser.findElements(By.xpath("//*[text()='Build Update Local Biller Account' and contains(@onclick, 'INPROGRESS')]")).size() != 0)
-			{
-				(new ServiceLevelTasks(browser, report)).BULBA();
-				(new BULBATaskPage(browser, report)).BULBA(serviceLevelTaskInfo);			
+				{
+				(new ServiceLevelTasks(browser, report)).BULBA(j);
+				(new BULBATaskPage(browser, report)).BULBA(serviceLevelTaskInfo);
+				j++;
 			}
 		}
 	}
@@ -395,10 +397,12 @@ public class NewConnectTest extends ComcastTest {
 	public void Install_CPE() throws InterruptedException {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
-			while(browser.findElement(By.xpath("//*[text()='Install CPE' and contains(@onclick, 'INPROGRESS')]")) != null)
+			int j=0;
+			while(browser.findElements(By.xpath("//*[text()='Install CPE' and contains(@onclick, 'INPROGRESS')]")).size() != 0)
 			{
-				(new ServiceLevelTasks(browser, report)).InstallCPE();
+				(new ServiceLevelTasks(browser, report)).InstallCPE(j);
 				(new InstallCPETaskPage(browser, report)).InstallCPE();
+				j++;
 			}
 		}
 	}
@@ -408,9 +412,10 @@ public class NewConnectTest extends ComcastTest {
 	public void Install_CPE_Coax() throws InterruptedException, AWTException {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
-			while(browser.findElement(By.xpath("//*[text()='Install CPE (Coax)' and contains(@onclick, 'INPROGRESS')]")) != null)
+			int j=0;
+			while(browser.findElements(By.xpath("//*[text()='Install CPE (Coax)' and contains(@onclick, 'INPROGRESS')]")).size() != 0)
 			{
-				(new ServiceLevelTasks(browser, report)).InstallCPECoax();
+				(new ServiceLevelTasks(browser, report)).InstallCPECoax(j);
 				(new InstallCPE_CoaxTaskPage(browser, report)).InstallCPECoax();
 			}
 		}
