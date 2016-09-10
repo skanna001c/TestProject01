@@ -35,7 +35,7 @@ public class ServiceLevelTasks extends Page {
 	@FindBy(xpath = "//div[@class[contains(.,'refresh')]]")
 	private WebElement btnRefresh;
 	
-	@FindBy(xpath = "//*[text()='Build Update Local Biller Account' and contains(@onclick, 'PROGRESS')]")
+	@FindBy(xpath = "//*[text()='Build Update Local Biller Account']")
 	private List<WebElement> taskBULBA;
 	
 	@FindBy(xpath = "//*[text()='Build Update Local Biller Account' and contains(@onclick, 'PROGRESS')]")
@@ -67,6 +67,9 @@ public class ServiceLevelTasks extends Page {
 
 	@FindBy(css = "a[onclick*='InstallCPE'][onclick*='INPROGRESS']")
 	private WebElement taskInstallCPE2;
+	
+	@FindBy(xpath = "a[onclick*='InstallCPE (Coax)'][onclick*='INPROGRESS']")
+	private WebElement taskInstallCPECoax2;
 	
 	@FindBy(xpath = "//*[text()='Set Critical Dates']")
 	private WebElement taskSetCriticalDates;
@@ -136,8 +139,15 @@ public class ServiceLevelTasks extends Page {
 		return mstatus;
 	}
 	
-	public boolean BULBA() throws InterruptedException{
+	public boolean BULBA(int j) throws InterruptedException{
 		try{
+			if(j==1)
+			{
+				if(waitForElement(taskBULBA2)){
+					taskBULBA2.click();
+					waitforPageLoadComplete();
+				}
+			}
 			if(waitForElement(taskBULBA.get(0))){
 				if(checkifStatusChanged(taskBULBA.get(0),btnRefresh,"INPROGRESS")){
 				taskBULBA.get(0).click();
@@ -149,6 +159,7 @@ public class ServiceLevelTasks extends Page {
 		catch(Exception ex)
 		{
 			mstatus = false;
+			
 		}
 		return mstatus;
 	}
@@ -282,11 +293,21 @@ public class ServiceLevelTasks extends Page {
 		return mstatus;
 	}
 	
-	public boolean InstallCPE() throws InterruptedException{
+	public boolean InstallCPE(int j) throws InterruptedException{
 		try{
 			while(!isElementPresent(taskInstallCPE)){
 				Thread.sleep(1000);
 			}
+			if(j==1)
+			{
+				if (waitForElement(taskInstallCPE2)) {
+					waitForElement(taskInstallCPE2);
+					jsClick(taskInstallCPE2);
+					report.reportDoneEvent("Click InstallCPE Task", " InstallCPE Task Clicked");
+				}
+				waitforPageLoadComplete();
+			}	
+			
 			if(waitForElement(taskInstallCPE)){
 				if(checkifStatusChanged(taskInstallCPE,btnRefresh,"INPROGRESS")){
 					waitForElement(taskInstallCPE);
@@ -304,10 +325,20 @@ public class ServiceLevelTasks extends Page {
 		return mstatus;
 	}
 	
-	public boolean InstallCPECoax() throws InterruptedException{
+	public boolean InstallCPECoax(int j) throws InterruptedException{
 		try{
 			while(!isElementPresent(taskInstallCPECoax)){
 				Thread.sleep(1000);
+			}
+			
+			if(j==1)
+			{
+				if (waitForElement(taskInstallCPECoax2)) {
+					waitForElement(taskInstallCPECoax2);
+					jsClick(taskInstallCPECoax2);
+					report.reportDoneEvent("Click InstallCPE (Coax)  Task", " InstallCPE Coax Task Clicked");
+				}
+				waitforPageLoadComplete();
 			}
 			if(waitForElement(taskInstallCPECoax)){
 				if(checkifStatusChanged(taskInstallCPECoax,btnRefresh,"INPROGRESS")){
@@ -457,7 +488,7 @@ public class ServiceLevelTasks extends Page {
 	public boolean StartBilling() throws InterruptedException{
 		try{
 			if(waitForElement(taskStartBilling)){
-				if(checkifStatusChanged(taskStartBilling,btnRefresh,"INPROGRESS")|| checkifStatusChanged(taskStartBilling,btnRefresh,"COMPLETED")){
+				if(checkifStatusChanged(taskStartBilling,btnRefresh,"COMPLETED")){
 					waitForElement(taskStartBilling);
 					jsClick(taskStartBilling);
 					report.reportDoneEvent("Complete StartBilling Task", " StartBilling Task auto completed");

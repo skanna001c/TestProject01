@@ -145,7 +145,11 @@ public class ActivateServiceTaskPage extends Page {
 			elementEPL.get(1).click();
 			waitForElement(ddStatus);
 			new Select(ddStatus).selectByValue(serviceLevelTaskInfo.status);
+			btnSave.click();
+			waitforPageLoadComplete();
+			sleep(2000);
 			this.ClickCompleteButton();
+			waitForElement(browser.findElement(By.xpath("//*[text()='Activate Service' and contains(@onclick, 'COMPLETED')]")));
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 			mstatus = false;
@@ -177,7 +181,11 @@ public class ActivateServiceTaskPage extends Page {
 			elementEVPL.get(1).click();
 			waitForElement(ddStatus);
 			new Select(ddStatus).selectByValue(serviceLevelTaskInfo.status);
+			btnSave.click();
+			waitforPageLoadComplete();
+			sleep(2000);
 			this.ClickCompleteButton();
+			waitForElement(browser.findElement(By.xpath("//*[text()='Activate Service' and contains(@onclick, 'COMPLETED')]")));
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 			mstatus = false;
