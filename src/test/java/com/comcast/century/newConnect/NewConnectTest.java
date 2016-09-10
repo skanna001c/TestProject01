@@ -71,6 +71,8 @@ import com.comcast.utils.DataDump;
 import com.comcast.utils.IDataDump;
 import com.comcast.utils.PerfTransaction;
 
+import bsh.org.objectweb.asm.Label;
+
 public class NewConnectTest extends ComcastTest {
 
 	protected CustomerInfo customerInfo;
@@ -106,6 +108,7 @@ public class NewConnectTest extends ComcastTest {
 			e.printStackTrace();
 		}
 	}
+
 	
 	@Test(priority = 1000)
 	@PerfTransaction(name = "CreateServiceAccount")
@@ -144,49 +147,19 @@ public class NewConnectTest extends ComcastTest {
 
 	
 	@Test(priority = 2000)
-	@PerfTransaction(name = "CreateAddress1")
-	public void createAddress1() throws InterruptedException {
-		if ((new AddressTabPageCM(browser, report)).ClickAddressTab(siteInfo)) {
-			Site1 = (new AddressTabPageCM(browser, report)).EnterSiteDetailsValid(siteInfo);
-			getDataDump().setValue("SITE1_RT", Site1);
-			if ((new ContactTabPageCM(browser, report)).CreateSiteTechnicalContact(contactInfo)) {
-				if ((new ContactTabPageCM(browser, report)).ClickOnBackBtn()) {
-				} else
-					Assert.fail("Create site technical Contact failed");
-			} else
-				Assert.fail("click on address tab failed");
-		} else
-			Assert.fail("click on back button failed");
-	}
-
-	@Test(priority = 2500)
-	@PerfTransaction(name = "CreateAddress2")
-	public void createAddress2() throws InterruptedException {
-		if ((new AddressTabPageCM(browser, report).CreateNewAddress())) {
-			Site2 = (new AddressTabPageCM(browser, report)).EnterSiteDetailsValid(siteInfo);
-			getDataDump().setValue("SITE2_RT", Site2);
-			if ((new ContactTabPageCM(browser, report)).CreateSiteTechnicalContact(contactInfo)) {
-				if ((new ContactTabPageCM(browser, report)).ClickOnBackBtn()) {
-				} else
-					Assert.fail("Create site technical Contact failed");
-			} else
-				Assert.fail("click on back button failed");
-		} else
-			Assert.fail("click on create new address failed");
-	}
-	
-	
-	@Test(priority = 3000)
-	@PerfTransaction(name = "CreateAddress3")
-	public void createAddress3() throws InterruptedException {
-		if ((new AddressTabPageCM(browser, report)).CreateNewAddress()){
-			Site3 = (new AddressTabPageCM(browser, report)).EnterSiteDetailsValid(siteInfo);
-			getDataDump().setValue("SITE3_RT", Site3);
-			if ((new ContactTabPageCM(browser, report)).CreateSiteTechnicalContact(contactInfo)) {
-			} else
-				Assert.fail("Create site technical Contact failed");
-		} else
-			Assert.fail("click on create new address failed");
+	public void createAddress() throws InterruptedException {
+		
+		String Site;
+	    (new AddressTabPageCM(browser, report)).ClickAddressTab();
+		for (int i = 1; i <= Integer.parseInt(siteInfo.noOfSites); i++) {
+			if (i > 1) {
+				new AddressTabPageCM(browser, report).CreateNewAddress();
+			}
+			Site = (new AddressTabPageCM(browser, report)).EnterSiteDetailsValid(siteInfo);
+			getDataDump().setValue("SITE" + i + "_RT", Site);
+			new ContactTabPageCM(browser, report).CreateSiteTechnicalContact(contactInfo);
+			new ContactTabPageCM(browser, report).ClickOnBackBtn();
+		}
 	}
 	
 	
@@ -371,7 +344,7 @@ public class NewConnectTest extends ComcastTest {
 	}
 
 	@Test(priority = 15000)
-	public void Create_Account_and_Equipment() throws InterruptedException {
+	public void Create_Account_and_Equipment() throws Exception {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){	
 			SearchOrderndLaunchServiceFlow(i);
 			(new ServiceLevelTasks(browser, report)).CAE();
@@ -505,7 +478,6 @@ public class NewConnectTest extends ComcastTest {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
 			(new ServiceLevelTasks(browser, report)).StartBilling();
-			(new StartBillingTaskPage(browser,report)).StartBilling();
 			(new StartBillingTaskPage(browser,report)).verifyNotes();
 			(new ServiceLevelTasks(browser, report)).ClickBackButton();
 		}
@@ -565,10 +537,12 @@ public class NewConnectTest extends ComcastTest {
 	}
 	
 	
-	public void SearchOrderndLaunchFiberSiteFlow(String site) {		
-				(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
-				(new WorkOrderTabPageCSO(browser, report))
-						.ClickFiberSiteFlow(site);
+	public void SearchOrderndLaunchFiberSiteFlow(String site) {	
+		    	Boolean status;
+		    	do{
+		    		(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
+		    		status = (new WorkOrderTabPageCSO(browser, report)).ClickFiberSiteFlow(site);
+		    	}while(!status);           
 				
 	}
 	
@@ -593,7 +567,7 @@ public class NewConnectTest extends ComcastTest {
 	
 	public void SearchOrderndLaunchServiceFlow(int i) throws InterruptedException {
 		(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
-		(new WorkOrderTabPageCSO(browser, report)).ClickServiceFlow(i);
+		(new WorkOrderTabPageCSO(browser, report)).ClickServiceFlow(serviceInfo,i);
 	}
 	
 	public void SearchOrderndLaunchServiceRequest() {

@@ -83,9 +83,9 @@ public class FeatureTabPageCM extends Page {
 			waitForElementDisappear(elementLoading);
 			if(waitForElement(txtUNIandEVCqt.get(0))){
 				txtUNIandEVCqt.get(0).clear();
-				txtUNIandEVCqt.get(0).sendKeys("2");
+				iSendKeys(txtUNIandEVCqt.get(0),"2");
 				txtUNIandEVCqt.get(1).clear();
-				txtUNIandEVCqt.get(1).sendKeys("2");
+				iSendKeys(txtUNIandEVCqt.get(0),"1");
 				waitForElement(btnContinue);
 				iClick(btnContinue,null,"Click on continue in feature tab: feature tab: ContinueButton");
 				waitForElementDisappear(elementLoading);
@@ -149,6 +149,10 @@ public class FeatureTabPageCM extends Page {
 			switch(serviceInfo.serviceName)
 			{
 			case "EDI" :
+			case "EDI-BGP" :
+				if(serviceInfo.serviceName.equalsIgnoreCase("EDI-BGP")){
+					this.BGP();
+				}
 				this.ClickOnContinueButton();
 				break;
 			case "EPL" :

@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import com.comcast.utils.DataTable;
 import com.comcast.century.cm.pages.Page;
+import com.comcast.century.data.ServiceInfo;
 import com.comcast.reporting.Status;
 import com.comcast.utils.SeleniumReport;
 
@@ -79,8 +80,8 @@ public class WorkOrderTabPageCSO extends Page {
 	
 	//span[text()='Search']
 	
-	@FindBy(xpath = "//span[text()='Search']/following-sibling::*")
-	private WebElement btnSearch ;
+	/*@FindBy(xpath = "//span[text()='Search']/following-sibling::*")
+	private WebElement btnSearch ;*/
 	
 	@FindBy(xpath = "//a[text()='Advanced Search']")
 	private WebElement linkAdvancedSearch ;
@@ -166,6 +167,11 @@ public class WorkOrderTabPageCSO extends Page {
 	@FindBy(xpath = "//*[@id='dynaDiv']/child::div[contains(.,'CATTest_Label')]")
 	private WebElement labelDisplay ;
 	
+	@FindBy(xpath = "//span[.='Search']/following-sibling::*")
+	private WebElement btnSearch ;
+	
+	
+	
 	private boolean mstatus=true;
 	
 	
@@ -197,12 +203,6 @@ public class WorkOrderTabPageCSO extends Page {
 
 	public boolean SearchForOrderInSO(String SRID){
 		try{
-			//WaitandSwitchToFrame(fra)
-			/*if(!(ClickBackButton(3)))
-			{
-				WaitandSwitchToFrame(frameRight,5);
-				System.out.println("switched to RightFrame");
-			}*/
 			if(!ClickBackButton(3))
 			{
 				waitforPageLoadComplete();
@@ -215,22 +215,16 @@ public class WorkOrderTabPageCSO extends Page {
 			    }
 			}  
 				waitforPageLoadComplete();
-				//WaitandSwitchToFrame(frameRight);
 				waitForElementDisappear(elementLoading);
 				if(waitForElement(txtSrId)){
 					System.out.println("Search box present");
-					txtSrId.clear();
-					iSendKeys(txtSrId, SRID);							
-				}
-				if(waitForElement(linkAdvancedSearch)){
-					doubleClick(linkAdvancedSearch);
-					waitforPageLoadComplete();
-					WaitandSwitchToFrame(frameSOAdvancedSearch);
-					waitForElement(btnSearchAdvancedSearch);
-					btnSearchAdvancedSearch.click();
-					browser.switchTo().defaultContent();
-					waitForElementDisappear(elementLoading);
-					report.updateTestLog("Search for Order", "Order Searched Successfully", Status.SCREENSHOT);
+					if(!SRID.equalsIgnoreCase(txtSrId.getAttribute("value")))
+					{
+						txtSrId.clear();
+						iSendKeys(txtSrId, SRID);
+						iClick(btnSearch, null, "Search SRID:Service Order Page:Search button");
+						browser.switchTo().defaultContent();
+					}
 				}
 			
 		}
@@ -288,28 +282,25 @@ public class WorkOrderTabPageCSO extends Page {
 	}
 	
 	public boolean ClickCoaxSiteFlow(String coaxSite1){
-		/*if(!(ClickBackButton(3)))
-			{
-				
-			}*/
-		WaitandSwitchToFrame(frameRight);
+		
+		
 		try{
+			WaitandSwitchToFrame(frameRight);
 			if(!(coaxSite1.equalsIgnoreCase(""))){
 				String xpath="//div[.='Site']/../../descendant::"
 						+ "div[.='"+coaxSite1+"']/../../"
-								+ "descendant::a[contains(@onclick,'SOTaskView')]"; //"FiberSite1_RT" //"CoaxSite1_RT"
-				//WaitandSwitchToFrame(frameRight);
+								+ "descendant::a[contains(@onclick,'SOTaskView')]";  //"CoaxSite1_RT"
 				
-				if (waitUntilElementPresent(By.xpath(xpath),60)){
+				if (waitUntilElementPresent(By.xpath(xpath),30)){
 				
 				if(waitForElement(browser.findElement(By.xpath(xpath)),1)){
+					browser.findElement(By.xpath(xpath)).sendKeys(Keys.chord(Keys.CONTROL,Keys.END ));
 					browser.findElement(By.xpath(xpath)).click();
 					waitforPageLoadComplete();
 				report.reportDoneEvent("Clicked on Coax Site level flow", "Site level flow Clicked");
 			}
 			}
 			}
-			else ClickFirstSiteFlow();
 				
 		}
 		catch(Exception ex)
@@ -320,27 +311,23 @@ public class WorkOrderTabPageCSO extends Page {
 	}
 	
 	public boolean ClickFiberSiteFlow(String fiberSite1){
-		/*if(!(ClickBackButton(3)))
-		{
-			WaitandSwitchToFrame(frameRight);
-		}*/
 		try{
+			WaitandSwitchToFrame(frameRight);
 			if(!(fiberSite1.equalsIgnoreCase(""))){
 				String xpath="//div[.='Site']/../../descendant::"
 					+ "div[.='"+fiberSite1+"']/../../"
-							+ "descendant::a[contains(@onclick,'SOTaskView')]"; //"FiberSite1_RT" //"CoaxSite1_RT"
-			 WaitandSwitchToFrame(frameRight,5);
+							+ "descendant::a[contains(@onclick,'SOTaskView')]"; //"FiberSite1_RT" 
 			
 			if (waitUntilElementPresent(By.xpath(xpath),30)){
 			
 			if(waitForElement(browser.findElement(By.xpath(xpath)),1)){
+				browser.findElement(By.xpath(xpath)).sendKeys(Keys.chord(Keys.CONTROL,Keys.END ));
 				browser.findElement(By.xpath(xpath)).click();
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Click on Fiber Site level flow", "Site level flow Clicked");
 			}
 			}
 			}
-			else	ClickFirstSiteFlow();
 		}
 		catch(Exception ex)
 		{
@@ -366,31 +353,52 @@ public class WorkOrderTabPageCSO extends Page {
 			
 	}
 	
-	public boolean ClickServiceFlow(int i) throws InterruptedException, IndexOutOfBoundsException{
-		WebElement elementToClick=null;
-		Boolean found = false;
+	public boolean ClickServiceFlow(ServiceInfo serviceInfo,int i) throws InterruptedException, IndexOutOfBoundsException{
+		
 		try{
-			WaitandSwitchToFrame(frameRight);
+		WebElement elementToClick=null;
+		WaitandSwitchToFrame(frameRight);
+		switch(serviceInfo.serviceName){
+		
+		case "EDI" :
+		case "EDI-BGP" :
 			try {
-				if(waitForElement(linkENSFlow.get(i), 2)){				
-					elementToClick = linkENSFlow.get(i);
-					found = true;
+				if(waitForElement(linkEDIFlow.get(i), 1)){				
+					elementToClick = linkEDIFlow.get(i);
 				}
 			} catch (Exception e) {		
-				
-			} 
+				e.printStackTrace();
+			}
+			break;
+		case "EPL" :
+			try {
+				if(waitForElement(linkEPLFlow.get(i), 1)){				
+					elementToClick = linkEPLFlow.get(i);
+				}
+			} catch (Exception e) {		
+				e.printStackTrace();
+			}
+			break;
+		case "EVPL" :
 			try {	
-				if(waitForElement(linkEVPLFlow.get(i), 2)){				
+				if(waitForElement(linkEVPLFlow.get(i), 1)){				
 					elementToClick = linkEVPLFlow.get(i);
-					found = true;
 				}
 			}catch (Exception e) {				
-				
+				e.printStackTrace();
 			}
-			if(!found)
-			{
-				elementToClick = linkSiteFlow.get(0);
+			break;
+		case "ENS" :
+			try {
+				if(waitForElement(linkENSFlow.get(i), 1)){				
+					elementToClick = linkENSFlow.get(i);
+				}
+			} catch (Exception e) {		
+				e.printStackTrace();
 			}
+			break;
+		}
+			
 			clickndRelease(elementToClick);
 			waitforPageLoadComplete();
 			report.reportDoneEvent("Click on Service level flow", "Service level flow Clicked");
@@ -406,7 +414,6 @@ public class WorkOrderTabPageCSO extends Page {
 	public boolean ClickEPLFlow() throws InterruptedException{
 		try{
 			if(waitForElement(linkEPLFlow.get(0))){
-				//linkEDIFlow.click();
 				clickndRelease(linkEPLFlow.get(0));
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Click on Service level flow", "Service level flow Clicked");

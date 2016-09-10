@@ -12,7 +12,7 @@
 					<include name="createCustomer" /> 
 					<include name="createServiceAccount" /> 
 					<include name="createBillingAccount" />
-					<include name="createAddress1" />
+					<include name="createAddress" />
 					<include name="selectService" />
 					<include name="configureService"/>
 					<include name="processService" />
@@ -32,7 +32,7 @@
 					<include name="createCustomer" /> 
 					<include name="createServiceAccount" /> 
 					<include name="createBillingAccount" />
-					<include name="createAddress1" />
+					<include name="createAddress" />
 					<include name="selectService" />
 					<include name="configureService"/>
 					<include name="processService" />
@@ -52,8 +52,7 @@
 					<include name="createCustomer" />
 					<include name="createServiceAccount" />
 					<include name="createBillingAccount" />
-					<include name="createAddress1" />
-					<include name="createAddress2"/>
+					<include name="createAddress" />
 					<include name="selectService" />
 					<include name="configureService" />
 					<include name="processService"/>
@@ -95,7 +94,7 @@
 					<include name="createCustomer" />
 					<include name="createServiceAccount" />
 					<include name="createBillingAccount" />
-					<include name="createAddress1" />
+					<include name="createAddress" />
 					<include name="selectService" />
 					<include name="configureService" />
 					<include name="processService" />
@@ -136,8 +135,7 @@
 					<include name="createCustomer" />
 					<include name="createServiceAccount" />
 					<include name="createBillingAccount" />
-					<include name="createAddress1" />
-					<include name="createAddress2"/>
+					<include name="createAddress" />
 					<include name="selectService" />
 					<include name="configureService" />
 					<include name="processService"/>
@@ -185,9 +183,7 @@
 					<include name="createCustomer" />
 					<include name="createServiceAccount" />
 					<include name="createBillingAccount" />
-					<include name="createAddress1" />
-					<include name="createAddress2"/>
-					<include name="createAddress3"/>
+					<include name="createAddress" />
 					<include name="selectService" />
 					<include name="configureService" />
 					<include name="processService"/>

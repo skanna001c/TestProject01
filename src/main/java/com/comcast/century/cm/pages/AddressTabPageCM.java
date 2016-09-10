@@ -9,10 +9,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import com.comcast.century.cm.pages.Page;
+import com.comcast.century.data.ContactInfo;
+import com.comcast.century.data.ServiceInfo;
 import com.comcast.century.data.SiteInfo;
 import com.comcast.reporting.Status;
+import com.comcast.utils.PerfTransaction;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
 
@@ -173,9 +178,10 @@ public class AddressTabPageCM extends Page {
 	private List<WebElement> frameList ;
 	
 	
-	
-	
-	public boolean ClickAddressTab(SiteInfo siteInfo) throws InterruptedException{
+    		 
+    	 
+    
+	public boolean ClickAddressTab() throws InterruptedException{
 		mstatus = true;
 		try{
 		  waitforPageLoadComplete();

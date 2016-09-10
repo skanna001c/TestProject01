@@ -22,7 +22,7 @@ public class ProcessInfo {
 		this.terms = terms;
 		this.UNITransportType1 = UNITransportType1;
 		this.UNITransportType2 = UNITransportType2;
-		this.UNITransportType3 = UNITransportType2;
+		this.UNITransportType3 = UNITransportType3;
 		this.surCILI1 = surCILI1;
 		this.surCILI2 = surCILI2;
 		this.surCILI3 = surCILI3;

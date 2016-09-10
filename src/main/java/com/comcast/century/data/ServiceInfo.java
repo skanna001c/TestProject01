@@ -8,9 +8,11 @@ public class ServiceInfo {
 	public String serviceName;
 	
 	
+	
 	public ServiceInfo(String equipmentFee, String serviceName ){
 		this.equipmentFee = equipmentFee;
 		this.serviceName = serviceName;
+		
 	}
 	
 	public static ServiceInfo loadFromDatatable(DataTable dataTable){

@@ -199,10 +199,14 @@ public class ProcessTabPageCM extends Page {
 				switch(serviceInfo.serviceName)
 				{
 				case "EDI" :
+				case "EDI-BGP" :
 					UNINo1 = this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT"));
 					localiDataDump=SetSite(processInfo.UNITransportType1,localiDataDump.getValue("SITE1_RT"),localiDataDump);					
 					EVCNo1 = this.EVCConfiguration_EDI(processInfo);					
 					localiDataDump.setValue("EVCcount_RT","1");
+					if(serviceInfo.serviceName.equalsIgnoreCase("EDI-BGP")){
+						this.BGPConfiguration();
+					}
 					break;
 				case "EPL" :
 					UNINo1 = this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT") );
@@ -241,10 +245,17 @@ public class ProcessTabPageCM extends Page {
 				
 				// Calculation of Fiber/Coax site count and update it in dump
 				//Added by Kesavan on 07th Sep 2016
-				if (processInfo.UNITransportType1.equalsIgnoreCase("fiber")) FiberCount++; else CoaxCount++;
-				if (processInfo.UNITransportType2.equalsIgnoreCase("fiber")) FiberCount++; else CoaxCount++;
-				if (processInfo.UNITransportType3.equalsIgnoreCase("fiber")) FiberCount++; else CoaxCount++;
-				localiDataDump.setValue("Fibercount_RT",Integer.toString(FiberCount));		
+				if (processInfo.UNITransportType1.equalsIgnoreCase("fiber")) FiberCount++;
+				else if(processInfo.UNITransportType1.equalsIgnoreCase("coax"))  CoaxCount++;
+				
+				if (processInfo.UNITransportType2.equalsIgnoreCase("fiber")) FiberCount++; 
+				else if(processInfo.UNITransportType2.equalsIgnoreCase("coax"))  CoaxCount++;
+				
+				if (processInfo.UNITransportType3.equalsIgnoreCase("fiber")) FiberCount++; 
+				else if(processInfo.UNITransportType3.equalsIgnoreCase("coax"))  CoaxCount++;
+				
+				localiDataDump.setValue("Fibercount_RT",Integer.toString(FiberCount));	
+				System.out.println("" + FiberCount);
 				localiDataDump.setValue("Coaxcount_RT",Integer.toString(CoaxCount));
 				
 				if( serviceInfo.equipmentFee.equalsIgnoreCase("0") || serviceInfo.equipmentFee ==null || serviceInfo.equipmentFee =="" ){

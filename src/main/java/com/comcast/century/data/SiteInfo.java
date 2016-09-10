@@ -10,8 +10,9 @@ public class SiteInfo {
 	public String headendName;
 	public String headendCili;
 	public String city;
+	public String noOfSites;
 
-	public SiteInfo(String siteName, String siteAddress1,String siteAddress2,  String zipCode, String headendName,String headendCili,String city) {
+	public SiteInfo(String siteName, String siteAddress1,String siteAddress2,  String zipCode, String headendName,String headendCili,String city,String noOfSites) {
 		this.siteName = siteName;
 		this.siteAddress1 = siteAddress1;
 		this.siteAddress2 = siteAddress2;
@@ -19,6 +20,7 @@ public class SiteInfo {
 		this.headendName = headendName;
 		this.headendCili = headendCili;
 		this.city = city;
+		this.noOfSites = noOfSites;
 		
 	
 }
@@ -30,6 +32,7 @@ public class SiteInfo {
                 dataTable.getValue("zipCode"),
                 dataTable.getValue("headendName"),
                 dataTable.getValue("headendCili"),
-                dataTable.getValue("city"));
+                dataTable.getValue("city"),
+                dataTable.getValue("noOfSites"));
       }
 }

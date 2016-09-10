@@ -122,6 +122,7 @@ public class ServiceTabPageCM extends Page {
 			switch(serviceInfo.serviceName)
 			{
 			case "EDI" :
+			case "EDI-BGP" :
 				this.EDI();
 				this.EquipmentFee(serviceInfo);
 				this.ClickOnContinueButton();
