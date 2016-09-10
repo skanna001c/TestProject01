@@ -13,12 +13,20 @@ import java.util.Properties;
  * Read Test settings from framework.propeties files
  *
  */
-public class TestSettings {
+public class TestSettingsSingleton {
 	Properties properties;
 	String key;
 	long value;
-	public TestSettings(){
-		loadProperties();
+	private static TestSettingsSingleton testSettings;
+	protected TestSettingsSingleton(){
+	}
+	
+	public static TestSettingsSingleton getInstance(){
+		if(testSettings==null){
+			testSettings = new TestSettingsSingleton();
+			testSettings.loadProperties();
+		}
+		return testSettings;
 	}
 	/**
 	 * Get property value 
@@ -31,6 +39,10 @@ public class TestSettings {
 	
 	public Properties getProperties(){
 		return this.properties;
+	}
+	
+	public void setProperty(String key, String val){
+		properties.put(key, val);
 	}
 	
 	/**

@@ -24,6 +24,7 @@ import org.apache.log4j.Logger;
 import org.junit.Rule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -290,6 +291,9 @@ public class ComcastTest {
 			//if(browser==null)
 			
 			browser=getDriver(settings.getBrowser());
+			//added by harsh on 9/9
+			String browserVersion = (String) ((JavascriptExecutor) browser).executeScript("return navigator.userAgent;");
+			TestSettingsSingleton.getInstance().setProperty("browser_version", browserVersion);
 		
     	initializeReport(testCaseName);
 		startTestTime = System.currentTimeMillis();
