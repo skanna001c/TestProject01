@@ -201,7 +201,7 @@ public class WorkOrderTabPageCSO extends Page {
 		return mstatus;
 	}
 
-	public boolean SearchForOrderInSO(String SRID){
+	public boolean SearchForOrderInSO(String SRID,int retryCount){
 		try{
 			if(!ClickBackButton(3))
 			{
@@ -218,14 +218,16 @@ public class WorkOrderTabPageCSO extends Page {
 				waitForElementDisappear(elementLoading);
 				if(waitForElement(txtSrId)){
 					System.out.println("Search box present");
-					if(!SRID.equalsIgnoreCase(txtSrId.getAttribute("value")))
+					if(!SRID.equalsIgnoreCase(txtSrId.getAttribute("value")) || retryCount > 1)
 					{
 						txtSrId.clear();
 						iSendKeys(txtSrId, SRID);
 						iClick(btnSearch, null, "Search SRID:Service Order Page:Search button");
-						browser.switchTo().defaultContent();
-					}
-				}
+						
+					} 
+					
+					browser.switchTo().defaultContent();
+				} 
 			
 		}
 		catch(Exception ex)

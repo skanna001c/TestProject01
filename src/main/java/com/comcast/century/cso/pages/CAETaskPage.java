@@ -123,6 +123,7 @@ public class CAETaskPage extends Page {
 						+"</sit:resourceComponent>" + "</sit:siteDesignNotification>" + "</soapenv:Body>"
 						+ "</soapenv:Envelope>";				
 				(new SoapTest()).webServicesTask(request, "CAE");
+				break;
 			case "EPL" :
 				request = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:sit=\"http://www.excelacom.com/century/cramer/beans/siteDesignNotification\">"
 						+ "<soapenv:Header/>" + "<soapenv:Body>" + "<sit:siteDesignNotification>"
@@ -132,6 +133,7 @@ public class CAETaskPage extends Page {
 						+ "</sit:resourceComponent>" + "</sit:siteDesignNotification>" + "</soapenv:Body>"
 						+ "</soapenv:Envelope>";
 				(new SoapTest()).webServicesTask(request, "CAE");
+				break;
 			case "EVPL" :
 				request = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:sit=\"http://www.excelacom.com/century/cramer/beans/siteDesignNotification\">"
 						+ "<soapenv:Header/>" + "<soapenv:Body>" + "<sit:siteDesignNotification>"
@@ -141,6 +143,7 @@ public class CAETaskPage extends Page {
 						+ "</sit:resourceComponent>" + "</sit:siteDesignNotification>" + "</soapenv:Body>"
 						+ "</soapenv:Envelope>";
 				(new SoapTest()).webServicesTask(request, "CAE");
+				break;
 			}
 			iClick(btnBack,null, "CAE task complete:CAE task complete page: BackButton ");
 			waitForElement(browser.findElement(By.xpath("//*[text()='Create Account and Equipment' and contains(@onclick, 'COMPLETED')]")));

@@ -87,9 +87,7 @@ public class NewConnectTest extends ComcastTest {
 
 	String SRID;
 	String SurveyID;
-	String Site1;
-	String Site2;
-	String Site3;
+	int retryCount = 0;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -161,7 +159,7 @@ public class NewConnectTest extends ComcastTest {
 			new ContactTabPageCM(browser, report).ClickOnBackBtn();
 		}
 	}
-	
+	   
 	
 	@Test(priority = 3500)
 	@PerfTransaction(name = "SelectService")
@@ -493,7 +491,7 @@ public class NewConnectTest extends ComcastTest {
 	public void EquipmentFeeFlow() throws InterruptedException {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
-			(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
+			(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
 			(new WorkOrderTabPageCSO(browser, report)).ClickEquipmentFeeFlow();
 		}
 	}
@@ -512,7 +510,7 @@ public class NewConnectTest extends ComcastTest {
 
 	@Test(priority = 22670)
 	public void EqFeeStartBilling_EVPL2() throws InterruptedException {
-		(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
+		(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
 		(new WorkOrderTabPageCSO(browser, report)).ClickEquipmentFeeFlow();
 		(new EqFeeFlowTasks(browser, report)).EqFeeStartBilling();
 		(new EqFeeStartBillingTaskPage(browser, report)).EqFeeStartBilling();
@@ -544,17 +542,29 @@ public class NewConnectTest extends ComcastTest {
 	
 	public void SearchOrderndLaunchFiberSiteFlow(String site) {	
 		    	Boolean status;
+		    	retryCount = 1;
 		    	do{
-		    		(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
+		    		(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
 		    		status = (new WorkOrderTabPageCSO(browser, report)).ClickFiberSiteFlow(site);
+		    		if(!status)
+		    		{
+		    			retryCount++;
+		    		}
 		    	}while(!status);           
 				
 	}
 	
 	public void SearchOrderndLaunchCoaxSiteFlow(String site) {		
-				(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
-				(new WorkOrderTabPageCSO(browser, report))
-						.ClickCoaxSiteFlow(site);			
+				Boolean status;
+				retryCount = 1;
+				do{
+					(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
+					status = (new WorkOrderTabPageCSO(browser, report)).ClickCoaxSiteFlow(site);
+					if(!status)
+		    		{
+		    			retryCount++;
+		    		}
+		    	}while(!status); 
 			
 		}
 	
@@ -571,13 +581,13 @@ public class NewConnectTest extends ComcastTest {
 	
 	
 	public void SearchOrderndLaunchServiceFlow(int i) throws InterruptedException {
-		(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
+		(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
 		(new WorkOrderTabPageCSO(browser, report)).ClickServiceFlow(serviceInfo,i);
 	}
 	
 	public void SearchOrderndLaunchServiceRequest() {
 		(new WorkOrderTabPageCSO(browser, report)).ClickBackButton(2);
-		(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"));
+		(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"),retryCount);
 		(new WorkOrderTabPageCSO(browser, report)).ClickFirstSiteFlow();
 	}
 }

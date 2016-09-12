@@ -119,6 +119,7 @@ public boolean ADITask(ServiceInfo serviceInfo){
 						+ "</soapenv:Body>"
 						+ "</soapenv:Envelope>";			
 			(new SoapTest()).webServicesTask(request, "ADI");
+			break;
 		
 		case "EVPL" :
 			  request =  "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"http://www.excelacom.com/century/cramer/beans/ServiceDesignNotification\">"
@@ -132,6 +133,7 @@ public boolean ADITask(ServiceInfo serviceInfo){
 						+ "</soapenv:Body>"
 						+ "</soapenv:Envelope>";
 			  (new SoapTest()).webServicesTask(request, "ADI");
+				break;
 		}
 		iClick(btnBack,null, "ADI task complete:ADI task complete page: BackButton ");
 		waitForElement(browser.findElement(By.xpath("//*[text()='Assign Design Information' and contains(@onclick, 'COMPLETED')]")));
