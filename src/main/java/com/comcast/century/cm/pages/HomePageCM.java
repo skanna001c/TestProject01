@@ -39,6 +39,7 @@ import com.comcast.utils.ComcastTest;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
 import com.comcast.utils.TestUtils;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.thoughtworks.selenium.webdriven.commands.WaitForPageToLoad;
 
 import net.sourceforge.htmlunit.corejs.javascript.ast.SwitchCase;
@@ -64,6 +65,9 @@ public class HomePageCM extends Page {
 	public HomePageCM(WebDriver browser, SeleniumReport report) {
 		super(browser, report);
 		
+	}
+	public HomePageCM(FrameworkContext context){
+		super(context);
 	}
 
 	@FindBy(xpath = "//a[.='Home']")

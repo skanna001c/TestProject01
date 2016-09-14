@@ -20,6 +20,7 @@ import com.comcast.reporting.Status;
 import com.comcast.utils.PerfTransaction;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 
 public class AddressTabPageCM extends Page {
 	
@@ -36,6 +37,10 @@ public class AddressTabPageCM extends Page {
 	public AddressTabPageCM(WebDriver browser, SeleniumReport report) {
 		
 		super(browser, report);
+	}
+	
+	public AddressTabPageCM(FrameworkContext context){
+		super(context);
 	}
 
 

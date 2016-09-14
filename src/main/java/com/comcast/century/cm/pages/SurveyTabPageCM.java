@@ -5,11 +5,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.comcast.utils.SeleniumReport;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 
 public class SurveyTabPageCM extends Page {
 
 	public SurveyTabPageCM(WebDriver browser, SeleniumReport report) {
 		super(browser, report);
+	}
+	public SurveyTabPageCM(FrameworkContext context){
+		super(context);
 	}
 
 	@Override

@@ -14,11 +14,16 @@ import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.data.ServiceInfo;
 import com.comcast.utils.SeleniumReport;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 
 public class FeatureTabPageCM extends Page {
 
 	public FeatureTabPageCM(WebDriver browser, SeleniumReport report) {
 		super(browser, report);
+	}
+	
+	public FeatureTabPageCM(FrameworkContext context){
+		super(context);
 	}
 
 	@Override
