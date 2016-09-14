@@ -7,8 +7,8 @@
 	</listeners>
 	 <test name="001_Validate_Related_Order_ID_attribute_Metro_E_New_Connect"> 
 		<classes>
-			<class name="com.comcast.century.newConnect.Validate_Related_Order_ID_attribute"> 
-				<methods>
+			<class name="com.comcast.century.newConnect.NewConnectFlow"> 
+				<!--methods>
 					<include name="createCustomer" /> 
 					<include name="createServiceAccount" /> 
 					<include name="createBillingAccount" />
@@ -19,7 +19,7 @@
 					<include name="relatedOrderIDAttribute"/>					
 					<include name="submitOrder" /> 
 					<include name="validateRelatedOrderID"/>
-				</methods>
+				</methods-->
 			</class>
 	</classes>
 	</test>

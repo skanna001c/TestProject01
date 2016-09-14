@@ -59,6 +59,7 @@ import com.comcast.neto.alm.ALMUpdaterClient;
 import com.comcast.reporting.ReportSettings;
 import com.comcast.reporting.ReportThemeFactory;
 import com.comcast.reporting.ReportThemeFactory.Theme;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.reporting.Status;
 
 
@@ -88,6 +89,9 @@ public class ComcastTest {
 	
 	public static String totalExecutionTime;
 	public static int nTestsPassed=0;
+	/**
+	 * 
+	 */
 	public static int nTestsFailed=0;
 	
 	protected Hashtable<String,String> testStatusTable;
@@ -97,7 +101,10 @@ public class ComcastTest {
 	protected  TestSettings settings; 
 	protected  IUserDetails userDetails;
 	private  CenturyApplication centuryApplication;
-	private String userName;	
+	private String userName;
+	
+	// updated by hbolak01c to pass this context as a single source for all data
+	protected FrameworkContext frameworkContext = new FrameworkContext();
 	
 	public IDataDump getDataDump(){
 		return dataDump;
@@ -966,5 +973,48 @@ public void almRestUpdateStatus(){
 	
 	
 }
+
+	
+	/**
+	 * Name: FrameworkContext
+	 * This reference holds all framework data that can be passed around
+	 * @author hbolak01c
+	 *
+	 */
+	public class FrameworkContext{
+		
+		public DataTable getDataTable(){
+			return dataTable;
+		}
+		
+		public IDataDump getDataDump(){
+			return dataDump;
+		}
+		
+		public void setDataDump(IDataDump dump){
+			dataDump = dump;
+		}
+		
+		public TestSettings getSettings(){
+			return settings;
+		}
+		
+		public WebDriver getDriver(){
+			return browser;
+		}
+		
+		public SeleniumReport getReport(){
+			return report;
+		}
+		
+		public IUserDetails getUserDetail(){
+			return userDetails;
+		}
+		
+		public String getTestCaseName(){
+			return testCaseName;
+		}
+		
+	}
 	 
 }

@@ -34,7 +34,6 @@ import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -44,6 +43,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.comcast.century.commons.CenturyApplication;
 import com.comcast.century.data.LoginDetails;
 import com.comcast.reporting.Status;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.DataTable;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
@@ -88,6 +88,17 @@ public abstract class Page {
 		properties.put("browser_version", browserVersion);*/
 		//System.out.println(properties);
 		
+	}
+	
+	/**
+	 * @param context
+	 */
+	protected Page (FrameworkContext context){
+		this.browser = context.getDriver();
+		this.report = context.getReport();
+		PageFactory.initElements(browser, this);
+		// waitForPageLoad();
+		verifyApplicationInCorrectPage();
 	}
 
 	/**
