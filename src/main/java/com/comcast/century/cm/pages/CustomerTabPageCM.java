@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.data.CustomerInfo;
 import com.comcast.reporting.Status;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.PerfTransaction;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
@@ -26,6 +27,10 @@ public class CustomerTabPageCM extends Page {
 
 	public CustomerTabPageCM(WebDriver browser, SeleniumReport report) {
 		super(browser, report);
+	}
+	
+	public CustomerTabPageCM(FrameworkContext context){
+		super(context);
 	}
 	
 	private String customerName;
