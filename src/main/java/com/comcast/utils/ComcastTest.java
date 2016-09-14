@@ -54,6 +54,8 @@ import org.testng.annotations.Test;
 
 import com.comcast.century.cm.pages.HomePageCM;
 import com.comcast.century.commons.CenturyApplication;
+import com.comcast.logging.logtransactions.LoggerMain;
+import com.comcast.logging.logtransactions.LoggerMainImpl;
 import com.comcast.neto.alm.ALMTestInformation;
 import com.comcast.neto.alm.ALMUpdaterClient;
 import com.comcast.reporting.ReportSettings;
@@ -102,6 +104,9 @@ public class ComcastTest {
 	protected  IUserDetails userDetails;
 	private  CenturyApplication centuryApplication;
 	private String userName;
+	
+	// updated by hbolak01c for performance transaction logging
+	protected LoggerMain transactionLogger =  new LoggerMainImpl();
 	
 	// updated by hbolak01c to pass this context as a single source for all data
 	protected FrameworkContext frameworkContext = new FrameworkContext();
@@ -1013,6 +1018,10 @@ public void almRestUpdateStatus(){
 		
 		public String getTestCaseName(){
 			return testCaseName;
+		}
+		
+		public LoggerMain getTransactionLogger(){
+			return transactionLogger;
 		}
 		
 	}

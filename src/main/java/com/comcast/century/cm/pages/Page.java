@@ -42,6 +42,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.comcast.century.commons.CenturyApplication;
 import com.comcast.century.data.LoginDetails;
+import com.comcast.logging.logtransactions.LoggerMain;
 import com.comcast.reporting.Status;
 import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.DataTable;
@@ -64,6 +65,8 @@ public abstract class Page {
 	private String env;
 	private String browserVersion;
 	protected String title;
+	private LoggerMain tLogger;
+	private String testName;
 
 	protected abstract boolean isValidPage();
 
@@ -96,6 +99,9 @@ public abstract class Page {
 	protected Page (FrameworkContext context){
 		this.browser = context.getDriver();
 		this.report = context.getReport();
+		this.tLogger = context.getTransactionLogger();
+		this.testSettings = context.getSettings();
+		this.testName = context.getTestCaseName();
 		PageFactory.initElements(browser, this);
 		// waitForPageLoad();
 		verifyApplicationInCorrectPage();
@@ -3092,6 +3098,11 @@ public abstract class Page {
 	 */
 	public void iClick(WebElement we, WebElement waitForElement, String description) {
 		//System.out.println("inside iclick");
+		//added by harsh to monitor perf transactions
+		if(tLogger!=null){
+			
+			tLogger.startTransaction(testName);
+		}
 		System.out.println(TestSettingsSingleton.getInstance().getProperties());
 		String testName = report.getReportSettings().getReportName(); // added by harsh on 9/6/2016 to get the test name
 		if ((new TestSettings()).getBrowser().equalsIgnoreCase("iexplore")
@@ -3102,6 +3113,10 @@ public abstract class Page {
 		waitforPageLoadComplete();
 		if (!(waitForElement == null)) {		
 			isElementClickable(waitForElement);
+		}
+		//added by harsh to monitor perf transactions
+		if(tLogger!=null){
+			tLogger.endTransaction(description, testSettings.getProperties());
 		}
 		report.reportPassEvent("Button Click", description);
 		
