@@ -123,7 +123,11 @@ public class ServiceTabPageCM extends Page {
 			{
 			case "EDI" :
 			case "EDI-BGP" :
+			case "EDI-ToF" :
 				this.EDI();
+				if(serviceInfo.serviceName.equalsIgnoreCase("EDI-ToF")){
+					this.TrunkPRI();
+				}
 				this.EquipmentFee(serviceInfo);
 				this.ClickOnContinueButton();
 				break;

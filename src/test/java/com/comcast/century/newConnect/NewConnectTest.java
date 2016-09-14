@@ -586,7 +586,7 @@ public class NewConnectTest extends ComcastTest {
 	}
 	
 	public void SearchOrderndLaunchServiceRequest() {
-		(new WorkOrderTabPageCSO(browser, report)).ClickBackButton(2);
+		//(new WorkOrderTabPageCSO(browser, report)).ClickBackButton(2);
 		(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"),retryCount);
 		(new WorkOrderTabPageCSO(browser, report)).ClickFirstSiteFlow();
 	}

@@ -200,12 +200,17 @@ public class ProcessTabPageCM extends Page {
 				{
 				case "EDI" :
 				case "EDI-BGP" :
+				case "EDI-ToF" :
 					UNINo1 = this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT"));
 					localiDataDump=SetSite(processInfo.UNITransportType1,localiDataDump.getValue("SITE1_RT"),localiDataDump);					
 					EVCNo1 = this.EVCConfiguration_EDI(processInfo);					
 					localiDataDump.setValue("EVCcount_RT","1");
 					if(serviceInfo.serviceName.equalsIgnoreCase("EDI-BGP")){
 						this.BGPConfiguration();
+					} else if(serviceInfo.serviceName.equalsIgnoreCase("EDI-ToF")){
+						this.Trunk_PRI(processInfo);
+						this.UNIConfiguration_PRI(processInfo,localiDataDump.getValue("SITE1_RT") );
+						this.EVCConfiguration_PRI(processInfo);
 					}
 					break;
 				case "EPL" :
@@ -235,7 +240,7 @@ public class ProcessTabPageCM extends Page {
 					EVCNo1 = this.EVCConfiguration_EVPL(processInfo);					
 					EVCNo2 = this.EVC2Configuration_EVPL(processInfo);					
 					localiDataDump.setValue("EVCcount_RT","2");
-					break;
+					break;	
 				default :
 					System.out.println("Invalid Service");
 				}

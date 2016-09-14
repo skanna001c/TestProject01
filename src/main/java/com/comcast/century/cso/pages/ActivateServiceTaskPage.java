@@ -75,6 +75,7 @@ public class ActivateServiceTaskPage extends Page {
 		try{
 		switch(serviceInfo.serviceName){
 		case "EDI" :
+		case "EDI-ToF" :
 			this.ActivateService_EDI(serviceLevelTaskInfo);
 			break;
 		case "EPL" :
@@ -145,9 +146,6 @@ public class ActivateServiceTaskPage extends Page {
 			elementEPL.get(1).click();
 			waitForElement(ddStatus);
 			new Select(ddStatus).selectByValue(serviceLevelTaskInfo.status);
-			btnSave.click();
-			waitforPageLoadComplete();
-			sleep(2000);
 			this.ClickCompleteButton();
 			waitForElement(browser.findElement(By.xpath("//*[text()='Activate Service' and contains(@onclick, 'COMPLETED')]")));
 		}catch(Exception e){
@@ -181,9 +179,6 @@ public class ActivateServiceTaskPage extends Page {
 			elementEVPL.get(1).click();
 			waitForElement(ddStatus);
 			new Select(ddStatus).selectByValue(serviceLevelTaskInfo.status);
-			btnSave.click();
-			waitforPageLoadComplete();
-			sleep(2000);
 			this.ClickCompleteButton();
 			waitForElement(browser.findElement(By.xpath("//*[text()='Activate Service' and contains(@onclick, 'COMPLETED')]")));
 		}catch(Exception e){

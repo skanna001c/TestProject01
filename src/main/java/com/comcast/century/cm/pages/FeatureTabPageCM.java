@@ -150,6 +150,7 @@ public class FeatureTabPageCM extends Page {
 			{
 			case "EDI" :
 			case "EDI-BGP" :
+			case "EDI-ToF" :
 				if(serviceInfo.serviceName.equalsIgnoreCase("EDI-BGP")){
 					this.BGP();
 				}

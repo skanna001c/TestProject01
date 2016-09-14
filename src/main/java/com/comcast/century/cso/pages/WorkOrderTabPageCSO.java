@@ -293,7 +293,7 @@ public class WorkOrderTabPageCSO extends Page {
 						+ "div[.='"+coaxSite1+"']/../../"
 								+ "descendant::a[contains(@onclick,'SOTaskView')]";  //"CoaxSite1_RT"
 				
-				if (waitUntilElementPresent(By.xpath(xpath),30)){
+				if (waitUntilElementPresent(By.xpath(xpath),5)){
 				
 				if(waitForElement(browser.findElement(By.xpath(xpath)),1)){
 					browser.findElement(By.xpath(xpath)).sendKeys(Keys.chord(Keys.CONTROL,Keys.END ));
@@ -320,7 +320,7 @@ public class WorkOrderTabPageCSO extends Page {
 					+ "div[.='"+fiberSite1+"']/../../"
 							+ "descendant::a[contains(@onclick,'SOTaskView')]"; //"FiberSite1_RT" 
 			
-			if (waitUntilElementPresent(By.xpath(xpath),30)){
+			if (waitUntilElementPresent(By.xpath(xpath),5)){
 			
 			if(waitForElement(browser.findElement(By.xpath(xpath)),1)){
 				browser.findElement(By.xpath(xpath)).sendKeys(Keys.chord(Keys.CONTROL,Keys.END ));
@@ -364,6 +364,7 @@ public class WorkOrderTabPageCSO extends Page {
 		
 		case "EDI" :
 		case "EDI-BGP" :
+		case "EDI-ToF" :
 			try {
 				if(waitForElement(linkEDIFlow.get(i), 1)){				
 					elementToClick = linkEDIFlow.get(i);

@@ -97,6 +97,7 @@ public class CompleteFiberPlantBuildTaskPage extends Page {
 	{	
 		try{
 			ClosePopUpndSwitchtoFrame(windowHandle,frameRight);
+			
 		}
 		catch(Exception ex)
 		{

@@ -45,6 +45,9 @@ public class ObtainSiteAgreementTaskPage extends Page {
 	@FindBy(xpath = "//input[@id='sagiReceivedDate']/following-sibling::*")
 	private WebElement ActualReceivedDate ;
 	
+	@FindBy(xpath = "//input[@id='sagiScheduledReceivedDate']/following-sibling::*")
+	private WebElement estimatedReceivedDate ;
+	
 	@FindBy(xpath = "//input[@id='sagiAgreementName']")
 	private WebElement txtAgreementName ;
 	
@@ -78,9 +81,10 @@ public class ObtainSiteAgreementTaskPage extends Page {
 				txtAgreementName.sendKeys(siteLevelTaskInfo.agreementName+randomNumber(5));
 				SubmittedDate.click();
 				btnToday.get(0).click();
+				clickndRelease(estimatedReceivedDate);
+				btnToday.get(1).click();
 				clickndRelease(ActualReceivedDate);
-				//ActualReceivedDate.click();
-				btnToday.get(1).click();	
+				btnToday.get(2).click();	
 				this.ClickCompleteButton();
 				waitForElement(browser.findElement(By.xpath("//*[text()='Obtain Site Agreement(s)' and contains(@onclick, 'COMPLETED')]")));
 			}
