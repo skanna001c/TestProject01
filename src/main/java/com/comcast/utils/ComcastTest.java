@@ -30,6 +30,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.MarionetteDriver;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
@@ -372,7 +373,7 @@ public class ComcastTest {
 			if(gridflag.equals("false"))
 			{	
 				
-				ProfilesIni profilesIni = new ProfilesIni();
+/*				ProfilesIni profilesIni = new ProfilesIni();
 
 				FirefoxProfile profile = profilesIni.getProfile("default");
 
@@ -384,8 +385,15 @@ public class ComcastTest {
 
 
 				driver =ThreadGuard.protect( new FirefoxDriver(profile));
-				ThreadDriver.set(driver); 
+				ThreadDriver.set(driver); */
 				
+				// updated by hbolak01c on 9/15/2016 for FFv48+ support
+				System.setProperty("webdriver.gecko.driver", 
+						TestUtils.getRelativePath()+"/src/main/resources/BrowserSpecificDrivers/geckodriver.exe");
+				DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+				capabilities.setCapability("marionette", true);
+				driver = ThreadGuard.protect(new MarionetteDriver(capabilities));
+				ThreadDriver.set(driver);
 
 				
 			}
