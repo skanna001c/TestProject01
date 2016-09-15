@@ -123,124 +123,7 @@ public class ComcastTest {
 		return userDetails;
 	}
 	
-	 /*@Rule
-	 
-	 *//***
-	     * Added Rule to Rerun failed tests till threshold FailRunRetryCount
-	     * If the test is passed before the threshold run count,remaining runs will be disregarded
-	 ***//*
-	  public JUnitRetry retry = new JUnitRetry();
-	 
-	 @Rule
-	  public TestWatcher watchman= new TestWatcher() {
-		 
-	      @Override
-	      protected synchronized void failed(Throwable e, Description description) {
-	    	  System.out.println("Inside" +"synchronized void failed");
-	    	  String reportPath=ReportPath.getInstance().getReportPath();
-	    	  String testCaseQCName=testName.getName();
-	    	  createResultFile(reportPath,"Failed");
-	    	  System.out.println("Test Case Failed");
-	    	  createZipFileOfReport(reportPath,testCaseQCName);	   
-	    	  
-	    	  endTime=System.currentTimeMillis();
-	    	  Long timeTaken=endTime-startTime-20;//-20 is to compensate for things other than test script execution
-	    	  timeTaken1 = timeTaken1 + timeTaken;
-	    	    int h = (int) ((timeTaken / 1000) / 3600);
-		  		int m = (int) (((timeTaken / 1000) / 60) % 60);
-		  		int s = (int) ((timeTaken / 1000) % 60);
-		  		String time=""+m+":mm "+s+":ss";
-		  		
-		  		
-			  	timeTaken = timeTaken/1000; //Converting to seconds
-			    String duration = timeTaken.toString();
-			    ++nTestsFailed;	 	
-		  
-	    	  String testSetID=settings.getTestSetID();
-	    	  if (!(testSetID == null || testSetID ==""))
-	    	  {
-	    		  	ALMTestInformation ALMInfo= new ALMTestInformation();
-		    		ALMUpdaterClient ALMUpdate= new ALMUpdaterClient();
-			  		String testID;
-					try {
-					    testSetID=settings.getTestSetID();
-					    if(!testCaseQCName.equals("testMethod"))
-					    {
-					    	testID = ALMInfo.GetTestID(testCaseQCName);
-					    	
-					    	
-					    	testID = ALMInfo.GetTestID(testCaseQCName);
-					    	ALMUpdate.createTestRUN(testSetID,testCaseQCName, testID, "Failed", duration);
-					    
-					    	String component = ALMInfo.getTestComponent(testID);
-					  		reportSummary.updateResultSummary(component, testCaseQCName, time, "Failed");
-							
-					    }
-				  	
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-	    	  }
-	    	  
-	      	}
-	      
-
-	      @Override
-	      protected synchronized void succeeded(Description description) {
-	    	  System.out.println("Inside" +"synchronized void failed");
-	    	  String reportPath=ReportPath.getInstance().getReportPath();
-	    	  String testCaseQCName=testName.getName();
-	    	  //System.out.println("Before zipping");
-	    	  createResultFile(reportPath,"Passed");
-	    	  System.out.println("Test Case Passed");
-	    	  createZipFileOfReport(reportPath,testCaseQCName);
-	    	  
-	    	  endTime=System.currentTimeMillis();
-	    	  Long timeTaken=endTime-startTime-20;//-20 is to compensate for things other than test script execution
-	    	  timeTaken1 = timeTaken1 + timeTaken;
-	    	    int h = (int) ((timeTaken / 1000) / 3600);
-		  		int m = (int) (((timeTaken / 1000) / 60) % 60);
-		  		int s = (int) ((timeTaken / 1000) % 60);
-		  		//String time=""+h+":hh "+m+":mm "+s+":ss";
-		  		String time=""+m+":mm "+s+":ss";
-		  		
-			  	timeTaken = timeTaken/1000; //Converting to seconds
-			    String duration = timeTaken.toString();
-			    ++nTestsPassed;
-	    	  String testSetID=settings.getTestSetID();
-	    	  if (!(testSetID == null || testSetID ==""))
-	      		{	
-			    		
-	    		  	ALMTestInformation ALMInfo= new ALMTestInformation();
-		    		ALMUpdaterClient ALMUpdate= new ALMUpdaterClient();
-			  		
-	    		  	String testID;
-						try {
-						     testSetID=settings.getTestSetID();
-						     if(!testCaseQCName.equals("testMethod"))
-							    {
-						    	 	testID = ALMInfo.GetTestID(testCaseQCName);
-							    	
-							    	testID = ALMInfo.GetTestID(testCaseQCName);
-							    	ALMUpdate.createTestRUN(testSetID,testCaseQCName, testID, "Passed", duration);
-							    
-							    	String component = ALMInfo.getTestComponent(testID);
-							  		reportSummary.updateResultSummary(component, testCaseQCName, time, "Passed");
-									
-							    }
-					  	
-						} catch (Exception e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-	    		  
-	      		}  
-	      
-	      }
-	     };
-*/	
-	// changed to before suite from beforeclass - Harsh 
+		// changed to before suite from beforeclass - Harsh 
     
     public void initializeSummaryReport()
     {
@@ -263,8 +146,6 @@ public class ComcastTest {
 		
 		
 		//moved from before method and changed this to before suite
-		
-		
 		
  	
     }
@@ -305,7 +186,7 @@ public class ComcastTest {
 			browser=getDriver(settings.getBrowser());
 			//added by harsh on 9/9
 			String browserVersion = (String) ((JavascriptExecutor) browser).executeScript("return navigator.userAgent;");
-			TestSettingsSingleton.getInstance().setProperty("browser_version", browserVersion);
+			settings.setProperty("browser_version", browserVersion);
 		
     	initializeReport(testCaseName);
 		startTestTime = System.currentTimeMillis();
@@ -810,7 +691,7 @@ public class ComcastTest {
 					 {
 						
 						 centuryApplication.openCSOUrl(userName,
-								 false);
+								 false, frameworkContext);
 						 if(settings.getPERerunStatus().equalsIgnoreCase("true")){ //for cm package execution 
 							//	search for srid/customer need to be implemented
 							 //(new HomePageCM(browser,report)).searchCustomer(getDataDump().getValue("CustomerName_RT"));
@@ -823,7 +704,7 @@ public class ComcastTest {
 			 }
 		 else if (!(getDataDump().getValue("CMLoggedIN").equalsIgnoreCase("PASS")))
 		 {	 centuryApplication.openCMUrl(userName,
-				 	false);
+				 	false, frameworkContext);
 		 
 		 	if(settings.getPERerunStatus().equalsIgnoreCase("true")){ //for cm package execution 
 				(new HomePageCM(browser,report)).searchCustomer(getDataDump().getValue("CustomerName_RT"));
@@ -840,7 +721,7 @@ public class ComcastTest {
 			 if (!(getDataDump().getValue("currentUser").equalsIgnoreCase(userName)))
 				 {
 					 centuryApplication.openCMUrl(userName,
-							 true);
+							 true, frameworkContext);
 					 getDataDump().setValue("CSOLoggedIN","FAIL");
 					 getDataDump().setValue("currentUser", userName);
 				 }
@@ -851,7 +732,7 @@ public class ComcastTest {
 			 if (!(getDataDump().getValue("currentUser").equalsIgnoreCase(userName)))
 				 {
 				 centuryApplication.openCSOUrl(userName,
-						true);
+						true, frameworkContext);
 					 getDataDump().setValue("CMLoggedIN","FAIL");
 					 getDataDump().setValue("currentUser", userName);
 				 }
