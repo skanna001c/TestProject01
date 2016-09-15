@@ -31,20 +31,13 @@ public class OvtTest {
 
           Set<Field> lists2 = reflections.getFieldsAnnotatedWith(org.openqa.selenium.support.FindBy.class);
 
-          //    System.out.println("Number of Test methods :" + lists.size());
-
-//              System.out.println("Number of Fields :" + lists2.size());
-
-              ArrayList<Field> arr = new ArrayList<Field>(lists2);
-              //
-              // for(class<?> arr1 : arr){
-              //
-              // }
-              Set<String> classes = new HashSet<String>();
-              for (Field f : arr) {
-                     classes.add(f.getDeclaringClass().getSimpleName());
-              }
-              try {
+          ArrayList<Field> arr = new ArrayList<Field>(lists2);
+          
+          Set<String> classes = new HashSet<String>();
+          for (Field f : arr) {
+                 classes.add(f.getDeclaringClass().getSimpleName());
+          }
+          try {
             	  	 
                      PrintStream printer = new PrintStream(new File(System.getProperty("user.dir")+System.getProperty("file.separator")+"Results"+System.getProperty("file.separator")+"ObjectList.txt"));
                      printer.println("----------------------------------------");
@@ -57,8 +50,7 @@ public class OvtTest {
                            printer.println(" ");
                            for (Field f : arr) {
                                   for (Annotation annotation : f.getAnnotations()) {
-                                         Class<? extends Annotation> type = annotation.annotationType();
-                                         // System.out.println("Values of "+type.getName());
+                                         Class<? extends Annotation> type = annotation.annotationType();                                         
                                          if (f.getDeclaringClass().getSimpleName().equals(classname)) {
                                                 for (Method method : type.getDeclaredMethods()) {
                                                        Object value;
