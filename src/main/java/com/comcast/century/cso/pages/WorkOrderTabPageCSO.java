@@ -99,16 +99,16 @@ public class WorkOrderTabPageCSO extends Page {
 	private WebElement btnSearchAdvancedSearch;
 	
 	// //div[.='EVPL']/../../descendant::a[contains(@onclick,'SOTaskView')][contains(@onclick,'SOTaskview')]
-	@FindBy(xpath = "//div[.='EDI']/../../descendant::img[contains(@src,'progress') or contains(@src,'activated')]/../../../descendant::a[contains(@onclick,'SOTaskView')]")
+	@FindBy(xpath = "//div[.='EDI']/../../descendant::img[contains(@src,'progress') or contains(@src,'activated') or contains(@src,'completed')]/../../../descendant::a[contains(@onclick,'SOTaskView')]")
 	private List<WebElement> linkEDIFlow ;
 	
-	@FindBy(xpath = "//div[.='EPL']/../../descendant::img[contains(@src,'progress') or contains(@src,'activated')]/../../../descendant::a[contains(@onclick,'SOTaskView')]")
+	@FindBy(xpath = "//div[.='EPL']/../../descendant::img[contains(@src,'progress') or contains(@src,'activated') or contains(@src,'completed')]/../../../descendant::a[contains(@onclick,'SOTaskView')]")
 	private List<WebElement> linkEPLFlow ;
 	
-	@FindBy(xpath = "//div[.='EVPL']/../../descendant::img[contains(@src,'progress') or contains(@src,'activated')]/../../../descendant::a[contains(@onclick,'SOTaskView')]")
+	@FindBy(xpath = "//div[.='EVPL']/../../descendant::img[contains(@src,'progress') or contains(@src,'activated') or contains(@src,'completed')]/../../../descendant::a[contains(@onclick,'SOTaskView')]")
 	private List<WebElement> linkEVPLFlow ;
 	
-	@FindBy(xpath = "//div[.='ENS']/../../descendant::img[contains(@src,'progress') or contains(@src,'activated')]/../../../descendant::a[contains(@onclick,'SOTaskView')]")
+	@FindBy(xpath = "//div[.='ENS']/../../descendant::img[contains(@src,'progress') or contains(@src,'activated') or contains(@src,'completed')]/../../../descendant::a[contains(@onclick,'SOTaskView')]")
 	private List<WebElement> linkENSFlow ;
 	
 	//@FindBy(xpath = "//*[.='Site']/../preceding-sibling::td[1]/child::*/child::*")

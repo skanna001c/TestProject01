@@ -55,6 +55,7 @@ public class UpdateDesignTaskPage extends Page {
 	
 	public boolean UpdateDesign(){
 		try{
+			waitForElement(ddDesignChanged);
 			if(waitForElement(ddDesignChanged)){
 				new Select(ddDesignChanged).selectByValue("No");
 			}

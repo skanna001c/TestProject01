@@ -33,6 +33,9 @@ public class TestSettings {
 		return this.properties;
 	}
 	
+	public void setProperty(String key, String val){
+		properties.put(key, val);
+	}
 	/**
 	 * Get property value 
 	 * @param key property key

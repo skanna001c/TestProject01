@@ -66,7 +66,8 @@ public class SetCriticalDatesTaskPage extends Page {
 			if(waitForElement(CustomerNotificationDate)){
 				CustomerNotificationDate.click();
 				btnToday.get(0).click();
-				new Select(ddHotCut).selectByValue("Yes");;
+				new Select(ddHotCut).selectByValue("Yes");
+				scrollDown();
 				focDate.click();
 				btnToday.get(1).click();
 				ScheduleCPEInstallDate.click();
