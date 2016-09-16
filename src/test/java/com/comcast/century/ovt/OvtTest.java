@@ -37,8 +37,8 @@ public class OvtTest {
           for (Field f : arr) {
                  classes.add(f.getDeclaringClass().getSimpleName());
           }
-          try {
-            	  	 
+          try 
+          {            	  	 
                      PrintStream printer = new PrintStream(new File(System.getProperty("user.dir")+System.getProperty("file.separator")+"test-output"+System.getProperty("file.separator")+"CMPages_ObjectList.txt"));
                      printer.println("----------------------------------------");
 
