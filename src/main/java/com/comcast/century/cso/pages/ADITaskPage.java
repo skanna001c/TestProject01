@@ -100,15 +100,10 @@ public String getResourceComponentID(){
 	}
 	
 
-public boolean ADITask(ServiceInfo serviceInfo){
+public boolean ADITask(){
 	try{
 		String request = null;			
 		String RCID = this.getResourceComponentID();
-		switch(serviceInfo.serviceName){			
-		case "EDI" :
-		case "EDI-BGP" :
-		case "EDI-ToF" :
-		case "EPL" :
 				request = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"http://www.excelacom.com/century/cramer/beans/ServiceDesignNotification\">"
 						+ "<soapenv:Header/>" 
 				        + "<soapenv:Body>" 
@@ -120,22 +115,6 @@ public boolean ADITask(ServiceInfo serviceInfo){
 						+ "</soapenv:Body>"
 						+ "</soapenv:Envelope>";			
 			(new SoapTest()).webServicesTask(request, "ADI");
-			break;
-		
-		case "EVPL" :
-			  request =  "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"http://www.excelacom.com/century/cramer/beans/ServiceDesignNotification\">"
-						+ "<soapenv:Header/>" 
-				        + "<soapenv:Body>" 
-						+ "<ser:serviceDesignNotification>"
-						+ "<ser:resourceComponent resourceComponentId=\"" + RCID + "\">"
-						+ "<ser:service evcNumber=\"" +EVCNo.getText() + "\" evcID=\"30.VLXM."+ randomNumber(6) +"..CBCL.."+ "\" serviceID=\""+randomNumber(7)+"\"/>"
-						+ "</ser:resourceComponent>" 
-						+ "</ser:serviceDesignNotification>" 
-						+ "</soapenv:Body>"
-						+ "</soapenv:Envelope>";
-			  (new SoapTest()).webServicesTask(request, "ADI");
-				break;
-		}
 		iClick(btnBack,null, "ADI task complete:ADI task complete page: BackButton ");
 		waitForElement(browser.findElement(By.xpath("//*[text()='Assign Design Information' and contains(@onclick, 'COMPLETED')]")));
 

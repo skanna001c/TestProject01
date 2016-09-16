@@ -115,6 +115,7 @@ public class CAETaskPage extends Page {
 			String RCID = this.getResourceComponentID();
 			switch(serviceInfo.serviceName){			
 			case "EDI" :
+			case "ENS" :
 			case "EDI-BGP" :
 			case "EDI-ToF" :
 				request = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:sit=\"http://www.excelacom.com/century/cramer/beans/siteDesignNotification\">"
@@ -126,21 +127,12 @@ public class CAETaskPage extends Page {
 				(new SoapTest()).webServicesTask(request, "CAE");
 				break;
 			case "EPL" :
+			case "EVPL" :
 				request = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:sit=\"http://www.excelacom.com/century/cramer/beans/siteDesignNotification\">"
 						+ "<soapenv:Header/>" + "<soapenv:Body>" + "<sit:siteDesignNotification>"
 						+ "<sit:resourceComponent resourceComponentId=\"" + RCID + "\">"
 						+ "<sit:site uniNumber=\"" + UNINo.get(0).getText()  + "\" uniID=\"30.KRGS." + randomNumber(6) + "..CBCL.." + "\" siteCLLI=\"JNBOGAEM\"/>" 
 						+ "<sit:site uniNumber=\"" + UNINo.get(1).getText()  + "\" uniID=\"30.KRGS." + randomNumber(6) + "..CBCL.." + "\" siteCLLI=\"JNBOGAEM\"/>" 
-						+ "</sit:resourceComponent>" + "</sit:siteDesignNotification>" + "</soapenv:Body>"
-						+ "</soapenv:Envelope>";
-				(new SoapTest()).webServicesTask(request, "CAE");
-				break;
-			case "EVPL" :
-				request = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:sit=\"http://www.excelacom.com/century/cramer/beans/siteDesignNotification\">"
-						+ "<soapenv:Header/>" + "<soapenv:Body>" + "<sit:siteDesignNotification>"
-						+ "<sit:resourceComponent resourceComponentId=\"" + RCID + "\">"
-						+ "<sit:site uniNumber=\"" + UNINo.get(0).getText() + "\" uniID=\"30.KRGS."  + randomNumber(6) + "..CBCL.." + "\" siteCLLI=\"JNBOGAEM\"/>" 
-						+ "<sit:site uniNumber=\"" + UNINo.get(1).getText() + "\" uniID=\"30.KRGS."  + randomNumber(6) + "..CBCL.." + "\" siteCLLI=\"JNBOGAEM\"/>" 
 						+ "</sit:resourceComponent>" + "</sit:siteDesignNotification>" + "</soapenv:Body>"
 						+ "</soapenv:Envelope>";
 				(new SoapTest()).webServicesTask(request, "CAE");

@@ -75,6 +75,7 @@ public class ActivateServiceTaskPage extends Page {
 		try{
 		switch(serviceInfo.serviceName){
 		case "EDI" :
+		case "ENS" :
 		case "EDI-ToF" :
 			this.ActivateService_EDI(serviceLevelTaskInfo);
 			break;

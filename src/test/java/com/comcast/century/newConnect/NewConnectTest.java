@@ -358,7 +358,7 @@ public class NewConnectTest extends ComcastTest {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
 			(new ServiceLevelTasks(browser, report)).ADI();
-			(new ADITaskPage(browser, report)).ADITask(serviceInfo);
+			(new ADITaskPage(browser, report)).ADITask();
 		}
 	}	
 
