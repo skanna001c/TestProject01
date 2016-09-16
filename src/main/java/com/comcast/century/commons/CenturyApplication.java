@@ -1,14 +1,11 @@
 package com.comcast.century.commons;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import com.comcast.century.cm.pages.LogInPage;
 import com.comcast.century.cm.pages.Page;
 import com.comcast.reporting.Status;
-import com.comcast.utils.ComcastTest;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
 import com.comcast.utils.UserDetails;
@@ -32,6 +29,15 @@ public class CenturyApplication {
 		this.cso_url= settings.getApplicationCSOURL();		
 		this.report = report;
 		this.env = settings.getEnvironmentToTest();
+	}
+	
+	public CenturyApplication(FrameworkContext context){
+		this.browser = context.getDriver();		
+		this.cm_url= settings.getApplicationCMURL();
+		this.cso_url= settings.getApplicationCSOURL();		
+		this.report = context.getReport();
+		this.env = settings.getEnvironmentToTest();
+		
 	}
 
 
@@ -64,6 +70,33 @@ public class CenturyApplication {
 		}
 	}
 
+	public void openCSOUrl(String userName, boolean alreadySameApp, FrameworkContext context) {
+		// TODO Auto-generated method stub
+		System.out.println("Inside openCSOUrl");
+		System.out.println("browser.getTitle()"+browser.getTitle()+"#"+browser.getTitle().length());
+		try{
+			if(!(browser.getTitle().equalsIgnoreCase("WebDriver")
+					||browser.getTitle().length()==0))
+				{
+					(new LogInPage(context)).Signout();
+				}
+				
+			
+			if(!alreadySameApp)
+			{	
+				browser.get(cso_url);
+				browser.manage().window().maximize();
+//				(new LogInPage(browser,report)).Signout();
+			}
+			this.password= userDetails.getPassword(userName);
+			this.domain=  settings.getAPPDOMAIN();
+			(new LogInPage(context)).applicationLoginCSO(userName,this.password,this.domain);
+			report.updateTestLog("Century CM Application Launch", "Application has been launched", Status.SCREENSHOT);
+		}catch(Exception Ex){
+		report.reportFailEvent("Exception Caught", "");
+		
+		}
+	}
 
 
 	public void openCMUrl(String userName, boolean alreadySameApp) {
@@ -90,8 +123,32 @@ public class CenturyApplication {
 		}
 	}
 	
-	}
 
+	public void openCMUrl(String userName, boolean alreadySameApp, FrameworkContext context) {
+		// TODO Auto-generated method stub		
+		try{
+			if(!(browser.getTitle().equalsIgnoreCase("WebDriver")
+					||browser.getTitle().length()==0))
+				{
+					(new LogInPage(context)).Signout();
+				}
+				
+			if (!alreadySameApp)
+			{
+				browser.get(cm_url);				
+				browser.manage().window().maximize();
+				(new LogInPage(context)).Signout();
+			}
+			this.password= userDetails.getPassword(userName);
+			this.domain= settings.getAPPDOMAIN();
+			(new LogInPage(context)).applicationLoginCM(userName,this.password,this.domain);			
+			report.updateTestLog("Century CSO Application Launch", "Application has been launched", Status.SCREENSHOT);
+		}catch(Exception Ex){
+		report.reportFailEvent("Exception Caught", "Message is->"+Ex.getMessage());
+		}
+	}
+	
+	}
 /* @PerfTransaction(name="Login")
 	public void openUrl(LoginDetails loginInfo) throws IOException {
 		String strBrowser;

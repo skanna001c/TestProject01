@@ -9,11 +9,16 @@ import com.comcast.century.data.AccountInfo;
 import com.comcast.reporting.Status;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 
 public class AccountTabPageCM extends Page {
 
 	public AccountTabPageCM(WebDriver browser, SeleniumReport report) {
 		super(browser, report);
+	}
+	
+	public AccountTabPageCM(FrameworkContext context){
+		super(context);
 	}
 
 	@FindBy(xpath = "//a[.='Account']") // @FindBy(xpath = "//a[.='Account']")

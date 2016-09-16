@@ -12,11 +12,15 @@ import org.openqa.selenium.support.ui.Select;
 import com.comcast.century.data.ServiceInfo;
 import com.comcast.reporting.Status;
 import com.comcast.utils.SeleniumReport;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 
 public class ServiceTabPageCM extends Page {
 
 	public ServiceTabPageCM(WebDriver browser, SeleniumReport report) {
 		super(browser, report);
+	}
+	public ServiceTabPageCM(FrameworkContext context){
+		super(context);
 	}
 
 	@Override
@@ -123,7 +127,11 @@ public class ServiceTabPageCM extends Page {
 			{
 			case "EDI" :
 			case "EDI-BGP" :
+			case "EDI-ToF" :
 				this.EDI();
+				if(serviceInfo.serviceName.equalsIgnoreCase("EDI-ToF")){
+					this.TrunkPRI();
+				}
 				this.EquipmentFee(serviceInfo);
 				this.ClickOnContinueButton();
 				break;

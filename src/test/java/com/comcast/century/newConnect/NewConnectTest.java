@@ -100,7 +100,7 @@ public class NewConnectTest extends ComcastTest {
 	public void createCustomer() {
 		String customerName;
 		try {
-			customerName = (new CustomerTabPageCM(browser, report)).createCustomer(customerInfo);
+			customerName = (new CustomerTabPageCM(frameworkContext)).createCustomer(customerInfo);
 			getDataDump().setValue("CustomerName_RT", customerName);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -111,10 +111,10 @@ public class NewConnectTest extends ComcastTest {
 	@Test(priority = 1000)
 	@PerfTransaction(name = "CreateServiceAccount")
 	public void createServiceAccount() throws InterruptedException {
-		if ((new AccountTabPageCM(browser, report)).CreateServiceAccount(accountInfo)) {
-			if ((new AccountTabPageCM(browser, report)).clickOnAddContact()) {
-				if ((new ContactTabPageCM(browser, report)).CreateAccountPrimaryContact(contactInfo)) {
-					if ((new ContactTabPageCM(browser, report)).ClickOnBackBtn()) {
+		if ((new AccountTabPageCM(frameworkContext)).CreateServiceAccount(accountInfo)) {
+			if ((new AccountTabPageCM(frameworkContext)).clickOnAddContact()) {
+				if ((new ContactTabPageCM(frameworkContext)).CreateAccountPrimaryContact(contactInfo)) {
+					if ((new ContactTabPageCM(frameworkContext)).ClickOnBackBtn()) {
 					} else
 						Assert.fail("Click on back button failed");
 				} else
@@ -129,10 +129,10 @@ public class NewConnectTest extends ComcastTest {
 	@Test(priority = 1500)
 	@PerfTransaction(name = "CreateBillingAccount")
 	public void createBillingAccount() throws InterruptedException {
-		if ((new AccountTabPageCM(browser, report)).CreateBillingAccount(accountInfo)) {
-			if ((new AccountTabPageCM(browser, report)).clickOnAddContact()) {
-				if ((new ContactTabPageCM(browser, report)).CreateBillingContact(contactInfo)) {
-					if ((new ContactTabPageCM(browser, report)).ClickOnBackBtn()) {
+		if ((new AccountTabPageCM(frameworkContext)).CreateBillingAccount(accountInfo)) {
+			if ((new AccountTabPageCM(frameworkContext)).clickOnAddContact()) {
+				if ((new ContactTabPageCM(frameworkContext)).CreateBillingContact(contactInfo)) {
+					if ((new ContactTabPageCM(frameworkContext)).ClickOnBackBtn()) {
 					} else
 						Assert.fail("Click on back button failed");
 				} else
@@ -148,15 +148,15 @@ public class NewConnectTest extends ComcastTest {
 	public void createAddress() throws InterruptedException {
 		
 		String Site;
-	    (new AddressTabPageCM(browser, report)).ClickAddressTab();
+	    (new AddressTabPageCM(frameworkContext)).ClickAddressTab();
 		for (int i = 1; i <= Integer.parseInt(siteInfo.noOfSites); i++) {
 			if (i > 1) {
-				new AddressTabPageCM(browser, report).CreateNewAddress();
+				new AddressTabPageCM(frameworkContext).CreateNewAddress();
 			}
-			Site = (new AddressTabPageCM(browser, report)).EnterSiteDetailsValid(siteInfo);
+			Site = (new AddressTabPageCM(frameworkContext)).EnterSiteDetailsValid(siteInfo);
 			getDataDump().setValue("SITE" + i + "_RT", Site);
-			new ContactTabPageCM(browser, report).CreateSiteTechnicalContact(contactInfo);
-			new ContactTabPageCM(browser, report).ClickOnBackBtn();
+			new ContactTabPageCM(frameworkContext).CreateSiteTechnicalContact(contactInfo);
+			new ContactTabPageCM(frameworkContext).ClickOnBackBtn();
 		}
 	}
 	   
@@ -189,9 +189,9 @@ public class NewConnectTest extends ComcastTest {
 			selectService();
 			configureService();
 		}
-		SRID = (new ProcessTabPageCM(browser, report)).ProcessConfiguration(processInfo);
+		SRID = (new ProcessTabPageCM(frameworkContext)).ProcessConfiguration(processInfo);
 		getDataDump().setValue("SRID_RT", SRID);
-		IDataDump dataDump=(new ProcessTabPageCM(browser,report)).processServices(serviceInfo,processInfo,getDataDump());
+		IDataDump dataDump=(new ProcessTabPageCM(frameworkContext)).processServices(serviceInfo,processInfo,getDataDump());
 		if( dataDump!= null){
 			setDataDump(dataDump);
 		}else Assert.fail("Process Services Failed");
@@ -207,7 +207,7 @@ public class NewConnectTest extends ComcastTest {
 			configureService();
 			processService();
 		}
-		if((new OrderSummaryTabCMPage(browser,report)).submitOrder(orderSummaryInfo,accountInfo.eRate)){
+		if((new OrderSummaryTabCMPage(frameworkContext)).submitOrder(orderSummaryInfo,accountInfo.eRate)){
 			getDataDump().setValue("CM_Status", "PASS");
 		}else Assert.fail("Submit Order Failed");
 		
@@ -586,7 +586,7 @@ public class NewConnectTest extends ComcastTest {
 	}
 	
 	public void SearchOrderndLaunchServiceRequest() {
-		(new WorkOrderTabPageCSO(browser, report)).ClickBackButton(2);
+		//(new WorkOrderTabPageCSO(browser, report)).ClickBackButton(2);
 		(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"),retryCount);
 		(new WorkOrderTabPageCSO(browser, report)).ClickFirstSiteFlow();
 	}

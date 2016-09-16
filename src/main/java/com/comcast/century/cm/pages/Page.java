@@ -34,7 +34,6 @@ import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -43,7 +42,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.comcast.century.commons.CenturyApplication;
 import com.comcast.century.data.LoginDetails;
+import com.comcast.logging.logtransactions.LoggerMain;
 import com.comcast.reporting.Status;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.DataTable;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
@@ -64,6 +65,8 @@ public abstract class Page {
 	private String env;
 	private String browserVersion;
 	protected String title;
+	private LoggerMain tLogger;
+	private String testName;
 
 	protected abstract boolean isValidPage();
 
@@ -88,6 +91,20 @@ public abstract class Page {
 		properties.put("browser_version", browserVersion);*/
 		//System.out.println(properties);
 		
+	}
+	
+	/**
+	 * @param context
+	 */
+	protected Page (FrameworkContext context){
+		this.browser = context.getDriver();
+		this.report = context.getReport();
+		this.tLogger = context.getTransactionLogger();
+		this.testSettings = context.getSettings();
+		this.testName = context.getTestCaseName();
+		PageFactory.initElements(browser, this);
+		// waitForPageLoad();
+		verifyApplicationInCorrectPage();
 	}
 
 	/**
@@ -3081,16 +3098,25 @@ public abstract class Page {
 	 */
 	public void iClick(WebElement we, WebElement waitForElement, String description) {
 		//System.out.println("inside iclick");
-		System.out.println(TestSettingsSingleton.getInstance().getProperties());
-		String testName = report.getReportSettings().getReportName(); // added by harsh on 9/6/2016 to get the test name
-		if ((new TestSettings()).getBrowser().equalsIgnoreCase("iexplore")
-				|| (new TestSettings()).getBrowser().equalsIgnoreCase("ie")) {
+		//added by harsh to monitor perf transactions
+		if(tLogger!=null){
+			
+			tLogger.startTransaction(testName);
+		}
+		//System.out.println(TestSettingsSingleton.getInstance().getProperties());
+		//String testName = report.getReportSettings().getReportName(); // added by harsh on 9/6/2016 to get the test name
+		if (testSettings.getBrowser().equalsIgnoreCase("iexplore")
+				|| testSettings.getBrowser().equalsIgnoreCase("ie")) {
 			we.sendKeys(Keys.ENTER);
 		} else
 			we.click();
 		waitforPageLoadComplete();
 		if (!(waitForElement == null)) {		
 			isElementClickable(waitForElement);
+		}
+		//added by harsh to monitor perf transactions
+		if(tLogger!=null){
+			tLogger.endTransaction(description, testSettings.getProperties());
 		}
 		report.reportPassEvent("Button Click", description);
 		

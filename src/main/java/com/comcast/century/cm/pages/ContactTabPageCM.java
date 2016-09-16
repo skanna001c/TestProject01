@@ -9,6 +9,7 @@ import com.comcast.century.data.ContactInfo;
 import com.comcast.reporting.Status;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 
 public class ContactTabPageCM extends Page {
 	
@@ -23,6 +24,10 @@ public class ContactTabPageCM extends Page {
 	
 	public ContactTabPageCM(WebDriver browser, SeleniumReport report) {
 		super(browser, report);
+	}
+	
+	public ContactTabPageCM(FrameworkContext context){
+		super(context);
 	}
 
 

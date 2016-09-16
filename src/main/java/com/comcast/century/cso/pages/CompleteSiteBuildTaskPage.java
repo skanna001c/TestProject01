@@ -100,6 +100,7 @@ public class CompleteSiteBuildTaskPage extends Page {
 	{	
 		try{
 			ClosePopUpndSwitchtoFrame(windowHandle,frameRight);
+			
 		}
 		catch(Exception ex)
 		{

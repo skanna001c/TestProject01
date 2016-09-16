@@ -17,6 +17,7 @@ import com.comcast.utils.SeleniumReport;
 
 import com.comcast.utils.TestSettings;
 import com.comcast.utils.TestUtils;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 
 /**
  * Represents default page of the application
@@ -79,6 +80,9 @@ public class LogInPage extends Page {
 		
 	public LogInPage(WebDriver browser, SeleniumReport report) {
 		super(browser, report);		
+	}
+	public LogInPage(FrameworkContext context){
+		super(context);
 	}
 		
 	@Override

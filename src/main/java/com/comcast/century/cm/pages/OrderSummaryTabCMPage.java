@@ -16,11 +16,16 @@ import com.comcast.century.data.AccountInfo;
 import com.comcast.century.data.OrderSummaryInfo;
 import com.comcast.reporting.Status;
 import com.comcast.utils.SeleniumReport;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 
 public class OrderSummaryTabCMPage extends Page {
 
 	public OrderSummaryTabCMPage(WebDriver browser, SeleniumReport report) {
 		super(browser, report);
+	}
+	
+	public OrderSummaryTabCMPage(FrameworkContext context){
+		super(context);
 	}
 
 	@Override

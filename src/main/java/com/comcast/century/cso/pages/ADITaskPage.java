@@ -107,6 +107,7 @@ public boolean ADITask(ServiceInfo serviceInfo){
 		switch(serviceInfo.serviceName){			
 		case "EDI" :
 		case "EDI-BGP" :
+		case "EDI-ToF" :
 		case "EPL" :
 				request = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"http://www.excelacom.com/century/cramer/beans/ServiceDesignNotification\">"
 						+ "<soapenv:Header/>" 
