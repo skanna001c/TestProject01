@@ -25,8 +25,8 @@ public class OvtTest {
     public void getObjects() {
 
           Reflections reflections = new Reflections(
-                           new ConfigurationBuilder().setUrls(ClasspathHelper.forPackage("com.comcast"))
-                                         .filterInputsBy(new FilterBuilder().include("com\\.comcast\\..*\\.class"))
+                           new ConfigurationBuilder().setUrls(ClasspathHelper.forPackage("com.comcast.century.cm.pages"))
+                                         .filterInputsBy(new FilterBuilder().include("com\\.comcast\\.century\\.cm\\.pages\\..*\\.class"))
                                          .setScanners(new FieldAnnotationsScanner()));
 
           Set<Field> lists2 = reflections.getFieldsAnnotatedWith(org.openqa.selenium.support.FindBy.class);
@@ -39,7 +39,7 @@ public class OvtTest {
           }
           try {
             	  	 
-                     PrintStream printer = new PrintStream(new File(System.getProperty("user.dir")+System.getProperty("file.separator")+"Results"+System.getProperty("file.separator")+"ObjectList.txt"));
+                     PrintStream printer = new PrintStream(new File(System.getProperty("user.dir")+System.getProperty("file.separator")+"test-output"+System.getProperty("file.separator")+"CMPages_ObjectList.txt"));
                      printer.println("----------------------------------------");
 
                      Iterator<String> iterator = classes.iterator();
