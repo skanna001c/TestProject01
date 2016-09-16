@@ -29,12 +29,12 @@ public class OvtTest {
                                          .filterInputsBy(new FilterBuilder().include("com\\.comcast\\.century\\.cm\\.pages\\..*\\.class"))
                                          .setScanners(new FieldAnnotationsScanner()));
 
-          Set<Field> lists2 = reflections.getFieldsAnnotatedWith(org.openqa.selenium.support.FindBy.class);
+          Set<Field> fieldsList = reflections.getFieldsAnnotatedWith(org.openqa.selenium.support.FindBy.class);
 
-          ArrayList<Field> arr = new ArrayList<Field>(lists2);
+          ArrayList<Field> fieldsArray = new ArrayList<Field>(fieldsList);
           
           Set<String> classes = new HashSet<String>();
-          for (Field f : arr) {
+          for (Field f : fieldsArray) {
                  classes.add(f.getDeclaringClass().getSimpleName());
           }
           try 
@@ -48,7 +48,7 @@ public class OvtTest {
                            System.out.println(" ");
                            printer.println(classname);
                            printer.println(" ");
-                           for (Field f : arr) {
+                           for (Field f : fieldsArray) {
                                   for (Annotation annotation : f.getAnnotations()) {
                                          Class<? extends Annotation> type = annotation.annotationType();                                         
                                          if (f.getDeclaringClass().getSimpleName().equals(classname)) {
