@@ -40,6 +40,9 @@ public class ObtainCoaxPermitsTaskPage extends Page {
 	
 	@FindBy(xpath = "//input[@id='permitApprovedDate']/following-sibling::img")
 	private WebElement PermitActualApprovedDate;
+	
+	@FindBy(xpath = "//input[@id='scheduledPermitApprovedDate']/following-sibling::img")
+	private WebElement estimatedPermitApprovedDate;
 
 	@FindBy(xpath = "//button[text()='Today']")
 	private List<WebElement> btnToday ;
@@ -72,8 +75,10 @@ public class ObtainCoaxPermitsTaskPage extends Page {
 				new Select(ddPermitType).selectByVisibleText("Zoning");
 				PermitAppliedDate.click();
 				btnToday.get(0).click();
-				PermitActualApprovedDate.click();
+				estimatedPermitApprovedDate.click();
 				btnToday.get(1).click();
+				PermitActualApprovedDate.click();
+				btnToday.get(2).click();
 				this.ClickCompleteButton();
 				waitForElement(browser.findElement(By.xpath("//*[text()='Obtain Coax Permits' and contains(@onclick, 'COMPLETED')]")));
 			}
