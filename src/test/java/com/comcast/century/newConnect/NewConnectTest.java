@@ -133,8 +133,7 @@ public class NewConnectTest extends ComcastTest {
 			if ((new AccountTabPageCM(frameworkContext)).clickOnAddContact()) {
 				if ((new ContactTabPageCM(frameworkContext)).CreateBillingContact(contactInfo)) {
 					if ((new ContactTabPageCM(frameworkContext)).ClickOnBackBtn()) {
-					} else
-						Assert.fail("Click on back button failed");
+					} 
 				} else
 					Assert.fail("Create billing contact failed");
 			} else
