@@ -5,12 +5,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.cm.pages.Page;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.SeleniumReport;
 
 public class AssignDesignBGPTaskPage extends Page {
 
-	public AssignDesignBGPTaskPage(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
+	public AssignDesignBGPTaskPage(FrameworkContext context) {
+		super(context);
 		// TODO Auto-generated constructor stub
 	}
 

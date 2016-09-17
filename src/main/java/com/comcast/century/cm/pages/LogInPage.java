@@ -78,9 +78,7 @@ public class LogInPage extends Page {
 	
 	private boolean mstatus;
 		
-	public LogInPage(WebDriver browser, SeleniumReport report) {
-		super(browser, report);		
-	}
+	
 	public LogInPage(FrameworkContext context){
 		super(context);
 	}

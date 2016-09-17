@@ -6,12 +6,13 @@ import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.cm.pages.Page;
 import com.comcast.reporting.Status;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.SeleniumReport;
 
 public class BGPTasks extends Page {
 
-	public BGPTasks(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
+	public BGPTasks(FrameworkContext context) {
+		super(context);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -7,12 +7,13 @@ import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.cm.pages.Page;
 import com.comcast.century.data.SiteLevelTaskInfo;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.SeleniumReport;
 
 public class BuildHouseAccountTaskPage extends Page {
 
-	public BuildHouseAccountTaskPage(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
+	public BuildHouseAccountTaskPage(FrameworkContext context) {
+		super(context);
 	}
 
 	@Override

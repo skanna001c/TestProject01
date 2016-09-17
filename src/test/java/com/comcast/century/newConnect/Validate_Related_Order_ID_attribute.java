@@ -18,7 +18,7 @@ public class Validate_Related_Order_ID_attribute extends NewConnectTest {
 	  @PerfTransaction(name="RelateOrderID")
 	  public void relatedOrderIDAttribute() throws InterruptedException{
 		  String relatedOrderIDValue;
-		  relatedOrderIDValue = (new OrderSummaryTabCMPage(browser, report)).verifyRelatedOrderIDAttribute();
+		  relatedOrderIDValue = (new OrderSummaryTabCMPage(frameworkContext)).verifyRelatedOrderIDAttribute();
 		  getDataDump().setValue("relatedOrderIDValue_RT", relatedOrderIDValue);
 	  }
 	 
@@ -27,8 +27,8 @@ public class Validate_Related_Order_ID_attribute extends NewConnectTest {
 	  public void validateRelatedOrderID() throws InterruptedException {	
 		  for(int i=1; i <= Integer.parseInt(getDataDump().getValue("Fibercount_RT")); i++){
 				SearchOrderndLaunchFiberSiteFlow(getDataDump().getValue("FiberSite" + i + "_RT"));		
-				(new SiteLevelTasks(browser, report)).ConductSiteSurvey();
-				(new ConductSiteSurveyTaskPage(browser, report)).validateRelatedOrderIDAttribute(getDataDump().getValue("relatedOrderIDValue_RT"));
+				(new SiteLevelTasks(frameworkContext)).ConductSiteSurvey();
+				(new ConductSiteSurveyTaskPage(frameworkContext)).validateRelatedOrderIDAttribute(getDataDump().getValue("relatedOrderIDValue_RT"));
 			}
 	  }	
 	

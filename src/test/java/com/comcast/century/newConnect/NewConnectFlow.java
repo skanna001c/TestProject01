@@ -60,10 +60,10 @@ public class NewConnectFlow extends ComcastTest {
 	@Test(priority = 1000, enabled = false)
 	@PerfTransaction(name = "CreateServiceAccount")
 	public void createServiceAccount() throws InterruptedException {
-		if ((new AccountTabPageCM(browser, report)).CreateServiceAccount(accountInfo)) {
-			if ((new AccountTabPageCM(browser, report)).clickOnAddContact()) {
-				if ((new ContactTabPageCM(browser, report)).CreateAccountPrimaryContact(contactInfo)) {
-					if ((new ContactTabPageCM(browser, report)).ClickOnBackBtn()) {
+		if ((new AccountTabPageCM(frameworkContext)).CreateServiceAccount(accountInfo)) {
+			if ((new AccountTabPageCM(frameworkContext)).clickOnAddContact()) {
+				if ((new ContactTabPageCM(frameworkContext)).CreateAccountPrimaryContact(contactInfo)) {
+					if ((new ContactTabPageCM(frameworkContext)).ClickOnBackBtn()) {
 					} else
 						Assert.fail("Click on back button failed");
 				} else

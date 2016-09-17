@@ -9,9 +9,7 @@ import com.comcast.utils.ComcastTest.FrameworkContext;
 
 public class SurveyTabPageCM extends Page {
 
-	public SurveyTabPageCM(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
-	}
+	
 	public SurveyTabPageCM(FrameworkContext context){
 		super(context);
 	}

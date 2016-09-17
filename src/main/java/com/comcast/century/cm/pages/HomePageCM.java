@@ -62,10 +62,6 @@ public class HomePageCM extends Page {
 		
 	}
 	
-	public HomePageCM(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
-		
-	}
 	public HomePageCM(FrameworkContext context){
 		super(context);
 	}

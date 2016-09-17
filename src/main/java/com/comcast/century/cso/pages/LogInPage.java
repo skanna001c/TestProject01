@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.Select;
 import com.comcast.century.cm.pages.Page;
 import com.comcast.century.data.LoginDetails;
 import com.comcast.reporting.Status;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
 
@@ -19,8 +20,8 @@ public class LogInPage extends Page {
 	
 	protected static String LOGIN_PAGE_TITLE = "Login Page";
 
-	public LogInPage(WebDriver browser, SeleniumReport report) {
-		super(browser, report);	
+	public LogInPage(FrameworkContext context) {
+		super(context);	
 	}
 
 	@Override

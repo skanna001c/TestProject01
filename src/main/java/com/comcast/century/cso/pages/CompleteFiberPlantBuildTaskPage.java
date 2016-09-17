@@ -6,14 +6,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.cm.pages.Page;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.SeleniumReport;
 
 public class CompleteFiberPlantBuildTaskPage extends Page {
 	//String windowHandle = browser.getWindowHandle();
 	
 
-	public CompleteFiberPlantBuildTaskPage(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
+	public CompleteFiberPlantBuildTaskPage(FrameworkContext context) {
+		super(context);
 	}
 	
 	

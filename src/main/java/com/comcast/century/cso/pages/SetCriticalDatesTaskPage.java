@@ -9,12 +9,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 import com.comcast.century.cm.pages.Page;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.SeleniumReport;
 
 public class SetCriticalDatesTaskPage extends Page {
 
-	public SetCriticalDatesTaskPage(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
+	public SetCriticalDatesTaskPage(FrameworkContext context) {
+		super(context);
 	}
 
 	@Override

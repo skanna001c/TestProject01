@@ -20,10 +20,7 @@ import com.comcast.utils.ComcastTest.FrameworkContext;
 
 public class OrderSummaryTabCMPage extends Page {
 
-	public OrderSummaryTabCMPage(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
-	}
-	
+		
 	public OrderSummaryTabCMPage(FrameworkContext context){
 		super(context);
 	}

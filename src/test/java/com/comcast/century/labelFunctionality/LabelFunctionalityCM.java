@@ -25,8 +25,8 @@ public class LabelFunctionalityCM extends NewConnectTest {
 	  @PerfTransaction(name="CreateLabelCM")
 	  public void createLabelCM() throws InterruptedException{
 		String labelName;
-		if((new ManageTab(browser,report)).clickOnManageTab()){
-			labelName=(new ManageTab(browser,report)).createLabel();
+		if((new ManageTab(frameworkContext)).clickOnManageTab()){
+			labelName=(new ManageTab(frameworkContext)).createLabel();
 			getDataDump().setValue("LabelName_RT", labelName);
 		}else Assert.fail("Click on Manage Tab failed");
 		
@@ -35,7 +35,7 @@ public class LabelFunctionalityCM extends NewConnectTest {
 	@Test(priority=4600)
 	  @PerfTransaction(name="AssignLabelCM")
 	  public void assignLabelCM() throws InterruptedException{
-		if((new OrderSummaryTabCMPage(browser, report)).assignLabelCM(getDataDump().getValue("LabelName_RT"))){
+		if((new OrderSummaryTabCMPage(frameworkContext)).assignLabelCM(getDataDump().getValue("LabelName_RT"))){
 		}else Assert.fail("Label not assigned");
 	}
 	
@@ -49,8 +49,8 @@ public class LabelFunctionalityCM extends NewConnectTest {
 			processService();
 			assignLabelCM();
 		}
-		if((new OrderSummaryTabCMPage(browser,report)).submitOrder(orderSummaryInfo,accountInfo.eRate)){
-			  if((new OrderSummaryTabCMPage(browser, report)).verifyNotesForLabels()){
+		if((new OrderSummaryTabCMPage(frameworkContext)).submitOrder(orderSummaryInfo,accountInfo.eRate)){
+			  if((new OrderSummaryTabCMPage(frameworkContext)).verifyNotesForLabels()){
 			}else Assert.fail("Notes Verification failed");
 		}else Assert.fail("Submit Order Failed");	
 	}
@@ -58,9 +58,9 @@ public class LabelFunctionalityCM extends NewConnectTest {
 	@Test(priority=4660)
 	  @PerfTransaction(name="VerifyLabelCountCM")
 	  public void verifyLabelCountCM() throws InterruptedException{
-		if((new HomePageCM(browser,report)).clickOnHomeTab()){
-			if((new HomePageCM(browser,report)).searchSRID(getDataDump().getValue("SRID_RT"))){
-				if((new HomePageCM(browser,report)).verifyLabelCountAndOrderStatus()){
+		if((new HomePageCM(frameworkContext)).clickOnHomeTab()){
+			if((new HomePageCM(frameworkContext)).searchSRID(getDataDump().getValue("SRID_RT"))){
+				if((new HomePageCM(frameworkContext)).verifyLabelCountAndOrderStatus()){
 					getDataDump().setValue("CM_Status", "PASS");
 				}else Assert.fail("Label count not verified");
 			}else Assert.fail("SR ID Search failed");
@@ -70,10 +70,10 @@ public class LabelFunctionalityCM extends NewConnectTest {
 	@Test(priority=4670)
 	  @PerfTransaction(name="VerifyLabelCountCSO")
 	  public void verifyLabelCSO() throws InterruptedException{
-		if((new WorkOrderTabServiceRequestPage(browser,report)).verifyLabelCSO(getDataDump().getValue("SRID_RT"), getDataDump().getValue("LabelName_RT"))){
-			if((new WorkOrderTabPageCSO(browser,report)).verifyDisplayOfLabelName(getDataDump().getValue("LabelName_RT"),getDataDump().getValue("FiberSite1_RT"))){
-				(new SiteLevelTasks(browser, report)).ConductSiteSurvey();
-				(new ConductSiteSurveyTaskPage(browser, report)).validateDisplayLabelInTask(getDataDump().getValue("LabelName_RT"));
+		if((new WorkOrderTabServiceRequestPage(frameworkContext)).verifyLabelCSO(getDataDump().getValue("SRID_RT"), getDataDump().getValue("LabelName_RT"))){
+			if((new WorkOrderTabPageCSO(frameworkContext)).verifyDisplayOfLabelName(getDataDump().getValue("LabelName_RT"),getDataDump().getValue("FiberSite1_RT"))){
+				(new SiteLevelTasks(frameworkContext)).ConductSiteSurvey();
+				(new ConductSiteSurveyTaskPage(frameworkContext)).validateDisplayLabelInTask(getDataDump().getValue("LabelName_RT"));
 			} else Assert.fail("Display label failed");
 		}else Assert.fail("Verify label CSO Failed");
 		

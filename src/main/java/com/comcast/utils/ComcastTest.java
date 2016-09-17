@@ -191,7 +191,7 @@ public class ComcastTest {
 		
     	initializeReport(testCaseName);
 		startTestTime = System.currentTimeMillis();
-		centuryApplication = new CenturyApplication(browser, report);
+		centuryApplication = new CenturyApplication(frameworkContext);
 		System.out.println("******Test Case Name :" +testCaseName+ "******");
 		
 		//updated by harsh on 8/3/2016
@@ -715,7 +715,7 @@ public class ComcastTest {
 				 	false, frameworkContext);
 		 
 		 	if(settings.getPERerunStatus().equalsIgnoreCase("true")){ //for cm package execution 
-				(new HomePageCM(browser,report)).searchCustomer(getDataDump().getValue("CustomerName_RT"));
+				(new HomePageCM(frameworkContext)).searchCustomer(getDataDump().getValue("CustomerName_RT"));
 			}
 		 	
 			 getDataDump().setValue("CMLoggedIN","PASS");
@@ -753,7 +753,7 @@ public class ComcastTest {
 		  }*/
 		  
 		  
-		   //centuryApplication = new CenturyApplication(browser, report);
+		   //centuryApplication = new CenturyApplication(frameworkContext);
 			// CM nd CSO login -> added by rijin on 8/18/2016
 			/* if ((getDataDump().getValue("CM_Status").equalsIgnoreCase("PASS")
 					 	&& !(getDataDump().getValue("CSOLoggedIN").equalsIgnoreCase("PASS")))

@@ -10,11 +10,6 @@ import com.comcast.utils.ComcastTest.FrameworkContext;
 
 public class EquipmentTabPageCM extends Page {
 
-	public EquipmentTabPageCM(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
-		// TODO Auto-generated constructor stub
-	}
-	
 	public EquipmentTabPageCM(FrameworkContext context){
 		super(context);
 	}

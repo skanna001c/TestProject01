@@ -10,12 +10,13 @@ import org.openqa.selenium.support.ui.Select;
 
 import com.comcast.century.cm.pages.Page;
 import com.comcast.century.data.SiteLevelTaskInfo;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.SeleniumReport;
 
 public class ConductFiberPlantSurveyTaskPage extends Page {
 
-	public ConductFiberPlantSurveyTaskPage(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
+	public ConductFiberPlantSurveyTaskPage(FrameworkContext context) {
+		super(context);
 	}
 
 	@Override

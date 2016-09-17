@@ -12,11 +12,13 @@ import com.comcast.century.cm.pages.Page;
 import com.comcast.century.data.ServiceInfo;
 import com.comcast.reporting.Status;
 import com.comcast.utils.SeleniumReport;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 
 public class WorkOrderTabPageCSO extends Page {
 
-	public WorkOrderTabPageCSO(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
+	
+	public WorkOrderTabPageCSO(FrameworkContext context){
+		super(context);
 	}
 
 	@Override

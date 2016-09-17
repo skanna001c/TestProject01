@@ -165,7 +165,7 @@ public class NewConnectTest extends ComcastTest {
 	@PerfTransaction(name = "SelectService")
 	public void selectService() throws InterruptedException {
 		
-		if((new ServiceTabPageCM(browser,report)).selectServices(serviceInfo)){
+		if((new ServiceTabPageCM(frameworkContext)).selectServices(serviceInfo)){
 		}else Assert.fail("Select Services Failed");
 	
 	}
@@ -176,7 +176,7 @@ public class NewConnectTest extends ComcastTest {
 		if (getDataDump().getValue("configureService_status").equalsIgnoreCase("FAIL")) {
 			selectService();
 		}
-		if((new FeatureTabPageCM(browser,report)).configureServices(serviceInfo)){
+		if((new FeatureTabPageCM(frameworkContext)).configureServices(serviceInfo)){
 		}else Assert.fail("Configure Services Failed");
 	
 	}
@@ -220,8 +220,8 @@ public class NewConnectTest extends ComcastTest {
 	public void Conduct_Site_Survey() throws InterruptedException {
 		for(int i=1; i <= Integer.parseInt(getDataDump().getValue("Fibercount_RT")); i++){
 			SearchOrderndLaunchFiberSiteFlow(getDataDump().getValue("FiberSite" + i + "_RT"));		
-			(new SiteLevelTasks(browser, report)).ConductSiteSurvey();
-			(new ConductSiteSurveyTaskPage(browser, report)).ConductSiteSurvey(siteLevelTaskInfo);
+			(new SiteLevelTasks(frameworkContext)).ConductSiteSurvey();
+			(new ConductSiteSurveyTaskPage(frameworkContext)).ConductSiteSurvey(siteLevelTaskInfo);
 		}
 	}
 	
@@ -229,8 +229,8 @@ public class NewConnectTest extends ComcastTest {
 	public void Obtain_Site_Agreement() throws InterruptedException {
 		for(int i=1; i <= Integer.parseInt(getDataDump().getValue("Fibercount_RT")); i++){
 			SearchOrderndLaunchFiberSiteFlow(getDataDump().getValue("FiberSite" + i + "_RT"));
-			(new SiteLevelTasks(browser, report)).ObtainSiteAgreement();
-			(new ObtainSiteAgreementTaskPage(browser, report)).ObtainSiteAgreement(siteLevelTaskInfo);
+			(new SiteLevelTasks(frameworkContext)).ObtainSiteAgreement();
+			(new ObtainSiteAgreementTaskPage(frameworkContext)).ObtainSiteAgreement(siteLevelTaskInfo);
 		}
 	}
 	
@@ -239,8 +239,8 @@ public class NewConnectTest extends ComcastTest {
 	public void Conduct_Fiber_Plant_Survey() throws InterruptedException, AWTException {
 		for(int i=1; i <= Integer.parseInt(getDataDump().getValue("Fibercount_RT")); i++){
 			SearchOrderndLaunchFiberSiteFlow(getDataDump().getValue("FiberSite" + i + "_RT"));
-			(new SiteLevelTasks(browser, report)).ConductFiberPlantSurvey();
-			(new ConductFiberPlantSurveyTaskPage(browser, report)).ConductFiberPlantSurvey(siteLevelTaskInfo);
+			(new SiteLevelTasks(frameworkContext)).ConductFiberPlantSurvey();
+			(new ConductFiberPlantSurveyTaskPage(frameworkContext)).ConductFiberPlantSurvey(siteLevelTaskInfo);
 		}
 	}
 	
@@ -248,8 +248,8 @@ public class NewConnectTest extends ComcastTest {
 	public void Build_House_Account() throws InterruptedException, AWTException {
 		for(int i=1; i <= Integer.parseInt(getDataDump().getValue("Fibercount_RT")); i++){
 			SearchOrderndLaunchFiberSiteFlow(getDataDump().getValue("FiberSite" + i + "_RT"));
-			if ((new SiteLevelTasks(browser, report)).BuildHouseAccount()) {
-				(new BuildHouseAccountTaskPage(browser, report)).BuildHouseAccount(siteLevelTaskInfo);
+			if ((new SiteLevelTasks(frameworkContext)).BuildHouseAccount()) {
+				(new BuildHouseAccountTaskPage(frameworkContext)).BuildHouseAccount(siteLevelTaskInfo);
 			}
 		}
 	}
@@ -259,8 +259,8 @@ public class NewConnectTest extends ComcastTest {
 	public void Complete_Wavelength_Reservation() throws InterruptedException, AWTException {
 		for(int i=1; i <= Integer.parseInt(getDataDump().getValue("Fibercount_RT")); i++){
 			SearchOrderndLaunchFiberSiteFlow(getDataDump().getValue("FiberSite" + i + "_RT"));
-			(new SiteLevelTasks(browser, report)).CompleteWavelengthReservation();
-			(new CompleteWavelengthReservationTaskPage(browser, report)).CompleteWavelengthReservation(siteLevelTaskInfo);
+			(new SiteLevelTasks(frameworkContext)).CompleteWavelengthReservation();
+			(new CompleteWavelengthReservationTaskPage(frameworkContext)).CompleteWavelengthReservation(siteLevelTaskInfo);
 		}
 
 	}
@@ -270,9 +270,9 @@ public class NewConnectTest extends ComcastTest {
 	public void Complete_Site_Build() throws InterruptedException, AWTException {
 		for(int i=1; i <= Integer.parseInt(getDataDump().getValue("Fibercount_RT")); i++){
 			SearchOrderndLaunchFiberSiteFlow(getDataDump().getValue("FiberSite" + i + "_RT"));
-			(new SiteLevelTasks(browser, report)).CompleteSiteBuild();
-			(new CompleteSiteBuildTaskPage(browser, report)).ClickCompleteButton();
-			(new CompleteSiteBuildTaskPage(browser, report)).closePopup();
+			(new SiteLevelTasks(frameworkContext)).CompleteSiteBuild();
+			(new CompleteSiteBuildTaskPage(frameworkContext)).ClickCompleteButton();
+			(new CompleteSiteBuildTaskPage(frameworkContext)).closePopup();
 		}
 
 	}
@@ -282,8 +282,8 @@ public class NewConnectTest extends ComcastTest {
 	public void Obtain_Fiber_Plant_Permit() throws InterruptedException, AWTException {
 		for(int i=1; i <= Integer.parseInt(getDataDump().getValue("Fibercount_RT")); i++){
 			SearchOrderndLaunchFiberSiteFlow(getDataDump().getValue("FiberSite" + i + "_RT"));
-			(new SiteLevelTasks(browser, report)).ObtainFiberPlantPermits();
-			(new ObtainFiberPlantPermitsTaskPage(browser, report)).ObtainFiberPlantPermits();
+			(new SiteLevelTasks(frameworkContext)).ObtainFiberPlantPermits();
+			(new ObtainFiberPlantPermitsTaskPage(frameworkContext)).ObtainFiberPlantPermits();
 		}
 
 	}
@@ -292,9 +292,9 @@ public class NewConnectTest extends ComcastTest {
 	public void Complete_Fiber_Plant_Build() throws InterruptedException, AWTException {
 		for(int i=1; i <= Integer.parseInt(getDataDump().getValue("Fibercount_RT")); i++){
 			SearchOrderndLaunchFiberSiteFlow(getDataDump().getValue("FiberSite" + i + "_RT"));
-			(new SiteLevelTasks(browser, report)).CompleteFiberPlantBuild();
-			(new CompleteFiberPlantBuildTaskPage(browser, report)).ClickCompleteButton();
-			if (new CompleteFiberPlantBuildTaskPage(browser, report).closePopup()) {
+			(new SiteLevelTasks(frameworkContext)).CompleteFiberPlantBuild();
+			(new CompleteFiberPlantBuildTaskPage(frameworkContext)).ClickCompleteButton();
+			if (new CompleteFiberPlantBuildTaskPage(frameworkContext).closePopup()) {
 				UpdateRespectiveFiberSiteFlows();
 			}
 		}
@@ -306,16 +306,16 @@ public class NewConnectTest extends ComcastTest {
 	@Test(priority = 13000)
 	public void Contact_Customer() throws InterruptedException, AWTException {
 		SearchOrderndLaunchServiceRequest();
-		(new ServiceLevelTasks(browser, report)).ContactCustomer();
-		(new ContactCustomerTaskPage(browser, report)).ContactCustomer();
+		(new ServiceLevelTasks(frameworkContext)).ContactCustomer();
+		(new ContactCustomerTaskPage(frameworkContext)).ContactCustomer();
 
 	}
 
 	@Test(priority = 13500)
 	public void Update_Design() throws InterruptedException, AWTException {
 		SearchOrderndLaunchServiceRequest();
-		(new ServiceLevelTasks(browser, report)).UpdateDesign();
-		(new UpdateDesignTaskPage(browser, report)).UpdateDesign();		
+		(new ServiceLevelTasks(frameworkContext)).UpdateDesign();
+		(new UpdateDesignTaskPage(frameworkContext)).UpdateDesign();		
 	}
 	
 	// Metro E flow tasks
@@ -326,8 +326,8 @@ public class NewConnectTest extends ComcastTest {
 			int j=0;
 			while(browser.findElements(By.xpath("//*[text()='Build Update Local Biller Account' and contains(@onclick, 'INPROGRESS')]")).size() != 0)
 				{
-				(new ServiceLevelTasks(browser, report)).BULBA(j);
-				(new BULBATaskPage(browser, report)).BULBA(serviceLevelTaskInfo);
+				(new ServiceLevelTasks(frameworkContext)).BULBA(j);
+				(new BULBATaskPage(frameworkContext)).BULBA(serviceLevelTaskInfo);
 				j++;
 			}
 		}
@@ -338,8 +338,8 @@ public class NewConnectTest extends ComcastTest {
 	public void Ship_CPE() throws InterruptedException {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){	
 			SearchOrderndLaunchServiceFlow(i);
-			(new ServiceLevelTasks(browser, report)).ShipCPE();
-			(new ShipCPETaskPage(browser, report)).ShipCPE(serviceLevelTaskInfo);
+			(new ServiceLevelTasks(frameworkContext)).ShipCPE();
+			(new ShipCPETaskPage(frameworkContext)).ShipCPE(serviceLevelTaskInfo);
 		}
 	}
 
@@ -347,8 +347,8 @@ public class NewConnectTest extends ComcastTest {
 	public void Create_Account_and_Equipment() throws Exception {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){	
 			SearchOrderndLaunchServiceFlow(i);
-			(new ServiceLevelTasks(browser, report)).CAE();
-			(new CAETaskPage(browser, report)).CAETask(serviceInfo);
+			(new ServiceLevelTasks(frameworkContext)).CAE();
+			(new CAETaskPage(frameworkContext)).CAETask(serviceInfo);
 		}
 	}
 		
@@ -357,8 +357,8 @@ public class NewConnectTest extends ComcastTest {
 	public void Assign_Design_Info() throws InterruptedException {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
-			(new ServiceLevelTasks(browser, report)).ADI();
-			(new ADITaskPage(browser, report)).ADITask();
+			(new ServiceLevelTasks(frameworkContext)).ADI();
+			(new ADITaskPage(frameworkContext)).ADITask();
 		}
 	}	
 
@@ -367,8 +367,8 @@ public class NewConnectTest extends ComcastTest {
 	public void Generate_Core_Config() throws InterruptedException {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
-			(new ServiceLevelTasks(browser, report)).GenerateCoreConfigs();
-			(new GenerateCoreConfigsTaskPage(browser, report)).ClickCompleteButton();
+			(new ServiceLevelTasks(frameworkContext)).GenerateCoreConfigs();
+			(new GenerateCoreConfigsTaskPage(frameworkContext)).ClickCompleteButton();
 		}
 
 	}
@@ -377,8 +377,8 @@ public class NewConnectTest extends ComcastTest {
 	public void Generate_CPE_Config() throws InterruptedException {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
-			(new ServiceLevelTasks(browser, report)).GenerateCPEConfigs();
-			(new GenerateCPEConfigsTaskPage(browser, report)).ClickCompleteButton();
+			(new ServiceLevelTasks(frameworkContext)).GenerateCPEConfigs();
+			(new GenerateCPEConfigsTaskPage(frameworkContext)).ClickCompleteButton();
 		}
 	}
 
@@ -386,8 +386,8 @@ public class NewConnectTest extends ComcastTest {
 	public void Load_Core_Config() throws InterruptedException {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
-			(new ServiceLevelTasks(browser, report)).LoadCoreConfigs();
-			(new LoadCoreConfigsTaskPage(browser, report)).ClickCompleteButton();
+			(new ServiceLevelTasks(frameworkContext)).LoadCoreConfigs();
+			(new LoadCoreConfigsTaskPage(frameworkContext)).ClickCompleteButton();
 		}
 	}
 
@@ -398,8 +398,8 @@ public class NewConnectTest extends ComcastTest {
 			int j=0;
 			while(browser.findElements(By.xpath("//*[text()='Install CPE' and contains(@onclick, 'INPROGRESS')]")).size() != 0)
 			{
-				(new ServiceLevelTasks(browser, report)).InstallCPE(j);
-				(new InstallCPETaskPage(browser, report)).InstallCPE();
+				(new ServiceLevelTasks(frameworkContext)).InstallCPE(j);
+				(new InstallCPETaskPage(frameworkContext)).InstallCPE();
 				j++;
 			}
 		}
@@ -413,8 +413,8 @@ public class NewConnectTest extends ComcastTest {
 			int j=0;
 			while(browser.findElements(By.xpath("//*[text()='Install CPE (Coax)' and contains(@onclick, 'INPROGRESS')]")).size() != 0)
 			{
-				(new ServiceLevelTasks(browser, report)).InstallCPECoax(j);
-				(new InstallCPE_CoaxTaskPage(browser, report)).InstallCPECoax();
+				(new ServiceLevelTasks(frameworkContext)).InstallCPECoax(j);
+				(new InstallCPE_CoaxTaskPage(frameworkContext)).InstallCPECoax();
 			}
 		}
 	}	
@@ -423,8 +423,8 @@ public class NewConnectTest extends ComcastTest {
 	public void Set_Critical_Dates() throws InterruptedException {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
-			(new ServiceLevelTasks(browser, report)).SetCriticalDates();
-			(new SetCriticalDatesTaskPage(browser, report)).SetCriticalDates();
+			(new ServiceLevelTasks(frameworkContext)).SetCriticalDates();
+			(new SetCriticalDatesTaskPage(frameworkContext)).SetCriticalDates();
 		}
 	}
 
@@ -432,8 +432,8 @@ public class NewConnectTest extends ComcastTest {
 	public void Day_of_Configs() throws InterruptedException {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
-			(new ServiceLevelTasks(browser, report)).DayofConfigs();
-			(new DaysOfConfigsTaskPage(browser, report)).ClickCompleteButton();
+			(new ServiceLevelTasks(frameworkContext)).DayofConfigs();
+			(new DaysOfConfigsTaskPage(frameworkContext)).ClickCompleteButton();
 		}
 	}
 
@@ -441,8 +441,8 @@ public class NewConnectTest extends ComcastTest {
 	public void Activate_Service() throws InterruptedException {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
-			(new ServiceLevelTasks(browser, report)).ActivateService();
-			(new ActivateServiceTaskPage(browser, report)).activateService(serviceInfo,serviceLevelTaskInfo);
+			(new ServiceLevelTasks(frameworkContext)).ActivateService();
+			(new ActivateServiceTaskPage(frameworkContext)).activateService(serviceInfo,serviceLevelTaskInfo);
 		}
 	}
 
@@ -451,8 +451,8 @@ public class NewConnectTest extends ComcastTest {
 	public void Notify_Customer_of_Service_Installation() throws InterruptedException {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			 SearchOrderndLaunchServiceFlow(i);
-			(new ServiceLevelTasks(browser, report)).NotifyCustomerofServiceInstallation();
-			(new NotifyCustomerofServiceInstallationTaskPage(browser, report)).NotifyCustomerofServiceInstallation();
+			(new ServiceLevelTasks(frameworkContext)).NotifyCustomerofServiceInstallation();
+			(new NotifyCustomerofServiceInstallationTaskPage(frameworkContext)).NotifyCustomerofServiceInstallation();
 		}
 	}
 
@@ -461,8 +461,8 @@ public class NewConnectTest extends ComcastTest {
 	public void Complete_Customer_Acceptance_Testing(Method method) throws InterruptedException {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
-			(new ServiceLevelTasks(browser, report)).CCAT();
-			(new CCATTaskPage(browser, report)).ClickCompleteButton();
+			(new ServiceLevelTasks(frameworkContext)).CCAT();
+			(new CCATTaskPage(frameworkContext)).ClickCompleteButton();
 		}
 	}
 
@@ -470,8 +470,8 @@ public class NewConnectTest extends ComcastTest {
 	public void Create_Order_Billing_Package() throws AWTException, InterruptedException {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
-			(new ServiceLevelTasks(browser, report)).CreateOrderBillingPackage();
-			(new CreateOrderBillingPackageTaskPage(browser, report)).CreateOrderBillingPackage();
+			(new ServiceLevelTasks(frameworkContext)).CreateOrderBillingPackage();
+			(new CreateOrderBillingPackageTaskPage(frameworkContext)).CreateOrderBillingPackage();
 		}
 	}
 
@@ -480,9 +480,9 @@ public class NewConnectTest extends ComcastTest {
 	public void Start_Billing() throws InterruptedException {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
-			(new ServiceLevelTasks(browser, report)).StartBilling();
-			(new StartBillingTaskPage(browser,report)).verifyNotes();
-			(new ServiceLevelTasks(browser, report)).ClickBackButton();
+			(new ServiceLevelTasks(frameworkContext)).StartBilling();
+			(new StartBillingTaskPage(frameworkContext)).verifyNotes();
+			(new ServiceLevelTasks(frameworkContext)).ClickBackButton();
 		}
 	}
 
@@ -491,8 +491,8 @@ public class NewConnectTest extends ComcastTest {
 	public void EquipmentFeeFlow() throws InterruptedException {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
-			(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
-			(new WorkOrderTabPageCSO(browser, report)).ClickEquipmentFeeFlow();
+			(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
+			(new WorkOrderTabPageCSO(frameworkContext)).ClickEquipmentFeeFlow();
 		}
 	}
 
@@ -500,9 +500,9 @@ public class NewConnectTest extends ComcastTest {
 	public void EqFeeStartBilling() throws InterruptedException {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
-			(new EqFeeFlowTasks(browser, report)).EqFeeStartBilling();
-			(new EqFeeStartBillingTaskPage(browser, report)).EqFeeStartBilling();
-			(new EqFeeFlowTasks(browser, report)).ClickBackButton();
+			(new EqFeeFlowTasks(frameworkContext)).EqFeeStartBilling();
+			(new EqFeeStartBillingTaskPage(frameworkContext)).EqFeeStartBilling();
+			(new EqFeeFlowTasks(frameworkContext)).ClickBackButton();
 		}
 	}
 	
@@ -510,11 +510,11 @@ public class NewConnectTest extends ComcastTest {
 
 	@Test(priority = 22670)
 	public void EqFeeStartBilling_EVPL2() throws InterruptedException {
-		(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
-		(new WorkOrderTabPageCSO(browser, report)).ClickEquipmentFeeFlow();
-		(new EqFeeFlowTasks(browser, report)).EqFeeStartBilling();
-		(new EqFeeStartBillingTaskPage(browser, report)).EqFeeStartBilling();
-		(new EqFeeFlowTasks(browser, report)).ClickBackButton();
+		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
+		(new WorkOrderTabPageCSO(frameworkContext)).ClickEquipmentFeeFlow();
+		(new EqFeeFlowTasks(frameworkContext)).EqFeeStartBilling();
+		(new EqFeeStartBillingTaskPage(frameworkContext)).EqFeeStartBilling();
+		(new EqFeeFlowTasks(frameworkContext)).ClickBackButton();
 	}
 	
 	
@@ -544,8 +544,8 @@ public class NewConnectTest extends ComcastTest {
 		    	Boolean status;
 		    	retryCount = 1;
 		    	do{
-		    		(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
-		    		status = (new WorkOrderTabPageCSO(browser, report)).ClickFiberSiteFlow(site);
+		    		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
+		    		status = (new WorkOrderTabPageCSO(frameworkContext)).ClickFiberSiteFlow(site);
 		    		if(!status)
 		    		{
 		    			retryCount++;
@@ -558,8 +558,8 @@ public class NewConnectTest extends ComcastTest {
 				Boolean status;
 				retryCount = 1;
 				do{
-					(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
-					status = (new WorkOrderTabPageCSO(browser, report)).ClickCoaxSiteFlow(site);
+					(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
+					status = (new WorkOrderTabPageCSO(frameworkContext)).ClickCoaxSiteFlow(site);
 					if(!status)
 		    		{
 		    			retryCount++;
@@ -581,14 +581,14 @@ public class NewConnectTest extends ComcastTest {
 	
 	
 	public void SearchOrderndLaunchServiceFlow(int i) throws InterruptedException {
-		(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
-		(new WorkOrderTabPageCSO(browser, report)).ClickServiceFlow(serviceInfo,i);
+		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
+		(new WorkOrderTabPageCSO(frameworkContext)).ClickServiceFlow(serviceInfo,i);
 	}
 	
 	public void SearchOrderndLaunchServiceRequest() {
-		//(new WorkOrderTabPageCSO(browser, report)).ClickBackButton(2);
-		(new WorkOrderTabPageCSO(browser, report)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"),retryCount);
-		(new WorkOrderTabPageCSO(browser, report)).ClickFirstSiteFlow();
+		//(new WorkOrderTabPageCSO(frameworkContext)).ClickBackButton(2);
+		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"),retryCount);
+		(new WorkOrderTabPageCSO(frameworkContext)).ClickFirstSiteFlow();
 	}
 }
 

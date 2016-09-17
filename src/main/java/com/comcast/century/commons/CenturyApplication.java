@@ -5,12 +5,13 @@ import org.openqa.selenium.WebDriver;
 import com.comcast.century.cm.pages.LogInPage;
 import com.comcast.century.cm.pages.Page;
 import com.comcast.reporting.Status;
+import com.comcast.utils.ComcastTest;
 import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
 import com.comcast.utils.UserDetails;
 
-public class CenturyApplication {
+public class CenturyApplication extends ComcastTest{
 	private WebDriver browser;
 	private SeleniumReport report;
 	private String cm_url;
@@ -50,7 +51,7 @@ public class CenturyApplication {
 			if(!(browser.getTitle().equalsIgnoreCase("WebDriver")
 					||browser.getTitle().length()==0))
 				{
-					(new LogInPage(browser,report)).Signout();
+					(new LogInPage(frameworkContext)).Signout();
 				}
 				
 			
@@ -62,7 +63,7 @@ public class CenturyApplication {
 			}
 			this.password= userDetails.getPassword(userName);
 			this.domain=  settings.getAPPDOMAIN();
-			(new LogInPage(browser,report)).applicationLoginCSO(userName,this.password,this.domain);
+			(new LogInPage(frameworkContext)).applicationLoginCSO(userName,this.password,this.domain);
 			report.updateTestLog("Century CM Application Launch", "Application has been launched", Status.SCREENSHOT);
 		}catch(Exception Ex){
 		report.reportFailEvent("Exception Caught", "");
@@ -105,18 +106,18 @@ public class CenturyApplication {
 			if(!(browser.getTitle().equalsIgnoreCase("WebDriver")
 					||browser.getTitle().length()==0))
 				{
-					(new LogInPage(browser,report)).Signout();
+					(new LogInPage(frameworkContext)).Signout();
 				}
 				
 			if (!alreadySameApp)
 			{
 				browser.get(cm_url);				
 				browser.manage().window().maximize();
-				(new LogInPage(browser,report)).Signout();
+				(new LogInPage(frameworkContext)).Signout();
 			}
 			this.password= userDetails.getPassword(userName);
 			this.domain= settings.getAPPDOMAIN();
-			(new LogInPage(browser,report)).applicationLoginCM(userName,this.password,this.domain);			
+			(new LogInPage(frameworkContext)).applicationLoginCM(userName,this.password,this.domain);			
 			report.updateTestLog("Century CSO Application Launch", "Application has been launched", Status.SCREENSHOT);
 		}catch(Exception Ex){
 		report.reportFailEvent("Exception Caught", "Message is->"+Ex.getMessage());
@@ -226,7 +227,7 @@ public class CenturyApplication {
 	
 	
 	public HomePage openRelevantApplication(LoginDetails loginInfo) throws IOException {
-		 return new HomePage(browser, report);
+		 return new HomePage(frameworkContext);
 	}
 	
 

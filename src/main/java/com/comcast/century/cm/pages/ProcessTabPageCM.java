@@ -22,9 +22,7 @@ import com.comcast.utils.ComcastTest.FrameworkContext;
 
 public class ProcessTabPageCM extends Page {
 
-	public ProcessTabPageCM(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
-	}
+	
 	public ProcessTabPageCM(FrameworkContext context){
 		super(context);
 	}

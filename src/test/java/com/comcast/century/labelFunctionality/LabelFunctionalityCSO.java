@@ -21,9 +21,9 @@ public class LabelFunctionalityCSO extends ComcastTest {
 	  @PerfTransaction(name="CreateLabelCSO")
 	  public void createLabelCSO() throws InterruptedException{
 		String labelName;
-		if((new ManageTab(browser,report)).clickOnManageTab()){
-			if((new ManageTab(browser,report)).goToLabelPageCSO()){
-			labelName=(new ManageTab(browser,report)).createLabel();
+		if((new ManageTab(frameworkContext)).clickOnManageTab()){
+			if((new ManageTab(frameworkContext)).goToLabelPageCSO()){
+			labelName=(new ManageTab(frameworkContext)).createLabel();
 			getDataDump().setValue("LabelName_RT", labelName);
 			}else Assert.fail("Go to label page CSO failed");
 		}else Assert.fail("Click on Manage Tab failed");

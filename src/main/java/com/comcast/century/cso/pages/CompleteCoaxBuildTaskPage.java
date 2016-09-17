@@ -6,13 +6,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.cm.pages.Page;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.SeleniumReport;
 
 public class CompleteCoaxBuildTaskPage extends Page {
 	//String windowHandle = browser.getWindowHandle();
 	
-	public CompleteCoaxBuildTaskPage(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
+	public CompleteCoaxBuildTaskPage(FrameworkContext context) {
+		super(context);
 	}
 
 	@Override

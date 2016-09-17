@@ -7,12 +7,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 import com.comcast.century.cm.pages.Page;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.SeleniumReport;
 
 public class UpdateDesignTaskPage extends Page {
 
-	public UpdateDesignTaskPage(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
+	public UpdateDesignTaskPage(FrameworkContext context) {
+		super(context);
 	}
 
 	@Override

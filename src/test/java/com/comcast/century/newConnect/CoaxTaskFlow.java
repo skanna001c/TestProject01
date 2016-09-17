@@ -44,8 +44,8 @@ public class CoaxTaskFlow extends NewConnectTest {
 	public void Conduct_Site_Survey_Coax() throws InterruptedException {
 		for(int i=1; i <= Integer.parseInt(getDataDump().getValue("Coaxcount_RT")); i++){
 			SearchOrderndLaunchCoaxSiteFlow(getDataDump().getValue("CoaxSite" + i + "_RT"));		
-			(new SiteLevelTasks(browser, report)).ConductSiteSurveyCoax();
-			(new ConductSiteSurveyCoaxTaskPage(browser, report)).ConductSiteSurveyCoax(siteLevelTaskInfo);
+			(new SiteLevelTasks(frameworkContext)).ConductSiteSurveyCoax();
+			(new ConductSiteSurveyCoaxTaskPage(frameworkContext)).ConductSiteSurveyCoax(siteLevelTaskInfo);
 		}
 	}
 	
@@ -53,8 +53,8 @@ public class CoaxTaskFlow extends NewConnectTest {
 	public void Obtain_Site_Agreement_Coax() throws InterruptedException {
 		for(int i=1; i <= Integer.parseInt(getDataDump().getValue("Coaxcount_RT")); i++){
 			SearchOrderndLaunchCoaxSiteFlow(getDataDump().getValue("CoaxSite" + i + "_RT"));
-			(new SiteLevelTasks(browser, report)).ObtainSiteAgreement();
-			(new ObtainSiteAgreementTaskPage(browser, report)).ObtainSiteAgreement(siteLevelTaskInfo);
+			(new SiteLevelTasks(frameworkContext)).ObtainSiteAgreement();
+			(new ObtainSiteAgreementTaskPage(frameworkContext)).ObtainSiteAgreement(siteLevelTaskInfo);
 		}
 	}
 	
@@ -62,8 +62,8 @@ public class CoaxTaskFlow extends NewConnectTest {
 	public void Conduct_Coax_Survey() throws InterruptedException, AWTException {
 		for(int i=1; i <= Integer.parseInt(getDataDump().getValue("Coaxcount_RT")); i++){
 			SearchOrderndLaunchCoaxSiteFlow(getDataDump().getValue("CoaxSite" + i + "_RT"));
-			(new SiteLevelTasks(browser, report)).ConductCoaxSurvey();
-			(new ConductCoaxSurveyTaskPage(browser, report)).ConductCoaxSurvey(siteLevelTaskInfo);
+			(new SiteLevelTasks(frameworkContext)).ConductCoaxSurvey();
+			(new ConductCoaxSurveyTaskPage(frameworkContext)).ConductCoaxSurvey(siteLevelTaskInfo);
 		}
 	}
 	
@@ -71,8 +71,8 @@ public class CoaxTaskFlow extends NewConnectTest {
 	public void Build_House_Account_Coax() throws InterruptedException, AWTException {
 		for(int i=1; i <= Integer.parseInt(getDataDump().getValue("Coaxcount_RT")); i++){
 			SearchOrderndLaunchCoaxSiteFlow(getDataDump().getValue("CoaxSite" + i + "_RT"));
-			if ((new SiteLevelTasks(browser, report)).BuildHouseAccount()) {
-				(new BuildHouseAccountTaskPage(browser, report)).BuildHouseAccount(siteLevelTaskInfo);
+			if ((new SiteLevelTasks(frameworkContext)).BuildHouseAccount()) {
+				(new BuildHouseAccountTaskPage(frameworkContext)).BuildHouseAccount(siteLevelTaskInfo);
 			}
 		}
 
@@ -82,8 +82,8 @@ public class CoaxTaskFlow extends NewConnectTest {
 	public void Obtain_Coax_Permit() throws InterruptedException, AWTException {
 		for(int i=1; i <= Integer.parseInt(getDataDump().getValue("Coaxcount_RT")); i++){
 			SearchOrderndLaunchCoaxSiteFlow(getDataDump().getValue("CoaxSite" + i + "_RT"));
-			(new SiteLevelTasks(browser, report)).ObtainCoaxPermits();
-			(new ObtainCoaxPermitsTaskPage(browser, report)).ObtainCoaxPermits();
+			(new SiteLevelTasks(frameworkContext)).ObtainCoaxPermits();
+			(new ObtainCoaxPermitsTaskPage(frameworkContext)).ObtainCoaxPermits();
 		}
 	}
 	
@@ -91,9 +91,9 @@ public class CoaxTaskFlow extends NewConnectTest {
 	public void Complete_Site_Build_Coax() throws InterruptedException, AWTException {
 		for(int i=1; i <= Integer.parseInt(getDataDump().getValue("Coaxcount_RT")); i++){
 			SearchOrderndLaunchCoaxSiteFlow(getDataDump().getValue("CoaxSite" + i + "_RT"));
-			(new SiteLevelTasks(browser, report)).CompleteSiteBuildCoax();
-			(new CompleteSiteBuildCoaxTaskPage(browser, report)).ClickCompleteButton();
-			(new CompleteSiteBuildCoaxTaskPage(browser, report)).closePopup();
+			(new SiteLevelTasks(frameworkContext)).CompleteSiteBuildCoax();
+			(new CompleteSiteBuildCoaxTaskPage(frameworkContext)).ClickCompleteButton();
+			(new CompleteSiteBuildCoaxTaskPage(frameworkContext)).closePopup();
 		}
 	}
 	
@@ -102,9 +102,9 @@ public class CoaxTaskFlow extends NewConnectTest {
 	public void Complete_Coax_Build() throws InterruptedException, AWTException {
 		for(int i=1; i <= Integer.parseInt(getDataDump().getValue("Coaxcount_RT")); i++){
 			SearchOrderndLaunchCoaxSiteFlow(getDataDump().getValue("CoaxSite" + i + "_RT"));
-			(new SiteLevelTasks(browser, report)).CompleteCoaxBuild();
-			(new CompleteCoaxBuildTaskPage(browser, report)).ClickCompleteButton();
-			if (new CompleteCoaxBuildTaskPage(browser, report).closePopup()) {
+			(new SiteLevelTasks(frameworkContext)).CompleteCoaxBuild();
+			(new CompleteCoaxBuildTaskPage(frameworkContext)).ClickCompleteButton();
+			if (new CompleteCoaxBuildTaskPage(frameworkContext).closePopup()) {
 				UpdateRespectiveCoaxSiteFlows();
 			}
 		}

@@ -11,13 +11,14 @@ import org.openqa.selenium.support.ui.Select;
 import com.comcast.century.cm.pages.Page;
 import com.comcast.century.data.OrderSummaryInfo;
 import com.comcast.reporting.Status;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestUtils;
 
 public class CreateOrderBillingPackageTaskPage extends Page {
 
-	public CreateOrderBillingPackageTaskPage(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
+	public CreateOrderBillingPackageTaskPage(FrameworkContext context) {
+		super(context);
 	}
 
 	@Override

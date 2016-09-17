@@ -7,12 +7,13 @@ import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.cm.pages.Page;
 import com.comcast.century.data.ServiceLevelTaskInfo;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.SeleniumReport;
 
 public class BULBATaskPage extends Page {
 
-	public BULBATaskPage(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
+	public BULBATaskPage(FrameworkContext context) {
+		super(context);
 	}
 
 	@Override

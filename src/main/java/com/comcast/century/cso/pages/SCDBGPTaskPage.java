@@ -7,12 +7,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.cm.pages.Page;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.SeleniumReport;
 
 public class SCDBGPTaskPage extends Page {
 
-	public SCDBGPTaskPage(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
+	public SCDBGPTaskPage(FrameworkContext context) {
+		super(context);
 		// TODO Auto-generated constructor stub
 	}
 

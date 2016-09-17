@@ -10,14 +10,15 @@ import org.openqa.selenium.support.FindBy;
 import com.comcast.century.cm.pages.Page;
 import com.comcast.century.data.ServiceInfo;
 import com.comcast.century.data.ServiceLevelTaskInfo;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.DataDump;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.SoapTest;
 
 public class ADITaskPage extends Page {
 
-	public ADITaskPage(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
+	public ADITaskPage(FrameworkContext context) {
+		super(context);
 	}
 
 	@Override

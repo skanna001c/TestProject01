@@ -3,6 +3,7 @@ package com.comcast.century.cso.pages;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,12 +12,13 @@ import org.openqa.selenium.support.ui.Select;
 import com.comcast.century.cm.pages.Page;
 import com.comcast.century.data.ServiceInfo;
 import com.comcast.century.data.ServiceLevelTaskInfo;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.SeleniumReport;
 
 public class ActivateServiceTaskPage extends Page {
 
-	public ActivateServiceTaskPage(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
+	public ActivateServiceTaskPage(FrameworkContext context) {
+		super(context);
 	}
 
 	@Override
@@ -103,9 +105,9 @@ public class ActivateServiceTaskPage extends Page {
 		scrollDown();
 		if(waitForElement(edpCompletionDate)){
 			edpCompletionDate.click();
-			btnToday.get(0).click();
+			btnToday.get(0).sendKeys(Keys.ENTER); // Updated by Kesavan, today button normal click is not working as the button is hidden behind the status bar
 			internalTestingCompletionDate.click();
-			btnToday.get(1).click();
+			btnToday.get(1).sendKeys(Keys.ENTER);
 			waitForElement(tabCircuitTestingDetails);
 			tabCircuitTestingDetails.click();
 			waitForElementDisappear(elementLoading);
@@ -129,9 +131,9 @@ public class ActivateServiceTaskPage extends Page {
 			scrollDown();
 			waitForElement(edpCompletionDate);
 			edpCompletionDate.click();
-			btnToday.get(0).click();
+			btnToday.get(0).sendKeys(Keys.ENTER);
 			internalTestingCompletionDate.click();
-			btnToday.get(1).click();
+			btnToday.get(1).sendKeys(Keys.ENTER);
 			waitForElement(tabCircuitTestingDetails);
 			tabCircuitTestingDetails.click();
 			waitForElementDisappear(elementLoading);
@@ -162,9 +164,9 @@ public class ActivateServiceTaskPage extends Page {
 			scrollDown();
 			waitForElement(edpCompletionDate);
 			edpCompletionDate.click();
-			btnToday.get(0).click();
+			btnToday.get(0).sendKeys(Keys.ENTER);
 			internalTestingCompletionDate.click();
-			btnToday.get(1).click();
+			btnToday.get(1).sendKeys(Keys.ENTER);
 			waitForElement(tabCircuitTestingDetails);
 			tabCircuitTestingDetails.click();
 			waitForElementDisappear(elementLoading);

@@ -9,12 +9,13 @@ import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.cm.pages.Page;
 import com.comcast.reporting.Status;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.SeleniumReport;
 
 public class ServiceLevelTasks extends Page {
 
-	public ServiceLevelTasks(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
+	public ServiceLevelTasks(FrameworkContext context) {
+		super(context);
 	}
 
 	@Override

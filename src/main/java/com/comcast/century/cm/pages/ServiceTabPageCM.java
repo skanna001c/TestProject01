@@ -16,9 +16,7 @@ import com.comcast.utils.ComcastTest.FrameworkContext;
 
 public class ServiceTabPageCM extends Page {
 
-	public ServiceTabPageCM(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
-	}
+	
 	public ServiceTabPageCM(FrameworkContext context){
 		super(context);
 	}

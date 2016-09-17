@@ -9,10 +9,7 @@ import com.comcast.utils.ComcastTest.FrameworkContext;
 
 public class SupplementPageServiceTabCM extends Page {
 
-	protected SupplementPageServiceTabCM(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
-		// TODO Auto-generated constructor stub
-	}
+	
 	public SupplementPageServiceTabCM(FrameworkContext context){
 		super(context);
 	}

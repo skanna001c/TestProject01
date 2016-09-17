@@ -9,12 +9,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 import com.comcast.century.cm.pages.Page;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.SeleniumReport;
 
 public class ObtainFiberPlantPermitsTaskPage extends Page {
 
-	public ObtainFiberPlantPermitsTaskPage(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
+	public ObtainFiberPlantPermitsTaskPage(FrameworkContext context) {
+		super(context);
 	}
 
 	@Override

@@ -6,12 +6,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.cm.pages.Page;
+import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.SeleniumReport;
 
 public class LoadCoreConfigsTaskPage extends Page {
 
-	public LoadCoreConfigsTaskPage(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
+	public LoadCoreConfigsTaskPage(FrameworkContext context) {
+		super(context);
 	}
 
 	@Override

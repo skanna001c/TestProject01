@@ -34,10 +34,7 @@ public class AddressTabPageCM extends Page {
 	
 	private boolean mstatus;
 	
-	public AddressTabPageCM(WebDriver browser, SeleniumReport report) {
-		
-		super(browser, report);
-	}
+	
 	
 	public AddressTabPageCM(FrameworkContext context){
 		super(context);

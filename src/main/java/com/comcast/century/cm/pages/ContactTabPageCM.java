@@ -21,11 +21,7 @@ public class ContactTabPageCM extends Page {
 
 	protected static String HOME_PAGE_TITLE_SCH = "Search";
 	
-	
-	public ContactTabPageCM(WebDriver browser, SeleniumReport report) {
-		super(browser, report);
-	}
-	
+		
 	public ContactTabPageCM(FrameworkContext context){
 		super(context);
 	}
