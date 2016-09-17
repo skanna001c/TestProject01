@@ -49,6 +49,9 @@ public class SupplementPageServiceTabCM extends Page {
 	@FindBy(xpath = "//input[@servicename='EPL']")
 	private WebElement chkBoxEPL;
 	
+	@FindBy(xpath = "//input[@servicename='EDI']")
+	private WebElement chkBoxEDI;
+	
 	@FindBy(xpath = "//*[text()='Go ']/../following-sibling::*")
 	private WebElement btnGo;
 	
@@ -60,6 +63,27 @@ public class SupplementPageServiceTabCM extends Page {
 			 iClick(chkBoxEPL);
 			 waitForElement(ddValueMoreActions);
 			 ddValueSelect(ddValueMoreActions,ddValueCancelSup,"Cancel Sup");
+			 waitForElement(btnGo);
+			 iClick(btnGo);
+			 waitforPageLoadComplete();
+			 browser.switchTo().defaultContent();
+		}catch (Exception e) {
+			mstatus = true;
+			e.printStackTrace();
+			
+	}
+		return mstatus;
+
+}
+	
+	public boolean techSupEDI(){
+		mstatus = true;
+		try{
+			 WaitandSwitchToFrame(frameMain);
+			 waitForElement(chkBoxEDI);
+			 iClick(chkBoxEDI);
+			 waitForElement(ddValueMoreActions);
+			 ddValueSelect(ddValueMoreActions,ddValueCancelSup,"Tech Sup");
 			 waitForElement(btnGo);
 			 iClick(btnGo);
 			 waitforPageLoadComplete();

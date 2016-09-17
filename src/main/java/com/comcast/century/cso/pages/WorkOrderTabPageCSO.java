@@ -395,6 +395,7 @@ public class WorkOrderTabPageCSO extends Page {
 			}
 			break;
 		case "ENS" :
+		case "ENS-PRI" :
 			try {
 				if(waitForElement(linkENSFlow.get(i), 1)){				
 					elementToClick = linkENSFlow.get(i);

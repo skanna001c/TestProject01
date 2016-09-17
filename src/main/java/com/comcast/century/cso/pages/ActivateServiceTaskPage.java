@@ -79,6 +79,7 @@ public class ActivateServiceTaskPage extends Page {
 		case "EDI" :
 		case "ENS" :
 		case "EDI-ToF" :
+		case "ENS-PRI" :
 			this.ActivateService_EDI(serviceLevelTaskInfo);
 			break;
 		case "EPL" :

@@ -211,7 +211,7 @@ public class ProcessTabPageCM extends Page {
 						this.BGPConfiguration();
 					} else if(serviceInfo.serviceName.equalsIgnoreCase("EDI-ToF")){
 						this.Trunk_PRI(processInfo);
-						this.UNIConfiguration_PRI(processInfo,localiDataDump.getValue("SITE1_RT") );
+						this.UNIConfiguration_PRI(processInfo,localiDataDump.getValue("SITE1_RT"),serviceInfo );
 						this.EVCConfiguration_PRI(processInfo);
 					}
 					break;
@@ -224,6 +224,7 @@ public class ProcessTabPageCM extends Page {
 					localiDataDump.setValue("EVCcount_RT","1");
 					break;
 				case "ENS" :
+				case "ENS-PRI" :
 					UNINo1 = this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT") );
 					localiDataDump=SetSite(processInfo.UNITransportType1,localiDataDump.getValue("SITE1_RT"),localiDataDump);					
 					UNINo2 = this.UNI2Configuration(processInfo, localiDataDump.getValue("SITE2_RT"));
@@ -231,6 +232,11 @@ public class ProcessTabPageCM extends Page {
 					EVCNo1 = this.EVCConfiguration_ENS(processInfo);
 					EVCNo2 = this.EVC2Configuration_ENS(processInfo);
 					localiDataDump.setValue("EVCcount_RT","2");
+					if(serviceInfo.serviceName.equalsIgnoreCase("ENS-PRI")){
+						this.Trunk_PRI(processInfo);
+						this.UNIConfiguration_PRI(processInfo,localiDataDump.getValue("SITE1_RT"),serviceInfo );
+						this.EVCConfiguration_PRI(processInfo);
+					}
 					break;
 				case "EVPL" :
 					UNINo1 = this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT") );
@@ -554,7 +560,7 @@ public class ProcessTabPageCM extends Page {
 		 * 
 		 */
 		
-		public boolean UNIConfiguration_PRI(ProcessInfo processInfo,String Site) throws InterruptedException{
+		public boolean UNIConfiguration_PRI(ProcessInfo processInfo,String Site,ServiceInfo serviceInfo) throws InterruptedException{
 			mstatus= true;
 			try {
 				waitForElement(LinkUNI);
@@ -562,8 +568,12 @@ public class ProcessTabPageCM extends Page {
 				waitForElementDisappear(elementLoading);
 				waitForElement(imgAddressLookup);
 				imgAddressLookup.click();
-				 waitforPageLoadComplete();
-				 if (WaitandSwitchToFrame(frameCondition.get(1))){
+				waitforPageLoadComplete();
+				if(serviceInfo.serviceName.equalsIgnoreCase("EDI-ToF")){
+					WaitandSwitchToFrame(frameCondition.get(1));
+				} else if(serviceInfo.serviceName.equalsIgnoreCase("ENS-PRI")){
+					WaitandSwitchToFrame(frameCondition.get(2));
+				}
 					 waitForElement(txtSiteName);
 					 txtSiteName.sendKeys(Site);
 					 waitForElement(btnSearch);
@@ -573,15 +583,18 @@ public class ProcessTabPageCM extends Page {
 					 btnRadioSelectSite.click();
 					 waitForElement(btnOK);
 					 btnOK.click();
-				 }
 				 browser.switchTo().defaultContent();
 				 WaitandSwitchToFrame(frameMain);
 				 waitForElement(ddtxtSURCILI);
-				 ddValue(ddtxtSURCILI,processInfo.surCILI1);
+				 ddtxtSURCILI.clear();
+				 ddtxtSURCILI.click();	 
+				 ddtxtSURCILI.sendKeys(processInfo.surCILI1);	
+				/* ddValue(ddtxtSURCILI,processInfo.surCILI1);
 				 WebElement ddvalueSURCILI1 = browser.findElement(By.xpath("//li[text()='"+processInfo.surCILI1+"']"));
 				 waitForElement(ddvalueSURCILI1);
-				 ddvalueSURCILI1.click();
+				 ddvalueSURCILI1.click();*/
 				 waitForElement(txtUNInumber);
+				 txtUNInumber.clear();
 				 txtUNInumber.sendKeys(randomNumber(5));
 				 new Select(ddUNIPortSpeed).selectByVisibleText("10/100");
 				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");

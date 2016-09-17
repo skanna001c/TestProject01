@@ -139,7 +139,11 @@ public class ServiceTabPageCM extends Page {
 				this.ClickOnContinueButton();
 				break;
 			case "ENS" :
+			case "ENS-PRI" :
 				this.ENS();
+				if(serviceInfo.serviceName.equalsIgnoreCase("ENS-PRI")){
+					this.TrunkPRI();
+				}
 				this.EquipmentFee(serviceInfo);
 				this.ClickOnContinueButton();
 				break;

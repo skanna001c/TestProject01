@@ -119,6 +119,7 @@ public class CAETaskPage extends Page {
 			case "ENS" :
 			case "EDI-BGP" :
 			case "EDI-ToF" :
+			case "ENS-PRI" :
 				request = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:sit=\"http://www.excelacom.com/century/cramer/beans/siteDesignNotification\">"
 						+ "<soapenv:Header/>" + "<soapenv:Body>" + "<sit:siteDesignNotification>"
 						+ "<sit:resourceComponent resourceComponentId=\"" + RCID + "\">"

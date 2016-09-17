@@ -87,6 +87,7 @@ public class FeatureTabPageCM extends Page {
 				iSendKeys(txtUNIandEVCqt.get(0),"2");
 				txtUNIandEVCqt.get(1).clear();
 				iSendKeys(txtUNIandEVCqt.get(1),"2");
+				scrollDown();
 				waitForElement(btnContinue);
 				iClick(btnContinue,null,"Click on continue in feature tab: feature tab: ContinueButton");
 				waitForElementDisappear(elementLoading);
@@ -159,6 +160,7 @@ public class FeatureTabPageCM extends Page {
 				this.ClickOnContinueButton();
 				break;
 			case "ENS" :
+			case "ENS-PRI" :
 				this.ENS();
 				break;
 			case "EVPL" :

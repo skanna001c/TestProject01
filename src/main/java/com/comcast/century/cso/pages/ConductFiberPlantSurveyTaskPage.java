@@ -1,8 +1,10 @@
 package com.comcast.century.cso.pages;
 
 import java.awt.AWTException;
+import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -40,11 +42,11 @@ public class ConductFiberPlantSurveyTaskPage extends Page {
 	@FindBy(xpath = "//div[contains(text(),'Fiber Survey Results')]/..")
 	private WebElement tabFiberSurveyResults;
 	
-	@FindBy(xpath = "//input[@id='surveyCompDate-inputEl']/../following-sibling::*/child::*")
+	@FindBy(xpath = "//input[@id='surveyCompDate-inputEl']")
 	private WebElement SurveyCompletionDate;
 
-	@FindBy(xpath = "//span[text()='Today']")
-	private WebElement btnToday;
+	@FindBy(xpath = "//*[text()='Today']")
+	private List<WebElement> btnToday;
 	
 	@FindBy(xpath = "//select[@id='permitReqd']")
 	private WebElement ddPermitRequired;
@@ -87,7 +89,8 @@ public class ConductFiberPlantSurveyTaskPage extends Page {
 				clickndRelease(tabFiberInformation);
 				waitForElement(SurveyCompletionDate);
 				SurveyCompletionDate.click();
-				btnToday.click();
+				SurveyCompletionDate.clear();
+				SurveyCompletionDate.sendKeys(getCurrentDate());
 				new Select(ddPermitRequired).selectByVisibleText("Yes");
 				new Select(ddConstructionRequired).selectByVisibleText("Yes");
 				waitForElement(tabFiberSurveyResults);

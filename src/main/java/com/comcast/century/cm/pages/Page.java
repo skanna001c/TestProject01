@@ -2608,7 +2608,7 @@ public abstract class Page {
 	 ***/
 	public String getCurrentDate() {
 		try {
-			SimpleDateFormat sdfDate = new SimpleDateFormat("MMM dd, yyyy");
+			SimpleDateFormat sdfDate = new SimpleDateFormat("MM/dd/YYYY");
 			Date now = new Date();
 			String strDate = sdfDate.format(now);
 			return strDate;

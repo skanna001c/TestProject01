@@ -172,7 +172,7 @@ public class HomePageCM extends Page {
 		return mstatus;
 		}
 	
-	public boolean searchSRID(String SRID){
+	public boolean searchOrder(String SRID){
 		mstatus = true;
 		
 		try{
@@ -188,6 +188,22 @@ public class HomePageCM extends Page {
 		}
 		
 		
+		return mstatus;
+	}
+	
+	
+	public boolean clickCustomerName(String custName){
+		mstatus = true;
+		
+		try{
+			WaitandSwitchToFrame(frameMain);
+			browser.findElement(By.xpath("//span[contains(.,'"+custName+"')]")).click();
+			waitforPageLoadComplete();
+			browser.switchTo().defaultContent();
+		}catch (Exception e) {
+			e.printStackTrace();
+			mstatus = false;
+		}
 		return mstatus;
 	}
 	

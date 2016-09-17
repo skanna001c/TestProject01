@@ -59,7 +59,7 @@ public class LabelFunctionalityCM extends NewConnectTest {
 	  @PerfTransaction(name="VerifyLabelCountCM")
 	  public void verifyLabelCountCM() throws InterruptedException{
 		if((new HomePageCM(frameworkContext)).clickOnHomeTab()){
-			if((new HomePageCM(frameworkContext)).searchSRID(getDataDump().getValue("SRID_RT"))){
+			if((new HomePageCM(frameworkContext)).searchOrder(getDataDump().getValue("SRID_RT"))){
 				if((new HomePageCM(frameworkContext)).verifyLabelCountAndOrderStatus()){
 					getDataDump().setValue("CM_Status", "PASS");
 				}else Assert.fail("Label count not verified");

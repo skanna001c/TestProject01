@@ -339,11 +339,12 @@ public class CustomerTabPageCM extends Page {
 			  waitForElement(tabOrder);
 			  iClick(tabOrder,null,"OrderButton: CSO Page: ExpandButton");
 			  waitforPageLoadComplete();
-			  if(waitUntilElementPresent(By.xpath(xpath),60)){
+			  browser.findElement(By.xpath(xpath)).click();
+			 /* if(waitUntilElementPresent(By.xpath(xpath),60)){
 				  iClick(browser.findElement(By.xpath(xpath)));
 			  }else{
 				  Assert.fail("Plus button not clicked");
-			  }
+			  }*/
 			  waitforPageLoadComplete();
 			  waitForElement(plusButtonInProgress);
 			  iClick(plusButtonInProgress,linkSRID,"Click on + button: CSO Page: InProgress + button");			  
