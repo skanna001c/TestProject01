@@ -58,6 +58,9 @@ public class LogInPage extends Page {
 	@FindBy(xpath="//a[.='Home']")
 	private WebElement tabHome;
 	
+	@FindBy(xpath = "//div[text()='loading...']")
+	private WebElement elementLoading ;
+	
 	
 	@FindBy(xpath="//span[@id='workorder']")
 	private WebElement tabWorkOrder;
@@ -220,8 +223,10 @@ public class LogInPage extends Page {
 			}else{
 				report.reportFailEvent("LoginToHomePage", "Login Unsuccessfull <Please check UN and PWD>");
 			}*/
+			waitforPageLoadComplete();
+			waitForElementDisappear(elementLoading);
 			waitForElement(tabHome);			
-			if(isElementPresent(tabHome)){
+			if(isElementDisplayed(tabHome)){
 				report.updateTestLog("Login to HomePage", "Logged into homepage Successfully", Status.SCREENSHOT);
 			}else{
 				report.reportFailEvent("Login to HomePage", "Login Unsuccessfull <Please check UN and PWD>");

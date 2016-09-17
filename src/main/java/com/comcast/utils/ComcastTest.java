@@ -392,7 +392,8 @@ public class ComcastTest {
 						TestUtils.getRelativePath()+"/src/main/resources/BrowserSpecificDrivers/geckodriver.exe");
 				DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 				capabilities.setCapability("marionette", true);
-				driver = ThreadGuard.protect(new MarionetteDriver(capabilities));
+				//driver = ThreadGuard.protect(new MarionetteDriver(capabilities));
+				driver = ThreadGuard.protect(new FirefoxDriver(capabilities));
 				ThreadDriver.set(driver);
 
 				

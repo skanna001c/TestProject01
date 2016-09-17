@@ -217,9 +217,10 @@ public class ContactTabPageCM extends Page {
 			 report.reportDoneEvent("Enter EmailID","Entered EmailID as->" +contactInfo.emailId );
 			 txtPrimaryPhone.sendKeys(contactInfo.primaryPhoneNum);
 			 report.reportDoneEvent("Enter Primary Phone Number", "Entered Primary Phone Number as->" +contactInfo.primaryPhoneNum);
-			 while(waitForElement(btnCreate,2))
-			 { iClick(btnCreate, null, "Create Billing Contact: Contact Page: CreateButton");		 
-			 }
+			 //while(waitForElement(btnCreate,2))
+			 //{ 
+				 iClick(btnCreate, null, "Create Billing Contact: Contact Page: CreateButton");		 
+			 //}
 			 waitforPageLoadComplete();
 			 report.updateTestLog("Create Billing Contact", "Billing Contact Created Successfully", Status.SCREENSHOT);
 			 browser.switchTo().defaultContent();
@@ -306,17 +307,14 @@ public class ContactTabPageCM extends Page {
 			
   }
 	public boolean ClickOnBackBtn() {
-		
+		scrollDown();
 		mstatus = true;
 		try{
-			while (!WaitandSwitchToFrame(frameMain,1)) {}	
-			
-			while(!waitForElement(btnBack,1)){}			
-				
-			iClick(btnBack, null, "Click on back button: Contact Page: BackButton");							
+			while (!WaitandSwitchToFrame(frameMain,1)) {}			
+			while(!waitForElement(btnBack,2)){}		
+			iClick(btnBack, null, "Click on back button: Contact Page: BackButton");	
 			report.reportDoneEvent("Click on Back Button", "Back Button Clicked");
-			waitforPageLoadComplete();
-			browser.switchTo().defaultContent(); 
+			browser.switchTo().defaultContent();
 		}	
 	catch(Exception ex)
 	{
