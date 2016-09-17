@@ -1978,7 +1978,7 @@ public abstract class Page {
 
 	public boolean waitForElementDisappear(WebElement we) {
 		try {
-			for (int i = 0; i < 50; i++) {
+			for (int i = 0; i < 120; i++) {
 				if (isElementPresent(we)) {
 					sleep(1000);
 				} else {
