@@ -25,9 +25,9 @@ public class OvtTest {
     public void getObjects() {
 
           Reflections reflections = new Reflections(
-                           new ConfigurationBuilder().setUrls(ClasspathHelper.forPackage("com.comcast.century.cm.pages"))
-                                         .filterInputsBy(new FilterBuilder().include("com\\.comcast\\.century\\.cm\\.pages\\..*\\.class"))
-                                         .setScanners(new FieldAnnotationsScanner()));
+                  new ConfigurationBuilder().setUrls(ClasspathHelper.forPackage("com.comcast.century"))
+                                .filterInputsBy(new FilterBuilder().include("com\\.comcast\\.century\\..*\\.class"))
+                                .setScanners(new FieldAnnotationsScanner()));
 
           Set<Field> fieldsList = reflections.getFieldsAnnotatedWith(org.openqa.selenium.support.FindBy.class);
 
@@ -37,16 +37,15 @@ public class OvtTest {
           for (Field f : fieldsArray) {
                  classes.add(f.getDeclaringClass().getSimpleName());
           }
+		
+		
           try 
           {            	  	 
-                     PrintStream printer = new PrintStream(new File(System.getProperty("user.dir")+System.getProperty("file.separator")+"test-output"+System.getProperty("file.separator")+"CMPages_ObjectList.txt"));
-                     printer.println("----------------------------------------");
+                     PrintStream printer = new PrintStream(new File(System.getProperty("user.dir")+System.getProperty("file.separator")+"test-output"+System.getProperty("file.separator")+"CenturyObjectRepository.properties"));
 
                      Iterator<String> iterator = classes.iterator();
                      while (iterator.hasNext()) {
-                           String classname = iterator.next().toString();
-                           System.out.println(" ");
-                           printer.println(classname);
+                           String classname = iterator.next().toString();                           
                            printer.println(" ");
                            for (Field f : fieldsArray) {
                                   for (Annotation annotation : f.getAnnotations()) {
@@ -57,13 +56,12 @@ public class OvtTest {
 
                                                        value = method.invoke(annotation, (Object[]) null);
                                                        if (!value.toString().isEmpty() && !method.getName().equals("how")) {
-                                                              printer.println(f.getName() + ";" + method.getName() + "= " + value);
+                                                              printer.println(classname+"."+f.getName() + ":" + method.getName() + "= " + value);
                                                        }
                                                 }
                                          }
                                   }
                            }
-                           printer.println("----------------------------------------");
                      }
                      printer.flush();
                      printer.close();
