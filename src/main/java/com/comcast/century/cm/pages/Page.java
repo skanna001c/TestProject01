@@ -2617,6 +2617,18 @@ public abstract class Page {
 		}
 		return null;
 	}
+	
+	public String getCurrentDateTime() {
+		try {
+			SimpleDateFormat sdfDate = new SimpleDateFormat("MM/dd/YYYY hh:mm a");
+			Date now = new Date();
+			String strDate = sdfDate.format(now);
+			return strDate;
+		} catch (Exception ex) {
+			report.reportFailEvent("getCurrentDate", "Probelm during execution" + ex.getMessage());
+		}
+		return null;
+	}
 
 	/***
 	 * Method to get Previous Date

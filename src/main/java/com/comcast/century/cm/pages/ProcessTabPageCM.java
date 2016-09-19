@@ -202,14 +202,14 @@ public class ProcessTabPageCM extends Page {
 				{
 				case "EDI" :
 				case "EDI-BGP" :
-				case "EDI-ToF" :
+				case "EDI-PRI" :
 					UNINo1 = this.UNIConfiguration(processInfo,localiDataDump.getValue("SITE1_RT"));
 					localiDataDump=SetSite(processInfo.UNITransportType1,localiDataDump.getValue("SITE1_RT"),localiDataDump);					
 					EVCNo1 = this.EVCConfiguration_EDI(processInfo);					
 					localiDataDump.setValue("EVCcount_RT","1");
 					if(serviceInfo.serviceName.equalsIgnoreCase("EDI-BGP")){
 						this.BGPConfiguration();
-					} else if(serviceInfo.serviceName.equalsIgnoreCase("EDI-ToF")){
+					} else if(serviceInfo.serviceName.equalsIgnoreCase("EDI-PRI")){
 						this.Trunk_PRI(processInfo);
 						this.UNIConfiguration_PRI(processInfo,localiDataDump.getValue("SITE1_RT"),serviceInfo );
 						this.EVCConfiguration_PRI(processInfo);
@@ -569,7 +569,7 @@ public class ProcessTabPageCM extends Page {
 				waitForElement(imgAddressLookup);
 				imgAddressLookup.click();
 				waitforPageLoadComplete();
-				if(serviceInfo.serviceName.equalsIgnoreCase("EDI-ToF")){
+				if(serviceInfo.serviceName.equalsIgnoreCase("EDI-PRI")){
 					WaitandSwitchToFrame(frameCondition.get(1));
 				} else if(serviceInfo.serviceName.equalsIgnoreCase("ENS-PRI")){
 					WaitandSwitchToFrame(frameCondition.get(2));

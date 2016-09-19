@@ -264,13 +264,11 @@ public class WorkOrderTabPageCSO extends Page {
 		try {
 			WaitandSwitchToFrame(frameRight);
 			if (waitForElement(linkSiteFlow.get(0))) {
-				linkSiteFlow.get(0).sendKeys(Keys.chord(Keys.CONTROL, Keys.END));
+				linkSiteFlow.get(0).sendKeys(Keys.chord(Keys.CONTROL, Keys.ARROW_DOWN));
 				linkSiteFlow.get(0).click();
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Click on Site level flow", "Site level flow Clicked");
-			}
-			else
-			{
+			} else {
 				mstatus = false;
 			}
 		} catch (Exception ex) {
@@ -298,6 +296,7 @@ public class WorkOrderTabPageCSO extends Page {
 				} else {
 					mstatus = false;
 				}
+
 			}
 
 		} catch (Exception ex) {
@@ -309,6 +308,7 @@ public class WorkOrderTabPageCSO extends Page {
 	public boolean ClickFiberSiteFlow(String fiberSite1) {
 		try {
 			WaitandSwitchToFrame(frameRight);
+
 			if (!(fiberSite1.equalsIgnoreCase(""))) {
 				String xpath = "//div[.='Site']/../../descendant::" + "div[.='" + fiberSite1 + "']/../../"
 						+ "descendant::a[contains(@onclick,'SOTaskView')]"; // "FiberSite1_RT"
@@ -362,7 +362,8 @@ public class WorkOrderTabPageCSO extends Page {
 				try {
 					if (waitForElement(linkEDIFlow.get(i), 10)) {
 						elementToClick = linkEDIFlow.get(i);
-					}else mstatus = false;
+					} else
+						mstatus = false;
 				} catch (Exception e) {
 					mstatus = false;
 				}
@@ -371,7 +372,8 @@ public class WorkOrderTabPageCSO extends Page {
 				try {
 					if (waitForElement(linkEPLFlow.get(i), 10)) {
 						elementToClick = linkEPLFlow.get(i);
-					}else mstatus = false;
+					} else
+						mstatus = false;
 				} catch (Exception e) {
 					mstatus = false;
 				}
@@ -380,7 +382,8 @@ public class WorkOrderTabPageCSO extends Page {
 				try {
 					if (waitForElement(linkEVPLFlow.get(i), 10)) {
 						elementToClick = linkEVPLFlow.get(i);
-					}else mstatus = false;
+					} else
+						mstatus = false;
 				} catch (Exception e) {
 					mstatus = false;
 				}
@@ -390,13 +393,15 @@ public class WorkOrderTabPageCSO extends Page {
 				try {
 					if (waitForElement(linkENSFlow.get(i), 10)) {
 						elementToClick = linkENSFlow.get(i);
-					}else mstatus = false;
+					} else
+						mstatus = false;
 				} catch (Exception e) {
 					mstatus = false;
 				}
 				break;
 			}
 
+			elementToClick.sendKeys(Keys.chord(Keys.CONTROL, Keys.ARROW_DOWN));
 			clickndRelease(elementToClick);
 			waitforPageLoadComplete();
 			report.reportDoneEvent("Click on Service level flow", "Service level flow Clicked");
@@ -449,9 +454,10 @@ public class WorkOrderTabPageCSO extends Page {
 
 	public boolean ClickTrunkPRIFlow() throws InterruptedException {
 		try {
+			WaitandSwitchToFrame(frameRight);
 			if (waitForElement(linkTrunkPRIFlow)) {
+				linkTrunkPRIFlow.sendKeys(Keys.chord(Keys.CONTROL, Keys.ARROW_DOWN));
 				clickndRelease(linkTrunkPRIFlow);
-				// linkEquipmentFeeFlow.click();
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Click on PRI flow", "PRI flow Clicked");
 			}

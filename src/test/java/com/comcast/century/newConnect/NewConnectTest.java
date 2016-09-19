@@ -330,14 +330,24 @@ public class NewConnectTest extends ComcastTest {
 				(new BULBATaskPage(frameworkContext)).BULBA(serviceLevelTaskInfo);
 				j++;
 			}
+		} 
+		if (serviceInfo.serviceName.contains("PRI")) {
+			SearchOrderndLaunchPRIFlow();
+			(new ServiceLevelTasks(frameworkContext)).BULBA(0);
+			(new BULBATaskPage(frameworkContext)).BULBA(serviceLevelTaskInfo);
 		}
 	}
 	
 
 	@Test(priority = 14500)
 	public void Ship_CPE() throws InterruptedException {
-		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){	
+		for (int i = 0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++) {
 			SearchOrderndLaunchServiceFlow(i);
+			(new ServiceLevelTasks(frameworkContext)).ShipCPE();
+			(new ShipCPETaskPage(frameworkContext)).ShipCPE(serviceLevelTaskInfo);
+		}
+		if (serviceInfo.serviceName.contains("PRI")) {
+			SearchOrderndLaunchPRIFlow();
 			(new ServiceLevelTasks(frameworkContext)).ShipCPE();
 			(new ShipCPETaskPage(frameworkContext)).ShipCPE(serviceLevelTaskInfo);
 		}
@@ -345,8 +355,13 @@ public class NewConnectTest extends ComcastTest {
 
 	@Test(priority = 15000)
 	public void Create_Account_and_Equipment() throws Exception {
-		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){	
+		for (int i = 0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++) {
 			SearchOrderndLaunchServiceFlow(i);
+			(new ServiceLevelTasks(frameworkContext)).CAE();
+			(new CAETaskPage(frameworkContext)).CAETask(serviceInfo);
+		}
+		if (serviceInfo.serviceName.contains("PRI")) {
+			SearchOrderndLaunchPRIFlow();
 			(new ServiceLevelTasks(frameworkContext)).CAE();
 			(new CAETaskPage(frameworkContext)).CAETask(serviceInfo);
 		}
@@ -355,8 +370,13 @@ public class NewConnectTest extends ComcastTest {
 
 	@Test(priority = 15500)
 	public void Assign_Design_Info() throws InterruptedException {
-		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
+		for (int i = 0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++) {
 			SearchOrderndLaunchServiceFlow(i);
+			(new ServiceLevelTasks(frameworkContext)).ADI();
+			(new ADITaskPage(frameworkContext)).ADITask();
+		}
+		if (serviceInfo.serviceName.contains("PRI")) {
+			SearchOrderndLaunchPRIFlow();
 			(new ServiceLevelTasks(frameworkContext)).ADI();
 			(new ADITaskPage(frameworkContext)).ADITask();
 		}
@@ -365,8 +385,13 @@ public class NewConnectTest extends ComcastTest {
 
 	@Test(priority = 16000)
 	public void Generate_Core_Config() throws InterruptedException {
-		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
+		for (int i = 0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++) {
 			SearchOrderndLaunchServiceFlow(i);
+			(new ServiceLevelTasks(frameworkContext)).GenerateCoreConfigs();
+			(new GenerateCoreConfigsTaskPage(frameworkContext)).ClickCompleteButton();
+		}
+		if (serviceInfo.serviceName.contains("PRI")) {
+			SearchOrderndLaunchPRIFlow();
 			(new ServiceLevelTasks(frameworkContext)).GenerateCoreConfigs();
 			(new GenerateCoreConfigsTaskPage(frameworkContext)).ClickCompleteButton();
 		}
@@ -375,8 +400,13 @@ public class NewConnectTest extends ComcastTest {
 
 	@Test(priority = 16500)
 	public void Generate_CPE_Config() throws InterruptedException {
-		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
+		for (int i = 0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++) {
 			SearchOrderndLaunchServiceFlow(i);
+			(new ServiceLevelTasks(frameworkContext)).GenerateCPEConfigs();
+			(new GenerateCPEConfigsTaskPage(frameworkContext)).ClickCompleteButton();
+		}
+		if (serviceInfo.serviceName.contains("PRI")) {
+			SearchOrderndLaunchPRIFlow();
 			(new ServiceLevelTasks(frameworkContext)).GenerateCPEConfigs();
 			(new GenerateCPEConfigsTaskPage(frameworkContext)).ClickCompleteButton();
 		}
@@ -384,8 +414,13 @@ public class NewConnectTest extends ComcastTest {
 
 	@Test(priority = 17000)
 	public void Load_Core_Config() throws InterruptedException {
-		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
+		for (int i = 0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++) {
 			SearchOrderndLaunchServiceFlow(i);
+			(new ServiceLevelTasks(frameworkContext)).LoadCoreConfigs();
+			(new LoadCoreConfigsTaskPage(frameworkContext)).ClickCompleteButton();
+		}
+		if (serviceInfo.serviceName.contains("PRI")) {
+			SearchOrderndLaunchPRIFlow();
 			(new ServiceLevelTasks(frameworkContext)).LoadCoreConfigs();
 			(new LoadCoreConfigsTaskPage(frameworkContext)).ClickCompleteButton();
 		}
@@ -399,10 +434,16 @@ public class NewConnectTest extends ComcastTest {
 			while(browser.findElements(By.xpath("//*[text()='Install CPE' and contains(@onclick, 'INPROGRESS')]")).size() != 0)
 			{
 				(new ServiceLevelTasks(frameworkContext)).InstallCPE(j);
-				(new InstallCPETaskPage(frameworkContext)).InstallCPE();
+				(new InstallCPETaskPage(frameworkContext)).InstallCPE(serviceInfo);
 				j++;
 			}
 		}
+		if (serviceInfo.serviceName.contains("PRI")) {
+			SearchOrderndLaunchPRIFlow();
+			(new ServiceLevelTasks(frameworkContext)).InstallCPE(0);
+			(new InstallCPETaskPage(frameworkContext)).InstallCPE(serviceInfo);
+		}
+		
 	}
 
 	@Test(priority = 18000)
@@ -421,8 +462,13 @@ public class NewConnectTest extends ComcastTest {
 
 	@Test(priority = 18500)
 	public void Set_Critical_Dates() throws InterruptedException {
-		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
+		for (int i = 0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++) {
 			SearchOrderndLaunchServiceFlow(i);
+			(new ServiceLevelTasks(frameworkContext)).SetCriticalDates();
+			(new SetCriticalDatesTaskPage(frameworkContext)).SetCriticalDates();
+		}
+		if (serviceInfo.serviceName.contains("PRI")) {
+			SearchOrderndLaunchPRIFlow();
 			(new ServiceLevelTasks(frameworkContext)).SetCriticalDates();
 			(new SetCriticalDatesTaskPage(frameworkContext)).SetCriticalDates();
 		}
@@ -430,8 +476,13 @@ public class NewConnectTest extends ComcastTest {
 
 	@Test(priority = 19000)
 	public void Day_of_Configs() throws InterruptedException {
-		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
+		for (int i = 0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++) {
 			SearchOrderndLaunchServiceFlow(i);
+			(new ServiceLevelTasks(frameworkContext)).DayofConfigs();
+			(new DaysOfConfigsTaskPage(frameworkContext)).ClickCompleteButton();
+		}
+		if (serviceInfo.serviceName.contains("PRI")) {
+			SearchOrderndLaunchPRIFlow();
 			(new ServiceLevelTasks(frameworkContext)).DayofConfigs();
 			(new DaysOfConfigsTaskPage(frameworkContext)).ClickCompleteButton();
 		}
@@ -439,10 +490,15 @@ public class NewConnectTest extends ComcastTest {
 
 	@Test(priority = 19500)
 	public void Activate_Service() throws InterruptedException {
-		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
+		for (int i = 0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++) {
 			SearchOrderndLaunchServiceFlow(i);
 			(new ServiceLevelTasks(frameworkContext)).ActivateService();
-			(new ActivateServiceTaskPage(frameworkContext)).activateService(serviceInfo,serviceLevelTaskInfo);
+			(new ActivateServiceTaskPage(frameworkContext)).activateService(serviceInfo, serviceLevelTaskInfo);
+		}
+		if (serviceInfo.serviceName.contains("PRI")) {
+			SearchOrderndLaunchPRIFlow();
+			(new ServiceLevelTasks(frameworkContext)).ActivateService();
+			(new ActivateServiceTaskPage(frameworkContext)).activateService(serviceInfo, serviceLevelTaskInfo);
 		}
 	}
 
@@ -570,6 +626,11 @@ public class NewConnectTest extends ComcastTest {
     		}
     	}while(!status && retryCount <= 5);
 	
+	}
+	
+	public void SearchOrderndLaunchPRIFlow() throws InterruptedException {
+		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
+		(new WorkOrderTabPageCSO(frameworkContext)).ClickTrunkPRIFlow();
 	}
 	
 	public void SearchOrderndLaunchServiceRequest() {

@@ -64,6 +64,7 @@ public class ShipCPETaskPage extends Page {
 	
 	public boolean ShipCPE(ServiceLevelTaskInfo serviceLevelTaskInfo) throws InterruptedException{
 		try{
+			scrollDown();
 			if(waitForElement(txtPackingSlipNumber, 5)){
 				txtPackingSlipNumber.sendKeys(randomNumber(5));
 				CPEShipDate.click();

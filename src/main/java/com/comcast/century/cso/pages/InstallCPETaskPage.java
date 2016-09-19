@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.cm.pages.Page;
+import com.comcast.century.data.ServiceInfo;
 import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.SeleniumReport;
 
@@ -44,16 +45,16 @@ public class InstallCPETaskPage extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 
-	@FindBy(xpath = "//input[@id='scheduledInstallDate']//following-sibling::img")
+	@FindBy(xpath = "//input[@id='scheduledInstallDate']")
 	private WebElement SchCPEInstallDate ;
 	
-	@FindBy(xpath = "//input[@id='actualCompleteDate']//following-sibling::img")
+	@FindBy(xpath = "//input[@id='actualCompleteDate']")
 	private WebElement ActualCompletionDate ;
 	
-	@FindBy(xpath = "//*[@id='scheduledIADDate']//following-sibling::img")
+	@FindBy(xpath = "//*[@id='scheduledIADDate']")
 	private WebElement SchIADDate ;
 	
-	@FindBy(xpath = "//*[@id='actualIADDate']//following-sibling::img")
+	@FindBy(xpath = "//*[@id='actualIADDate']")
 	private WebElement ActualIADDate ;
 	
 	@FindBy(xpath = "//button[text()='Today']")
@@ -61,51 +62,31 @@ public class InstallCPETaskPage extends Page {
 	
 	private boolean mstatus = true;
 	
-	public boolean InstallCPE() throws InterruptedException{
-		try{
-			if(waitForElement(SchCPEInstallDate)){
-				clickndRelease(SchCPEInstallDate);
-				//SchCPEInstallDate.click();
-				btnToday.get(0).click();
-				clickndRelease(ActualCompletionDate);
-				//ActualCompletionDate.click();
-				btnToday.get(1).click();
-				this.ClickCompleteButton();
-				waitForElement(browser.findElement(By.xpath("//*[text()='Install CPE' and contains(@onclick, 'COMPLETED')]")));
+	
+	public boolean InstallCPE(ServiceInfo serviceIfo) {
+		try {
+
+			waitForElement(SchCPEInstallDate);
+			SchCPEInstallDate.clear();
+			SchCPEInstallDate.sendKeys(getCurrentDateTime());
+			ActualCompletionDate.clear();
+			ActualCompletionDate.sendKeys(getCurrentDateTime());
+
+			if ((serviceIfo.serviceName.contains("PRI")) && (waitForElement(SchIADDate, 3))) {
+				waitForElement(SchIADDate);
+				SchIADDate.clear();
+				SchIADDate.sendKeys(getCurrentDateTime());
+				waitForElement(ActualIADDate);
+				ActualIADDate.clear();
+				ActualIADDate.sendKeys(getCurrentDateTime());
 			}
-		}
-		catch(Exception ex)
-		{
+
+			this.ClickCompleteButton();
+		} catch (Exception ex) {
 			mstatus = false;
 		}
 		return mstatus;
 	}
-	
-	public boolean installCPEPRI() throws InterruptedException{
-		try{
-			if(waitForElement(SchCPEInstallDate)){
-				clickndRelease(SchCPEInstallDate);
-				//SchCPEInstallDate.click();
-				btnToday.get(0).click();
-				clickndRelease(ActualCompletionDate);
-				//ActualCompletionDate.click();
-				btnToday.get(1).click();
-				clickndRelease(SchIADDate);
-				btnToday.get(2).click();
-				clickndRelease(ActualIADDate);
-				btnToday.get(3).click();
-				this.ClickCompleteButton();
-				waitForElement(browser.findElement(By.xpath("//*[text()='Install CPE' and contains(@onclick, 'COMPLETED')]")));
-			}
-		}
-		catch(Exception ex)
-		{
-			mstatus = false;
-		}
-		return mstatus;
-	}
-	
-	
 	
 	public boolean ClickBackButton(){
 		try{
