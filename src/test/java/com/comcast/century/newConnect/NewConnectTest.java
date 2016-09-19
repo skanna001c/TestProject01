@@ -88,6 +88,7 @@ public class NewConnectTest extends ComcastTest {
 	String SRID;
 	String SurveyID;
 	int retryCount = 0;
+	boolean status=true;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -574,8 +575,7 @@ public class NewConnectTest extends ComcastTest {
 	}
 	
 	
-	public void SearchOrderndLaunchFiberSiteFlow(String site) {	
-		    	Boolean status;
+	public void SearchOrderndLaunchFiberSiteFlow(String site) {
 		    	retryCount = 1;
 		    	do{
 		    		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
@@ -589,7 +589,6 @@ public class NewConnectTest extends ComcastTest {
 	}
 	
 	public void SearchOrderndLaunchCoaxSiteFlow(String site) {		
-				Boolean status;
 				retryCount = 1;
 				do{
 					(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
@@ -615,7 +614,6 @@ public class NewConnectTest extends ComcastTest {
 	
 	
 	public void SearchOrderndLaunchServiceFlow(int i) throws InterruptedException {
-		Boolean status;
     	retryCount = 1;
     	do{
     		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
@@ -628,13 +626,21 @@ public class NewConnectTest extends ComcastTest {
 	
 	}
 	
+	
 	public void SearchOrderndLaunchPRIFlow() throws InterruptedException {
-		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
-		(new WorkOrderTabPageCSO(frameworkContext)).ClickTrunkPRIFlow();
+    	retryCount = 1;
+		do{
+			(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
+			status =(new WorkOrderTabPageCSO(frameworkContext)).ClickTrunkPRIFlow();
+			if(!status)
+			{ 
+				retryCount++;
+			}
+		}while(!status && retryCount <= 5);
 	}
 	
+	
 	public void SearchOrderndLaunchServiceRequest() {
-		Boolean status;
     	retryCount = 1;
     	do{
     		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"),retryCount);
@@ -646,8 +652,8 @@ public class NewConnectTest extends ComcastTest {
     	}while(!status && retryCount <= 5);	
 	}
 	
+	
 	public void SearchOrderndLauncheEquipmentFeeFlow(int i) throws InterruptedException {
-		Boolean status;
     	retryCount = 1;
     	do{
     		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);

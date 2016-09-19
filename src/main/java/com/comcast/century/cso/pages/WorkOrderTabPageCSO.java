@@ -288,7 +288,7 @@ public class WorkOrderTabPageCSO extends Page {
 				if (waitUntilElementPresent(By.xpath(xpath), 30)) {
 
 					if (waitForElement(browser.findElement(By.xpath(xpath)), 1)) {
-						browser.findElement(By.xpath(xpath)).sendKeys(Keys.chord(Keys.CONTROL, Keys.END));
+						browser.findElement(By.xpath(xpath)).sendKeys(Keys.chord(Keys.CONTROL, Keys.ARROW_DOWN));
 						browser.findElement(By.xpath(xpath)).click();
 						waitforPageLoadComplete();
 						report.reportDoneEvent("Clicked on Coax Site level flow", "Site level flow Clicked");
@@ -316,7 +316,7 @@ public class WorkOrderTabPageCSO extends Page {
 				if (waitUntilElementPresent(By.xpath(xpath), 30)) {
 
 					if (waitForElement(browser.findElement(By.xpath(xpath)), 1)) {
-						browser.findElement(By.xpath(xpath)).sendKeys(Keys.chord(Keys.CONTROL, Keys.END));
+						browser.findElement(By.xpath(xpath)).sendKeys(Keys.chord(Keys.CONTROL, Keys.ARROW_DOWN));
 						browser.findElement(By.xpath(xpath)).click();
 						waitforPageLoadComplete();
 						report.reportDoneEvent("Click on Fiber Site level flow", "Site level flow Clicked");
@@ -358,7 +358,7 @@ public class WorkOrderTabPageCSO extends Page {
 
 			case "EDI":
 			case "EDI-BGP":
-			case "EDI-ToF":
+			case "EDI-PRI":
 				try {
 					if (waitForElement(linkEDIFlow.get(i), 10)) {
 						elementToClick = linkEDIFlow.get(i);
@@ -399,6 +399,8 @@ public class WorkOrderTabPageCSO extends Page {
 					mstatus = false;
 				}
 				break;
+			 default :
+				 System.out.println("Invalid Service");
 			}
 
 			elementToClick.sendKeys(Keys.chord(Keys.CONTROL, Keys.ARROW_DOWN));
