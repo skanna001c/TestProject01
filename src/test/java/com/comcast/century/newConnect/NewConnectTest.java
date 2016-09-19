@@ -486,37 +486,15 @@ public class NewConnectTest extends ComcastTest {
 		}
 	}
 
-
+	
 	@Test(priority = 22000)
-	public void EquipmentFeeFlow() throws InterruptedException {
-		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
-			SearchOrderndLaunchServiceFlow(i);
-			(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
-			(new WorkOrderTabPageCSO(frameworkContext)).ClickEquipmentFeeFlow();
-		}
-	}
-
-	@Test(priority = 22500)
 	public void EqFeeStartBilling() throws InterruptedException {
-		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
-			SearchOrderndLaunchServiceFlow(i);
+		for(int i=0; i < Integer.parseInt(serviceInfo.equipmentFee); i++){
+			SearchOrderndLauncheEquipmentFeeFlow(i);			
 			(new EqFeeFlowTasks(frameworkContext)).EqFeeStartBilling();
-			(new EqFeeStartBillingTaskPage(frameworkContext)).EqFeeStartBilling();
-			(new EqFeeFlowTasks(frameworkContext)).ClickBackButton();
+			(new EqFeeStartBillingTaskPage(frameworkContext)).EqFeeStartBilling();			
 		}
-	}
-	
-	
-
-	@Test(priority = 22670)
-	public void EqFeeStartBilling_EVPL2() throws InterruptedException {
-		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
-		(new WorkOrderTabPageCSO(frameworkContext)).ClickEquipmentFeeFlow();
-		(new EqFeeFlowTasks(frameworkContext)).EqFeeStartBilling();
-		(new EqFeeStartBillingTaskPage(frameworkContext)).EqFeeStartBilling();
-		(new EqFeeFlowTasks(frameworkContext)).ClickBackButton();
-	}
-	
+	}	
 	
 	@AfterMethod
 	public void afterMethod() {
@@ -550,7 +528,7 @@ public class NewConnectTest extends ComcastTest {
 		    		{
 		    			retryCount++;
 		    		}
-		    	}while(!status);           
+		    	}while(!status && retryCount <= 5);           
 				
 	}
 	
@@ -564,7 +542,7 @@ public class NewConnectTest extends ComcastTest {
 		    		{
 		    			retryCount++;
 		    		}
-		    	}while(!status); 
+				}while(!status && retryCount <= 5);
 			
 		}
 	
@@ -581,14 +559,43 @@ public class NewConnectTest extends ComcastTest {
 	
 	
 	public void SearchOrderndLaunchServiceFlow(int i) throws InterruptedException {
-		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
-		(new WorkOrderTabPageCSO(frameworkContext)).ClickServiceFlow(serviceInfo,i);
+		Boolean status;
+    	retryCount = 1;
+    	do{
+    		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
+    		status = (new WorkOrderTabPageCSO(frameworkContext)).ClickServiceFlow(serviceInfo,i);
+    		if(!status)
+    		{
+    			retryCount++;
+    		}
+    	}while(!status && retryCount <= 5);
+	
 	}
 	
 	public void SearchOrderndLaunchServiceRequest() {
-		//(new WorkOrderTabPageCSO(frameworkContext)).ClickBackButton(2);
-		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"),retryCount);
-		(new WorkOrderTabPageCSO(frameworkContext)).ClickFirstSiteFlow();
+		Boolean status;
+    	retryCount = 1;
+    	do{
+    		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"),retryCount);
+    		status = (new WorkOrderTabPageCSO(frameworkContext)).ClickFirstSiteFlow();
+    		if(!status)
+    		{
+    			retryCount++;
+    		}
+    	}while(!status && retryCount <= 5);	
+	}
+	
+	public void SearchOrderndLauncheEquipmentFeeFlow(int i) throws InterruptedException {
+		Boolean status;
+    	retryCount = 1;
+    	do{
+    		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
+    		status = (new WorkOrderTabPageCSO(frameworkContext)).ClickEquipmentFeeFlow(i);
+    		if(!status)
+    		{
+    			retryCount++;
+    		}
+    	}while(!status && retryCount <= 5);
 	}
 }
 

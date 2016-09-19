@@ -111,6 +111,11 @@ public class FeatureTabPageCM extends Page {
 				txtUNIandEVCqt.get(0).click();
 				txtUNIandEVCqt.get(0).clear();
 				iSendKeys(txtUNIandEVCqt.get(0), "2");
+				//Below 3 lines added by Kesavan, Sometimes UNI quantity values are not retained whatever we have added in fist time when we click continue button
+				// So, we are adding one more time as a workaround
+				txtUNIqt.click();
+				txtUNIqt.clear();
+				iSendKeys(txtUNIqt, "3");
 				scrollDown();
 				waitForElement(btnContinue);
 				iClick(btnContinue,null,"Click on continue in feature tab: feature tab: ContinueButton");

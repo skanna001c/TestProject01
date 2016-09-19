@@ -3108,8 +3108,9 @@ public abstract class Page {
 		if (testSettings.getBrowser().equalsIgnoreCase("iexplore")
 				|| testSettings.getBrowser().equalsIgnoreCase("ie")) {
 			we.sendKeys(Keys.ENTER);
-		} else
+		} else{
 			we.click();
+		}
 		waitforPageLoadComplete();
 		if (!(waitForElement == null)) {		
 			isElementClickable(waitForElement);

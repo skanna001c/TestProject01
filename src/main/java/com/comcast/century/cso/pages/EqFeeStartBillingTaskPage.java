@@ -55,7 +55,11 @@ public class EqFeeStartBillingTaskPage extends Page {
 			if(waitForElement(actualBillingStartDate)){
 				clickndRelease(actualBillingStartDate);
 				clickndRelease(btnToday);
-				this.ClickCompleteButton();
+				if(waitForElement(btnComplete, 5)){
+					this.ClickCompleteButton();
+				}
+				else
+					this.ClickBackButton();				
 				waitForElement(browser.findElement(By.xpath("//*[text()='Start Billing' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}

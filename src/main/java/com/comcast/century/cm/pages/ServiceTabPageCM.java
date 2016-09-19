@@ -86,8 +86,8 @@ public class ServiceTabPageCM extends Page {
 		try {
 			waitforPageLoadComplete();
 			 if (waitForElement(tabService)){
-				  jsClick(tabService);
-				  //doubleClick(tabService);				  
+				  //jsClick(tabService);
+				  doubleClick(tabService);
 				  report.reportDoneEvent("Click On Service Tab", "Service Tab Clicked");
 				  waitforPageLoadComplete();
 			  }

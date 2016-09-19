@@ -85,7 +85,7 @@ public class ProcessTabPageCM extends Page {
 		@FindBy(xpath = "//a[text()='Equipment Fee~3']")
 		private WebElement LinkEquipmentFee3;
 		
-		@FindBy(xpath = "//a[text()='Equipment Fee Configuration']")
+		@FindBy(xpath = "//a[text()='Equipment Fee Configuration'] and [contains(@onmouseover,'Equipment Fee Configuration')]")
 		private List<WebElement> LinkEquipmentFeeConfiguration;
 		
 		@FindBy(xpath = "//img[@title='Address Lookup']")
