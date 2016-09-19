@@ -273,7 +273,7 @@ public class WorkOrderTabPageCSO extends Page {
 		try{
 			WaitandSwitchToFrame(frameRight);
 			if(waitForElement(linkSiteFlow.get(0))){
-				linkSiteFlow.get(0).sendKeys(Keys.chord(Keys.CONTROL,Keys.END ));
+				linkSiteFlow.get(0).sendKeys(Keys.chord(Keys.CONTROL,Keys.ARROW_DOWN ));
 				linkSiteFlow.get(0).click();
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Click on Site level flow", "Site level flow Clicked");
@@ -299,7 +299,7 @@ public class WorkOrderTabPageCSO extends Page {
 				if (waitUntilElementPresent(By.xpath(xpath),30)){
 				
 				if(waitForElement(browser.findElement(By.xpath(xpath)),1)){
-					browser.findElement(By.xpath(xpath)).sendKeys(Keys.chord(Keys.CONTROL,Keys.END ));
+					browser.findElement(By.xpath(xpath)).sendKeys(Keys.chord(Keys.CONTROL,Keys.ARROW_DOWN ));
 					browser.findElement(By.xpath(xpath)).click();
 					waitforPageLoadComplete();
 				report.reportDoneEvent("Clicked on Coax Site level flow", "Site level flow Clicked");
@@ -326,7 +326,7 @@ public class WorkOrderTabPageCSO extends Page {
 			if (waitUntilElementPresent(By.xpath(xpath),30)){
 			
 			if(waitForElement(browser.findElement(By.xpath(xpath)),1)){
-				browser.findElement(By.xpath(xpath)).sendKeys(Keys.chord(Keys.CONTROL,Keys.END ));
+				browser.findElement(By.xpath(xpath)).sendKeys(Keys.chord(Keys.CONTROL,Keys.ARROW_DOWN ));
 				browser.findElement(By.xpath(xpath)).click();
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Click on Fiber Site level flow", "Site level flow Clicked");
@@ -367,7 +367,7 @@ public class WorkOrderTabPageCSO extends Page {
 		
 		case "EDI" :
 		case "EDI-BGP" :
-		case "EDI-ToF" :
+		case "EDI-PRI" :
 			try {
 				if(waitForElement(linkEDIFlow.get(i), 1)){				
 					elementToClick = linkEDIFlow.get(i);
@@ -405,7 +405,7 @@ public class WorkOrderTabPageCSO extends Page {
 			}
 			break;
 		}
-			
+		    elementToClick.sendKeys(Keys.chord(Keys.CONTROL,Keys.ARROW_DOWN ));
 			clickndRelease(elementToClick);
 			waitforPageLoadComplete();
 			report.reportDoneEvent("Click on Service level flow", "Service level flow Clicked");
@@ -469,9 +469,9 @@ public class WorkOrderTabPageCSO extends Page {
 	
 	public boolean ClickTrunkPRIFlow() throws InterruptedException{
 		try{
+			WaitandSwitchToFrame(frameRight);
 			if(waitForElement(linkTrunkPRIFlow)){
 				clickndRelease(linkTrunkPRIFlow);
-				//linkEquipmentFeeFlow.click();
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Click on PRI flow", "PRI flow Clicked");
 			}

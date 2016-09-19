@@ -52,6 +52,7 @@ public class BULBATaskPage extends Page {
 		mstatus = true;
 		try{
 			if(waitForElement(txtLBCustomerAccountNumber)){
+				txtLBCustomerAccountNumber.clear();
 				txtLBCustomerAccountNumber.sendKeys(serviceLevelTaskInfo.localBillerCustomerAccountNumber);
 				this.ClickCompleteButton();
 				waitForElement(browser.findElement(By.xpath("//*[text()='Build Update Local Biller Account' and contains(@onclick, 'COMPLETED')]")));
