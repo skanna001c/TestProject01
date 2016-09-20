@@ -348,13 +348,13 @@ public class OrderSummaryTabCMPage extends Page {
 			waitforPageLoadComplete();
 			WaitandSwitchToFrame(frameNotes);
 			waitForElement(ddAttachmentRepository);
-			new Select(ddAttachmentRepository).selectByVisibleText(orderSummaryInfo.attachmentRepository);
+			new Select(ddAttachmentRepository).selectByVisibleText("Century");
 			waitForElement(btnBrowse);
 			clickndRelease(btnBrowse);
 			Thread.sleep(5000);
 			uploadAttachments(System.getProperty("user.dir") + "\\src\\test\\resources\\attachements.txt");
 			waitForElement(ddAttachmentType);
-			new Select(ddAttachmentType).selectByVisibleText(orderSummaryInfo.attachmentType);
+			new Select(ddAttachmentType).selectByVisibleText("Tax Exemption Form");
 			waitForElement(btnAdd);
 			clickndRelease(btnAdd);
 			Thread.sleep(15000);
@@ -403,7 +403,7 @@ public class OrderSummaryTabCMPage extends Page {
 		return mstatus;
 	}
 
-	public boolean NavigateToCSO(OrderSummaryInfo orderSummaryInfo) {
+	/*public boolean NavigateToCSO(OrderSummaryInfo orderSummaryInfo) {
 		mstatus = true;
 		try {
 			waitforPageLoadComplete();
@@ -419,7 +419,7 @@ public class OrderSummaryTabCMPage extends Page {
 		}
 		return mstatus;
 
-	}
+	}*/
 
 	public boolean cancelSupSubmitOrder() {
 		mstatus = true;

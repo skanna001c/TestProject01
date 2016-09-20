@@ -66,6 +66,7 @@ import com.comcast.century.data.ServiceInfo;
 import com.comcast.century.data.ServiceLevelTaskInfo;
 import com.comcast.century.data.SiteInfo;
 import com.comcast.century.data.SiteLevelTaskInfo;
+import com.comcast.century.data.SupplementInfo;
 import com.comcast.utils.ComcastTest;
 import com.comcast.utils.DataDump;
 import com.comcast.utils.IDataDump;
@@ -84,6 +85,8 @@ public class NewConnectTest extends ComcastTest {
 	protected OrderSummaryInfo orderSummaryInfo;
 	protected SiteLevelTaskInfo siteLevelTaskInfo;
 	protected ServiceLevelTaskInfo serviceLevelTaskInfo;
+	protected SupplementInfo supplementInfo;
+
 
 	String SRID;
 	String SurveyID;
@@ -156,7 +159,9 @@ public class NewConnectTest extends ComcastTest {
 			Site = (new AddressTabPageCM(frameworkContext)).EnterSiteDetailsValid(siteInfo);
 			getDataDump().setValue("SITE" + i + "_RT", Site);
 			new ContactTabPageCM(frameworkContext).CreateSiteTechnicalContact(contactInfo);
-			new ContactTabPageCM(frameworkContext).ClickOnBackBtn();
+			if(i!=Integer.parseInt(siteInfo.noOfSites)){
+				new ContactTabPageCM(frameworkContext).ClickOnBackBtn();
+			}
 		}
 	}
 	   
@@ -572,6 +577,7 @@ public class NewConnectTest extends ComcastTest {
 		orderSummaryInfo = OrderSummaryInfo.loadFromDatatable(dataTable);
 		siteLevelTaskInfo = SiteLevelTaskInfo.loadFromDatatable(dataTable);
 		serviceLevelTaskInfo = ServiceLevelTaskInfo.loadFromDatatable(dataTable);
+		supplementInfo = SupplementInfo.loadFromDatatable(dataTable);
 	}
 	
 	

@@ -329,18 +329,23 @@ public class ProcessTabPageCM extends Page {
 		 * 
 		 */
 		
-		public String ProcessConfiguration(ProcessInfo processInfo) throws InterruptedException{
-			String SRID;
+	public String ProcessConfiguration(ProcessInfo processInfo) {
+		String SRID = null;
+
+		try {
 			SRID = txtSRId.getText();
-			if(waitForElement(ddSelectTerms)){
-			System.out.println("Terms Present");
-			}
+			waitForElement(ddSelectTerms);
 			new Select(ddSelectTerms).selectByVisibleText(processInfo.terms);
-			iClick(btnSave, null, "Click on save button: Process page: SaveButton");			
+			iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 			report.reportDoneEvent("Save Terms", "Terms Saved");
 			waitForElementDisappear(elementLoading);
-			return SRID;
+		} catch (Exception e) {
+			e.printStackTrace();
+			SRID = null;
 		}
+		return SRID;
+	}
+		
 		
 		/*Method to save terms for Trunk-PRI
 		 *  
@@ -795,7 +800,7 @@ public class ProcessTabPageCM extends Page {
 				 new Select(ddEVCAreaType).selectByVisibleText(processInfo.evcAreaType);
 				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
 				 new Select(ddMaxEVCExceeded).selectByVisibleText("No");
-				 txtCustomerVLANInfo.sendKeys(processInfo.customerVLANInfo);
+				 txtCustomerVLANInfo.sendKeys("2562");
 				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
 				 waitForElementDisappear(elementLoading);
@@ -832,7 +837,7 @@ public class ProcessTabPageCM extends Page {
 				 new Select(ddEVCAreaType).selectByVisibleText(processInfo.evcAreaType);
 				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
 				 new Select(ddMaxEVCExceeded).selectByVisibleText("No");
-				 txtCustomerVLANInfo.sendKeys(processInfo.customerVLANInfo);
+				 txtCustomerVLANInfo.sendKeys("2563");
 				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 report.reportDoneEvent("Save EVC~2 Configuration", "EVC~2 Configuration Saved");
 				 waitForElementDisappear(elementLoading);

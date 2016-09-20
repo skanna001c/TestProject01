@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.data.CustomerInfo;
+import com.comcast.century.data.SupplementInfo;
 import com.comcast.reporting.Status;
 import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.PerfTransaction;
@@ -149,8 +150,14 @@ public class CustomerTabPageCM extends Page {
 	@FindBy(xpath = "//tr[contains(@title,'In-Progress')]/child::td[@class='standartTreeImage']/child::img[contains(@src,'images/csh_bluebooks/plus')]")
 	private WebElement plusButtonInProgress;
 	
+	@FindBy(xpath = "//tr[contains(@title,'Completed')]/child::td[@class='standartTreeImage']/child::img[contains(@src,'images/csh_bluebooks/plus')]")
+	private WebElement plusButtonCompleted;
+	
 	@FindBy(xpath = "//span[contains(.,'SR ID')]")
 	private WebElement linkSRID;
+	
+	@FindBy(xpath = "//div[text()='loading...']")
+	private WebElement elementLoading ;
 	
 	
 	
@@ -327,38 +334,46 @@ public class CustomerTabPageCM extends Page {
 		  
 	  }
 	  
-	  public boolean serachOrderHierarchy(String custName){
-		  mstatus = true;
-		  String xpath="//tr[@title='"+custName+"']/child::td[@class='standartTreeImage']/child::"
-		  		+ "img[contains(@src,'images/csh_bluebooks/plus')";
-		  try{
-			  waitForElement(btnExpand);
-			  iClick(btnExpand,null,"ExpandSOHierarchyButton: CSO Page: ExpandButton");
-			  waitforPageLoadComplete();
-			  WaitandSwitchToFrame(frameLeft);
-			  waitForElement(tabOrder);
-			  iClick(tabOrder,null,"OrderButton: CSO Page: ExpandButton");
-			  waitforPageLoadComplete();
-			  browser.findElement(By.xpath(xpath)).click();
-			 /* if(waitUntilElementPresent(By.xpath(xpath),60)){
-				  iClick(browser.findElement(By.xpath(xpath)));
-			  }else{
-				  Assert.fail("Plus button not clicked");
-			  }*/
-			  waitforPageLoadComplete();
-			  waitForElement(plusButtonInProgress);
-			  iClick(plusButtonInProgress,linkSRID,"Click on + button: CSO Page: InProgress + button");			  
-			  waitforPageLoadComplete();
-			  waitForElement(linkSRID);
-			  iClick(linkSRID,null,"Click on SRID link: CSO Page: SRID Link");			  
-			  waitforPageLoadComplete();
-			  browser.switchTo().defaultContent();
-		  }catch (Exception e) {
-				mstatus = true;
-				e.printStackTrace();
-	  }
-	
-         return mstatus;
+	public boolean clickSRIDInOrderHierarchy(String custName, SupplementInfo supplementInfo) {
+		mstatus = true;
+		String xpath = "//tr[@title='" + custName + "']/child::td[@class='standartTreeImage']/child::"
+				+ "img[contains(@src,'images/csh_bluebooks/plus')]";
+		try {
+			do {
+				if (isElementDisplayed(btnExpand)) {
+					iClick(btnExpand, null, "ExpandSOHierarchyButton: CSO Page: ExpandButton");
+				}
+			} while (isElementDisplayed(btnExpand, 2));
+			waitforPageLoadComplete();
+			WaitandSwitchToFrame(frameLeft);
+			do {
+				if (isElementDisplayed(tabOrder)) {
+					iClick(tabOrder, null, "OrderButton: CSO Page: tabOrder");
+				}
+			} while (!waitUntilElementPresent(By.xpath(xpath), 2));
+			waitforPageLoadComplete();
+			if (waitUntilElementPresent(By.xpath(xpath), 60)) {
+				iClick(browser.findElement(By.xpath(xpath)));
+			}
+			waitforPageLoadComplete();
+			if (supplementInfo.supplementType.matches("Tech Sup|Admin Sup|Cancel Sup")) {
+				waitForElement(plusButtonInProgress);
+				iClick(plusButtonInProgress, linkSRID, "Click on + button: CSO Page: InProgress + button");
+			} else if (supplementInfo.supplementType.matches("Change|Disconnect")) {
+				waitForElement(plusButtonCompleted);
+				iClick(plusButtonCompleted, linkSRID, "Click on + button: CSO Page: Completed + button");
+			}
+			waitforPageLoadComplete();
+			waitForElement(linkSRID);
+			iClick(linkSRID, null, "Click on SRID link: CSO Page: SRID Link");
+			waitforPageLoadComplete();
+			browser.switchTo().defaultContent();
+		} catch (Exception e) {
+			mstatus = true;
+			e.printStackTrace();
+		}
+
+		return mstatus;
 	}
 	  
 }

@@ -34,7 +34,7 @@ public class ServiceTabPageCM extends Page {
 	
 	
 	
-	@FindBy(xpath = "//a[.='Service']")
+	@FindBy(id="Service")
 	private WebElement tabService;
 	
 	@FindBy(xpath = "//*[@id='mainFrame' and contains(@src,'loadServOrderManagementPanel.exc')]")
@@ -86,8 +86,7 @@ public class ServiceTabPageCM extends Page {
 		try {
 			waitforPageLoadComplete();
 			 if (waitForElement(tabService)){
-				  //jsClick(tabService);
-				  doubleClick(tabService);
+				  tabService.click();
 				  report.reportDoneEvent("Click On Service Tab", "Service Tab Clicked");
 				  waitforPageLoadComplete();
 			  }

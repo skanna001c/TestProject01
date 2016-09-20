@@ -1126,6 +1126,16 @@ public abstract class Page {
 		}
 		return true;
 	}
+	
+	protected boolean isElementDisplayed(WebElement we, int sec) {
+		try {
+			new WebDriverWait(browser, sec).until(ExpectedConditions.elementToBeClickable(we));
+
+		} catch (RuntimeException ex) {
+			return false;
+		}
+		return true;
+	}
 
 	// *****************************************************************************************************************//
 	// General

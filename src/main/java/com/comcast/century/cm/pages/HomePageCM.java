@@ -47,9 +47,8 @@ import net.sourceforge.htmlunit.corejs.javascript.ast.SwitchCase;
 
 public class HomePageCM extends Page {
 
-	
 	protected static String HOME_PAGE_TITLE_CM = "Customer Manager";
-	
+
 	@Override
 	protected boolean isValidPage() {
 		// TODO Auto-generated method stub
@@ -59,10 +58,10 @@ public class HomePageCM extends Page {
 	@Override
 	protected void waitForPageLoad() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
-	public HomePageCM(FrameworkContext context){
+
+	public HomePageCM(FrameworkContext context) {
 		super(context);
 	}
 
@@ -71,169 +70,126 @@ public class HomePageCM extends Page {
 
 	@FindBy(xpath = "//a[.='Customer']")
 	private WebElement tabCustomer;
-	
+
 	@FindBy(xpath = "//*[@id='mainFrame']")
 	private WebElement frameMain;
-	
+
 	@FindBy(xpath = "//*[@id='leftFrame']")
 	private WebElement frameLeft;
-	
-	//*[@id='customerNameCombo-inputEl']
-	
+
+	// *[@id='customerNameCombo-inputEl']
+
 	@FindBy(xpath = "//input[@id='customerNameCombo-inputEl']")
 	private WebElement txtCustomerName;
-	
+
 	@FindBy(xpath = "//*[@id='SEARCH_SERVICEORDERID']")
 	private WebElement txtSRID;
-	
-	//*[@id='splitbutton-1011-btnIconEl']
-	
+
+	// *[@id='splitbutton-1011-btnIconEl']
+
 	@FindBy(xpath = "//span[text()='Search']/following-sibling::span")
 	private WebElement btnSearch;
-	
-	//span[contains(.,'10955195')]
-	
+
+	// span[contains(.,'10955195')]
+
 	@FindBy(xpath = "//span[contains(.,'3900473')]")
 	private WebElement clickSRid;
-	
+
 	@FindBy(xpath = "//div[text()='loading...']")
-	private WebElement elementLoading ;
-	
-	//span[text()='ServiceAcc024143152016']
-	
+	private WebElement elementLoading;
+
+	// span[text()='ServiceAcc024143152016']
+
 	@FindBy(xpath = "//span[contains(.,'ServiceAcc')]")
 	private WebElement clickServiceAcc;
-	
+
 	@FindBy(xpath = "//*[@id='CustomerFrame']")
 	private WebElement frameCustomer;
-	
+
 	@FindBy(css = "select#SEARCH_SERVICESTATUS")
 	private WebElement ddOrderStatus;
-	
+
 	@FindBy(css = "a[onClick*='callLabel']")
 	private WebElement labelCount;
-	
+
 	@FindBy(css = "img[src*='progress']")
 	private WebElement orderStatus;
-	
+
 	private boolean mstatus;
-	
-	
-	public boolean clickOnHomeTab(){
-		  mstatus=true;
-		try{
+
+	public boolean clickOnHomeTab() {
+		mstatus = true;
+		try {
 			waitForElement(tabHome);
 			iClick(tabHome);
 			waitforPageLoadComplete();
-		}catch(Exception e){
-			e.printStackTrace();
-			mstatus=false;
-		}
-		return mstatus;
-	}
-	
-	
-	
-	public boolean NavigateToServiceTab() throws InterruptedException{
-		mstatus = true;
-		 try {
-			waitforPageLoadComplete();
-			 WaitandSwitchToFrame(frameMain);
-			 txtCustomerName.sendKeys("CustName123420862016");
-			 iClick(btnSearch,clickSRid,"Click on search button: Home page: SearchButton");			 
-			 waitforPageLoadComplete();
-			 clickSRid.click();			 
-			 waitforPageLoadComplete();
-			 browser.switchTo().defaultContent();
-			 Thread.sleep(10000);			  
 		} catch (Exception e) {
 			e.printStackTrace();
 			mstatus = false;
 		}
-		 return mstatus;
+		return mstatus;
 	}
-	
-	public boolean searchCustomer(String custName){
+
+	public boolean searchCustomer(String custName) {
 		mstatus = true;
-		try{
+		try {
 			waitforPageLoadComplete();
-			WaitandSwitchToFrame(frameMain);			 
+			WaitandSwitchToFrame(frameMain);
 			txtCustomerName.sendKeys(custName);
-			iClick(btnSearch,null,"Search Customer: Home page: SearchButton");
+			iClick(btnSearch, null, "Search Customer: Home page: SearchButton");
 			waitforPageLoadComplete();
-			browser.findElement(By.xpath("//span[contains(.,'"+custName+"')]")).click();
+			browser.findElement(By.xpath("//span[contains(.,'" + custName + "')]")).click();
 			waitforPageLoadComplete();
 			browser.switchTo().defaultContent();
-		    }
-			catch (Exception e) {
-				e.printStackTrace();
-				mstatus = false;
-			}
-		return mstatus;
+		} catch (Exception e) {
+			e.printStackTrace();
+			mstatus = false;
 		}
-	
-	public boolean searchOrder(String SRID){
+		return mstatus;
+	}
+
+	public boolean searchOrder(String SRID) {
 		mstatus = true;
-		
-		try{
+
+		try {
 			WaitandSwitchToFrame(frameMain);
 			txtSRID.sendKeys(SRID);
-			iClick(btnSearch,null,"Search SR ID: Home page: SearchButton");			
+			iClick(btnSearch, null, "Search SR ID: Home page: SearchButton");
 			waitforPageLoadComplete();
 			waitForElementDisappear(elementLoading);
 			browser.switchTo().defaultContent();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			mstatus = false;
 		}
-		
-		
+
 		return mstatus;
 	}
-	
-	
-	public boolean clickCustomerName(String custName){
+
+	public boolean verifyLabelCountAndOrderStatus() {
 		mstatus = true;
-		
-		try{
-			WaitandSwitchToFrame(frameMain);
-			browser.findElement(By.xpath("//span[contains(.,'"+custName+"')]")).click();
-			waitforPageLoadComplete();
-			browser.switchTo().defaultContent();
-		}catch (Exception e) {
-			e.printStackTrace();
-			mstatus = false;
-		}
-		return mstatus;
-	}
-	
-	public boolean verifyLabelCountAndOrderStatus(){
-		mstatus = true;
-		try{
-			
+		try {
+
 			WaitandSwitchToFrame(frameMain);
 			waitForElement(labelCount);
-			if(labelCount.getText().equalsIgnoreCase("1")){
+			if (labelCount.getText().equalsIgnoreCase("1")) {
 				report.reportDoneEvent("Verify label count", "label count verified");
-			}else report.reportFailEvent("Verify label count", "label count not verified");
-			if(isElementDisplayed(orderStatus)){
-				report.updateTestLog("Verify order status as INPROGRESS", "Status verified",Status.SCREENSHOT);
-			}else report.reportFailEvent("Verify order status as INPROGRESS", "Status not verified");
+			} else
+				report.reportFailEvent("Verify label count", "label count not verified");
+			if (isElementDisplayed(orderStatus)) {
+				report.updateTestLog("Verify order status as INPROGRESS", "Status verified", Status.SCREENSHOT);
+			} else
+				report.reportFailEvent("Verify order status as INPROGRESS", "Status not verified");
 			browser.switchTo().defaultContent();
-			
-		}catch(Exception e){
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			mstatus = false;
 		}
 		return mstatus;
 	}
-	
-	
-	
-	
 
-	
-	}
+}
 
 
 
