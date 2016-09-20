@@ -39,6 +39,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.log4testng.Logger;
 
 import com.comcast.century.commons.CenturyApplication;
 import com.comcast.century.data.LoginDetails;
@@ -71,6 +72,8 @@ public abstract class Page {
 	protected abstract boolean isValidPage();
 
 	protected abstract void waitForPageLoad();
+	
+	//static Logger log = Logger.getLogger(Page.class);
 
 	/**
 	 * Constructor for Page class
@@ -79,6 +82,7 @@ public abstract class Page {
 	 * @param report
 	 */
 	protected Page(WebDriver browser, SeleniumReport report) {
+		//log.info("create page instance");
 		this.browser = browser;
 		this.report = report;
 		PageFactory.initElements(browser, this);
@@ -3121,6 +3125,7 @@ public abstract class Page {
 	public void iClick(WebElement we, WebElement waitForElement, String description) {
 		//System.out.println("inside iclick");
 		//added by harsh to monitor perf transactions
+		//log.info("inside IClick");
 		if(tLogger!=null){
 			
 			tLogger.startTransaction(testName);
@@ -3132,6 +3137,7 @@ public abstract class Page {
 			we.sendKeys(Keys.ENTER);
 		} else{
 			we.click();
+			//log.info("Webelement " + we.getText() + "clicked Description: " + description);
 		}
 		waitforPageLoadComplete();
 		if (!(waitForElement == null)) {		

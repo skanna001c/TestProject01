@@ -21,6 +21,7 @@ import java.util.zip.ZipOutputStream;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.junit.Rule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
@@ -112,6 +113,8 @@ public class ComcastTest {
 	// updated by hbolak01c to pass this context as a single source for all data
 	protected FrameworkContext frameworkContext = new FrameworkContext();
 	
+	static Logger log = Logger.getLogger(ComcastTest.class);
+	
 	public IDataDump getDataDump(){
 		return dataDump;
 	}
@@ -128,6 +131,7 @@ public class ComcastTest {
     
     public void initializeSummaryReport()
     {
+    	PropertyConfigurator.configure("log4j.properties");
 
 		String reportPath=ReportPath.getInstance().getReportPath();
 		ReportSettings reportSettings = new ReportSettings(reportPath, "Execution Summary");
@@ -169,6 +173,7 @@ public class ComcastTest {
     @BeforeTest
     public void beforeTestMain(ITestContext context){
     	
+    	log.info("inside before test");
     	testStatusTable = new Hashtable<String,String>();
     	initializeSummaryReport();
     	testCaseName = context.getCurrentXmlTest().getName();
