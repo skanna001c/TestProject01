@@ -79,13 +79,16 @@ public class SupplementPageServiceTabCM extends Page {
 	@FindBy(css = "div[id*='messagebox']")
 	private WebElement equipmentFeeErrormsg;
 	
+	@FindBy(xpath = "//div[text()='loading...']")
+	private WebElement elementLoading ;
+	
 	
 	public boolean placeSupplements(SupplementInfo supplementInfo) throws IndexOutOfBoundsException {
 		mstatus = true;
 		try {
 			List<WebElement> elementToClick = null;
 			WaitandSwitchToFrame(frameMain);
-			waitForElement(ddValueMoreActions);
+			waitForElementDisappear(elementLoading);
 			switch (supplementInfo.supplementOn) {
 			case "EDI":
 			case "EDI-PRI":
@@ -106,7 +109,6 @@ public class SupplementPageServiceTabCM extends Page {
 			default:
 				System.out.println("Invalid service name");
 			}
-
 			waitForElement(elementToClick.get(0));
 
 			for (int i = 0; i < elementToClick.size(); i++) {
@@ -147,6 +149,7 @@ public class SupplementPageServiceTabCM extends Page {
 			waitForElement(btnGo);
 			btnGo.click();
 			waitforPageLoadComplete();
+			waitForElementDisappear(elementLoading);
 			browser.switchTo().defaultContent();
 		} catch (Exception e) {
 			mstatus = false;
