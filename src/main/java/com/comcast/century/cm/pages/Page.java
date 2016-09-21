@@ -39,7 +39,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.log4testng.Logger;
+//import org.testng.log4testng.Logger;
+import org.apache.log4j.Logger;
 
 import com.comcast.century.commons.CenturyApplication;
 import com.comcast.century.data.LoginDetails;
@@ -3126,7 +3127,8 @@ public abstract class Page {
 	public void iClick(WebElement we, WebElement waitForElement, String description) {
 		//System.out.println("inside iclick");
 		//added by harsh to monitor perf transactions
-		log.info("inside IClick");
+		//log.error("inside iclick");
+		log.info("inside iClick");
 		if(tLogger!=null){
 			
 			tLogger.startTransaction(testName);
@@ -3135,11 +3137,13 @@ public abstract class Page {
 		//String testName = report.getReportSettings().getReportName(); // added by harsh on 9/6/2016 to get the test name
 		if (testSettings.getBrowser().equalsIgnoreCase("iexplore")
 				|| testSettings.getBrowser().equalsIgnoreCase("ie")) {
-			we.sendKeys(Keys.ENTER);
-			log.info("WebElement: " + we.getText() + "clicked Description: " + description);
-		} else{
-			we.click();
 			log.info("Webelement: " + we.getText() + "clicked Description: " + description);
+			we.sendKeys(Keys.ENTER);
+			
+		} else{
+			log.info("Webelement: " + we.getText() + "clicked Description: " + description);
+			we.click();
+			
 		}
 		waitforPageLoadComplete();
 		if (!(waitForElement == null)) {		
