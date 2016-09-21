@@ -131,7 +131,6 @@ public class ComcastTest {
     
     public void initializeSummaryReport()
     {
-    	PropertyConfigurator.configure("log4j.properties");
 
 		String reportPath=ReportPath.getInstance().getReportPath();
 		ReportSettings reportSettings = new ReportSettings(reportPath, "Execution Summary");
@@ -173,6 +172,7 @@ public class ComcastTest {
     @BeforeTest
     public void beforeTestMain(ITestContext context){
     	
+    	PropertyConfigurator.configure("log4j.properties");
     	log.info("inside before test");
     	testStatusTable = new Hashtable<String,String>();
     	initializeSummaryReport();

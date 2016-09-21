@@ -73,7 +73,7 @@ public abstract class Page {
 
 	protected abstract void waitForPageLoad();
 	
-	//static Logger log = Logger.getLogger(Page.class);
+	static Logger log = Logger.getLogger(Page.class);
 
 	/**
 	 * Constructor for Page class
@@ -3125,7 +3125,7 @@ public abstract class Page {
 	public void iClick(WebElement we, WebElement waitForElement, String description) {
 		//System.out.println("inside iclick");
 		//added by harsh to monitor perf transactions
-		//log.info("inside IClick");
+		log.info("inside IClick");
 		if(tLogger!=null){
 			
 			tLogger.startTransaction(testName);
@@ -3135,9 +3135,10 @@ public abstract class Page {
 		if (testSettings.getBrowser().equalsIgnoreCase("iexplore")
 				|| testSettings.getBrowser().equalsIgnoreCase("ie")) {
 			we.sendKeys(Keys.ENTER);
+			log.info("WebElement: " + we.getText() + "clicked Description: " + description);
 		} else{
 			we.click();
-			//log.info("Webelement " + we.getText() + "clicked Description: " + description);
+			log.info("Webelement: " + we.getText() + "clicked Description: " + description);
 		}
 		waitforPageLoadComplete();
 		if (!(waitForElement == null)) {		
