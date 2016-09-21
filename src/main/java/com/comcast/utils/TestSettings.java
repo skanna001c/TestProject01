@@ -441,10 +441,13 @@ public class TestSettings {
 	}
 	
 	public String getSheetName() {
-		if(getEnvironmentToTest().equals("UAT") ||getEnvironmentToTest().equals("UAT_KM") || (getEnvironmentToTest().equals("SOAK"))||(getEnvironmentToTest().equals("PROD"))){
+		if(getEnvironmentToTest().equals("UAT")){
 			return getSettings("uat_SheetName");
 		//}else if((getEnvironmentToTest().equals("SOAK"))||(getEnvironmentToTest().equals("PROD"))){
 		//	return getSettings("soak_SheetName");
+		}
+		else if((getEnvironmentToTest().equals("PROD"))){
+			return getSettings("prod_SheetName");
 		}
 		else if((getEnvironmentToTest().equals("STG"))){
 			return getSettings("stg_SheetName");

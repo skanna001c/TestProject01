@@ -7,7 +7,7 @@
 	</listeners>
 
 
-	<test name="New_Connect_ME_ENS_New_connect">
+	<test name="EDI_New_Connect_Local_Biller_Billertype_CSG">
 		<classes>
 			<class name="com.comcast.century.common.NewConnectTest">
 				<methods>

@@ -83,6 +83,7 @@ public class DataTable {
 		
 		TestSettings testSetting= new TestSettings();
 		String sheetName=testSetting.getSheetName();
+		System.out.println(sheetName);
 		//HSSFSheet sheet = hssfWorkbook.getSheetAt(0); 
 		HSSFSheet sheet = hssfWorkbook.getSheet(sheetName); 	
 		return sheet;

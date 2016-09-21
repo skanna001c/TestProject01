@@ -20,11 +20,11 @@ import com.thoughtworks.selenium.condition.ConditionRunner.Context;
 import com.comcast.utils.ComcastTest;
 import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.DataDump;
+import com.comcast.utils.FrameworkConstants;
 import com.comcast.utils.IDataDump;
 
 public class OrderSummaryTabCMPage extends Page {
 
-	
 	public OrderSummaryTabCMPage(FrameworkContext context){
 		super(context);
 	}
@@ -40,8 +40,6 @@ public class OrderSummaryTabCMPage extends Page {
 		// TODO Auto-generated method stub
 
 	}
-   
-	
 	
 	@FindBy(xpath = "//*[@id='mainFrame' and contains(@src,'loadServOrderManagementPanel.exc')]")
 	private WebElement frameMain;
@@ -205,8 +203,11 @@ public class OrderSummaryTabCMPage extends Page {
 	
 	
 	public boolean submitOrder(OrderSummaryInfo orderSummaryInfo, String eRate) {
-		try {
-
+		try { 
+			
+			 if(testSettings.getEnvironmentToTest().equalsIgnoreCase("PROD")){
+				 this.assignLabelCM("CAT Test Orders");
+			 }
 			this.enterOrderDetails(orderSummaryInfo);
 			if (activityType.getText().equalsIgnoreCase("New Connect")) {
 				this.mrcNrc_Value(orderSummaryInfo);
