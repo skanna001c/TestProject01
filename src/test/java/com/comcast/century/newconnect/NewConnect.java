@@ -1,4 +1,4 @@
-package com.comcast.century.newconnect;
+package com.comcast.century.newConnect;
 
 import com.comcast.century.common.NewConnectTest;
 
