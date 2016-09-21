@@ -983,6 +983,7 @@ public abstract class Page {
 		} catch (RuntimeException ex) {
 			return false;
 		}
+		
 	}
 
 	protected Boolean waitForVisibilityOfElement(WebElement we) {
@@ -3166,6 +3167,7 @@ public abstract class Page {
 	// CustomMethods
 	public void iSendKeys(WebElement we, String text) {
 		do {
+			waitForElement(we);
 			we.click();
 			we.clear();
 			we.sendKeys(text);

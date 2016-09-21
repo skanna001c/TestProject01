@@ -220,7 +220,7 @@ public class WorkOrderTabPageCSO extends Page {
 					txtSrId.clear();
 					iSendKeys(txtSrId, SRID);
 					iClick(btnSearch, null, "Search SRID:Service Order Page:Search button");
-
+					waitForElementDisappear(elementLoading);
 				}
 
 				browser.switchTo().defaultContent();

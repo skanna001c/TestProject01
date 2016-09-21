@@ -1,4 +1,4 @@
-package com.comcast.century.labelFunctionality;
+package com.comcast.century.labelfunctionality;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;

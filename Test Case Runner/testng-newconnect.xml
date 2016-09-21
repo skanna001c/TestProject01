@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="tests" thread-count="6">
+	<listeners>
+		<listener class-name="com.comcast.utils.TestFilter" />
+	</listeners>
+
+	<test name="005-New_E-Rate_Order-EDI">
+		<classes>
+			<class name="com.comcast.century.newconnect.NewConnect">
+				<methods>
+					<include name="createCustomer" />
+					<include name="createServiceAccount" />
+					<include name="createBillingAccount" />
+					<include name="createAddress" />
+					<include name="selectService" />
+					<include name="configureService" />
+					<include name="processService" />
+					<include name="submitOrder" />
+					<include name="Conduct_Site_Survey" />
+					<include name="Obtain_Site_Agreement" />
+					<include name="Conduct_Fiber_Plant_Survey" />
+					<include name="Build_House_Account" />
+					<include name="Complete_Wavelength_Reservation" />
+					<include name="Complete_Site_Build" />
+					<include name="Obtain_Fiber_Plant_Permit" />
+					<include name="Complete_Fiber_Plant_Build" />
+					<include name="Contact_Customer" />
+					<include name="Update_Design" />
+					<include name="Build_Update_Local_Biller_Account" />
+					<include name="Ship_CPE" />
+					<include name="Create_Account_and_Equipment" />
+					<include name="Assign_Design_Info" />
+					<include name="Generate_CPE_Config" />
+					<include name="Generate_Core_Config" />
+					<include name="Load_Core_Config" />
+					<include name="Install_CPE" />
+					<include name="Set_Critical_Dates" />
+					<include name="Day_of_Configs" />
+					<include name="Activate_Service" />
+					<include name="Notify_Customer_of_Service_Installation" />
+					<include name="Complete_Customer_Acceptance_Testing" />
+					<include name="Create_Order_Billing_Package" />
+					<include name="Start_Billing" />
+					<include name="EqFeeStartBilling" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>
+

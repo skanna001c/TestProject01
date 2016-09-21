@@ -1,4 +1,4 @@
-package com.comcast.century.newConnect;
+package com.comcast.century.common;
 
 import java.awt.AWTException;
 import java.lang.reflect.Method;
@@ -75,7 +75,7 @@ import com.comcast.utils.PerfTransaction;
 import bsh.org.objectweb.asm.Label;
 
 public class NewConnectTest extends ComcastTest {
-
+	protected String testcaseName;
 	protected CustomerInfo customerInfo;
 	protected AccountInfo accountInfo;
 	protected ContactInfo contactInfo;
@@ -96,6 +96,7 @@ public class NewConnectTest extends ComcastTest {
 	@BeforeClass
 	public void beforeTest() {
 		loadDataNewConnect();
+		testcaseName = frameworkContext.getTestCaseName();
 	}
 	
 	
@@ -213,7 +214,7 @@ public class NewConnectTest extends ComcastTest {
 			processService();
 		}
 		if((new OrderSummaryTabCMPage(frameworkContext)).submitOrder(orderSummaryInfo,accountInfo.eRate)){
-			getDataDump().setValue("CM_Status", "PASS");
+			startCSO();
 		}else Assert.fail("Submit Order Failed");
 		
 		
@@ -302,6 +303,9 @@ public class NewConnectTest extends ComcastTest {
 			if (new CompleteFiberPlantBuildTaskPage(frameworkContext).closePopup()) {
 				UpdateRespectiveFiberSiteFlows();
 			}
+			
+		} if(testcaseName.equalsIgnoreCase("Tech_Sup_ME-EDI-Tech_Sup-Add_BGP")){
+			startCM();
 		}
 	}
 	
@@ -669,6 +673,18 @@ public class NewConnectTest extends ComcastTest {
     			retryCount++;
     		}
     	}while(!status && retryCount <= 5);
+	}
+	
+	
+	public void startCM() {
+		getDataDump().setValue("CM_Status", "FAIL");
+		getDataDump().setValue("CMLoggedIN", "FAIL");
+
+	}
+	
+	public void startCSO() {
+		getDataDump().setValue("CM_Status", "PASS");
+		getDataDump().setValue("CSOLoggedIN", "FAIL");
 	}
 }
 

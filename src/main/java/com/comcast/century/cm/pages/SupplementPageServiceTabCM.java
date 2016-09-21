@@ -41,7 +41,7 @@ public class SupplementPageServiceTabCM extends Page {
 	private WebElement frameLeft;
 	
 	@FindBy(xpath = "//*[@placeholder='---More Actions---']")
-	private WebElement ddValueMoreActions;
+	private List<WebElement> ddValueMoreActions;
 	
 	@FindBy(xpath = "//li[.='Tech Sup']")
 	private WebElement ddValueTechSup;
@@ -71,7 +71,7 @@ public class SupplementPageServiceTabCM extends Page {
 	private WebElement chkBoxTrunkPRI;
 	
 	@FindBy(xpath = "//*[text()='Go ']/../following-sibling::*")
-	private WebElement btnGo;
+	private List<WebElement> btnGo;
 	
 	@FindBy(xpath = "//span[.='OK']/following-sibling::*")
 	private WebElement btnOK;
@@ -83,7 +83,7 @@ public class SupplementPageServiceTabCM extends Page {
 	private WebElement elementLoading ;
 	
 	
-	public boolean placeSupplements(SupplementInfo supplementInfo) throws IndexOutOfBoundsException {
+	public boolean placeSupplements(SupplementInfo supplementInfo)  {
 		mstatus = true;
 		try {
 			List<WebElement> elementToClick = null;
@@ -109,7 +109,13 @@ public class SupplementPageServiceTabCM extends Page {
 			default:
 				System.out.println("Invalid service name");
 			}
-			waitForElement(elementToClick.get(0));
+		    	try{
+		    		 while(!waitForElement(elementToClick.get(0))){}
+		    	 }
+		    	catch(IndexOutOfBoundsException e)
+		    	{
+		    		Thread.sleep(1000);
+		    	}
 
 			for (int i = 0; i < elementToClick.size(); i++) {
 				elementToClick.get(i).click();
@@ -121,10 +127,17 @@ public class SupplementPageServiceTabCM extends Page {
 				chkBoxEquipmentFee.get(i).click();
 			}
 
-			waitForElement(ddValueMoreActions);
-			iSendKeys(ddValueMoreActions, supplementInfo.supplementType);
-			waitForElement(btnGo);
-			btnGo.click();
+			
+			if (supplementInfo.supplementType.matches("Tech Sup|Admin Sup|Cancel Sup")) {
+				iSendKeys(ddValueMoreActions.get(0), supplementInfo.supplementType);
+				waitForElement(btnGo.get(0));
+				btnGo.get(0).click();
+			} else if (supplementInfo.supplementType.matches("Change|Disconnect")) {
+				iSendKeys(ddValueMoreActions.get(1), supplementInfo.supplementType);
+				waitForElement(btnGo.get(1));
+				btnGo.get(1).click();
+			}
+			
 
 			// EquipmentFee error message validations
 			waitForElement(equipmentFeeErrormsg);
@@ -146,8 +159,13 @@ public class SupplementPageServiceTabCM extends Page {
 			}
 
 			// Place supplements
-			waitForElement(btnGo);
-			btnGo.click();
+			if (supplementInfo.supplementType.matches("Tech Sup|Admin Sup|Cancel Sup")) {
+				waitForElement(btnGo.get(0));
+				btnGo.get(0).click();
+			} else if (supplementInfo.supplementType.matches("Change|Disconnect")) {
+				waitForElement(btnGo.get(1));
+				btnGo.get(1).click();
+			}
 			waitforPageLoadComplete();
 			waitForElementDisappear(elementLoading);
 			browser.switchTo().defaultContent();

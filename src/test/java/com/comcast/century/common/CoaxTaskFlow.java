@@ -1,4 +1,4 @@
-package com.comcast.century.newConnect;
+package com.comcast.century.common;
 
 import java.awt.AWTException;
 import java.lang.reflect.Method;

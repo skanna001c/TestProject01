@@ -1,4 +1,4 @@
-package com.comcast.century.labelFunctionality;
+package com.comcast.century.labelfunctionality;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 
 import com.comcast.century.cm.pages.HomePageCM;
 import com.comcast.century.cm.pages.OrderSummaryTabCMPage;
+import com.comcast.century.common.NewConnectTest;
 import com.comcast.century.cso.pages.ConductSiteSurveyTaskPage;
 import com.comcast.century.cso.pages.ManageTab;
 import com.comcast.century.cso.pages.SiteLevelTasks;
@@ -14,7 +15,6 @@ import com.comcast.century.cso.pages.WorkOrderTabPageCSO;
 import com.comcast.century.cso.pages.WorkOrderTabServiceRequestPage;
 import com.comcast.century.data.AccountInfo;
 import com.comcast.century.data.OrderSummaryInfo;
-import com.comcast.century.newConnect.NewConnectTest;
 import com.comcast.utils.ComcastTest;
 import com.comcast.utils.PerfTransaction;
 
