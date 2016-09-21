@@ -13,15 +13,19 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import org.openqa.selenium.WebDriver;
+
 import com.comcast.reporting.HtmlReport;
 import com.comcast.reporting.Util;
+import com.comcast.utils.ComcastTest;
 
 
 /**
  * Class to encapsulate all the reporting features of the framework
  */
 public class Report
-{
+{	
+	protected WebDriver browser;
 	private ReportSettings reportSettings;
 	public ReportSettings getReportSettings() {
 		return reportSettings;
@@ -226,7 +230,7 @@ public class Report
 		Dimension screenSize = toolkit.getScreenSize();
 		Rectangle rectangle = new Rectangle(0, 0, screenSize.width, screenSize.height);
 		Robot robot = null;
-		
+		browser.manage().window().maximize();
 		try {
 			robot = new Robot();
 		} catch (AWTException e) {

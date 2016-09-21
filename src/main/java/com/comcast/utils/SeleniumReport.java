@@ -15,7 +15,7 @@ import com.comcast.reporting.*;
 
 
 public class SeleniumReport extends Report {
-	private WebDriver driver;
+	
 	
 	/**
 	 * Function to set the {@link WebDriver} object
@@ -24,7 +24,7 @@ public class SeleniumReport extends Report {
 	 *            The {@link WebDriver} object
 	 */
 	public void setDriver(WebDriver driver) {
-		this.driver = driver;
+		this.browser = driver;
 	}
 
 	/**
@@ -61,11 +61,11 @@ public class SeleniumReport extends Report {
 	
 	@Override
 	protected void takeScreenshot(String screenshotPath) {
-		if (driver == null) {
+		if (browser == null) {
 			throw new FrameworkException("Report.driver is not initialized!");
 		}
 
-		File scrFile = ((TakesScreenshot) driver)
+		File scrFile = ((TakesScreenshot) browser)
 				.getScreenshotAs(OutputType.FILE);
 
 		try {
