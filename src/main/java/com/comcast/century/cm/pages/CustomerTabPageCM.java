@@ -282,18 +282,25 @@ public class CustomerTabPageCM extends Page {
 	  
 	  public boolean addressInformationValid(CustomerInfo customerInfo) throws InterruptedException{
 		  mstatus = true;
+		  String addressLine2;
 		  try {
 			waitForElement(txtAddressLine1);
 			  txtAddressLine1.sendKeys(customerInfo.addressLine1);
 			  report.reportDoneEvent("Enter Address Line 1", "Address Line 1 Entered as ->" +customerInfo.addressLine1);
-			  String addressLine2 = customerInfo.addressLine2+" "+getTimestamp();
+			  if(testName.equalsIgnoreCase("EDI_New_Connect_Local_Biller_Billertype_CSG")){
+				  addressLine2=customerInfo.addressLine2;
+				}
+				else
+				{	
+					addressLine2=customerInfo.addressLine2 + " " + getTimestamp();
+				}
+			 
 			  txtAddressLine2.sendKeys(addressLine2);
 			  report.reportDoneEvent("Enter Address Line 2", "Address Line 2 Entered as ->" + addressLine2);
 			  ddtxtZipCode.sendKeys(customerInfo.zipCode);
 			  report.reportDoneEvent("Enter Zipcode", "Zipcode Entered as ->" +customerInfo.zipCode);
 			  imgZipcodeSearch.click();
 			  waitforPageLoadComplete();
-			  //WaitandSwitchToFrame(frameCondition);
 			  while(!WaitandSwitchToFrame(frameCondition)){}			  
 			  while(!waitForElement(txtCity)){}
 			  while(!iterateThroughtableAndSelectCity(customerInfo.city)){};
@@ -303,15 +310,14 @@ public class CustomerTabPageCM extends Page {
 				  WaitandSwitchToFrame(frameCustomer);
 				  }
 			  waitForElement(btnCreate);
-			  //btnCreate.click();	
-			  iClick(btnCreate,btnSelectValidSite,"CreateCustomer: Customer Page: CreateButton");//updated by harsh on 9/2/2016
+			  iClick(btnCreate,null,"CreateCustomer: Customer Page: CreateButton");//updated by harsh on 9/2/2016
 			  waitforPageLoadComplete();
-			  waitForElement(btnSelectValidSite);
+			  if( waitForElement(btnSelectValidSite,5)){
 			  btnSelectValidSite.click();
 			  waitForElement(btnContinue);
-			  //btnContinue.click();
-			  iClick(btnContinue,txtAddressLine2,"CreateCustomer: Address Verification: Continue_Button"); //updated by harsh on 9/2/2016
+			  iClick(btnContinue,null,"CreateCustomer: Address Verification: Continue_Button"); //updated by harsh on 9/2/2016
 			  waitforPageLoadComplete();
+			  }
 			  browser.switchTo().defaultContent();
 			  report.updateTestLog("Create Customer", "Customer Created Successfully", Status.SCREENSHOT);
 		} catch (Exception e) {

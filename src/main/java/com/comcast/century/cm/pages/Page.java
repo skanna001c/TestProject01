@@ -47,6 +47,7 @@ import com.comcast.logging.logtransactions.LoggerMain;
 import com.comcast.reporting.Status;
 import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.DataTable;
+import com.comcast.utils.IDataDump;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
 import com.comcast.utils.TestSettingsSingleton;
@@ -61,13 +62,15 @@ public abstract class Page {
 	public CenturyApplication einsteinApplication;
 	public LogInPage logInPage;
 	protected DataTable dataTable;
-	private TestSettings testSettings;
-	private Properties properties;
+	protected TestSettings testSettings;
+	protected Properties properties;
+	protected IDataDump dataDump;
 	private String env;
 	private String browserVersion;
 	protected String title;
 	private LoggerMain tLogger;
-	private String testName;
+	protected String testName;
+	
 
 	protected abstract boolean isValidPage();
 
@@ -106,6 +109,8 @@ public abstract class Page {
 		this.tLogger = context.getTransactionLogger();
 		this.testSettings = context.getSettings();
 		this.testName = context.getTestCaseName();
+		this.dataDump=context.getDataDump();
+		
 		PageFactory.initElements(browser, this);
 		// waitForPageLoad();
 		verifyApplicationInCorrectPage();

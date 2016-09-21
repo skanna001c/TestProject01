@@ -235,11 +235,12 @@ public class AddressTabPageCM extends Page {
 		this.headEndInformation(siteInfo);
 		this.clickCreateButton();
 		waitforPageLoadComplete();
-		waitForElement(btnSelectValidSite);
+		if(waitForElement(btnSelectValidSite,5)){
 		btnSelectValidSite.click();
 		waitForElement(btnContinue);
 		iClick(btnContinue, null, "Select City and continue: Site Address Page: ContinueButton");	
 		waitforPageLoadComplete();
+		}
 		report.updateTestLog("Create Address", "Address Created Successfully", Status.SCREENSHOT);
 		browser.switchTo().defaultContent();
 		this.clickAddContact();
@@ -278,11 +279,18 @@ public class AddressTabPageCM extends Page {
 	
      public boolean siteAddressValid(SiteInfo siteInfo) throws InterruptedException{
 		mstatus = true;
+		String siteAddress2;
 		try{				
 			waitForElement(txtSiteAddressLine1);
 			txtSiteAddressLine1.sendKeys(siteInfo.siteAddress1);
 			report.reportDoneEvent("Enter Site Address Line 1", "Entered Site Address Line 1 as->" +siteInfo.siteAddress1);
-			String siteAddress2 = siteInfo.siteAddress2 + " " + getTimestamp();
+			if(testName.equalsIgnoreCase("EDI_New_Connect_Local_Biller_Billertype_CSG")){
+				siteAddress2=siteInfo.siteAddress2;
+			}
+			else
+			{	
+				 siteAddress2 = siteInfo.siteAddress2 + " " + getTimestamp();
+			}
 			txtSiteAddressLine2.sendKeys(siteAddress2);
 			report.reportDoneEvent("Enter Site Address Line 2", "Entered Site Address Line 2 as->" + siteAddress2);
 			waitForElement(ddtxtZipCode);

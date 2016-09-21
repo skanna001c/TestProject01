@@ -408,7 +408,7 @@ public class ProcessTabPageCM extends Page {
 				 waitForElement(ddtxtSURCILI);
 				 ddtxtSURCILI.clear();
 				 ddtxtSURCILI.click();	 
-				 ddtxtSURCILI.sendKeys(processInfo.surCILI1);		 
+				 ddtxtSURCILI.sendKeys(processInfo.surCILI);		 
 				 //Thread.sleep(10000);
 				/* ddValue(ddtxtSURCILI,processInfo.surCILI1);			 
 				 WebElement ddvalueSURCILI1 = browser.findElement(By.xpath("//li[text()='"+processInfo.surCILI1+"']"));
@@ -489,7 +489,7 @@ public class ProcessTabPageCM extends Page {
 				 waitForElement(ddtxtSURCILI);
 				 ddtxtSURCILI.clear();
 				 ddtxtSURCILI.click();	 
-				 ddtxtSURCILI.sendKeys(processInfo.surCILI2);					 				 
+				 ddtxtSURCILI.sendKeys(processInfo.surCILI);					 				 
 				 waitForElement(txtUNInumber);
 				 UNINo2=randomNumber(5);
 				 txtUNInumber.sendKeys(UNINo2);
@@ -542,7 +542,7 @@ public class ProcessTabPageCM extends Page {
 				 waitForElement(ddtxtSURCILI);
 				 ddtxtSURCILI.clear();
 				 ddtxtSURCILI.click();	 
-				 ddtxtSURCILI.sendKeys(processInfo.surCILI3);					 				 
+				 ddtxtSURCILI.sendKeys(processInfo.surCILI);					 				 
 				 waitForElement(txtUNInumber);
 				 waitForElement(txtUNInumber);
 				 UNINo3=randomNumber(5);
@@ -593,7 +593,7 @@ public class ProcessTabPageCM extends Page {
 				 waitForElement(ddtxtSURCILI);
 				 ddtxtSURCILI.clear();
 				 ddtxtSURCILI.click();	 
-				 ddtxtSURCILI.sendKeys(processInfo.surCILI1);	
+				 ddtxtSURCILI.sendKeys(processInfo.surCILI);	
 				/* ddValue(ddtxtSURCILI,processInfo.surCILI1);
 				 WebElement ddvalueSURCILI1 = browser.findElement(By.xpath("//li[text()='"+processInfo.surCILI1+"']"));
 				 waitForElement(ddvalueSURCILI1);
