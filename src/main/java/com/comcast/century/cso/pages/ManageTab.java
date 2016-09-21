@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.cm.pages.Page;
@@ -133,10 +134,15 @@ public class ManageTab extends Page {
 			waitForElement(textLabelName);
 			labelName="CATTest_Label"+randomNumber(5);
 			textLabelName.sendKeys(labelName);
-			sleep(5000);
-			/*jsClick(btnLabelColor);
-			while(!waitForElement(labelColor.get(2))){}
-			iClick(labelColor.get(2));*/
+            int btnWidth = Integer.parseInt(btnLabelColor.getCssValue("width").substring(0, 2));
+            int yOffset = 5;
+            int xoffset = btnWidth - 5;
+            Actions btnBuilder = new Actions(browser);
+            btnBuilder.moveToElement(btnLabelColor, xoffset ,yOffset );
+            btnBuilder.click().perform();
+            int rn = Integer.parseInt(randomNumber(1));
+            while(!waitForElement(labelColor.get(rn))){}
+            iClick(labelColor.get(rn));
 			waitForElement(ddTextLabelPriority);
 			ddValueSelect(ddTextLabelPriority,ddValueLabelPriority,"2");
 			iClick(btnCreateLabel);

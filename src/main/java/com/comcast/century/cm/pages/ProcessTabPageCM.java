@@ -7,6 +7,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.ClickAndHoldAction;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
@@ -440,8 +441,8 @@ public class ProcessTabPageCM extends Page {
 			mstatus = true;
 			
 			 try {
-				waitForElement(LinkBGP);
-				 LinkBGP.click();
+				while(!waitForElement(LinkBGP)){}
+				clickndRelease(LinkBGP);
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(btnSave);
 				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
@@ -484,12 +485,11 @@ public class ProcessTabPageCM extends Page {
 				 browser.switchTo().defaultContent();
 				 WaitandSwitchToFrame(frameMain);
 				 new Select(TransportType).selectByVisibleText(processInfo.UNITransportType2);
-				 new Select(ddAggregatorNeeded).selectByVisibleText("No");
+				 new Select(ddAggregatorNeeded).selectByVisibleText("No");				 
 				 waitForElement(ddtxtSURCILI);
-				 ddValue(ddtxtSURCILI,processInfo.surCILI2);
-				 WebElement ddvalueSURCILI2 = browser.findElement(By.xpath("//li[text()='"+processInfo.surCILI2+"']"));
-				 waitForElement(ddvalueSURCILI2);
-				 ddvalueSURCILI2.click();
+				 ddtxtSURCILI.clear();
+				 ddtxtSURCILI.click();	 
+				 ddtxtSURCILI.sendKeys(processInfo.surCILI2);					 				 
 				 waitForElement(txtUNInumber);
 				 UNINo2=randomNumber(5);
 				 txtUNInumber.sendKeys(UNINo2);
@@ -540,10 +540,10 @@ public class ProcessTabPageCM extends Page {
 				 new Select(TransportType).selectByVisibleText(processInfo.UNITransportType3);
 				 new Select(ddAggregatorNeeded).selectByVisibleText("No");
 				 waitForElement(ddtxtSURCILI);
-				 ddValue(ddtxtSURCILI,processInfo.surCILI3);
-				 WebElement ddvalueSURCILI3 = browser.findElement(By.xpath("//li[text()='"+processInfo.surCILI3+"']"));
-				 waitForElement(ddvalueSURCILI3);
-				 ddvalueSURCILI3.click();
+				 ddtxtSURCILI.clear();
+				 ddtxtSURCILI.click();	 
+				 ddtxtSURCILI.sendKeys(processInfo.surCILI3);					 				 
+				 waitForElement(txtUNInumber);
 				 waitForElement(txtUNInumber);
 				 UNINo3=randomNumber(5);
 				 txtUNInumber.sendKeys(UNINo3);

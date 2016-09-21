@@ -16,11 +16,15 @@ import com.comcast.century.data.AccountInfo;
 import com.comcast.century.data.OrderSummaryInfo;
 import com.comcast.reporting.Status;
 import com.comcast.utils.SeleniumReport;
+import com.thoughtworks.selenium.condition.ConditionRunner.Context;
+import com.comcast.utils.ComcastTest;
 import com.comcast.utils.ComcastTest.FrameworkContext;
+import com.comcast.utils.DataDump;
+import com.comcast.utils.IDataDump;
 
 public class OrderSummaryTabCMPage extends Page {
 
-		
+	
 	public OrderSummaryTabCMPage(FrameworkContext context){
 		super(context);
 	}
@@ -36,7 +40,9 @@ public class OrderSummaryTabCMPage extends Page {
 		// TODO Auto-generated method stub
 
 	}
-
+   
+	
+	
 	@FindBy(xpath = "//*[@id='mainFrame' and contains(@src,'loadServOrderManagementPanel.exc')]")
 	private WebElement frameMain;
 
@@ -188,6 +194,9 @@ public class OrderSummaryTabCMPage extends Page {
 	@FindBy(xpath = "//div[contains(.,'OrderManagementBAT1 has assigned CATTest_Label')]")
 	private WebElement msgLabelNotes ;
 	
+	@FindBy(xpath = "//b[.='Activity Type']/../following-sibling::td[1]")
+	private WebElement activityType ;
+	
 	
 	
 	private boolean mstatus=true;
@@ -195,17 +204,18 @@ public class OrderSummaryTabCMPage extends Page {
 	private String relatedOrderIDValue;
 	
 	
-	public boolean submitOrder(OrderSummaryInfo orderSummaryInfo,String eRate){
-		try{
+	public boolean submitOrder(OrderSummaryInfo orderSummaryInfo, String eRate) {
+		try {
 
 			this.enterOrderDetails(orderSummaryInfo);
-			this.mrcNrc_Value(orderSummaryInfo);
-			if(eRate.equalsIgnoreCase("Yes")){
-				this.Attachments(orderSummaryInfo);
+			if (activityType.getText().equalsIgnoreCase("New Connect")) {
+				this.mrcNrc_Value(orderSummaryInfo);
+				if (eRate.equalsIgnoreCase("Yes")) {
+					this.Attachments(orderSummaryInfo);
+				}
 			}
 			this.ClickSubmitOrderButton();
-			
-		}catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			mstatus = false;
 		}
@@ -311,7 +321,6 @@ public class OrderSummaryTabCMPage extends Page {
 			waitForElement(dtCustomerOrderSig);
 			dtCustomerOrderSig.click();
 			btnToday.get(0).click();
-			waitForElement(ddtaxJurisdiction);
 			new Select(ddtaxJurisdiction).selectByVisibleText(orderSummaryInfo.taxJurisdiction);
 			report.reportDoneEvent("Select Tax Jurisdiction",
 					"Select Tax Jurisdiction as->" + orderSummaryInfo.taxJurisdiction);
@@ -320,19 +329,15 @@ public class OrderSummaryTabCMPage extends Page {
 					"Selected Sales Channel as->" + orderSummaryInfo.salesChannel);
 			new Select(ddsoldRegion).selectByVisibleText(orderSummaryInfo.soldRegion);
 			report.reportDoneEvent("Select Sold Region", "Selected Sold Region as->" + orderSummaryInfo.soldRegion);
+			waitForElement(dtSalesOrderAcceptance);
 			dtSalesOrderAcceptance.click();
 			btnToday.get(1).click();
 			dtSalesOrderSubmitted.click();
 			btnToday.get(2).click();
-			waitForElement(txtsalesOrderNumber);
-			String salesOrderNumber = randomNumber(5);
-			txtsalesOrderNumber.sendKeys(salesOrderNumber);
-			report.reportDoneEvent("Enter Sales Order Number", "Entered Sales Order Number as->" + salesOrderNumber);
-			waitForElement(txtsalesforceopportunityid);
-			txtsalesforceopportunityid.sendKeys(orderSummaryInfo.opportunityId);
+			iSendKeys(txtsalesOrderNumber, randomNumber(5));
+			iSendKeys(txtsalesforceopportunityid,orderSummaryInfo.opportunityId );
 			report.reportDoneEvent("Enter Opportunity ID",
 					"Entered Opportunity ID as->" + orderSummaryInfo.opportunityId);
-			waitForElement(btnSalesOrderId);
 			btnSalesOrderId.click();
 		} catch (Exception e) {
 			mstatus = false;

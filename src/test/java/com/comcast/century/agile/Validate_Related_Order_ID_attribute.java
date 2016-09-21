@@ -1,9 +1,10 @@
-package com.comcast.century.newConnect;
+package com.comcast.century.agile;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.comcast.century.cm.pages.OrderSummaryTabCMPage;
+import com.comcast.century.common.NewConnectTest;
 import com.comcast.century.cso.pages.ConductSiteSurveyTaskPage;
 import com.comcast.century.cso.pages.SiteLevelTasks;
 import com.comcast.utils.PerfTransaction;

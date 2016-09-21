@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.ClickAndHoldAction;
 import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.data.ServiceInfo;
@@ -40,6 +41,9 @@ public class FeatureTabPageCM extends Page {
 	@FindBy(xpath = "//b[text()='BGP Configuration']/preceding-sibling::input[@type='checkbox']")
 	private WebElement chkBoxBGP ;
 	
+	@FindBy(xpath = "//span[.='Feature']")
+	private WebElement tabFeature;
+	
 	@FindBy(xpath = ".//*[@value='Continue' and @type='button']")
 	private WebElement btnContinue;
 	
@@ -65,6 +69,31 @@ public class FeatureTabPageCM extends Page {
 	private WebElement txtAdditionalAlternateTN ;
 	
 	private boolean mstatus;
+	
+	public boolean clickOnFeatureTab(){
+		try{
+			WaitandSwitchToFrame(frameMain);
+			waitForElementDisappear(elementLoading);
+			waitForElement(tabFeature);
+			clickndRelease(tabFeature);
+			waitforPageLoadComplete();
+			browser.switchTo().defaultContent();
+		}catch (Exception e) {
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	public boolean selectBGP(){
+		try{
+			WaitandSwitchToFrame(frameMain);
+			this.BGP();
+			this.ClickOnContinueButton();
+		}catch (Exception e) {
+			mstatus = false;
+		}
+		return mstatus;
+	}
 	
 	public boolean BGP(){
 		mstatus = true;

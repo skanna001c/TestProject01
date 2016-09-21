@@ -9,7 +9,7 @@
 
 	<test name="New_Connect_ME_ENS_New_connect">
 		<classes>
-			<class name="com.comcast.century.newConnect.NewConnectTest">
+			<class name="com.comcast.century.common.NewConnectTest">
 				<methods>
 					<include name="createCustomer" />
 					<include name="createServiceAccount" />
@@ -36,7 +36,7 @@
 
 	<test name="New_Connect_ME_EDI_New_connect">
 		<classes>
-			<class name="com.comcast.century.newConnect.NewConnectTest">
+			<class name="com.comcast.century.common.NewConnectTest">
 				<methods>
 					<include name="createCustomer" />
 					<include name="createServiceAccount" />
@@ -78,7 +78,7 @@
 
 	<test name="New_Connect_ME_EDI_ERATE_New_connect">
 		<classes>
-			<class name="com.comcast.century.newConnect.NewConnectTest">
+			<class name="com.comcast.century.common.NewConnectTest">
 				<methods>
 					<include name="createCustomer" />
 					<include name="createServiceAccount" />
@@ -119,7 +119,7 @@
 
 	<test name="New_Connect_ME_EDI_BGP_New_connect">
 		<classes>
-			<class name="com.comcast.century.newConnect.NewConnectTest">
+			<class name="com.comcast.century.common.NewConnectTest">
 				<methods>
 					<include name="createCustomer" />
 					<include name="createServiceAccount" />
@@ -160,7 +160,7 @@
 
 	<test name="New_Connect_ME_EPL_New_connect">
 		<classes>
-			<class name="com.comcast.century.newConnect.NewConnectTest">
+			<class name="com.comcast.century.common.NewConnectTest">
 				<methods>
 					<include name="createCustomer" />
 					<include name="createServiceAccount" />
@@ -201,7 +201,7 @@
 
 	<test name="003-ME_EPL-NewConnect">
 		<classes>
-			<class name="com.comcast.century.newConnect.CoaxTaskFlow">
+			<class name="com.comcast.century.common.CoaxTaskFlow">
 				<methods>
 					<include name="createCustomer" />
 					<include name="createServiceAccount" />
@@ -249,7 +249,7 @@
 
 	<test name="New_Connect_ME_EDI_ToF_New_connect">
 		<classes>
-			<class name="com.comcast.century.newConnect.NewConnectTest">
+			<class name="com.comcast.century.common.NewConnectTest">
 				<methods>
 					<include name="createCustomer" />
 					<include name="createServiceAccount" />
@@ -290,7 +290,7 @@
 
 	<test name="New_Connect_ME_EVPL_New_connect">
 		<classes>
-			<class name="com.comcast.century.newConnect.NewConnectTest">
+			<class name="com.comcast.century.common.NewConnectTest">
 				<methods>
 					<include name="createCustomer" />
 					<include name="createServiceAccount" />

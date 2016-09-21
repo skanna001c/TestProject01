@@ -138,6 +138,8 @@ public class HomePageCM extends Page {
 			txtCustomerName.sendKeys(custName);
 			iClick(btnSearch, null, "Search Customer: Home page: SearchButton");
 			waitforPageLoadComplete();
+			waitForElementDisappear(elementLoading);
+			waitUntilElementPresent(By.xpath("//span[contains(.,'" + custName + "')]"), 120);
 			browser.findElement(By.xpath("//span[contains(.,'" + custName + "')]")).click();
 			waitforPageLoadComplete();
 			browser.switchTo().defaultContent();
