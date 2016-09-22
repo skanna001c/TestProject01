@@ -420,10 +420,8 @@ public class ProcessTabPageCM extends Page {
 				 WebElement ddvalueSURCILI1 = browser.findElement(By.xpath("//li[text()='"+processInfo.surCILI1+"']"));
 				 waitForElement(ddvalueSURCILI1);
 				 ddvalueSURCILI1.click();*/
-				 waitForElement(txtUNInumber);
-				 txtUNInumber.clear();
 				 UNINo1 = randomNumber(5);
-				 txtUNInumber.sendKeys(UNINo1);				 
+				 iSendKeys(txtUNInumber, UNINo1);			 
 				 new Select(ddUNIPortSpeed).selectByVisibleText("10/100");
 				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 report.reportDoneEvent("Save UNI Configuration", "UNI Configuration Saved");
@@ -448,7 +446,7 @@ public class ProcessTabPageCM extends Page {
 			
 			 try {
 				while(!waitForElement(LinkBGP)){}
-				jsClick(LinkBGP);
+				 jsClick(LinkBGP);
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(btnSave);
 				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
@@ -496,9 +494,8 @@ public class ProcessTabPageCM extends Page {
 				 ddtxtSURCILI.clear();
 				 ddtxtSURCILI.click();	 
 				 ddtxtSURCILI.sendKeys(processInfo.surCILI);					 				 
-				 waitForElement(txtUNInumber);
 				 UNINo2=randomNumber(5);
-				 txtUNInumber.sendKeys(UNINo2);
+				 iSendKeys(txtUNInumber, UNINo2);
 				 new Select(ddUNIPortSpeed).selectByVisibleText("10/100");
 				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 report.reportDoneEvent("Save UNI~2 Configuration", "UNI~2 Configuration Saved");
@@ -549,10 +546,8 @@ public class ProcessTabPageCM extends Page {
 				 ddtxtSURCILI.clear();
 				 ddtxtSURCILI.click();	 
 				 ddtxtSURCILI.sendKeys(processInfo.surCILI);					 				 
-				 waitForElement(txtUNInumber);
-				 waitForElement(txtUNInumber);
 				 UNINo3=randomNumber(5);
-				 txtUNInumber.sendKeys(UNINo3);
+				 iSendKeys(txtUNInumber, UNINo3);
 				 new Select(ddUNIPortSpeed).selectByVisibleText("10/100");;
 				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 report.reportDoneEvent("Save UNI~3 Configuration", "UNI~3 Configuration Saved");
@@ -575,7 +570,6 @@ public class ProcessTabPageCM extends Page {
 					 if (WaitandSwitchToFrame(frameCondition.get(0))){ //This UNI open first time, so the frame index will be 0
 						 waitForElement(txtSiteName);
 						 jsSendKeys(txtSiteName,SiteName);
-						 //txtSiteName.sendKeys(Site);
 						 waitForElement(btnSearch);
 						 btnSearch.click();
 						 waitForElementDisappear(elementLoading);
@@ -596,7 +590,7 @@ public class ProcessTabPageCM extends Page {
 					 ddtxtSURCILI.sendKeys(processInfo.surCILI);				 				 
 					 waitForElement(txtUNInumber);				 
 					 UNINo4=randomNumber(5);
-					 txtUNInumber.sendKeys(UNINo4);
+					 iSendKeys(txtUNInumber, UNINo4);					 
 					 new Select(ddUNIPortSpeed).selectByVisibleText("10/100");;
 					 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 					 report.reportDoneEvent("Save UNI~4 Configuration", "UNI~4 Configuration Saved");
@@ -649,8 +643,7 @@ public class ProcessTabPageCM extends Page {
 				 waitForElement(ddvalueSURCILI1);
 				 ddvalueSURCILI1.click();*/
 				 waitForElement(txtUNInumber);
-				 txtUNInumber.clear();
-				 txtUNInumber.sendKeys(randomNumber(5));
+				 iSendKeys(txtUNInumber, randomNumber(5));
 				 new Select(ddUNIPortSpeed).selectByVisibleText("10/100");
 				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 report.reportDoneEvent("Save UNI Configuration", "UNI Configuration Saved");

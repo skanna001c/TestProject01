@@ -341,11 +341,14 @@ public class OrderSummaryTabCMPage extends Page {
 			btnToday.get(1).click();
 			dtSalesOrderSubmitted.click();
 			btnToday.get(2).click();
-			iSendKeys(txtsalesOrderNumber, randomNumber(5));
-			iSendKeys(txtsalesforceopportunityid,orderSummaryInfo.opportunityId );
-			report.reportDoneEvent("Enter Opportunity ID",
-					"Entered Opportunity ID as->" + orderSummaryInfo.opportunityId);
-			btnSalesOrderId.click();
+			if (activityType.getText().equalsIgnoreCase("New Connect")){
+				iSendKeys(txtsalesOrderNumber, randomNumber(5));
+			    iSendKeys(txtsalesforceopportunityid,orderSummaryInfo.opportunityId );
+			    report.reportDoneEvent("Enter Opportunity ID",
+						"Entered Opportunity ID as->" + orderSummaryInfo.opportunityId);
+				btnSalesOrderId.click();
+			}
+			
 		} catch (Exception e) {
 			mstatus = false;
 		}

@@ -44,6 +44,9 @@
 					<include name="Generate_CPE_Config" />
 					<include name="Load_Core_Config" />
 					<include name="Install_CPE" />
+					<include name="searchSRID" />
+					<include name="initiateSupplements" />
+					<include name="submitOrderSupplements" />
 				</methods>
 			</class>
 		</classes>

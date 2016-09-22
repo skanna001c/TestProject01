@@ -1,4 +1,4 @@
-package com.comcast.century.TechSup;
+package com.comcast.century.techsup;
 
 import java.awt.AWTException;
 
@@ -20,7 +20,6 @@ import com.comcast.utils.PerfTransaction;
 public class Techsup extends Supplements {
  
 	@Test(priority = 30000)
-	@PerfTransaction(name = "AddBGPandSubmitOrder")
 	public void addBGP() throws InterruptedException {		
 		new FeatureTabPageCM(frameworkContext).clickOnFeatureTab();
 		new FeatureTabPageCM(frameworkContext).selectBGP();
@@ -31,13 +30,13 @@ public class Techsup extends Supplements {
 	
 	@Test(priority = 36000)
 	public void Contact_Customer_Supp() throws InterruptedException, AWTException {
-		new NewConnectTest().Contact_Customer();
+		Contact_Customer();
 
 	}
 
 	@Test(priority = 37000)
 	public void Update_Design_Supp() throws InterruptedException, AWTException {
-		new NewConnectTest().Update_Design();
+		Update_Design();
 
 	}
 	

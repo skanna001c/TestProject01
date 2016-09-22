@@ -98,9 +98,8 @@ public class FeatureTabPageCM extends Page {
 	public boolean BGP(){
 		mstatus = true;
 		try {
-			if(waitForElement(chkBoxBGP)){
+			while(!waitForElement(chkBoxBGP)){}
 				chkBoxBGP.click();
-			}
 		} catch (Exception e) {
 			mstatus = false;
 		}

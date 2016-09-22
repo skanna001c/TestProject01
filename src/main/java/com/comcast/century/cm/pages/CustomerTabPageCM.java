@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.ClickAndHoldAction;
 import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.data.CustomerInfo;
@@ -287,7 +288,7 @@ public class CustomerTabPageCM extends Page {
 			waitForElement(txtAddressLine1);
 			  txtAddressLine1.sendKeys(customerInfo.addressLine1);
 			  report.reportDoneEvent("Enter Address Line 1", "Address Line 1 Entered as ->" +customerInfo.addressLine1);
-			  if(testName.equalsIgnoreCase("EDI_New_Connect_Local_Biller_Billertype_CSG")){
+			  if(testName.equalsIgnoreCase("EDI-New_connect_Local_Biller_with_Biller_type-CSG")){
 				  addressLine2=customerInfo.addressLine2;
 				}
 				else

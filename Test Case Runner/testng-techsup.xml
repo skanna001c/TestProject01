@@ -38,35 +38,41 @@
 	</test>
 
 	<test name="Tech_Supp_ Add_BGP_to_EDI-PRI_Service">
-		<classes>
-			<class name="com.comcast.century.techsup.Techsup">
-				<methods>
-					<include name="createCustomer" />
-					<include name="createServiceAccount" />
-					<include name="createBillingAccount" />
-					<include name="createAddress" />
-					<include name="selectService" />
-					<include name="configureService" />
-					<include name="processService" />
-					<include name="submitOrder" />
-					<include name="Conduct_Site_Survey" />
-					<include name="Obtain_Site_Agreement" />
-					<include name="Conduct_Fiber_Plant_Survey" />
-					<include name="Build_House_Account" />
-					<include name="Complete_Wavelength_Reservation" />
-					<include name="Complete_Site_Build" />
-					<include name="Obtain_Fiber_Plant_Permit" />
-					<include name="Complete_Fiber_Plant_Build" />
-					<include name="Contact_Customer" />
-					<include name="Update_Design" />
-					<include name="Build_Update_Local_Biller_Account" />
-					<include name="Ship_CPE" />
-					<include name="Create_Account_and_Equipment" />
-					<include name="Assign_Design_Info" />
-				</methods>
-			</class>
-		</classes>
-	</test>
+	<classes>
+		<class name="com.comcast.century.techsup.Techsup">
+			<methods>
+				<include name="createCustomer" />
+				<include name="createServiceAccount" />
+				<include name="createBillingAccount" />
+				<include name="createAddress" />
+				<include name="selectService" />
+				<include name="configureService" />
+				<include name="processService" />
+				<include name="submitOrder" />
+				<include name="Conduct_Site_Survey" />
+				<include name="Obtain_Site_Agreement" />
+				<include name="Conduct_Fiber_Plant_Survey" />
+				<include name="Build_House_Account" />
+				<include name="Complete_Wavelength_Reservation" />
+				<include name="Complete_Site_Build" />
+				<include name="Obtain_Fiber_Plant_Permit" />
+				<include name="Complete_Fiber_Plant_Build" />
+				<include name="Contact_Customer" />
+				<include name="Update_Design" />
+				<include name="Build_Update_Local_Biller_Account" />
+				<include name="Ship_CPE" />
+				<include name="Create_Account_and_Equipment" />
+				<include name="Assign_Design_Info" />
+				<include name="searchSRID" />
+				<include name="initiateSupplements" />
+				<include name="addBGP" />
+				<include name="submitOrderSupplements" />
+				<include name="Contact_Customer_Supp" />
+				<include name="Update_Design_Supp" />
+			</methods>
+		</class>
+	</classes>
+</test>
 
 	<test name="Tech_Supp_Upgrade_EVC_for_EDI_Erate_Service">
 		<classes>
@@ -94,6 +100,8 @@
 					<include name="Ship_CPE" />
 					<include name="Create_Account_and_Equipment" />
 					<include name="Assign_Design_Info" />
+					<include name="searchSRID" />
+					<include name="initiateSupplements" />
 				</methods>
 			</class>
 		</classes>
@@ -125,6 +133,8 @@
 					<include name="Ship_CPE" />
 					<include name="Create_Account_and_Equipment" />
 					<include name="Assign_Design_Info" />
+					<include name="searchSRID" />
+					<include name="initiateSupplements" />
 				</methods>
 			</class>
 		</classes>

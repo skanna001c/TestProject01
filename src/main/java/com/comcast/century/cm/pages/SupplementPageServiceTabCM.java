@@ -95,6 +95,7 @@ public class SupplementPageServiceTabCM extends Page {
 			case "EDI-PRI":
 				elementToClick = chkBoxEDI;
 				if (supplementInfo.supplementOn.contains("PRI")) {
+					while(!waitForElement(chkBoxTrunkPRI)){}
 					chkBoxTrunkPRI.click();
 				}
 				break;
