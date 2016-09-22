@@ -70,11 +70,6 @@
 		  <artifactId>maven-com4j-plugin</artifactId>
 		  <version>1.0</version>
 		</dependency>
-		<dependency>
-	  		<groupId>einstein</groupId>
-	  		<artifactId>Framework_Utilities</artifactId>
-	  		<version>1.0</version>
-		</dependency>
 		
 		<dependency>
 		  <groupId>org.hamcrest</groupId>
@@ -116,6 +111,11 @@
 			  <groupId>log4j</groupId>
 			  <artifactId>log4j</artifactId>
 			  <version>1.2.16</version>
+		</dependency>
+		<dependency>
+		   <groupId>org.apache.logging.log4j</groupId>
+		   <artifactId>log4j-core</artifactId>
+		   <version>2.6.2</version>
 		</dependency>
 		<dependency>
 			  <groupId>info.cukes</groupId>

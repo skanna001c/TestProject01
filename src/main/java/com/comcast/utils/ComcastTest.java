@@ -21,6 +21,7 @@ import java.util.zip.ZipOutputStream;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.log4j.Logger;
+import org.apache.log4j.MDC;
 import org.apache.log4j.PropertyConfigurator;
 import org.junit.Rule;
 import org.junit.rules.TestWatcher;
@@ -131,7 +132,6 @@ public class ComcastTest {
     
     public void initializeSummaryReport()
     {
-    	PropertyConfigurator.configure("log4j.properties");
 
 		String reportPath=ReportPath.getInstance().getReportPath();
 		ReportSettings reportSettings = new ReportSettings(reportPath, "Execution Summary");
@@ -173,10 +173,13 @@ public class ComcastTest {
     @BeforeTest
     public void beforeTestMain(ITestContext context){
     	
-    	log.info("inside before test");
+    	PropertyConfigurator.configure("log4j.properties");
     	testStatusTable = new Hashtable<String,String>();
     	initializeSummaryReport();
     	testCaseName = context.getCurrentXmlTest().getName();
+    	MDC.put("TestName", testCaseName);
+    	
+    	log.info("inside before test");
     	testStatus = "Passed";
     	    	
 		//if(settings==null) // added by harsh on 8/2/2016
