@@ -1,6 +1,7 @@
 package com.comcast.century.cm.pages;
 
 import java.awt.AWTException;
+import java.io.FileOutputStream;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -195,6 +196,11 @@ public class OrderSummaryTabCMPage extends Page {
 	@FindBy(xpath = "//b[.='Activity Type']/../following-sibling::td[1]")
 	private WebElement activityType ;
 	
+	@FindBy(xpath = "//input[@id='successMessage']/..")
+	private WebElement OrdersubmittedMessage ;
+
+	@FindBy(xpath = "//b[.='Service Request ID']/../following-sibling::td[1]")
+	private WebElement SRID ;
 	
 	
 	private boolean mstatus=true;
@@ -227,7 +233,7 @@ public class OrderSummaryTabCMPage extends Page {
 	public String verifyRelatedOrderIDAttribute() {
 		try {
 			ShortWaitandSwitchToFrame(frameMain);
-			waitForElement(btnExpandRelatedOrderID);			
+			waitForElement(btnExpandRelatedOrderID);
 			iClick(btnExpandRelatedOrderID, null, "Expand related order ID: Order summary page: ExpandRelatedOrderIDButton");
 			waitForElementDisappear(elementLoading);
 			if (waitForElement(txtRelatedOrderID)) {
@@ -358,7 +364,15 @@ public class OrderSummaryTabCMPage extends Page {
 			waitForElement(btnBrowse);
 			clickndRelease(btnBrowse);
 			Thread.sleep(5000);
-			uploadAttachments(System.getProperty("user.dir") + "\\src\\test\\resources\\attachements.txt");
+			if(testSettings.getGRIDstatus().equalsIgnoreCase("true"))
+			{
+				new FileOutputStream("C:\\Users\\!centurybsacats\\attachements.txt", false).close();
+				uploadAttachments("C:\\Users\\!centurybsacats\\attachements.txt");
+			}
+			else
+			{
+				uploadAttachments(System.getProperty("user.dir") + "\\src\\test\\resources\\attachements.txt");
+			}
 			waitForElement(ddAttachmentType);
 			new Select(ddAttachmentType).selectByVisibleText("Tax Exemption Form");
 			waitForElement(btnAdd);
@@ -396,13 +410,23 @@ public class OrderSummaryTabCMPage extends Page {
 		try {
 			// ShortWaitandSwitchToFrame(frameMain);
 			if (waitForElement(btnsubmitOrder)) {
-				iClick(btnsubmitOrder, null, "Submit Order: Order Summary Page: SubmitButton");				
+				iClick(btnsubmitOrder, null, "Submit Order: Order Summary Page: SubmitButton");
 				waitforPageLoadComplete();
+				waitForElementDisappear(elementLoading);
+				if(OrdersubmittedMessage.getText().contains("Order submitted successfully "))
+				{
+					report.updateTestLog("Click Sumbit Order", "Order Submitted Successfully", Status.SCREENSHOT);
+					report.reportPassEvent("Click Sumbit Order", "Order Submitted Successfully");
+					dataDump.setValue("SUP_SRID_RT", SRID.getText());
+				}
+				else
+				{
+					report.updateTestLog("Click Sumbit Order", "Order Submission Failed", Status.FAIL);
+					report.reportFailEvent("Click Sumbit Order", "Order Submission Failed");
+				}
 			}
 			browser.switchTo().defaultContent();
-			waitForElementDisappear(elementLoading);
 			waitforPageLoadComplete();
-			report.updateTestLog("Click Sumbit Order", "Order Submitted Successfully", Status.SCREENSHOT);
 		} catch (Exception e) {
 			mstatus = false;
 		}

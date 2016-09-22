@@ -371,7 +371,7 @@ public class CustomerTabPageCM extends Page {
 			}
 			waitforPageLoadComplete();
 			waitForElement(linkSRID);
-			iClick(linkSRID, null, "Click on SRID link: CSO Page: SRID Link");
+			clickndRelease(linkSRID);
 			waitforPageLoadComplete();
 			browser.switchTo().defaultContent();
 		} catch (Exception e) {

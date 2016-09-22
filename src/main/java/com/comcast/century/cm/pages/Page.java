@@ -71,6 +71,9 @@ public abstract class Page {
 	protected String title;
 	private LoggerMain tLogger;
 	protected String testName;
+	protected ContactTabPageCM contactTab;
+	protected AddressTabPageCM addressTab;
+	protected FrameworkContext frameworkContext;
 	
 
 	protected abstract boolean isValidPage();
@@ -111,6 +114,8 @@ public abstract class Page {
 		this.testSettings = context.getSettings();
 		this.testName = context.getTestCaseName();
 		this.dataDump=context.getDataDump();
+		this.contactTab = context.getContactTabPageCM();
+		this.addressTab = context.getAddressTabPageCM();
 		
 		PageFactory.initElements(browser, this);
 		// waitForPageLoad();
@@ -2760,8 +2765,7 @@ public abstract class Page {
 			Robot rb = new Robot();
 
 			// Enter user name by ctrl-v
-			StringSelection fpath = new StringSelection(
-					System.getProperty("user.dir") + "\\src\\test\\resources\\attachements.txt");
+			StringSelection fpath = new StringSelection(filePath);
 			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(fpath, null);
 			rb.keyPress(KeyEvent.VK_CONTROL);
 			rb.keyPress(KeyEvent.VK_V);

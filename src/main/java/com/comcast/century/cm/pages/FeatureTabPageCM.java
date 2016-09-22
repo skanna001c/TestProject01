@@ -156,6 +156,35 @@ public class FeatureTabPageCM extends Page {
 		return mstatus;
 	}
 	
+	public boolean updateUNIandEVCCount(String UNI, String EVC) throws InterruptedException, AWTException{
+		mstatus = true;
+		WaitandSwitchToFrame(frameMain);
+		try {
+			waitForElementDisappear(elementLoading);
+			if(waitForElement(txtUNIqt)){
+				txtUNIqt.click();
+				txtUNIqt.clear();
+				iSendKeys(txtUNIqt, UNI);
+				waitForElement(txtUNIandEVCqt.get(0));
+				txtUNIandEVCqt.get(0).click();
+				txtUNIandEVCqt.get(0).clear();
+				iSendKeys(txtUNIandEVCqt.get(0), EVC);
+				//Below 3 lines added by Kesavan, Sometimes UNI quantity values are not retained whatever we have added in fist time when we click continue button
+				// So, we are adding one more time as a workaround
+				txtUNIqt.click();
+				txtUNIqt.clear();
+				iSendKeys(txtUNIqt, UNI);
+				scrollDown();
+				waitForElement(btnContinue);
+				iClick(btnContinue,null,"Click on continue in feature tab: feature tab: ContinueButton");
+				waitForElementDisappear(elementLoading);
+			}
+		} catch (Exception e) {
+			mstatus = false;
+		}
+		return mstatus;
+	}
+
 	public boolean BVE(){
 		mstatus = true;		
 		try {

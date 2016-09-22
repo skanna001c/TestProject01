@@ -3,6 +3,7 @@ package com.comcast.century.cm.pages;
 import java.util.List;
 
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -155,6 +156,7 @@ public class SupplementPageServiceTabCM extends Page {
 			// UnSelect all equipment fees
 			for (int i = 0; i < chkBoxEquipmentFee.size(); i++) {
 				waitForElement(chkBoxEquipmentFee.get(i));
+				chkBoxEquipmentFee.get(i).sendKeys(Keys.UP);
 				chkBoxEquipmentFee.get(i).click();
 			}
 

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="tests" thread-count="10">
+	<listeners>
+		<listener class-name="com.comcast.utils.TestFilter" />
+		<listener class-name="com.comcast.utils.CustomAnnotationListener"></listener>
+	</listeners>
+	
+	<test name="002-ME_EVPL-Add_UNI_with_TT_Coax">
+		<classes>
+			<class name="com.comcast.century.eod.ME_EVPL_Add_UNI_with_TT_Coax">
+				<methods>
+					<include name="createCustomer" />
+					<include name="createServiceAccount" />
+					<include name="createBillingAccount" />
+					<include name="createAddress" />
+					<include name="selectService" />
+					<include name="configureService" />
+					<include name="processService" />
+					<include name="submitOrder" />
+					<include name="Conduct_Site_Survey" />
+					<include name="Obtain_Site_Agreement" />
+					<include name="Conduct_Fiber_Plant_Survey" />
+					<include name="Build_House_Account" />
+					<include name="Complete_Wavelength_Reservation" />
+					<include name="Complete_Site_Build" />
+					<include name="Obtain_Fiber_Plant_Permit" />
+					<include name="Complete_Fiber_Plant_Build" />
+					<include name="Contact_Customer" />
+					<include name="Update_Design" />
+					<include name="Build_Update_Local_Biller_Account" />
+					<include name="Ship_CPE" />
+					<include name="Create_Account_and_Equipment" />
+					<include name="Assign_Design_Info" />
+					<include name="Generate_Core_Config" />
+					<include name="Generate_CPE_Config" />
+					<include name="Load_Core_Config" />
+					<include name="Install_CPE" />
+					<include name="Set_Critical_Dates" />
+					<include name="Day_of_Configs" />
+					<include name="Activate_Service" />
+					<include name="Notify_Customer_of_Service_Installation" />
+					<include name="Complete_Customer_Acceptance_Testing" />
+					<include name="Start_Billing" />
+					<include name="EqFeeStartBilling" />
+					<include name="searchSRID" />
+					<include name="addSiteAddress" />
+					<include name="initiateSupplements" />
+					<include name="addUNIWithCoax" />
+					<include name="submitOrderSupplements" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	
+	
+
+</suite> 

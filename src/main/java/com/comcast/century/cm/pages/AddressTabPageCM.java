@@ -2,6 +2,7 @@ package com.comcast.century.cm.pages;
 
 import java.util.List;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -180,9 +181,19 @@ public class AddressTabPageCM extends Page {
 	private List<WebElement> frameList ;
 	
 	
-    		 
-    	 
-    
+	public boolean addSiteAddress() throws InterruptedException
+	{
+		try{
+			 this.ClickAddressTab();
+			 browser.switchTo().defaultContent();
+			 this.CreateNewAddress();
+			 return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	 }
+
 	public boolean ClickAddressTab() throws InterruptedException{
 		mstatus = true;
 		try{
@@ -190,7 +201,7 @@ public class AddressTabPageCM extends Page {
 		  WaitandSwitchToFrame(frameMain,120);
 		  waitForElement(tabAddress,120);
 		  do{
-			  tabAddress.click();		  
+			  tabAddress.click();
 		  	}
 		  while(!WaitandSwitchToFrame(frameAddress,2));
 		  report.reportDoneEvent("Click on Address Tab", "Address Tab Clicked");

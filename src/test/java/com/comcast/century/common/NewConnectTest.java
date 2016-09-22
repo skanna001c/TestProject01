@@ -550,6 +550,7 @@ public class NewConnectTest extends ComcastTest {
 			(new StartBillingTaskPage(frameworkContext)).verifyNotes();
 			(new ServiceLevelTasks(frameworkContext)).ClickBackButton();
 		}
+		
 	}
 
 	
@@ -559,6 +560,10 @@ public class NewConnectTest extends ComcastTest {
 			SearchOrderndLauncheEquipmentFeeFlow(i);			
 			(new EqFeeFlowTasks(frameworkContext)).EqFeeStartBilling();
 			(new EqFeeStartBillingTaskPage(frameworkContext)).EqFeeStartBilling();			
+		}
+		if(testcaseName.equalsIgnoreCase("002-ME_EVPL-Add_UNI_with_TT_Coax"))
+		{
+			startCM();
 		}
 	}	
 	

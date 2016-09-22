@@ -59,6 +59,9 @@ public class ProcessTabPageCM extends Page {
 		@FindBy(xpath = "//a[text()='UNI~3']")
 		private WebElement LinkUNI3;
 		
+		@FindBy(xpath = "//a[text()='UNI~4']")
+		private WebElement LinkUNI4;
+		
 		@FindBy(xpath = "//a[text()='BGP']")
 		private WebElement LinkBGP;
 		
@@ -76,6 +79,9 @@ public class ProcessTabPageCM extends Page {
 		
 		@FindBy(xpath = "//a[text()='EVC~2']")
 		private WebElement LinkEVC2;
+		
+		@FindBy(xpath = "//a[text()='EVC~3']")
+		private WebElement LinkEVC3;
 		
 		@FindBy(xpath = "//a[text()='Equipment Fee']")
 		private WebElement LinkEquipmentFee;
@@ -359,7 +365,7 @@ public class ProcessTabPageCM extends Page {
 			mstatus= true;
 			try {
 				waitForElement(LinkTrunkPRI);
-				LinkTrunkPRI.click();
+				jsClick(LinkTrunkPRI);				
 				waitForElementDisappear(elementLoading);
 				if(waitForElement(ddSelectTerms)){
 					System.out.println("Terms Present");
@@ -385,7 +391,7 @@ public class ProcessTabPageCM extends Page {
 			String UNINo1=null;
 			try {
 				waitForElement(LinkUNI);
-				LinkUNI.click();
+				jsClick(LinkUNI);	
 				waitForElementDisappear(elementLoading);
 				waitForElement(imgAddressLookup);
 				imgAddressLookup.click();
@@ -442,7 +448,7 @@ public class ProcessTabPageCM extends Page {
 			
 			 try {
 				while(!waitForElement(LinkBGP)){}
-				clickndRelease(LinkBGP);
+				jsClick(LinkBGP);
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(btnSave);
 				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
@@ -465,7 +471,7 @@ public class ProcessTabPageCM extends Page {
 			String UNINo2=null;
 			try {
 				waitForElement(LinkUNI2);
-				LinkUNI2.click();
+				jsClick(LinkUNI2);
 				waitForElementDisappear(elementLoading);
 				waitForElement(imgAddressLookup);
 				imgAddressLookup.click();
@@ -516,7 +522,7 @@ public class ProcessTabPageCM extends Page {
 		String UNINo3;
 			try {
 				waitForElement(LinkUNI3);
-				LinkUNI3.click();
+				jsClick(LinkUNI3);
 				waitForElementDisappear(elementLoading);
 				waitForElement(imgAddressLookup);
 				imgAddressLookup.click();
@@ -557,6 +563,50 @@ public class ProcessTabPageCM extends Page {
 			return UNINo3;
 		}
 		
+		public String  UNI4Configuration(ProcessInfo processInfo,String SiteName, String siteType) throws InterruptedException{
+			String UNINo4;
+				try {
+					waitForElement(LinkUNI4);
+					jsClick(LinkUNI4);
+					waitForElementDisappear(elementLoading);
+					waitForElement(imgAddressLookup);
+					imgAddressLookup.click();
+					 waitforPageLoadComplete();
+					 if (WaitandSwitchToFrame(frameCondition.get(0))){ //This UNI open first time, so the frame index will be 0
+						 waitForElement(txtSiteName);
+						 jsSendKeys(txtSiteName,SiteName);
+						 //txtSiteName.sendKeys(Site);
+						 waitForElement(btnSearch);
+						 btnSearch.click();
+						 waitForElementDisappear(elementLoading);
+						 btnSearch.click();
+						 waitForElementDisappear(elementLoading);
+						 waitForElement(btnRadioSelectSite);
+						 btnRadioSelectSite.click();
+						 waitForElement(btnOK);
+						 btnOK.click();
+					 }
+					 browser.switchTo().defaultContent();
+					 WaitandSwitchToFrame(frameMain);
+					 new Select(TransportType).selectByVisibleText(siteType);
+					 new Select(ddAggregatorNeeded).selectByVisibleText("No");
+					 waitForElement(ddtxtSURCILI);
+					 ddtxtSURCILI.clear();
+					 ddtxtSURCILI.click();
+					 ddtxtSURCILI.sendKeys(processInfo.surCILI);				 				 
+					 waitForElement(txtUNInumber);				 
+					 UNINo4=randomNumber(5);
+					 txtUNInumber.sendKeys(UNINo4);
+					 new Select(ddUNIPortSpeed).selectByVisibleText("10/100");;
+					 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
+					 report.reportDoneEvent("Save UNI~4 Configuration", "UNI~4 Configuration Saved");
+					 waitForElementDisappear(elementLoading);
+				} catch (Exception e) {
+					UNINo4= null;
+				}
+				return UNINo4;
+			}
+		
 		
 		/*Method to save UNI Configuration for PRI
 		 *  
@@ -569,7 +619,7 @@ public class ProcessTabPageCM extends Page {
 			mstatus= true;
 			try {
 				waitForElement(LinkUNI);
-				LinkUNI.click();
+				jsClick(LinkUNI);
 				waitForElementDisappear(elementLoading);
 				waitForElement(imgAddressLookup);
 				imgAddressLookup.click();
@@ -622,8 +672,8 @@ public class ProcessTabPageCM extends Page {
 		public boolean EVCConfiguration_PRI(ProcessInfo processInfo){
 			 mstatus= true;
 			 try {
-				waitForElement(LinkEVCPRI.get(1));
-				 LinkEVCPRI.get(1).click();
+				 waitForElement(LinkEVCPRI.get(1));
+				 jsClick(LinkEVCPRI.get(1));
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(ddArrwLocationZuni);
 				 ddArrwLocationZuni.click();
@@ -652,8 +702,8 @@ public class ProcessTabPageCM extends Page {
 			String EVCNo1=null;
 			
 			 try {
-				waitForElement(LinkEVC);
-				 LinkEVC.click();
+				 waitForElement(LinkEVC);
+				 jsClick(LinkEVC);
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(ddArrwLocationZuni);
 				 ddArrwLocationZuni.click();
@@ -684,8 +734,8 @@ public class ProcessTabPageCM extends Page {
 		public String EVCConfiguration_ENS(ProcessInfo processInfo){
 			String EVCNo1=null;
 			 try {
-				waitForElement(LinkEVC);
-				 LinkEVC.click();
+				 waitForElement(LinkEVC);
+				 jsClick(LinkEVC);
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(ddArrwLocationZuni);
 				 ddArrwLocationZuni.click();
@@ -718,7 +768,7 @@ public class ProcessTabPageCM extends Page {
 			String EVCNo2=null;
 			 try {
 				 waitForElement(LinkEVC2);
-				 LinkEVC2.click();
+				 jsClick(LinkEVC2);
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(ddArrwLocationZuni);
 				 ddArrwLocationZuni.click();
@@ -749,8 +799,8 @@ public class ProcessTabPageCM extends Page {
 		public String EVCConfiguration_EPL(ProcessInfo processInfo){
 			String EVCNo1=null;
 			 try {
-				waitForElement(LinkEVC);
-				 LinkEVC.click();
+				 waitForElement(LinkEVC);
+				 jsClick(LinkEVC);
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(ddArrwLocationAuni);
 				 ddArrwLocationAuni.click();
@@ -785,8 +835,8 @@ public class ProcessTabPageCM extends Page {
 		public String EVCConfiguration_EVPL(ProcessInfo processInfo){
 			String EVCNo1=null;
 			 try {
-				waitForElement(LinkEVC);
-				 LinkEVC.click();
+				 waitForElement(LinkEVC);
+				 jsClick(LinkEVC);
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(ddArrwLocationAuni);
 				 ddArrwLocationAuni.click();
@@ -822,8 +872,8 @@ public class ProcessTabPageCM extends Page {
 		public String EVC2Configuration_EVPL(ProcessInfo processInfo){
 			String EVCNo2= null;
 			 try {
-				waitForElement(LinkEVC2);
-				 LinkEVC2.click();
+				 waitForElement(LinkEVC2);
+				 jsClick(LinkEVC2);
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(ddArrwLocationAuni);
 				 ddArrwLocationAuni.click();
@@ -847,6 +897,34 @@ public class ProcessTabPageCM extends Page {
 			 return EVCNo2;
 		}
 		
+		public String EVC3Configuration_EVPL(ProcessInfo processInfo){
+			String EVCNo3= null;
+			 try {
+				 waitForElement(LinkEVC3);
+				 clickndRelease(LinkEVC3);
+				 waitForElementDisappear(elementLoading);
+				 waitForElement(ddArrwLocationAuni);
+				 ddArrwLocationAuni.click();
+				 ddvalueLocationZuni.get(0).click();                 //Select 1st site at location A UNI
+				 waitForElement(ddArrwLocationZuni);
+				 ddArrwLocationZuni.click();
+				 ddvalueLocationZuni.get(7).click();                 //Select 4th site at location Z UNI
+				 waitForElement(txtEVCnumber);
+				 EVCNo3=randomNumber(5);
+				 txtEVCnumber.sendKeys(EVCNo3);
+				 new Select(ddEVCAreaType).selectByVisibleText(processInfo.evcAreaType);
+				 new Select(ddBasicCoSBandwidth).selectByVisibleText(processInfo.basicCosBandwidth);
+				 new Select(ddMaxEVCExceeded).selectByVisibleText("No");
+				 txtCustomerVLANInfo.sendKeys("2563");
+				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
+				 report.reportDoneEvent("Save EVC~3 Configuration", "EVC~3 Configuration Saved");
+				 waitForElementDisappear(elementLoading);
+			} catch (Exception e) {
+				EVCNo3= null;
+			}
+			 return EVCNo3;
+		}
+		
 		
 		/*Method to save Equipment fee Configuration
 		 *  
@@ -861,7 +939,7 @@ public class ProcessTabPageCM extends Page {
 			
 			 try {
 				if(waitForElement(LinkEquipmentFee)){
-				 LinkEquipmentFee.click();
+					clickndRelease(LinkEquipmentFee);
 				 }
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(btnSave);
@@ -869,8 +947,8 @@ public class ProcessTabPageCM extends Page {
 				 waitForElementDisappear(elementLoading);
 				 
 				 if (waitForElement(LinkEquipmentFeeConfiguration.get(0))){
-				 LinkEquipmentFeeConfiguration.get(0).click();
-				 waitForElementDisappear(elementLoading);
+					 clickndRelease(LinkEquipmentFeeConfiguration.get(0));
+					 waitForElementDisappear(elementLoading);
 				 }
 				 if (waitForElement(ddArrwEqFeeServiceLocation)){
 					 ddArrwEqFeeServiceLocation.click();
@@ -897,7 +975,7 @@ public class ProcessTabPageCM extends Page {
 			mstatus= true;
 			 try {
 				if(waitForElement(LinkEquipmentFee2)){
-				 LinkEquipmentFee2.click();
+					jsClick(LinkEquipmentFee2);
 				 }
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(btnSave);
@@ -905,8 +983,8 @@ public class ProcessTabPageCM extends Page {
 				 waitForElementDisappear(elementLoading);
 				 
 				 if (waitForElement(LinkEquipmentFeeConfiguration.get(1))){
-				 LinkEquipmentFeeConfiguration.get(1).click();
-				 waitForElementDisappear(elementLoading);
+					 jsClick(LinkEquipmentFeeConfiguration.get(1));				 
+				     waitForElementDisappear(elementLoading);
 				 }
 				 if (waitForElement(ddArrwEqFeeServiceLocation)){
 					 ddArrwEqFeeServiceLocation.click();
@@ -933,7 +1011,7 @@ public class ProcessTabPageCM extends Page {
 			mstatus= true;
 			 try {
 				if(waitForElement(LinkEquipmentFee3)){
-				 LinkEquipmentFee3.click();
+					jsClick(LinkEquipmentFee3);
 				 }
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(btnSave);
@@ -941,8 +1019,7 @@ public class ProcessTabPageCM extends Page {
 				 waitForElementDisappear(elementLoading);
 				 
 				 if (waitForElement(LinkEquipmentFeeConfiguration.get(2))){
-				 LinkEquipmentFeeConfiguration.get(2).click();
-				 waitForElementDisappear(elementLoading);
+					 jsClick(LinkEquipmentFeeConfiguration.get(2));				
 				 }
 				 if (waitForElement(ddArrwEqFeeServiceLocation)){
 					 ddArrwEqFeeServiceLocation.click();

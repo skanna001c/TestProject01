@@ -54,6 +54,8 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.comcast.century.cm.pages.AddressTabPageCM;
+import com.comcast.century.cm.pages.ContactTabPageCM;
 import com.comcast.century.cm.pages.HomePageCM;
 import com.comcast.century.commons.CenturyApplication;
 import com.comcast.logging.logtransactions.LoggerMain;
@@ -86,6 +88,8 @@ public class ComcastTest {
 	public Method testName;	
 	public SeleniumReport report;
 	protected  SeleniumReport reportSummary;
+	protected  ContactTabPageCM contactTab;
+	protected  AddressTabPageCM addressTab;
 	
 	protected WebDriver browser;
 	
@@ -918,6 +922,15 @@ public void almRestUpdateStatus(){
 		public LoggerMain getTransactionLogger(){
 			return transactionLogger;
 		}
+		
+		public ContactTabPageCM getContactTabPageCM(){
+			return contactTab;
+		}
+		
+		public AddressTabPageCM getAddressTabPageCM(){
+			return addressTab;
+		}
+		
 		
 	}
 	 

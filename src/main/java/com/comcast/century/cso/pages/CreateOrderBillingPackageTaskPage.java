@@ -1,6 +1,7 @@
 package com.comcast.century.cso.pages;
 
 import java.awt.AWTException;
+import java.io.FileOutputStream;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -173,8 +174,16 @@ public class CreateOrderBillingPackageTaskPage extends Page {
 			new Select(ddAttachmentRepository).selectByVisibleText("Century");
 			waitForElement(btnBrowse);
 			clickndRelease(btnBrowse);
-			Thread.sleep(5000);
-			uploadAttachments(System.getProperty("user.dir") + "\\src\\test\\resources\\attachements.txt");
+			Thread.sleep(5000);			
+			if(testSettings.getGRIDstatus().equalsIgnoreCase("true"))
+			{
+				new FileOutputStream("C:\\Users\\!centurybsacats\\attachements.txt", false).close();
+				uploadAttachments("C:\\Users\\!centurybsacats\\attachements.txt");
+			}
+			else
+			{				
+				uploadAttachments(System.getProperty("user.dir") + "\\src\\test\\resources\\attachements.txt");
+			}		
 			waitForElement(ddAttachmentType);
 			new Select(ddAttachmentType).selectByVisibleText("Customer Acceptance Doc");
 			waitForElement(btnAdd);
