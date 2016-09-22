@@ -7,9 +7,9 @@
 	</listeners>
 
 
-	<test name="EDI_New_Connect_Local_Biller_Billertype_CSG">
+	<test name="EDI-New_connect_Local_Biller_with_Biller_type-CSG">
 		<classes>
-			<class name="com.comcast.century.common.NewConnectTest">
+			<class name="com.comcast.century.newconnect.NewConnect">
 				<methods>
 					<include name="createCustomer" />
 					<include name="createServiceAccount" />
@@ -33,4 +33,168 @@
 			</class>
 		</classes>
 	</test>
+	
+	<test name="006-EPL-Change-BW-single-view">
+		<classes>
+			<class name="com.comcast.century.change.Change">
+				<methods>
+					<include name="createCustomer" />
+					<include name="createServiceAccount" />
+					<include name="createBillingAccount" />
+					<include name="createAddress" />
+					<include name="selectService" />
+					<include name="configureService" />
+					<include name="processService" />
+					<include name="submitOrder" />
+					<include name="Conduct_Site_Survey" />
+					<include name="Obtain_Site_Agreement" />
+					<include name="Conduct_Fiber_Plant_Survey" />
+					<include name="Build_House_Account" />
+					<include name="Complete_Wavelength_Reservation" />
+					<include name="Complete_Site_Build" />
+					<include name="Obtain_Fiber_Plant_Permit" />
+					<include name="Complete_Fiber_Plant_Build" />
+					<include name="Contact_Customer" />
+					<include name="Update_Design" />
+					<include name="Build_Update_Local_Biller_Account" />
+					<include name="Ship_CPE" />
+					<include name="Create_Account_and_Equipment" />
+					<include name="Assign_Design_Info" />
+					<include name="Generate_CPE_Config" />
+					<include name="Generate_Core_Config" />
+					<include name="Load_Core_Config" />
+					<include name="Install_CPE" />
+					<include name="Set_Critical_Dates" />
+					<include name="Day_of_Configs" />
+					<include name="Activate_Service" />
+					<include name="Notify_Customer_of_Service_Installation" />
+					<include name="Complete_Customer_Acceptance_Testing" />
+					<include name="Create_Order_Billing_Package" />
+					<include name="searchSRID" />
+					<include name="initiateSupplements" />
+					<include name="submitOrderSupplements"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+	
+	<test name="ME-EPL _Coax_Tech_Sup_after_Assign_Design_Task">
+		<classes>
+			<class name="com.comcast.century.techsup.Techsup">
+				<methods>
+					<include name="createCustomer" />
+					<include name="createServiceAccount" />
+					<include name="createBillingAccount" />
+					<include name="createAddress" />
+					<include name="selectService" />
+					<include name="configureService" />
+					<include name="processService" />
+					<include name="submitOrder" />
+					<include name="Conduct_Site_Survey_Coax" />
+					<include name="Obtain_Site_Agreement_Coax" />
+					<include name="Conduct_Coax_Survey" />
+					<include name="Build_House_Account_Coax" />
+					<include name="Obtain_Coax_Permit" />
+					<include name="Complete_Site_Build_Coax" />
+					<include name="Complete_Coax_Build" />
+					<include name="Contact_Customer" />
+					<include name="Update_Design" />
+					<include name="Build_Update_Local_Biller_Account" />
+					<include name="Ship_CPE" />
+					<include name="Create_Account_and_Equipment" />
+					<include name="Assign_Design_Info" />
+					<include name="searchSRID" />
+					<include name="initiateSupplements" />
+					<include name="submitOrderSupplements"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+	
+	<test name="EDI-PRI_Equipment Fee_Cancel Sup_Completed_Activate_Service">
+		<classes>
+			<class name="com.comcast.century.common.Supplements">
+				<methods>
+					<include name="createCustomer" />
+					<include name="createServiceAccount" />
+					<include name="createBillingAccount" />
+					<include name="createAddress" />
+					<include name="selectService" />
+					<include name="configureService" />
+					<include name="processService" />
+					<include name="submitOrder" />
+					<include name="Conduct_Site_Survey" />
+					<include name="Obtain_Site_Agreement" />
+					<include name="Conduct_Fiber_Plant_Survey" />
+					<include name="Build_House_Account" />
+					<include name="Complete_Wavelength_Reservation" />
+					<include name="Complete_Site_Build" />
+					<include name="Obtain_Fiber_Plant_Permit" />
+					<include name="Complete_Fiber_Plant_Build" />
+					<include name="Contact_Customer" />
+					<include name="Update_Design" />
+					<include name="Build_Update_Local_Biller_Account" />
+					<include name="Ship_CPE" />
+					<include name="Create_Account_and_Equipment" />
+					<include name="Assign_Design_Info" />
+					<include name="Generate_CPE_Config" />
+					<include name="Generate_Core_Config" />
+					<include name="Load_Core_Config" />
+					<include name="Install_CPE" />
+					<include name="Set_Critical_Dates" />
+					<include name="Day_of_Configs" />
+					<include name="Activate_Service" />
+					<include name="Build_Update_Local_Biller_Account_PRI" />
+					<include name="Create_Account_and_Equipment_PRI" />
+					<include name="Ship_CPE_PRI" />
+					<include name="Assign_Design_Info_PRI" />
+					<include name="searchSRID" />
+					<include name="initiateSupplements" />
+					<include name="submitOrderSupplements"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+	
+	<test name="Century_SV_Integration_New-Connect-EDI">
+		<classes>
+			<class name="com.comcast.century.newconnect.NewConnect">
+				<methods>
+					<include name="createCustomer" />
+					<include name="createServiceAccount" />
+					<include name="createBillingAccount" />
+					<include name="createAddress" />
+					<include name="selectService" />
+					<include name="configureService" />
+					<include name="processService" />
+					<include name="submitOrder" />
+					<include name="Conduct_Site_Survey" />
+					<include name="Obtain_Site_Agreement" />
+					<include name="Conduct_Fiber_Plant_Survey" />
+					<include name="Build_House_Account" />
+					<include name="Complete_Wavelength_Reservation" />
+					<include name="Complete_Site_Build" />
+					<include name="Obtain_Fiber_Plant_Permit" />
+					<include name="Complete_Fiber_Plant_Build" />
+					<include name="Contact_Customer" />
+					<include name="Update_Design" />
+					<include name="Build_Update_Local_Biller_Account" />
+					<include name="Ship_CPE" />
+					<include name="Create_Account_and_Equipment" />
+					<include name="Assign_Design_Info" />
+					<include name="Generate_CPE_Config" />
+					<include name="Generate_Core_Config" />
+					<include name="Load_Core_Config" />
+					<include name="Install_CPE" />
+					<include name="Set_Critical_Dates" />
+					<include name="Day_of_Configs" />
+					<include name="Activate_Service" />
+					<include name="Notify_Customer_of_Service_Installation" />
+					<include name="Complete_Customer_Acceptance_Testing" />
+					<include name="Create_Order_Billing_Package" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	
 </suite> 

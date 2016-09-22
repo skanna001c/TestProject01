@@ -284,7 +284,7 @@ public class AddressTabPageCM extends Page {
 			waitForElement(txtSiteAddressLine1);
 			txtSiteAddressLine1.sendKeys(siteInfo.siteAddress1);
 			report.reportDoneEvent("Enter Site Address Line 1", "Entered Site Address Line 1 as->" +siteInfo.siteAddress1);
-			if(testName.equalsIgnoreCase("EDI_New_Connect_Local_Biller_Billertype_CSG")){
+			if(testName.equalsIgnoreCase("EDI-New_connect_Local_Biller_with_Biller_type-CSG")){
 				siteAddress2=siteInfo.siteAddress2;
 			}
 			else

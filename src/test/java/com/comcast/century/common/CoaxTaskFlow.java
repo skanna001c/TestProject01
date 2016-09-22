@@ -39,6 +39,7 @@ import com.comcast.utils.PerfTransaction;
 
 public class CoaxTaskFlow extends NewConnectTest {
 	
+	// Coax Task Site flow
 
 	@Test(priority = 9500)
 	public void Conduct_Site_Survey_Coax() throws InterruptedException {
