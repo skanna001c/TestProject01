@@ -1,4 +1,4 @@
-package com.comcast.century.techsup;
+package com.comcast.century.TechSup;
 
 import java.awt.AWTException;
 
