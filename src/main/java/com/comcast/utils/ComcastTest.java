@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
@@ -368,6 +369,7 @@ public class ComcastTest {
 	 */
 	protected WebDriver getDriver(String browserName) {
 		
+		String nodeName = null;
 		String gridflag = settings.getGRIDstatus();
 		String gridip = settings.getGridIP();
 		 final ThreadLocal<WebDriver> ThreadDriver =
@@ -413,7 +415,14 @@ public class ComcastTest {
 			else{
 				DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 				try {
-					driver =ThreadGuard.protect( new RemoteWebDriver(new URL("http://"+gridip+":4444/wd/hub"),capabilities));
+					RemoteWebDriver rDriver = new RemoteWebDriver(new URL("http://"+gridip+":4444/wd/hub"),capabilities);
+					try {
+						nodeName = GridInfo.getHostName(gridip, rDriver.getSessionId());
+					} catch (UnknownHostException e) {
+						e.printStackTrace();
+					}
+					log.info(testCaseName + " started execution on : " +nodeName);
+					driver =ThreadGuard.protect(rDriver);
 				} catch (MalformedURLException e) {
 					e.printStackTrace();
 				}
@@ -434,6 +443,7 @@ public class ComcastTest {
 						capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 						//
 						driver=ThreadGuard.protect(new ChromeDriver(capabilities));
+						
 						ThreadDriver.set(driver); 
 						
 					}
@@ -444,8 +454,17 @@ public class ComcastTest {
 							
 							DesiredCapabilities capabilities =DesiredCapabilities.chrome();
 							capabilities.setBrowserName("chrome");
-							driver = ThreadGuard.protect(new RemoteWebDriver(new URL("http://"+gridip+":4444/wd/hub"), capabilities));
+							//added by harsh on 9/22/16 to get the node name
+							RemoteWebDriver rDriver = new RemoteWebDriver(new URL("http://"+gridip+":4444/wd/hub"), capabilities);
+							try {
+								nodeName = GridInfo.getHostName(gridip, rDriver.getSessionId());
+							} catch (UnknownHostException e) {
+								e.printStackTrace();
+							}
+							log.info(testCaseName + " started execution on : " +nodeName);
+							driver = ThreadGuard.protect(rDriver);
 							//driver = new RemoteWebDriver(new URL("http://"+gridip+":4444/wd/hub"), capabilities);
+							
 							 ThreadDriver.set(driver);
 						 	} catch (MalformedURLException e) {
 							// TODO Auto-generated catch block
@@ -497,8 +516,17 @@ public class ComcastTest {
 						
 						 capabilities.setCapability(InternetExplorerDriver.FORCE_CREATE_PROCESS, true);
 						 capabilities.setCapability(InternetExplorerDriver.IE_SWITCHES, "-private");
+						 
+						 RemoteWebDriver rDriver = new RemoteWebDriver(new URL("http://"+gridip+":4444/wd/hub"), capabilities);
+						 
+						 try {
+								nodeName = GridInfo.getHostName(gridip, rDriver.getSessionId());
+							} catch (UnknownHostException e) {
+								e.printStackTrace();
+							}
+							log.info(testCaseName + " started execution on : " +nodeName);
 						
-						 driver = ThreadGuard.protect(new RemoteWebDriver(new URL("http://"+gridip+":4444/wd/hub"), capabilities));
+						 driver = ThreadGuard.protect(rDriver);
 						 ThreadDriver.set(driver);
 					 	} catch (MalformedURLException e) {
 						// TODO Auto-generated catch block
