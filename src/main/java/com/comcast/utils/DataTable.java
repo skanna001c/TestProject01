@@ -71,7 +71,11 @@ public class DataTable {
 	 * @return 
 	 */
 	public String getValue(String key){
-		return testData.get(key);
+	if (testData.containsKey(key))
+		{
+		 return testData.get(key);
+		}
+	else return "";
 	}
 	
 	//added by harsh on 8/3/2016
@@ -112,7 +116,7 @@ public class DataTable {
 			if(columNames.size()>cell.getColumnIndex()){
 			String columnName=columNames.get(cell.getColumnIndex());
 			String columnValue=cell.getStringCellValue();			
-			testDataRowHashTable.put(columnName, columnValue);
+			testDataRowHashTable.put(columnName, columnValue.trim());
 			
 			}else{
 				break;

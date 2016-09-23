@@ -2011,7 +2011,7 @@ public abstract class Page {
 					break;
 				}
 			}
-			return true;
+			return !isElementPresent(we);
 		} catch (Exception Ex) {
 			return true;
 		}
@@ -2845,6 +2845,21 @@ public abstract class Page {
 		ddValueWE.click();
 	}
 
+	protected void ddValueSelect(WebElement ddTxtWE, By Identifer, String Str) throws InterruptedException {
+		do {
+			waitForElement(ddTxtWE);
+			ddTxtWE.clear();
+			ddTxtWE.sendKeys(Str);
+			ddTxtWE.sendKeys(Keys.ARROW_DOWN);
+			Thread.sleep(1000);
+		} while (!waitUntilElementPresent(Identifer, 5));
+		if (isElementPresent(Identifer))
+		{
+			browser.findElement(Identifer).click();
+		}
+	}
+
+	
 	public void ddValue(WebElement ddTxtWE, String Str) throws InterruptedException {
 		waitForElement(ddTxtWE);
 		ddTxtWE.clear();

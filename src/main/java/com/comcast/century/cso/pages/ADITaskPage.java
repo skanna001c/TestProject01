@@ -101,7 +101,17 @@ public String getResourceComponentID(){
 	}
 	
 
-public boolean ADITask(){
+public boolean ADITask(ServiceInfo serviceInfo){
+	String evc;
+	if (serviceInfo.testSetName.equalsIgnoreCase("SV Integration"))
+	{
+		evc=serviceInfo.EVC;
+		
+	}
+	else{
+		evc="30.VLXM."+ randomNumber(6) + "..CBCL..";
+		
+	}
 	try{
 		String request = null;			
 		String RCID = this.getResourceComponentID();
@@ -110,12 +120,12 @@ public boolean ADITask(){
 				        + "<soapenv:Body>" 
 						+ "<ser:serviceDesignNotification>"
 						+ "<ser:resourceComponent resourceComponentId=\"" + RCID + "\">"
-						+ "<ser:service evcNumber=\"" + EVCNo.getText() + "\" evcID=\"30.VLXM."+ randomNumber(6) + "..CBCL.."+ "\" serviceID=\""+randomNumber(7)+"\"/>"
+						+ "<ser:service evcNumber=\"" + EVCNo.getText() + "\" evcID=\""+evc+ "\" serviceID=\""+randomNumber(7)+"\"/>"
 						+ "</ser:resourceComponent>" 
 						+ "</ser:serviceDesignNotification>" 
 						+ "</soapenv:Body>"
 						+ "</soapenv:Envelope>";			
-			(new SoapTest()).webServicesTask(request, "ADI");
+			(new SoapTest()).webServicesTask(request, "ADI",testSettings);
 		iClick(btnBack,null, "ADI task complete:ADI task complete page: BackButton ");
 		waitForElement(browser.findElement(By.xpath("//*[text()='Assign Design Information' and contains(@onclick, 'COMPLETED')]")));
 

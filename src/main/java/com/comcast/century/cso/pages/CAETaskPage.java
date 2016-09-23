@@ -110,7 +110,16 @@ public class CAETaskPage extends Page {
 	
 	
 	public boolean CAETask(ServiceInfo serviceInfo) throws Exception{
-
+		String uni1,uni2;
+		if (serviceInfo.testSetName.equalsIgnoreCase("SV Integration"))
+		{
+			uni1=serviceInfo.UNI1;
+			uni2=serviceInfo.UNI2;
+		}
+		else{
+			uni1="30.KRGS." + randomNumber(6) + "..CBCL..";
+			uni2="30.KRGS." + randomNumber(6) + "..CBCL..";
+		}
 		try{
 			String request = null;			
 			String RCID = this.getResourceComponentID();
@@ -119,25 +128,25 @@ public class CAETaskPage extends Page {
 			case "ENS" :
 			case "EDI-BGP" :
 			case "EDI-PRI" :
-			case "ENS-PRI" :
+			case "ENS-PRI" :			
 				request = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:sit=\"http://www.excelacom.com/century/cramer/beans/siteDesignNotification\">"
 						+ "<soapenv:Header/>" + "<soapenv:Body>" + "<sit:siteDesignNotification>"
 						+ "<sit:resourceComponent resourceComponentId=\"" + RCID + "\">"
-						+ "<sit:site uniNumber=\"" + UNINo1.getText() + "\" uniID=\"30.KRGS." + randomNumber(6) + "..CBCL.." + "\" siteCLLI=\"JNBOGAEM\"/>" 
+						+ "<sit:site uniNumber=\"" + UNINo1.getText() + "\" uniID=\""+uni1+ "\" siteCLLI=\"JNBOGAEM\"/>" 
 						+"</sit:resourceComponent>" + "</sit:siteDesignNotification>" + "</soapenv:Body>"
 						+ "</soapenv:Envelope>";				
-				(new SoapTest()).webServicesTask(request, "CAE");
+				(new SoapTest()).webServicesTask(request, "CAE",testSettings);
 				break;
 			case "EPL" :
 			case "EVPL" :
 				request = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:sit=\"http://www.excelacom.com/century/cramer/beans/siteDesignNotification\">"
 						+ "<soapenv:Header/>" + "<soapenv:Body>" + "<sit:siteDesignNotification>"
 						+ "<sit:resourceComponent resourceComponentId=\"" + RCID + "\">"
-						+ "<sit:site uniNumber=\"" + UNINo.get(0).getText()  + "\" uniID=\"30.KRGS." + randomNumber(6) + "..CBCL.." + "\" siteCLLI=\"JNBOGAEM\"/>" 
-						+ "<sit:site uniNumber=\"" + UNINo.get(1).getText()  + "\" uniID=\"30.KRGS." + randomNumber(6) + "..CBCL.." + "\" siteCLLI=\"JNBOGAEM\"/>" 
+						+ "<sit:site uniNumber=\"" + UNINo.get(0).getText()  + "\" uniID=\""+uni1+ "\" siteCLLI=\"JNBOGAEM\"/>" 
+						+ "<sit:site uniNumber=\"" + UNINo.get(1).getText()  + "\" uniID=\""+uni2+ "\" siteCLLI=\"JNBOGAEM\"/>" 
 						+ "</sit:resourceComponent>" + "</sit:siteDesignNotification>" + "</soapenv:Body>"
 						+ "</soapenv:Envelope>";
-				(new SoapTest()).webServicesTask(request, "CAE");
+				(new SoapTest()).webServicesTask(request, "CAE",testSettings);
 				break;
 			}
 			iClick(btnBack,null, "CAE task complete:CAE task complete page: BackButton ");

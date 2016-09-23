@@ -131,8 +131,11 @@ public class AddressTabPageCM extends Page {
 	
 	//*[@id='CmbSiteheadEndName-inputEl']
 	
-	@FindBy(xpath = "//input[@id='CmbSiteheadEndName-inputEl']")
+	@FindBy(id="CmbSiteheadEndName-inputEl")
 	private WebElement ddtxtHeadendName;
+	
+	@FindBy(id = "CmbSiteheadEndCLLI-inputEl")
+	private WebElement ddtxtHeadendCLLI;
 	
 	@FindBy(xpath = "//li[text()='arneysmount.nj']")
 	private WebElement ddValueHeadendName;
@@ -295,7 +298,7 @@ public class AddressTabPageCM extends Page {
 			waitForElement(txtSiteAddressLine1);
 			txtSiteAddressLine1.sendKeys(siteInfo.siteAddress1);
 			report.reportDoneEvent("Enter Site Address Line 1", "Entered Site Address Line 1 as->" +siteInfo.siteAddress1);
-			if(testName.equalsIgnoreCase("EDI-New_connect_Local_Biller_with_Biller_type-CSG")){
+			if(siteInfo.TestSetName.equalsIgnoreCase("Local Biller")){
 				siteAddress2=siteInfo.siteAddress2;
 			}
 			else
@@ -328,24 +331,25 @@ public class AddressTabPageCM extends Page {
 	
 	public boolean headEndInformation(SiteInfo siteInfo) throws InterruptedException{
 		mstatus = true;
+		By by=By.xpath("//li[text()='"+siteInfo.headendName+"']");
 		try{
 			if( WaitandSwitchToFrame(frameMain)){
 				 WaitandSwitchToFrame(frameAddress);
 				 scrollDown();				 
 					do{
 						if(waitForElement(ddtxtHeadendName)){							
-							do{
+							//do{
 								scrollDown();
-								ddValue(ddtxtHeadendName,siteInfo.headendName);
+								ddValueSelect(ddtxtHeadendName,by,siteInfo.headendName);
 							
-							}
-							while (!isElementPresent(browser.findElement(By.xpath("//li[text()='"+siteInfo.headendName+"']"))));
+							//}
+							//while (!isElementPresent(browser.findElement(By.xpath("//li[text()='"+siteInfo.headendName+"']"))));
 							
-							 browser.findElement(By.xpath("//li[text()='"+siteInfo.headendName+"']")).click();			
-							 report.reportDoneEvent("Select Headend Name", "Selected Headend Name as->" +siteInfo.headendName);
+							// browser.findElement(By.xpath("//li[text()='"+siteInfo.headendName+"']")).click();			
+							 
 							 Thread.sleep(4000);
 							}
-						}while(ddtxtHeadendName.getAttribute("value").length()<1);
+						}while(ddtxtHeadendCLLI.getAttribute("class").contains("x-form-empty-field"));
 			}				 
 		}
 		catch(Exception ex)

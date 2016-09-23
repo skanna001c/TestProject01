@@ -10,9 +10,11 @@ public class CustomerInfo {
 	public String addressLine2 ;
 	public String zipCode;
     public String city;
+    public String TestSetName;
+
 	
 	
-	public CustomerInfo(String customerName, String workPhone, String salesForceAccId, String addressLine1,String addressLine2, String zipCode,String city ) {
+	public CustomerInfo(String customerName, String workPhone, String salesForceAccId, String addressLine1,String addressLine2, String zipCode,String city,String TestSetName) {
 		this.customerName = customerName;
 		this.workPhone = workPhone;
 		this.salesForceAccId = salesForceAccId;
@@ -20,6 +22,8 @@ public class CustomerInfo {
 		this.addressLine2 = addressLine2;
 		this.zipCode = zipCode;	
 		this.city = city;
+		this.TestSetName = TestSetName;
+
 	}
 	
 	public static CustomerInfo loadFromDatatable(DataTable dataTable){
@@ -29,7 +33,8 @@ public class CustomerInfo {
                 dataTable.getValue("addressLine1"),
                 dataTable.getValue("addressLine2"),
                 dataTable.getValue("zipCode"),
-                dataTable.getValue("city"));
+                dataTable.getValue("city"),
+                dataTable.getValue("TestSetName"));
 	
 	
       }
