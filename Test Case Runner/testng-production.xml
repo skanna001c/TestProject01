@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite">
+<suite name="Suite" parallel="tests" thread-count="10">
 	<listeners>
 		<listener class-name="com.comcast.utils.TestFilter" />
 		<listener class-name="com.comcast.utils.CustomAnnotationListener"></listener>
 	</listeners>
 
 
-	<test name="EDI-New_connect_Local_Biller_with_Biller_type-CSG">
+	 <test name="EDI-New_connect_Local_Biller_with_Biller_type-CSG">
 		<classes>
 			<class name="com.comcast.century.newconnect.NewConnect">
 				<methods>
@@ -70,6 +70,7 @@
 					<include name="Notify_Customer_of_Service_Installation" />
 					<include name="Complete_Customer_Acceptance_Testing" />
 					<include name="Create_Order_Billing_Package" />
+					<include name="Start_Billing" />
 					<include name="searchSRID" />
 					<include name="initiateSupplements" />
 					<include name="submitOrderSupplements"/>
@@ -111,7 +112,7 @@
 		</classes>
 	</test>
 	
-	<test name="EDI-PRI_Equipment Fee_Cancel Sup_Completed_Activate_Service">
+	<test name="EDI+PRI_Equipment Fee_Cancel Sup_Completed_Activate_Service">
 		<classes>
 			<class name="com.comcast.century.common.Supplements">
 				<methods>
@@ -192,6 +193,7 @@
 					<include name="Notify_Customer_of_Service_Installation" />
 					<include name="Complete_Customer_Acceptance_Testing" />
 					<include name="Create_Order_Billing_Package" />
+					<include name="Start_Billing" />
 				</methods>
 			</class>
 		</classes>

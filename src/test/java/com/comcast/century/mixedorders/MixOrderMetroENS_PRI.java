@@ -1,8 +1,8 @@
 package com.comcast.century.mixedorders;
 
-import com.comcast.century.common.NewConnectTest;
+import com.comcast.century.common.TrunkPRIFlow;
 
-public class MixOrderMetroENS_PRI extends NewConnectTest {
+public class MixOrderMetroENS_PRI extends TrunkPRIFlow {
 
 	
 	

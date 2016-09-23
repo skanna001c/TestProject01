@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite">
+<suite name="Suite" parallel="tests" thread-count="10">
 	<listeners>
 		<listener class-name="com.comcast.utils.TestFilter" />
 		<listener class-name="com.comcast.utils.CustomAnnotationListener"></listener>
@@ -44,9 +44,19 @@
 					<include name="Notify_Customer_of_Service_Installation" />
 					<include name="Complete_Customer_Acceptance_Testing" />
 					<include name="Start_Billing" />
+					<include name="Build_Update_Local_Biller_Account_PRI" />
+					<include name="Create_Account_and_Equipment_PRI" />
+					<include name="Ship_CPE_PRI" />
+					<include name="Assign_Design_Info_PRI" />
+					<include name="Generate_CPE_Config_PRI" />
+					<include name="Generate_Core_Config_PRI" />
+					<include name="Load_Core_Config_PRI" />
+					<include name="Install_CPE_PRI" />
+					<include name="Set_Critical_Dates_PRI" />
+					<include name="Day_of_Configs_PRI" />
+					<include name="Activate_Service_PRI" />
 				</methods>
 			</class>
 		</classes>
 	</test>
-
 </suite> 

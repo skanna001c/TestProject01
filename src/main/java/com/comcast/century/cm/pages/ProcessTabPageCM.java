@@ -932,7 +932,7 @@ public class ProcessTabPageCM extends Page {
 			
 			 try {
 				if(waitForElement(LinkEquipmentFee)){
-					clickndRelease(LinkEquipmentFee);
+					jsClick(LinkEquipmentFee);
 				 }
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(btnSave);
@@ -940,7 +940,7 @@ public class ProcessTabPageCM extends Page {
 				 waitForElementDisappear(elementLoading);
 				 
 				 if (waitForElement(LinkEquipmentFeeConfiguration.get(0))){
-					 clickndRelease(LinkEquipmentFeeConfiguration.get(0));
+					 jsClick(LinkEquipmentFeeConfiguration.get(0));
 					 waitForElementDisappear(elementLoading);
 				 }
 				 if (waitForElement(ddArrwEqFeeServiceLocation)){

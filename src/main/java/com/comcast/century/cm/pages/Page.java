@@ -114,8 +114,8 @@ public abstract class Page {
 		this.testSettings = context.getSettings();
 		this.testName = context.getTestCaseName();
 		this.dataDump=context.getDataDump();
-		this.contactTab = context.getContactTabPageCM();
-		this.addressTab = context.getAddressTabPageCM();
+		//this.contactTab = context.getContactTabPageCM();
+		//this.addressTab = context.getAddressTabPageCM();
 		
 		PageFactory.initElements(browser, this);
 		// waitForPageLoad();

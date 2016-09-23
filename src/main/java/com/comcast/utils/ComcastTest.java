@@ -21,7 +21,6 @@ import java.util.zip.ZipOutputStream;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.log4j.Logger;
-import org.apache.log4j.MDC;
 import org.apache.log4j.PropertyConfigurator;
 import org.junit.Rule;
 import org.junit.rules.TestWatcher;
@@ -55,8 +54,6 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.comcast.century.cm.pages.AddressTabPageCM;
-import com.comcast.century.cm.pages.ContactTabPageCM;
 import com.comcast.century.cm.pages.HomePageCM;
 import com.comcast.century.commons.CenturyApplication;
 import com.comcast.logging.logtransactions.LoggerMain;
@@ -89,8 +86,6 @@ public class ComcastTest {
 	public Method testName;	
 	public SeleniumReport report;
 	protected  SeleniumReport reportSummary;
-	protected  ContactTabPageCM contactTab;
-	protected  AddressTabPageCM addressTab;
 	
 	protected WebDriver browser;
 	
@@ -178,12 +173,10 @@ public class ComcastTest {
     public void beforeTestMain(ITestContext context){
     	
     	PropertyConfigurator.configure("log4j.properties");
+    	log.info("inside before test");
     	testStatusTable = new Hashtable<String,String>();
     	initializeSummaryReport();
     	testCaseName = context.getCurrentXmlTest().getName();
-    	MDC.put("TestName", testCaseName);
-    	
-    	log.info("inside before test");
     	testStatus = "Passed";
     	    	
 		//if(settings==null) // added by harsh on 8/2/2016
@@ -925,15 +918,6 @@ public void almRestUpdateStatus(){
 		public LoggerMain getTransactionLogger(){
 			return transactionLogger;
 		}
-		
-		public ContactTabPageCM getContactTabPageCM(){
-			return contactTab;
-		}
-		
-		public AddressTabPageCM getAddressTabPageCM(){
-			return addressTab;
-		}
-		
 		
 	}
 	 
