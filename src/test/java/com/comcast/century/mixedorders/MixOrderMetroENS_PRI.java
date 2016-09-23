@@ -1,4 +1,4 @@
-package com.comcast.century.MixedOrders;
+package com.comcast.century.mixedorders;
 
 import com.comcast.century.common.NewConnectTest;
 
