@@ -22,6 +22,7 @@ import java.util.zip.ZipOutputStream;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.log4j.Logger;
+import org.apache.log4j.MDC;
 import org.apache.log4j.PropertyConfigurator;
 import org.junit.Rule;
 import org.junit.rules.TestWatcher;
@@ -178,6 +179,7 @@ public class ComcastTest {
     	testStatusTable = new Hashtable<String,String>();
     	initializeSummaryReport();
     	testCaseName = context.getCurrentXmlTest().getName();
+    	MDC.put("TestName", testCaseName);
     	testStatus = "Passed";
     	    	
 		//if(settings==null) // added by harsh on 8/2/2016
