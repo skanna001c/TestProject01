@@ -11,21 +11,20 @@ import java.security.Security;
 public class SoapTest {
 
 
-	public void webServicesTask(String request,String task) {
+	public void webServicesTask(String request,String task,TestSettings settings) {
 		
-		  String Endpoint;
+		  String Endpoint = null;
 	      
 	      String Response;
 
 	      String soapResponse=null;
 
-
-
-	Endpoint = "http://omwebsvc-dt-as-vip.sys.comcast.net/cif/services/CramerSoapPort";
-
-	     
-	    
-	System.out.println("--------------------------------------");
+		if (settings.getEnvironmentToTest().equalsIgnoreCase("PROD"))
+			Endpoint = settings.getValue("soap_prod_endpoint");
+		else if (settings.getEnvironmentToTest().equalsIgnoreCase("UAT"))
+			Endpoint = settings.getValue("soap_uat_endpoint");
+   
+   System.out.println("--------------------------------------");
 
 	System.out.println("SOAP Request : "+request);
 

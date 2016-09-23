@@ -288,7 +288,7 @@ public class CustomerTabPageCM extends Page {
 			waitForElement(txtAddressLine1);
 			  txtAddressLine1.sendKeys(customerInfo.addressLine1);
 			  report.reportDoneEvent("Enter Address Line 1", "Address Line 1 Entered as ->" +customerInfo.addressLine1);
-			  if(testName.equalsIgnoreCase("EDI-New_connect_Local_Biller_with_Biller_type-CSG")){
+			  if(customerInfo.TestSetName.equalsIgnoreCase("Local Biller")){
 				  addressLine2=customerInfo.addressLine2;
 				}
 				else

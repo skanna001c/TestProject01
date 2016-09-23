@@ -7,7 +7,7 @@
 	</listeners>
 
 
-	<test name="EDI_New_Connect_Local_Biller_Billertype_CSG">
+	<!-- <test name="New_Connect_ME_ENS_New_connect">
 		<classes>
 			<class name="com.comcast.century.common.NewConnectTest">
 				<methods>
@@ -29,10 +29,24 @@
 					<include name="Complete_Fiber_Plant_Build" />
 					<include name="Contact_Customer" />
 					<include name="Update_Design" />
+					<include name="Build_Update_Local_Biller_Account" />
+					<include name="Ship_CPE" />
+					<include name="Create_Account_and_Equipment" />
+					<include name="Assign_Design_Info" />
+					<include name="Generate_Core_Config" />
+					<include name="Generate_CPE_Config" />
+					<include name="Load_Core_Config" />
+					<include name="Install_CPE" />
+					<include name="Set_Critical_Dates" />
+					<include name="Day_of_Configs" />
+					<include name="Activate_Service" />
+					<include name="Notify_Customer_of_Service_Installation" />
+					<include name="Complete_Customer_Acceptance_Testing" />
+					<include name="Start_Billing" />			
 				</methods>
 			</class>
 		</classes>
-	</test>
+	</test> -->
 
 	<test name="New_Connect_ME_EDI_New_connect">
 		<classes>
@@ -158,7 +172,7 @@
 		</classes>
 	</test>
 
-	<test name="New_Connect_ME_EPL_New_connect">
+	<!-- <test name="New_Connect_ME_EPL_New_connect">
 		<classes>
 			<class name="com.comcast.century.common.NewConnectTest">
 				<methods>
@@ -199,7 +213,7 @@
 		</classes>
 	</test>
 
-	<test name="002-EPL_service">
+	<test name="004-ME_EDI-NewConnect-ERate">
 		<classes>
 			<class name="com.comcast.century.common.CoaxTaskFlow">
 				<methods>
@@ -211,14 +225,6 @@
 					<include name="configureService" />
 					<include name="processService" />
 					<include name="submitOrder" />
-					<include name="Conduct_Site_Survey" />
-					<include name="Obtain_Site_Agreement" />
-					<include name="Conduct_Fiber_Plant_Survey" />
-					<include name="Build_House_Account" />
-					<include name="Complete_Wavelength_Reservation" />
-					<include name="Complete_Site_Build" />
-					<include name="Obtain_Fiber_Plant_Permit" />
-					<include name="Complete_Fiber_Plant_Build" />
 					<include name="Conduct_Site_Survey_Coax" />
 					<include name="Obtain_Site_Agreement_Coax" />
 					<include name="Conduct_Coax_Survey" />
@@ -235,7 +241,7 @@
 					<include name="Generate_Core_Config" />
 					<include name="Generate_CPE_Config" />
 					<include name="Load_Core_Config" />
-					<include name="Install_CPE" />
+					<include name="Install_CPE_Coax" />
 					<include name="Set_Critical_Dates" />
 					<include name="Day_of_Configs" />
 					<include name="Activate_Service" />
@@ -249,7 +255,7 @@
 
 	<test name="New_Connect_ME_EDI_ToF_New_connect">
 		<classes>
-			<class name="com.comcast.century.common.NewConnectTest">
+			<class name="com.comcast.century.common.TrunkPRIFlow">
 				<methods>
 					<include name="createCustomer" />
 					<include name="createServiceAccount" />
@@ -283,10 +289,21 @@
 					<include name="Notify_Customer_of_Service_Installation" />
 					<include name="Complete_Customer_Acceptance_Testing" />
 					<include name="Start_Billing" />
+					<include name="Build_Update_Local_Biller_Account_PRI" />
+					<include name="Create_Account_and_Equipment_PRI" />
+					<include name="Ship_CPE_PRI" />
+					<include name="Assign_Design_Info_PRI" />
+					<include name="Generate_CPE_Config_PRI" />
+					<include name="Generate_Core_Config_PRI" />
+					<include name="Load_Core_Config_PRI" />
+					<include name="Install_CPE_PRI" />
+					<include name="Set_Critical_Dates_PRI" />
+					<include name="Day_of_Configs_PRI" />
+					<include name="Activate_Service_PRI" />
 				</methods>
 			</class>
 		</classes>
-	</test>
+	</test> 
 
 	<test name="New_Connect_ME_EVPL_New_connect">
 		<classes>
@@ -327,8 +344,6 @@
 				</methods>
 			</class>
 		</classes>
-	</test>
-	
-	
+	</test> -->
 
 </suite> 

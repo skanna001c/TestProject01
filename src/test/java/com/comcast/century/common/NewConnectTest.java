@@ -368,7 +368,7 @@ public class NewConnectTest extends ComcastTest {
 		for (int i = 0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++) {
 			SearchOrderndLaunchServiceFlow(i);
 			(new ServiceLevelTasks(frameworkContext)).ADI();
-			(new ADITaskPage(frameworkContext)).ADITask();
+			(new ADITaskPage(frameworkContext)).ADITask(serviceInfo);
 		}
 		if(testcaseName.matches("Tech_Supp_ Add_BGP_to_EDI-PRI_Service|Tech_Supp_Upgrade_EVC_for_EDI_Erate_Service|Tech_Sup_Add_Trunk-PRI_to_In-Flight_Metro-E_order")){
 			startCM();

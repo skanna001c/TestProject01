@@ -63,12 +63,20 @@ public class CompleteWavelengthReservationTaskPage extends Page {
 	public boolean CompleteWavelengthReservation(SiteLevelTaskInfo siteLevelTaskInfo) throws InterruptedException{
 		try{
 			if(waitForElement(ddWDMType)){
+			do{
 				ddWDMType.click();
 				waitForElementDisappear(elementLoading);
+			} while(!waitForElement(ddValueWDMType,2));			
 				ddValueWDMType.click();
+				
+				
 				waitForElement(ddWavelength);
+			do{	
 				ddWavelength.click();
 				waitForElementDisappear(elementLoading);
+			}
+			while(!waitForElement(ddValueWavelength,2));	
+			
 				ddValueWavelength.click();
 				this.ClickCompleteButton();
 				waitForElement(browser.findElement(By.xpath("//*[text()='Complete Wavelength Reservation' and contains(@onclick, 'COMPLETED')]")));

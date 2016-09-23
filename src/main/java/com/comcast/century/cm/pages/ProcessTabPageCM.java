@@ -411,15 +411,7 @@ public class ProcessTabPageCM extends Page {
 				 WaitandSwitchToFrame(frameMain);
 				 new Select(TransportType).selectByVisibleText(processInfo.UNITransportType1);
 				 new Select(ddAggregatorNeeded).selectByVisibleText("No");
-				 waitForElement(ddtxtSURCILI);
-				 ddtxtSURCILI.clear();
-				 ddtxtSURCILI.click();	 
-				 ddtxtSURCILI.sendKeys(processInfo.surCILI);		 
-				 //Thread.sleep(10000);
-				/* ddValue(ddtxtSURCILI,processInfo.surCILI1);			 
-				 WebElement ddvalueSURCILI1 = browser.findElement(By.xpath("//li[text()='"+processInfo.surCILI1+"']"));
-				 waitForElement(ddvalueSURCILI1);
-				 ddvalueSURCILI1.click();*/
+				 setSURCLLI(ddtxtSURCILI,processInfo.surCILI);
 				 UNINo1 = randomNumber(5);
 				 iSendKeys(txtUNInumber, UNINo1);			 
 				 new Select(ddUNIPortSpeed).selectByVisibleText("10/100");
@@ -433,7 +425,7 @@ public class ProcessTabPageCM extends Page {
 		}
 		
 		
-		/*Method to save BGP Configuration
+		/*Method to set SURCLLI
 		 *  
 		 * 
 		 * 
@@ -441,6 +433,37 @@ public class ProcessTabPageCM extends Page {
 		 */
 		
 		
+		private boolean setSURCLLI(WebElement ddtxtSURCILI, String surCILI) {
+			// TODO Auto-generated method stub
+			By by=By.xpath("//li[text()='"+surCILI+"']");
+			mstatus=false;
+			if (waitForElement(ddtxtSURCILI))
+			{
+				 ddtxtSURCILI.click();
+				 ddtxtSURCILI.clear();	
+			do{
+				ddtxtSURCILI.sendKeys(surCILI);
+				ddtxtSURCILI.sendKeys(Keys.ARROW_DOWN);
+				if(isElementPresent(by))
+				{
+					browser.findElement(by).click();
+				}
+				sleep(1000);
+				ddtxtSURCILI.sendKeys(Keys.TAB);
+			}while(ddtxtSURCILI.getAttribute("class").contains("x-form-empty-field"));
+			}
+			
+			return mstatus;
+		}
+		
+		
+		/*Method to save BGP Configuration
+		 *  
+		 * 
+		 * 
+		 * 
+		 */
+
 		public boolean BGPConfiguration(){
 			mstatus = true;
 			
@@ -490,10 +513,7 @@ public class ProcessTabPageCM extends Page {
 				 WaitandSwitchToFrame(frameMain);
 				 new Select(TransportType).selectByVisibleText(processInfo.UNITransportType2);
 				 new Select(ddAggregatorNeeded).selectByVisibleText("No");				 
-				 waitForElement(ddtxtSURCILI);
-				 ddtxtSURCILI.clear();
-				 ddtxtSURCILI.click();	 
-				 ddtxtSURCILI.sendKeys(processInfo.surCILI);					 				 
+				 setSURCLLI(ddtxtSURCILI,processInfo.surCILI);				 				 
 				 UNINo2=randomNumber(5);
 				 iSendKeys(txtUNInumber, UNINo2);
 				 new Select(ddUNIPortSpeed).selectByVisibleText("10/100");
@@ -542,10 +562,7 @@ public class ProcessTabPageCM extends Page {
 				 WaitandSwitchToFrame(frameMain);
 				 new Select(TransportType).selectByVisibleText(processInfo.UNITransportType3);
 				 new Select(ddAggregatorNeeded).selectByVisibleText("No");
-				 waitForElement(ddtxtSURCILI);
-				 ddtxtSURCILI.clear();
-				 ddtxtSURCILI.click();	 
-				 ddtxtSURCILI.sendKeys(processInfo.surCILI);					 				 
+				 setSURCLLI(ddtxtSURCILI,processInfo.surCILI);				 				 
 				 UNINo3=randomNumber(5);
 				 iSendKeys(txtUNInumber, UNINo3);
 				 new Select(ddUNIPortSpeed).selectByVisibleText("10/100");;
@@ -584,10 +601,7 @@ public class ProcessTabPageCM extends Page {
 					 WaitandSwitchToFrame(frameMain);
 					 new Select(TransportType).selectByVisibleText(siteType);
 					 new Select(ddAggregatorNeeded).selectByVisibleText("No");
-					 waitForElement(ddtxtSURCILI);
-					 ddtxtSURCILI.clear();
-					 ddtxtSURCILI.click();
-					 ddtxtSURCILI.sendKeys(processInfo.surCILI);				 				 
+					 setSURCLLI(ddtxtSURCILI,processInfo.surCILI);			 				 
 					 waitForElement(txtUNInumber);				 
 					 UNINo4=randomNumber(5);
 					 iSendKeys(txtUNInumber, UNINo4);					 
@@ -634,14 +648,7 @@ public class ProcessTabPageCM extends Page {
 					 btnOK.click();
 				 browser.switchTo().defaultContent();
 				 WaitandSwitchToFrame(frameMain);
-				 waitForElement(ddtxtSURCILI);
-				 ddtxtSURCILI.clear();
-				 ddtxtSURCILI.click();	 
-				 ddtxtSURCILI.sendKeys(processInfo.surCILI);	
-				/* ddValue(ddtxtSURCILI,processInfo.surCILI1);
-				 WebElement ddvalueSURCILI1 = browser.findElement(By.xpath("//li[text()='"+processInfo.surCILI1+"']"));
-				 waitForElement(ddvalueSURCILI1);
-				 ddvalueSURCILI1.click();*/
+				 setSURCLLI(ddtxtSURCILI,processInfo.surCILI);
 				 waitForElement(txtUNInumber);
 				 iSendKeys(txtUNInumber, randomNumber(5));
 				 new Select(ddUNIPortSpeed).selectByVisibleText("10/100");

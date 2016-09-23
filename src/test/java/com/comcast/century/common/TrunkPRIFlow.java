@@ -44,7 +44,7 @@ public class TrunkPRIFlow extends CoaxTaskFlow {
 	public void Assign_Design_Info_PRI() throws InterruptedException {
 		SearchOrderndLaunchPRIFlow();
 		(new ServiceLevelTasks(frameworkContext)).ADI();
-		(new ADITaskPage(frameworkContext)).ADITask();
+		(new ADITaskPage(frameworkContext)).ADITask(serviceInfo);
 	}
 
 	@Test(priority = 22005)

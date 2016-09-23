@@ -416,7 +416,7 @@ public class OrderSummaryTabCMPage extends Page {
 				iClick(btnsubmitOrder, null, "Submit Order: Order Summary Page: SubmitButton");
 				waitforPageLoadComplete();
 				waitForElementDisappear(elementLoading);
-				if(OrdersubmittedMessage.getText().contains("Order submitted successfully "))
+				if(OrdersubmittedMessage.getText().contains("Order submitted successfully"))
 				{
 					report.updateTestLog("Click Sumbit Order", "Order Submitted Successfully", Status.SCREENSHOT);
 					report.reportPassEvent("Click Sumbit Order", "Order Submitted Successfully");
