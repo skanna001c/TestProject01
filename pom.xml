@@ -204,7 +204,7 @@
 	     <configuration>
 	         <!-- Suite testng xml file to consider for test execution -->
 	         <suiteXmlFiles>
-	             <suiteXmlFile>testng-classrunner.xml</suiteXmlFile>
+	             <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
 	             <!-- <suiteXmlFile>suites-test-testng.xml</suiteXmlFile> -->
 	         </suiteXmlFiles>
 	         <parallel>tests</parallel>
