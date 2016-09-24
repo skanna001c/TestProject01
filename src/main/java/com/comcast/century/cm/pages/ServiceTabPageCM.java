@@ -102,7 +102,9 @@ public class ServiceTabPageCM extends Page {
 		try{
 			WaitandSwitchToFrame(frameMain);
 			waitForElement(btnContinueAvailProduct);
-			iClick(btnContinueAvailProduct, null, "Click on continue button to navigate to select a service plan: service page: ContinueButton");			 
+			do{
+				iClick(btnContinueAvailProduct, btnContinueSelectedProduct, "Click on continue button to navigate to select a service plan: service page: ContinueButton");	
+			}while(!waitForElement(btnContinueSelectedProduct));
 			waitForElementDisappear(elementLoading);
 		}catch(Exception e){
 			e.printStackTrace();
