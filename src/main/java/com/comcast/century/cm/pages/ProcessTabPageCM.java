@@ -187,6 +187,9 @@ public class ProcessTabPageCM extends Page {
 		
 		@FindBy(xpath = "//input[@value='Continue']")
 		private WebElement btnContinue;
+		
+		@FindBy(xpath = "//input[@id='customerOrderSignatureDate-inputEl']/../following-sibling::*/child::*")
+		private WebElement dtCustomerOrderSig;
 	
 		@FindBy(xpath = "//span[text()='No']/following-sibling::*")
 		private WebElement BtnEqFeePopUp;
@@ -1050,7 +1053,7 @@ public class ProcessTabPageCM extends Page {
 			 try {
 				report.updateTestLog("Save Process Configuration", "Process Configuration Saved", Status.SCREENSHOT);
 				 if (waitForElement(btnContinue)){
-					 iClick(btnContinue, null, "Click on continue button: Process page: ContinueButton");					 
+					 iClick(btnContinue, dtCustomerOrderSig, "Click on continue button: Process page: ContinueButton");					 
 					 waitforPageLoadComplete();
 					 browser.switchTo().defaultContent();
 				  }
