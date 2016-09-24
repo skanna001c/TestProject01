@@ -69,7 +69,6 @@
 					<include name="Activate_Service" />
 					<include name="Notify_Customer_of_Service_Installation" />
 					<include name="Complete_Customer_Acceptance_Testing" />
-					<include name="Create_Order_Billing_Package" />
 					<include name="Start_Billing" />
 					<include name="searchSRID" />
 					<include name="initiateSupplements" />

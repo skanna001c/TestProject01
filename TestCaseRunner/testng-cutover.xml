@@ -7,7 +7,7 @@
 	</listeners>
 
 
-	<!-- <test name="New_Connect_ME_ENS_New_connect">
+	<test name="New_Connect_ME_ENS_New_connect">
 		<classes>
 			<class name="com.comcast.century.common.NewConnectTest">
 				<methods>
@@ -46,9 +46,9 @@
 				</methods>
 			</class>
 		</classes>
-	</test> -->
+	</test>
 
-	<!-- <test name="New_Connect_ME_EDI_New_connect">
+	<test name="New_Connect_ME_EDI_New_connect">
 		<classes>
 			<class name="com.comcast.century.common.NewConnectTest">
 				<methods>
@@ -87,10 +87,10 @@
 				</methods>
 			</class>
 		</classes>
-	</test> -->
+	</test>
 
 
-	<!-- <test name="New_Connect_ME_EDI_ERATE_New_connect">
+	<test name="New_Connect_ME_EDI_ERATE_New_connect">
 		<classes>
 			<class name="com.comcast.century.common.NewConnectTest">
 				<methods>
@@ -130,9 +130,9 @@
 				</methods>
 			</class>
 		</classes>
-	</test> -->
+	</test>
 
-	<!-- <test name="New_Connect_ME_EDI_BGP_New_connect">
+	<test name="New_Connect_ME_EDI_BGP_New_connect">
 		<classes>
 			<class name="com.comcast.century.common.NewConnectTest">
 				<methods>
@@ -171,7 +171,7 @@
 				</methods>
 			</class>
 		</classes>
-	</test> -->
+	</test>
 
 	<test name="New_Connect_ME_EPL_New_connect">
 		<classes>
@@ -214,7 +214,7 @@
 		</classes>
 	</test>
 
-	<!-- <test name="004-ME_EDI-NewConnect-ERate">
+	<test name="004-ME_EDI-NewConnect-ERate">
 		<classes>
 			<class name="com.comcast.century.common.CoaxTaskFlow">
 				<methods>
@@ -253,9 +253,9 @@
 				</methods>
 			</class>
 		</classes>
-	</test> -->
+	</test>
 
-<!-- 	<test name="New_Connect_ME_EDI_ToF_New_connect">
+	<test name="New_Connect_ME_EDI_ToF_New_connect">
 		<classes>
 			<class name="com.comcast.century.common.TrunkPRIFlow">
 				<methods>
@@ -346,6 +346,6 @@
 				</methods>
 			</class>
 		</classes>
-	</test> --> 
+	</test> 
 
 </suite> 

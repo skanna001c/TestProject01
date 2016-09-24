@@ -497,6 +497,8 @@ public class NewConnectTest extends ComcastTest {
 			(new ServiceLevelTasks(frameworkContext)).StartBilling();
 			(new StartBillingTaskPage(frameworkContext)).verifyNotes();
 			(new ServiceLevelTasks(frameworkContext)).ClickBackButton();
+		}if(testcaseName.equalsIgnoreCase("006-EPL-Change-BW-single-view")){
+			startCM();
 		}
 		
 	}
