@@ -22,6 +22,7 @@ import java.util.zip.ZipOutputStream;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.log4j.Logger;
+import org.apache.log4j.MDC;
 import org.apache.log4j.PropertyConfigurator;
 import org.junit.Rule;
 import org.junit.rules.TestWatcher;
@@ -178,6 +179,7 @@ public class ComcastTest {
     	testStatusTable = new Hashtable<String,String>();
     	initializeSummaryReport();
     	testCaseName = context.getCurrentXmlTest().getName();
+    	MDC.put("TestName", testCaseName);
     	testStatus = "Passed";
     	    	
 		//if(settings==null) // added by harsh on 8/2/2016
@@ -380,7 +382,7 @@ public class ComcastTest {
 			if(gridflag.equals("false"))
 			{	
 				
-/*				ProfilesIni profilesIni = new ProfilesIni();
+				ProfilesIni profilesIni = new ProfilesIni();
 
 				FirefoxProfile profile = profilesIni.getProfile("default");
 
@@ -392,16 +394,16 @@ public class ComcastTest {
 
 
 				driver =ThreadGuard.protect( new FirefoxDriver(profile));
-				ThreadDriver.set(driver); */
+				ThreadDriver.set(driver); 
 				
 				// updated by hbolak01c on 9/15/2016 for FFv48+ support
-				System.setProperty("webdriver.gecko.driver", 
+/*				System.setProperty("webdriver.gecko.driver", 
 						TestUtils.getRelativePath()+"/src/main/resources/BrowserSpecificDrivers/geckodriver.exe");
 				DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 				capabilities.setCapability("marionette", true);
 				//driver = ThreadGuard.protect(new MarionetteDriver(capabilities));
 				driver = ThreadGuard.protect(new FirefoxDriver(capabilities));
-				ThreadDriver.set(driver);
+				ThreadDriver.set(driver);*/
 
 				
 			}
