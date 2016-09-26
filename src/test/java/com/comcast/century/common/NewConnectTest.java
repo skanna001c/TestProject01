@@ -318,15 +318,8 @@ public class NewConnectTest extends ComcastTest {
 
 	}
 
-	@Test(priority = 13500)
-	public void Update_Design() throws InterruptedException, AWTException {
-		SearchOrderndLaunchServiceRequest();
-		(new ServiceLevelTasks(frameworkContext)).UpdateDesign();
-		(new UpdateDesignTaskPage(frameworkContext)).UpdateDesign();		
-	}
-	
 	// Metro E flow tasks
-	@Test(priority = 14000)
+	@Test(priority = 13500)
 	public void Build_Update_Local_Biller_Account() throws InterruptedException {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
@@ -340,6 +333,14 @@ public class NewConnectTest extends ComcastTest {
 		} 
 	}
 	
+	@Test(priority = 14000)
+	public void Update_Design() throws InterruptedException, AWTException {
+		for (int i = 0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++) {
+			SearchOrderndLaunchServiceFlow(i);
+			(new ServiceLevelTasks(frameworkContext)).UpdateDesign();
+			(new UpdateDesignTaskPage(frameworkContext)).UpdateDesign();
+		}
+	}
 
 	@Test(priority = 14500)
 	public void Ship_CPE() throws InterruptedException {

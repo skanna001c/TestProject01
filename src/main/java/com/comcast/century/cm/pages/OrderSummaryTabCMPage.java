@@ -215,7 +215,7 @@ public class OrderSummaryTabCMPage extends Page {
 				 this.assignLabelCM("CAT Test Orders");
 			 }
 			this.enterOrderDetails(orderSummaryInfo);
-			if (activityType.getText().equalsIgnoreCase("New Connect")) {
+			if ((activityType.getText().trim()).equalsIgnoreCase("New Connect")) {
 				this.mrcNrc_Value(orderSummaryInfo);
 				if (eRate.equalsIgnoreCase("Yes")) {
 					this.Attachments(orderSummaryInfo);
@@ -341,13 +341,13 @@ public class OrderSummaryTabCMPage extends Page {
 			btnToday.get(1).click();
 			dtSalesOrderSubmitted.click();
 			btnToday.get(2).click();
-			if (activityType.getText().equalsIgnoreCase("New Connect")){
+			//if (activityType.getText().equalsIgnoreCase("New Connect")){
 				iSendKeys(txtsalesOrderNumber, randomNumber(5));
 			    iSendKeys(txtsalesforceopportunityid,orderSummaryInfo.opportunityId );
 			    report.reportDoneEvent("Enter Opportunity ID",
 						"Entered Opportunity ID as->" + orderSummaryInfo.opportunityId);
 				btnSalesOrderId.click();
-			}
+			//}
 			
 		} catch (Exception e) {
 			mstatus = false;
