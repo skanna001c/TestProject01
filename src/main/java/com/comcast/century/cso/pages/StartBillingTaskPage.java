@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -62,9 +63,17 @@ public class StartBillingTaskPage extends Page {
 	public boolean StartBilling() throws InterruptedException{
 		try{
 			if(waitForElement(actualBillingStartDate)){
-				clickndRelease(actualBillingStartDate);
-				clickndRelease(btnToday);
-				this.ClickCompleteButton();
+				if(waitForElement(btnComplete, 5))
+				{
+					clickndRelease(actualBillingStartDate);
+					clickndRelease(btnToday);
+					this.ClickCompleteButton();
+					waitForElement(browser.findElement(By.xpath("//*[text()='Start Billing' and contains(@onclick, 'COMPLETED')]")));
+				}
+				else
+				{
+					this.verifyNotes();
+				}
 			}
 		}
 		catch(Exception ex)

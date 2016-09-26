@@ -493,7 +493,7 @@ public class NewConnectTest extends ComcastTest {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
 			(new ServiceLevelTasks(frameworkContext)).StartBilling();
-			(new StartBillingTaskPage(frameworkContext)).verifyNotes();
+			(new StartBillingTaskPage(frameworkContext)).StartBilling();			
 			(new ServiceLevelTasks(frameworkContext)).ClickBackButton();
 		}if(testcaseName.equalsIgnoreCase("006-EPL-Change-BW-single-view")){
 			startCM();
@@ -538,10 +538,14 @@ public class NewConnectTest extends ComcastTest {
 	}
 	
 	
-	public void SearchOrderndLaunchFiberSiteFlow(String site) {
+	public void SearchOrderndLaunchFiberSiteFlow(String site) {				
 		    	retryCount = 1;
+		    	if (!getDataDump().getValue("SUP_SRID_RT").equalsIgnoreCase(""))
+					SRID = getDataDump().getValue("SUP_SRID_RT");
+				else
+					SRID = getDataDump().getValue("SRID_RT");
 		    	do{
-		    		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
+		    		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(SRID, retryCount);
 		    		status = (new WorkOrderTabPageCSO(frameworkContext)).ClickFiberSiteFlow(site);
 		    		if(!status)
 		    		{
@@ -553,8 +557,12 @@ public class NewConnectTest extends ComcastTest {
 	
 	public void SearchOrderndLaunchCoaxSiteFlow(String site) {		
 				retryCount = 1;
+				if (!getDataDump().getValue("SUP_SRID_RT").equalsIgnoreCase(""))
+					SRID = getDataDump().getValue("SUP_SRID_RT");
+				else
+					SRID = getDataDump().getValue("SRID_RT");
 				do{
-					(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
+					(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(SRID, retryCount);
 					status = (new WorkOrderTabPageCSO(frameworkContext)).ClickCoaxSiteFlow(site);
 					if(!status)
 		    		{
@@ -578,8 +586,12 @@ public class NewConnectTest extends ComcastTest {
 	
 	public void SearchOrderndLaunchServiceFlow(int i) throws InterruptedException {
     	retryCount = 1;
+    	if (!getDataDump().getValue("SUP_SRID_RT").equalsIgnoreCase(""))
+			SRID = getDataDump().getValue("SUP_SRID_RT");
+		else
+			SRID = getDataDump().getValue("SRID_RT");
     	do{
-    		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
+    		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(SRID, retryCount);
     		status = (new WorkOrderTabPageCSO(frameworkContext)).ClickServiceFlow(serviceInfo,i);
     		if(!status)
     		{
@@ -592,8 +604,12 @@ public class NewConnectTest extends ComcastTest {
 	
 	public void SearchOrderndLaunchPRIFlow() throws InterruptedException {
     	retryCount = 1;
+    	if (!getDataDump().getValue("SUP_SRID_RT").equalsIgnoreCase(""))
+			SRID = getDataDump().getValue("SUP_SRID_RT");
+		else
+			SRID = getDataDump().getValue("SRID_RT");
 		do{
-			(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
+			(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(SRID, retryCount);
 			status =(new WorkOrderTabPageCSO(frameworkContext)).ClickTrunkPRIFlow();
 			if(!status)
 			{ 
@@ -605,8 +621,12 @@ public class NewConnectTest extends ComcastTest {
 	
 	public void SearchOrderndLaunchServiceRequest() {
     	retryCount = 1;
+    	if (!getDataDump().getValue("SUP_SRID_RT").equalsIgnoreCase(""))
+			SRID = getDataDump().getValue("SUP_SRID_RT");
+		else
+			SRID = getDataDump().getValue("SRID_RT");
     	do{
-    		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"),retryCount);
+    		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(SRID,retryCount);
     		status = (new WorkOrderTabPageCSO(frameworkContext)).ClickFirstSiteFlow();
     		if(!status)
     		{
@@ -618,8 +638,12 @@ public class NewConnectTest extends ComcastTest {
 	
 	public void SearchOrderndLauncheEquipmentFeeFlow(int i) throws InterruptedException {
     	retryCount = 1;
+    	if (!getDataDump().getValue("SUP_SRID_RT").equalsIgnoreCase(""))
+			SRID = getDataDump().getValue("SUP_SRID_RT");
+		else
+			SRID = getDataDump().getValue("SRID_RT");
     	do{
-    		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(getDataDump().getValue("SRID_RT"), retryCount);
+    		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(SRID, retryCount);
     		status = (new WorkOrderTabPageCSO(frameworkContext)).ClickEquipmentFeeFlow(i);
     		if(!status)
     		{
