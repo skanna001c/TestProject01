@@ -44,12 +44,12 @@ public class EqFeeFlowTasks extends Page {
 	public boolean EqFeeStartBilling() throws InterruptedException{
 		try{
 			if(waitForElement(taskEqFeeStartBilling)){
-				if(checkifStatusChanged(taskEqFeeStartBilling,btnRefresh,"COMPLETED") || checkifStatusChanged(taskEqFeeStartBilling,btnRefresh,"INPROGRESS")){
+				//if(checkifStatusChanged(taskEqFeeStartBilling,btnRefresh,"COMPLETED") || checkifStatusChanged(taskEqFeeStartBilling,btnRefresh,"INPROGRESS")){
 					waitForElement(taskEqFeeStartBilling);
 					Thread.sleep(5*1000);
 					jsClick(taskEqFeeStartBilling);
 					report.reportDoneEvent("Click EqFeeStartBilling Task", " EqFeeStartBilling Task Clicked");
-				}
+				//}
 				waitforPageLoadComplete();
 			}
 		}

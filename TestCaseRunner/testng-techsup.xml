@@ -37,7 +37,7 @@
 		</classes>
 	</test>
 
-	<test name="Tech_Supp_ Add_BGP_to_EDI-PRI_Service">
+	<!-- <test name="Tech_Supp_ Add_BGP_to_EDI-PRI_Service">
 	<classes>
 		<class name="com.comcast.century.techsup.Techsup">
 			<methods>
@@ -138,6 +138,6 @@
 				</methods>
 			</class>
 		</classes>
-	</test>
+	</test> -->
 
 </suite> 

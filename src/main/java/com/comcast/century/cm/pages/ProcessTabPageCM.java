@@ -137,7 +137,7 @@ public class ProcessTabPageCM extends Page {
 		@FindBy(xpath = "//input[@id='locACombo-inputEl']/../following-sibling::*/child::*")
 		private WebElement ddArrwLocationAuni;
 		
-		@FindBy(xpath = "//div[contains(text(),'ProdTest_ENT')]")
+		@FindBy(xpath = "//div[contains(text(),'ProdTest_ENT') or contains(text(),'CATTest_ENT')]")
 		private List<WebElement> ddvalueLocationZuni;
 		
 		@FindBy(xpath = "//input[@paramname='EVC Number']")
@@ -182,7 +182,7 @@ public class ProcessTabPageCM extends Page {
 		@FindBy(xpath = "//input[@id='EqFeeCombo-inputEl']/../following-sibling::td/child::div")
 		private WebElement ddArrwEqFeeServiceLocation;
 		
-		@FindBy(xpath = "//div[contains(text(),'ProdTest_ENT')]")
+		@FindBy(xpath = "//div[contains(text(),'ProdTest_ENT') or contains(text(),'CATTest_ENT')]")
 		private List<WebElement> ddValueEqFeeServiceLocation;
 		
 		@FindBy(xpath = "//input[@value='Continue']")

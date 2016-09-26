@@ -60,7 +60,7 @@ public class EqFeeStartBillingTaskPage extends Page {
 				}
 				else
 					this.ClickBackButton();				
-				waitForElement(browser.findElement(By.xpath("//*[text()='Start Billing' and contains(@onclick, 'COMPLETED')]")));
+				    waitForElement(browser.findElement(By.xpath("//*[text()='Start Billing' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)

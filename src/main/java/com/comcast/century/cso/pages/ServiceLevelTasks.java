@@ -489,11 +489,11 @@ public class ServiceLevelTasks extends Page {
 	public boolean StartBilling() throws InterruptedException{
 		try{
 			if(waitForElement(taskStartBilling)){
-				if(checkifStatusChanged(taskStartBilling,btnRefresh,"COMPLETED")){
+				//if(checkifStatusChanged(taskStartBilling,btnRefresh,"INPROGRESS") || checkifStatusChanged(taskStartBilling,btnRefresh,"COMPLETED")){
 					waitForElement(taskStartBilling);
 					jsClick(taskStartBilling);
 					report.reportDoneEvent("Complete StartBilling Task", " StartBilling Task auto completed");
-				}
+				//}
 				waitforPageLoadComplete();
 			}
 		}

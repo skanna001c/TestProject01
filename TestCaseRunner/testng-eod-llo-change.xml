@@ -48,6 +48,13 @@
 					<include name="initiateSupplements" />
 					<include name="addUNIWithCoax" />
 					<include name="submitOrderSupplements" />
+					<include name="Conduct_Site_Survey_Coax_Change" />
+					<include name="Obtain_Site_Agreement_Coax_Change" />
+					<include name="Conduct_Coax_Survey_Change" />
+					<include name="Build_House_Account_Coax_Change" />
+					<include name="Obtain_Coax_Permit_Change" />
+					<include name="Complete_Site_Build_Coax_Change" />
+					<include name="Complete_Coax_Build_Change" />
 				</methods>
 			</class>
 		</classes>
