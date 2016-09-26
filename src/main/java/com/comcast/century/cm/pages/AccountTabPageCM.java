@@ -43,7 +43,7 @@ public class AccountTabPageCM extends Page {
 	private WebElement ddtxtServiceAcc;
 
 	// input[contains(@value,'AcctNam')]
-	@FindBy(xpath = "//input[contains(@value,'CENTURY_PROD_TEST')]")
+	@FindBy(xpath = "//input[contains(@value,'CENTURY_PROD_TEST') or contains(@value,'CENTURY_CAT_TEST')]")
 	private WebElement chkServiceAcc;
 
 	@FindBy(xpath = "//*[@id='assocToCombo-inputEl']")
