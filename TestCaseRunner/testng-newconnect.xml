@@ -7,7 +7,7 @@
 
 	<test name="005-New_E-Rate_Order-EDI">
 		<classes>
-			<class name="com.comcast.century.newConnect.NewConnect">
+			<class name="com.comcast.century.newconnect.NewConnect">
 				<methods>
 					<include name="createCustomer" />
 					<include name="createServiceAccount" />

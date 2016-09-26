@@ -208,9 +208,9 @@ public class OrderSummaryTabCMPage extends Page {
 	private String relatedOrderIDValue;
 	
 	
-	public boolean submitOrder(OrderSummaryInfo orderSummaryInfo, String eRate) {
-		try { 
-			
+	public String submitOrder(OrderSummaryInfo orderSummaryInfo, String eRate) {
+		String SRID = null;
+		try {			
 			 if(testSettings.getEnvironmentToTest().equalsIgnoreCase("PROD")){
 				 this.assignLabelCM("CAT Test Orders");
 			 }
@@ -221,12 +221,12 @@ public class OrderSummaryTabCMPage extends Page {
 					this.Attachments(orderSummaryInfo);
 				}
 			}
-			this.ClickSubmitOrderButton();
+			SRID = this.ClickSubmitOrderButton();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			mstatus = false;
+			SRID = null;
 		}
-		return mstatus;
+		return SRID;
 	}
 	
 
@@ -408,8 +408,8 @@ public class OrderSummaryTabCMPage extends Page {
 		return mstatus;
 	}
 
-	public boolean ClickSubmitOrderButton() {
-		mstatus = true;
+	public String ClickSubmitOrderButton() {
+		String SRID_RT = null;
 		try {
 			// ShortWaitandSwitchToFrame(frameMain);
 			if (waitForElement(btnsubmitOrder)) {
@@ -420,7 +420,7 @@ public class OrderSummaryTabCMPage extends Page {
 				{
 					report.updateTestLog("Click Sumbit Order", "Order Submitted Successfully", Status.SCREENSHOT);
 					report.reportPassEvent("Click Sumbit Order", "Order Submitted Successfully");
-					dataDump.setValue("SUP_SRID_RT", SRID.getText());
+					SRID_RT = SRID.getText();
 				}
 				else
 				{
@@ -431,9 +431,9 @@ public class OrderSummaryTabCMPage extends Page {
 			browser.switchTo().defaultContent();
 			waitforPageLoadComplete();
 		} catch (Exception e) {
-			mstatus = false;
+			SRID_RT = null;
 		}
-		return mstatus;
+		return SRID_RT;
 	}
 
 	/*public boolean NavigateToCSO(OrderSummaryInfo orderSummaryInfo) {

@@ -33,7 +33,9 @@ public class Supplements extends TrunkPRIFlow {
 	@Test(priority = 35000)
 	@PerfTransaction(name = "SubmitOrderSupplements")
 	public void submitOrderSupplements() throws InterruptedException {
-		new OrderSummaryTabCMPage(frameworkContext).submitOrder(orderSummaryInfo, accountInfo.eRate);
+		String SUP_SRID = null;
+		SUP_SRID = new OrderSummaryTabCMPage(frameworkContext).submitOrder(orderSummaryInfo, accountInfo.eRate);
+		getDataDump().setValue("SUP_SRID_RT", SUP_SRID);
 		startCSO();
 
 	}

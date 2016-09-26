@@ -339,11 +339,10 @@ public class ProcessTabPageCM extends Page {
 		 * 
 		 */
 		
-	public String ProcessConfiguration(ProcessInfo processInfo) {
-		String SRID = null;
+	public boolean ProcessConfiguration(ProcessInfo processInfo) {
+		boolean mstatus = true;
 
-		try {
-			SRID = txtSRId.getText();
+		try {			
 			waitForElement(ddSelectTerms);
 			new Select(ddSelectTerms).selectByVisibleText(processInfo.terms);
 			iClick(btnSave, null, "Click on save button: Process page: SaveButton");
@@ -351,9 +350,9 @@ public class ProcessTabPageCM extends Page {
 			waitForElementDisappear(elementLoading);
 		} catch (Exception e) {
 			e.printStackTrace();
-			SRID = null;
+			mstatus = false;
 		}
-		return SRID;
+		return mstatus;
 	}
 		
 		

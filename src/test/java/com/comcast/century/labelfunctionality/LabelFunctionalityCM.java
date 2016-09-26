@@ -15,7 +15,7 @@ import com.comcast.utils.PerfTransaction;
 
 public class LabelFunctionalityCM extends NewConnectTest {
 
-	
+	String SRID = null;
 	@Test(priority=50)
 	  @PerfTransaction(name="CreateLabelCM")
 	  public void createLabelCM() throws InterruptedException{
@@ -44,10 +44,10 @@ public class LabelFunctionalityCM extends NewConnectTest {
 			processService();
 			assignLabelCM();
 		}
-		if((new OrderSummaryTabCMPage(frameworkContext)).submitOrder(orderSummaryInfo,accountInfo.eRate)){
-			  if((new OrderSummaryTabCMPage(frameworkContext)).verifyNotesForLabels()){
-			}else Assert.fail("Notes Verification failed");
-		}else Assert.fail("Submit Order Failed");	
+		SRID = new OrderSummaryTabCMPage(frameworkContext).submitOrder(orderSummaryInfo,accountInfo.eRate);
+		getDataDump().setValue("SRID_RT", SRID);
+		if((new OrderSummaryTabCMPage(frameworkContext)).verifyNotesForLabels()){
+		}else Assert.fail("Notes Verification failed");			
 	}
 	
 	@Test(priority=4660)

@@ -45,6 +45,9 @@ public class TrunkPRIFlow extends CoaxTaskFlow {
 		SearchOrderndLaunchPRIFlow();
 		(new ServiceLevelTasks(frameworkContext)).ADI();
 		(new ADITaskPage(frameworkContext)).ADITask(serviceInfo);
+		if(testcaseName.matches("EDI+PRI_Equipment Fee_Cancel Sup_Completed_Activate_Service")){
+			startCM();
+		}
 	}
 
 	@Test(priority = 22005)

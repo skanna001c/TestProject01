@@ -195,8 +195,7 @@ public class NewConnectTest extends ComcastTest {
 			selectService();
 			configureService();
 		}
-		SRID = (new ProcessTabPageCM(frameworkContext)).ProcessConfiguration(processInfo);
-		getDataDump().setValue("SRID_RT", SRID);
+		new ProcessTabPageCM(frameworkContext).ProcessConfiguration(processInfo);		
 		IDataDump dataDump=(new ProcessTabPageCM(frameworkContext)).processServices(serviceInfo,processInfo,getDataDump());
 		if( dataDump!= null){
 			setDataDump(dataDump);
@@ -213,11 +212,9 @@ public class NewConnectTest extends ComcastTest {
 			configureService();
 			processService();
 		}
-		if((new OrderSummaryTabCMPage(frameworkContext)).submitOrder(orderSummaryInfo,accountInfo.eRate)){
-			startCSO();
-		}else Assert.fail("Submit Order Failed");
-		
-		
+		SRID = new OrderSummaryTabCMPage(frameworkContext).submitOrder(orderSummaryInfo,accountInfo.eRate);
+		getDataDump().setValue("SRID_RT", SRID);
+		startCSO();		
 	}
 	
 	
