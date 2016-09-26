@@ -67,4 +67,19 @@ public class UserDetails implements IUserDetails {
 		return properties;
 	}
 
+	@Override
+	public String getUserName(String key) {
+		// TODO Auto-generated method stub
+		if(properties.containsKey(key)){
+			return properties.getProperty(key);
+		}else
+			return "";
+	}
+
+	@Override
+	public boolean containsTestName(String key) {
+		// TODO Auto-generated method stub
+		return properties.containsKey(key);
+	}
+
 }

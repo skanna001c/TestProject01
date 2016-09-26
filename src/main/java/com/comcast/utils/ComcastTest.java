@@ -715,8 +715,17 @@ public class ComcastTest {
 	}
 	
 	public void beforeMethodGetUserndURL(Method testName) {
+		String newTestName;
 		  //check for rerun and the status of the method
-		 userName=userDetails.getPassword(testName.getName());
+		if(userDetails.containsTestName(testName.getName().trim())) {
+			userName=userDetails.getUserName(testName.getName());
+		}
+		else{
+				newTestName=testName.getName().trim();
+				newTestName= newTestName.substring(0,newTestName.lastIndexOf("_")); 
+				userName=userDetails.getUserName(newTestName);
+			}
+		
 		 
 		 if (userName==null || userName=="")
 		  {
@@ -759,7 +768,7 @@ public class ComcastTest {
 			 getDataDump().setValue("currentUser", userName);
 		 }
 		
-		 
+//########################################################################################################################
   		 if((getDataDump().getValue("CMLoggedIN").equalsIgnoreCase("PASS"))) 
 		 {
 			 if (!(getDataDump().getValue("currentUser").equalsIgnoreCase(userName)))
