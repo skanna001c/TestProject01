@@ -714,7 +714,7 @@ public class ComcastTest {
 		return line;
 	}
 	
-	public void beforeMethodGetUserndURL(Method testName) {
+public void beforeMethodGetUserndURL(Method testName) {
 		String newTestName;
 		  //check for rerun and the status of the method
 		if(userDetails.containsTestName(testName.getName().trim())) {
@@ -722,7 +722,10 @@ public class ComcastTest {
 		}
 		else{
 				newTestName=testName.getName().trim();
+			if (newTestName.lastIndexOf("_")>0){	
 				newTestName= newTestName.substring(0,newTestName.lastIndexOf("_")); 
+					
+			}
 				userName=userDetails.getUserName(newTestName);
 			}
 		
@@ -736,9 +739,22 @@ public class ComcastTest {
 			 			  }
 			 			  
 		  }
-		  
+//####################################################################################
+	if(testName.getName().trim().toLowerCase().startsWith("startcm"))
+	{
+		 centuryApplication.openCMUrl(userName,
+				 	false, frameworkContext);		 
+		 	if(settings.getPERerunStatus().equalsIgnoreCase("true")){ //for cm package execution 
+				(new HomePageCM(frameworkContext)).searchCustomer(getDataDump().getValue("CustomerName_RT"));
+			}
+		 	
+			 getDataDump().setValue("CMLoggedIN","PASS");
+			 getDataDump().setValue("CSOLoggedIN","FAIL");
+			 getDataDump().setValue("currentUser", userName);
+	}
+//#######################################################################			 
 		 
-		 if (getDataDump().getValue("CM_Status").equalsIgnoreCase("PASS")) //re run or 1st execution
+	else if (getDataDump().getValue("CM_Status").equalsIgnoreCase("PASS")) //re run or 1st execution
 			 {
 				 if(!(getDataDump().getValue("CSOLoggedIN").equalsIgnoreCase("PASS")))
 					 {

@@ -5,11 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import com.comcast.century.common.NewConnectTest;
 import com.comcast.century.data.AccountInfo;
 import com.comcast.reporting.Status;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
 import com.comcast.utils.ComcastTest.FrameworkContext;
+
+import mx4j.log.Logger;
 
 public class AccountTabPageCM extends Page {
 	
@@ -17,6 +20,8 @@ public class AccountTabPageCM extends Page {
 	public AccountTabPageCM(FrameworkContext context){
 		super(context);
 	}
+	
+	
 
 	@FindBy(xpath = "//a[.='Account']") // @FindBy(xpath = "//a[.='Account']")
 	private WebElement tabAccount;

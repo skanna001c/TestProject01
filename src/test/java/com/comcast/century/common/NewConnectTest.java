@@ -19,6 +19,7 @@ import com.comcast.century.cm.pages.ContactTabPageCM;
 import com.comcast.century.cm.pages.CustomerTabPageCM;
 import com.comcast.century.cm.pages.FeatureTabPageCM;
 import com.comcast.century.cm.pages.OrderSummaryTabCMPage;
+import com.comcast.century.cm.pages.Page;
 import com.comcast.century.cm.pages.ProcessTabPageCM;
 import com.comcast.century.cm.pages.ServiceTabPageCM;
 import com.comcast.century.cso.pages.ADITaskPage;
@@ -73,6 +74,7 @@ import com.comcast.utils.IDataDump;
 import com.comcast.utils.PerfTransaction;
 
 import bsh.org.objectweb.asm.Label;
+import mx4j.log.Logger;
 
 public class NewConnectTest extends ComcastTest {
 	protected String testcaseName;
@@ -87,11 +89,13 @@ public class NewConnectTest extends ComcastTest {
 	protected ServiceLevelTaskInfo serviceLevelTaskInfo;
 	protected SupplementInfo supplementInfo;
 
+	
 
 	String SRID;
 	String SurveyID;
 	int retryCount = 0;
 	boolean status=true;
+	
 
 	@BeforeClass
 	public void beforeTest() {
@@ -631,8 +635,8 @@ public class NewConnectTest extends ComcastTest {
 	@Test(priority = 15501)
 	public void startCM() {
 		
-		getDataDump().setValue("CM_Status", "FAIL");
-		getDataDump().setValue("CMLoggedIN", "FAIL");
+		/*getDataDump().setValue("CM_Status", "FAIL");
+		getDataDump().setValue("CMLoggedIN", "FAIL");*/
 	
 	}
 	
