@@ -29,7 +29,8 @@ public class Techsup extends Supplements {
 	
 	@Test(priority = 30001)
 	public void upgradeEVC() throws InterruptedException {		
-		new ProcessTabPageCM(frameworkContext).upgradeEVC();
+		new ProcessTabPageCM(frameworkContext).UpgradeEVCBW(1, "20Mbps");
+		new ProcessTabPageCM(frameworkContext).ClickOnContinueButton();
 	}
 	
 	

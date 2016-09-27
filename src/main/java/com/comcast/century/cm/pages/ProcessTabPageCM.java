@@ -50,16 +50,16 @@ public class ProcessTabPageCM extends Page {
 		@FindBy(xpath = "//input[@value='Save']")
 		private WebElement btnSave;
 		
-		@FindBy(xpath = "//a[text()='UNI']")
-		private WebElement LinkUNI;
+		@FindBy(xpath = "//a[text()='UNI' or contains(text(),'UNI:')]")
+		private WebElement LinkUNI1;
 		
-		@FindBy(xpath = "//a[text()='UNI~2']")
+		@FindBy(xpath = "//a[text()='UNI~2' or contains(text(),'UNI~2:')]")
 		private WebElement LinkUNI2;
 		
-		@FindBy(xpath = "//a[text()='UNI~3']")
+		@FindBy(xpath = "//a[text()='UNI~3' or contains(text(),'UNI~3:')]")
 		private WebElement LinkUNI3;
 		
-		@FindBy(xpath = "//a[text()='UNI~4']")
+		@FindBy(xpath = "//a[text()='UNI~4' or contains(text(),'UNI~4:')]")
 		private WebElement LinkUNI4;
 		
 		@FindBy(xpath = "//a[text()='BGP']")
@@ -72,7 +72,7 @@ public class ProcessTabPageCM extends Page {
 		private WebElement ddBGPChange;
 		
 		@FindBy(xpath = "//a[text()='EVC']")
-		private WebElement LinkEVC;
+		private WebElement LinkEVC1;
 		
 		@FindBy(xpath = "//a[text()='EVC']")
 		private List<WebElement> LinkEVCPRI;
@@ -392,8 +392,8 @@ public class ProcessTabPageCM extends Page {
 		public String UNIConfiguration(ProcessInfo processInfo, String Site) throws InterruptedException{			
 			String UNINo1=null;
 			try {
-				waitForElement(LinkUNI);
-				jsClick(LinkUNI);	
+				waitForElement(LinkUNI1);
+				jsClick(LinkUNI1);	
 				waitForElementDisappear(elementLoading);
 				waitForElement(imgAddressLookup);
 				imgAddressLookup.click();
@@ -628,8 +628,8 @@ public class ProcessTabPageCM extends Page {
 		public boolean UNIConfiguration_PRI(ProcessInfo processInfo,String Site,ServiceInfo serviceInfo) throws InterruptedException{
 			mstatus= true;
 			try {
-				waitForElement(LinkUNI);
-				jsClick(LinkUNI);
+				waitForElement(LinkUNI1);
+				jsClick(LinkUNI1);
 				waitForElementDisappear(elementLoading);
 				waitForElement(imgAddressLookup);
 				imgAddressLookup.click();
@@ -704,8 +704,8 @@ public class ProcessTabPageCM extends Page {
 			String EVCNo1=null;
 			
 			 try {
-				 waitForElement(LinkEVC);
-				 jsClick(LinkEVC);
+				 waitForElement(LinkEVC1);
+				 jsClick(LinkEVC1);
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(ddArrwLocationZuni);
 				 ddArrwLocationZuni.click();
@@ -736,8 +736,8 @@ public class ProcessTabPageCM extends Page {
 		public String EVCConfiguration_ENS(ProcessInfo processInfo){
 			String EVCNo1=null;
 			 try {
-				 waitForElement(LinkEVC);
-				 jsClick(LinkEVC);
+				 waitForElement(LinkEVC1);
+				 jsClick(LinkEVC1);
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(ddArrwLocationZuni);
 				 ddArrwLocationZuni.click();
@@ -801,8 +801,8 @@ public class ProcessTabPageCM extends Page {
 		public String EVCConfiguration_EPL(ProcessInfo processInfo){
 			String EVCNo1=null;
 			 try {
-				 waitForElement(LinkEVC);
-				 jsClick(LinkEVC);
+				 waitForElement(LinkEVC1);
+				 jsClick(LinkEVC1);
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(ddArrwLocationAuni);
 				 ddArrwLocationAuni.click();
@@ -837,8 +837,8 @@ public class ProcessTabPageCM extends Page {
 		public String EVCConfiguration_EVPL(ProcessInfo processInfo){
 			String EVCNo1=null;
 			 try {
-				 waitForElement(LinkEVC);
-				 jsClick(LinkEVC);
+				 waitForElement(LinkEVC1);
+				 jsClick(LinkEVC1);
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(ddArrwLocationAuni);
 				 ddArrwLocationAuni.click();
@@ -1062,6 +1062,87 @@ public class ProcessTabPageCM extends Page {
 			 return mstatus;
 			 
 		}
-	
+		
+		public boolean UpgradeUNIPortSpeed(int UNINo, String portSpeedToSelect){
+			mstatus= true;
+			WebElement elementToClick = null;
+			//WaitandSwitchToFrame(frameMain);
+			switch (UNINo) {			
+			case 1:
+				elementToClick = LinkUNI1; 
+				break;
+			case 2:
+				elementToClick = LinkUNI2; 
+				break;
+			case 3:
+				elementToClick = LinkUNI3; 
+				break;
+			case 4:
+				elementToClick = LinkUNI4; 
+				break;							
+			default:
+					log.error("UNI Number Not Found. [1-4] is the valid values");
+			}
+			 try {
+				 	if(elementToClick!=null){
+					 	 waitForElement(elementToClick);
+						 jsClick(elementToClick);
+						 waitForElementDisappear(elementLoading);					
+						 browser.switchTo().defaultContent();
+						 WaitandSwitchToFrame(frameMain);										 
+						 new Select(ddUNIPortSpeed).selectByVisibleText(portSpeedToSelect);;
+						 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
+						 report.reportDoneEvent("Save UNI Configuration", "UNI Configuration Updated");
+						 log.info("UNI Port Speed upgraded to: " + portSpeedToSelect);
+						 waitForElementDisappear(elementLoading);
+						// browser.switchTo().defaultContent();
+				 	}
+			} catch (Exception e) {
+				mstatus= false;
+			}
+			 return mstatus;
+			 
+		}
+		
+		public boolean UpgradeEVCBW(int EVCNo, String BasicCosBW){
+			mstatus= true;
+			WebElement elementToClick = null;
+			//WaitandSwitchToFrame(frameMain);
+			switch (EVCNo) {
+			case 1:
+				elementToClick = LinkEVC1; 
+				break;
+			case 2:
+				elementToClick = LinkEVC2; 
+				break;
+			case 3:
+				elementToClick = LinkEVC3;
+				break;	
+			default:
+					log.error("EVC Number Not Found. [1-3] is the valid values");
+			}
+			 try {
+				 	if(elementToClick!=null){
+				 		 waitForElement(elementToClick);
+						 jsClick(elementToClick);
+						 waitForElementDisappear(elementLoading);					
+						 browser.switchTo().defaultContent();
+						 WaitandSwitchToFrame(frameMain);										 
+						 new Select(ddBasicCoSBandwidth).selectByVisibleText(BasicCosBW);						
+						 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
+						 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
+						 log.info("EVC Basic Cos Bandwidth to: " + BasicCosBW);
+						 waitForElementDisappear(elementLoading);	
+				 	}
+			} catch (Exception e) {
+				mstatus= false;
+			}
+			 return mstatus;
+			 
+		}
+
+		
+		
+		
 
 }

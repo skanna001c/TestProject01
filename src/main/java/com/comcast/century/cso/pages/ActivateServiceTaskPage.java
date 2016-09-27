@@ -85,7 +85,7 @@ public class ActivateServiceTaskPage extends Page {
 			waitForElementDisappear(elementLoading);
 			waitForElement(ddStatus);
 			new Select(ddStatus).selectByValue(serviceLevelTaskInfo.status);
-			if(serviceInfo.serviceName.matches("EPL|EVPL"))
+			if(serviceInfo.serviceName.matches("EPL|EVPL") && elementEPLorEVPL.size() > 1)
 			{
 				btnSave.click();
 				waitforPageLoadComplete();

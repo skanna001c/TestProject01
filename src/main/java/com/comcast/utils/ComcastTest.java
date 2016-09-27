@@ -751,6 +751,7 @@ public void beforeMethodGetUserndURL(Method testName) {
 			 getDataDump().setValue("CMLoggedIN","PASS");
 			 getDataDump().setValue("CSOLoggedIN","FAIL");
 			 getDataDump().setValue("currentUser", userName);
+			 getDataDump().setValue("CM_Status", "FAIL");
 	}
 //#######################################################################			 
 		 
