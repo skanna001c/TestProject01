@@ -139,6 +139,8 @@ public class CAETaskPage extends Page {
 				break;
 			case "EPL" :
 			case "EVPL" :
+				if(UNINo.size()>1)
+				{
 				request = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:sit=\"http://www.excelacom.com/century/cramer/beans/siteDesignNotification\">"
 						+ "<soapenv:Header/>" + "<soapenv:Body>" + "<sit:siteDesignNotification>"
 						+ "<sit:resourceComponent resourceComponentId=\"" + RCID + "\">"
@@ -146,6 +148,17 @@ public class CAETaskPage extends Page {
 						+ "<sit:site uniNumber=\"" + UNINo.get(1).getText()  + "\" uniID=\""+uni2+ "\" siteCLLI=\"JNBOGAEM\"/>" 
 						+ "</sit:resourceComponent>" + "</sit:siteDesignNotification>" + "</soapenv:Body>"
 						+ "</soapenv:Envelope>";
+				}
+				else
+				{
+					request = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:sit=\"http://www.excelacom.com/century/cramer/beans/siteDesignNotification\">"
+							+ "<soapenv:Header/>" + "<soapenv:Body>" + "<sit:siteDesignNotification>"
+							+ "<sit:resourceComponent resourceComponentId=\"" + RCID + "\">"
+							+ "<sit:site uniNumber=\"" + UNINo1.getText() + "\" uniID=\""+uni1+ "\" siteCLLI=\"JNBOGAEM\"/>" 							 
+							+ "</sit:resourceComponent>" + "</sit:siteDesignNotification>" + "</soapenv:Body>"
+							+ "</soapenv:Envelope>";	
+				}
+				
 				(new SoapTest()).webServicesTask(request, "CAE",testSettings);
 				break;
 			}

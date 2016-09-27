@@ -55,6 +55,23 @@
 					<include name="Obtain_Coax_Permit_Change" />
 					<include name="Complete_Site_Build_Coax_Change" />
 					<include name="Complete_Coax_Build_Change" />
+					<include name="Contact_Customer_Change" />					
+					<include name="Build_Update_Local_Biller_Account_Change" />
+					<include name="Update_Design_Change" />
+					<include name="Ship_CPE_Change" />
+					<include name="Create_Account_and_Equipment_Change" />
+					<include name="Assign_Design_Info_Change" />
+					<include name="Generate_CPE_Config_Change" />
+					<include name="Generate_Core_Config_Change" />
+					<include name="Load_Core_Config_Change" />
+					<include name="Install_CPE_Change" />
+					<include name="Install_CPE_Coax_Change" />
+					<include name="Set_Critical_Dates_Change" />
+					<include name="Day_of_Configs_Change" />
+					<include name="Activate_Service_Change" />
+					<include name="Notify_Customer_of_Service_Installation_Change" />
+					<include name="Complete_Customer_Acceptance_Testing_Change" />					
+					<include name="Start_Billing_Change" />
 				</methods>
 			</class>
 		</classes>
