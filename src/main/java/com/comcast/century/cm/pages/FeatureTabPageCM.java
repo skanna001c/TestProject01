@@ -132,9 +132,9 @@ public class FeatureTabPageCM extends Page {
 		try {
 			waitForElementDisappear(elementLoading);
 			if(waitForElement(txtUNIqt)){
-				txtUNIqt.click();
+				/*txtUNIqt.click();
 				txtUNIqt.clear();
-				iSendKeys(txtUNIqt, "3");
+				iSendKeys(txtUNIqt, "3");*/
 				waitForElement(txtUNIandEVCqt.get(0));
 				txtUNIandEVCqt.get(0).click();
 				txtUNIandEVCqt.get(0).clear();
@@ -144,6 +144,7 @@ public class FeatureTabPageCM extends Page {
 				txtUNIqt.click();
 				txtUNIqt.clear();
 				iSendKeys(txtUNIqt, "3");
+				txtUNIandEVCqt.get(0).click();
 				scrollDown();
 				waitForElement(btnContinue);
 				iClick(btnContinue,null,"Click on continue in feature tab: feature tab: ContinueButton");

@@ -656,7 +656,7 @@ public class NewConnectTest extends ComcastTest {
     	}while(!status && retryCount <= 5);
 	}
 	
-	@Test(priority = 15501)
+	@Test(priority = 22100)
 	public void startCM() {
 		
 		/*getDataDump().setValue("CM_Status", "FAIL");

@@ -232,7 +232,8 @@ public class AddressTabPageCM extends Page {
 	    waitForElement(btnContinue);
 	    iClick(btnContinue, null, "Select City and continue: Site Address Page: ContinueButton");		
 		waitforPageLoadComplete();
-		Thread.sleep(3*1000);
+		waitForElementDisappear(elementLoading);
+		Thread.sleep(5*1000);
 		report.updateTestLog("Create Address", "Address Created Successfully", Status.SCREENSHOT);
 		browser.switchTo().defaultContent();
 		this.clickAddContact();	
@@ -249,12 +250,19 @@ public class AddressTabPageCM extends Page {
 		this.headEndInformation(siteInfo);
 		this.clickCreateButton();
 		waitforPageLoadComplete();
-		if(waitForElement(btnSelectValidSite,5)){
-		btnSelectValidSite.click();
-		waitForElement(btnContinue);
-		iClick(btnContinue, null, "Select City and continue: Site Address Page: ContinueButton");	
-		waitforPageLoadComplete();
+		
+		if(waitForElement(btnMore, 5)){
+			iClick(btnMore, null, "Select City: Site Address Page: MoreButton");		
+			WaitandSwitchToFrame(frameCondition);
+			waitForElement(chkDisclaimer);
+			chkDisclaimer.click();
+			waitForElement(btnContinue);
+		}else if(waitForElement(btnSelectValidSite,5)){
+			btnSelectValidSite.click();
+			waitForElement(btnContinue);
 		}
+		iClick(btnContinue, null, "Select City and continue: Site Address Page: ContinueButton");	
+		waitforPageLoadComplete();		
 		report.updateTestLog("Create Address", "Address Created Successfully", Status.SCREENSHOT);
 		browser.switchTo().defaultContent();
 		this.clickAddContact();
@@ -377,6 +385,7 @@ public class AddressTabPageCM extends Page {
 	public boolean clickAddContact(){
 		mstatus= true;
 		try{
+			scrollDown();
 			 WaitandSwitchToFrame(frameMain);
 			 WaitandSwitchToFrame(frameAddress);
 			 if(waitForElement(BtnAddContact)){
