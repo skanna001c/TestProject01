@@ -513,10 +513,6 @@ public class NewConnectTest extends ComcastTest {
 			(new EqFeeFlowTasks(frameworkContext)).EqFeeStartBilling();
 			(new EqFeeStartBillingTaskPage(frameworkContext)).EqFeeStartBilling();			
 		}
-		if(testcaseName.equalsIgnoreCase("002-ME_EVPL-Add_UNI_with_TT_Coax"))
-		{
-			startCM();
-		}
 	}	
 	
 	@AfterMethod
