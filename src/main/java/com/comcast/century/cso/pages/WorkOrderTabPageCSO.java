@@ -444,7 +444,6 @@ public class WorkOrderTabPageCSO extends Page {
 		try {
 			if (waitForElement(linkBGPFlow)) {
 				clickndRelease(linkBGPFlow);
-				// linkEquipmentFeeFlow.click();
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Click on BGP flow", "BGP flow Clicked");
 			}

@@ -8,7 +8,7 @@ import com.comcast.century.cm.pages.OrderSummaryTabCMPage;
 import com.comcast.century.cm.pages.SupplementPageServiceTabCM;
 import com.comcast.utils.PerfTransaction;
 
-public class Supplements extends TrunkPRIFlow {
+public class Supplements extends BGPFlow {
 
 	@Test(priority = 23000)
 	@PerfTransaction(name = "SearchSRID")

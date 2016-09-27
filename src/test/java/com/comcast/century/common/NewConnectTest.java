@@ -305,9 +305,9 @@ public class NewConnectTest extends ComcastTest {
 				UpdateRespectiveFiberSiteFlows();
 			}
 			
-		} if(testcaseName.equalsIgnoreCase("Tech_Sup_ME-EDI-Tech_Sup-Add_BGP")){
+		} /*if(testcaseName.equalsIgnoreCase("Tech_Sup_ME-EDI-Tech_Sup-Add_BGP")){
 			startCM();
-		}
+		}*/
 	}
 	
 	
@@ -372,9 +372,9 @@ public class NewConnectTest extends ComcastTest {
 			(new ServiceLevelTasks(frameworkContext)).ADI();
 			(new ADITaskPage(frameworkContext)).ADITask(serviceInfo);
 		}
-		if(testcaseName.matches("Tech_Supp_ Add_BGP_to_EDI-PRI_Service|Tech_Supp_Upgrade_EVC_for_EDI_Erate_Service|Tech_Sup_Add_Trunk-PRI_to_In-Flight_Metro-E_order")){
+		/*if(testcaseName.matches("Tech_Supp_ Add_BGP_to_EDI-PRI_Service|Tech_Supp_Upgrade_EVC_for_EDI_Erate_Service|Tech_Sup_Add_Trunk-PRI_to_In-Flight_Metro-E_order")){
 			startCM();
-		}
+		}*/
 	}	
 
 
@@ -474,7 +474,7 @@ public class NewConnectTest extends ComcastTest {
 
 	
 	@Test(priority = 20500)
-	public void Complete_Customer_Acceptance_Testing(Method method) throws InterruptedException {
+	public void Complete_Customer_Acceptance_Testing() throws InterruptedException {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
 			(new ServiceLevelTasks(frameworkContext)).CCAT();
@@ -499,10 +499,10 @@ public class NewConnectTest extends ComcastTest {
 			(new ServiceLevelTasks(frameworkContext)).StartBilling();
 			(new StartBillingTaskPage(frameworkContext)).StartBilling();			
 			(new ServiceLevelTasks(frameworkContext)).ClickBackButton();
-		}if(testcaseName.equalsIgnoreCase("006-EPL-Change-BW-single-view")){
+		}/*if(testcaseName.equalsIgnoreCase("006-EPL-Change-BW-single-view")){
 			startCM();
 		}
-		
+		*/
 	}
 
 	
@@ -512,10 +512,6 @@ public class NewConnectTest extends ComcastTest {
 			SearchOrderndLauncheEquipmentFeeFlow(i);			
 			(new EqFeeFlowTasks(frameworkContext)).EqFeeStartBilling();
 			(new EqFeeStartBillingTaskPage(frameworkContext)).EqFeeStartBilling();			
-		}
-		if(testcaseName.equalsIgnoreCase("002-ME_EVPL-Add_UNI_with_TT_Coax"))
-		{
-			startCM();
 		}
 	}	
 	
@@ -623,6 +619,24 @@ public class NewConnectTest extends ComcastTest {
 	}
 	
 	
+	public void SearchOrderndLaunchBGPFlow() throws InterruptedException {
+    	retryCount = 1;
+    	if (!getDataDump().getValue("SUP_SRID_RT").equalsIgnoreCase(""))
+			SRID = getDataDump().getValue("SUP_SRID_RT");
+		else
+			SRID = getDataDump().getValue("SRID_RT");
+		do{
+			(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(SRID, retryCount);
+			status =(new WorkOrderTabPageCSO(frameworkContext)).ClickBGPFlow();
+			if(!status)
+			{ 
+				retryCount++;
+			}
+		}while(!status && retryCount <= 5);
+	}
+	
+	
+	
 	public void SearchOrderndLaunchServiceRequest() {
     	retryCount = 1;
     	if (!getDataDump().getValue("SUP_SRID_RT").equalsIgnoreCase(""))
@@ -656,7 +670,7 @@ public class NewConnectTest extends ComcastTest {
     	}while(!status && retryCount <= 5);
 	}
 	
-	@Test(priority = 15501)
+	@Test(priority = 22100)
 	public void startCM() {
 		
 		/*getDataDump().setValue("CM_Status", "FAIL");

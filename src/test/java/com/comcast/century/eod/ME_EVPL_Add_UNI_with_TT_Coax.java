@@ -19,7 +19,7 @@ public class ME_EVPL_Add_UNI_with_TT_Coax extends ServiceFlow_Change {
 	@PerfTransaction(name = "addSiteAddress")
 	public void addSiteAddress() throws InterruptedException {
 		new AddressTabPageCM(frameworkContext).addSiteAddress();
-		 site = new AddressTabPageCM(frameworkContext).EnterSiteDetailsInvalid(siteInfo); 
+		 site = new AddressTabPageCM(frameworkContext).EnterSiteDetailsValid(siteInfo); 
 		 dataDump.setValue("SITE4_RT", site);
 		 new ContactTabPageCM(frameworkContext).CreateSiteTechnicalContact(contactInfo);		 
 		 
