@@ -42,7 +42,7 @@ public class EqFeeStartBillingTaskPage extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
-	@FindBy(xpath = "//*[@id='actualBillingStartDate']/following-sibling::img")
+	@FindBy(xpath = "//*[@id='actualBillingStartDate']")
 	private WebElement actualBillingStartDate ;
 	
 	@FindBy(xpath = "//button[text()='Today']")
@@ -53,8 +53,10 @@ public class EqFeeStartBillingTaskPage extends Page {
 	public boolean EqFeeStartBilling() throws InterruptedException{
 		try{
 			if(waitForElement(actualBillingStartDate)){
-				clickndRelease(actualBillingStartDate);
-				clickndRelease(btnToday);
+				actualBillingStartDate.click();
+				actualBillingStartDate.clear();
+				actualBillingStartDate.sendKeys(getCurrentDate());
+				scrollDown();
 				if(waitForElement(btnComplete, 5)){
 					this.ClickCompleteButton();
 				}

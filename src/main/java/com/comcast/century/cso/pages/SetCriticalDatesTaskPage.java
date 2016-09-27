@@ -48,13 +48,13 @@ public class SetCriticalDatesTaskPage extends Page {
 	@FindBy(xpath = "//select[@id='hotCut']")
 	private WebElement ddHotCut ;
 	
-	@FindBy(xpath = "//input[@id='focDate']//following-sibling::img")
+	@FindBy(xpath = "//input[@id='focDate']")
 	private WebElement focDate ;
 	
-	@FindBy(xpath = "//input[@id='custNotificationDate']//following-sibling::img")
+	@FindBy(xpath = "//input[@id='custNotificationDate']")
 	private WebElement CustomerNotificationDate ;
 	
-	@FindBy(xpath = "//*[@id='scheduledInstallDate']//following-sibling::img")
+	@FindBy(xpath = "//*[@id='scheduledInstallDate']")
 	private WebElement ScheduleCPEInstallDate ;
 	
 	@FindBy(xpath = "//button[text()='Today']")
@@ -62,23 +62,27 @@ public class SetCriticalDatesTaskPage extends Page {
 	
 	private boolean mstatus=true;
 	
-	public boolean SetCriticalDates(){
-		try{
-			if(waitForElement(CustomerNotificationDate)){
+	public boolean SetCriticalDates() {
+		try {
+			scrollDown();
+			if (waitForElement(CustomerNotificationDate)) {
 				CustomerNotificationDate.click();
-				btnToday.get(0).click();
+				CustomerNotificationDate.clear();
+				CustomerNotificationDate.sendKeys(getCurrentDate());
+				if(waitForElement(ddHotCut, 5)){
 				new Select(ddHotCut).selectByValue("Yes");
-				scrollDown();
+				}
 				focDate.click();
-				btnToday.get(1).click();
+				focDate.clear();
+				focDate.sendKeys(getCurrentDate());
 				ScheduleCPEInstallDate.click();
-				btnToday.get(2).click();
+				ScheduleCPEInstallDate.clear();
+				ScheduleCPEInstallDate.sendKeys(getCurrentDateTime());
 				this.ClickCompleteButton();
-				waitForElement(browser.findElement(By.xpath("//*[text()='Set Critical Dates' and contains(@onclick, 'COMPLETED')]")));
+				waitForElement(browser
+						.findElement(By.xpath("//*[text()='Set Critical Dates' and contains(@onclick, 'COMPLETED')]")));
 			}
-		}
-		catch(Exception ex)
-		{
+		} catch (Exception ex) {
 			mstatus = false;
 		}
 		return mstatus;
