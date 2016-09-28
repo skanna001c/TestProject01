@@ -11,7 +11,7 @@
 		<classes>
 			<class name="com.comcast.century.eod.CancelSupEPLService">
 				<methods>
-					<include name="createCustomer" />
+					<include name="createCustomer" />  <!-- 10988898 -->
 					<include name="createServiceAccount" />
 					<include name="createBillingAccount" />
 					<include name="createAddress" />
@@ -43,10 +43,21 @@
 					<include name="Generate_Core_Config" />
 					<include name="Generate_CPE_Config" />
 					<include name="Load_Core_Config" />
-					<include name="Install_CPE" />
+					<include name="Install_CPE" />					
+					<include name="Set_Critical_Dates" />
+					<include name="startCM" />
 					<include name="searchSRID" />
 					<include name="initiateSupplements" />
 					<include name="submitOrderSupplements" />
+					
+					<include name="Obtain_Site_Agreement_CancelSup" />
+					<include name="Obtain_Site_Agreement_Coax_CancelSup" />
+					<include name="Obtain_Coax_Permit_CancelSup" />					
+					<include name="Contact_Customer_CancelSup" />															
+					<include name="Set_Critical_Dates_CancelSup" />
+					<include name="Generate_Core_Config_CancelSup" />
+					
+					
 				</methods>
 			</class>
 		</classes>
