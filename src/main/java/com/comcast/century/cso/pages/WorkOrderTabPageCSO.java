@@ -442,6 +442,7 @@ public class WorkOrderTabPageCSO extends Page {
 
 	public boolean ClickBGPFlow() throws InterruptedException {
 		try {
+			WaitandSwitchToFrame(frameRight);
 			if (waitForElement(linkBGPFlow)) {
 				clickndRelease(linkBGPFlow);
 				waitforPageLoadComplete();

@@ -580,8 +580,7 @@ public class ComcastTest {
     	browser=getDriver(settings.getBrowser()); 
     	report.setDriver(browser);  
     }
-	
-	
+
 	
 	public void createZipFileOfReport(String reportPath,String testCaseQCName){		
 		File dir = new File(reportPath);

@@ -1,4 +1,4 @@
-package com.comcast.century.techsup;
+package com.comcast.century.disconnect;
 
 import java.awt.AWTException;
 
@@ -17,9 +17,9 @@ import com.comcast.century.cso.pages.UpdateDesignTaskPage;
 import com.comcast.century.data.SupplementInfo;
 import com.comcast.utils.PerfTransaction;
 
-public class Techsup extends Supplements {
+public class Disconnect extends Supplements {
  
-	@Test(priority = 30000)
+	/*@Test(priority = 30000)
 	public void addBGP() throws InterruptedException {		
 		new FeatureTabPageCM(frameworkContext).clickOnFeatureTab();
 		new FeatureTabPageCM(frameworkContext).selectBGP();
@@ -32,7 +32,19 @@ public class Techsup extends Supplements {
 		new ProcessTabPageCM(frameworkContext).UpgradeEVCBW(1, "20Mbps");
 		new ProcessTabPageCM(frameworkContext).ClickOnContinueButton();
 	}
+	*/
 	
+	@Test(priority = 34000)
+	public void DisconnectEDI() throws InterruptedException, AWTException {
+		new ProcessTabPageCM(frameworkContext).DisconectEDI(processInfo);
+
+	}
+	
+	/*@Test(priority = 34000)
+	public void FectchEquipmentSupSRID() throws InterruptedException, AWTException {
+		new ProcessTabPageCM(frameworkContext).FectchEquipmentSupSRID();
+
+	}*/
 	
 	@Test(priority = 36002)
 	public void Contact_Customer_Supp() throws InterruptedException, AWTException {
@@ -142,32 +154,32 @@ public class Techsup extends Supplements {
 	}
 	
 	@Test(priority = 36020)
-	public void Assign_Design_BGPSupp() throws InterruptedException, AWTException {
+	public void Assign_Design_BGP_Supp() throws InterruptedException, AWTException {
 		Assign_Design_BGP();
 	}
 	
 	@Test(priority = 36021)
-	public void Generate_CPE_Config_BGPSupp() throws InterruptedException, AWTException {
+	public void Generate_CPE_Config_BGP_Supp() throws InterruptedException, AWTException {
 		Generate_CPE_Config_BGP();
 	}
 	
 	@Test(priority = 36022)
-	public void Set_Critical_Dates_BGPSupp() throws InterruptedException, AWTException {
+	public void Set_Critical_Dates_BGP_Supp() throws InterruptedException, AWTException {
 		Set_Critical_Dates_BGP();
 	}
 	
 	@Test(priority = 36023)
-	public void Day_of_Configs_BGPSupp() throws InterruptedException, AWTException {
+	public void Day_of_Configs_BGP_Supp() throws InterruptedException, AWTException {
 		Day_of_Configs_BGP();
 	}
 	
 	@Test(priority = 36024)
-	public void Notify_Customer_of_Service_Installation_BGPSupp() throws InterruptedException, AWTException {
+	public void Notify_Customer_of_Service_Installation_BGP_Supp() throws InterruptedException, AWTException {
 		Notify_Customer_of_Service_Installation_BGP();
 	}
 	
 	@Test(priority = 36025)
-	public void Start_Billing_BGPSupp() throws InterruptedException, AWTException {
+	public void Start_Billing_BGP_Supp() throws InterruptedException, AWTException {
 		Start_Billing_BGP();
 	}
 	
