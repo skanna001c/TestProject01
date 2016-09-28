@@ -237,7 +237,7 @@ public class CustomerTabPageCM extends Page {
 
 	  }
 	  
-	  public boolean addressInformationInvalid(CustomerInfo customerInfo) throws InterruptedException{
+	/*  public boolean addressInformationInvalid(CustomerInfo customerInfo) throws InterruptedException{
 		  mstatus = true;
 		  try{
 				  
@@ -279,7 +279,7 @@ public class CustomerTabPageCM extends Page {
 		  }
 		  return mstatus;
 			  
-	  }
+	  }*/
 	  
 	  public boolean addressInformationValid(CustomerInfo customerInfo) throws InterruptedException{
 		  mstatus = true;
@@ -312,17 +312,24 @@ public class CustomerTabPageCM extends Page {
 				  }
 			  waitForElement(btnCreate);
 			  iClick(btnCreate,null,"CreateCustomer: Customer Page: CreateButton");//updated by harsh on 9/2/2016
-			  waitforPageLoadComplete();
-			  if( waitForElement(btnSelectValidSite,5)){
-			  btnSelectValidSite.click();
-			  waitForElement(btnContinue);
-			  iClick(btnContinue,null,"CreateCustomer: Address Verification: Continue_Button"); //updated by harsh on 9/2/2016
-			  waitforPageLoadComplete();
-			  }
+			  
+			  if(waitForElement(btnSelectValidSite,3)){
+					btnSelectValidSite.click();
+					waitForElement(btnContinue);
+					iClick(btnContinue,null,"CreateCustomer: Address Verification: Continue_Button");
+				}
+				else if(waitForElement(btnMore, 2)) {
+					iClick(btnMore, null, "Select City: Customer Page: MoreButton");		
+					WaitandSwitchToFrame(frameCondition);
+					waitForElement(chkDisclaimer);
+					chkDisclaimer.click();		
+					waitForElement(btnContinue);
+					iClick(btnContinue,null,"CreateCustomer: Address Verification: Continue_Button");
+				} 		  
 			  browser.switchTo().defaultContent();
 			  report.updateTestLog("Create Customer", "Customer Created Successfully", Status.SCREENSHOT);
 		} catch (Exception e) {
-			mstatus = true;
+			mstatus = false;
 			e.printStackTrace();
 		}
 		return mstatus;

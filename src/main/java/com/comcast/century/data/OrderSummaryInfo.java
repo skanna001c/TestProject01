@@ -10,11 +10,12 @@ public class OrderSummaryInfo {
 	public String valueNRC;
 	public String valueEqFeeMRC;
 	public String opportunityId;
-  
-	  
+	public String NonPayDisconnect;
+	public String supplementType;
 	
-
-	public OrderSummaryInfo(String taxJurisdiction, String salesChannel, String soldRegion,String valueMRC,String valueNRC,String valueEqFeeMRC, String opportunityId ) {
+	
+	public OrderSummaryInfo(String taxJurisdiction, String salesChannel, String soldRegion,String valueMRC,
+			String valueNRC,String valueEqFeeMRC, String opportunityId,String NonPayDisconnect, String supplementType ) {
 		this.taxJurisdiction = taxJurisdiction;
 		this.salesChannel = salesChannel;
 		this.soldRegion = soldRegion;
@@ -22,7 +23,9 @@ public class OrderSummaryInfo {
 		this.valueNRC = valueNRC;
 		this.valueEqFeeMRC = valueEqFeeMRC;
 		this.opportunityId = opportunityId;
-	
+		this.NonPayDisconnect= NonPayDisconnect;
+		this.supplementType= supplementType;
+		
 }
 	
 	public static OrderSummaryInfo loadFromDatatable(DataTable dataTable){
@@ -32,7 +35,9 @@ public class OrderSummaryInfo {
                 dataTable.getValue("valueMRC"),
                 dataTable.getValue("valueNRC"),
                 dataTable.getValue("valueEqFeeMRC"),
-                dataTable.getValue("opportunityId"));
+                dataTable.getValue("opportunityId"),
+                dataTable.getValue("NonPayDisconnect"),
+				dataTable.getValue("supplementType"));
                 
       }
 }

@@ -581,30 +581,7 @@ public class ComcastTest {
     	report.setDriver(browser);  
     }
 	
-	private List<String> getQCTestCaseCoverage() {
-		List<String> coveredTestCases = new ArrayList<String>();
-
-		try {
-			Class clazz = Class.forName(this.getClass().getName());
-			Method method = clazz.getMethod(testName.getName());
-			System.out.println(testName.getName());
-
-			if (method.isAnnotationPresent(QCTestCases.class)) {
-				System.out.println(method.getAnnotations());
-				QCTestCases qcTestCases = method.getAnnotation(QCTestCases.class);
-				System.out.println(qcTestCases);
-				for (String testCase : qcTestCases.covered()) {
-					coveredTestCases.add(testCase);
-				}
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace(System.err);
-		} catch (NoSuchMethodException e) {
-			e.printStackTrace(System.err);
-		}
-
-		return coveredTestCases;
-	}
+	
 	
 	public void createZipFileOfReport(String reportPath,String testCaseQCName){		
 		File dir = new File(reportPath);

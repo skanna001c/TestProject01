@@ -96,8 +96,8 @@ public class ServiceFlow_Change extends CoaxTaskFlow_Change{
 
 		
 		@Test(priority = 80500)
-		public void Complete_Customer_Acceptance_Testing_Change(Method method) throws InterruptedException {
-			Complete_Customer_Acceptance_Testing(method);
+		public void Complete_Customer_Acceptance_Testing_Change() throws InterruptedException {
+			Complete_Customer_Acceptance_Testing();
 		}
 
 		@Test(priority = 80600)	

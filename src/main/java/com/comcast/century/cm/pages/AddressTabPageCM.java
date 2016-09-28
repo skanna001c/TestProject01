@@ -216,7 +216,7 @@ public class AddressTabPageCM extends Page {
 		return mstatus;
 	}
 	
-	public String EnterSiteDetailsInvalid(SiteInfo siteInfo) throws InterruptedException{
+	/*public String EnterSiteDetailsInvalid(SiteInfo siteInfo) throws InterruptedException{
 		waitForElement(txtSiteName);
 		String siteName = siteInfo.siteName + getTimestamp();
 		txtSiteName.sendKeys(siteName);
@@ -232,13 +232,14 @@ public class AddressTabPageCM extends Page {
 	    waitForElement(btnContinue);
 	    iClick(btnContinue, null, "Select City and continue: Site Address Page: ContinueButton");		
 		waitforPageLoadComplete();
-		Thread.sleep(3*1000);
+		waitForElementDisappear(elementLoading);
+		Thread.sleep(5*1000);
 		report.updateTestLog("Create Address", "Address Created Successfully", Status.SCREENSHOT);
 		browser.switchTo().defaultContent();
 		this.clickAddContact();	
 		return siteName;
 			 
-	}
+	}*/
 	
 	public String EnterSiteDetailsValid(SiteInfo siteInfo) throws InterruptedException{
 		waitForElement(txtSiteName);
@@ -249,12 +250,20 @@ public class AddressTabPageCM extends Page {
 		this.headEndInformation(siteInfo);
 		this.clickCreateButton();
 		waitforPageLoadComplete();
-		if(waitForElement(btnSelectValidSite,5)){
-		btnSelectValidSite.click();
-		waitForElement(btnContinue);
-		iClick(btnContinue, null, "Select City and continue: Site Address Page: ContinueButton");	
-		waitforPageLoadComplete();
+		
+		if(waitForElement(btnSelectValidSite,3)){
+			btnSelectValidSite.click();
+			waitForElement(btnContinue);
+			iClick(btnContinue, null, "Select City and continue: Site Address Page: ContinueButton");
 		}
+		else if(waitForElement(btnMore, 2)) {
+			iClick(btnMore, null, "Select City: Site Address Page: MoreButton");		
+			WaitandSwitchToFrame(frameCondition);
+			waitForElement(chkDisclaimer);
+			chkDisclaimer.click();			
+			waitForElement(btnContinue);
+			iClick(btnContinue, null, "Select City and continue: Site Address Page: ContinueButton");
+		}		
 		report.updateTestLog("Create Address", "Address Created Successfully", Status.SCREENSHOT);
 		browser.switchTo().defaultContent();
 		this.clickAddContact();
@@ -264,7 +273,7 @@ public class AddressTabPageCM extends Page {
 			 
 	}
 	
-	public boolean siteAddressInvalid(SiteInfo siteInfo) throws InterruptedException{
+	/*public boolean siteAddressInvalid(SiteInfo siteInfo) throws InterruptedException{
 		mstatus = true;
 		try{				
 			waitForElement(txtSiteAddressLine1);
@@ -289,7 +298,7 @@ public class AddressTabPageCM extends Page {
 		}
 		return mstatus;
 		
-	}
+	}*/
 	
      public boolean siteAddressValid(SiteInfo siteInfo) throws InterruptedException{
 		mstatus = true;
@@ -377,6 +386,7 @@ public class AddressTabPageCM extends Page {
 	public boolean clickAddContact(){
 		mstatus= true;
 		try{
+			scrollDown();
 			 WaitandSwitchToFrame(frameMain);
 			 WaitandSwitchToFrame(frameAddress);
 			 if(waitForElement(BtnAddContact)){
@@ -419,7 +429,7 @@ public class AddressTabPageCM extends Page {
 		return mstatus;		
 	}
 	
-	public boolean ClickOnCreateNewAdd() throws InterruptedException{
+	/*public boolean ClickOnCreateNewAdd() throws InterruptedException{
 		mstatus = true;
 		try{
 			waitforPageLoadComplete();		
@@ -457,7 +467,7 @@ public class AddressTabPageCM extends Page {
 			mstatus = false;
 		}
 		return mstatus;
-	}
+	}*/
 }
 
 

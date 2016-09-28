@@ -18,6 +18,9 @@ import com.comcast.century.data.OrderSummaryInfo;
 import com.comcast.reporting.Status;
 import com.comcast.utils.SeleniumReport;
 import com.thoughtworks.selenium.condition.ConditionRunner.Context;
+
+import mx4j.log.Logger;
+
 import com.comcast.utils.ComcastTest;
 import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.DataDump;
@@ -80,7 +83,9 @@ public class OrderSummaryTabCMPage extends Page {
 
 	@FindBy(xpath = "//input[@id='salesOrderAcceptanceDate-inputEl']/../following-sibling::*/child::*")
 	private WebElement dtSalesOrderAcceptance;
-
+		
+	
+	
 	@FindBy(xpath = "//input[@id='salesOrderSubmitDate-inputEl']/../following-sibling::*/child::*")
 	private WebElement dtSalesOrderSubmitted;
 
@@ -202,6 +207,14 @@ public class OrderSummaryTabCMPage extends Page {
 	@FindBy(xpath = "//b[.='Service Request ID']/../following-sibling::td[1]")
 	private WebElement SRID ;
 	
+	//############################### Disconnect '##########################
+	/*@FindBy(xpath = "//td[contains(.,'Supp/MACD has been auto generated for the following Service Request Id(s)')]")
+	private WebElement EquipmentSuptxt ;*/
+	
+	@FindBy(xpath = "//td[contains(.,'Supp/MACD has been auto generated for the following Service Request Id(s)')]/following-sibling::td")
+	private WebElement EquipmentSupSRID ;
+	
+	//#########################################################
 	
 	private boolean mstatus=true;
 
@@ -229,6 +242,42 @@ public class OrderSummaryTabCMPage extends Page {
 		return SRID;
 	}
 	
+	public String FectchEDIEquipmentSupSRID(OrderSummaryInfo orderSummaryInfo)
+	{	if(orderSummaryInfo.supplementType.equalsIgnoreCase("disconnect")){
+			waitforPageLoadComplete();
+			if(waitForElement(EquipmentSupSRID))
+			{
+				report.updateTestLog("Supp/MACD has been auto generated for the following Service Request Id", "Verified",
+						Status.SCREENSHOT);
+				
+				return EquipmentSupSRID.getText().trim();
+			}
+			else
+				return null;
+		}
+		else return null; 
+	}
+	
+	public String submitOrder_OnlyMRCNoNRC(OrderSummaryInfo orderSummaryInfo, String eRate) {
+		String SRID = null;
+		try {			
+			 if(testSettings.getEnvironmentToTest().equalsIgnoreCase("PROD")){
+				 this.assignLabelCM("CAT Test Orders");
+			 }
+			this.enterOrderDetails(orderSummaryInfo);
+			if ((activityType.getText().trim()).equalsIgnoreCase("New Connect")) {
+				this.onlyMRC_NONRC_Value((orderSummaryInfo));
+				if (eRate.equalsIgnoreCase("Yes")) {
+					this.Attachments(orderSummaryInfo);
+				}
+			}
+			SRID = this.ClickSubmitOrderButton();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			SRID = null;
+		}
+		return SRID;
+	}
 
 	public String verifyRelatedOrderIDAttribute() {
 		try {
@@ -408,6 +457,22 @@ public class OrderSummaryTabCMPage extends Page {
 		return mstatus;
 	}
 
+	public boolean onlyMRC_NONRC_Value(OrderSummaryInfo orderSummaryInfo) throws InterruptedException {
+		mstatus = true;
+		try {
+			/*enterValue(nrcUNI, txtValueNRC,
+					orderSummaryInfo.valueNRC);  Enter UNI NRC Value */
+			enterValue(mrcUNI, txtValueMRC,
+					orderSummaryInfo.valueMRC); /* Enter UNI MRC Value */
+			enterValue(mrcBCosBW, txtValueMRC,
+					orderSummaryInfo.valueMRC); /* Enter BCosW MRC value Enter */
+			enterValue(mrcEqFee, txtValueMRC,
+					orderSummaryInfo.valueEqFeeMRC); /* Enter MRC for Equipment Fee */
+		} catch (Exception e) {
+			mstatus = false;
+		}
+		return mstatus;
+	}
 	public String ClickSubmitOrderButton() {
 		String SRID_RT = null;
 		try {

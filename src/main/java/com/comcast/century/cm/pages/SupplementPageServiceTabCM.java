@@ -171,7 +171,7 @@ public class SupplementPageServiceTabCM extends Page {
 			}
 			waitforPageLoadComplete();
 			waitForElementDisappear(elementLoading);
-			browser.switchTo().defaultContent();
+		//	browser.switchTo().defaultContent();
 		} catch (Exception e) {
 			mstatus = false;
 			e.printStackTrace();

@@ -8,7 +8,7 @@ import com.comcast.century.cm.pages.OrderSummaryTabCMPage;
 import com.comcast.century.cm.pages.SupplementPageServiceTabCM;
 import com.comcast.utils.PerfTransaction;
 
-public class Supplements extends TrunkPRIFlow {
+public class Supplements extends BGPFlow {
 
 	@Test(priority = 23000)
 	@PerfTransaction(name = "SearchSRID")
@@ -34,8 +34,14 @@ public class Supplements extends TrunkPRIFlow {
 	@PerfTransaction(name = "SubmitOrderSupplements")
 	public void submitOrderSupplements() throws InterruptedException {
 		String SUP_SRID = null;
+		String EQUIPMENT_SUP_SRID = null;
 		SUP_SRID = new OrderSummaryTabCMPage(frameworkContext).submitOrder(orderSummaryInfo, accountInfo.eRate);
-		getDataDump().setValue("SUP_SRID_RT", SUP_SRID);
+		getDataDump().setValue("SUP_SRID_RT", SUP_SRID);		
+		EQUIPMENT_SUP_SRID = new OrderSummaryTabCMPage(frameworkContext).FectchEDIEquipmentSupSRID(orderSummaryInfo);
+		if(EQUIPMENT_SUP_SRID!=null)
+		{
+			getDataDump().setValue("EQUIPMENT_SUP_SRID", EQUIPMENT_SUP_SRID);
+		}
 		startCSO();
 
 	}

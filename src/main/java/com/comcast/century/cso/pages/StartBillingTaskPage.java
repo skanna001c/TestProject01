@@ -43,7 +43,7 @@ public class StartBillingTaskPage extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
-	@FindBy(xpath = "//*[@id='actualBillingStartDate']/following-sibling::img")
+	@FindBy(xpath = "//*[@id='actualBillingStartDate']")
 	private WebElement actualBillingStartDate ;
 	
 	@FindBy(xpath = "//button[text()='Today']")
@@ -65,8 +65,9 @@ public class StartBillingTaskPage extends Page {
 			if(waitForElement(actualBillingStartDate)){
 				if(waitForElement(btnComplete, 5))
 				{
-					clickndRelease(actualBillingStartDate);
-					clickndRelease(btnToday);
+					actualBillingStartDate.click();
+					actualBillingStartDate.clear();
+					actualBillingStartDate.sendKeys(getCurrentDate());
 					this.ClickCompleteButton();
 					waitForElement(browser.findElement(By.xpath("//*[text()='Start Billing' and contains(@onclick, 'COMPLETED')]")));
 				}

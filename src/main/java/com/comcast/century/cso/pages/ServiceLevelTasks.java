@@ -541,14 +541,17 @@ public class ServiceLevelTasks extends Page {
 	}
 	
 	public boolean ContactCustomer() throws InterruptedException{
+		mstatus=true;
 		try{
 			if(waitForElement(taskContactCustomer)){
 				if(checkifStatusChanged(taskContactCustomer,btnRefresh,"INPROGRESS")){
 				taskContactCustomer.click();
 				report.reportDoneEvent("Click ContactCustomer Task", " ContactCustomer Task Clicked");
 				}
+				else mstatus=false;
 				waitforPageLoadComplete();
 			}
+			else mstatus=false;
 		}
 		catch(Exception ex)
 		{
@@ -558,14 +561,17 @@ public class ServiceLevelTasks extends Page {
 	}
 	
 	public boolean updateLocalBiller() throws InterruptedException{
+		mstatus=true;
 		try{
 			if(waitForElement(taskUpdateLocalBiller)){
 				if(checkifStatusChanged(taskUpdateLocalBiller,btnRefresh,"INPROGRESS")){
 					taskUpdateLocalBiller.click();
-				report.reportDoneEvent("Click UpdateLocalBiller Task", "UpdateLocalBiller Task Clicked");
+					report.reportDoneEvent("Click UpdateLocalBiller Task", "UpdateLocalBiller Task Clicked");
 				}
+				else mstatus=false;
 				waitforPageLoadComplete();
 			}
+			else mstatus=false;
 		}
 		catch(Exception ex)
 		{
@@ -581,8 +587,10 @@ public class ServiceLevelTasks extends Page {
 					taskRemoveCoreConfigs.click();
 				report.reportDoneEvent("Click RemoveCoreConfigs Task", "RemoveCoreConfigs Task Clicked");
 				}
+				else mstatus=false;
 				waitforPageLoadComplete();
 			}
+			else mstatus=false;
 		}
 		catch(Exception ex)
 		{
@@ -598,8 +606,10 @@ public class ServiceLevelTasks extends Page {
 					taskScheduleCPEPickup.click();
 				report.reportDoneEvent("Click ScheduleCPEPickup Task", "ScheduleCPEPickup Task Clicked");
 				}
+				else mstatus=false;
 				waitforPageLoadComplete();
 			}
+			else mstatus=false;
 		}
 		catch(Exception ex)
 		{
@@ -615,8 +625,10 @@ public class ServiceLevelTasks extends Page {
 					taskPickupCPE.click();
 				report.reportDoneEvent("Click PickupCPE Task", "PickupCPE Task Clicked");
 				}
+				else mstatus=false;
 				waitforPageLoadComplete();
 			}
+			else mstatus=false;
 		}
 		catch(Exception ex)
 		{

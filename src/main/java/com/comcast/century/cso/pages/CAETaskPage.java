@@ -78,7 +78,7 @@ public class CAETaskPage extends Page {
 	@FindBy(xpath = "//span[.='Order Services']")
 	private WebElement tabOrderServices ;
 	
-	@FindBy(xpath = "//div[.='New']/../preceding-sibling::td[1]/div")
+	@FindBy(xpath = "//div[.='Modify' or .='New']/../preceding-sibling::td[1]/div")
 	private WebElement resourceComponentID ;
 	
 	@FindBy(css = "div[class*='col-uniNumber']")
