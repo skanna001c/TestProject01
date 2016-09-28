@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 import com.comcast.century.cm.pages.Page;
 import com.comcast.century.data.ServiceLevelTaskInfo;
@@ -28,8 +29,11 @@ public class BULBATaskPage extends Page {
 		
 	}
 	
-	@FindBy(xpath = "//input[@id='localBillerAccountNumber']")
+	@FindBy(id = "localBillerAccountNumber")
 	private WebElement txtLBCustomerAccountNumber;
+	
+	@FindBy(id = "localBillerName")
+	private WebElement ddlocalBillerName;
 	
 	@FindBy(xpath = "//img[@title='Back']")
 	private WebElement btnBack;
@@ -51,12 +55,13 @@ public class BULBATaskPage extends Page {
 	public boolean BULBA(ServiceLevelTaskInfo serviceLevelTaskInfo){
 		mstatus = true;
 		try{
-			if(waitForElement(txtLBCustomerAccountNumber)){
-				txtLBCustomerAccountNumber.clear();
-				txtLBCustomerAccountNumber.sendKeys(serviceLevelTaskInfo.localBillerCustomerAccountNumber);
-				this.ClickCompleteButton();
-				waitForElement(browser.findElement(By.xpath("//*[text()='Build Update Local Biller Account' and contains(@onclick, 'COMPLETED')]")));
-			}
+			waitForElement(ddlocalBillerName);
+			new Select(ddlocalBillerName).selectByVisibleText("CSG");
+			waitForElement(txtLBCustomerAccountNumber);
+			txtLBCustomerAccountNumber.clear();
+			txtLBCustomerAccountNumber.sendKeys(serviceLevelTaskInfo.localBillerCustomerAccountNumber);
+			this.ClickCompleteButton();
+			waitForElement(browser.findElement(By.xpath("//*[text()='Build Update Local Biller Account' and contains(@onclick, 'COMPLETED')]")));
 		}
 		catch(Exception e){
 			System.out.println(e.getMessage());

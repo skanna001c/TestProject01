@@ -48,12 +48,12 @@
 				<include name="Complete_Customer_Acceptance_Testing_Supp" />
 				<include name="Start_Billing_Supp" />
 				<include name="EqFeeStartBilling_Supp" />
-				<include name="Assign_Design_BGP_Supp" />
-				<include name="Generate_CPE_Config_BGP_Supp" />
-				<include name="Set_Critical_Dates_BGP_Supp" />
-				<include name="Day_of_Configs_BGP_Supp" />
-				<include name="Notify_Customer_of_Service_Installation_BGP_Supp" />
-				<include name="Start_Billing_BGP_Supp" />
+				<include name="Assign_Design_BGPSupp" />
+				<include name="Generate_CPE_Config_BGPSupp" />
+				<include name="Set_Critical_Dates_BGPSupp" />
+				<include name="Day_of_Configs_BGPSupp" />
+				<include name="Notify_Customer_of_Service_Installation_BGPSupp" />
+				<include name="Start_Billing_BGPSupp" />
 			</methods>
 		</class>
 	</classes>

@@ -117,6 +117,9 @@ public class ServiceLevelTasks extends Page {
 	@FindBy(xpath = "//a[text()='Submit ASR']")
 	private WebElement taskSubmitASR;
 	
+	@FindBy(xpath = "//a[text()='Assign Design- BGP']")
+	private WebElement taskAssignDesignBGP;
+	
 	
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
@@ -631,6 +634,24 @@ public class ServiceLevelTasks extends Page {
 				if(checkifStatusChanged(taskReclamationofPhysicalEq,btnRefresh,"INPROGRESS")){
 					taskReclamationofPhysicalEq.click();
 				report.reportDoneEvent("Click ReclamationofPhysicalEq Task", "ReclamationofPhysicalEq Task Clicked");
+				}
+				waitforPageLoadComplete();
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	public boolean assignDesignBGP() throws InterruptedException{
+		try{
+			if(waitForElement(taskAssignDesignBGP)){
+				if(checkifStatusChanged(taskAssignDesignBGP,btnRefresh,"INPROGRESS")){
+					waitForElement(taskAssignDesignBGP);
+					jsClick(taskAssignDesignBGP);
+				report.reportDoneEvent("Click AssignDesignBGP Task", "AssignDesignBGP Task Clicked");
 				}
 				waitforPageLoadComplete();
 			}
