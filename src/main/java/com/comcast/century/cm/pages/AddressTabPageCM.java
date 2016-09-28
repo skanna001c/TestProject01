@@ -216,7 +216,7 @@ public class AddressTabPageCM extends Page {
 		return mstatus;
 	}
 	
-	public String EnterSiteDetailsInvalid(SiteInfo siteInfo) throws InterruptedException{
+	/*public String EnterSiteDetailsInvalid(SiteInfo siteInfo) throws InterruptedException{
 		waitForElement(txtSiteName);
 		String siteName = siteInfo.siteName + getTimestamp();
 		txtSiteName.sendKeys(siteName);
@@ -239,7 +239,7 @@ public class AddressTabPageCM extends Page {
 		this.clickAddContact();	
 		return siteName;
 			 
-	}
+	}*/
 	
 	public String EnterSiteDetailsValid(SiteInfo siteInfo) throws InterruptedException{
 		waitForElement(txtSiteName);
@@ -251,18 +251,19 @@ public class AddressTabPageCM extends Page {
 		this.clickCreateButton();
 		waitforPageLoadComplete();
 		
-		if(waitForElement(btnMore, 5)){
+		if(waitForElement(btnSelectValidSite,3)){
+			btnSelectValidSite.click();
+			waitForElement(btnContinue);
+			iClick(btnContinue, null, "Select City and continue: Site Address Page: ContinueButton");
+		}
+		else if(waitForElement(btnMore, 2)) {
 			iClick(btnMore, null, "Select City: Site Address Page: MoreButton");		
 			WaitandSwitchToFrame(frameCondition);
 			waitForElement(chkDisclaimer);
-			chkDisclaimer.click();
+			chkDisclaimer.click();			
 			waitForElement(btnContinue);
-		}else if(waitForElement(btnSelectValidSite,5)){
-			btnSelectValidSite.click();
-			waitForElement(btnContinue);
-		}
-		iClick(btnContinue, null, "Select City and continue: Site Address Page: ContinueButton");	
-		waitforPageLoadComplete();		
+			iClick(btnContinue, null, "Select City and continue: Site Address Page: ContinueButton");
+		}		
 		report.updateTestLog("Create Address", "Address Created Successfully", Status.SCREENSHOT);
 		browser.switchTo().defaultContent();
 		this.clickAddContact();
@@ -272,7 +273,7 @@ public class AddressTabPageCM extends Page {
 			 
 	}
 	
-	public boolean siteAddressInvalid(SiteInfo siteInfo) throws InterruptedException{
+	/*public boolean siteAddressInvalid(SiteInfo siteInfo) throws InterruptedException{
 		mstatus = true;
 		try{				
 			waitForElement(txtSiteAddressLine1);
@@ -297,7 +298,7 @@ public class AddressTabPageCM extends Page {
 		}
 		return mstatus;
 		
-	}
+	}*/
 	
      public boolean siteAddressValid(SiteInfo siteInfo) throws InterruptedException{
 		mstatus = true;
@@ -428,7 +429,7 @@ public class AddressTabPageCM extends Page {
 		return mstatus;		
 	}
 	
-	public boolean ClickOnCreateNewAdd() throws InterruptedException{
+	/*public boolean ClickOnCreateNewAdd() throws InterruptedException{
 		mstatus = true;
 		try{
 			waitforPageLoadComplete();		
@@ -466,7 +467,7 @@ public class AddressTabPageCM extends Page {
 			mstatus = false;
 		}
 		return mstatus;
-	}
+	}*/
 }
 
 
