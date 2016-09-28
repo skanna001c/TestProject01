@@ -51,7 +51,7 @@ import com.comcast.utils.DataTable;
 import com.comcast.utils.IDataDump;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
-import com.comcast.utils.TestSettingsSingleton;
+
 
 /**
  * Base class for all the pages.
