@@ -8,8 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
-import com.comcast.century.cm.pages.Page;
 import com.comcast.utils.ComcastTest.FrameworkContext;
+import com.comcast.utils.Page;
 import com.comcast.utils.SeleniumReport;
 
 public class SetCriticalDatesTaskPage extends Page {
@@ -69,7 +69,7 @@ public class SetCriticalDatesTaskPage extends Page {
 				CustomerNotificationDate.click();
 				CustomerNotificationDate.clear();
 				CustomerNotificationDate.sendKeys(getCurrentDate());
-				if(waitForElement(ddHotCut, 5)){
+				if(waitForElement(ddHotCut, 2)){
 				new Select(ddHotCut).selectByValue("Yes");
 				}
 				focDate.click();

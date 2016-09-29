@@ -8,8 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
-import com.comcast.century.cm.pages.Page;
 import com.comcast.utils.ComcastTest.FrameworkContext;
+import com.comcast.utils.Page;
 import com.comcast.utils.SeleniumReport;
 
 public class ObtainCoaxPermitsTaskPage extends Page {

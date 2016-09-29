@@ -10,15 +10,13 @@ import org.testng.annotations.Test;
 
 public class ServiceFlow_Change extends CoaxTaskFlow_Change{
 	
-	
-	    // Service Request flow tasks
+	    
 		@Test(priority = 70000)
 		public void Contact_Customer_Change() throws InterruptedException, AWTException {
 			Contact_Customer();
 
 		}
-
-		// Metro E Change flow tasks
+		
 		@Test(priority = 70100)
 		public void Build_Update_Local_Biller_Account_Change() throws InterruptedException {
 			Build_Update_Local_Biller_Account();
@@ -54,7 +52,7 @@ public class ServiceFlow_Change extends CoaxTaskFlow_Change{
 
 		@Test(priority = 70700)
 		public void Generate_CPE_Config_Change() throws InterruptedException {
-			Generate_Core_Config();
+			Generate_CPE_Config();
 		}
 
 		@Test(priority = 70800)

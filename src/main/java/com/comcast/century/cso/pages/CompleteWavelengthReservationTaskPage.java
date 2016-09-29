@@ -5,9 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import com.comcast.century.cm.pages.Page;
 import com.comcast.century.data.SiteLevelTaskInfo;
 import com.comcast.utils.ComcastTest.FrameworkContext;
+import com.comcast.utils.Page;
 import com.comcast.utils.SeleniumReport;
 
 public class CompleteWavelengthReservationTaskPage extends Page {

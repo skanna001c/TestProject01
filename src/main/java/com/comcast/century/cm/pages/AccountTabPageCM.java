@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import com.comcast.century.common.NewConnectTest;
 import com.comcast.century.data.AccountInfo;
 import com.comcast.reporting.Status;
+import com.comcast.utils.Page;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
 import com.comcast.utils.ComcastTest.FrameworkContext;
@@ -63,6 +64,9 @@ public class AccountTabPageCM extends Page {
 	@FindBy(xpath = "//img[@title='Get BAN']")
 	private WebElement imgGetBAN;
 
+	@FindBy(id = "ban")
+	private WebElement textBAN;
+	
 	// txtBillingAccnName
 	@FindBy(xpath = "//input[@id='billingAccountName']")
 	private WebElement txtBillingAccnName;
@@ -304,6 +308,7 @@ public class AccountTabPageCM extends Page {
 					report.reportDoneEvent("Enter Billing Account Name",
 							"Entered Billing Account Name as->" + accountInfo.billingAccName);
 					waitforPageLoadComplete();
+					waitForElement(imgGetBAN);
 					imgGetBAN.click();
 					report.reportDoneEvent("Click to get BAN", "Clicked to get BAN");
 					waitforPageLoadComplete();
