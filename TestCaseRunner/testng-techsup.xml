@@ -29,7 +29,7 @@
 				<include name="startCM" />
 				<include name="searchSRID" />
 				<include name="initiateSupplements" />
-				<include name="addBGP" />
+				<include name="addBGPToEDI" />
 				<include name="submitOrderSupplements" />
 				<include name="Update_Design_Supp" />
 				<include name="Build_Update_Local_Biller_Account_Supp" />
@@ -86,7 +86,7 @@
 					<include name="startCM" />
 					<include name="searchSRID" />
 					<include name="initiateSupplements" />
-					<include name="addBGP" />
+					<include name="addBGPToEDI_PRI" />
 					<include name="submitOrderSupplements" />
 					<include name="Generate_Core_Config_Supp" />
 					<include name="Generate_CPE_Config_Supp" />
