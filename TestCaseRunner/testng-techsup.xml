@@ -6,7 +6,7 @@
 
 	</listeners>
 
-	<test name="Tech_Sup_ME-EDI-Tech_Sup-Add_BGP">
+	<!-- <test name="Tech_Sup_ME-EDI-Tech_Sup-Add_BGP">
 	<classes>
 		<class name="com.comcast.century.techsup.Techsup">
 			<methods>
@@ -48,7 +48,7 @@
 				<include name="Complete_Customer_Acceptance_Testing_Supp" />
 				<include name="Start_Billing_Supp" />
 				<include name="EqFeeStartBilling_Supp" />
-				<include name="Assign_Design_BGPSupp" />
+				<include name="Assign_Design_BGP_Supp" />
 				<include name="Generate_CPE_Config_BGPSupp" />
 				<include name="Set_Critical_Dates_BGPSupp" />
 				<include name="Day_of_Configs_BGPSupp" />
@@ -58,8 +58,8 @@
 		</class>
 	</classes>
 </test>
-
-	<!-- <test name="Tech_Supp_ Add_BGP_to_EDI-PRI_Service">
+ -->
+	<test name="Tech_Supp_ Add_BGP_to_EDI-PRI_Service">
 		<classes>
 			<class name="com.comcast.century.techsup.Techsup">
 				<methods>
@@ -115,7 +115,7 @@
 			</class>
 		</classes>
 	</test>
- -->
+
 	<!-- <test name="Tech_Supp_Upgrade_EVC_for_EDI_Erate_Service">
 		<classes>
 			<class name="com.comcast.century.techsup.Techsup">
