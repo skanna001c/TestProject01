@@ -3063,10 +3063,13 @@ public abstract class Page {
 	public void enterValue(List<WebElement> we, WebElement we1, String value) throws InterruptedException {
 
 		for (int i = 0; i < we.size(); i++) {
-			waitForElement(we.get(i));
-			doubleClick(we.get(i));
-			Thread.sleep(1500);
-			waitForElement(we1);
+			if (waitForElement(we.get(i))) {
+				we.get(i).sendKeys(Keys.chord(Keys.CONTROL, Keys.ARROW_DOWN));
+				do {
+					doubleClick(we.get(i));
+					sleep(1500);
+				} while (!waitForElement(we1));
+			} else log.warn("Element not present to enter value");
 			we1.click();
 			we1.clear();
 			we1.sendKeys(value);

@@ -24,8 +24,7 @@
 					<include name="Complete_Wavelength_Reservation" />
 					<include name="Complete_Site_Build" />
 					<include name="Obtain_Fiber_Plant_Permit" />
-					<include name="Complete_Fiber_Plant_Build" />
-					<include name="Contact_Customer" />					
+					<include name="Complete_Fiber_Plant_Build" />				
 					<include name="Build_Update_Local_Biller_Account" />
 					<include name="Update_Design" />
 					<include name="Ship_CPE" />

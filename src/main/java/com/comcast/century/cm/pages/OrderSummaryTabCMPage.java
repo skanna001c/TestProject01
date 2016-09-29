@@ -108,11 +108,17 @@ public class OrderSummaryTabCMPage extends Page {
 	@FindBy(xpath = "//*[text()='UNI']/../following-sibling::td[11]/child::div")
 	private List<WebElement> mrcUNI;
 
+	@FindBy(xpath = "//*[text()='BGP']/../following-sibling::td[11]/child::div")
+	private List<WebElement> mrcBGP;
+	
+	@FindBy(xpath = "//*[text()='BGP']/../following-sibling::td[9]/child::div")
+	private List<WebElement> nrcBGP;
+	
 	@FindBy(xpath = "//*[text()='UNI']/../following-sibling::td[9]/child::div")
 	private List<WebElement> nrcUNI;
 
-	@FindBy(xpath = "//*[text()='Basic CoS Bandwidth']/../following-sibling::td[11]/child::div")
-	private List<WebElement> mrcBCosBW;
+	@FindBy(xpath = "//*[.='Basic CoS Bandwidth' or .='Premium CoS Bandwidth']/../following-sibling::td[11]/child::div")
+	private List<WebElement> mrcCosBW;
 
 	@FindBy(xpath = "//input[contains(@id,'numberfield')]")
 	private List<WebElement> txtValue;
@@ -448,10 +454,22 @@ public class OrderSummaryTabCMPage extends Page {
 					orderSummaryInfo.valueNRC); /* Enter UNI NRC Value */
 			enterValue(mrcUNI, txtValueMRC,
 					orderSummaryInfo.valueMRC); /* Enter UNI MRC Value */
-			enterValue(mrcBCosBW, txtValueMRC,
+			enterValue(mrcCosBW, txtValueMRC,
 					orderSummaryInfo.valueMRC); /* Enter BCosW MRC value Enter */
 			enterValue(mrcEqFee, txtValueMRC,
 					orderSummaryInfo.valueEqFeeMRC); /* Enter MRC for Equipment Fee */
+		} catch (Exception e) {
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	
+	public boolean mrcNrc_Supplements(OrderSummaryInfo orderSummaryInfo) throws InterruptedException {
+		mstatus = true;
+		try {
+			enterValue(nrcBGP,txtValueNRC,orderSummaryInfo.valueNRC);   /*Enter BGP NRC*/
+			enterValue(mrcBGP,txtValueMRC,orderSummaryInfo.valueMRC);   /*ENTER BGP MRC*/
 		} catch (Exception e) {
 			mstatus = false;
 		}
@@ -465,7 +483,7 @@ public class OrderSummaryTabCMPage extends Page {
 					orderSummaryInfo.valueNRC);  Enter UNI NRC Value */
 			enterValue(mrcUNI, txtValueMRC,
 					orderSummaryInfo.valueMRC); /* Enter UNI MRC Value */
-			enterValue(mrcBCosBW, txtValueMRC,
+			enterValue(mrcCosBW, txtValueMRC,
 					orderSummaryInfo.valueMRC); /* Enter BCosW MRC value Enter */
 			enterValue(mrcEqFee, txtValueMRC,
 					orderSummaryInfo.valueEqFeeMRC); /* Enter MRC for Equipment Fee */
@@ -480,6 +498,9 @@ public class OrderSummaryTabCMPage extends Page {
 			// ShortWaitandSwitchToFrame(frameMain);
 			if (waitForElement(btnsubmitOrder)) {
 				iClick(btnsubmitOrder, null, "Submit Order: Order Summary Page: SubmitButton");
+				if(waitForElement(btnYes,5)){
+					btnYes.click();
+				}
 				waitforPageLoadComplete();
 				waitForElementDisappear(elementLoading);
 				if(OrdersubmittedMessage.getText().contains("Order submitted successfully"))

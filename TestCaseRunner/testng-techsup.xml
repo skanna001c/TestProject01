@@ -6,9 +6,9 @@
 
 	</listeners>
 
-	<!-- <test name="Tech_Sup_ME-EDI-Tech_Sup-Add_BGP">
+	<test name="Tech_Sup_ME-EDI-Tech_Sup-Add_BGP">
 	<classes>
-		<class name="com.comcast.century.techsup.Techsup">
+		<class name="com.comcast.century.techsup.Tech_Sup_ME_EDI_Tech_Sup_Add_BGP">
 			<methods>
 				<include name="createCustomer" />
 				<include name="createServiceAccount" />
@@ -31,7 +31,6 @@
 				<include name="initiateSupplements" />
 				<include name="addBGP" />
 				<include name="submitOrderSupplements" />
-				<include name="Contact_Customer_Supp" />
 				<include name="Update_Design_Supp" />
 				<include name="Build_Update_Local_Biller_Account_Supp" />
 				<include name="Ship_CPE_Supp" />
@@ -58,10 +57,10 @@
 		</class>
 	</classes>
 </test>
- -->
+
 	<test name="Tech_Supp_ Add_BGP_to_EDI-PRI_Service">
 		<classes>
-			<class name="com.comcast.century.techsup.Techsup">
+			<class name="com.comcast.century.techsup.Tech_Supp_Add_BGP_to_EDI_PRI_Service">
 				<methods>
 					<include name="createCustomer" />
 					<include name="createServiceAccount" />
@@ -79,7 +78,6 @@
 					<include name="Complete_Site_Build" />
 					<include name="Obtain_Fiber_Plant_Permit" />
 					<include name="Complete_Fiber_Plant_Build" />
-					<include name="Contact_Customer" />
 					<include name="Build_Update_Local_Biller_Account" />
 					<include name="Update_Design" />
 					<include name="Ship_CPE" />
@@ -90,10 +88,6 @@
 					<include name="initiateSupplements" />
 					<include name="addBGP" />
 					<include name="submitOrderSupplements" />
-					<include name="Contact_Customer_Supp" />
-					<include name="Update_Design_Supp" />
-					<include name="Create_Account_and_Equipment_Supp" />
-					<include name="Assign_Design_Info_Supp" />
 					<include name="Generate_Core_Config_Supp" />
 					<include name="Generate_CPE_Config_Supp" />
 					<include name="Load_Core_Config_Supp" />
@@ -105,20 +99,32 @@
 					<include name="Complete_Customer_Acceptance_Testing_Supp" />
 					<include name="Start_Billing_Supp" />
 					<include name="EqFeeStartBilling_Supp" />
+					<include name="Build_Update_Local_Biller_Account_PRISupp" />
+					<include name="Update_Design_PRISupp" />
+					<include name="Create_Account_and_Equipment_PRISupp" />
+					<include name="Ship_CPE_PRISupp" />
+					<include name="Assign_Design_Info_PRISupp" />
+					<include name="Generate_CPE_Config_PRISupp" />
+					<include name="Generate_Core_Config_PRISupp" />
+					<include name="Load_Core_Config_PRISupp" />
+					<include name="Install_CPE_PRISupp" />
+					<include name="Set_Critical_Dates_PRISupp" />
+					<include name="Day_of_Configs_PRISupp" />
+					<include name="Activate_Service_PRISupp" />
 					<include name="Assign_Design_BGP_Supp" />
-				    <include name="Generate_CPE_Config_BGP_Supp" />
-				    <include name="Set_Critical_Dates_BGP_Supp" />
-				    <include name="Day_of_Configs_BGP_Supp" />
-				    <include name="Notify_Customer_of_Service_Installation_BGP_Supp" />
-				    <include name="Start_Billing_BGP_Supp" />
+					<include name="Generate_CPE_Config_BGPSupp" />
+					<include name="Set_Critical_Dates_BGPSupp" />
+					<include name="Day_of_Configs_BGPSupp" />
+					<include name="Notify_Customer_of_Service_Installation_BGPSupp" />
+					<include name="Start_Billing_BGPSupp" />
 				</methods>
 			</class>
 		</classes>
 	</test>
 
-	<!-- <test name="Tech_Supp_Upgrade_EVC_for_EDI_Erate_Service">
+	<test name="Tech_Supp_Upgrade_EVC_for_EDI_Erate_Service">
 		<classes>
-			<class name="com.comcast.century.techsup.Techsup">
+			<class name="com.comcast.century.techsup.Tech_Supp_Upgrade_EVC_for_EDI_Erate_Service">
 				<methods>
 					<include name="createCustomer" />
 					<include name="createServiceAccount" />
@@ -135,8 +141,7 @@
 					<include name="Complete_Wavelength_Reservation" />
 					<include name="Complete_Site_Build" />
 					<include name="Obtain_Fiber_Plant_Permit" />
-					<include name="Complete_Fiber_Plant_Build" />
-					<include name="Contact_Customer" />					
+					<include name="Complete_Fiber_Plant_Build" />			
 					<include name="Build_Update_Local_Biller_Account" />
 					<include name="Update_Design" />
 					<include name="Ship_CPE" />
@@ -147,10 +152,6 @@
 					<include name="initiateSupplements" />
 					<include name="upgradeEVC"/>
 					<include name="submitOrderSupplements"/>
-					<include name="Contact_Customer_Supp"/>
-					<include name="Update_Design_Supp"/>
-					<include name="Create_Account_and_Equipment_Supp"/>
-					<include name="Assign_Design_Info_Supp"/>
 					<include name="Generate_Core_Config_Supp"/>
 					<include name="Generate_CPE_Config_Supp"/>
 					<include name="Load_Core_Config_Supp"/>
@@ -166,11 +167,11 @@
 				</methods>
 			</class>
 		</classes>
-	</test> -->
+	</test>
 
-	<!-- <test name="Tech_Sup_Add_Trunk-PRI_to_In-Flight_Metro-E_order">
+	<test name="Tech_Sup_Add_Trunk-PRI_to_In-Flight_Metro-E_order">
 		<classes>
-			<class name="com.comcast.century.techsup.Techsup">
+			<class name="com.comcast.century.techsup.Tech_Sup_Add_Trunk_PRI_to_In_Flight_Metro_E_order">
 				<methods>
 					<include name="createCustomer" />
 					<include name="createServiceAccount" />
@@ -187,8 +188,7 @@
 					<include name="Complete_Wavelength_Reservation" />
 					<include name="Complete_Site_Build" />
 					<include name="Obtain_Fiber_Plant_Permit" />
-					<include name="Complete_Fiber_Plant_Build" />
-					<include name="Contact_Customer" />					
+					<include name="Complete_Fiber_Plant_Build" />			
 					<include name="Build_Update_Local_Biller_Account" />
 					<include name="Update_Design" />
 					<include name="Ship_CPE" />
@@ -200,6 +200,6 @@
 				</methods>
 			</class>
 		</classes>
-	</test> -->
+	</test>
 
 </suite> 
