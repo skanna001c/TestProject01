@@ -142,7 +142,7 @@ public class Techsup extends Supplements {
 	}
 	
 	@Test(priority = 36020)
-	public void Assign_Design_BGPSupp() throws InterruptedException, AWTException {
+	public void Assign_Design_BGP_Supp() throws InterruptedException, AWTException {
 		Assign_Design_BGP();
 	}
 	

@@ -69,7 +69,7 @@ public class SetCriticalDatesTaskPage extends Page {
 				CustomerNotificationDate.click();
 				CustomerNotificationDate.clear();
 				CustomerNotificationDate.sendKeys(getCurrentDate());
-				if(waitForElement(ddHotCut, 5)){
+				if(waitForElement(ddHotCut, 2)){
 				new Select(ddHotCut).selectByValue("Yes");
 				}
 				focDate.click();

@@ -86,8 +86,11 @@ public class ProcessTabPageCM extends Page {
 		@FindBy(xpath = "//a[text()='EVC']")
 		private WebElement LinkEVC1;
 		
-		@FindBy(xpath = "//a[text()='EVC']")
-		private List<WebElement> LinkEVCPRI;
+		@FindBy(xpath = "//a[contains(@onclick,'Trunk-PRI')][.='EVC']")
+		private WebElement LinkEVCPRI;
+		
+		@FindBy(xpath = "//a[contains(@onclick,'Trunk-PRI')][.='UNI']")
+		private WebElement LinkUNIPRI;
 		
 		@FindBy(xpath = "//a[text()='EVC~2']")
 		private WebElement LinkEVC2;
@@ -232,9 +235,10 @@ public class ProcessTabPageCM extends Page {
 					if(serviceInfo.serviceName.equalsIgnoreCase("EDI-BGP")){
 						this.BGPConfiguration();
 					} else if(serviceInfo.serviceName.equalsIgnoreCase("EDI-PRI")){
-						this.Trunk_PRI(processInfo);
+						this.TrunkPRIConfiguration(processInfo, localiDataDump.getValue("SITE1_RT"), serviceInfo);
+						/*this.Trunk_PRI(processInfo);
 						this.UNIConfiguration_PRI(processInfo,localiDataDump.getValue("SITE1_RT"),serviceInfo );
-						this.EVCConfiguration_PRI(processInfo);
+						this.EVCConfiguration_PRI(processInfo);*/
 					}
 					break;
 				case "EPL" :
@@ -255,9 +259,10 @@ public class ProcessTabPageCM extends Page {
 					EVCNo2 = this.EVC2Configuration_ENS(processInfo);
 					localiDataDump.setValue("EVCcount_RT","2");
 					if(serviceInfo.serviceName.equalsIgnoreCase("ENS-PRI")){
-						this.Trunk_PRI(processInfo);
+						this.TrunkPRIConfiguration(processInfo, localiDataDump.getValue("SITE1_RT"), serviceInfo);
+						/*this.Trunk_PRI(processInfo);
 						this.UNIConfiguration_PRI(processInfo,localiDataDump.getValue("SITE1_RT"),serviceInfo );
-						this.EVCConfiguration_PRI(processInfo);
+						this.EVCConfiguration_PRI(processInfo);*/
 					}
 					break;
 				case "EVPL" :
@@ -663,11 +668,23 @@ public class ProcessTabPageCM extends Page {
 		 * 
 		 */
 		
+		public boolean TrunkPRIConfiguration(ProcessInfo processInfo,String Site,ServiceInfo serviceInfo){
+			mstatus= true;
+			try{
+				this.Trunk_PRI(processInfo);
+				this.UNIConfiguration_PRI(processInfo, Site, serviceInfo);
+				this.EVCConfiguration_PRI(processInfo);
+			}catch (Exception e) {
+				mstatus= false;
+			}
+			return mstatus;
+		}
+		
 		public boolean UNIConfiguration_PRI(ProcessInfo processInfo,String Site,ServiceInfo serviceInfo) throws InterruptedException{
 			mstatus= true;
 			try {
-				waitForElement(LinkUNI1);
-				jsClick(LinkUNI1);
+				waitForElement(LinkUNIPRI);
+				jsClick(LinkUNIPRI);
 				waitForElementDisappear(elementLoading);
 				waitForElement(imgAddressLookup);
 				imgAddressLookup.click();
@@ -712,8 +729,8 @@ public class ProcessTabPageCM extends Page {
 		public boolean EVCConfiguration_PRI(ProcessInfo processInfo){
 			 mstatus= true;
 			 try {
-				 waitForElement(LinkEVCPRI.get(1));
-				 jsClick(LinkEVCPRI.get(1));
+				 waitForElement(LinkEVCPRI);
+				 jsClick(LinkEVCPRI);
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(ddArrwLocationZuni);
 				 ddArrwLocationZuni.click();
