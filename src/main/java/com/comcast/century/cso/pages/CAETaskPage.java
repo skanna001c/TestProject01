@@ -164,6 +164,7 @@ public class CAETaskPage extends Page {
 			}
 			iClick(btnBack,null, "CAE task complete:CAE task complete page: BackButton ");
 			waitForElement(browser.findElement(By.xpath("//*[text()='Create Account and Equipment' and contains(@onclick, 'COMPLETED')]")));
+			waitUntilElementPresent(By.xpath("//*[text()='Create Account and Equipment' and contains(@onclick, 'COMPLETED')]"), 60);
 
 			
 		}catch(Exception e){

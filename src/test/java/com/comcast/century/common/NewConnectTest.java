@@ -68,6 +68,7 @@ import com.comcast.century.data.ServiceLevelTaskInfo;
 import com.comcast.century.data.SiteInfo;
 import com.comcast.century.data.SiteLevelTaskInfo;
 import com.comcast.century.data.SupplementInfo;
+import com.comcast.reporting.Status;
 import com.comcast.utils.ComcastTest;
 import com.comcast.utils.DataDump;
 import com.comcast.utils.IDataDump;
@@ -381,8 +382,10 @@ public class NewConnectTest extends ComcastTest {
 	public void Assign_Design_Info() throws InterruptedException {
 		for (int i = 0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++) {
 			SearchOrderndLaunchServiceFlow(i);
-			(new ServiceLevelTasks(frameworkContext)).ADI();
-			(new ADITaskPage(frameworkContext)).ADITask(serviceInfo);
+			if((new ServiceLevelTasks(frameworkContext)).ADI())
+			{
+				(new ADITaskPage(frameworkContext)).ADITask(serviceInfo);
+			}
 		}
 		/*if(testcaseName.matches("Tech_Supp_ Add_BGP_to_EDI-PRI_Service|Tech_Supp_Upgrade_EVC_for_EDI_Erate_Service|Tech_Sup_Add_Trunk-PRI_to_In-Flight_Metro-E_order")){
 			startCM();
@@ -394,8 +397,10 @@ public class NewConnectTest extends ComcastTest {
 	public void Generate_Core_Config() throws InterruptedException {
 		for (int i = 0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++) {
 			SearchOrderndLaunchServiceFlow(i);
-			(new ServiceLevelTasks(frameworkContext)).GenerateCoreConfigs();
-			(new GenerateCoreConfigsTaskPage(frameworkContext)).ClickCompleteButton();
+			if((new ServiceLevelTasks(frameworkContext)).GenerateCoreConfigs())
+				{
+					(new GenerateCoreConfigsTaskPage(frameworkContext)).ClickCompleteButton();
+				}
 		}
 
 	}
@@ -613,6 +618,15 @@ public class NewConnectTest extends ComcastTest {
 	
 	}
 	
+	public void SearchOrder() throws InterruptedException {
+    	if (!getDataDump().getValue("SUP_SRID_RT").equalsIgnoreCase(""))
+			SRID = getDataDump().getValue("SUP_SRID_RT");
+		else
+			SRID = getDataDump().getValue("SRID_RT");
+    	
+    		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(SRID, retryCount);    		
+    		report.updateTestLog("SRID "+SRID+" searched", "SRID Searching in CSO",Status.SCREENSHOT);
+	}
 	
 	public void SearchOrderndLaunchPRIFlow() throws InterruptedException {
     	retryCount = 1;
@@ -683,7 +697,7 @@ public class NewConnectTest extends ComcastTest {
 	}
 	
 
-	@Test(priority = 22100)
+	@Test(priority = 22500)
 	public void startCM() {
 		
 		/*getDataDump().setValue("CM_Status", "FAIL");

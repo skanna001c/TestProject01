@@ -98,8 +98,8 @@ public class ActivateServiceTaskPage extends Page {
 				waitForElement(ddStatus);
 				new Select(ddStatus).selectByValue(serviceLevelTaskInfo.status);
 			} 
-			  this.ClickCompleteButton();
-			  waitForElement(browser.findElement(By.xpath("//*[text()='Activate Service' and contains(@onclick, 'COMPLETED')]")));
+			  this.ClickCompleteButton();			  
+			  waitUntilElementPresent(By.xpath("//*[text()='Activate Service' and contains(@onclick, 'COMPLETED')]"), 60);
 		}catch(Exception e){
 			e.printStackTrace();
 			mstatus = false;

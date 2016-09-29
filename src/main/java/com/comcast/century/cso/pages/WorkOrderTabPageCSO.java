@@ -221,6 +221,8 @@ public class WorkOrderTabPageCSO extends Page {
 					iSendKeys(txtSrId, SRID);
 					iClick(btnSearch, null, "Search SRID:Service Order Page:Search button");
 					waitForElementDisappear(elementLoading);
+					waitforPageLoadComplete();
+					
 				}
 
 				browser.switchTo().defaultContent();

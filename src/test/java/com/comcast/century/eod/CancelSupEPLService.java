@@ -1,10 +1,15 @@
 package com.comcast.century.eod;
 
 import java.awt.AWTException;
+import java.util.Iterator;
 
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import com.comcast.century.common.Supplements;
+import com.comcast.century.cso.pages.ADITaskPage;
+import com.comcast.century.cso.pages.CAETaskPage;
 import com.comcast.century.cso.pages.ContactCustomerTaskPage;
+import com.comcast.century.cso.pages.DisconnectTaskPage;
 import com.comcast.century.cso.pages.ObtainCoaxPermitsTaskPage;
 import com.comcast.century.cso.pages.ObtainSiteAgreementTaskPage;
 import com.comcast.century.cso.pages.ServiceLevelTasks;
@@ -65,7 +70,93 @@ public class CancelSupEPLService extends Supplements {
 			(new ServiceLevelTasks(frameworkContext)).SetCriticalDates();
 			(new SetCriticalDatesTaskPage(frameworkContext)).ClickCompleteButton();
 		}
-		
 	}
+	
+		//p[contains(.,'Generate Core Configs')]
+	@Test(priority = 61000)
+	public void Generate_Core_Configs() throws InterruptedException {
+		for (int i = 0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++) {
+			SearchOrderndLaunchServiceFlow(i);
+			if((new ServiceLevelTasks(frameworkContext)).GenerateCoreConfigs())
+			{
+				(new ServiceLevelTasks(frameworkContext)).ClickCompleteButton("Generate_Core_Configs");
+			}
+			
+		}
+	}
+		
+		//a[contains(.,'Update Local Biller')]	
+	@Test(priority = 61500)	
+		public void Update_Local_Biller() throws InterruptedException {
+			for (int i = 0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++) {
+				SearchOrderndLaunchServiceFlow(i);
+				if((new ServiceLevelTasks(frameworkContext)).Update_Local_Biller())
+				{
+					(new ServiceLevelTasks(frameworkContext)).ClickCompleteButton("Generate_Core_Configs");
+				}
+				
+			}	
+		
+		}
+	
+	@Test(priority = 62000)
+	public void Remove_Core_Configs() throws InterruptedException  {
+		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
+			SearchOrderndLaunchServiceFlow(i);
+			if((new ServiceLevelTasks(frameworkContext)).removeCoreConfigs())
+				
+			{	(new ServiceLevelTasks(frameworkContext)).ClickCompleteButton("Update_Local_Biller");
+				//(new ServiceLevelTasks(frameworkContext)).ClickBackButton();
+			}
+			
+		}
+	}	
+	
+	@Test(priority = 62100)
+	public void Assign_Design_Info_SUP() throws InterruptedException  {
+		for (int i = 0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++) {
+			SearchOrderndLaunchServiceFlow(i);
+			if((new ServiceLevelTasks(frameworkContext)).ADI())
+			{
+				(new ServiceLevelTasks(frameworkContext)).ClickCompleteButton("Assign_Design_Info");
+			}
+		}
+	}
+
+	@Test(priority = 63000)
+	public void Create_Account_and_Equipment_SUP() throws Exception {
+		for (int i = 0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++) {
+			SearchOrderndLaunchServiceFlow(i);
+			if((new ServiceLevelTasks(frameworkContext)).CAE())
+			{
+				(new ServiceLevelTasks(frameworkContext)).ClickCompleteButton("Create_Account_and_Equipment");
+			}
+			
+		}
+	}
+
+	@Test(priority = 63500)
+	public void Schedule_CPE_Pickup() throws Exception {
+		By by= By.xpath("//a[text()='Schedule CPE Pickup' and contains(@onclick, 'PROGRESS')]");
+		for (int i = 0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++) {
+			SearchOrderndLaunchServiceFlow(i);
+		   if((new ServiceLevelTasks(frameworkContext)).waitUntilElementPresent(by, 60))
+		   { int taskcount=browser.findElements(by).size();
+		   	for (int count = 0; count <taskcount; count++) {
+				
+			}
+		   
+			if((new ServiceLevelTasks(frameworkContext)).scheduleCPEPickup())
+			{
+				(new ServiceLevelTasks(frameworkContext)).ClickCompleteButton("Create_Account_and_Equipment");
+			}
+		   }
+			
+		}
+	}
+	
+	
+	
+	
 	
 }

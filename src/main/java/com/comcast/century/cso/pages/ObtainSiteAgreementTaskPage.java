@@ -87,7 +87,7 @@ public class ObtainSiteAgreementTaskPage extends Page {
 				clickndRelease(ActualReceivedDate);
 				btnToday.get(2).click();	
 				this.ClickCompleteButton();
-				waitForElement(browser.findElement(By.xpath("//*[text()='Obtain Site Agreement(s)' and contains(@onclick, 'COMPLETED')]")));
+				waitUntilElementPresent(By.xpath("//*[text()='Obtain Site Agreement(s)' and contains(@onclick, 'COMPLETED')]"),60);
 			}
 		}
 		catch(Exception ex)
