@@ -134,18 +134,10 @@ public class FeatureTabPageCM extends Page {
 		try {
 			waitForElementDisappear(elementLoading);
 			if(waitForElement(txtUNIqt)){
-				/*txtUNIqt.click();
-				txtUNIqt.clear();
-				iSendKeys(txtUNIqt, "3");*/
 				waitForElement(txtUNIandEVCqt.get(0));
-				txtUNIandEVCqt.get(0).click();
-				txtUNIandEVCqt.get(0).clear();
 				iSendKeys(txtUNIandEVCqt.get(0), "2");
-				//Below 3 lines added by Kesavan, Sometimes UNI quantity values are not retained whatever we have added in fist time when we click continue button
-				// So, we are adding one more time as a workaround
-				txtUNIqt.click();
-				txtUNIqt.clear();
 				iSendKeys(txtUNIqt, "3");
+				txtUNIqt.click();
 				txtUNIandEVCqt.get(0).click();
 				scrollDown();
 				waitForElement(btnContinue);
@@ -163,19 +155,13 @@ public class FeatureTabPageCM extends Page {
 		WaitandSwitchToFrame(frameMain);
 		try {
 			waitForElementDisappear(elementLoading);
-			if(waitForElement(txtUNIqt)){
-				txtUNIqt.click();
-				txtUNIqt.clear();
-				iSendKeys(txtUNIqt, UNI);
-				waitForElement(txtUNIandEVCqt.get(0));
-				txtUNIandEVCqt.get(0).click();
-				txtUNIandEVCqt.get(0).clear();
+			waitForElementDisappear(elementLoading);
+			if(waitForElement(txtUNIqt)){				
+				waitForElement(txtUNIandEVCqt.get(0));				
 				iSendKeys(txtUNIandEVCqt.get(0), EVC);
-				//Below 3 lines added by Kesavan, Sometimes UNI quantity values are not retained whatever we have added in fist time when we click continue button
-				// So, we are adding one more time as a workaround
+				iSendKeys(txtUNIqt, UNI);				
+				txtUNIandEVCqt.get(0).click();
 				txtUNIqt.click();
-				txtUNIqt.clear();
-				iSendKeys(txtUNIqt, UNI);
 				scrollDown();
 				waitForElement(btnContinue);
 				iClick(btnContinue,null,"Click on continue in feature tab: feature tab: ContinueButton");

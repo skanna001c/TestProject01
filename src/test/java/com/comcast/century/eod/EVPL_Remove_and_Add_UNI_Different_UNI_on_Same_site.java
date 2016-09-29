@@ -22,6 +22,6 @@ public class EVPL_Remove_and_Add_UNI_Different_UNI_on_Same_site extends ServiceF
 		new ProcessTabPageCM(frameworkContext).UpgradeEVCBW(1, "6Mbps");
 		new ProcessTabPageCM(frameworkContext).UpgradeEVCBW(2, "6Mbps");
 		new ProcessTabPageCM(frameworkContext).ClickOnContinueButton();
-	
+		dataDump.setValue("EVCcount_RT", "2");
 	}
 }

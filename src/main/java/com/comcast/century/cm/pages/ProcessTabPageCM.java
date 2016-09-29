@@ -941,7 +941,7 @@ public class ProcessTabPageCM extends Page {
 			String EVCNo3= null;
 			 try {
 				 waitForElement(LinkEVC3);
-				 clickndRelease(LinkEVC3);
+				 jsClick(LinkEVC3);
 				 waitForElementDisappear(elementLoading);
 				 waitForElement(ddArrwLocationAuni);
 				 ddArrwLocationAuni.click();
