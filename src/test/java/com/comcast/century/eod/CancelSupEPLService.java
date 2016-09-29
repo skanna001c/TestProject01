@@ -1,15 +1,12 @@
 package com.comcast.century.eod;
 
 import java.awt.AWTException;
-import java.util.Iterator;
 
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+
 import com.comcast.century.common.Supplements;
-import com.comcast.century.cso.pages.ADITaskPage;
-import com.comcast.century.cso.pages.CAETaskPage;
 import com.comcast.century.cso.pages.ContactCustomerTaskPage;
-import com.comcast.century.cso.pages.DisconnectTaskPage;
 import com.comcast.century.cso.pages.ObtainCoaxPermitsTaskPage;
 import com.comcast.century.cso.pages.ObtainSiteAgreementTaskPage;
 import com.comcast.century.cso.pages.ServiceLevelTasks;

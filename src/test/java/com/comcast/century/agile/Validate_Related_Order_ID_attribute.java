@@ -1,6 +1,5 @@
 package com.comcast.century.agile;
 
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.comcast.century.cm.pages.OrderSummaryTabCMPage;

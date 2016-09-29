@@ -1,24 +1,17 @@
 package com.comcast.century.cm.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.Test;
 
-import com.comcast.reporting.*;
-import com.comcast.century.data.LoginDetails;
+import com.comcast.reporting.Status;
+import com.comcast.utils.ComcastTestMain.FrameworkContext;
 import com.comcast.utils.Page;
-import com.comcast.utils.PerfTransaction;
-import com.comcast.utils.SeleniumReport;
-
 import com.comcast.utils.TestSettings;
-import com.comcast.utils.TestUtils;
-import com.comcast.utils.ComcastTest.FrameworkContext;
+
 
 /**
  * Represents default page of the application

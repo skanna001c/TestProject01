@@ -5,10 +5,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.comcast.century.cso.pages.ManageTab;
-import com.comcast.utils.ComcastTest;
+import com.comcast.utils.ComcastTestMain;
 import com.comcast.utils.PerfTransaction;
 
-public class LabelFunctionalityCSO extends ComcastTest {
+public class LabelFunctionalityCSO extends ComcastTestMain {
 
 	
 	
