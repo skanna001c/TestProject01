@@ -56,8 +56,7 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.comcast.century.cm.pages.HomePageCM;
-import com.comcast.century.commons.CenturyApplication;
+import com.comcast.commons.Application;
 import com.comcast.logging.logtransactions.LoggerMain;
 import com.comcast.logging.logtransactions.LoggerMainImpl;
 import com.comcast.neto.alm.ALMTestInformation;
@@ -65,7 +64,6 @@ import com.comcast.neto.alm.ALMUpdaterClient;
 import com.comcast.reporting.ReportSettings;
 import com.comcast.reporting.ReportThemeFactory;
 import com.comcast.reporting.ReportThemeFactory.Theme;
-import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.reporting.Status;
 
 
@@ -106,7 +104,7 @@ public class ComcastTest {
 	// updated by harsh on 8/4 //made static by rijin 19/8/16
 	protected  TestSettings settings; 
 	protected  IUserDetails userDetails;
-	private  CenturyApplication centuryApplication;
+	private  Application application;
 	private String userName;
 	
 	// updated by hbolak01c for performance transaction logging
@@ -199,7 +197,6 @@ public class ComcastTest {
 		
     	initializeReport(testCaseName);
 		startTestTime = System.currentTimeMillis();
-		centuryApplication = new CenturyApplication(frameworkContext);
 		System.out.println("******Test Case Name :" +testCaseName+ "******");
 		
 		//updated by harsh on 8/3/2016
@@ -221,6 +218,7 @@ public class ComcastTest {
 		//#####################################################################
 		
 //	 beforeTestGetUserndURL();
+		application = new Application(frameworkContext);
     	
     }
 	
@@ -258,7 +256,7 @@ public class ComcastTest {
 			
 		}
 		
-		beforeMethodGetUserndURL(testName);
+		application.beforeMethodGetUserndURL(testName);
 		
 		/*if(settings.getPERerunStatus().equalsIgnoreCase("true")){
 
@@ -324,8 +322,9 @@ public class ComcastTest {
 		
 		dataDump.setValue(result.getMethod().getMethodName() + "_status", methodStatus);
 		if(methodStatus.equalsIgnoreCase("fail")){
-			dataDump.deleteValue("CSOLoggedIN");
-			dataDump.deleteValue("CMLoggedIN");			
+/*			dataDump.deleteValue("CSOLoggedIN");
+			dataDump.deleteValue("CMLoggedIN");	*/	
+			application.cleanDump(dataDump); // added by harsh to move century logic out of here -9/28
 			//dataDump.
 			try {
 				//dataDump.dumpData(dataTable.getDataTable());				
@@ -344,8 +343,7 @@ public class ComcastTest {
 		if(settings.getUpdateALM().equalsIgnoreCase("true"))
 			almRestUpdateStatus(); // added by harsh on 8/30/2016
 		try {
-			dataDump.deleteValue("CSOLoggedIN");
-			dataDump.deleteValue("CMLoggedIN");
+			application.cleanDump(dataDump); // added by harsh to move century logic out of here -9/28
 			dataDump.dumpData();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -690,7 +688,7 @@ public class ComcastTest {
 		return line;
 	}
 	
-public void beforeMethodGetUserndURL(Method testName) {
+/*public void beforeMethodGetUserndURL(Method testName) {
 		String newTestName;
 		  //check for rerun and the status of the method
 		if(userDetails.containsTestName(testName.getName().trim())) {
@@ -718,7 +716,7 @@ public void beforeMethodGetUserndURL(Method testName) {
 //####################################################################################
 	if(testName.getName().trim().toLowerCase().startsWith("startcm"))
 	{
-		 centuryApplication.openCMUrl(userName,
+		 application.openCMUrl(userName,
 				 	false, frameworkContext);		 
 		 	if(settings.getPERerunStatus().equalsIgnoreCase("true")){ //for cm package execution 
 				(new HomePageCM(frameworkContext)).searchCustomer(getDataDump().getValue("CustomerName_RT"));
@@ -736,7 +734,7 @@ public void beforeMethodGetUserndURL(Method testName) {
 				 if(!(getDataDump().getValue("CSOLoggedIN").equalsIgnoreCase("PASS")))
 					 {
 						
-						 centuryApplication.openCSOUrl(userName,
+						 application.openCSOUrl(userName,
 								 false, frameworkContext);
 						 if(settings.getPERerunStatus().equalsIgnoreCase("true")){ //for cm package execution 
 							//	search for srid/customer need to be implemented
@@ -749,7 +747,7 @@ public void beforeMethodGetUserndURL(Method testName) {
 					 }
 			 }
 		 else if (!(getDataDump().getValue("CMLoggedIN").equalsIgnoreCase("PASS")))
-		 {	 centuryApplication.openCMUrl(userName,
+		 {	 application.openCMUrl(userName,
 				 	false, frameworkContext);
 		 
 		 	if(settings.getPERerunStatus().equalsIgnoreCase("true")){ //for cm package execution 
@@ -766,7 +764,7 @@ public void beforeMethodGetUserndURL(Method testName) {
 		 {
 			 if (!(getDataDump().getValue("currentUser").equalsIgnoreCase(userName)))
 				 {
-					 centuryApplication.openCMUrl(userName,
+					 application.openCMUrl(userName,
 							 true, frameworkContext);
 					 getDataDump().setValue("CSOLoggedIN","FAIL");
 					 getDataDump().setValue("currentUser", userName);
@@ -777,7 +775,7 @@ public void beforeMethodGetUserndURL(Method testName) {
 		 {
 			 if (!(getDataDump().getValue("currentUser").equalsIgnoreCase(userName)))
 				 {
-				 centuryApplication.openCSOUrl(userName,
+				 application.openCSOUrl(userName,
 						true, frameworkContext);
 					 getDataDump().setValue("CMLoggedIN","FAIL");
 					 getDataDump().setValue("currentUser", userName);
@@ -786,18 +784,18 @@ public void beforeMethodGetUserndURL(Method testName) {
 		 
 		 
 		 //CSOLoggedIN CMLoggedIN
-		 /* if(settings.getPERerunStatus().equalsIgnoreCase("true")){
+		  if(settings.getPERerunStatus().equalsIgnoreCase("true")){
 			  	userName=userDetails.getValue(testName.getName());
-		  }*/
+		  }
 		  
 		  
-		   //centuryApplication = new CenturyApplication(frameworkContext);
+		   //application = new application(frameworkContext);
 			// CM nd CSO login -> added by rijin on 8/18/2016
-			/* if ((getDataDump().getValue("CM_Status").equalsIgnoreCase("PASS")
+			 if ((getDataDump().getValue("CM_Status").equalsIgnoreCase("PASS")
 					 	&& !(getDataDump().getValue("CSOLoggedIN").equalsIgnoreCase("PASS")))
 					 ||(!(getDataDump().getValue("currentUser").equalsIgnoreCase(userName))))
 				 	
-			 {	     centuryApplication.openCSOUrl(userName);
+			 {	     application.openCSOUrl(userName);
 					 getDataDump().setValue("CSOLoggedIN","PASS");
 					 getDataDump().setValue("currentUser", userName);
 			
@@ -807,16 +805,16 @@ public void beforeMethodGetUserndURL(Method testName) {
 					 || (!(getDataDump().getValue("currentUser").equalsIgnoreCase(userName))))
 			 {
 				 
-					 centuryApplication.openCMUrl(userName);
+					 application.openCMUrl(userName);
 					 getDataDump().setValue("CMLoggedIN","PASS");
 					 getDataDump().setValue("currentUser", userName);
 				 
 				 
 			 }
-			 */
+			 
 				 
 	}
-			 
+*/			 
 public void ClearTempFilesndChngeProxy()  {
 	String tmp;
 	//String[] comcast={"cmd.exe", "/C", "Start", TestUtils.getRelativePath() + "/src/main/resources/ClearTmpFilesNdChngeComcastProxy.bat"};

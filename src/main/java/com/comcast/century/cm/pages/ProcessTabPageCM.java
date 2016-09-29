@@ -2,6 +2,7 @@ package com.comcast.century.cm.pages;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -17,6 +18,7 @@ import com.comcast.century.data.ServiceInfo;
 import com.comcast.reporting.Status;
 import com.comcast.utils.DataDump;
 import com.comcast.utils.IDataDump;
+import com.comcast.utils.Page;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
 import com.comcast.utils.ComcastTest.FrameworkContext;
@@ -38,6 +40,8 @@ public class ProcessTabPageCM extends Page {
 	protected void waitForPageLoad() {
 		
 	}
+	
+	Logger log = Logger.getLogger(ProcessTabPageCM.class);
 	
 		@FindBy(xpath = "//span[text()='Today']/following-sibling::*")
 		private List<WebElement> btnToday;
