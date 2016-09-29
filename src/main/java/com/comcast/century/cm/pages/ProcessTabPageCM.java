@@ -2,6 +2,7 @@ package com.comcast.century.cm.pages;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -17,6 +18,7 @@ import com.comcast.century.data.ServiceInfo;
 import com.comcast.reporting.Status;
 import com.comcast.utils.DataDump;
 import com.comcast.utils.IDataDump;
+import com.comcast.utils.Page;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
 import com.comcast.utils.ComcastTest.FrameworkContext;
@@ -39,6 +41,10 @@ public class ProcessTabPageCM extends Page {
 		
 	}
 	
+	Logger log = Logger.getLogger(ProcessTabPageCM.class);
+	
+		@FindBy(xpath = "//span[text()='Today']/following-sibling::*")
+		private List<WebElement> btnToday;
 	
 	    @FindBy(xpath = "//*[@id='mainFrame' and contains(@src,'loadServOrderManagementPanel.exc')]")
 	    private WebElement frameMain;
@@ -46,6 +52,12 @@ public class ProcessTabPageCM extends Page {
 	
 		@FindBy(xpath = "//select[@paramname='Terms']")
 		private WebElement ddSelectTerms;
+		
+		@FindBy(xpath = "//*[contains(@onchange,'Non-Pay Disconnect')]")
+		private WebElement ddNonPayDisconnect;
+		
+		@FindBy(xpath = "//*[.='Stop Billing Date']/descendant::*/input[@type='text']")
+		private WebElement dtStopBillingDate;
 		
 		@FindBy(xpath = "//input[@value='Save']")
 		private WebElement btnSave;
@@ -359,7 +371,33 @@ public class ProcessTabPageCM extends Page {
 		}
 		return mstatus;
 	}
-		
+	
+	public boolean DisconectEDI(ProcessInfo processInfo) {
+		boolean mstatus = true;
+		waitforPageLoadComplete();
+		browser.switchTo().defaultContent();
+	  if(WaitandSwitchToFrame(frameMain)){ 	
+		try {			
+			if (waitForElement(ddNonPayDisconnect)){			
+				new Select(ddNonPayDisconnect).selectByVisibleText(processInfo.NonPayDisconnect);
+				dtStopBillingDate.click();
+				btnToday.get(0).click();
+				iClick(btnSave, null, "Click on save button: Process page: SaveButton");
+				report.reportDoneEvent("Disconnect Details Saved", "");
+				while(!waitForElementDisappear(elementLoading)){}
+				btnContinue.click();
+				waitforPageLoadComplete();
+				waitforPageLoadComplete();
+			}
+			else mstatus = false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			mstatus = false;
+		}
+		return mstatus;
+	  }
+	  else  return false;
+	}
 		
 		/*Method to save terms for Trunk-PRI
 		 *  
@@ -1158,7 +1196,6 @@ public class ProcessTabPageCM extends Page {
 			 
 		}
 
-		
 		
 		
 

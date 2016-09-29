@@ -13,11 +13,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.comcast.century.cm.pages.Page;
 import com.comcast.century.data.ContactInfo;
 import com.comcast.century.data.ServiceInfo;
 import com.comcast.century.data.SiteInfo;
 import com.comcast.reporting.Status;
+import com.comcast.utils.Page;
 import com.comcast.utils.PerfTransaction;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;

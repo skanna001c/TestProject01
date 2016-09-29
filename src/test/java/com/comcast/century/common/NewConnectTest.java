@@ -19,7 +19,6 @@ import com.comcast.century.cm.pages.ContactTabPageCM;
 import com.comcast.century.cm.pages.CustomerTabPageCM;
 import com.comcast.century.cm.pages.FeatureTabPageCM;
 import com.comcast.century.cm.pages.OrderSummaryTabCMPage;
-import com.comcast.century.cm.pages.Page;
 import com.comcast.century.cm.pages.ProcessTabPageCM;
 import com.comcast.century.cm.pages.ServiceTabPageCM;
 import com.comcast.century.cso.pages.ADITaskPage;
@@ -71,6 +70,7 @@ import com.comcast.century.data.SupplementInfo;
 import com.comcast.utils.ComcastTest;
 import com.comcast.utils.DataDump;
 import com.comcast.utils.IDataDump;
+import com.comcast.utils.Page;
 import com.comcast.utils.PerfTransaction;
 
 import bsh.org.objectweb.asm.Label;
@@ -221,6 +221,18 @@ public class NewConnectTest extends ComcastTest {
 		startCSO();		
 	}
 	
+	@Test(priority = 5000)
+	@PerfTransaction(name = "SubmitOrder")
+	public void submitOrder_OnlyMRCNoNRC() throws InterruptedException {
+		if (getDataDump().getValue("submitOrder_status").equalsIgnoreCase("FAIL")) {
+			selectService();
+			configureService();
+			processService();
+		}
+		SRID = new OrderSummaryTabCMPage(frameworkContext).submitOrder_OnlyMRCNoNRC(orderSummaryInfo,accountInfo.eRate);
+		getDataDump().setValue("SRID_RT", SRID);
+		startCSO();		
+	}
 	
 	// Fiber site flow tasks
 	@Test(priority = 5500)
@@ -670,6 +682,7 @@ public class NewConnectTest extends ComcastTest {
     	}while(!status && retryCount <= 5);
 	}
 	
+
 	@Test(priority = 22100)
 	public void startCM() {
 		

@@ -34,8 +34,14 @@ public class Supplements extends BGPFlow {
 	@PerfTransaction(name = "SubmitOrderSupplements")
 	public void submitOrderSupplements() throws InterruptedException {
 		String SUP_SRID = null;
+		String EQUIPMENT_SUP_SRID = null;
 		SUP_SRID = new OrderSummaryTabCMPage(frameworkContext).submitOrder(orderSummaryInfo, accountInfo.eRate);
-		getDataDump().setValue("SUP_SRID_RT", SUP_SRID);
+		getDataDump().setValue("SUP_SRID_RT", SUP_SRID);		
+		EQUIPMENT_SUP_SRID = new OrderSummaryTabCMPage(frameworkContext).FectchEDIEquipmentSupSRID(orderSummaryInfo);
+		if(EQUIPMENT_SUP_SRID!=null)
+		{
+			getDataDump().setValue("EQUIPMENT_SUP_SRID", EQUIPMENT_SUP_SRID);
+		}
 		startCSO();
 
 	}

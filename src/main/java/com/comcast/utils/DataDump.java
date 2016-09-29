@@ -80,6 +80,7 @@ public class DataDump implements IDataDump {
 		}
 		
 		properties.store(new FileOutputStream(dumpLocation+"\\dump_"+ testName + ".properties"), "Dumping data to properties file");
+		
 	}
 	
 	/* (non-Javadoc)
@@ -96,7 +97,7 @@ public class DataDump implements IDataDump {
 		}
 		
 		for(String key: properties.stringPropertyNames()){
-			dumpTable.put(key, properties.get(key).toString());			
+			dumpTable.put(key, properties.get(key).toString().trim());			
 		}
 		//dumpMap = new HashMap<Object,Object>(properties);
 		return dumpTable;

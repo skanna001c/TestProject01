@@ -11,6 +11,7 @@ import com.comcast.century.data.CustomerInfo;
 import com.comcast.century.data.SupplementInfo;
 import com.comcast.reporting.Status;
 import com.comcast.utils.ComcastTest.FrameworkContext;
+import com.comcast.utils.Page;
 import com.comcast.utils.PerfTransaction;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;

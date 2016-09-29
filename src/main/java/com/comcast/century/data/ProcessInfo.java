@@ -12,10 +12,13 @@ public class ProcessInfo {
     public String ipAddressAllocation;
     public String evcAreaType;
     public String customerVLANInfo;
+    public String NonPayDisconnect;
 	  
 	
 
-	public ProcessInfo(String terms, String UNITransportType1,String UNITransportType2, String UNITransportType3, String surCILI,String basicCosBandwidth, String ipAddressAllocation,String evcAreaType, String customerVLANInfo  ) {
+	public ProcessInfo(String terms, String UNITransportType1,String UNITransportType2,
+			String UNITransportType3, String surCILI,String basicCosBandwidth, 
+			String ipAddressAllocation,String evcAreaType, String customerVLANInfo ,String NonPayDisconnect ) {
 		this.terms = terms;
 		this.UNITransportType1 = UNITransportType1;
 		this.UNITransportType2 = UNITransportType2;
@@ -25,6 +28,7 @@ public class ProcessInfo {
 		this.ipAddressAllocation = ipAddressAllocation;
 		this.evcAreaType = evcAreaType;
 		this.customerVLANInfo = customerVLANInfo;
+		this.NonPayDisconnect= NonPayDisconnect;
 	
 }
 	
@@ -37,6 +41,7 @@ public class ProcessInfo {
                 dataTable.getValue("basicCosBandwidth"),
                 dataTable.getValue("ipAddressAllocation"),
                 dataTable.getValue("evcAreaType"),
-                dataTable.getValue("customerVLANInfo"));
+                dataTable.getValue("customerVLANInfo"),
+                dataTable.getValue("NonPayDisconnect"));
       }
 }

@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import com.comcast.century.common.NewConnectTest;
 import com.comcast.century.data.AccountInfo;
 import com.comcast.reporting.Status;
+import com.comcast.utils.Page;
 import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
 import com.comcast.utils.ComcastTest.FrameworkContext;
@@ -23,7 +24,8 @@ public class AccountTabPageCM extends Page {
 	
 	
 
-	@FindBy(xpath = "//a[.='Account']") // @FindBy(xpath = "//a[.='Account']")
+	//@FindBy(xpath = "//a[.='Account']") // @FindBy(xpath = "//a[.='Account']")
+	@FindBy(linkText="Account")
 	private WebElement tabAccount;
 
 	@FindBy(xpath = "//*[@id='mainFrame' and contains(@src,'loadCustomerPanel.exc')]")
@@ -32,8 +34,6 @@ public class AccountTabPageCM extends Page {
 	@FindBy(xpath = "//*[@id='AccountFrame' and @src='account.exc']")
 	private WebElement frameAccount;
 
-	@FindBy(id = "ext-gen1158")
-	private WebElement ddArrwAccountType;
 
 	@FindBy(xpath = "//input[@id='cmb-comboAccountType-inputEl']")
 	private WebElement ddTextAccountType;
@@ -122,7 +122,8 @@ public class AccountTabPageCM extends Page {
 	@FindBy(id = "useCustomerAddress")
 	private WebElement useCustomerAddress;
 
-	@FindBy(xpath = "//*[@id='_eventId_checkAccAddAvailability']")
+	///@FindBy(xpath = "//*[@id='_eventId_checkAccAddAvailability']")
+	@FindBy(id = "_eventId_checkAccAddAvailability")
 	private WebElement ValidateBtn;
 
 	@FindBy(xpath = "//*[@id='_eventId_createAccount']")
@@ -140,7 +141,7 @@ public class AccountTabPageCM extends Page {
 
 	@Override
 	protected boolean isValidPage() {
-
+		
 		return false;
 	}
 
