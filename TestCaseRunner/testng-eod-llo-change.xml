@@ -6,7 +6,7 @@
 		<listener class-name="com.comcast.utils.CustomAnnotationListener"></listener>
 	</listeners>
 	
-	<!-- <test name="002-ME_EVPL-Add_UNI_with_TT_Coax">
+	<test name="002-ME_EVPL-Add_UNI_with_TT_Coax">
 		<classes>
 			<class name="com.comcast.century.eod.ME_EVPL_Add_UNI_with_TT_Coax">
 				<methods>
@@ -76,7 +76,7 @@
 				</methods>
 			</class>
 		</classes>
-	</test> -->
+	</test>
 	
 	<test name="002-EVPL-Remove_and_Add_UNI-Different_UNI_on_Same_site">
 		<classes>
@@ -126,9 +126,10 @@
 					<include name="startCM" />
 					<include name="searchSRID" />					
 					<include name="initiateSupplements" />
-					<!-- <include name="addUNIWithCoax" />
+					<include name="UpgradeUNIPortSpeed" />
+					<include name="UpgradeEVCBW" />					
 					<include name="submitOrderSupplements" />
-					<include name="Conduct_Site_Survey_Coax_Change" />
+					<!-- <include name="Conduct_Site_Survey_Coax_Change" />
 					<include name="Obtain_Site_Agreement_Coax_Change" />
 					<include name="Conduct_Coax_Survey_Change" />
 					<include name="Build_House_Account_Coax_Change" />

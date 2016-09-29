@@ -8,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-
 import com.comcast.century.data.SiteLevelTaskInfo;
 import com.comcast.utils.ComcastTest.FrameworkContext;
 import com.comcast.utils.Page;
@@ -59,6 +58,9 @@ public class ConductCoaxSurveyTaskPage extends Page {
 	@FindBy(xpath = "//input[@id='nodeNumber']")
 	private WebElement txtNodeNumber;
 	
+	@FindBy(xpath = ".//select[@id='siteType']")
+	private WebElement ddSiteType;	
+	
 	@FindBy(xpath = "//select[@id='serviceable']")
 	private WebElement ddServiceable;
 	
@@ -92,11 +94,13 @@ public class ConductCoaxSurveyTaskPage extends Page {
 				new Select(ddOSPPermitRequired).selectByVisibleText("Yes");
 				new Select(ddConstructionRequired).selectByVisibleText("Yes");
 				waitForElement(tabCoaxSurveyResults);
-				clickndRelease(tabCoaxSurveyResults);
-				/*waitForElement(txtTotalDistanceFt);
-				txtTotalDistanceFt.sendKeys(randomNumber(5)); */ // Commented by Kesavan as we can't enter any values in that field
+				clickndRelease(tabCoaxSurveyResults);				
 				txtNodeNumber.sendKeys(randomNumber(5));
 				new Select(ddServiceable).selectByVisibleText("Yes");
+				if(waitForElement(ddSiteType, 2))
+				{
+					new Select(ddSiteType).selectByVisibleText("Commercial Single Tenant");
+				}
 				this.ClickCompleteButton();
 				waitForElement(browser.findElement(By.xpath("//*[text()='Conduct Coax Survey' and contains(@onclick, 'COMPLETED')]")));
 			}
@@ -138,10 +142,8 @@ public class ConductCoaxSurveyTaskPage extends Page {
 		try{
 			if(waitForElement(btnComplete)){
 				iClick(btnComplete, null, "Complete ConductCoaxSurvey Task: Complete ConductCoaxSurvey Task page: CompleteButton");
-				//waitforPageLoadComplete();
 				waitForElement(btnYes);
 				btnYes.click();
-				//waitforPageLoadComplete();
 				waitForElement(btnYes);
 				btnYes.click();
 				waitforPageLoadComplete();
