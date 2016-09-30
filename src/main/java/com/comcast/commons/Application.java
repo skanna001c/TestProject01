@@ -6,17 +6,15 @@ import org.openqa.selenium.WebDriver;
 
 import com.comcast.century.cm.pages.HomePageCM;
 import com.comcast.century.cm.pages.LogInPage;
+import com.comcast.reporting.SeleniumReport;
 import com.comcast.reporting.Status;
-import com.comcast.utils.ComcastTest;
-import com.comcast.utils.Page;
-import com.comcast.utils.ComcastTest.FrameworkContext;
+import com.comcast.utils.ComcastTestMain.FrameworkContext;
 import com.comcast.utils.IDataDump;
 import com.comcast.utils.IUserDetails;
-import com.comcast.utils.SeleniumReport;
+import com.comcast.utils.Page;
 import com.comcast.utils.TestSettings;
-import com.comcast.utils.UserDetails;
 
-public class Application extends ComcastTest{
+public class Application {
 	private WebDriver browser;
 	private SeleniumReport report;
 	private String cm_url;

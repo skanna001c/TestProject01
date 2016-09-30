@@ -4,18 +4,8 @@ import java.awt.AWTException;
 
 import org.testng.annotations.Test;
 
-import com.comcast.century.cm.pages.CustomerTabPageCM;
-import com.comcast.century.cm.pages.FeatureTabPageCM;
-import com.comcast.century.cm.pages.OrderSummaryTabCMPage;
 import com.comcast.century.cm.pages.ProcessTabPageCM;
-import com.comcast.century.cm.pages.SupplementPageServiceTabCM;
-import com.comcast.century.common.NewConnectTest;
 import com.comcast.century.common.Supplements;
-import com.comcast.century.cso.pages.ContactCustomerTaskPage;
-import com.comcast.century.cso.pages.ServiceLevelTasks;
-import com.comcast.century.cso.pages.UpdateDesignTaskPage;
-import com.comcast.century.data.SupplementInfo;
-import com.comcast.utils.PerfTransaction;
 
 public class Disconnect extends Supplements {
  

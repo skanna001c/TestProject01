@@ -7,7 +7,7 @@
 
 	<test name="MRC NRC_Disconnect_on Only MRC and no NRC order">
 		<classes>
-			<class name="com.comcast.century.disconnect.Disconnect">
+			<class name="com.comcast.century.disconnect.Disconnect_ServiceLevelTaskFlow">
 				<methods>
 					<include name="createCustomer" />
 					<include name="createServiceAccount" />
@@ -46,7 +46,17 @@
 					<include name="searchSRID" />
 					<include name="initiateSupplements" />
 					<include name="DisconnectEDI" />
-					<include name="submitOrderSupplements" />
+					<include name="submitOrderSupplements" />					
+					<include name="Stop_Billing" />
+					<include name="Issue_Soft_Disconnect" />
+					<include name="Notify_Customer_of_Service_Disconnection" />
+					<include name="Generate_CPE_Config_SUP" />
+					<include name="Load_CPE_Configs" />
+					<include name="Generate_Core_Configs_SUP" />
+					<include name="Remove_Core_Configs" />
+					<include name="Un_Assign_Design_Information" />
+					<include name="Confirm_Order_Complete" />
+					<include name="CompleteTaskFlow" />
 				</methods>
 			</class>
 		</classes>

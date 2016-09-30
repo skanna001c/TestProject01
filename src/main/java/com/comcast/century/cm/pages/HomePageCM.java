@@ -1,49 +1,12 @@
 package com.comcast.century.cm.pages;
 
-import java.awt.AWTException;
-import java.awt.Color;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-import java.util.StringTokenizer;
-import java.util.concurrent.TimeUnit;
-
-import javax.xml.xpath.XPath;
-
-import org.jboss.netty.handler.codec.http.HttpHeaders.Values;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.ElementNotVisibleException;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.UnhandledAlertException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.comcast.reporting.*;
-import com.comcast.utils.ComcastTest;
+import com.comcast.reporting.Status;
+import com.comcast.utils.ComcastTestMain.FrameworkContext;
 import com.comcast.utils.Page;
-import com.comcast.utils.SeleniumReport;
-import com.comcast.utils.TestSettings;
-import com.comcast.utils.TestUtils;
-import com.comcast.utils.ComcastTest.FrameworkContext;
-import com.thoughtworks.selenium.webdriven.commands.WaitForPageToLoad;
-
-import net.sourceforge.htmlunit.corejs.javascript.ast.SwitchCase;
 
 
 public class HomePageCM extends Page {

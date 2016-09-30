@@ -2,18 +2,15 @@ package com.comcast.century.cm.pages;
 
 import java.util.List;
 
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 
-import com.comcast.utils.Page;
-import com.comcast.utils.SeleniumReport;
 import com.comcast.century.data.SupplementInfo;
 import com.comcast.reporting.Status;
-import com.comcast.utils.ComcastTest.FrameworkContext;
+import com.comcast.utils.ComcastTestMain.FrameworkContext;
+import com.comcast.utils.Page;
+
 
 public class SupplementPageServiceTabCM extends Page {
 

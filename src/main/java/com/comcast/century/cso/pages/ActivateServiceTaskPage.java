@@ -3,18 +3,14 @@ package com.comcast.century.cso.pages;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 import com.comcast.century.data.ServiceInfo;
 import com.comcast.century.data.ServiceLevelTaskInfo;
-import com.comcast.reporting.Status;
-import com.comcast.utils.ComcastTest.FrameworkContext;
+import com.comcast.utils.ComcastTestMain.FrameworkContext;
 import com.comcast.utils.Page;
-import com.comcast.utils.SeleniumReport;
 
 public class ActivateServiceTaskPage extends Page {
 
@@ -31,46 +27,44 @@ public class ActivateServiceTaskPage extends Page {
 	@Override
 	protected void waitForPageLoad() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	@FindBy(xpath = "//img[@title='Back']")
 	private WebElement btnBack;
-	
+
 	@FindBy(xpath = "//input[@value='Complete']")
 	private WebElement btnComplete;
-	
+
 	@FindBy(xpath = "//input[@value='Save']")
 	private WebElement btnSave;
-	
+
 	@FindBy(xpath = "//input[@value='Reset']")
 	private WebElement btnReset;
-	
+
 	@FindBy(xpath = "//div[text()='loading...']")
-	private WebElement elementLoading ;
-	
+	private WebElement elementLoading;
+
 	@FindBy(xpath = "//input[@id='edpCompletionString']")
-	private WebElement edpCompletionDate ;
-	
+	private WebElement edpCompletionDate;
+
 	@FindBy(xpath = "//input[@id='internalTestingCompleteString']")
-	private WebElement internalTestingCompletionDate ;
-	
+	private WebElement internalTestingCompletionDate;
+
 	@FindBy(xpath = "//span[text()='Circuit Testing Details']")
-	private WebElement tabCircuitTestingDetails ;
+	private WebElement tabCircuitTestingDetails;
 
 	@FindBy(xpath = "//select[@id='statusAct']")
-	private WebElement ddStatus ;
-	
+	private WebElement ddStatus;
+
 	@FindBy(xpath = "//div[text()='EPL' or text()='EVPL']")
-	private List<WebElement> elementEPLorEVPL ;
-	
-	
+	private List<WebElement> elementEPLorEVPL;
+
 	private boolean mstatus;
-	
-	
-	public boolean activateService(ServiceInfo serviceInfo,ServiceLevelTaskInfo serviceLevelTaskInfo){
-		mstatus=true;
-		try{
+
+	public boolean activateService(ServiceInfo serviceInfo, ServiceLevelTaskInfo serviceLevelTaskInfo) {
+		mstatus = true;
+		try {
 			scrollDown();
 			waitForElement(edpCompletionDate);
 			edpCompletionDate.click();
@@ -85,8 +79,7 @@ public class ActivateServiceTaskPage extends Page {
 			waitForElementDisappear(elementLoading);
 			waitForElement(ddStatus);
 			new Select(ddStatus).selectByValue(serviceLevelTaskInfo.status);
-			if(serviceInfo.serviceName.matches("EPL|EVPL") && elementEPLorEVPL.size() > 1)
-			{
+			if (serviceInfo.serviceName.matches("EPL|EVPL") && elementEPLorEVPL.size() > 1) {
 				btnSave.click();
 				waitforPageLoadComplete();
 				sleep(2000);
@@ -97,55 +90,52 @@ public class ActivateServiceTaskPage extends Page {
 				elementEPLorEVPL.get(1).click();
 				waitForElement(ddStatus);
 				new Select(ddStatus).selectByValue(serviceLevelTaskInfo.status);
-			} 
-			  this.ClickCompleteButton();
-			  waitForElement(browser.findElement(By.xpath("//*[text()='Activate Service' and contains(@onclick, 'COMPLETED')]")));
-		}catch(Exception e){
+			}
+			this.ClickCompleteButton();
+			waitUntilElementPresent(By.xpath("//*[text()='Activate Service' and contains(@onclick, 'COMPLETED')]"), 60);
+		} catch (Exception e) {
 			e.printStackTrace();
 			mstatus = false;
 		}
 		return mstatus;
 	}
-	
-	public boolean ClickBackButton(){
+
+	public boolean ClickBackButton() {
 		mstatus = true;
-		try{
-		if(waitForElement(btnBack)){
-			btnBack.click();
-		}
-		}
-		catch(Exception e){
+		try {
+			if (waitForElement(btnBack)) {
+				btnBack.click();
+			}
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
 	}
-	
-	public boolean ClickSaveButton(){
+
+	public boolean ClickSaveButton() {
 		mstatus = true;
-		try{
-			if(waitForElement(btnSave)){
+		try {
+			if (waitForElement(btnSave)) {
 				btnSave.click();
 			}
-		}
-		catch(Exception e){
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
 	}
-	
-	public boolean ClickCompleteButton(){
+
+	public boolean ClickCompleteButton() {
 		mstatus = true;
-		try{
-			if(waitForElement(btnComplete)){
+		try {
+			if (waitForElement(btnComplete)) {
 				iClick(btnComplete, btnBack, "Complete Activate Service: Activate service task page: CompleteButton");
 				btnComplete.click();
 				waitforPageLoadComplete();
 				report.reportDoneEvent("Complete ActivateService Task", " ActivateService Task Completed");
 			}
-		}
-		catch(Exception e){
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			mstatus = false;
 		}

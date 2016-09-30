@@ -3,16 +3,12 @@ package com.comcast.century.cso.pages;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.data.ServiceInfo;
-import com.comcast.century.data.ServiceLevelTaskInfo;
-import com.comcast.utils.ComcastTest.FrameworkContext;
-import com.comcast.utils.DataDump;
+import com.comcast.utils.ComcastTestMain.FrameworkContext;
 import com.comcast.utils.Page;
-import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.SoapTest;
 
 public class ADITaskPage extends Page {
@@ -126,8 +122,9 @@ public boolean ADITask(ServiceInfo serviceInfo){
 						+ "</soapenv:Body>"
 						+ "</soapenv:Envelope>";			
 			(new SoapTest()).webServicesTask(request, "ADI",testSettings);
-		iClick(btnBack,null, "ADI task complete:ADI task complete page: BackButton ");
-		waitForElement(browser.findElement(By.xpath("//*[text()='Assign Design Information' and contains(@onclick, 'COMPLETED')]")));
+		iClick(btnBack,null, "ADI task complete:ADI task complete page: BackButton ");		
+		waitUntilElementPresent(By.xpath("//*[text()='Assign Design Information' and contains(@onclick, 'COMPLETED')]")
+				, 60);
 
 		
 	}catch(Exception e){

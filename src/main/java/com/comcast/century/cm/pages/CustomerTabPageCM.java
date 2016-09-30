@@ -4,19 +4,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.ClickAndHoldAction;
 import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.data.CustomerInfo;
 import com.comcast.century.data.SupplementInfo;
+import com.comcast.reporting.SeleniumReport;
 import com.comcast.reporting.Status;
-import com.comcast.utils.ComcastTest.FrameworkContext;
+import com.comcast.utils.ComcastTestMain.FrameworkContext;
 import com.comcast.utils.Page;
 import com.comcast.utils.PerfTransaction;
-import com.comcast.utils.SeleniumReport;
 import com.comcast.utils.TestSettings;
-
-import junit.framework.Assert;
 
 public class CustomerTabPageCM extends Page {
 

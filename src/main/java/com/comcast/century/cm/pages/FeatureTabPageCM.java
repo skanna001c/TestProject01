@@ -3,20 +3,17 @@ package com.comcast.century.cm.pages;
 
 
 import java.awt.AWTException;
-import java.awt.event.KeyEvent;
 import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.ClickAndHoldAction;
 import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.data.ServiceInfo;
+import com.comcast.utils.ComcastTestMain.FrameworkContext;
 import com.comcast.utils.Page;
-import com.comcast.utils.SeleniumReport;
-import com.comcast.utils.ComcastTest.FrameworkContext;
+
+
+
 
 public class FeatureTabPageCM extends Page {
 

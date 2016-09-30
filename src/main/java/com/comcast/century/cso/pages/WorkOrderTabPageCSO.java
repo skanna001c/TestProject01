@@ -4,15 +4,15 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import com.comcast.utils.DataTable;
-import com.comcast.utils.Page;
+
 import com.comcast.century.data.ServiceInfo;
 import com.comcast.reporting.Status;
-import com.comcast.utils.SeleniumReport;
-import com.comcast.utils.ComcastTest.FrameworkContext;
+import com.comcast.utils.ComcastTestMain.FrameworkContext;
+import com.comcast.utils.Page;
+
+
 
 public class WorkOrderTabPageCSO extends Page {
 
@@ -221,6 +221,8 @@ public class WorkOrderTabPageCSO extends Page {
 					iSendKeys(txtSrId, SRID);
 					iClick(btnSearch, null, "Search SRID:Service Order Page:Search button");
 					waitForElementDisappear(elementLoading);
+					waitforPageLoadComplete();
+					
 				}
 
 				browser.switchTo().defaultContent();

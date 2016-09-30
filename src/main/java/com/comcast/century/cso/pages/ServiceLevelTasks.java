@@ -2,15 +2,15 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.comcast.reporting.Status;
-import com.comcast.utils.ComcastTest.FrameworkContext;
+import com.comcast.utils.ComcastTestMain.FrameworkContext;
 import com.comcast.utils.Page;
-import com.comcast.utils.SeleniumReport;
+
+
+
 
 public class ServiceLevelTasks extends Page {
 
@@ -107,9 +107,12 @@ public class ServiceLevelTasks extends Page {
 	
 	@FindBy(xpath = "//a[text()='Remove Core Configs']")
 	private WebElement taskRemoveCoreConfigs;
-	
+
 	@FindBy(xpath = "//a[text()='Schedule CPE Pickup']")
 	private WebElement taskScheduleCPEPickup;
+	
+	@FindBy(xpath = "//a[text()='Schedule CPE Pickup' and contains(@onclick, 'PROGRESS')]")
+	private List<WebElement> tasksScheduleCPEPickup;
 	
 	@FindBy(xpath = "//a[text()='Pick up CPE']")
 	private WebElement taskPickupCPE;
@@ -127,6 +130,13 @@ public class ServiceLevelTasks extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
+	
+	@FindBy(xpath = "//input[@value='Complete']")
+	private WebElement btnComplete;
+	
+	
+	
+	
 	//##########Disconnect#########################
 	@FindBy(xpath = "//*[text()='Stop Billing']")
 	private WebElement taskStopBilling;
@@ -140,8 +150,17 @@ public class ServiceLevelTasks extends Page {
 	@FindBy(xpath = "//*[text()='Load CPE Configs']")
 	private WebElement taskLoadCPEConfigs;
 	
+	@FindBy(xpath = "//*[text()='Un-Assign Design Information']")
+	private WebElement taskUnAssignDesignInformation;
+	
+	
+	@FindBy(xpath = "//*[text()='Confirm Order Complete']")
+	private WebElement taskConfirmOrderComplete;
+	
 	//##########################
 		
+	
+	
 	/*@FindBy(xpath = "//*[text()='Start Billing']")
 	private WebElement taskEqFeeStartBilling;*/
 	
@@ -221,7 +240,8 @@ public class ServiceLevelTasks extends Page {
 	}
 	
 	public boolean CAE() throws InterruptedException{
-		try{
+		return clicktask(taskCAE, "Create Equipment Fee");
+		/*try{
 			if(waitForElement(taskCAE)){
 				if(checkifStatusChanged(taskCAE,btnRefresh,"INPROGRESS")){
 					waitForElement(taskCAE);
@@ -236,45 +256,16 @@ public class ServiceLevelTasks extends Page {
 		{
 			mstatus = false;
 		}
-		return mstatus;
+		return mstatus;*/
 	}
 	
 	public boolean ADI() throws InterruptedException{
-		try{
-			if(waitForElement(taskADI)){
-				if(checkifStatusChanged(taskADI,btnRefresh,"INPROGRESS")){
-					waitForElement(taskADI);
-					jsClick(taskADI);
-					report.reportDoneEvent("Click ADI Task", " ADI Task Clicked");
-				//taskADI.click();
-				}
-				waitforPageLoadComplete();
-			}
-		}
-		catch(Exception ex)
-		{
-			mstatus = false;
-		}
-		return mstatus;
+		return clicktask(taskADI,"Assign Assign Design Information");
+		
 	}
 	
 	public boolean GenerateCoreConfigs() throws InterruptedException{
-		try{
-			if(waitForElement(taskGenerateCoreConfigs)){
-				if(checkifStatusChanged(taskGenerateCoreConfigs,btnRefresh,"INPROGRESS")){
-					waitForElement(taskGenerateCoreConfigs);
-					jsClick(taskGenerateCoreConfigs);
-					report.reportDoneEvent("Click GenerateCoreConfigs Task", " GenerateCoreConfigs Task Clicked");
-				//taskGenerateCoreConfigs.click();
-				}
-				waitforPageLoadComplete();
-			}
-		}
-		catch(Exception ex)
-		{
-			mstatus = false;
-		}
-		return mstatus;
+		return clicktask(taskGenerateCoreConfigs, "GenerateCoreConfigs");
 	}
 	
 	public boolean GenerateCPEConfigs() throws InterruptedException{
@@ -591,7 +582,7 @@ public class ServiceLevelTasks extends Page {
 					taskUpdateLocalBiller.click();
 					report.reportDoneEvent("Click UpdateLocalBiller Task", "UpdateLocalBiller Task Clicked");
 				}
-				else mstatus=false;
+				else {mstatus=false;}
 				waitforPageLoadComplete();
 			}
 			else mstatus=false;
@@ -604,26 +595,14 @@ public class ServiceLevelTasks extends Page {
 	}
 	
 	public boolean removeCoreConfigs() throws InterruptedException{
-		try{
-			if(waitForElement(taskRemoveCoreConfigs)){
-				if(checkifStatusChanged(taskRemoveCoreConfigs,btnRefresh,"INPROGRESS")){
-					taskRemoveCoreConfigs.click();
-				report.reportDoneEvent("Click RemoveCoreConfigs Task", "RemoveCoreConfigs Task Clicked");
-				}
-				else mstatus=false;
-				waitforPageLoadComplete();
-			}
-			else mstatus=false;
-		}
-		catch(Exception ex)
-		{
-			mstatus = false;
-		}
-		return mstatus;
+		return clicktask(taskRemoveCoreConfigs, "Remove Core Configs");
+			
 	}
 	
 	public boolean scheduleCPEPickup() throws InterruptedException{
-		try{
+		
+		return clicktask(tasksScheduleCPEPickup.get(0), "Schedule CPE Pickup");
+		/*try{
 			if(waitForElement(taskScheduleCPEPickup)){
 				if(checkifStatusChanged(taskScheduleCPEPickup,btnRefresh,"INPROGRESS")){
 					taskScheduleCPEPickup.click();
@@ -638,7 +617,7 @@ public class ServiceLevelTasks extends Page {
 		{
 			mstatus = false;
 		}
-		return mstatus;
+		return mstatus;*/
 	}
 	
 	public boolean pickupCPE() throws InterruptedException{
@@ -683,9 +662,10 @@ public class ServiceLevelTasks extends Page {
 				if(checkifStatusChanged(taskAssignDesignBGP,btnRefresh,"INPROGRESS")){
 					waitForElement(taskAssignDesignBGP);
 					jsClick(taskAssignDesignBGP);
-				report.reportDoneEvent("Click AssignDesignBGP Task", "AssignDesignBGP Task Clicked");
+					report.reportDoneEvent("Click AssignDesignBGP Task", "AssignDesignBGP Task Clicked");
+					waitforPageLoadComplete();
 				}
-				waitforPageLoadComplete();
+				
 			}
 		}
 		catch(Exception ex)
@@ -714,25 +694,27 @@ public class ServiceLevelTasks extends Page {
 		return mstatus;
 	}
 	
-//###################################################################################
+//##################################Disconnect#################################################
 	public boolean StopBilling() throws InterruptedException{
-		mstatus=true;
+		return clicktask(taskStopBilling, "Stop Billing");
+		/*mstatus=true;
 		try{
 			if(waitForElement(taskStopBilling)){
 				//if(checkifStatusChanged(taskStartBilling,btnRefresh,"INPROGRESS") || checkifStatusChanged(taskStartBilling,btnRefresh,"COMPLETED")){
 				if(checkifStatusChanged(taskStopBilling,btnRefresh,"INPROGRESS")){
 					jsClick(taskStopBilling);
 					report.reportDoneEvent("Inside Stop Billing Task", "");
+					waitforPageLoadComplete();
 				}
 				else mstatus=false;
-				waitforPageLoadComplete();
+				
 			}else  mstatus=false;
 		}
 		catch(Exception ex)
 		{
 			mstatus = false;
 		}
-		return mstatus;
+		return mstatus;*/
 	}
 	
 	
@@ -792,9 +774,10 @@ public class ServiceLevelTasks extends Page {
 				if(checkifStatusChanged(task,btnRefresh,"INPROGRESS")){
 					jsClick(task);
 					report.reportDoneEvent("Inside "+taskName, "");
+					waitforPageLoadComplete();
 				}
-				else mstatus=false;
-				waitforPageLoadComplete();
+				else{ mstatus=false;}
+				
 			}else  mstatus=false;
 		}
 		catch(Exception ex)
@@ -803,6 +786,43 @@ public class ServiceLevelTasks extends Page {
 		}
 		return mstatus;
 	}
+
+	public boolean Update_Local_Biller() {
+		// TODO Auto-generated method stub
+		return clicktask(taskUpdateLocalBiller,"Update Local Biller");
+	}
+
+
+	public boolean Un_Assign_Design_Information() {
+		// TODO Auto-generated method stub
+		return clicktask(taskUnAssignDesignInformation,"Un-Assign Design Information");
+	}
+
+	public boolean Confirm_Order_Complete() {
+		// TODO Auto-generated method stub
+		return clicktask(taskConfirmOrderComplete,"Confirm Order Complete");
+	}
+	
+	public boolean ClickCompleteButton(String taskName){
+		try{
+			if(waitForElement(btnComplete)){
+				iClick(btnComplete, btnBack, "Complete "+taskName+" Task: Complete "+taskName+" Task Page: CompleteButton");
+				waitforPageLoadComplete();
+				waitForElementDisappear(elementLoading);
+				report.reportDoneEvent("Complete "+taskName+" Task", taskName+" Task Completed");
+			}
+		}
+		catch(Exception ex)
+		{
+			mstatus = false;
+		}
+		return mstatus;
+		
+	}
+
+	
+	
+
 	
 	
 
