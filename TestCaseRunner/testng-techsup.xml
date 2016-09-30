@@ -6,7 +6,7 @@
 
 	</listeners>
 
-	<test name="Tech_Sup_ME-EDI-Tech_Sup-Add_BGP">
+	<!-- <test name="Tech_Sup_ME-EDI-Tech_Sup-Add_BGP">
 	<classes>
 		<class name="com.comcast.century.techsup.Tech_Sup_ME_EDI_Tech_Sup_Add_BGP">
 			<methods>
@@ -120,9 +120,9 @@
 				</methods>
 			</class>
 		</classes>
-	</test>
+	</test> -->
 
-	<test name="Tech_Supp_Upgrade_EVC_for_EDI_Erate_Service">
+	<!-- <test name="Tech_Supp_Upgrade_EVC_for_EDI_Erate_Service">
 		<classes>
 			<class name="com.comcast.century.techsup.Tech_Supp_Upgrade_EVC_for_EDI_Erate_Service">
 				<methods>
@@ -167,7 +167,7 @@
 				</methods>
 			</class>
 		</classes>
-	</test>
+	</test>-->
 
 	<test name="Tech_Sup_Add_Trunk-PRI_to_In-Flight_Metro-E_order">
 		<classes>
@@ -197,9 +197,35 @@
 					<include name="startCM"/>
 					<include name="searchSRID" />
 					<include name="initiateSupplements" />
+					<include name="addTrunkPRIToEDI" />
+					<include name="submitOrderSupplements"/>
+					<include name="Generate_Core_Config_Supp"/>
+					<include name="Generate_CPE_Config_Supp"/>
+					<include name="Load_Core_Config_Supp"/>
+					<include name="Install_CPE_Supp"/>
+					<include name="Set_Critical_Dates_Supp"/>
+					<include name="Day_of_Configs_Supp"/>
+					<include name="Activate_Service_Supp"/>
+					<include name="Notify_Customer_of_Service_Installation_Supp"/>
+					<include name="Complete_Customer_Acceptance_Testing_Supp"/>
+					<include name="Create_Order_Billing_Package_Supp"/>
+					<include name="Start_Billing_Supp"/>
+					<include name="EqFeeStartBilling_Supp"/>
+					<include name="Build_Update_Local_Biller_Account_PRISupp" />
+					<include name="Update_Design_PRISupp" />
+					<include name="Create_Account_and_Equipment_PRISupp" />
+					<include name="Ship_CPE_PRISupp" />
+					<include name="Assign_Design_Info_PRISupp" />
+					<include name="Generate_CPE_Config_PRISupp" />
+					<include name="Generate_Core_Config_PRISupp" />
+					<include name="Load_Core_Config_PRISupp" />
+					<include name="Install_CPE_PRISupp" />
+					<include name="Set_Critical_Dates_PRISupp" />
+					<include name="Day_of_Configs_PRISupp" />
+					<include name="Activate_Service_PRISupp" />
 				</methods>
 			</class>
 		</classes>
-	</test>
+	</test> 
 
 </suite> 

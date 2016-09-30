@@ -73,13 +73,13 @@ public class FeatureTabPageCM extends Page {
 	
 	public boolean clickOnFeatureTab(){
 		try{
-			browser.switchTo().defaultContent();
-			WaitandSwitchToFrame(frameMain);
+			/*browser.switchTo().defaultContent();
+			WaitandSwitchToFrame(frameMain);*/
 			waitForElementDisappear(elementLoading);
 			waitForElement(tabFeature);
 			clickndRelease(tabFeature);
 			waitforPageLoadComplete();
-			browser.switchTo().defaultContent();
+			//browser.switchTo().defaultContent();
 		}catch (Exception e) {
 			mstatus = false;
 		}
@@ -88,7 +88,7 @@ public class FeatureTabPageCM extends Page {
 	
 	public boolean selectBGP(){
 		try{
-			WaitandSwitchToFrame(frameMain);
+			//WaitandSwitchToFrame(frameMain);
 			this.BGP();
 			this.ClickOnContinueButton();
 		}catch (Exception e) {

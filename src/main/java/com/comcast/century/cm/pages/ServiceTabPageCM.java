@@ -80,6 +80,10 @@ public class ServiceTabPageCM extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
+	@FindBy(xpath = "//span[.='Plan Search']")
+	private WebElement tabPlanSearch ;
+	
+	
 	public boolean mstatus;
 	
 	public boolean ClickOnServiceTab(){
@@ -97,6 +101,33 @@ public class ServiceTabPageCM extends Page {
 		return mstatus;
 	}
 	
+	
+	public boolean clickOnPlanSearchTab(){
+		try{
+			waitForElementDisappear(elementLoading);
+			waitForElement(tabPlanSearch);
+			clickndRelease(tabPlanSearch);
+			waitforPageLoadComplete();
+			waitForElementDisappear(elementLoading);
+		}catch (Exception e) {
+			mstatus = false;
+		}
+		return mstatus;
+	}
+	
+	public boolean selectTrunkPRI(){
+		try{
+			if(waitForElement(txtAuxService)){
+				txtAuxService.click();
+				keyPress(KeyEvent.VK_TAB,20);
+			}
+			this.TrunkPRI();
+			this.ClickOnContinueButton();
+		}catch (Exception e) {
+			mstatus = false;
+		}
+		return mstatus;
+	}
 	
 	public boolean SelectPricePlan() throws InterruptedException{
 		mstatus = true;

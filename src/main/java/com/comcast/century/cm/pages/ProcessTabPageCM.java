@@ -693,7 +693,7 @@ public class ProcessTabPageCM extends Page {
 					WaitandSwitchToFrame(frameCondition.get(1));
 				} else if(serviceInfo.serviceName.equalsIgnoreCase("ENS-PRI")){
 					WaitandSwitchToFrame(frameCondition.get(2));
-				}
+				}  else WaitandSwitchToFrame(frameCondition.get(0));
 					 waitForElement(txtSiteName);
 					 txtSiteName.sendKeys(Site);
 					 waitForElement(btnSearch);
