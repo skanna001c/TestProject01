@@ -232,6 +232,7 @@ public class AddressTabPageCM extends Page {
 	}*/
 	
 	public String EnterSiteDetailsValid(SiteInfo siteInfo) throws InterruptedException{
+		
 		waitForElement(txtSiteName);
 		String siteName = siteInfo.siteName + getTimestamp();
 		iSendKeys(txtSiteName,siteName);
