@@ -8,7 +8,8 @@ import com.comcast.reporting.Status;
 import com.comcast.utils.ComcastTestMain.FrameworkContext;
 import com.comcast.utils.Page;
 
-public class AccountTabPageCM extends Page {
+
+public class AccountTabPageCM extends Page  {
 	
 	
 	public AccountTabPageCM(FrameworkContext context){
