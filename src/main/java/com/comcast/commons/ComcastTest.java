@@ -61,8 +61,8 @@ public class ComcastTest extends ComcastTestMain  {
 		
 		dataDump.setValue(result.getMethod().getMethodName() + "_status", methodStatus);
 		if(methodStatus.equalsIgnoreCase("fail")){
-/*			dataDump.deleteValue("CSOLoggedIN");
-			dataDump.deleteValue("CMLoggedIN");	*/	
+			dataDump.deleteValue("CSOLoggedIN");
+			dataDump.deleteValue("CMLoggedIN");	
 			application.cleanDump(dataDump); // added by harsh to move century logic out of here -9/28
 			//dataDump.
 			
@@ -75,7 +75,8 @@ public class ComcastTest extends ComcastTestMain  {
 	public synchronized void afterTestMainApplication(){
 		if(settings.getUpdateALM().equalsIgnoreCase("true"))
 			almRestUpdateStatus(); // added by harsh on 8/30/2016
-		
+			dataDump.deleteValue("CSOLoggedIN");
+			dataDump.deleteValue("CMLoggedIN");	
 			application.cleanDump(dataDump); // added by harsh to move century logic out of here -9/28
 		//	dataDump.dumpData();
 			/*browser.close();

@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -138,23 +139,23 @@ public class ServiceLevelTasks extends Page {
 	
 	
 	//##########Disconnect#########################
-	@FindBy(xpath = "//*[text()='Stop Billing']")
+	@FindBy(xpath = "//a[text()='Stop Billing']")
 	private WebElement taskStopBilling;
 	
-	@FindBy(xpath = "//*[text()='Issue Soft Disconnect']")
+	@FindBy(xpath = "//a[text()='Issue Soft Disconnect']")
 	private WebElement taskIssue_Soft_Disconnect;
 	
-	@FindBy(xpath = "//*[text()='Notify Customer of Service Disconnection']")
+	@FindBy(xpath = "//a[text()='Notify Customer of Service Disconnection']")
 	private WebElement taskNotify_Customer_of_Service_Disconnection;
 	
-	@FindBy(xpath = "//*[text()='Load CPE Configs']")
+	@FindBy(xpath = "//a[text()='Load CPE Configs']")
 	private WebElement taskLoadCPEConfigs;
 	
-	@FindBy(xpath = "//*[text()='Un-Assign Design Information']")
+	@FindBy(xpath = "//a[text()='Un-Assign Design Information']")
 	private WebElement taskUnAssignDesignInformation;
 	
 	
-	@FindBy(xpath = "//*[text()='Confirm Order Complete']")
+	@FindBy(xpath = "//a[text()='Confirm Order Complete']")
 	private WebElement taskConfirmOrderComplete;
 	
 	//##########################
@@ -538,7 +539,8 @@ public class ServiceLevelTasks extends Page {
 	}*/
 	
 	public boolean UpdateDesign() throws InterruptedException{
-		try{
+		return clicktask(taskUpdateDesign, "Update Design");
+		/*try{
 			if(waitForElement(taskUpdateDesign)){
 				if(checkifStatusChanged(taskUpdateDesign,btnRefresh,"INPROGRESS")){
 				taskUpdateDesign.click();
@@ -551,7 +553,7 @@ public class ServiceLevelTasks extends Page {
 		{
 			mstatus = false;
 		}
-		return mstatus;
+		return mstatus;*/
 	}
 	
 	public boolean ContactCustomer() throws InterruptedException{
@@ -599,25 +601,20 @@ public class ServiceLevelTasks extends Page {
 			
 	}
 	
-	public boolean scheduleCPEPickup() throws InterruptedException{
+	public boolean scheduleCPEPickup(By by) throws InterruptedException{
+		return clicktask(browser.findElements(by).get(0), "Schedule CPE Pickup");
 		
-		return clicktask(tasksScheduleCPEPickup.get(0), "Schedule CPE Pickup");
-		/*try{
-			if(waitForElement(taskScheduleCPEPickup)){
-				if(checkifStatusChanged(taskScheduleCPEPickup,btnRefresh,"INPROGRESS")){
-					taskScheduleCPEPickup.click();
-				report.reportDoneEvent("Click ScheduleCPEPickup Task", "ScheduleCPEPickup Task Clicked");
-				}
-				else mstatus=false;
-				waitforPageLoadComplete();
-			}
-			else mstatus=false;
-		}
-		catch(Exception ex)
-		{
-			mstatus = false;
-		}
-		return mstatus;*/
+	}
+	
+	public boolean pickupCPE(By by) throws InterruptedException{
+		return clicktask(browser.findElements(by).get(0), "Pick up CPE");
+		
+	}
+	
+	
+	public boolean Reclamation_of_Physical_Equipment(By by) throws InterruptedException{
+		return clicktask(browser.findElements(by).get(0), "Pick up CPE");
+		
 	}
 	
 	public boolean pickupCPE() throws InterruptedException{
@@ -768,10 +765,11 @@ public class ServiceLevelTasks extends Page {
 	
 	public boolean clicktask(WebElement task,String taskName) {
 		mstatus=true;
+		
 		try{
 			if(waitForElement(task)){
 				//if(checkifStatusChanged(taskStartBilling,btnRefresh,"INPROGRESS") || checkifStatusChanged(taskStartBilling,btnRefresh,"COMPLETED")){
-				if(checkifStatusChanged(task,btnRefresh,"INPROGRESS")){
+				if(this.checkifStatusChanged(task,btnRefresh,"INPROGRESS")){
 					jsClick(task);
 					report.reportDoneEvent("Inside "+taskName, "");
 					waitforPageLoadComplete();
@@ -781,8 +779,9 @@ public class ServiceLevelTasks extends Page {
 			}else  mstatus=false;
 		}
 		catch(Exception ex)
-		{
+		{  
 			mstatus = false;
+			ex.printStackTrace();
 		}
 		return mstatus;
 	}
@@ -822,7 +821,44 @@ public class ServiceLevelTasks extends Page {
 
 	
 	
+	protected boolean checkifStatusChanged(WebElement we1, WebElement we2, String status) throws InterruptedException {
+		boolean fn_status = false;
+		System.out.println("Task ::" + we1.getText());
+		int counter = 0;
+		int reqminutes = 7;
 
+		if ((!(we1.getAttribute("onclick").contains("COMPLETED")))
+				&& (!(we1.getAttribute("onclick").contains("DEFERRED")))
+				&& (!(we1.getAttribute("onclick").contains("CANCELLED")))) {
+			//By by= By.xpath("//a[text()='Schedule CPE Pickup' and contains(@onclick, 'PROGRESS')]");
+			String xpath="//*[text()='" + we1.getText() +"' and contains(@onclick, '"+status+ "')]";
+			By by=By.xpath(xpath);
+			String onclick;
+			onclick=this.browser.findElement(by).getAttribute("onclick"); //checking for exception
+			if(onclick==null)
+			{	xpath="//"+we1.getTagName()+"[text()='" + we1.getText() +"' and contains(@onclick, '"+status+ "')]";
+				//"+we1.getTagName()+"[text()='" + we1.getText() + "']"
+				by=By.xpath(xpath);		
+			}
+			
+			while ((!(browser.findElement(by).getAttribute("onclick").contains(status))) && (counter < reqminutes * 6)) {
+				Thread.sleep(10000L);
+				we2.click();
+				System.out.println("inside counter " + counter);
+				++counter;
+			}
+
+			if (we1.getAttribute("onclick").contains(status)) {
+				fn_status = true;
+			} else {
+				this.report.reportFailEvent(we1.getText() + " clicked failed",
+						we1.getText() + "task not coming to in progress after 7 mins");
+			}
+
+		}
+
+		return fn_status;
+	}
 	
 	
 

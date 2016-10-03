@@ -51,13 +51,23 @@
 					
 					<include name="Obtain_Site_Agreement_CancelSup" />
 					<include name="Obtain_Site_Agreement_Coax_CancelSup" />
-					<include name="Obtain_Coax_Permit_CancelSup" />					
-					<include name="Contact_Customer_CancelSup" />															
+					<include name="Obtain_Coax_Permit_CancelSup" />			
 					<include name="Set_Critical_Dates_CancelSup" />
 					<include name="Generate_Core_Config_CancelSup" />
 					
+					<include name="Update_Local_Biller" />
+					<include name="Remove_Core_Config" />
+					<include name="Assign_Design_Info_SUP" />
+					<include name="Create_Account_and_Equipment_SUP" />
+					<include name="Schedule_CPE_Pickup" />
+					<include name="Pick_up_CPE" />
+					<include name="Reclamation_of_Physical_Equipment" />					
+					<include name="Update_Design_CancelSup" />
+					<include name="CancelSup_CompleteTaskFlow" />
 					
-				</methods>
+					
+					
+					</methods>
 			</class>
 		</classes>
 	</test>

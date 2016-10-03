@@ -10,7 +10,7 @@ import com.comcast.century.cso.pages.ServiceLevelTasks;
 
 public class Disconnect_ServiceLevelTaskFlow extends Disconnect {
 	 
-	@Test(priority = 34500) //34250//10989088
+	@Test(priority = 35100) //34250//10989088
 	public void Stop_Billing() throws InterruptedException {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
@@ -23,7 +23,7 @@ public class Disconnect_ServiceLevelTaskFlow extends Disconnect {
 		}
 	}
 	
-	@Test(priority = 35000) //10989088
+	@Test(priority = 35200) //10989088
 	public void Issue_Soft_Disconnect() throws InterruptedException {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
@@ -88,13 +88,13 @@ public class Disconnect_ServiceLevelTaskFlow extends Disconnect {
 	
 	
 	@Test(priority = 37500) //10989088
-	public void Generate_Core_Configs_SUP() throws InterruptedException  {
+	public void Generate_Core_Config_SUP() throws InterruptedException  {
 		Generate_Core_Config();
 	}
 	
 	
 	@Test(priority = 38500) //10989088
-	public void Remove_Core_Configs() throws InterruptedException  {
+	public void Remove_Core_Config() throws InterruptedException  {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
 			if((new ServiceLevelTasks(frameworkContext)).removeCoreConfigs())
@@ -135,7 +135,27 @@ public class Disconnect_ServiceLevelTaskFlow extends Disconnect {
 	
 	@Test(priority = 40000) //10989088
 	public void CompleteTaskFlow() throws InterruptedException  {
-		SearchOrder();
+		SearchOrder(frameworkContext.getDataDump().getValue("SUP_SRID_RT"));
 		
 	}
+	
+	@Test(priority = 40500) //34250//10989088
+	public void Equipment_Stop_Billing() throws InterruptedException {
+		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
+			SearchOrderndLauncheEquipmentFeeFlow(i);
+			if((new ServiceLevelTasks(frameworkContext)).StopBilling())
+			{
+				(new DisconnectTaskPage(frameworkContext)).ClickCompleteButton("Start_Billing");
+				//(new ServiceLevelTasks(frameworkContext)).ClickBackButton();
+			}
+			
+		}
+	}
+	
+	@Test(priority = 41000) //34250//10989088
+	public void Equipment_CompleteTaskFlow() throws InterruptedException {
+		SearchOrder(frameworkContext.getDataDump().getValue("EQUIPMENT_SUP_SRID_RT"));
+	}
+	
+	
 }

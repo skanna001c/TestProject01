@@ -40,7 +40,7 @@ public class Supplements extends BGPFlow {
 		EQUIPMENT_SUP_SRID = new OrderSummaryTabCMPage(frameworkContext).FectchEDIEquipmentSupSRID(orderSummaryInfo);
 		if(EQUIPMENT_SUP_SRID!=null)
 		{
-			getDataDump().setValue("EQUIPMENT_SUP_SRID", EQUIPMENT_SUP_SRID);
+			getDataDump().setValue("EQUIPMENT_SUP_SRID_RT", EQUIPMENT_SUP_SRID);
 		}
 		startCSO();
 

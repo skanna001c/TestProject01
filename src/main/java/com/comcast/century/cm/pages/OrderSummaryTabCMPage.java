@@ -239,13 +239,15 @@ public class OrderSummaryTabCMPage extends Page {
 	
 	public String FectchEDIEquipmentSupSRID(OrderSummaryInfo orderSummaryInfo)
 	{	if(orderSummaryInfo.supplementType.equalsIgnoreCase("disconnect")){
+			WaitandSwitchToFrame(frameMain);
 			waitforPageLoadComplete();
 			if(waitForElement(EquipmentSupSRID))
 			{
 				report.updateTestLog("Supp/MACD has been auto generated for the following Service Request Id", "Verified",
 						Status.SCREENSHOT);
-				
+				browser.switchTo().defaultContent();
 				return EquipmentSupSRID.getText().trim();
+				
 			}
 			else
 				return null;

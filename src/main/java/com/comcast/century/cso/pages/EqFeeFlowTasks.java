@@ -43,7 +43,9 @@ public class EqFeeFlowTasks extends Page {
 	private boolean mstatus= true;
 	
 	public boolean EqFeeStartBilling() throws InterruptedException{
-		try{
+	  return clicktask(taskEqFeeStartBilling, "EqFee Star tBilling");
+	  
+		/*try{
 			if(waitForElement(taskEqFeeStartBilling)){
 				//if(checkifStatusChanged(taskEqFeeStartBilling,btnRefresh,"COMPLETED") || checkifStatusChanged(taskEqFeeStartBilling,btnRefresh,"INPROGRESS")){
 					waitForElement(taskEqFeeStartBilling);
@@ -58,7 +60,7 @@ public class EqFeeFlowTasks extends Page {
 		{
 			mstatus = false;
 		}
-		return mstatus;
+		return mstatus;*/
 	}
 	
 	public boolean ClickBackButton() throws InterruptedException{
@@ -78,4 +80,26 @@ public class EqFeeFlowTasks extends Page {
 		return mstatus;
 	}
 
+	
+	public boolean clicktask(WebElement task,String taskName) {
+		mstatus=true;
+		try{
+			if(waitForElement(task)){
+				//if(checkifStatusChanged(taskStartBilling,btnRefresh,"INPROGRESS") || checkifStatusChanged(taskStartBilling,btnRefresh,"COMPLETED")){
+				if(checkifStatusChanged(task,btnRefresh,"INPROGRESS")){
+					jsClick(task);
+					report.reportDoneEvent("Inside "+taskName, "");
+					waitforPageLoadComplete();
+				}
+				else{ mstatus=false;}
+				
+			}else  mstatus=false;
+		}
+		catch(Exception ex)
+		{  
+			mstatus = false;
+			ex.printStackTrace();
+		}
+		return mstatus;
+	}
 }

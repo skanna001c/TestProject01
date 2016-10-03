@@ -509,12 +509,14 @@ public class NewConnectTest extends ComcastTest {
 	}
 
 	
-	@Test(priority = 22000)
+	@Test(priority = 22000) 
 	public void EqFeeStartBilling() throws InterruptedException {
 		for(int i=0; i < Integer.parseInt(serviceInfo.equipmentFee); i++){
 			SearchOrderndLauncheEquipmentFeeFlow(i);			
-			(new EqFeeFlowTasks(frameworkContext)).EqFeeStartBilling();
-			(new EqFeeStartBillingTaskPage(frameworkContext)).EqFeeStartBilling();			
+			if((new EqFeeFlowTasks(frameworkContext)).EqFeeStartBilling())
+			{
+				(new EqFeeStartBillingTaskPage(frameworkContext)).EqFeeStartBilling();			
+			}
 		}
 	}	
 	
@@ -604,11 +606,11 @@ public class NewConnectTest extends ComcastTest {
 	
 	}
 	
-	public void SearchOrder() throws InterruptedException {
-    	if (!frameworkContext.getDataDump().getValue("SUP_SRID_RT").equalsIgnoreCase(""))
+	public void SearchOrder(String SRID) throws InterruptedException {
+    	/*if (!frameworkContext.getDataDump().getValue("SUP_SRID_RT").equalsIgnoreCase(""))
 			SRID = frameworkContext.getDataDump().getValue("SUP_SRID_RT");
 		else
-			SRID = frameworkContext.getDataDump().getValue("SRID_RT");
+			SRID = frameworkContext.getDataDump().getValue("SRID_RT");*/
     	
     		(new WorkOrderTabPageCSO(frameworkContext)).SearchForOrderInSO(SRID, retryCount);    		
     		report.updateTestLog("SRID "+SRID+" searched", "SRID Searching in CSO",Status.SCREENSHOT);
@@ -668,7 +670,9 @@ public class NewConnectTest extends ComcastTest {
 	
 	public void SearchOrderndLauncheEquipmentFeeFlow(int i) throws InterruptedException {
     	retryCount = 1;
-    	if (!frameworkContext.getDataDump().getValue("SUP_SRID_RT").equalsIgnoreCase(""))
+    	if (!frameworkContext.getDataDump().getValue("EQUIPMENT_SUP_SRID_RT").equalsIgnoreCase(""))
+			SRID = frameworkContext.getDataDump().getValue("EQUIPMENT_SUP_SRID_RT");
+    	else if (!frameworkContext.getDataDump().getValue("SUP_SRID_RT").equalsIgnoreCase(""))
 			SRID = frameworkContext.getDataDump().getValue("SUP_SRID_RT");
 		else
 			SRID = frameworkContext.getDataDump().getValue("SRID_RT");

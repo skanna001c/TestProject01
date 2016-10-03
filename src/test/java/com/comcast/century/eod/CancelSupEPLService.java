@@ -45,20 +45,15 @@ public class CancelSupEPLService extends Supplements {
 		}
 	}
 	
-	@Test(priority = 50500)
+	/*@Test(priority = 50500)
 	public void Contact_Customer_CancelSup() throws InterruptedException, AWTException {
 		SearchOrderndLaunchServiceRequest();
 		(new ServiceLevelTasks(frameworkContext)).ContactCustomer();
 		(new ContactCustomerTaskPage(frameworkContext)).ClickCompleteButton();
 
-	}
+	}*/
 	
-	@Test(priority = 60000)
-	public void Update_Design_CancelSup() throws InterruptedException, AWTException {
-		SearchOrderndLaunchServiceRequest();
-		(new ServiceLevelTasks(frameworkContext)).UpdateDesign();
-		(new UpdateDesignTaskPage(frameworkContext)).ClickCompleteButton();		
-	}
+	
 	
 	@Test(priority = 60500)
 	public void Set_Critical_Dates_CancelSup() throws InterruptedException {
@@ -97,7 +92,7 @@ public class CancelSupEPLService extends Supplements {
 		}
 	
 	@Test(priority = 62000)
-	public void Remove_Core_Configs() throws InterruptedException  {
+	public void Remove_Core_Config() throws InterruptedException  {
 		for(int i=0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++){
 			SearchOrderndLaunchServiceFlow(i);
 			if((new ServiceLevelTasks(frameworkContext)).removeCoreConfigs())
@@ -138,18 +133,70 @@ public class CancelSupEPLService extends Supplements {
 		for (int i = 0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++) {
 			SearchOrderndLaunchServiceFlow(i);
 		   if((new ServiceLevelTasks(frameworkContext)).waitUntilElementPresent(by, 60))
-		   { int taskcount=browser.findElements(by).size();
+		   { int taskcount=browser.findElements(by).size();		   	
 		   	for (int count = 0; count <taskcount; count++) {
-				
+		   		if((new ServiceLevelTasks(frameworkContext)).scheduleCPEPickup(by))
+				{
+					(new ServiceLevelTasks(frameworkContext)).ClickCompleteButton("Schedule_CPE_Pickup");
+				}
 			}
 		   
-			if((new ServiceLevelTasks(frameworkContext)).scheduleCPEPickup())
-			{
-				(new ServiceLevelTasks(frameworkContext)).ClickCompleteButton("Create_Account_and_Equipment");
 			}
-		   }
 			
 		}
+	}
+	
+	@Test(priority = 64000) 
+	public void Pick_up_CPE() throws Exception {
+		By by= By.xpath("//a[text()='Pick up CPE' and contains(@onclick, 'PROGRESS')]");
+		for (int i = 0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++) {
+			SearchOrderndLaunchServiceFlow(i);
+		   if((new ServiceLevelTasks(frameworkContext)).waitUntilElementPresent(by, 60))
+		   { int taskcount=browser.findElements(by).size();		   	
+		   	for (int count = 0; count <taskcount; count++) {
+		   		if((new ServiceLevelTasks(frameworkContext)).pickupCPE(by))
+				{
+					(new ServiceLevelTasks(frameworkContext)).ClickCompleteButton("Pick_up_CPE");
+				}
+			}
+		   
+			}
+			
+		}
+	}
+	
+	@Test(priority = 64500)  //div[contains(.,'Reclamation of Physical Equipment')]
+	public void Reclamation_of_Physical_Equipment() throws Exception {
+		By by= By.xpath("//a[text()='Reclamation of Physical Equipment' and contains(@onclick, 'PROGRESS')]");
+		for (int i = 0; i < Integer.parseInt(getDataDump().getValue("EVCcount_RT")); i++) {
+			SearchOrderndLaunchServiceFlow(i);
+		   if((new ServiceLevelTasks(frameworkContext)).waitUntilElementPresent(by, 60))
+		   { int taskcount=browser.findElements(by).size();		   	
+		   	for (int count = 0; count <taskcount; count++) {
+		   		if((new ServiceLevelTasks(frameworkContext)).Reclamation_of_Physical_Equipment(by))
+				{
+					(new ServiceLevelTasks(frameworkContext)).ClickCompleteButton("Reclamation_of_Physical_Equipment");
+				}
+			}
+		   
+			}
+			
+		}
+	}
+	
+	@Test(priority = 65000)
+	public void Update_Design_CancelSup() throws InterruptedException, AWTException {
+		SearchOrderndLaunchServiceRequest();
+		if((new ServiceLevelTasks(frameworkContext)).UpdateDesign()){
+			(new ServiceLevelTasks(frameworkContext)).ClickCompleteButton("Update_Design");
+		}
+				
+	}
+	
+	
+	@Test(priority = 65500)
+	public void CancelSup_CompleteTaskFlow() throws InterruptedException, AWTException {
+		SearchOrder(frameworkContext.getDataDump().getValue("SRID_RT"));
 	}
 	
 	

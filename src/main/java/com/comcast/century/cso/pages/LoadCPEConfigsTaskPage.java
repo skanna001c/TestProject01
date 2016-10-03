@@ -54,9 +54,7 @@ public class LoadCPEConfigsTaskPage extends Page {
 	
 	@FindBy(id = "loadCPEConfigDate")
 	private WebElement  txtloadCPEConfigDate;
-	
-	
-	
+
 	private boolean mstatus=true;
 	
 	public boolean LoadCPEConfigs(){
@@ -64,8 +62,10 @@ public class LoadCPEConfigsTaskPage extends Page {
 			waitforPageLoadComplete();
 			if(waitForElement(tabTaskDetails)){
 				tabTaskDetails.click();
+			if(waitForElement(txtconfigGenerateDate)){
 				txtconfigGenerateDate.sendKeys(getCurrentDate());
-				txtconfigGenerateDate.sendKeys(getCurrentDate());
+				txtloadCPEConfigDate.sendKeys(getCurrentDate());
+			}
 				
 			}
 		}
