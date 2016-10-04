@@ -173,7 +173,7 @@ public class AddressTabPageCM extends Page {
 	@FindBy(tagName = "iframe")
 	private List<WebElement> frameList ;
 	
-	
+
 	public boolean addSiteAddress() throws InterruptedException
 	{
 		try{
@@ -202,6 +202,7 @@ public class AddressTabPageCM extends Page {
 		catch(Exception ex)
 		{
 			mstatus = false;
+			
 		}
 		return mstatus;
 	}
@@ -420,6 +421,7 @@ public class AddressTabPageCM extends Page {
 		return mstatus;		
 	}
 	
+
 	/*public boolean ClickOnCreateNewAdd() throws InterruptedException{
 		mstatus = true;
 		try{

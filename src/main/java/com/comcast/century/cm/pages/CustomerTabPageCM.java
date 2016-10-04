@@ -209,8 +209,10 @@ public class CustomerTabPageCM extends Page {
 		  waitForElement(txtCustomerName);
 		 //while(!waitForElement(txtCustomerName,1)){};
 		 customerName = customerInfo.customerName + getTimestamp();
-		 do 
-		 {    txtCustomerName.click();
+		 By by=By.xpath("//input[@id='busiCustBean.businessName']");
+		 do {
+			  waitUntilElementPresent(by, 120);
+			  txtCustomerName.click();
 			  txtCustomerName.clear();
 			  //updated by harsh to store runtime data into datadump - 8/5/2016
 			  
