@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.comcast.template</groupId>
-	<artifactId>template</artifactId>
+	<artifactId>selenium_template</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>Century</name>
+	<name>Selenium_Template</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
