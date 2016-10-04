@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.comcast.century.cso.pages.ManageTab;
+import com.comcast.cso.pages.ManageTab;
 import com.comcast.utils.ComcastTestMain;
 import com.comcast.utils.PerfTransaction;
 

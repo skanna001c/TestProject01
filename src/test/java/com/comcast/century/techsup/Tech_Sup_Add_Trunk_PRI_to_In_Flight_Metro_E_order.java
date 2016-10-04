@@ -2,9 +2,9 @@ package com.comcast.century.techsup;
 
 import org.testng.annotations.Test;
 
-import com.comcast.century.cm.pages.FeatureTabPageCM;
-import com.comcast.century.cm.pages.ProcessTabPageCM;
-import com.comcast.century.cm.pages.ServiceTabPageCM;
+import com.comcast.cm.pages.FeatureTabPageCM;
+import com.comcast.cm.pages.ProcessTabPageCM;
+import com.comcast.cm.pages.ServiceTabPageCM;
 
 public class Tech_Sup_Add_Trunk_PRI_to_In_Flight_Metro_E_order extends ServiceFlow_Techsup {
 	

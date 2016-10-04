@@ -3,10 +3,10 @@ package com.comcast.century.disconnect;
 
 import org.testng.annotations.Test;
 
-import com.comcast.century.cso.pages.DisconnectTaskPage;
-import com.comcast.century.cso.pages.LoadCPEConfigsTaskPage;
-import com.comcast.century.cso.pages.NotifyCustomerofServiceDisconnectionTaskPage;
-import com.comcast.century.cso.pages.ServiceLevelTasks;
+import com.comcast.cso.pages.DisconnectTaskPage;
+import com.comcast.cso.pages.LoadCPEConfigsTaskPage;
+import com.comcast.cso.pages.NotifyCustomerofServiceDisconnectionTaskPage;
+import com.comcast.cso.pages.ServiceLevelTasks;
 
 public class Disconnect_ServiceLevelTaskFlow extends Disconnect {
 	 

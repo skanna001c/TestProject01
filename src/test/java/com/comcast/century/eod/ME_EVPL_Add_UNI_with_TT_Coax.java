@@ -5,10 +5,10 @@ import java.awt.AWTException;
 import org.testng.annotations.Test;
 
 import com.comcast.century.change.ServiceFlow_Change;
-import com.comcast.century.cm.pages.AddressTabPageCM;
-import com.comcast.century.cm.pages.ContactTabPageCM;
-import com.comcast.century.cm.pages.FeatureTabPageCM;
-import com.comcast.century.cm.pages.ProcessTabPageCM;
+import com.comcast.cm.pages.AddressTabPageCM;
+import com.comcast.cm.pages.ContactTabPageCM;
+import com.comcast.cm.pages.FeatureTabPageCM;
+import com.comcast.cm.pages.ProcessTabPageCM;
 import com.comcast.utils.PerfTransaction;
 
 public class ME_EVPL_Add_UNI_with_TT_Coax extends ServiceFlow_Change {

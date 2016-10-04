@@ -4,8 +4,8 @@ import java.lang.reflect.Method;
 
 import org.openqa.selenium.WebDriver;
 
-import com.comcast.century.cm.pages.HomePageCM;
-import com.comcast.century.cm.pages.LogInPage;
+import com.comcast.cm.pages.HomePageCM;
+import com.comcast.cm.pages.LogInPage;
 import com.comcast.reporting.SeleniumReport;
 import com.comcast.reporting.Status;
 import com.comcast.utils.ComcastTestMain.FrameworkContext;

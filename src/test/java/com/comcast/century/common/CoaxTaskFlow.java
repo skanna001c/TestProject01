@@ -4,14 +4,14 @@ import java.awt.AWTException;
 
 import org.testng.annotations.Test;
 
-import com.comcast.century.cso.pages.BuildHouseAccountTaskPage;
-import com.comcast.century.cso.pages.CompleteCoaxBuildTaskPage;
-import com.comcast.century.cso.pages.CompleteSiteBuildCoaxTaskPage;
-import com.comcast.century.cso.pages.ConductCoaxSurveyTaskPage;
-import com.comcast.century.cso.pages.ConductSiteSurveyCoaxTaskPage;
-import com.comcast.century.cso.pages.ObtainCoaxPermitsTaskPage;
-import com.comcast.century.cso.pages.ObtainSiteAgreementTaskPage;
-import com.comcast.century.cso.pages.SiteLevelTasks;
+import com.comcast.cso.pages.BuildHouseAccountTaskPage;
+import com.comcast.cso.pages.CompleteCoaxBuildTaskPage;
+import com.comcast.cso.pages.CompleteSiteBuildCoaxTaskPage;
+import com.comcast.cso.pages.ConductCoaxSurveyTaskPage;
+import com.comcast.cso.pages.ConductSiteSurveyCoaxTaskPage;
+import com.comcast.cso.pages.ObtainCoaxPermitsTaskPage;
+import com.comcast.cso.pages.ObtainSiteAgreementTaskPage;
+import com.comcast.cso.pages.SiteLevelTasks;
 
 public class CoaxTaskFlow extends NewConnectTest {
 	

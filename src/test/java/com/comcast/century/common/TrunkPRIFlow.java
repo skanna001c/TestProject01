@@ -4,19 +4,19 @@ import java.awt.AWTException;
 
 import org.testng.annotations.Test;
 
-import com.comcast.century.cso.pages.ADITaskPage;
-import com.comcast.century.cso.pages.ActivateServiceTaskPage;
-import com.comcast.century.cso.pages.BULBATaskPage;
-import com.comcast.century.cso.pages.CAETaskPage;
-import com.comcast.century.cso.pages.DaysOfConfigsTaskPage;
-import com.comcast.century.cso.pages.GenerateCPEConfigsTaskPage;
-import com.comcast.century.cso.pages.GenerateCoreConfigsTaskPage;
-import com.comcast.century.cso.pages.InstallCPETaskPage;
-import com.comcast.century.cso.pages.LoadCoreConfigsTaskPage;
-import com.comcast.century.cso.pages.ServiceLevelTasks;
-import com.comcast.century.cso.pages.SetCriticalDatesTaskPage;
-import com.comcast.century.cso.pages.ShipCPETaskPage;
-import com.comcast.century.cso.pages.UpdateDesignTaskPage;
+import com.comcast.cso.pages.ADITaskPage;
+import com.comcast.cso.pages.ActivateServiceTaskPage;
+import com.comcast.cso.pages.BULBATaskPage;
+import com.comcast.cso.pages.CAETaskPage;
+import com.comcast.cso.pages.DaysOfConfigsTaskPage;
+import com.comcast.cso.pages.GenerateCPEConfigsTaskPage;
+import com.comcast.cso.pages.GenerateCoreConfigsTaskPage;
+import com.comcast.cso.pages.InstallCPETaskPage;
+import com.comcast.cso.pages.LoadCoreConfigsTaskPage;
+import com.comcast.cso.pages.ServiceLevelTasks;
+import com.comcast.cso.pages.SetCriticalDatesTaskPage;
+import com.comcast.cso.pages.ShipCPETaskPage;
+import com.comcast.cso.pages.UpdateDesignTaskPage;
 
 public class TrunkPRIFlow extends CoaxTaskFlow {
 

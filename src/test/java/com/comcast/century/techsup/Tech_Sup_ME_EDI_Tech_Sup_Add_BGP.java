@@ -2,8 +2,8 @@ package com.comcast.century.techsup;
 
 import org.testng.annotations.Test;
 
-import com.comcast.century.cm.pages.FeatureTabPageCM;
-import com.comcast.century.cm.pages.ProcessTabPageCM;
+import com.comcast.cm.pages.FeatureTabPageCM;
+import com.comcast.cm.pages.ProcessTabPageCM;
 
 public class Tech_Sup_ME_EDI_Tech_Sup_Add_BGP extends ServiceFlow_Techsup {
 

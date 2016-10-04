@@ -2,10 +2,10 @@ package com.comcast.century.common;
 
 import org.testng.annotations.Test;
 
-import com.comcast.century.cm.pages.CustomerTabPageCM;
-import com.comcast.century.cm.pages.HomePageCM;
-import com.comcast.century.cm.pages.OrderSummaryTabCMPage;
-import com.comcast.century.cm.pages.SupplementPageServiceTabCM;
+import com.comcast.cm.pages.CustomerTabPageCM;
+import com.comcast.cm.pages.HomePageCM;
+import com.comcast.cm.pages.OrderSummaryTabCMPage;
+import com.comcast.cm.pages.SupplementPageServiceTabCM;
 import com.comcast.utils.PerfTransaction;
 
 public class Supplements extends BGPFlow {

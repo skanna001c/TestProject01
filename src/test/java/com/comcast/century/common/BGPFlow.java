@@ -2,13 +2,13 @@ package com.comcast.century.common;
 
 import org.testng.annotations.Test;
 
-import com.comcast.century.cso.pages.AssignDesignBGPTaskPage;
-import com.comcast.century.cso.pages.DaysOfConfigsTaskPage;
-import com.comcast.century.cso.pages.GenerateCPEConfigsTaskPage;
-import com.comcast.century.cso.pages.NotifyCustomerofServiceInstallationTaskPage;
-import com.comcast.century.cso.pages.ServiceLevelTasks;
-import com.comcast.century.cso.pages.SetCriticalDatesTaskPage;
-import com.comcast.century.cso.pages.StartBillingTaskPage;
+import com.comcast.cso.pages.AssignDesignBGPTaskPage;
+import com.comcast.cso.pages.DaysOfConfigsTaskPage;
+import com.comcast.cso.pages.GenerateCPEConfigsTaskPage;
+import com.comcast.cso.pages.NotifyCustomerofServiceInstallationTaskPage;
+import com.comcast.cso.pages.ServiceLevelTasks;
+import com.comcast.cso.pages.SetCriticalDatesTaskPage;
+import com.comcast.cso.pages.StartBillingTaskPage;
 
 
 public class BGPFlow extends TrunkPRIFlow {

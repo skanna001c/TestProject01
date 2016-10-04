@@ -4,8 +4,8 @@ import java.awt.AWTException;
 
 import org.testng.annotations.Test;
 
-import com.comcast.century.cm.pages.ProcessTabPageCM;
 import com.comcast.century.common.Supplements;
+import com.comcast.cm.pages.ProcessTabPageCM;
 
 public class Disconnect extends Supplements {
  

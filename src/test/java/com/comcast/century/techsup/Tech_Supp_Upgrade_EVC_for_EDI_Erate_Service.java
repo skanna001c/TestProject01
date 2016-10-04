@@ -2,7 +2,7 @@ package com.comcast.century.techsup;
 
 import org.testng.annotations.Test;
 
-import com.comcast.century.cm.pages.ProcessTabPageCM;
+import com.comcast.cm.pages.ProcessTabPageCM;
 
 public class Tech_Supp_Upgrade_EVC_for_EDI_Erate_Service extends ServiceFlow_Techsup {
                      

@@ -6,14 +6,14 @@ import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import com.comcast.century.common.Supplements;
-import com.comcast.century.cso.pages.ContactCustomerTaskPage;
-import com.comcast.century.cso.pages.ObtainCoaxPermitsTaskPage;
-import com.comcast.century.cso.pages.ObtainFiberPlantPermitsTaskPage;
-import com.comcast.century.cso.pages.ObtainSiteAgreementTaskPage;
-import com.comcast.century.cso.pages.ServiceLevelTasks;
-import com.comcast.century.cso.pages.SetCriticalDatesTaskPage;
-import com.comcast.century.cso.pages.SiteLevelTasks;
-import com.comcast.century.cso.pages.UpdateDesignTaskPage;
+import com.comcast.cso.pages.ContactCustomerTaskPage;
+import com.comcast.cso.pages.ObtainCoaxPermitsTaskPage;
+import com.comcast.cso.pages.ObtainFiberPlantPermitsTaskPage;
+import com.comcast.cso.pages.ObtainSiteAgreementTaskPage;
+import com.comcast.cso.pages.ServiceLevelTasks;
+import com.comcast.cso.pages.SetCriticalDatesTaskPage;
+import com.comcast.cso.pages.SiteLevelTasks;
+import com.comcast.cso.pages.UpdateDesignTaskPage;
 
 public class CancelSupFlow extends Supplements {
           
