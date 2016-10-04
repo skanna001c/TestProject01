@@ -4,6 +4,7 @@ import java.awt.AWTException;
 import java.io.FileOutputStream;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -11,6 +12,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 import com.comcast.century.data.OrderSummaryInfo;
+import com.comcast.commons.ComcastTest;
 import com.comcast.reporting.Status;
 import com.comcast.utils.ComcastTestMain.FrameworkContext;
 import com.comcast.utils.Page;
@@ -212,6 +214,8 @@ public class OrderSummaryTabCMPage extends Page {
 	//#########################################################
 	
 	private boolean mstatus=true;
+	
+	Logger log = Logger.getLogger(OrderSummaryTabCMPage.class);
 
 	private String relatedOrderIDValue;
 	
@@ -498,6 +502,7 @@ public class OrderSummaryTabCMPage extends Page {
 					report.updateTestLog("Click Sumbit Order", "Order Submitted Successfully", Status.SCREENSHOT);
 					report.reportPassEvent("Click Sumbit Order", "Order Submitted Successfully");
 					SRID_RT = SRID.getText();
+					log.info("SR ID is: " + SRID_RT);
 				}
 				else
 				{
