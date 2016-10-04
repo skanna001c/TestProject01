@@ -242,15 +242,17 @@ public class OrderSummaryTabCMPage extends Page {
 	}
 	
 	public String FectchEDIEquipmentSupSRID(OrderSummaryInfo orderSummaryInfo)
-	{	if(orderSummaryInfo.supplementType.equalsIgnoreCase("disconnect")){
+	{	String eqSupSRID;
+		if(orderSummaryInfo.supplementType.equalsIgnoreCase("disconnect")){
 			WaitandSwitchToFrame(frameMain);
 			waitforPageLoadComplete();
 			if(waitForElement(EquipmentSupSRID))
 			{
 				report.updateTestLog("Supp/MACD has been auto generated for the following Service Request Id", "Verified",
 						Status.SCREENSHOT);
+				eqSupSRID=EquipmentSupSRID.getText().trim();
 				browser.switchTo().defaultContent();
-				return EquipmentSupSRID.getText().trim();
+				return eqSupSRID;
 				
 			}
 			else
@@ -374,7 +376,7 @@ public class OrderSummaryTabCMPage extends Page {
 	public boolean enterOrderDetails(OrderSummaryInfo orderSummaryInfo) {
 		mstatus = true;
 		try {
-			WaitandSwitchToFrame(frameMain);
+			WaitandSwitchToFrame(frameMain,8);
 			waitForElement(dtCustomerOrderSig);
 			dtCustomerOrderSig.click();
 			btnToday.get(0).click();

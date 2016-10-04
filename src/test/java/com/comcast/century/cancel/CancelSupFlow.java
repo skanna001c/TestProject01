@@ -1,4 +1,4 @@
-package com.comcast.century.eod;
+package com.comcast.century.cancel;
 
 import java.awt.AWTException;
 
@@ -8,13 +8,14 @@ import org.testng.annotations.Test;
 import com.comcast.century.common.Supplements;
 import com.comcast.century.cso.pages.ContactCustomerTaskPage;
 import com.comcast.century.cso.pages.ObtainCoaxPermitsTaskPage;
+import com.comcast.century.cso.pages.ObtainFiberPlantPermitsTaskPage;
 import com.comcast.century.cso.pages.ObtainSiteAgreementTaskPage;
 import com.comcast.century.cso.pages.ServiceLevelTasks;
 import com.comcast.century.cso.pages.SetCriticalDatesTaskPage;
 import com.comcast.century.cso.pages.SiteLevelTasks;
 import com.comcast.century.cso.pages.UpdateDesignTaskPage;
 
-public class CancelSupEPLService extends Supplements {
+public class CancelSupFlow extends Supplements {
           
 	@Test(priority = 40000)
 	public void Obtain_Site_Agreement_CancelSup() throws InterruptedException {
@@ -44,6 +45,18 @@ public class CancelSupEPLService extends Supplements {
 			(new ObtainCoaxPermitsTaskPage(frameworkContext)).ClickCompleteButton();
 		}
 	}
+	
+	@Test(priority = 50500)	
+	public void Obtain_Fiber_Plant_Permit_CancelSup() throws InterruptedException, AWTException {
+		for(int i=1; i <= Integer.parseInt(frameworkContext.getDataDump().getValue("Fibercount_RT")); i++){
+			SearchOrderndLaunchFiberSiteFlow(frameworkContext.getDataDump().getValue("FiberSite" + i + "_RT"));
+			if((new SiteLevelTasks(frameworkContext)).ObtainFiberPlantPermits())
+			{
+				(new ObtainFiberPlantPermitsTaskPage(frameworkContext)).ClickCompleteButton();
+			}
+		}
+	}
+	
 	
 	/*@Test(priority = 50500)
 	public void Contact_Customer_CancelSup() throws InterruptedException, AWTException {
@@ -192,6 +205,7 @@ public class CancelSupEPLService extends Supplements {
 		}
 				
 	}
+	
 	
 	
 	@Test(priority = 65500)

@@ -350,9 +350,12 @@ public class CustomerTabPageCM extends Page {
 		mstatus = true;
 		String xpath = "//tr[@title='" + custName + "']/child::td[@class='standartTreeImage']/child::"
 				+ "img[contains(@src,'images/csh_bluebooks/plus')]";
+		By by=By.xpath("//*[@class[contains(.,'expand')]]");
+					  
 		try {
 			do {
-				if (isElementDisplayed(btnExpand)) {
+				waitUntilElementPresent(by, 60);
+				if (isElementPresent(btnExpand)) {
 					iClick(btnExpand, null, "ExpandSOHierarchyButton: CSO Page: ExpandButton");
 				}
 			} while (isElementDisplayed(btnExpand, 2));

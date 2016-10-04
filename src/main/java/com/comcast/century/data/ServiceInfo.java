@@ -32,7 +32,7 @@ public class ServiceInfo  {
 	}
 	
 	public static ServiceInfo loadFromDatatable(DataTable dataTable){
-		
+		System.out.println("serviceName "+dataTable.getValue("serviceName"));
 		return new ServiceInfo(dataTable.getValue("equipmentFee"),
 				   dataTable.getValue("serviceName"), dataTable.getValue("testSetName"), 
 				   dataTable.getValue("UNI1"), dataTable.getValue("UNI2"), dataTable.getValue("EVC"));

@@ -3,6 +3,7 @@ package com.comcast.century.cso.pages;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -833,8 +834,15 @@ public class ServiceLevelTasks extends Page {
 			//By by= By.xpath("//a[text()='Schedule CPE Pickup' and contains(@onclick, 'PROGRESS')]");
 			String xpath="//*[text()='" + we1.getText() +"' and contains(@onclick, '"+status+ "')]";
 			By by=By.xpath(xpath);
-			String onclick;
-			onclick=this.browser.findElement(by).getAttribute("onclick"); //checking for exception
+			String onclick = null;
+			try{
+				onclick=this.browser.findElement(by).getAttribute("onclick"); //checking for exception
+			}
+			catch(NoSuchElementException ex )
+			{
+				onclick=null;
+			}
+			
 			if(onclick==null)
 			{	xpath="//"+we1.getTagName()+"[text()='" + we1.getText() +"' and contains(@onclick, '"+status+ "')]";
 				//"+we1.getTagName()+"[text()='" + we1.getText() + "']"
