@@ -108,7 +108,7 @@ public class ProcessTabPageCM extends Page {
 		@FindBy(xpath = "//img[@title='Address Lookup']")
 		private WebElement imgAddressLookup;
 		
-		@FindBy(xpath = "//*[@id='codition']")
+		@FindBy(id = "codition")
 		private List<WebElement> frameCondition;
 		
 		@FindBy(id = "1_SiteName")
@@ -117,10 +117,10 @@ public class ProcessTabPageCM extends Page {
 		@FindBy(xpath = "//*[@value='Search']")
 		private WebElement btnSearch;
 		
-		@FindBy(xpath = "//*[@id='addr']")
+		@FindBy(id = "addr")
 		private WebElement btnRadioSelectSite;
 		
-		@FindBy(xpath = "//input[@id='backToProcess']")
+		@FindBy(id = "backToProcess")
 		private WebElement btnOK;
 		
 		@FindBy(xpath = ".//select[@paramname='Transport Type']")
@@ -129,7 +129,7 @@ public class ProcessTabPageCM extends Page {
 		@FindBy(xpath = "//select[@paramname='Aggregator Needed']")
 		private WebElement ddAggregatorNeeded;
 		
-		@FindBy(xpath = "//input[@id='surClliCom-inputEl']")
+		@FindBy(id = "surClliCom-inputEl")
 		private WebElement ddtxtSURCILI;
 		
 		@FindBy(xpath = "//input[@paramname='UNI Number']")
@@ -138,7 +138,7 @@ public class ProcessTabPageCM extends Page {
 		@FindBy(xpath = "//select[@paramname='UNI Port Speed']")
 		private WebElement ddUNIPortSpeed;
 		
-		@FindBy(xpath = "//input[@id='locZCombo-inputEl']")
+		@FindBy(id = "locZCombo-inputEl")
 		private WebElement ddtxtLocationZuni;
 		
 		@FindBy(xpath = "//input[@id='locZCombo-inputEl']/../following-sibling::*/child::*")
@@ -186,7 +186,7 @@ public class ProcessTabPageCM extends Page {
 		@FindBy(xpath = "//input[@paramname='Customer VLAN Info']")
 		private WebElement txtCustomerVLANInfo;
 		
-		@FindBy(xpath = "//input[@id='EqFeeCombo-inputEl']")
+		@FindBy(id = "EqFeeCombo-inputEl")
 		private WebElement ddtxtEqFeeServiceLocation;
 		
 		@FindBy(xpath = "//input[@id='EqFeeCombo-inputEl']/../following-sibling::td/child::div")
@@ -204,7 +204,7 @@ public class ProcessTabPageCM extends Page {
 		@FindBy(xpath = "//span[text()='No']/following-sibling::*")
 		private WebElement BtnEqFeePopUp;
 		
-		@FindBy(xpath = "//div[text()='loading...']")
+		@FindBy(xpath = "//div[text()='Loading...' or text()='loading...']")
 		private WebElement elementLoading ;
 		
 		@FindBy(xpath = "//b[text()='Service Request ID :']/../following-sibling::*[position()=1]")
@@ -231,9 +231,6 @@ public class ProcessTabPageCM extends Page {
 						this.BGPConfiguration();
 					} else if(serviceInfo.serviceName.equalsIgnoreCase("EDI-PRI")){
 						this.TrunkPRIConfiguration(processInfo, localiDataDump.getValue("SITE1_RT"), serviceInfo);
-						/*this.Trunk_PRI(processInfo);
-						this.UNIConfiguration_PRI(processInfo,localiDataDump.getValue("SITE1_RT"),serviceInfo );
-						this.EVCConfiguration_PRI(processInfo);*/
 					}
 					break;
 				case "EPL" :
@@ -254,10 +251,7 @@ public class ProcessTabPageCM extends Page {
 					EVCNo2 = this.EVC2Configuration_ENS(processInfo);
 					localiDataDump.setValue("EVCcount_RT","2");
 					if(serviceInfo.serviceName.equalsIgnoreCase("ENS-PRI")){
-						this.TrunkPRIConfiguration(processInfo, localiDataDump.getValue("SITE1_RT"), serviceInfo);
-						/*this.Trunk_PRI(processInfo);
-						this.UNIConfiguration_PRI(processInfo,localiDataDump.getValue("SITE1_RT"),serviceInfo );
-						this.EVCConfiguration_PRI(processInfo);*/
+						this.TrunkPRIConfiguration(processInfo, localiDataDump.getValue("SITE1_RT"), serviceInfo);						
 					}
 					break;
 				case "EVPL" :
@@ -272,7 +266,7 @@ public class ProcessTabPageCM extends Page {
 					localiDataDump.setValue("EVCcount_RT","2");
 					break;	
 				default :
-					System.out.println("Invalid Service");
+					log.warn("Invalid Service");
 				}
 				
 				int FiberCount = 0;
@@ -312,7 +306,7 @@ public class ProcessTabPageCM extends Page {
 				
 				
 			}catch(Exception e){
-				e.printStackTrace();
+				log.info(e.getMessage());
 				return null;
 			}
 			return localiDataDump;
@@ -361,7 +355,7 @@ public class ProcessTabPageCM extends Page {
 			report.reportDoneEvent("Save Terms", "Terms Saved");
 			waitForElementDisappear(elementLoading);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -386,7 +380,7 @@ public class ProcessTabPageCM extends Page {
 			}
 			else mstatus = false;
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -408,13 +402,14 @@ public class ProcessTabPageCM extends Page {
 				jsClick(LinkTrunkPRI);				
 				waitForElementDisappear(elementLoading);
 				if(waitForElement(ddSelectTerms)){
-					System.out.println("Terms Present");
+					log.info("Terms Present");
 					}
 					new Select(ddSelectTerms).selectByVisibleText(processInfo.terms);
 					iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 					report.reportDoneEvent("Save Terms", "Terms Saved");
 					waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
+				log.info(e.getMessage());
 				mstatus= true;
 			}
 			return true;
@@ -459,6 +454,7 @@ public class ProcessTabPageCM extends Page {
 				 report.reportDoneEvent("Save UNI Configuration", "UNI Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
+				log.info(e.getMessage());
 				UNINo1= null;
 			}
 			return UNINo1;
@@ -476,21 +472,27 @@ public class ProcessTabPageCM extends Page {
 		private boolean setSURCLLI(WebElement ddtxtSURCILI, String surCILI) {
 			// TODO Auto-generated method stub
 			By by=By.xpath("//li[text()='"+surCILI+"']");
-			mstatus=false;
-			if (waitForElement(ddtxtSURCILI))
-			{
-				 ddtxtSURCILI.click();
-				 ddtxtSURCILI.clear();	
-			do{
-				ddtxtSURCILI.sendKeys(surCILI);
-				ddtxtSURCILI.sendKeys(Keys.ARROW_DOWN);
-				if(isElementPresent(by))
+			mstatus=true;
+			
+			try {
+				if (waitForElement(ddtxtSURCILI))
 				{
-					browser.findElement(by).click();
+					 ddtxtSURCILI.click();
+					 ddtxtSURCILI.clear();	
+				do{
+					ddtxtSURCILI.sendKeys(surCILI);
+					ddtxtSURCILI.sendKeys(Keys.ARROW_DOWN);
+					if(isElementPresent(by))
+					{
+						browser.findElement(by).click();
+					}
+					sleep(1000);
+					ddtxtSURCILI.sendKeys(Keys.TAB);
+				}while(ddtxtSURCILI.getAttribute("class").contains("x-form-empty-field"));
 				}
-				sleep(1000);
-				ddtxtSURCILI.sendKeys(Keys.TAB);
-			}while(ddtxtSURCILI.getAttribute("class").contains("x-form-empty-field"));
+			} catch (Exception e) {
+				log.info(e.getMessage());
+				mstatus=false;
 			}
 			
 			return mstatus;
@@ -515,6 +517,7 @@ public class ProcessTabPageCM extends Page {
 				 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
+				log.info(e.getMessage());
 				mstatus= false;
 			}
 			 return true;
@@ -539,8 +542,7 @@ public class ProcessTabPageCM extends Page {
 				 waitforPageLoadComplete();
 				 if (WaitandSwitchToFrame(frameCondition.get(1))){
 					 waitForElement(txtSiteName);
-					 jsSendKeys(txtSiteName,Site);
-					 //txtSiteName.sendKeys(Site);
+					 jsSendKeys(txtSiteName,Site);					
 					 waitForElement(btnSearch);
 					 btnSearch.click();
 					 waitForElementDisappear(elementLoading);
@@ -561,6 +563,7 @@ public class ProcessTabPageCM extends Page {
 				 report.reportDoneEvent("Save UNI~2 Configuration", "UNI~2 Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
+				log.info(e.getMessage());
 				UNINo2= null;
 			}
 			return UNINo2;
@@ -610,6 +613,7 @@ public class ProcessTabPageCM extends Page {
 				 report.reportDoneEvent("Save UNI~3 Configuration", "UNI~3 Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
+				log.info(e.getMessage());
 				UNINo3= null;
 			}
 			return UNINo3;
@@ -650,6 +654,7 @@ public class ProcessTabPageCM extends Page {
 					 report.reportDoneEvent("Save UNI~4 Configuration", "UNI~4 Configuration Saved");
 					 waitForElementDisappear(elementLoading);
 				} catch (Exception e) {
+					log.info(e.getMessage());
 					UNINo4= null;
 				}
 				return UNINo4;
@@ -670,6 +675,7 @@ public class ProcessTabPageCM extends Page {
 				this.UNIConfiguration_PRI(processInfo, Site, serviceInfo);
 				this.EVCConfiguration_PRI(processInfo);
 			}catch (Exception e) {
+				log.info(e.getMessage());
 				mstatus= false;
 			}
 			return mstatus;
@@ -708,6 +714,7 @@ public class ProcessTabPageCM extends Page {
 				 report.reportDoneEvent("Save UNI Configuration", "UNI Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
+				log.info(e.getMessage());
 				mstatus= false;
 			}
 			return mstatus;
@@ -735,6 +742,7 @@ public class ProcessTabPageCM extends Page {
 				 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
+				log.info(e.getMessage());
 				mstatus= false;
 			}
 			 return mstatus;
@@ -770,6 +778,7 @@ public class ProcessTabPageCM extends Page {
 				 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
+				log.info(e.getMessage());
 				EVCNo1= null;
 			}
 			 return EVCNo1;
@@ -802,6 +811,7 @@ public class ProcessTabPageCM extends Page {
 				 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
+				log.info(e.getMessage());
 				EVCNo1= null;
 			}
 			 return EVCNo1;
@@ -834,6 +844,7 @@ public class ProcessTabPageCM extends Page {
 				 report.reportDoneEvent("Save EVC~2 Configuration", "EVC~2 Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
+				log.info(e.getMessage());
 				EVCNo2= null;
 			}
 			 return EVCNo2;
@@ -870,6 +881,7 @@ public class ProcessTabPageCM extends Page {
 				 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
+				log.info(e.getMessage());
 				EVCNo1= null;
 			}
 			 return EVCNo1;
@@ -907,6 +919,7 @@ public class ProcessTabPageCM extends Page {
 				 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
+				log.info(e.getMessage());
 				EVCNo1= null;
 			}
 			 return EVCNo1;
@@ -944,6 +957,7 @@ public class ProcessTabPageCM extends Page {
 				 report.reportDoneEvent("Save EVC~2 Configuration", "EVC~2 Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
+				log.info(e.getMessage());
 				EVCNo2= null;
 			}
 			 return EVCNo2;
@@ -972,6 +986,7 @@ public class ProcessTabPageCM extends Page {
 				 report.reportDoneEvent("Save EVC~3 Configuration", "EVC~3 Configuration Saved");
 				 waitForElementDisappear(elementLoading);
 			} catch (Exception e) {
+				log.info(e.getMessage());
 				EVCNo3= null;
 			}
 			 return EVCNo3;
@@ -1010,6 +1025,7 @@ public class ProcessTabPageCM extends Page {
 				 waitForElementDisappear(elementLoading);
 				 report.reportDoneEvent("Save Equipment Fee Configuration", "Equipment Fee Configuration Saved");
 			} catch (Exception e) {
+				log.info(e.getMessage());
 				mstatus= false;
 			}
 			 return mstatus;
@@ -1046,6 +1062,7 @@ public class ProcessTabPageCM extends Page {
 				 waitForElementDisappear(elementLoading);
 				 report.reportDoneEvent("Save Equipment Fee~2 Configuration", "Equipment Fee~2 Configuration Saved");
 			} catch (Exception e) {
+				log.info(e.getMessage());
 				mstatus= false;
 			}
 			 return mstatus;
@@ -1081,6 +1098,7 @@ public class ProcessTabPageCM extends Page {
 				 waitForElementDisappear(elementLoading);
 				 report.reportDoneEvent("Save Equipment Fee~3 Configuration", "Equipment Fee~3 Configuration Saved");
 			} catch (Exception e) {
+				log.info(e.getMessage());
 				mstatus= false;
 			}
 			 return mstatus;
@@ -1107,6 +1125,7 @@ public class ProcessTabPageCM extends Page {
 					 browser.switchTo().defaultContent();
 				  }
 			} catch (Exception e) {
+				log.info(e.getMessage());
 				mstatus= false;
 			}
 			 return mstatus;
@@ -1116,7 +1135,7 @@ public class ProcessTabPageCM extends Page {
 		public boolean UpgradeUNIPortSpeed(int UNINo, String portSpeedToSelect){
 			mstatus= true;
 			WebElement elementToClick = null;
-			//WaitandSwitchToFrame(frameMain);
+			log.info("Upgrade UNI Port speed");
 			switch (UNINo) {			
 			case 1:
 				elementToClick = LinkUNI1; 
@@ -1143,11 +1162,12 @@ public class ProcessTabPageCM extends Page {
 						 new Select(ddUNIPortSpeed).selectByVisibleText(portSpeedToSelect);;
 						 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 						 report.reportDoneEvent("Save UNI Configuration", "UNI Configuration Updated");
+						 report.updateTestLog("Upgrade UNI Port Speed", "Upgraded UNI Port Sreed to: " + portSpeedToSelect, Status.SCREENSHOT);
 						 log.info("UNI Port Speed upgraded to: " + portSpeedToSelect);
-						 waitForElementDisappear(elementLoading);
-						// browser.switchTo().defaultContent();
+						 waitForElementDisappear(elementLoading);						
 				 	}
 			} catch (Exception e) {
+				log.info(e.getMessage());
 				mstatus= false;
 			}
 			 return mstatus;
@@ -1157,7 +1177,7 @@ public class ProcessTabPageCM extends Page {
 		public boolean UpgradeEVCBW(int EVCNo, String BasicCosBW){
 			mstatus= true;
 			WebElement elementToClick = null;
-			//WaitandSwitchToFrame(frameMain);
+			
 			switch (EVCNo) {
 			case 1:
 				elementToClick = LinkEVC1; 
@@ -1181,10 +1201,12 @@ public class ProcessTabPageCM extends Page {
 						 new Select(ddBasicCoSBandwidth).selectByVisibleText(BasicCosBW);						
 						 iClick(btnSave, null, "Click on save button: Process page: SaveButton");
 						 report.reportDoneEvent("Save EVC Configuration", "EVC Configuration Saved");
+						 report.updateTestLog("Upgrade EVC Bandwidth", "Upgraded ENC Bandwidth to: " + BasicCosBW, Status.SCREENSHOT);
 						 log.info("EVC Basic Cos Bandwidth to: " + BasicCosBW);
 						 waitForElementDisappear(elementLoading);	
 				 	}
 			} catch (Exception e) {
+				log.info(e.getMessage());
 				mstatus= false;
 			}
 			 return mstatus;

@@ -1,5 +1,6 @@
 package com.comcast.century.cm.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -16,9 +17,8 @@ public class AccountTabPageCM extends Page  {
 		super(context);
 	}
 	
+	Logger log = Logger.getLogger(AccountTabPageCM.class);
 	
-
-	//@FindBy(xpath = "//a[.='Account']") // @FindBy(xpath = "//a[.='Account']")
 	@FindBy(linkText="Account")
 	private WebElement tabAccount;
 
@@ -27,9 +27,8 @@ public class AccountTabPageCM extends Page  {
 
 	@FindBy(xpath = "//*[@id='AccountFrame' and @src='account.exc']")
 	private WebElement frameAccount;
-
-
-	@FindBy(xpath = "//input[@id='cmb-comboAccountType-inputEl']")
+	
+	@FindBy(id = "cmb-comboAccountType-inputEl")
 	private WebElement ddTextAccountType;
 
 	@FindBy(xpath = "//li[text()='Service']")
@@ -38,14 +37,13 @@ public class AccountTabPageCM extends Page  {
 	@FindBy(xpath = "//li[text()='Billing']")
 	private WebElement ddValueAccountTypeBilling;
 
-	@FindBy(xpath = "//input[@id='entityCombo-inputEl']")
+	@FindBy(id = "entityCombo-inputEl")
 	private WebElement ddtxtServiceAcc;
 
-	// input[contains(@value,'AcctNam')]
 	@FindBy(xpath = "//input[contains(@value,'CENTURY_PROD_TEST') or contains(@value,'CENTURY_CAT_TEST')]")
 	private WebElement chkServiceAcc;
 
-	@FindBy(xpath = "//*[@id='assocToCombo-inputEl']")
+	@FindBy(id = "assocToCombo-inputEl")
 	private WebElement ddtxtAssocTo;
 
 	@FindBy(xpath = "//li[text()='Site']")
@@ -54,21 +52,19 @@ public class AccountTabPageCM extends Page  {
 	@FindBy(xpath = "//input[contains(@value,'Site')]")
 	private WebElement chkSite;
 
-	// img[@title='Get BAN']
 	@FindBy(xpath = "//img[@title='Get BAN']")
 	private WebElement imgGetBAN;
 
 	@FindBy(id = "ban")
-	private WebElement textBAN;
+	private WebElement textBAN;	
 	
-	// txtBillingAccnName
-	@FindBy(xpath = "//input[@id='billingAccountName']")
+	@FindBy(id = "billingAccountName")
 	private WebElement txtBillingAccnName;
 
 	@FindBy(id = "ext-gen1347")
 	private WebElement ddArrwAssocTo;
 
-	@FindBy(xpath = "//input[@id='assocToCombo-inputEl']")
+	@FindBy(id ="assocToCombo-inputEl")
 	private WebElement ddTextAssocTo;
 
 	@FindBy(id = "accName")
@@ -77,7 +73,7 @@ public class AccountTabPageCM extends Page  {
 	@FindBy(id = "ext-gen1223")
 	private WebElement ddArrwLegalEntity;
 
-	@FindBy(xpath = "//input[@id='cmb-comboComcastLegalEntity-inputEl']")
+	@FindBy(id = "cmb-comboComcastLegalEntity-inputEl")
 	private WebElement ddTextLegalEntity;
 
 	@FindBy(xpath = "//li[text()='Comcast Business Communications, LLC']")
@@ -86,13 +82,13 @@ public class AccountTabPageCM extends Page  {
 	@FindBy(id = "ext-gen1228")
 	private WebElement ddArrwLOB;
 
-	@FindBy(xpath = "//input[@id='cmb-comboLineOfBusiness-inputEl']")
+	@FindBy(id = "cmb-comboLineOfBusiness-inputEl")
 	private WebElement ddTextLOB;
 
 	@FindBy(xpath = "//li[text()='Metro E']")
 	private WebElement ddValueLOB;
 
-	@FindBy(xpath = "//*[@id='cmb-comboBillERate-inputEl']")
+	@FindBy(id = "cmb-comboBillERate-inputEl")
 	private WebElement ddTextErate;
 
 	@FindBy(xpath = "//li[text()='Yes']")
@@ -101,13 +97,13 @@ public class AccountTabPageCM extends Page  {
 	@FindBy(id = "ext-gen1208")
 	private WebElement ddArrwVMarket;
 
-	@FindBy(xpath = "//input[@id='cmb-comboVMarket-inputEl']")
+	@FindBy(id="cmb-comboVMarket-inputEl")
 	private WebElement ddTextVMarket;
 
 	@FindBy(xpath = "//li[text()='Cable Operators']")
 	private WebElement ddValueVMarket;
 
-	@FindBy(xpath = "//*[@id='cmb-comboErateMarket-inputEl']")
+	@FindBy(id = "cmb-comboErateMarket-inputEl")
 	private WebElement ddTextVMarketErate;
 
 	@FindBy(xpath = "//li[text()='Rural Healthcare']")
@@ -116,19 +112,16 @@ public class AccountTabPageCM extends Page  {
 	@FindBy(id = "useCustomerAddress")
 	private WebElement useCustomerAddress;
 
-	///@FindBy(xpath = "//*[@id='_eventId_checkAccAddAvailability']")
 	@FindBy(id = "_eventId_checkAccAddAvailability")
 	private WebElement ValidateBtn;
 
-	@FindBy(xpath = "//*[@id='_eventId_createAccount']")
+	@FindBy(id = "_eventId_createAccount")
 	private WebElement createAccountBtn;
 
 	@FindBy(xpath = "//input[@value='Create New Account']")
 	private WebElement btnCreateNewAcc;
 
-	// *[@id='addcontact-toolEl']
-
-	@FindBy(xpath = "//*[@id='addcontact-toolEl']")
+	@FindBy(id = "addcontact-toolEl")
 	private WebElement BtnAddContact;
 
 	private boolean mstatus;
@@ -195,8 +188,7 @@ public class AccountTabPageCM extends Page  {
 			report.updateTestLog("Create Service Account", "Service Account Created Successfully", Status.SCREENSHOT);
 			browser.switchTo().defaultContent();
 		} catch (Exception ex) {
-			System.out.println(ex.getMessage());
-			ex.printStackTrace();
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -220,11 +212,9 @@ public class AccountTabPageCM extends Page  {
 			    //iClick(BtnAddContact, null, "Add Contact: ContactPage: AddContactButton");
 			 */
 			
-			waitforPageLoadComplete();
-			// browser.switchTo().defaultContent();
+			waitforPageLoadComplete();			
 		} catch (Exception ex) {
-			System.out.println(ex.getMessage());
-			ex.printStackTrace();
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -265,6 +255,7 @@ public class AccountTabPageCM extends Page  {
 			report.updateTestLog("Create Service Account", "Service Account Created Successfully", Status.SCREENSHOT);
 			browser.switchTo().defaultContent();
 		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 
@@ -279,8 +270,7 @@ public class AccountTabPageCM extends Page  {
 			if (WaitandSwitchToFrame(frameMain)) {
 				if (WaitandSwitchToFrame(frameAccount)) {
 					if (waitForElement(btnCreateNewAcc)) {
-						System.out.println("Create new Acc exists");
-
+						log.info("Create new Acc exists");
 					}
 
 					do {
@@ -320,6 +310,7 @@ public class AccountTabPageCM extends Page  {
 				}
 			}
 		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -337,7 +328,7 @@ public class AccountTabPageCM extends Page  {
 			report.reportDoneEvent("Click on Account tab", "Account tab clicked");
 			WaitandSwitchToFrame(frameAccount);
 			if (waitForElement(btnCreateNewAcc)) {
-				System.out.println("Create new Acc exists");
+				log.info("Create new Acc exists");
 				btnCreateNewAcc.click();
 				jsClickWE(btnCreateNewAcc);
 				report.reportDoneEvent("Click on Create New Account", "Create New Account Clicked");
@@ -369,6 +360,7 @@ public class AccountTabPageCM extends Page  {
 			report.updateTestLog("Create Billing Account", "Billing Account Created Successfully", Status.SCREENSHOT);
 			browser.switchTo().defaultContent();
 		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

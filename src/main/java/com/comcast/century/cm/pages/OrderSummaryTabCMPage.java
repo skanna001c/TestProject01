@@ -4,6 +4,7 @@ import java.awt.AWTException;
 import java.io.FileOutputStream;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -11,6 +12,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 import com.comcast.century.data.OrderSummaryInfo;
+import com.comcast.commons.ComcastTest;
 import com.comcast.reporting.Status;
 import com.comcast.utils.ComcastTestMain.FrameworkContext;
 import com.comcast.utils.Page;
@@ -37,43 +39,29 @@ public class OrderSummaryTabCMPage extends Page {
 	@FindBy(xpath = "//*[@id='mainFrame' and contains(@src,'loadServOrderManagementPanel.exc')]")
 	private WebElement frameMain;
 
-	// select[@id='taxJurisdiction']
-
-	@FindBy(xpath = "//select[@id='taxJurisdiction']")
+	@FindBy(id ="taxJurisdiction")
 	private WebElement ddtaxJurisdiction;
 
-	// *[@id='saleschannel']
-
-	@FindBy(xpath = "//select[@id='saleschannel']")
+	@FindBy(id = "saleschannel")
 	private WebElement ddsaleschannel;
 
-	// *[@id='soldRegion']
-
-	@FindBy(xpath = "//select[@id='soldRegion']")
+	@FindBy(id = "soldRegion")
 	private WebElement ddsoldRegion;
 
-	// *[@id='salesOrderNumber']
-
-	@FindBy(xpath = "//input[@id='salesOrderNumber']")
+	@FindBy(id = "salesOrderNumber")																				
 	private WebElement txtsalesOrderNumber;
 
-	// *[@id='salesforceopportunityid']
-
-	@FindBy(xpath = "//input[@id='salesforceopportunityid']")
+	@FindBy(id = "salesforceopportunityid")
 	private WebElement txtsalesforceopportunityid;
 
-	// *[@id='submitOrder']
-
-	@FindBy(xpath = "//input[@id='submitOrder']")
+	@FindBy(id = "submitOrder")
 	private WebElement btnsubmitOrder;
 
 	@FindBy(xpath = "//input[@id='customerOrderSignatureDate-inputEl']/../following-sibling::*/child::*")
 	private WebElement dtCustomerOrderSig;
 
 	@FindBy(xpath = "//input[@id='salesOrderAcceptanceDate-inputEl']/../following-sibling::*/child::*")
-	private WebElement dtSalesOrderAcceptance;
-		
-	
+	private WebElement dtSalesOrderAcceptance;	
 	
 	@FindBy(xpath = "//input[@id='salesOrderSubmitDate-inputEl']/../following-sibling::*/child::*")
 	private WebElement dtSalesOrderSubmitted;
@@ -111,16 +99,16 @@ public class OrderSummaryTabCMPage extends Page {
 	@FindBy(xpath = "//input[contains(@id,'numberfield')]")
 	private List<WebElement> txtValue;
 
-	@FindBy(xpath = "//input[@name='nrc']")
+	@FindBy(name ="nrc")
 	private WebElement txtValueNRC;
 
-	@FindBy(xpath = "//input[@name='rc']")
+	@FindBy(name ="rc")
 	private WebElement txtValueMRC;
 
 	@FindBy(xpath = "//span[text()='Yes']/following-sibling::*")
 	private WebElement btnYes;
 
-	@FindBy(xpath = "//select[@id='applicationName']")
+	@FindBy(id = "applicationName")
 	private WebElement ddNavigateToCSO;
 
 	@FindBy(xpath = "//button[text()='OK']")
@@ -129,25 +117,25 @@ public class OrderSummaryTabCMPage extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading;
 
-	@FindBy(xpath = "//img[@id='manageattach-toolEl']")
+	@FindBy(id = "manageattach-toolEl")
 	private WebElement linkAttachments;
 	
 	@FindBy(css = "img[id*='managenotes']")
 	private WebElement linkNotes;
 
-	@FindBy(xpath = "//*[@id='notesframe']")
+	@FindBy(id = "notesframe")
 	private WebElement frameNotes;
 
-	@FindBy(xpath = "//select[@id='attachMode']")
+	@FindBy(id = "attachMode")
 	private WebElement ddAttachmentRepository;
 
 	@FindBy(xpath = "//span[text()='Browse...']")
 	private WebElement btnBrowse;
 
-	@FindBy(xpath = "//select[@id='attachmentType0']")
+	@FindBy(id = "attachmentType0")
 	private WebElement ddAttachmentType;
 
-	@FindBy(xpath = "//*[@id='btncreate']")
+	@FindBy(id = "btncreate")
 	private WebElement btnAdd;
 
 	@FindBy(xpath = "//span[text()='ATTACHMENTS']/../following-sibling::div[3]/child::img")
@@ -156,7 +144,7 @@ public class OrderSummaryTabCMPage extends Page {
 	@FindBy(xpath = "//span[text()='NOTES']/../following-sibling::div[3]/child::img")
 	private WebElement closeNotesWindow;
 
-	@FindBy(xpath = "//*[@id='cmbcomboworkListActions-inputEl']")
+	@FindBy(id = "cmbcomboworkListActions-inputEl")
 	private WebElement ddTextMoreActions;
 
 	@FindBy(xpath = "//li[text()='Assign Label']")
@@ -165,7 +153,7 @@ public class OrderSummaryTabCMPage extends Page {
 	@FindBy(xpath = "//*[@value='GO']")
 	private WebElement btnGo;
 
-	@FindBy(xpath = "//*[@id='codition']")
+	@FindBy(id = "codition")
 	private WebElement frameCondition;
 
 	@FindBy(xpath = "//input[@placeholder='---Select Label---']")
@@ -174,7 +162,7 @@ public class OrderSummaryTabCMPage extends Page {
 	@FindBy(xpath = "//div[text()='CAT Test Orders']/../preceding-sibling::td/child::div/child::div")
 	private WebElement chkboxCatTestOrders;
 
-	@FindBy(xpath = "//*[@id='ApplyTo']")
+	@FindBy(id = "ApplyTo")
 	private WebElement btnApply;
 
 	@FindBy(xpath = "//span[text()='OK']/following-sibling::span")
@@ -183,8 +171,7 @@ public class OrderSummaryTabCMPage extends Page {
 	@FindBy(xpath = "//div[.='Related Order ID'][contains(@id,'legendTitle')]/preceding-sibling::*")
 	private WebElement btnExpandRelatedOrderID;
 
-	@FindBy(xpath = "//*[@id='relatedOrderID']")
-
+	@FindBy(id = "relatedOrderID")
 	private WebElement txtRelatedOrderID ;
 	
 	@FindBy(xpath = "//div[.='Label(s) applied successfully']")
@@ -203,8 +190,6 @@ public class OrderSummaryTabCMPage extends Page {
 	private WebElement SRID ;
 	
 	//############################### Disconnect '##########################
-	/*@FindBy(xpath = "//td[contains(.,'Supp/MACD has been auto generated for the following Service Request Id(s)')]")
-	private WebElement EquipmentSuptxt ;*/
 	
 	@FindBy(xpath = "//td[contains(.,'Supp/MACD has been auto generated for the following Service Request Id(s)')]/following-sibling::td")
 	private WebElement EquipmentSupSRID ;
@@ -212,6 +197,8 @@ public class OrderSummaryTabCMPage extends Page {
 	//#########################################################
 	
 	private boolean mstatus=true;
+	
+	Logger log = Logger.getLogger(OrderSummaryTabCMPage.class);
 
 	private String relatedOrderIDValue;
 	
@@ -221,6 +208,8 @@ public class OrderSummaryTabCMPage extends Page {
 		try {			
 			 if(testSettings.getEnvironmentToTest().equalsIgnoreCase("PROD")){
 				 this.assignLabelCM("CAT Test Orders");
+				 report.updateTestLog("Label Assign", "Label Assigned",
+							Status.SCREENSHOT);
 			 }
 			this.enterOrderDetails(orderSummaryInfo);
 			if ((activityType.getText().trim()).equalsIgnoreCase("New Connect")) {
@@ -231,7 +220,7 @@ public class OrderSummaryTabCMPage extends Page {
 			}
 			SRID = this.ClickSubmitOrderButton();
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			log.info(e.getMessage());
 			SRID = null;
 		}
 		return SRID;
@@ -247,6 +236,7 @@ public class OrderSummaryTabCMPage extends Page {
 				report.updateTestLog("Supp/MACD has been auto generated for the following Service Request Id", "Verified",
 						Status.SCREENSHOT);
 				eqSupSRID=EquipmentSupSRID.getText().trim();
+				log.info("Disconnect Equipment SR ID: " + eqSupSRID);
 				browser.switchTo().defaultContent();
 				return eqSupSRID;
 				
@@ -262,6 +252,8 @@ public class OrderSummaryTabCMPage extends Page {
 		try {			
 			 if(testSettings.getEnvironmentToTest().equalsIgnoreCase("PROD")){
 				 this.assignLabelCM("CAT Test Orders");
+				 report.updateTestLog("Label Assign", "Label Assigned",
+							Status.SCREENSHOT);
 			 }
 			this.enterOrderDetails(orderSummaryInfo);
 			if ((activityType.getText().trim()).equalsIgnoreCase("New Connect")) {
@@ -272,7 +264,7 @@ public class OrderSummaryTabCMPage extends Page {
 			}
 			SRID = this.ClickSubmitOrderButton();
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			log.info(e.getMessage());
 			SRID = null;
 		}
 		return SRID;
@@ -302,7 +294,7 @@ public class OrderSummaryTabCMPage extends Page {
 			scrollUp();
 			browser.switchTo().defaultContent();
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return relatedOrderIDValue;
@@ -338,8 +330,7 @@ public class OrderSummaryTabCMPage extends Page {
 			browser.switchTo().defaultContent();
 
 		}catch(Exception e){
-
-			System.out.println(e.getMessage());
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -364,6 +355,7 @@ public class OrderSummaryTabCMPage extends Page {
 			clickndRelease(closeNotesWindow);
 			browser.switchTo().defaultContent();
 		}catch(Exception e){
+			log.info(e.getMessage());
 			mstatus=false;
 		}
 		return mstatus;
@@ -398,6 +390,7 @@ public class OrderSummaryTabCMPage extends Page {
 			//}
 			
 		} catch (Exception e) {
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -434,6 +427,7 @@ public class OrderSummaryTabCMPage extends Page {
 			waitForElement(closeAttachmentWindow);
 			clickndRelease(closeAttachmentWindow);
 		} catch (Exception e) {
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -451,6 +445,7 @@ public class OrderSummaryTabCMPage extends Page {
 			enterValue(mrcEqFee, txtValueMRC,
 					orderSummaryInfo.valueEqFeeMRC); /* Enter MRC for Equipment Fee */
 		} catch (Exception e) {
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -463,6 +458,7 @@ public class OrderSummaryTabCMPage extends Page {
 			enterValue(nrcBGP,txtValueNRC,orderSummaryInfo.valueNRC);   /*Enter BGP NRC*/
 			enterValue(mrcBGP,txtValueMRC,orderSummaryInfo.valueMRC);   /*ENTER BGP MRC*/
 		} catch (Exception e) {
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -480,6 +476,7 @@ public class OrderSummaryTabCMPage extends Page {
 			enterValue(mrcEqFee, txtValueMRC,
 					orderSummaryInfo.valueEqFeeMRC); /* Enter MRC for Equipment Fee */
 		} catch (Exception e) {
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -487,7 +484,6 @@ public class OrderSummaryTabCMPage extends Page {
 	public String ClickSubmitOrderButton() {
 		String SRID_RT = null;
 		try {
-			// ShortWaitandSwitchToFrame(frameMain);
 			if (waitForElement(btnsubmitOrder)) {
 				iClick(btnsubmitOrder, null, "Submit Order: Order Summary Page: SubmitButton");
 				if(waitForElement(btnYes,5)){
@@ -500,6 +496,7 @@ public class OrderSummaryTabCMPage extends Page {
 					report.updateTestLog("Click Sumbit Order", "Order Submitted Successfully", Status.SCREENSHOT);
 					report.reportPassEvent("Click Sumbit Order", "Order Submitted Successfully");
 					SRID_RT = SRID.getText();
+					log.info("SR ID is: " + SRID_RT);
 				}
 				else
 				{
@@ -510,6 +507,7 @@ public class OrderSummaryTabCMPage extends Page {
 			browser.switchTo().defaultContent();
 			waitforPageLoadComplete();
 		} catch (Exception e) {
+			log.info(e.getMessage());
 			SRID_RT = null;
 		}
 		return SRID_RT;
@@ -549,6 +547,7 @@ public class OrderSummaryTabCMPage extends Page {
 			waitforPageLoadComplete();
 			browser.switchTo().defaultContent();
 		} catch (Exception e) {
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 

@@ -2,6 +2,7 @@ package com.comcast.century.cm.pages;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,7 +26,7 @@ public class AddressTabPageCM extends Page {
 	
 	private boolean mstatus;
 	
-	
+	Logger log = Logger.getLogger(AddressTabPageCM.class);
 	
 	public AddressTabPageCM(FrameworkContext context){
 		super(context);
@@ -51,47 +52,40 @@ public class AddressTabPageCM extends Page {
 	@FindBy(xpath = "//*[@id='mainFrame' and contains(@src,'loadCustomerPanel.exc')]")
 	private WebElement frameMain;
 	
-	@FindBy(xpath = "//*[@id='notesframe']")
+	@FindBy(id="notesframe")
 	private WebElement frameNotes;
 
 	@FindBy(xpath = "//*[@id='AddressFrame' and @src='address.exc']")
 	private WebElement frameAddress;
 	
-	//*[@id='addrSiteBean.siteName']
-	
-	@FindBy(xpath = "//input[@id='addrSiteBean.siteName']")
+	@FindBy(id = "addrSiteBean.siteName")
 	private WebElement txtSiteName;
 	
-	@FindBy(xpath = "//input[@id='addrSiteBean.address1']")
+	@FindBy(id = "addrSiteBean.address1")
 	private WebElement txtSiteAddressLine1;
 	
-	
-	@FindBy(xpath = "//input[@id='addrSiteBean.address2']")
+	@FindBy(id = "addrSiteBean.address2")
 	private WebElement txtSiteAddressLine2;
-	
-	//*[@id='CmbSitecity-inputEl']
-	
-	@FindBy(xpath = "//input[@id='CmbSitecity-inputEl']")
+		
+	@FindBy(id = "CmbSitecity-inputEl")
 	private WebElement ddtxtCity;
 	
 	@FindBy(xpath = "//li[text()='Englewood']")
 	private WebElement ddValueCity;
 	
-	//*[@id='CmbSitezipcode-inputEl']
-	
-	@FindBy(xpath = "//input[@id='CmbSitezipcode-inputEl']")
+	@FindBy(id ="CmbSitezipcode-inputEl")
     private WebElement ddtxtZipCode;
 		
 	@FindBy(xpath = "//li[text()='80113']")
 	private WebElement ddValueZipCode;
 	
-	@FindBy(xpath = "//img[@id='zipcode_imgSearch']")
+	@FindBy(id = "zipcode_imgSearch")
 	private WebElement imgZipcodeSearch;
 	
 	@FindBy(xpath = "//span[text()='City']")
 	private WebElement txtCity;
 	
-	@FindBy(xpath = "//input[@id='closeLookup']")
+	@FindBy(id = "closeLookup")
 	private WebElement btnOk;
 	
 	@FindBy(xpath = "//input[@id='CmbSiteregion-inputEl']")
@@ -100,28 +94,25 @@ public class AddressTabPageCM extends Page {
 	@FindBy(xpath = "//li[text()='Mile High']")
 	private WebElement ddValueRegion;
 	
-    @FindBy(xpath = "//input[@id='CmbSitedivision-inputEl']")
+    @FindBy(id = "CmbSitedivision-inputEl")
 	private WebElement ddtxtDivision;
 			
     @FindBy(xpath = "//li[text()='West']")
     private WebElement ddValueDivision;
-		
-		
-	@FindBy(xpath = "//input[@id='CmbSitemarket-inputEl']")
+				
+	@FindBy(id = "CmbSitemarket-inputEl")
 	private WebElement ddtxtMarket;
 			
     @FindBy(xpath = "//li[text()='Mile High']")
     private WebElement ddValueMarket;
     
-    @FindBy(xpath = "//input[@id='CmbSitestate-inputEl']")
+    @FindBy(id = "CmbSitestate-inputEl")
 	private WebElement ddtxtState;
 	
 	@FindBy(xpath = "//li[text()='Colorado']")
 	private WebElement ddValueState;
 	
-	//*[@id='CmbSiteheadEndName-inputEl']
-	
-	@FindBy(id="CmbSiteheadEndName-inputEl")
+	@FindBy(id = "CmbSiteheadEndName-inputEl")
 	private WebElement ddtxtHeadendName;
 	
 	@FindBy(id = "CmbSiteheadEndCLLI-inputEl")
@@ -131,35 +122,28 @@ public class AddressTabPageCM extends Page {
 	private WebElement ddValueHeadendName;
 	
 	@FindBy(xpath = "//input[@value='Validate']")
-	private WebElement btnValidate;
-	//*[@value='Validate']	
+	private WebElement btnValidate;	
 	
-	@FindBy(xpath = "//*[@id='create']")
+	@FindBy(id = "create")
 	private WebElement btnCreate;
 	
 	@FindBy(xpath = "//input[@value='More']")
 	private WebElement btnMore;
 	
-	@FindBy(xpath = "//input[@id='diclaimercheck']")
+	@FindBy(id = "diclaimercheck")
 	private WebElement chkDisclaimer;
-		
-		
-	@FindBy(xpath = "//*[@id='codition']")
+				
+	@FindBy(id = "codition")
 	private WebElement frameCondition;
-		
-		
+				
 	@FindBy(xpath = "//input[@value='Continue']")
 	private WebElement btnContinue;
 	
-	@FindBy(xpath = "//*[@id='0']")
+	@FindBy(id ="0")
 	private WebElement btnSelectValidSite;
 	
-	//*[@id='addcontact-toolEl']
-	
-	@FindBy(xpath = "//*[@id='addcontact-toolEl']")
+	@FindBy(id = "addcontact-toolEl")
 	private WebElement BtnAddContact;
-	
-	//input[@value='Create New Address']
 	
 	@FindBy(xpath = "//*[@value='Create New Address']")
 	private WebElement BtnCreateNewAddress;
@@ -182,7 +166,7 @@ public class AddressTabPageCM extends Page {
 			 this.CreateNewAddress();
 			 return true;
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info(e.getMessage());
 			return false;
 		}
 	 }
@@ -201,37 +185,13 @@ public class AddressTabPageCM extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 			
 		}
 		return mstatus;
 	}
-	
-	/*public String EnterSiteDetailsInvalid(SiteInfo siteInfo) throws InterruptedException{
-		waitForElement(txtSiteName);
-		String siteName = siteInfo.siteName + getTimestamp();
-		txtSiteName.sendKeys(siteName);
-		report.reportDoneEvent("Enter Site Name", "Entered Site Name as->" + siteName);
-		this.siteAddressInvalid(siteInfo);
-		this.headEndInformation(siteInfo);
-		this.clickCreateButton();
-		waitForElement(btnMore);
-		iClick(btnMore, null, "Select City: Site Address Page: MoreButton");		
-		WaitandSwitchToFrame(frameCondition);
-		waitForElement(chkDisclaimer);
-		chkDisclaimer.click();
-	    waitForElement(btnContinue);
-	    iClick(btnContinue, null, "Select City and continue: Site Address Page: ContinueButton");		
-		waitforPageLoadComplete();
-		waitForElementDisappear(elementLoading);
-		Thread.sleep(5*1000);
-		report.updateTestLog("Create Address", "Address Created Successfully", Status.SCREENSHOT);
-		browser.switchTo().defaultContent();
-		this.clickAddContact();	
-		return siteName;
-			 
-	}*/
-	
+		
 	public String EnterSiteDetailsValid(SiteInfo siteInfo) throws InterruptedException{
 		
 		waitForElement(txtSiteName);
@@ -264,35 +224,7 @@ public class AddressTabPageCM extends Page {
 		return siteName;
 			 
 	}
-	
-	/*public boolean siteAddressInvalid(SiteInfo siteInfo) throws InterruptedException{
-		mstatus = true;
-		try{				
-			waitForElement(txtSiteAddressLine1);
-			String siteAddress1 = siteInfo.siteAddress1 + getTimestamp();
-			txtSiteAddressLine1.sendKeys(siteAddress1);
-			report.reportDoneEvent("Enter Site Address Line 1", "Entered Site Address Line 1 as->" + siteAddress1);
-			waitForElement(ddtxtZipCode);
-			ddtxtZipCode.sendKeys(siteInfo.zipCode);
-			report.reportDoneEvent("Enter Zipcode", "Entered Zipcode as->" +siteInfo.zipCode);
-			imgZipcodeSearch.click();
-			report.reportDoneEvent("Search for Zipcode", "Zipcode Searched");
-			WaitandSwitchToFrame(frameCondition);
-			waitForElement(txtCity);
-			iterateThroughtableAndSelectCity(siteInfo.city);
-			waitForElement(btnOk);
-			iClick(btnOk, null, "Select City and click OK: Customer Page: OKButton");
-			browser.switchTo().defaultContent();
-		}
-		catch(Exception ex)
-		{
-			mstatus = false;
-		}
-		return mstatus;
-		
-	}*/
-	
-     public boolean siteAddressValid(SiteInfo siteInfo) throws InterruptedException{
+	     public boolean siteAddressValid(SiteInfo siteInfo) throws InterruptedException{
 		mstatus = true;
 		String siteAddress2;
 		try{				
@@ -323,6 +255,7 @@ public class AddressTabPageCM extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;			
@@ -339,22 +272,16 @@ public class AddressTabPageCM extends Page {
 				 scrollDown();				 
 					do{
 						if(waitForElement(ddtxtHeadendName)){							
-							//do{
-								scrollDown();
-								ddValueSelect(ddtxtHeadendName,by,siteInfo.headendName);
-							
-							//}
-							//while (!isElementPresent(browser.findElement(By.xpath("//li[text()='"+siteInfo.headendName+"']"))));
-							
-							// browser.findElement(By.xpath("//li[text()='"+siteInfo.headendName+"']")).click();			
-							 
-							 Thread.sleep(4000);
-							}
+							scrollDown();
+							ddValueSelect(ddtxtHeadendName,by,siteInfo.headendName);
+							Thread.sleep(4000);
+						}
 						}while(ddtxtHeadendCLLI.getAttribute("class").contains("x-form-empty-field"));
 			}				 
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -370,6 +297,7 @@ public class AddressTabPageCM extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -382,7 +310,7 @@ public class AddressTabPageCM extends Page {
 			 WaitandSwitchToFrame(frameMain);
 			 WaitandSwitchToFrame(frameAddress);
 			 if(waitForElement(BtnAddContact)){
-				 System.out.println("Btn exist");
+				 log.info("Add Contact Button exist");
 			 }
 			 BtnAddContact.click();
 			 /**
@@ -395,6 +323,7 @@ public class AddressTabPageCM extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -416,51 +345,13 @@ public class AddressTabPageCM extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;		
 	}
 	
 
-	/*public boolean ClickOnCreateNewAdd() throws InterruptedException{
-		mstatus = true;
-		try{
-			waitforPageLoadComplete();		
-			int counter;
-			WebElement frame = null;
-			if(WaitandSwitchToFrame(frameMain)){
-				System.out.println("Switched to main frame");
-				counter = 0;
-				
-				do 
-				  {
-					System.out.println("inside do");
-					frame=iterateThroughFramesinsideFrame(BtnCreateNewAddress,frameMain);
-					sleep(10*1000);
-					counter++;
-				 } while (frame==null && counter<=5);
-				
-			}
-		
-			if(WaitandSwitchToFrame(frame)){
-				if(waitForElement(BtnCreateNewAddress)){
-					 clickndRelease(BtnCreateNewAddress);
-					 waitforPageLoadComplete();
-				 }
-				
-			}
-			else
-			{
-				System.out.println("Address Frame not Found");
-			}	 
-		}
-		
-		catch(Exception ex)
-		{
-			mstatus = false;
-		}
-		return mstatus;
-	}*/
 }
 
 

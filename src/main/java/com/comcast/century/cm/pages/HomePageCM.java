@@ -1,5 +1,6 @@
 package com.comcast.century.cm.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,33 +29,29 @@ public class HomePageCM extends Page {
 	public HomePageCM(FrameworkContext context) {
 		super(context);
 	}
-
+	
+	Logger log = Logger.getLogger(HomePageCM.class);
+	
 	@FindBy(xpath = "//a[.='Home']")
 	private WebElement tabHome;
 
 	@FindBy(xpath = "//a[.='Customer']")
 	private WebElement tabCustomer;
 
-	@FindBy(xpath = "//*[@id='mainFrame']")
+	@FindBy(id = "mainFrame")
 	private WebElement frameMain;
 
-	@FindBy(xpath = "//*[@id='leftFrame']")
+	@FindBy(id = "leftFrame")
 	private WebElement frameLeft;
 
-	// *[@id='customerNameCombo-inputEl']
-
-	@FindBy(xpath = "//input[@id='customerNameCombo-inputEl']")
+	@FindBy(id = "customerNameCombo-inputEl")
 	private WebElement txtCustomerName;
 
-	@FindBy(xpath = "//*[@id='SEARCH_SERVICEORDERID']")
+	@FindBy(id = "SEARCH_SERVICEORDERID")
 	private WebElement txtSRID;
-
-	// *[@id='splitbutton-1011-btnIconEl']
 
 	@FindBy(xpath = "//span[text()='Search']/following-sibling::span")
 	private WebElement btnSearch;
-
-	// span[contains(.,'10955195')]
 
 	@FindBy(xpath = "//span[contains(.,'3900473')]")
 	private WebElement clickSRid;
@@ -62,12 +59,10 @@ public class HomePageCM extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading;
 
-	// span[text()='ServiceAcc024143152016']
-
 	@FindBy(xpath = "//span[contains(.,'ServiceAcc')]")
 	private WebElement clickServiceAcc;
 
-	@FindBy(xpath = "//*[@id='CustomerFrame']")
+	@FindBy(id = "CustomerFrame")
 	private WebElement frameCustomer;
 
 	@FindBy(css = "select#SEARCH_SERVICESTATUS")
@@ -88,7 +83,7 @@ public class HomePageCM extends Page {
 			iClick(tabHome);
 			waitforPageLoadComplete();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -102,13 +97,14 @@ public class HomePageCM extends Page {
 			txtCustomerName.sendKeys(custName);
 			iClick(btnSearch, null, "Search Customer: Home page: SearchButton");
 			waitforPageLoadComplete();
+			log.info("Customer Name searched: " + custName);
 			waitForElementDisappear(elementLoading);
 			waitUntilElementPresent(By.xpath("//span[contains(.,'" + custName + "')]"), 120);
 			browser.findElement(By.xpath("//span[contains(.,'" + custName + "')]")).click();
 			waitforPageLoadComplete();
 			browser.switchTo().defaultContent();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -125,7 +121,7 @@ public class HomePageCM extends Page {
 			waitForElementDisappear(elementLoading);
 			browser.switchTo().defaultContent();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 
@@ -149,7 +145,7 @@ public class HomePageCM extends Page {
 			browser.switchTo().defaultContent();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

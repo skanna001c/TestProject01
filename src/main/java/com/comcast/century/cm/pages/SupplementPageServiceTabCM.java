@@ -2,6 +2,7 @@ package com.comcast.century.cm.pages;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,10 +34,10 @@ public class SupplementPageServiceTabCM extends Page {
 
 	private boolean mstatus=true;	
 	
-	@FindBy(xpath = "//*[@id='mainFrame']")
+	@FindBy(id = "mainFrame")
 	private WebElement frameMain;
 	
-	@FindBy(xpath = "//*[@id='leftFrame']")
+	@FindBy(id = "leftFrame")
 	private WebElement frameLeft;
 	
 	@FindBy(xpath = "//*[@placeholder='---More Actions---']")
@@ -81,6 +82,7 @@ public class SupplementPageServiceTabCM extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
+	Logger log = Logger.getLogger(SupplementPageServiceTabCM.class);
 	
 	public boolean placeSupplements(SupplementInfo supplementInfo)  {
 		mstatus = true;
@@ -107,7 +109,7 @@ public class SupplementPageServiceTabCM extends Page {
 				elementToClick = chkBoxEVPL;
 				break;
 			default:
-				System.out.println("Invalid service name");
+				log.info("Invalid service name");
 			}
 		    	try{
 		    		 while(!waitForElement(elementToClick.get(0))){}
@@ -130,10 +132,14 @@ public class SupplementPageServiceTabCM extends Page {
 			
 			if (supplementInfo.supplementType.matches("Tech Sup|Admin Sup|Cancel Sup")) {
 				iSendKeys(ddValueMoreActions.get(0), supplementInfo.supplementType);
+				report.updateTestLog("Placing Supplemental", "Placing " + supplementInfo.supplementType + "Supplemental",
+						Status.SCREENSHOT);
 				waitForElement(btnGo.get(0));
 				btnGo.get(0).click();
 			} else if (supplementInfo.supplementType.matches("Change|Disconnect")) {
 				iSendKeys(ddValueMoreActions.get(1), supplementInfo.supplementType);
+				report.updateTestLog("Placing Supplemental", "Placing " + supplementInfo.supplementType + "Supplemental",
+						Status.SCREENSHOT);
 				waitForElement(btnGo.get(1));
 				btnGo.get(1).click();
 			}
@@ -145,6 +151,7 @@ public class SupplementPageServiceTabCM extends Page {
 					"This Action cannot be performed for Equipment Fee service. Please select only ME Service(s) to proceed")) {
 				report.updateTestLog("Verify EquipmentFee Error message", "EquipmentFee Error message verified",
 						Status.SCREENSHOT);
+				log.info("EquipmentFee Error message verified");
 			} else
 				report.reportFailEvent("Verify EquipmentFee Error message",
 						"EquipmentFee Error message verification failed");
@@ -169,10 +176,9 @@ public class SupplementPageServiceTabCM extends Page {
 			}
 			waitforPageLoadComplete();
 			waitForElementDisappear(elementLoading);
-		//	browser.switchTo().defaultContent();
 		} catch (Exception e) {
 			mstatus = false;
-			e.printStackTrace();
+			log.info(e.getMessage());
 
 		}
 		return mstatus;

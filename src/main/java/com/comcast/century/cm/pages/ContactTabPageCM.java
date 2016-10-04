@@ -1,5 +1,6 @@
 package com.comcast.century.cm.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -19,6 +20,8 @@ public class ContactTabPageCM extends Page {
 	protected static String HOME_PAGE_TITLE_STG = "Comcast Business | My Online Account";
 
 	protected static String HOME_PAGE_TITLE_SCH = "Search";
+	
+	Logger log = Logger.getLogger(ContactTabPageCM.class);
 
 	public ContactTabPageCM(FrameworkContext context) {
 		super(context);
@@ -39,16 +42,16 @@ public class ContactTabPageCM extends Page {
 	@FindBy(xpath = "//*[@id='AccountFrame' and @src='account.exc']")
 	private WebElement frameAccount;
 
-	@FindBy(xpath = "//*[@id='addcontact-toolEl']")
+	@FindBy(id ="addcontact-toolEl")
 	private WebElement BtnAddContact;
 
-	@FindBy(xpath = "//*[@id='mainFrame']")
+	@FindBy(id ="mainFrame")
 	private WebElement frameMain;
 
-	@FindBy(xpath = "//*[@id='codition']")
+	@FindBy(id = "codition")
 	private WebElement frameCondition;
 
-	@FindBy(xpath = "//input[@id='cmb-comboConTypeId-inputEl']")
+	@FindBy(id = "cmb-comboConTypeId-inputEl")
 	private WebElement ddTextContactType;
 
 	@FindBy(xpath = "//li[text()='Account Primary']")
@@ -75,55 +78,55 @@ public class ContactTabPageCM extends Page {
 	@FindBy(id = "officePhone")
 	private WebElement txtPrimaryPhone;
 
-	@FindBy(xpath = "//*[@id='addrBean.addrGDBean.addrsLine1']")
+	@FindBy(id = "addrBean.addrGDBean.addrsLine1")
 	private WebElement txtAddressLine1;
 
-	@FindBy(xpath = "//input[@id='CmbGDcity-inputEl']")
+	@FindBy(id = "CmbGDcity-inputEl")
 	private WebElement ddtxtCity;
 
 	@FindBy(xpath = "//li[text()='Akiak']")
 	private WebElement ddValueCity;
 
-	@FindBy(xpath = "//input[@id='CmbGDzipcode-inputEl']")
+	@FindBy(id = "CmbGDzipcode-inputEl")
 	private WebElement ddtxtZipCode;
 
-	@FindBy(xpath = "//img[@id='zipcode_imgSearch']")
+	@FindBy(id ="zipcode_imgSearch")
 	private WebElement imgZipcodeSearch;
 
-	@FindBy(xpath = "//input[@id='0']")
+	@FindBy(id = "0")
 	private WebElement btnRadioSelectZip;
 
-	@FindBy(xpath = "//input[@id='closeLookup']")
+	@FindBy(id = "closeLookup")
 	private WebElement btnOk;
 
 	@FindBy(xpath = "//li[text()='99552']")
 	private WebElement ddValueZipCode;
 
-	@FindBy(xpath = "//input[@id='CmbGDregion-inputEl']")
+	@FindBy(id = "CmbGDregion-inputEl")
 	private WebElement ddtxtRegion;
 
 	@FindBy(xpath = "//li[text()='Seattle'][2]")
 	private WebElement ddValueRegion;
 
-	@FindBy(xpath = "//input[@id='CmbGDdivision-inputEl']")
+	@FindBy(id = "CmbGDdivision-inputEl")
 	private WebElement ddtxtDivision;
 
 	@FindBy(xpath = "//li[text()='West']")
 	private WebElement ddValueDivision;
 
-	@FindBy(xpath = "//input[@id='CmbGDmarket-inputEl']")
+	@FindBy(id = "CmbGDmarket-inputEl")
 	private WebElement ddtxtMarket;
 
 	@FindBy(xpath = "//li[text()='Seattle']")
 	private WebElement ddValueMarket;
 
-	@FindBy(xpath = "//input[@id='CmbGDstate-inputEl']")
+	@FindBy(id = "CmbGDstate-inputEl")
 	private WebElement ddtxtState;
 
 	@FindBy(xpath = "//li[text()='Alaska']")
 	private WebElement ddValueState;
 
-	@FindBy(xpath = "//*[@id='_eventId_saveContact']")
+	@FindBy(id = "_eventId_saveContact")
 	private WebElement btnCreate;
 
 	@FindBy(xpath = "//input[@value='Back']")
@@ -132,7 +135,7 @@ public class ContactTabPageCM extends Page {
 	@FindBy(xpath = "//input[@value='Add New Contact']")
 	private WebElement btnAddNewContact;
 
-	@FindBy(xpath = "//*[@id='cmb-comboCustomerTitle-inputEl']")
+	@FindBy(id = "cmb-comboCustomerTitle-inputEl")
 	private WebElement ddTextNameSuffix;
 
 	@FindBy(xpath = "//li[text()='Mr']")
@@ -171,6 +174,7 @@ public class ContactTabPageCM extends Page {
 		}
 
 		catch (Exception ex) {
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -203,6 +207,7 @@ public class ContactTabPageCM extends Page {
 		}
 
 		catch (Exception ex) {
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -241,6 +246,7 @@ public class ContactTabPageCM extends Page {
 				browser.switchTo().defaultContent();
 			}
 		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -275,6 +281,7 @@ public class ContactTabPageCM extends Page {
 				browser.switchTo().defaultContent();
 			}
 		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -293,6 +300,7 @@ public class ContactTabPageCM extends Page {
 			report.reportDoneEvent("Click on Back Button", "Back Button Clicked");
 			browser.switchTo().defaultContent();
 		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
