@@ -150,6 +150,8 @@ public class NewConnectTest extends ComcastTest {
 				new AddressTabPageCM(frameworkContext).CreateNewAddress();
 			}
 			
+			
+			
 			Site = (new AddressTabPageCM(frameworkContext)).EnterSiteDetailsValid(siteInfo);
 			frameworkContext.getDataDump().setValue("SITE" + i + "_RT", Site);
 			new ContactTabPageCM(frameworkContext).CreateSiteTechnicalContact(contactInfo);
