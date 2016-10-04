@@ -78,7 +78,7 @@ public class ServiceTabPageCM extends Page {
 	@FindBy(name = "Trunk-PRI")
 	private WebElement selectCheckBoxTrunkPRI;
 	
-	@FindBy(xpath = "//div[text()='loading...']")
+	@FindBy(xpath = "//div[text()='Loading...' or text()='loading...']")
 	private WebElement elementLoading ;
 	
 	@FindBy(xpath = "//span[.='Plan Search']")

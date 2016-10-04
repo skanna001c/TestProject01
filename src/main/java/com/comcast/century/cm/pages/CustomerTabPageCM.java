@@ -293,6 +293,7 @@ public class CustomerTabPageCM extends Page {
 			do {
 				waitUntilElementPresent(by, 60);
 				if (isElementPresent(btnExpand)) {
+
 					iClick(btnExpand, null, "ExpandSOHierarchyButton: CSO Page: ExpandButton");
 				}
 			} while (isElementDisplayed(btnExpand, 2));
