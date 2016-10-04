@@ -9,9 +9,9 @@
 
 	<test name="002-EPL_service">
 		<classes>
-			<class name="com.comcast.century.eod.CancelSupEPLService">
+			<class name="com.comcast.century.cancel.CancelSupFlow">
 				<methods>
-					<include name="createCustomer" />  <!-- 10988898 -->
+					<include name="createCustomer" />  
 					<include name="createServiceAccount" />
 					<include name="createBillingAccount" />
 					<include name="createAddress" />
@@ -51,7 +51,8 @@
 					
 					<include name="Obtain_Site_Agreement_CancelSup" />
 					<include name="Obtain_Site_Agreement_Coax_CancelSup" />
-					<include name="Obtain_Coax_Permit_CancelSup" />			
+					<include name="Obtain_Coax_Permit_CancelSup" />	
+					<include name="Obtain_Fiber_Plant_Permit_CancelSup" />
 					<include name="Set_Critical_Dates_CancelSup" />
 					<include name="Generate_Core_Config_CancelSup" />
 					

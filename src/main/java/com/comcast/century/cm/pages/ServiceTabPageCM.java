@@ -170,8 +170,8 @@ public class ServiceTabPageCM extends Page {
 				this.EquipmentFee(serviceInfo);
 				this.ClickOnContinueButton();
 				break;
-			case "ENS" :
-			case "ENS-PRI" :
+			case "ENS" :this.ENS();
+			case "ENS-PRI" :this.ENS();this.TrunkPRI();
 				this.ENS();
 				if(serviceInfo.serviceName.equalsIgnoreCase("ENS-PRI")){
 					this.TrunkPRI();

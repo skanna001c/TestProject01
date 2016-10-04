@@ -7,7 +7,7 @@
 	</listeners>
 
 
-	<test name="EDI_New_Connect_Local_Biller_Billertype_CSG">
+<!-- 	<test name="EDI_New_Connect_Local_Biller_Billertype_CSG">
 		<classes>
 			<class name="com.comcast.century.common.NewConnectTest">
 				<methods>
@@ -30,7 +30,7 @@
 				</methods>
 			</class>
 		</classes>
-	</test>
+	</test> -->
 
 	<test name="New_Connect_ME_EDI_New_connect">
 		<classes>
@@ -73,7 +73,7 @@
 	</test>
 
 
-	<test name="New_Connect_ME_EDI_ERATE_New_connect">
+<!-- 	<test name="New_Connect_ME_EDI_ERATE_New_connect">
 		<classes>
 			<class name="com.comcast.century.common.NewConnectTest">
 				<methods>
@@ -318,7 +318,7 @@
 				</methods>
 			</class>
 		</classes>
-	</test>
+	</test> -->
 	
 	
 

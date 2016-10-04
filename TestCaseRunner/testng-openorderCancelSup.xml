@@ -5,9 +5,9 @@
 		<listener class-name="com.comcast.utils.TestFilter" />
 	</listeners>
 
-	<test name="005-New_E-Rate_Order-EDI">
+	<test name="OpenOrder_CancelSUP_EPL">
 		<classes>
-			<class name="com.comcast.century.newconnect.NewConnect">
+			<class name="com.comcast.century.cancel.CancelSupFlow">
 				<methods>
 					<include name="createCustomer" />
 					<include name="createServiceAccount" />
@@ -17,6 +17,7 @@
 					<include name="configureService" />
 					<include name="processService" />
 					<include name="submitOrder" />
+					
 					<include name="Conduct_Site_Survey" />
 					<include name="Obtain_Site_Agreement" />
 					<include name="Conduct_Fiber_Plant_Survey" />
@@ -30,7 +31,13 @@
 					<include name="Ship_CPE" />
 					<include name="Create_Account_and_Equipment" />
 					<include name="Assign_Design_Info" />
-					<include name="Generate_CPE_Config" />
+					
+					<include name="startCM" />
+					<include name="searchSRID" />
+					<include name="initiateSupplements" />
+					<include name="submitOrderSupplements" />
+					
+				<!-- 	<include name="Generate_CPE_Config" />
 					<include name="Generate_Core_Config" />
 					<include name="Load_Core_Config" />
 					<include name="Install_CPE" />
@@ -41,7 +48,7 @@
 					<include name="Complete_Customer_Acceptance_Testing" />
 					<include name="Create_Order_Billing_Package" />
 					<include name="Start_Billing" />
-					<include name="EqFeeStartBilling" />
+					<include name="EqFeeStartBilling" /> -->
 				</methods>
 			</class>
 		</classes>

@@ -286,7 +286,8 @@ public class SiteLevelTasks extends Page {
 		return mstatus;
 	}
 	public boolean ObtainFiberPlantPermits() throws InterruptedException{
-		try{
+		return clicktask(taskObtainFiberPlantPermits, "Obtain Fiber Plant Permits");
+		/*try{
 			if(waitForElement(taskObtainFiberPlantPermits)){
 				if(checkifStatusChanged(taskObtainFiberPlantPermits,btnRefresh,"INPROGRESS")){
 				taskObtainFiberPlantPermits.click();
@@ -299,7 +300,7 @@ public class SiteLevelTasks extends Page {
 		{
 			mstatus = false;
 		}
-		return mstatus;
+		return mstatus;*/
 	}
 	
 	public boolean CompleteFiberPlantBuild() throws InterruptedException{
@@ -357,6 +358,29 @@ public class SiteLevelTasks extends Page {
 		return mstatus;
 	}
 
+	public boolean clicktask(WebElement task,String taskName) {
+		mstatus=true;
+		
+		try{
+			if(waitForElement(task)){
+				//if(checkifStatusChanged(taskStartBilling,btnRefresh,"INPROGRESS") || checkifStatusChanged(taskStartBilling,btnRefresh,"COMPLETED")){
+				if(this.checkifStatusChanged(task,btnRefresh,"INPROGRESS")){
+					jsClick(task);
+					report.reportDoneEvent("Inside "+taskName, "");
+					waitforPageLoadComplete();
+				}
+				else{ mstatus=false;}
+				
+			}else  mstatus=false;
+		}
+		catch(Exception ex)
+		{  
+			mstatus = false;
+			ex.printStackTrace();
+		}
+		return mstatus;
+	}	
+	
 }
 
 

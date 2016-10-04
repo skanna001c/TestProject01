@@ -30,6 +30,7 @@
 					<include name="Ship_CPE" />
 					<include name="Create_Account_and_Equipment" />
 					<include name="Assign_Design_Info" />
+					
 					<include name="Generate_CPE_Config" />
 					<include name="Generate_Core_Config" />
 					<include name="Load_Core_Config" />
@@ -42,6 +43,7 @@
 					<include name="Create_Order_Billing_Package" />
 					<include name="Start_Billing" />
 					<include name="EqFeeStartBilling" />
+					
 					<include name="startCM" />
 					<include name="searchSRID" />
 					<include name="initiateSupplements" />
