@@ -1,5 +1,6 @@
 package com.comcast.century.cm.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -28,6 +29,8 @@ public class EquipmentTabPageCM extends Page {
 		
 	}
 	
+	Logger log = Logger.getLogger(EquipmentTabPageCM.class);
+	
 	@FindBy(xpath = "//b[contains(.,'Device')]/../../../following-sibling::tr[1]/child::td[2]/child::*/child::input[1]")
 	private WebElement txtPolycomDevice  ;
 	
@@ -49,6 +52,7 @@ public class EquipmentTabPageCM extends Page {
 			iClick(btnContinue,null,"Click on Continue button: Equipment quantity configuration: ContinueButton");			
 			waitForElementDisappear(elementLoading);
 		} catch (Exception e) {
+			log.info(e.getMessage());
 			mstatus = true;
 		}
 		return mstatus;

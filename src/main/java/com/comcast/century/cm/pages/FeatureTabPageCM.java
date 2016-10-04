@@ -5,10 +5,12 @@ package com.comcast.century.cm.pages;
 import java.awt.AWTException;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.comcast.century.data.ServiceInfo;
+import com.comcast.reporting.Status;
 import com.comcast.utils.ComcastTestMain.FrameworkContext;
 import com.comcast.utils.Page;
 
@@ -32,6 +34,8 @@ public class FeatureTabPageCM extends Page {
 		
 		
 	}
+	
+	Logger log = Logger.getLogger(EquipmentTabPageCM.class);
 	
 	@FindBy(xpath = "//*[@id='mainFrame' and contains(@src,'loadServOrderManagementPanel.exc')]")
 	private WebElement frameMain;
@@ -66,29 +70,28 @@ public class FeatureTabPageCM extends Page {
 	@FindBy(xpath = "//b[text()='TN Block Selection']/../../../following-sibling::tr[1]/child::td[2]/child::*/child::input[1]")
 	private WebElement txtAdditionalAlternateTN ;
 	
-	private boolean mstatus;
+	public boolean mstatus = true;
 	
 	public boolean clickOnFeatureTab(){
 		try{
-			/*browser.switchTo().defaultContent();
-			WaitandSwitchToFrame(frameMain);*/
 			waitForElementDisappear(elementLoading);
 			waitForElement(tabFeature);
 			clickndRelease(tabFeature);
 			waitforPageLoadComplete();
-			//browser.switchTo().defaultContent();
+			log.info("Feature Tab clicked");
 		}catch (Exception e) {
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
 	}
 	
 	public boolean selectBGP(){
-		try{
-			//WaitandSwitchToFrame(frameMain);
+		try{			
 			this.BGP();
 			this.ClickOnContinueButton();
 		}catch (Exception e) {
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -100,6 +103,7 @@ public class FeatureTabPageCM extends Page {
 			while(!waitForElement(chkBoxBGP)){}
 				chkBoxBGP.click();
 		} catch (Exception e) {
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -121,6 +125,7 @@ public class FeatureTabPageCM extends Page {
 				
 			}
 		} catch (Exception e) {
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -142,6 +147,7 @@ public class FeatureTabPageCM extends Page {
 				waitForElementDisappear(elementLoading);
 			}
 		} catch (Exception e) {
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -151,6 +157,7 @@ public class FeatureTabPageCM extends Page {
 		mstatus = true;
 		WaitandSwitchToFrame(frameMain);
 		try {
+			log.info("Inside update UNI and EVC count method");
 			waitForElementDisappear(elementLoading);
 			waitForElementDisappear(elementLoading);
 			if(waitForElement(txtUNIqt)){				
@@ -159,12 +166,16 @@ public class FeatureTabPageCM extends Page {
 				iSendKeys(txtUNIqt, UNI);				
 				txtUNIandEVCqt.get(0).click();
 				txtUNIqt.click();
+				report.updateTestLog("Upgrade UNI and EVC Count", "Upgraded the UNI to :" + UNI + " Upgraded the EVC to :" + EVC ,
+						Status.SCREENSHOT);
+				log.info("Upgraded the UNI to :" + UNI + " Upgraded the EVC to :" + EVC );
 				scrollDown();
 				waitForElement(btnContinue);
 				iClick(btnContinue,null,"Click on continue in feature tab: feature tab: ContinueButton");
 				waitForElementDisappear(elementLoading);
 			}
 		} catch (Exception e) {
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -183,6 +194,7 @@ public class FeatureTabPageCM extends Page {
 		iClick(btnContinue,null,"Click on continue in feature tab: feature tab: ContinueButton");		
 	    waitForElementDisappear(elementLoading);
 		} catch (Exception e) {
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -215,9 +227,10 @@ public class FeatureTabPageCM extends Page {
 				this.EVPL();
 				break;
 			default :
-				System.out.println("Invalid Service");
+				log.info("Invalid Service");
 			}
 		}catch(Exception e){
+			log.info(e.getMessage());
 			mstatus=false;
 		}
 		return mstatus;
@@ -233,6 +246,7 @@ public class FeatureTabPageCM extends Page {
 		    waitForElementDisappear(elementLoading);			 
 	
 	} catch (Exception e) {
+		log.info(e.getMessage());
 		mstatus = false;
 	}
 	return mstatus;

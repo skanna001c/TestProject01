@@ -1,5 +1,6 @@
 package com.comcast.century.cm.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -41,82 +42,82 @@ public class CustomerTabPageCM extends Page {
 	@FindBy(xpath=".//*[@class='x-tab-strip-text' and .='Customer']")
 	private WebElement subtabCustomer;
 	
-	@FindBy(xpath = "//*[@id='mainFrame']")
+	@FindBy(id = "mainFrame")
 	private WebElement frameMain;
 	
-	@FindBy(xpath = "//*[@id='leftFrame']")
+	@FindBy(id = "leftFrame")
 	private WebElement frameLeft;
 	
 	@FindBy(xpath = "//*[@class[contains(.,'expand')]]")
 	private WebElement btnExpand ;
 
-	@FindBy(xpath = "//*[@id='CustomerFrame']")
+	@FindBy(id = "CustomerFrame")
 	private WebElement frameCustomer;
 	
-	@FindBy(xpath = "//input[@id='busiCustBean.businessName']")
+	@FindBy(id = "busiCustBean.businessName")
 	private WebElement txtCustomerName;
 	
-	@FindBy(xpath = "//*[@id='busiCustBean.busiWorkPhone1']")
+	@FindBy(id = "busiCustBean.busiWorkPhone1")
 	private WebElement txtworkPhone;
 	
-	@FindBy(xpath = "//*[@id='sfAccountID']")
+	@FindBy(id = "sfAccountID")
 	private WebElement txtSalesForceID;	
 
-	@FindBy(xpath = "//*[@id='addrBean.addrGDBean.addrsLine1']")
+	@FindBy(id = "addrBean.addrGDBean.addrsLine1")
 	private WebElement txtAddressLine1;
 	
-	@FindBy(xpath = "//*[@id='addrBean.addrGDBean.addrsLine2']")
+	@FindBy(id = "addrBean.addrGDBean.addrsLine2")
 	private WebElement txtAddressLine2;
 
-	@FindBy(xpath = "//div[@id='ext-gen1031']")
+	@FindBy(id = "xt-gen1031")
 	private WebElement ddArrwState;
 	
-	@FindBy(xpath = "//input[@id='CmbGDstate-inputEl']")
+	@FindBy(id = "CmbGDstate-inputEl")
 	private WebElement ddtxtState;
 	
 	@FindBy(xpath = "//li[text()='Alaska']")
 	private WebElement ddValueState;
 
-	@FindBy(xpath = "//div[@id='ext-gen1036']")
+	@FindBy(id = "ext-gen1036")
 	private WebElement ddArrwCity;
 	
-	@FindBy(xpath = "//input[@id='CmbGDcity-inputEl']")
+	@FindBy(id = "CmbGDcity-inputEl")
 	private WebElement ddtxtCity;
 	
 	@FindBy(xpath = "//li[text()='Akiak']")
 	private WebElement ddValueCity;
 
-	@FindBy(xpath = "//div[@id='ext-gen1041']")
+	@FindBy(id = "ext-gen1041")
 	private WebElement ddArrwZipCode;
 	
-	@FindBy(xpath = "//input[@id='CmbGDzipcode-inputEl']")
+	@FindBy(id = "CmbGDzipcode-inputEl")
     private WebElement ddtxtZipCode;
 		
 	@FindBy(xpath = "//li[text()='99552']")
 	private WebElement ddValueZipCode;
 	
-	@FindBy(xpath = "//img[@id='zipcode_imgSearch']")
+	@FindBy(id = "zipcode_imgSearch")
 	private WebElement imgZipcodeSearch;
 	
 	@FindBy(xpath = "//span[text()='City']")
 	private WebElement txtCity;
 	
-	@FindBy(xpath = "//*[@id='closeLookup']")
+	@FindBy(id = "closeLookup")
 	private WebElement btnOk;
 
-	@FindBy(xpath = "//input[@id='CmbGDdivision-inputEl']")
+	@FindBy(id = "CmbGDdivision-inputEl")
     private WebElement ddtxtDivision;
 		
 	@FindBy(xpath = "//li[text()='West']")
 	private WebElement ddValueDivision;
 	
-	@FindBy(xpath = "//input[@id='CmbGDmarket-inputEl']")
+	@FindBy(id = "CmbGDmarket-inputEl")
     private WebElement ddtxtMarket;
 		
 	@FindBy(xpath = "//li[text()='Seattle']")
 	private WebElement ddValueMarket;
 	
-	@FindBy(xpath = "//input[@id='CmbGDregion-inputEl']")
+	@FindBy(id = "CmbGDregion-inputEl")
     private WebElement ddtxtRegion;
 		
 	@FindBy(xpath = "//li[text()='Seattle'][2]")
@@ -128,16 +129,16 @@ public class CustomerTabPageCM extends Page {
 	@FindBy(xpath = "//input[@value='Create']")
 	private WebElement btnCreate;
 	
-	@FindBy(xpath = "//*[@id='0']")
+	@FindBy(id = "0")
 	private WebElement btnSelectValidSite;
 	
 	@FindBy(xpath = "//input[@value='More']")
 	private WebElement btnMore;
 
-	@FindBy(xpath = "//input[@id='diclaimercheck']")
+	@FindBy(id = "diclaimercheck")
 	private WebElement chkDisclaimer;
 
-	@FindBy(xpath = "//*[@id='codition']")
+	@FindBy(id = "codition")
 	private WebElement frameCondition;
 
 	@FindBy(xpath = "//input[@value='Continue']")
@@ -156,12 +157,12 @@ public class CustomerTabPageCM extends Page {
 	private WebElement linkSRID;
 	
 	@FindBy(xpath = "//div[text()='loading...']")
-	private WebElement elementLoading ;
-	
+	private WebElement elementLoading ;	
 	
 	
 	private boolean mstatus;	
 	
+	Logger log = Logger.getLogger(CustomerTabPageCM.class);
 	
 	@Override
 	protected boolean isValidPage() {
@@ -181,9 +182,6 @@ public class CustomerTabPageCM extends Page {
 	
 	  public String customerInformation(CustomerInfo customerInfo){		  
 		  waitforPageLoadComplete();
-		  /*waitForElement(tabCustomer);
-		  //tabCustomer.click();
-		   * doubleClick(tabCustomer);*/
 		  do{
 			  browser.switchTo().defaultContent();
 			  if(waitForElement(tabCustomer,1)){
@@ -191,36 +189,19 @@ public class CustomerTabPageCM extends Page {
 				  waitforPageLoadComplete();
 			  }
 			  WaitandSwitchToFrame(frameMain);
-		  }while(!WaitandSwitchToFrame(frameCustomer,1));
-		  
-		  
-		 /* if(WaitandSwitchToFrame(frameMain)){
-			 // WaitandSwitchToFrame(frameCustomer);
-			  
-			  do{
-				  if(waitForElement(tabCustomer,1)){
-					  doubleClick(tabCustomer);
-				  }
-			  }while(!WaitandSwitchToFrame(frameCustomer,1));
-		  }*/
-		  
+		  }while(!WaitandSwitchToFrame(frameCustomer,1));		  
 		  report.reportDoneEvent("Click on Customer Tab", "Customer Tab is present");
 		  waitforPageLoadComplete();
 		  waitForElement(txtCustomerName);
-		 //while(!waitForElement(txtCustomerName,1)){};
 		 customerName = customerInfo.customerName + getTimestamp();
 		 do 
 		 {    txtCustomerName.click();
 			  txtCustomerName.clear();
-			  //updated by harsh to store runtime data into datadump - 8/5/2016
-			  
+			  //updated by harsh to store runtime data into datadump - 8/5/2016			  
 			  txtCustomerName.sendKeys(customerName);
 		 }
-		 	while(txtCustomerName.getAttribute("value").length()<1);
-		 
-		 System.out.println("txtCustomerName.getAttribute"+txtCustomerName.getAttribute("value"));
-		  //ComcastTest.getDataDump().setValue("CustomerName_RT", customerName); //commented by harsh on 8/16 - need to find a way to push data to datadump
-		  		  
+		 while(txtCustomerName.getAttribute("value").length()<1);
+		 log.info(" Customer Name is: " + txtCustomerName.getAttribute("value"));		  		  
 		  waitforPageLoadComplete();
 		  report.reportDoneEvent("Enter Customer Name", "Entered Customer Name as ->" + customerName);
 		  if(waitForElement(txtworkPhone)){
@@ -234,51 +215,7 @@ public class CustomerTabPageCM extends Page {
 		  return customerName;
 
 	  }
-	  
-	/*  public boolean addressInformationInvalid(CustomerInfo customerInfo) throws InterruptedException{
-		  mstatus = true;
-		  try{
-				  
-			  waitForElement(txtAddressLine1);
-			  String addressLine1 = customerInfo.addressLine1+getTimestamp();
-			  txtAddressLine1.sendKeys(addressLine1);
-			  report.reportDoneEvent("Enter Address Line 1", "Address Line 1 Entered as ->" + addressLine1);
-			  ddtxtZipCode.sendKeys(customerInfo.zipCode);
-			  report.reportDoneEvent("Enter Zipcode", "Zipcode Entered as ->" +customerInfo.zipCode);
-			  imgZipcodeSearch.click();
-			  waitforPageLoadComplete();
-			  while(!WaitandSwitchToFrame(frameCondition)){}			  
-			  while(!waitForElement(txtCity)){}
-			  while(!iterateThroughtableAndSelectCity(customerInfo.city)){};
-			  iClick(btnOk, null, "Select City and click OK: Customer Page: OKButton");			  
-			  browser.switchTo().defaultContent();
-			  if(WaitandSwitchToFrame(frameMain)){
-				  WaitandSwitchToFrame(frameCustomer);
-				  }
-			  waitForElement(btnCreate);
-			  iClick(btnCreate, btnMore, "Create Customer: Customer Page: CreateButton");			  
-			  waitforPageLoadComplete();
-			  waitForElement(btnMore);
-			  iClick(btnMore, null, "Create Customer: Customer Page: MoreButton");			  
-			  waitforPageLoadComplete();
-			  WaitandSwitchToFrame(frameCondition);
-			  waitForElement(chkDisclaimer);
-			  chkDisclaimer.click();
-			  waitForElement(btnContinue);
-			  iClick(btnContinue, null, "Create Customer: Customer Page: ContinueButton");			  
-			  browser.switchTo().defaultContent();
-			  waitforPageLoadComplete();
-			  Thread.sleep(3000);
-			  report.updateTestLog("Create Customer", "Customer Created Successfully", Status.SCREENSHOT);
-		  }
-		  catch(Exception ex)
-		  {
-			  mstatus = false;
-		  }
-		  return mstatus;
-			  
-	  }*/
-	  
+	  	  
 	  public boolean addressInformationValid(CustomerInfo customerInfo) throws InterruptedException{
 		  mstatus = true;
 		  String addressLine2;
@@ -384,7 +321,7 @@ public class CustomerTabPageCM extends Page {
 			waitforPageLoadComplete();
 			browser.switchTo().defaultContent();
 		} catch (Exception e) {
-			mstatus = true;
+			mstatus = false;
 			e.printStackTrace();
 		}
 

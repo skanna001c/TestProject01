@@ -3,6 +3,7 @@ package com.comcast.century.cm.pages;
 import java.awt.AWTException;
 import java.awt.event.KeyEvent;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -32,6 +33,7 @@ public class ServiceTabPageCM extends Page {
 		
 	}
 	
+	Logger log = Logger.getLogger(ServiceTabPageCM.class);
 	
 	
 	@FindBy(id="Service")
@@ -40,28 +42,28 @@ public class ServiceTabPageCM extends Page {
 	@FindBy(xpath = "//*[@id='mainFrame' and contains(@src,'loadServOrderManagementPanel.exc')]")
 	private WebElement frameMain;
 	
-	@FindBy(xpath = "//input[@id='loadAvailProduct']") 
+	@FindBy(id = "loadAvailProduct") 
 	private WebElement btnContinueAvailProduct;
 	
-	@FindBy(xpath = "//*[@id='loadSelectedProducts']")
+	@FindBy(id = "loadSelectedProducts")
 	private WebElement btnContinueSelectedProduct;
 
-	@FindBy(xpath = "//input[@name='BVE']")
+	@FindBy(name = "BVE")
 	private WebElement selectCheckBoxBVE;
 	
-	@FindBy(xpath = "//input[@name='BVE Teleworker']")
+	@FindBy(name = "BVE Teleworker")
 	private WebElement selectCheckBoxBVETeleworker;
 	
-	@FindBy(xpath = "//input[@name='EDI']")
+	@FindBy(name = "EDI")
 	private WebElement selectCheckBoxEDI;
 	
-	@FindBy(xpath = "//input[@name='ENS']")
+	@FindBy(name = "ENS")
 	private WebElement selectCheckBoxENS;
 	
-	@FindBy(xpath = "//input[@name='EPL']")
+	@FindBy(name = "EPL")
 	private WebElement selectCheckBoxEPL;
 	
-	@FindBy(xpath = "//*[@name='Equipment Fee']")
+	@FindBy(name = "Equipment Fee")
 	private WebElement selectCheckBoxEqFee;
 	
 	@FindBy(xpath = "//div[text()='Equipment Fee']/../following-sibling::td/child::div/child::input[@type='text']")
@@ -70,10 +72,10 @@ public class ServiceTabPageCM extends Page {
 	@FindBy(xpath = "//div[text()='Auxiliary Service']/../following-sibling::td/child::div/child::input[@type='text']")
 	private WebElement txtAuxService;
 	
-	@FindBy(xpath = "//input[@name='EVPL']")
+	@FindBy(name = "EVPL")
 	private WebElement selectCheckBoxEVPL;
 	
-	@FindBy(xpath = "//input[@name='Trunk-PRI']")
+	@FindBy(name = "Trunk-PRI")
 	private WebElement selectCheckBoxTrunkPRI;
 	
 	@FindBy(xpath = "//div[text()='loading...']")
@@ -95,6 +97,7 @@ public class ServiceTabPageCM extends Page {
 				  waitforPageLoadComplete();
 			  }
 		} catch (Exception e) {
+			log.info(e.getMessage());
 			mstatus= false;
 		}
 		return mstatus;
@@ -109,6 +112,7 @@ public class ServiceTabPageCM extends Page {
 			waitforPageLoadComplete();
 			waitForElementDisappear(elementLoading);
 		}catch (Exception e) {
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -123,6 +127,7 @@ public class ServiceTabPageCM extends Page {
 			this.TrunkPRI();
 			this.ClickOnContinueButton();
 		}catch (Exception e) {
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -138,7 +143,7 @@ public class ServiceTabPageCM extends Page {
 			}while(!waitForElement(btnContinueSelectedProduct));
 			waitForElementDisappear(elementLoading);
 		}catch(Exception e){
-			e.printStackTrace();
+			log.info(e.getMessage());
 			mstatus=false;
 		}
 		return mstatus;
@@ -185,26 +190,24 @@ public class ServiceTabPageCM extends Page {
 				this.ClickOnContinueButton();
 				break;
 			default :
-				System.out.println("Invalid Service");
+				log.info("Invalid Service");
 			}
 			
 		}catch(Exception e){
-			e.printStackTrace();
+			log.info(e.getMessage());
 			mstatus=false;
 		}	
 		return mstatus;
 	}
 	
 	
-	
-	
-			 public boolean EDI(){
-			  boolean mStatus = true; 
-			  if (waitForElement(selectCheckBoxEDI)){
-				  selectCheckBoxEDI.click();
-				  report.updateTestLog("Select EDI Service", "EDI Service Selected", Status.SCREENSHOT);
-			  }else mStatus = false;
-			  return mStatus;
+	 public boolean EDI(){
+	  boolean mStatus = true; 
+	  if (waitForElement(selectCheckBoxEDI)){
+		  selectCheckBoxEDI.click();
+		  report.updateTestLog("Select EDI Service", "EDI Service Selected", Status.SCREENSHOT);
+	  }else mStatus = false;
+	  return mStatus;
 	  }
 			 
 			 public boolean ENS(){
@@ -214,6 +217,7 @@ public class ServiceTabPageCM extends Page {
 						 selectCheckBoxENS.click();
 					 }
 				} catch (Exception e) {
+					log.info(e.getMessage());
 					mstatus= false;
 				}
 				return mstatus;
@@ -226,6 +230,7 @@ public class ServiceTabPageCM extends Page {
 						 selectCheckBoxEPL.click();
 					 }
 				} catch (Exception e) {
+					log.info(e.getMessage());
 					mstatus= false;
 				}
 				return mstatus;
@@ -243,6 +248,7 @@ public class ServiceTabPageCM extends Page {
 						
 					 }
 				} catch (Exception e) {
+					log.info(e.getMessage());
 					mstatus= false;
 				}
 				return mstatus;
@@ -255,19 +261,13 @@ public class ServiceTabPageCM extends Page {
 						selectCheckBoxTrunkPRI.click();
 					 }
 				} catch (Exception e) {
+					log.info(e.getMessage());
 					mstatus= false;
 				}
 				return mstatus;
 			}
 			
-			
-			/*public void scrollToEvpl() throws AWTException{
-				if(waitForElement(txtAuxService)){
-					txtAuxService.click();
-					keyPress(KeyEvent.VK_TAB,20);
-				}
-			}*/
-			
+									
 			public boolean EquipmentFee(ServiceInfo serviceInfo) throws InterruptedException{
 				boolean mStatus = true;
 				if((Integer.parseInt(serviceInfo.equipmentFee))>0){
@@ -293,6 +293,7 @@ public class ServiceTabPageCM extends Page {
 						selectCheckBoxBVE.click();
 					 }
 				} catch (Exception e) {
+					log.info(e.getMessage());
 					mstatus= false;
 				}
 				return mstatus;
@@ -305,6 +306,7 @@ public class ServiceTabPageCM extends Page {
 						selectCheckBoxBVETeleworker.click();
 					 }
 				} catch (Exception e) {
+					log.info(e.getMessage());
 					mstatus= false;
 				}
 				return mstatus;
