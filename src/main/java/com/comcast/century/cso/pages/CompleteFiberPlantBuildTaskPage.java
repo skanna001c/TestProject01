@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -32,6 +33,8 @@ public class CompleteFiberPlantBuildTaskPage extends Page {
 		
 	}
 	
+	Logger log = Logger.getLogger(CompleteFiberPlantBuildTaskPage.class);
+	
 	private static String windowHandle;
 	
 	@FindBy(xpath = "//img[@title='Back']")
@@ -59,6 +62,7 @@ public class CompleteFiberPlantBuildTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -72,6 +76,7 @@ public class CompleteFiberPlantBuildTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -80,17 +85,16 @@ public class CompleteFiberPlantBuildTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				windowHandle=browser.getWindowHandle();
-				System.out.println("main windowHandle" +windowHandle);
+				windowHandle=browser.getWindowHandle();				
 				iClick(btnComplete, frameRight, "Complete CompleteFiberPlantBuild Task: Complete CompleteFiberPlantBuild Task page: CompleteButton");
 				waitforPageLoadComplete();
-				//closeAllOtherWindows(windowHandle);
 				report.reportDoneEvent("Complete CompleteFiberPlantBuild Task", " CompleteFiberPlantBuild Task Completed");
 				waitForElement(browser.findElement(By.xpath("//*[text()='Complete Fiber Plant Build' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -104,6 +108,7 @@ public class CompleteFiberPlantBuildTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

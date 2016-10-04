@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,7 +30,7 @@ public class ContactCustomerTaskPage extends Page {
 		
 	}
 	
-	
+	Logger log = Logger.getLogger(ContactCustomerTaskPage.class);
 	
 	@FindBy(xpath = "//input[@id='nextContactString']/following-sibling::img")
 	private WebElement NextContactDate;
@@ -59,12 +60,12 @@ public class ContactCustomerTaskPage extends Page {
 				NextContactDate.click();
 				btnToday.click();
 				this.ClickCompleteButton();
-				//waitForElement(btnBack);
 				waitForElement(browser.findElement(By.xpath("//*[text()='Contact Customer' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -78,6 +79,7 @@ public class ContactCustomerTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -91,6 +93,7 @@ public class ContactCustomerTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -99,7 +102,6 @@ public class ContactCustomerTaskPage extends Page {
 	public boolean ClickCompleteButton(){
 		try{
 			if(waitForElement(btnComplete)){
-				//iClick(btnComplete, null, "Complete ContactCustomer Task: Complete ContactCustomer Task page: CompleteButton");
 				doubleClick(btnComplete);
 				waitforPageLoadComplete();
 				sleep(5000);
@@ -108,6 +110,7 @@ public class ContactCustomerTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

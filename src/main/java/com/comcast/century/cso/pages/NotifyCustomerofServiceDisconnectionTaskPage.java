@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -27,6 +28,8 @@ public class NotifyCustomerofServiceDisconnectionTaskPage extends Page {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	Logger log = Logger.getLogger(NotifyCustomerofServiceDisconnectionTaskPage.class);
 	
 	@FindBy(xpath = "//*[.=' Disconnect Contact Information ']")
 	private WebElement tabDisconnect_Contact_Information;
@@ -61,6 +64,7 @@ public class NotifyCustomerofServiceDisconnectionTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

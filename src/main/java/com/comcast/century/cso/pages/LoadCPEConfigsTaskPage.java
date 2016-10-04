@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -27,24 +28,7 @@ public class LoadCPEConfigsTaskPage extends Page {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	/*
-	
-	
-	@FindBy(id = "collsContactName")
-	private WebElement  txtContactName;
-	
-	@FindBy(id = "collsContactPN")
-	private WebElement  txtPhoneNumber;
-	
-	
-	@FindBy(id = "customerResponseCmb-inputEl")
-	private WebElement  ddTextCustomerResponse;
-	
-	
-	@FindBy(xpath = "//li[.='Service Hard Disconnect']")
-	private WebElement  ddValueCustomerResponse;
-	*/
+	Logger log = Logger.getLogger(DisconnectTaskPage.class);
 	
 	@FindBy(xpath = "//*[.='Task Details']") 
 	private WebElement tabTaskDetails;
@@ -71,6 +55,7 @@ public class LoadCPEConfigsTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

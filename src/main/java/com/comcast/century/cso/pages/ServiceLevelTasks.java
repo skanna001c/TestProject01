@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -31,6 +32,8 @@ public class ServiceLevelTasks extends Page {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	Logger log = Logger.getLogger(ServiceLevelTasks.class);
 	
 	@FindBy(xpath = "//img[@title='Back']")
 	private WebElement btnBack;
@@ -93,10 +96,7 @@ public class ServiceLevelTasks extends Page {
 	private WebElement taskCreateOrderBillingPackage;
 	
 	@FindBy(xpath = "//*[text()='Start Billing']")
-	private WebElement taskStartBilling;
-	
-	
-	
+	private WebElement taskStartBilling;	
 	
 	@FindBy(xpath = "//a[text()='Update Design']")
 	private WebElement taskUpdateDesign;
@@ -126,12 +126,10 @@ public class ServiceLevelTasks extends Page {
 	private WebElement taskSubmitASR;
 	
 	@FindBy(xpath = "//a[text()='Assign Design- BGP']")
-	private WebElement taskAssignDesignBGP;
-	
+	private WebElement taskAssignDesignBGP;	
 	
 	@FindBy(xpath = "//div[text()='loading...']")
-	private WebElement elementLoading ;
-	
+	private WebElement elementLoading ;	
 	
 	@FindBy(xpath = "//input[@value='Complete']")
 	private WebElement btnComplete;
@@ -159,12 +157,8 @@ public class ServiceLevelTasks extends Page {
 	@FindBy(xpath = "//a[text()='Confirm Order Complete']")
 	private WebElement taskConfirmOrderComplete;
 	
-	//##########################
-		
+	//##########################	
 	
-	
-	/*@FindBy(xpath = "//*[text()='Start Billing']")
-	private WebElement taskEqFeeStartBilling;*/
 	
 	private boolean mstatus=true;
 	
@@ -177,6 +171,7 @@ public class ServiceLevelTasks extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -201,6 +196,7 @@ public class ServiceLevelTasks extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 			
 		}
@@ -216,6 +212,7 @@ public class ServiceLevelTasks extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -228,14 +225,14 @@ public class ServiceLevelTasks extends Page {
 				if(checkifStatusChanged(taskShipCPE,btnRefresh,"INPROGRESS")){
 					waitForElement(taskShipCPE);
 					jsClick(taskShipCPE);
-					report.reportDoneEvent("Click ShipCPE Task", " ShipCPE Task Clicked");
-				//taskShipCPE.click();
+					report.reportDoneEvent("Click ShipCPE Task", " ShipCPE Task Clicked");				
 				}
 				waitforPageLoadComplete();
 			}
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -276,14 +273,14 @@ public class ServiceLevelTasks extends Page {
 				if(checkifStatusChanged(taskGenerateCPEConfigs,btnRefresh,"INPROGRESS")){
 					waitForElement(taskGenerateCPEConfigs);
 					jsClick(taskGenerateCPEConfigs);
-					report.reportDoneEvent("Click GenerateCPEConfigs Task", " GenerateCPEConfigs Task Clicked");
-				//taskGenerateCPEConfigs.click();
+					report.reportDoneEvent("Click GenerateCPEConfigs Task", " GenerateCPEConfigs Task Clicked");				
 				}
 				waitforPageLoadComplete();
 			}
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -303,6 +300,7 @@ public class ServiceLevelTasks extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -335,6 +333,7 @@ public class ServiceLevelTasks extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -366,6 +365,7 @@ public class ServiceLevelTasks extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -380,6 +380,7 @@ public class ServiceLevelTasks extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -400,6 +401,7 @@ public class ServiceLevelTasks extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -419,6 +421,7 @@ public class ServiceLevelTasks extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -438,6 +441,7 @@ public class ServiceLevelTasks extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -457,6 +461,7 @@ public class ServiceLevelTasks extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -476,6 +481,7 @@ public class ServiceLevelTasks extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -495,6 +501,7 @@ public class ServiceLevelTasks extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -513,6 +520,7 @@ public class ServiceLevelTasks extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -572,6 +580,7 @@ public class ServiceLevelTasks extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -592,6 +601,7 @@ public class ServiceLevelTasks extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -632,6 +642,7 @@ public class ServiceLevelTasks extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -649,6 +660,7 @@ public class ServiceLevelTasks extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -667,7 +679,7 @@ public class ServiceLevelTasks extends Page {
 			}
 		}
 		catch(Exception ex)
-		{
+		{	log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -687,6 +699,7 @@ public class ServiceLevelTasks extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -781,8 +794,8 @@ public class ServiceLevelTasks extends Page {
 		}
 		catch(Exception ex)
 		{  
-			mstatus = false;
-			ex.printStackTrace();
+			log.info(ex.getMessage());
+			mstatus = false;			
 		}
 		return mstatus;
 	}
@@ -813,7 +826,8 @@ public class ServiceLevelTasks extends Page {
 			}
 		}
 		catch(Exception ex)
-		{
+		{	
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -824,14 +838,14 @@ public class ServiceLevelTasks extends Page {
 	
 	protected boolean checkifStatusChanged(WebElement we1, WebElement we2, String status) throws InterruptedException {
 		boolean fn_status = false;
-		System.out.println("Task ::" + we1.getText());
+		log.info("Task :" + we1.getText());
 		int counter = 0;
 		int reqminutes = 7;
 
 		if ((!(we1.getAttribute("onclick").contains("COMPLETED")))
 				&& (!(we1.getAttribute("onclick").contains("DEFERRED")))
 				&& (!(we1.getAttribute("onclick").contains("CANCELLED")))) {
-			//By by= By.xpath("//a[text()='Schedule CPE Pickup' and contains(@onclick, 'PROGRESS')]");
+			
 			String xpath="//*[text()='" + we1.getText() +"' and contains(@onclick, '"+status+ "')]";
 			By by=By.xpath(xpath);
 			String onclick = null;
@@ -844,15 +858,14 @@ public class ServiceLevelTasks extends Page {
 			}
 			
 			if(onclick==null)
-			{	xpath="//"+we1.getTagName()+"[text()='" + we1.getText() +"' and contains(@onclick, '"+status+ "')]";
-				//"+we1.getTagName()+"[text()='" + we1.getText() + "']"
+			{	xpath="//"+we1.getTagName()+"[text()='" + we1.getText() +"' and contains(@onclick, '"+status+ "')]";			
 				by=By.xpath(xpath);		
 			}
 			
 			while ((!(browser.findElement(by).getAttribute("onclick").contains(status))) && (counter < reqminutes * 6)) {
 				Thread.sleep(10000L);
 				we2.click();
-				System.out.println("inside counter " + counter);
+				log.info("Click referesh button to come to inprogress. Counter value is: " + counter);
 				++counter;
 			}
 

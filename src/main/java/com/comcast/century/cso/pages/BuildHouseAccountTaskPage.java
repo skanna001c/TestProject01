@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -32,13 +33,13 @@ public class BuildHouseAccountTaskPage extends Page {
 	@FindBy(xpath = "//*[@id='RightFrame' and contains(@src,'MyOrder.exc')]")
 	private WebElement frameRight;
 
-	@FindBy(xpath = "//input[@id='comboHomelocalBillerNameMarket']")
+	@FindBy(id = "comboHomelocalBillerNameMarket")
 	private WebElement ddTextLocalBillerName;
 	
 	@FindBy(xpath = "//div[text()='DDP']")
 	private WebElement ddValueLocalBillerName;
 	
-	@FindBy(xpath = "//input[@id='localBillerHouseAccountNumber']")
+	@FindBy(id = "localBillerHouseAccountNumber")
 	private WebElement txtLBHouseAccountNumber;
 	
 	@FindBy(xpath = "//input[@id='comboHomelocalBillerNameMarket']/following-sibling::img")
@@ -65,7 +66,9 @@ public class BuildHouseAccountTaskPage extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
-	private boolean mstatus;	
+	private boolean mstatus = true;
+	
+	Logger log = Logger.getLogger(BuildHouseAccountTaskPage.class);
 	
 	public boolean BuildHouseAccount(SiteLevelTaskInfo siteLevelTaskInfo){
 		mstatus = true;
@@ -80,8 +83,8 @@ public class BuildHouseAccountTaskPage extends Page {
 			this.ClickCompleteButton();
 			waitForElement(browser.findElement(By.xpath("//*[text()='Build House Account' and contains(@onclick, 'COMPLETED')]")));
 		}catch(Exception e){
-			System.out.println(e.getMessage());
-			mstatus = false;			
+			log.info(e.getMessage());
+			mstatus = false;
 		}
 		return mstatus;
 	}
@@ -94,8 +97,8 @@ public class BuildHouseAccountTaskPage extends Page {
 			}
 		}
 		catch(Exception e){
-			System.out.println(e.getMessage());
-			mstatus = false;			
+			log.info(e.getMessage());
+			mstatus = false;
 		}
 		return mstatus;
 	}
@@ -108,8 +111,8 @@ public class BuildHouseAccountTaskPage extends Page {
 			}
 		}
 		catch(Exception e){
-			System.out.println(e.getMessage());
-			mstatus = false;			
+			log.info(e.getMessage());
+			mstatus = false;
 		}
 		return mstatus;
 	}
@@ -124,13 +127,9 @@ public class BuildHouseAccountTaskPage extends Page {
 			}
 		}
 		catch(Exception e){
-			System.out.println(e.getMessage());
-			mstatus = false;			
+			log.info(e.getMessage());
+			mstatus = false;
 		}
 		return mstatus;
 	}
-	
-	
-	
-
 }

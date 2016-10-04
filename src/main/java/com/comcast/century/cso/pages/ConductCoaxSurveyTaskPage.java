@@ -3,6 +3,7 @@ package com.comcast.century.cso.pages;
 import java.awt.AWTException;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,6 +34,8 @@ public class ConductCoaxSurveyTaskPage extends Page {
 		
 	}
 	
+	Logger log = Logger.getLogger(ConductCoaxSurveyTaskPage.class);
+	
 	@FindBy(xpath = "//*[@id='RightFrame' and contains(@src,'MyOrder.exc')]")
 	private WebElement frameRight;
 	
@@ -48,22 +51,22 @@ public class ConductCoaxSurveyTaskPage extends Page {
 	@FindBy(xpath = "//*[text()='Today']")
 	private List<WebElement> btnToday;
 	
-	@FindBy(xpath = "//select[@id='ospPermitReqd']")
+	@FindBy(id = "ospPermitReqd")
 	private WebElement ddOSPPermitRequired;
 	
-	@FindBy(xpath = "//select[@id='ospConstReq']")
+	@FindBy(id = "ospConstReq")
 	private WebElement ddConstructionRequired;
 	
-	@FindBy(xpath = ".//*[@id='totalDistanceFt']")
+	@FindBy(id = "totalDistanceFt")
 	private WebElement txtTotalDistanceFt;
 	
-	@FindBy(xpath = "//input[@id='nodeNumber']")
+	@FindBy(id = "nodeNumber")
 	private WebElement txtNodeNumber;
 	
-	@FindBy(xpath = ".//select[@id='siteType']")
+	@FindBy(id = "siteType")
 	private WebElement ddSiteType;	
 	
-	@FindBy(xpath = "//select[@id='serviceable']")
+	@FindBy(id = "serviceable")
 	private WebElement ddServiceable;
 	
 	@FindBy(xpath = ".//Button[text()='Yes']")
@@ -109,6 +112,7 @@ public class ConductCoaxSurveyTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -122,6 +126,7 @@ public class ConductCoaxSurveyTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -135,6 +140,7 @@ public class ConductCoaxSurveyTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -154,6 +160,7 @@ public class ConductCoaxSurveyTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

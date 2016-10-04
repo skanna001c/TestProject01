@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -32,10 +33,12 @@ public class ObtainFiberPlantPermitsTaskPage extends Page {
 		
 	}
 	
+	Logger log = Logger.getLogger(ObtainFiberPlantPermitsTaskPage.class);
+	
 	@FindBy(xpath = "//*[@id='RightFrame' and contains(@src,'MyOrder.exc')]")
 	private WebElement frameRight;
 	
-	@FindBy(xpath = "//select[@id='permitType']")
+	@FindBy(id = "permitType")
 	private WebElement ddPermitType;
 	
 	@FindBy(xpath = "//input[@id='permitAppliedDate']/following-sibling::img")
@@ -88,6 +91,7 @@ public class ObtainFiberPlantPermitsTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -102,6 +106,7 @@ public class ObtainFiberPlantPermitsTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -115,6 +120,7 @@ public class ObtainFiberPlantPermitsTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -133,6 +139,7 @@ public class ObtainFiberPlantPermitsTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

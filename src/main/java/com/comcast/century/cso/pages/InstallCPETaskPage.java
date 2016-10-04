@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -31,6 +32,9 @@ public class InstallCPETaskPage extends Page {
 		
 	}
 	
+	Logger log = Logger.getLogger(InstallCPE_CoaxTaskPage.class);
+	
+	
 	@FindBy(xpath = "//img[@title='Back']")
 	private WebElement btnBack;
 	
@@ -46,16 +50,16 @@ public class InstallCPETaskPage extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 
-	@FindBy(xpath = "//input[@id='scheduledInstallDate']")
+	@FindBy(id = "scheduledInstallDate")
 	private WebElement SchCPEInstallDate ;
 	
-	@FindBy(xpath = "//input[@id='actualCompleteDate']")
+	@FindBy(id = "actualCompleteDate")
 	private WebElement ActualCompletionDate ;
 	
-	@FindBy(xpath = "//*[@id='scheduledIADDate']")
+	@FindBy(id = "scheduledIADDate")
 	private WebElement SchIADDate ;
 	
-	@FindBy(xpath = "//*[@id='actualIADDate']")
+	@FindBy(id = "actualIADDate")
 	private WebElement ActualIADDate ;
 	
 	@FindBy(xpath = "//button[text()='Today']")
@@ -84,6 +88,7 @@ public class InstallCPETaskPage extends Page {
 
 			this.ClickCompleteButton();
 		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -97,6 +102,7 @@ public class InstallCPETaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -110,6 +116,7 @@ public class InstallCPETaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -126,6 +133,7 @@ public class InstallCPETaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

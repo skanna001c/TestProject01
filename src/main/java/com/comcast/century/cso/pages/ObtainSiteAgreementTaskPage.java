@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -31,7 +32,8 @@ public class ObtainSiteAgreementTaskPage extends Page {
 		
 	}
 	
-
+	Logger log = Logger.getLogger(ObtainSiteAgreementTaskPage.class);
+	
 	@FindBy(xpath = "//*[@id='RightFrame' and contains(@src,'MyOrder.exc')]")
 	private WebElement frameRight;
 	
@@ -50,7 +52,7 @@ public class ObtainSiteAgreementTaskPage extends Page {
 	@FindBy(xpath = "//input[@id='sagiScheduledReceivedDate']/following-sibling::*")
 	private WebElement estimatedReceivedDate ;
 	
-	@FindBy(xpath = "//input[@id='sagiAgreementName']")
+	@FindBy(id = "sagiAgreementName")
 	private WebElement txtAgreementName ;
 	
 	@FindBy(xpath = "//button[text()='Yes']")
@@ -93,6 +95,7 @@ public class ObtainSiteAgreementTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -106,6 +109,7 @@ public class ObtainSiteAgreementTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -119,6 +123,7 @@ public class ObtainSiteAgreementTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -137,6 +142,7 @@ public class ObtainSiteAgreementTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -32,10 +33,12 @@ public class WorkOrderTabServiceRequestPage extends Page {
 		
 	}
 	
+	Logger log = Logger.getLogger(WorkOrderTabServiceRequestPage.class);
+	
 	@FindBy(css = "span#workorder")
 	private WebElement tabWorkorder;
 	
-	@FindBy(xpath = "//*[@id='RightFrame']")
+	@FindBy(id = "RightFrame")
 	private WebElement frameRight;
 	
 	@FindBy(xpath = "//img[@class[contains(.,'expand-right')]]")
@@ -47,7 +50,7 @@ public class WorkOrderTabServiceRequestPage extends Page {
 	@FindBy(xpath = "//*[@id='servicerequest']/a")
 	private WebElement LinkServiceRequest ;
 	
-	@FindBy(xpath = "//*[@id='servicereqId']")
+	@FindBy(id = "servicereqId")
 	private WebElement txtServiceReqId ;
 	
 	@FindBy(xpath = "//span[text()='Search']/following-sibling::*")
@@ -68,10 +71,10 @@ public class WorkOrderTabServiceRequestPage extends Page {
 	@FindBy(css = "input[value='GO']")
 	private WebElement btnGO;
 	
-	@FindBy(xpath = "//*[@id='codition']")
+	@FindBy(id = "codition")
 	private WebElement frameCondition;
 	
-	@FindBy(xpath = "//*[@id='srDetailCodition']")
+	@FindBy(id = "srDetailCodition")
 	private WebElement frameDetailCondition;
 	
 	@FindBy(css = "img[class*='close']")
@@ -80,7 +83,7 @@ public class WorkOrderTabServiceRequestPage extends Page {
 	@FindBy(xpath = "//input[@placeholder='---Select Label---']")
 	private WebElement txtSelectLabel;
 	
-	@FindBy(xpath = "//*[@id='ApplyTo']")
+	@FindBy(id = "ApplyTo")
 	private WebElement btnApply ;
 	
 	@FindBy(xpath = "//span[text()='OK']/following-sibling::span")
@@ -110,7 +113,7 @@ public class WorkOrderTabServiceRequestPage extends Page {
 			iClick(tabWorkorder);
 			waitforPageLoadComplete();
 		}catch(Exception e){
-			e.printStackTrace();
+			log.info(e.getMessage());
 			mstatus=false;
 		}
 		return mstatus;
@@ -145,7 +148,7 @@ public class WorkOrderTabServiceRequestPage extends Page {
 				report.updateTestLog("Verify label count in SO", "Label count Verified", Status.SCREENSHOT);
 			} else report.reportFailEvent("Verify label count in SO", "Label count not  Verified");
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -238,7 +241,7 @@ public class WorkOrderTabServiceRequestPage extends Page {
 			
 			
 		}catch(Exception e){
-			e.printStackTrace();
+			log.info(e.getMessage());
 			mstatus=false;
 		}
 		 return mstatus;

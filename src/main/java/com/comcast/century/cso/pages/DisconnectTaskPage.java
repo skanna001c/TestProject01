@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -27,6 +28,8 @@ public class DisconnectTaskPage extends Page {
 		
 	}
 	
+	Logger log = Logger.getLogger(DisconnectTaskPage.class);
+	
 	@FindBy(xpath = "//input[@value='Complete']")
 	private WebElement btnComplete;
 	
@@ -49,6 +52,7 @@ public class DisconnectTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,6 +31,8 @@ public class InstallCPE_CoaxTaskPage extends Page {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	Logger log = Logger.getLogger(InstallCPE_CoaxTaskPage.class);
 	
 	@FindBy(xpath = "//img[@title='Back']")
 	private WebElement btnBack;
@@ -66,11 +69,9 @@ public class InstallCPE_CoaxTaskPage extends Page {
 	public boolean InstallCPECoax() throws InterruptedException{
 		try{
 			if(waitForElement(SchCPEInstallDate)){
-				clickndRelease(SchCPEInstallDate);
-				//SchCPEInstallDate.click();
+				clickndRelease(SchCPEInstallDate);				
 				btnToday.get(0).click();
 				clickndRelease(ActualCompletionDate);
-				//ActualCompletionDate.click();
 				btnToday.get(1).click();
 				this.ClickCompleteButton();
 				waitForElement(browser.findElement(By.xpath("//*[text()='Install CPE (Coax)' and contains(@onclick, 'COMPLETED')]")));
@@ -78,6 +79,7 @@ public class InstallCPE_CoaxTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -86,11 +88,9 @@ public class InstallCPE_CoaxTaskPage extends Page {
 	public boolean installCPEPRI() throws InterruptedException{
 		try{
 			if(waitForElement(SchCPEInstallDate)){
-				clickndRelease(SchCPEInstallDate);
-				//SchCPEInstallDate.click();
+				clickndRelease(SchCPEInstallDate);				
 				btnToday.get(0).click();
 				clickndRelease(ActualCompletionDate);
-				//ActualCompletionDate.click();
 				btnToday.get(1).click();
 				clickndRelease(SchIADDate);
 				btnToday.get(2).click();
@@ -101,6 +101,7 @@ public class InstallCPE_CoaxTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -116,6 +117,7 @@ public class InstallCPE_CoaxTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -129,6 +131,7 @@ public class InstallCPE_CoaxTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -144,6 +147,7 @@ public class InstallCPE_CoaxTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

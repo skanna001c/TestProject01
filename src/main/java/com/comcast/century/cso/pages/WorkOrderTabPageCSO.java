@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -32,10 +33,12 @@ public class WorkOrderTabPageCSO extends Page {
 
 	}
 
+	Logger log = Logger.getLogger(WorkOrderTabPageCSO.class);
+	
 	@FindBy(css = "span#workorder")
 	private WebElement tabWorkorder;
 
-	@FindBy(xpath = "//*[@id='RightFrame']")
+	@FindBy(id = "RightFrame")
 	private WebElement frameRight;
 
 	@FindBy(xpath = "//*[@id='codition' and contains(@src,'getWorklists.exc')]")
@@ -62,46 +65,36 @@ public class WorkOrderTabPageCSO extends Page {
 	@FindBy(xpath = "//*[@id='Postsalesworklist']/a")
 	private WebElement LinkPostSalesWorklist;
 
-	// *[@id='serviceRequestID']
-
-	@FindBy(xpath = "//input[@id='serviceRequestID']")
+	@FindBy(id = "serviceRequestID")
 	private WebElement txtSrId;
 
-	@FindBy(xpath = "//*[@id='servicereqId']")
+	@FindBy(id = "servicereqId")
 	private WebElement txtServiceReqId;
 
-	@FindBy(xpath = "//input[@id='serv_req_id']")
+	@FindBy(id = "serv_req_id")
 	private WebElement txtPostSalesSrId;
 
 	@FindBy(xpath = "//img[@title='Back']")
 	private WebElement btnBack;
 
-	@FindBy(xpath = "//*[@id='surveyId']")
+	@FindBy(id = "surveyId")
 	private WebElement txtSurveyId;
-
-	// span[text()='Search']
-
-	/*
-	 * @FindBy(xpath = "//span[text()='Search']/following-sibling::*") private
-	 * WebElement btnSearch ;
-	 */
 
 	@FindBy(xpath = "//a[text()='Advanced Search']")
 	private WebElement linkAdvancedSearch;
 
-	@FindBy(xpath = "//*[@id='advance_search_WL']")
+	@FindBy(id = "advance_search_WL")
 	private WebElement linkAdvancedSearchWL;
 
-	@FindBy(xpath = "//iframe[@id='soadvcodition']")
+	@FindBy(id = "soadvcodition")
 	private WebElement frameSOAdvancedSearch;
 
-	@FindBy(xpath = "//iframe[@id='wlAdvSearch']")
+	@FindBy(id = "wlAdvSearch")
 	private WebElement frameWLAdvancedSearch;
 
 	@FindBy(xpath = "//input[@value='Search']")
 	private WebElement btnSearchAdvancedSearch;
 
-	// //div[.='EVPL']/../../descendant::a[contains(@onclick,'SOTaskView')][contains(@onclick,'SOTaskview')]
 	@FindBy(xpath = "//div[.='EDI']/../../descendant::img[contains(@src,'progress') or contains(@src,'activated') or contains(@src,'completed')]/../../../descendant::a[contains(@onclick,'SOTaskView')]")
 	private List<WebElement> linkEDIFlow;
 
@@ -113,10 +106,7 @@ public class WorkOrderTabPageCSO extends Page {
 
 	@FindBy(xpath = "//div[.='ENS']/../../descendant::img[contains(@src,'progress') or contains(@src,'activated') or contains(@src,'completed')]/../../../descendant::a[contains(@onclick,'SOTaskView')]")
 	private List<WebElement> linkENSFlow;
-
-	// @FindBy(xpath =
-	// "//*[.='Site']/../preceding-sibling::td[1]/child::*/child::*")
-	// div[.='Site']/../../descendant::a[contains(@onclick,'SOTaskView')]
+	
 	@FindBy(xpath = "//div[.='Site']/../../descendant::a[contains(@onclick,'SOTaskView')]")
 	private List<WebElement> linkSiteFlow;
 
@@ -156,10 +146,10 @@ public class WorkOrderTabPageCSO extends Page {
 	@FindBy(xpath = "//*[@value='Go']")
 	private WebElement btnGo;
 
-	@FindBy(xpath = "//*[@id='self']")
+	@FindBy(id = "self")
 	private WebElement radioButtonSelfTransfer;
 
-	@FindBy(xpath = "//*[@id='transferTask']")
+	@FindBy(id = "transferTask")
 	private WebElement ButtonTransfer;
 
 	@FindBy(xpath = "//*[@value='Ok']")
@@ -196,6 +186,7 @@ public class WorkOrderTabPageCSO extends Page {
 			waitforPageLoadComplete();
 			browser.switchTo().defaultContent();
 		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -214,8 +205,7 @@ public class WorkOrderTabPageCSO extends Page {
 			}
 			waitforPageLoadComplete();
 			waitForElementDisappear(elementLoading);
-			if (waitForElement(txtSrId)) {
-				System.out.println("Search box present");
+			if (waitForElement(txtSrId)) {				
 				if (!SRID.equalsIgnoreCase(txtSrId.getAttribute("value")) || retryCount > 1) {
 					txtSrId.clear();
 					iSendKeys(txtSrId, SRID);
@@ -229,6 +219,7 @@ public class WorkOrderTabPageCSO extends Page {
 			}
 
 		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -257,6 +248,7 @@ public class WorkOrderTabPageCSO extends Page {
 				report.updateTestLog("Search for Order", "Order Searched Successfully", Status.SCREENSHOT);
 			}
 		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -274,6 +266,7 @@ public class WorkOrderTabPageCSO extends Page {
 				mstatus = false;
 			}
 		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -302,6 +295,7 @@ public class WorkOrderTabPageCSO extends Page {
 			}
 
 		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -328,6 +322,7 @@ public class WorkOrderTabPageCSO extends Page {
 				}
 			}
 		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -343,7 +338,7 @@ public class WorkOrderTabPageCSO extends Page {
 				report.reportDoneEvent("Click on Site level flow", "Site level flow Clicked");
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -402,7 +397,7 @@ public class WorkOrderTabPageCSO extends Page {
 				}
 				break;
 			 default :
-				 System.out.println("Invalid Service");
+				 log.info("Invalid Service");
 			}
 
 			elementToClick.sendKeys(Keys.chord(Keys.CONTROL, Keys.ARROW_DOWN));
@@ -410,6 +405,7 @@ public class WorkOrderTabPageCSO extends Page {
 			waitforPageLoadComplete();
 			report.reportDoneEvent("Click on Service level flow", "Service level flow Clicked");
 		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -423,6 +419,7 @@ public class WorkOrderTabPageCSO extends Page {
 				report.reportDoneEvent("Click on Service level flow", "Service level flow Clicked");
 			}
 		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -437,6 +434,7 @@ public class WorkOrderTabPageCSO extends Page {
 				report.reportDoneEvent("Click on Equipment Fee flow", "Equipment Fee flow Clicked");
 			}
 		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -451,6 +449,7 @@ public class WorkOrderTabPageCSO extends Page {
 				report.reportDoneEvent("Click on BGP flow", "BGP flow Clicked");
 			}
 		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -466,6 +465,7 @@ public class WorkOrderTabPageCSO extends Page {
 				report.reportDoneEvent("Click on PRI flow", "PRI flow Clicked");
 			}
 		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -495,6 +495,7 @@ public class WorkOrderTabPageCSO extends Page {
 				report.updateTestLog("Search for Order", "Order Searched Successfully", Status.SCREENSHOT);
 			}
 		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -520,6 +521,7 @@ public class WorkOrderTabPageCSO extends Page {
 				mstatus = true;
 			}
 		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -537,6 +539,7 @@ public class WorkOrderTabPageCSO extends Page {
 				report.reportFailEvent("Verify label display", "Display label Verified");
 
 		} catch (Exception e) {
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

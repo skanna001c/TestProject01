@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,6 +30,8 @@ public class EqFeeStartBillingTaskPage extends Page {
 		
 	}
 	
+	Logger log = Logger.getLogger(EqFeeStartBillingTaskPage.class);
+	
 	@FindBy(xpath = "//img[@title='Back']")
 	private WebElement btnBack;
 	
@@ -44,7 +47,7 @@ public class EqFeeStartBillingTaskPage extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
-	@FindBy(xpath = "//*[@id='actualBillingStartDate']")
+	@FindBy(id = "actualBillingStartDate")
 	private WebElement actualBillingStartDate ;
 	
 	@FindBy(xpath = "//button[text()='Today']")
@@ -69,6 +72,7 @@ public class EqFeeStartBillingTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -82,6 +86,7 @@ public class EqFeeStartBillingTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -95,6 +100,7 @@ public class EqFeeStartBillingTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -111,6 +117,7 @@ public class EqFeeStartBillingTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;		

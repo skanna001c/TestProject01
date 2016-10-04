@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,6 +30,9 @@ public class GenerateCoreConfigsTaskPage extends Page {
 		
 	}
 	
+	Logger log = Logger.getLogger(EqFeeStartBillingTaskPage.class);
+	
+	
 	@FindBy(xpath = "//img[@title='Back']")
 	private WebElement btnBack;
 	
@@ -54,6 +58,7 @@ public class GenerateCoreConfigsTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -67,6 +72,7 @@ public class GenerateCoreConfigsTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -83,6 +89,7 @@ public class GenerateCoreConfigsTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

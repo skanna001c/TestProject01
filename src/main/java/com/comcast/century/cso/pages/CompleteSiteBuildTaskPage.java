@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,6 +30,8 @@ public class CompleteSiteBuildTaskPage extends Page {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	Logger log = Logger.getLogger(CompleteFiberPlantBuildTaskPage.class);
 	
 	private static String windowHandle;   
 	
@@ -60,6 +63,7 @@ public class CompleteSiteBuildTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -74,6 +78,7 @@ public class CompleteSiteBuildTaskPage extends Page {
 		
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -83,17 +88,15 @@ public class CompleteSiteBuildTaskPage extends Page {
 		try{
 			if(waitForElement(btnComplete)){
 				windowHandle=browser.getWindowHandle();
-			//	System.out.println("main windowHandle "+windowHandle);
 				iClick(btnComplete, frameRight, "Complete CompleteSiteBuild Task: Complete CompleteSiteBuild Task page: CompleteButton");
-				//ClosePopUp();
 				waitforPageLoadComplete();
-				//closeAllOtherWindows(windowHandle);
 				report.reportDoneEvent("Completed CompleteSiteBuild Task", " CompleteSiteBuild Task Completed");
 				waitForElement(browser.findElement(By.xpath("//*[text()='Complete Site Build' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -107,6 +110,7 @@ public class CompleteSiteBuildTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

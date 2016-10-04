@@ -105,7 +105,7 @@ public class LogInPage extends Page {
 			}
 		}
 		catch(Exception Ex){
-			report.reportFailEvent("applicationLogin", "User Login NOT successful, EXCEPTION CAUGHT : " + Ex.getMessage());
+			report.reportFailEvent("applicationLogin", "User Signout NOT successful, EXCEPTION CAUGHT : " + Ex.getMessage());
 			mstatus = false;
 			log.info(Ex.getMessage());
 		}	

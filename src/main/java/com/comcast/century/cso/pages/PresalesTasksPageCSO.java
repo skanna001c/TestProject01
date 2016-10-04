@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
@@ -31,6 +32,8 @@ public class PresalesTasksPageCSO extends Page {
 		
 	}
 	
+	Logger log = Logger.getLogger(PresalesTasksPageCSO.class);
+	
 	@FindBy(xpath = "//*[text()='Conduct Coax Survey']")
 	private WebElement taskConductCoaxSurvey;
 	
@@ -49,10 +52,10 @@ public class PresalesTasksPageCSO extends Page {
 	@FindBy(xpath = "//div[text()='a1atlanta.ga']")
 	private WebElement ddValueHeadendName;
 	
-	@FindBy(xpath = "//*[@id='nodeNumber']")
+	@FindBy(id = "nodeNumber")
 	private WebElement txtNodeNumber;
 	
-	@FindBy(xpath = "//select[@id='serviceable']")
+	@FindBy(id = "serviceable")
 	private WebElement ddServiceable;
 	
 	@FindBy(xpath = "//input[@value='Complete']")
@@ -91,6 +94,7 @@ public class PresalesTasksPageCSO extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
@@ -35,27 +36,26 @@ public class LogInPage extends Page {
 		
 	}
 
+	Logger log = Logger.getLogger(LogInPage.class);	
 	
-	@FindBy(xpath="//input[@id='username']")
+	@FindBy(id = "username")
 	private WebElement txtUserName;
 		
 		
-	@FindBy(xpath="//input[@id='password']")
+	@FindBy(id = "password")
 	private WebElement txtPassword;
 		
 		
-	@FindBy(xpath="//select[@id='domainList']")
+	@FindBy(id = "domainList")
 	private WebElement lstDomain;
 	
-	@FindBy(xpath="//input[@id='warn']")
+	@FindBy(id = "warn")
 	private WebElement chkBxWarning;	
 	
-	@FindBy(xpath="//input[@id='logButton']")
+	@FindBy(id = "logButton")
 	private WebElement btnLogin;
 	
-	//*[@id='workorder']
-	
-	@FindBy(xpath="//span[@id='workorder']")
+	@FindBy(id = "workorder")
 	private WebElement tabWorkOrder;
 	
 	
@@ -83,12 +83,7 @@ public class LogInPage extends Page {
 				btnLogin.click();
 				report.reportDoneEvent("Click on Login", "Clicked successfully");
 			}
-			/*waitForElement(userHomePage);
-			if(isElementPresent(userHomePage)){
-				report.updateTestLog("LogintoHomePage", "logged into the homepage Successfully", Status.SCREENSHOT);
-			}else{
-				report.reportFailEvent("LoginToHomePage", "Login Unsuccessfull <Please check UN and PWD>");
-			}*/
+			
 			waitForElement(tabWorkOrder);			
 			if(isElementPresent(tabWorkOrder)){
 				report.updateTestLog("LogintoCSO", "Logged into the CSO Successfully", Status.SCREENSHOT);
@@ -97,9 +92,8 @@ public class LogInPage extends Page {
 			}			
 		}catch(Exception Ex){
 			report.reportFailEvent("applicationLogin", "User Login NOT successful, EXCEPTION CAUGHT : " + Ex.getMessage());
-			throw Ex;
-		}	
-		//return new HomePageCM(browser,report);			
+			log.info(Ex.getMessage());
+		}				
 	}	
 	
 	

@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,6 +30,8 @@ public class CompleteSiteBuildCoaxTaskPage extends Page {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	Logger log = Logger.getLogger(CompleteSiteBuildCoaxTaskPage.class);
 	
 	private static String windowHandle;   
 	
@@ -61,6 +64,7 @@ public class CompleteSiteBuildCoaxTaskPage extends Page {
 		catch(Exception ex)
 		{
 			mstatus = false;
+			log.info(ex.getMessage());
 		}
 		return mstatus;
 	}
@@ -74,6 +78,7 @@ public class CompleteSiteBuildCoaxTaskPage extends Page {
 		
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -82,18 +87,16 @@ public class CompleteSiteBuildCoaxTaskPage extends Page {
 	public boolean ClickCompleteButton(){		
 		try{
 			if(waitForElement(btnComplete)){
-				windowHandle=browser.getWindowHandle();
-			//	System.out.println("main windowHandle "+windowHandle);
+				windowHandle=browser.getWindowHandle();			
 				iClick(btnComplete, null, "Complete CompleteSiteBuildCoax Task: Complete CompleteSiteBuildCoax Task: CompleteButton");
-				//ClosePopUp();
 				waitforPageLoadComplete();
-				//closeAllOtherWindows(windowHandle);
 				report.reportDoneEvent("Completed CompleteSiteBuildCoax Task", " CompleteSiteBuildCoax Task Completed");
 				waitForElement(browser.findElement(By.xpath("//*[text()='Complete Site Build(Coax)' and contains(@onclick, 'COMPLETED')]")));
 			}
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -106,6 +109,7 @@ public class CompleteSiteBuildCoaxTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

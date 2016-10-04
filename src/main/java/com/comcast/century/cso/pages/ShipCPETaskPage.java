@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,6 +30,8 @@ public class ShipCPETaskPage extends Page {
 		
 	}
 	
+	Logger log = Logger.getLogger(ShipCPETaskPage.class);
+	
 	@FindBy(xpath = "//img[@title='Back']")
 	private WebElement btnBack;
 	
@@ -44,7 +47,7 @@ public class ShipCPETaskPage extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
-	@FindBy(xpath = "//input[@id='packingSlipNumber']")
+	@FindBy(id = "packingSlipNumber")
 	private WebElement txtPackingSlipNumber ;
 	
 	@FindBy(xpath = "//input[@id='cpeShipDate']/following-sibling::img")
@@ -77,6 +80,7 @@ public class ShipCPETaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -92,6 +96,7 @@ public class ShipCPETaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -105,6 +110,7 @@ public class ShipCPETaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -120,6 +126,7 @@ public class ShipCPETaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,13 +31,15 @@ public class UpdateDesignTaskPage extends Page {
 		
 	}
 	
+	Logger log = Logger.getLogger(UpdateDesignTaskPage.class);
+	
 	@FindBy(xpath = "//span[text()='BOM Change Details']")
 	private WebElement tabBOMChangeDetails;
 	
-	@FindBy(xpath = "//select[@id='designChanged']")
+	@FindBy(id = "designChanged")
 	private WebElement ddDesignChanged;
 	
-	@FindBy(xpath = "//select[@id='bomChangeRequired']")
+	@FindBy(id = "bomChangeRequired")
 	private WebElement ddBOMChanged;
 	
 	@FindBy(xpath = "//img[@title='Back']")
@@ -73,6 +76,7 @@ public class UpdateDesignTaskPage extends Page {
 		}	
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -87,6 +91,7 @@ public class UpdateDesignTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -100,6 +105,7 @@ public class UpdateDesignTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -116,6 +122,7 @@ public class UpdateDesignTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

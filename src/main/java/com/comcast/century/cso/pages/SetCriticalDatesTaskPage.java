@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -32,6 +33,8 @@ public class SetCriticalDatesTaskPage extends Page {
 		
 	}
 	
+	Logger log = Logger.getLogger(SetCriticalDatesTaskPage.class);
+	
 	@FindBy(xpath = "//img[@title='Back']")
 	private WebElement btnBack;
 	
@@ -47,16 +50,16 @@ public class SetCriticalDatesTaskPage extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
-	@FindBy(xpath = "//select[@id='hotCut']")
+	@FindBy(id = "hotCut")
 	private WebElement ddHotCut ;
 	
-	@FindBy(xpath = "//input[@id='focDate']")
+	@FindBy(id = "focDate")
 	private WebElement focDate ;
 	
-	@FindBy(xpath = "//input[@id='custNotificationDate']")
+	@FindBy(id = "custNotificationDate")
 	private WebElement CustomerNotificationDate ;
 	
-	@FindBy(xpath = "//*[@id='scheduledInstallDate']")
+	@FindBy(id = "scheduledInstallDate")
 	private WebElement ScheduleCPEInstallDate ;
 	
 	@FindBy(xpath = "//button[text()='Today']")
@@ -85,6 +88,7 @@ public class SetCriticalDatesTaskPage extends Page {
 						.findElement(By.xpath("//*[text()='Set Critical Dates' and contains(@onclick, 'COMPLETED')]")));
 			}
 		} catch (Exception ex) {
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -100,6 +104,7 @@ public class SetCriticalDatesTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -116,6 +121,7 @@ public class SetCriticalDatesTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

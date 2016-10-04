@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,6 +29,8 @@ public class NotifyCustomerofServiceInstallationTaskPage extends Page {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	Logger log = Logger.getLogger(NotifyCustomerofServiceInstallationTaskPage.class);
 	
 	@FindBy(xpath = "//img[@title='Back']")
 	private WebElement btnBack;
@@ -63,6 +66,7 @@ public class NotifyCustomerofServiceInstallationTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -79,6 +83,7 @@ public class NotifyCustomerofServiceInstallationTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

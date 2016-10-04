@@ -3,6 +3,7 @@ package com.comcast.century.cso.pages;
 import java.awt.AWTException;
 import java.io.FileOutputStream;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,6 +31,8 @@ public class CreateOrderBillingPackageTaskPage extends Page {
 		
 	}
 	
+	Logger log = Logger.getLogger(CreateOrderBillingPackageTaskPage.class);
+	
 	@FindBy(xpath = "//img[@title='Back']")
 	private WebElement btnBack;
 	
@@ -51,7 +54,7 @@ public class CreateOrderBillingPackageTaskPage extends Page {
 	@FindBy(xpath = "//button[text()='Today']")
 	private WebElement btnToday ;
 	
-	@FindBy(xpath = ".//*[@id='attachImg']")
+	@FindBy(id = "attachImg")
 	private WebElement linkAttachments ;
 	
 	@FindBy(css = "img#noteImg")
@@ -63,16 +66,16 @@ public class CreateOrderBillingPackageTaskPage extends Page {
 	@FindBy(css = "iframe#rightFrame")
 	private WebElement rightFrame;
 
-	@FindBy(xpath = "//select[@id='attachMode']")
+	@FindBy(id = "attachMode")
 	private WebElement ddAttachmentRepository ;
 	
 	@FindBy(xpath = "//span[text()='Browse...']")
 	private WebElement btnBrowse ;
 	
-	@FindBy(xpath = "//select[@id='attachmentType0']")
+	@FindBy(id = "attachmentType0")
 	private WebElement ddAttachmentType ;
 	
-	@FindBy(xpath = "//*[@id='btncreate']")
+	@FindBy(id="btncreate")
 	private WebElement btnAdd ;
 	
 	@FindBy(xpath = ".//div[contains(@class,'close')]")
@@ -95,6 +98,7 @@ public class CreateOrderBillingPackageTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -111,7 +115,7 @@ public class CreateOrderBillingPackageTaskPage extends Page {
 			closeNotes.click();
 			this.ClickBackButton();
 		}catch(Exception e){
-			System.out.println(e.getMessage());
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -125,6 +129,7 @@ public class CreateOrderBillingPackageTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -138,6 +143,7 @@ public class CreateOrderBillingPackageTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -154,6 +160,7 @@ public class CreateOrderBillingPackageTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -190,6 +197,7 @@ public class CreateOrderBillingPackageTaskPage extends Page {
 			waitForElement(closeAttachmentWindow);
 			clickndRelease(closeAttachmentWindow);
 		} catch (Exception e) {
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

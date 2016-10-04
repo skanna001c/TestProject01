@@ -2,11 +2,13 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import com.comcast.century.cm.pages.SurveyTabPageCM;
 import com.comcast.century.data.ServiceInfo;
 import com.comcast.century.data.ServiceLevelTaskInfo;
 import com.comcast.utils.ComcastTestMain.FrameworkContext;
@@ -30,6 +32,8 @@ public class ActivateServiceTaskPage extends Page {
 
 	}
 
+	Logger log = Logger.getLogger(ActivateServiceTaskPage.class);
+	
 	@FindBy(xpath = "//img[@title='Back']")
 	private WebElement btnBack;
 
@@ -45,16 +49,16 @@ public class ActivateServiceTaskPage extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading;
 
-	@FindBy(xpath = "//input[@id='edpCompletionString']")
+	@FindBy(id = "edpCompletionString")
 	private WebElement edpCompletionDate;
 
-	@FindBy(xpath = "//input[@id='internalTestingCompleteString']")
+	@FindBy(id = "internalTestingCompleteString")
 	private WebElement internalTestingCompletionDate;
 
 	@FindBy(xpath = "//span[text()='Circuit Testing Details']")
 	private WebElement tabCircuitTestingDetails;
 
-	@FindBy(xpath = "//select[@id='statusAct']")
+	@FindBy(id = "statusAct")
 	private WebElement ddStatus;
 
 	@FindBy(xpath = "//div[text()='EPL' or text()='EVPL']")
@@ -94,7 +98,7 @@ public class ActivateServiceTaskPage extends Page {
 			this.ClickCompleteButton();
 			waitUntilElementPresent(By.xpath("//*[text()='Activate Service' and contains(@onclick, 'COMPLETED')]"), 60);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -107,7 +111,7 @@ public class ActivateServiceTaskPage extends Page {
 				btnBack.click();
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -120,7 +124,7 @@ public class ActivateServiceTaskPage extends Page {
 				btnSave.click();
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -136,7 +140,7 @@ public class ActivateServiceTaskPage extends Page {
 				report.reportDoneEvent("Complete ActivateService Task", " ActivateService Task Completed");
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

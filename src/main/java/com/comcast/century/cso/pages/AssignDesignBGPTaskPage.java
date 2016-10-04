@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -29,6 +30,8 @@ public class AssignDesignBGPTaskPage extends Page {
 		
 	}
 	
+	Logger log = Logger.getLogger(AssignDesignBGPTaskPage.class);
+	
 	@FindBy(xpath = "//img[@title='Back']")
 	private WebElement btnBack;
 	
@@ -44,7 +47,7 @@ public class AssignDesignBGPTaskPage extends Page {
 	@FindBy(xpath = "//div[text()='loading...']")
 	private WebElement elementLoading ;
 	
-	private boolean mstatus;
+	private boolean mstatus = true;
 	
 	public boolean ClickBackButton(){
 		mstatus = true;
@@ -54,7 +57,7 @@ public class AssignDesignBGPTaskPage extends Page {
 		    }
 		}
 		catch(Exception e){
-			System.out.println(e.getMessage());
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -69,7 +72,7 @@ public class AssignDesignBGPTaskPage extends Page {
 			}
 		}		
 		catch(Exception e){
-			System.out.println(e.getMessage());
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -86,7 +89,7 @@ public class AssignDesignBGPTaskPage extends Page {
 		}
 		
 		catch(Exception e){
-			System.out.println(e.getMessage());
+			log.info(e.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

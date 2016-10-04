@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -32,6 +33,8 @@ public class ConductSiteSurveyCoaxTaskPage extends Page {
 		
 	}
 	
+	Logger log = Logger.getLogger(ConductSiteSurveyCoaxTaskPage.class);
+	
 	@FindBy(xpath = "//*[@id='RightFrame' and contains(@src,'MyOrder.exc')]")
 	private WebElement frameRight;
 	
@@ -47,20 +50,18 @@ public class ConductSiteSurveyCoaxTaskPage extends Page {
 	@FindBy(xpath = "//button[text()='Today']")
 	private List<WebElement> btnToday ;
 	
-	@FindBy(xpath = "//select[@id='permitRequired']")
+	@FindBy(id = "permitRequired")
 	private WebElement ddSitePermitRequired ;
 	
-	@FindBy(xpath = "//select[@id='siteType']")
+	@FindBy(id = "siteType")
 	private WebElement ddCPElocationType ;
 	
-	@FindBy(xpath = "//select[@id='powerStatus']")
+	@FindBy(id = "powerStatus")
 	private WebElement ddPowerStatus ;
 	
-	@FindBy(xpath = "//select[@id='equipmentLocationDescription']")
+	@FindBy(id = "equipmentLocationDescription")
 	private WebElement ddEquipmentLocationDescription ;
-	
-	//button[text()='Yes']
-	
+		
 	@FindBy(xpath = "//button[text()='Yes']")
 	private WebElement btnYes ;
 	

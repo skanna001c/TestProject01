@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,6 +29,8 @@ public class ADITaskPage extends Page {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	Logger log = Logger.getLogger(ADITaskPage.class);
 	
 	@FindBy(xpath = "//img[@title='Back']")
 	private WebElement btnBack;
@@ -56,19 +59,19 @@ public class ADITaskPage extends Page {
 	@FindBy(xpath = "//*[text()='-']")
 	private List<WebElement> elementDash ;
 
-	@FindBy(xpath = "//input[@id='serviceId']")
+	@FindBy(id = "serviceId")
 	private WebElement txtServiceID ;
 
-	@FindBy(xpath = "//input[@id='evccID']")
+	@FindBy(id = "evccID")
 	private WebElement txtEVCid ;
 
-	@FindBy(xpath = "//input[@id='projectName']")
+	@FindBy(id = "projectName")
 	private WebElement txtProjectName ;
 	
 	@FindBy(xpath = "//b[contains(normalize-space(text()),normalize-space(concat(\"Retrieve Circuit \",\"ID's\")))]")
 	private WebElement linkRetrieveCircuitID ;
 	
-	@FindBy(xpath = "//*[@id='oitab']")
+	@FindBy(id = "oitab")
 	private WebElement tabOrderInfo ;
 	
 	@FindBy(xpath = "//*[.='Enterprise']/preceding-sibling::td[3]/child::*")
@@ -77,7 +80,7 @@ public class ADITaskPage extends Page {
 	@FindBy(xpath = "//*[.='Enterprise']/following-sibling::td[1]/child::*")
 	private WebElement EVCNo ;
 	
-	private boolean mstatus;
+	private boolean mstatus = true;
 	
 	
 public String getResourceComponentID(){
@@ -90,7 +93,7 @@ public String getResourceComponentID(){
 			waitForElementDisappear(elementLoading);
 			RCID=resourceComponentID.getText();
 		}catch(Exception e){
-		   System.out.println(e.getMessage());
+		   log.info(e.getMessage());
 		   
 		}
 		return RCID;
@@ -121,14 +124,14 @@ public boolean ADITask(ServiceInfo serviceInfo){
 						+ "</ser:serviceDesignNotification>" 
 						+ "</soapenv:Body>"
 						+ "</soapenv:Envelope>";			
-			(new SoapTest()).webServicesTask(request, "ADI",testSettings);
+		(new SoapTest()).webServicesTask(request, "ADI",testSettings);
 		iClick(btnBack,null, "ADI task complete:ADI task complete page: BackButton ");		
 		waitUntilElementPresent(By.xpath("//*[text()='Assign Design Information' and contains(@onclick, 'COMPLETED')]")
 				, 60);
 
 		
 	}catch(Exception e){
-		e.printStackTrace();
+		log.info(e.getMessage());
 		mstatus=false;
 	}
 	return mstatus;

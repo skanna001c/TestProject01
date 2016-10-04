@@ -1,5 +1,6 @@
 package com.comcast.century.cm.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -29,31 +30,29 @@ public class SurveyTabPageCM extends Page {
 		
 	}
 	
+	Logger log = Logger.getLogger(SurveyTabPageCM.class);
+	
 	@FindBy(xpath = "//a[.='Survey']")
 	private WebElement tabSurvey;
 	
 	//*[@id='initiateSurveyDet']
 	
-	@FindBy(xpath = "//input[@id='initiateSurveyDet']")
+	@FindBy(id = "initiateSurveyDet")
 	private WebElement btnRadioInitiateSurvey;
 	
-	@FindBy(xpath = "//*[@id='mainFrame']")
+	@FindBy(id = "mainFrame")
 	private WebElement frameMain;
 	
-	@FindBy(xpath = "//*[@id='codition']")
+	@FindBy(id = "codition")
 	private WebElement frameCondition;
 	
-	//*[@id='siteAddress.addrSiteBean.siteName']
-	
-	@FindBy(xpath = "//input[@id='siteAddress.addrSiteBean.siteName']")
+	@FindBy(id = "siteAddress.addrSiteBean.siteName")
 	private WebElement txtSiteName;
 	
-	//*[@id='siteAddress.addrSiteBean.address1']
-	
-	@FindBy(xpath = "//input[@id='siteAddress.addrSiteBean.address1']")
+	@FindBy(id = "siteAddress.addrSiteBean.address1")
 	private WebElement txtAddressLine1;
 	
-	@FindBy(xpath = "//img[@id='ext-gen33']")
+	@FindBy(id = "ext-gen33")
 	private WebElement ddArrwTT;
 
 	@FindBy(xpath = "//input[@id='transportType']/following-sibling::input")
@@ -62,16 +61,16 @@ public class SurveyTabPageCM extends Page {
 	@FindBy(xpath = "//div[text()='Coax']")
 	private WebElement ddValueTT;
 	
-	@FindBy(xpath = "//input[@id='comboSiteZip']")
+	@FindBy(id = "comboSiteZip")
 	private WebElement ddtxtZipCode;
 	
-	@FindBy(xpath = "//img[@id='zipcode_imgSearch']")
+	@FindBy(id = "ipcode_imgSearch")
 	private WebElement imgZipcodeSearch;
 	
-	@FindBy(xpath = "//input[@id='0']")
+	@FindBy(id = "0")
 	private WebElement btnRadioSelectZip;
 	
-	@FindBy(xpath = "//input[@id='closeLookup']")
+	@FindBy(id = "loseLookup")
 	private WebElement btnOk;
 	
 	@FindBy(xpath = "//input[@value='Validate']")
@@ -80,41 +79,28 @@ public class SurveyTabPageCM extends Page {
 	@FindBy(xpath = "//input[@value='More']")
 	private WebElement btnMore;
 	
-	@FindBy(xpath = "//input[@id='diclaimercheck']")
+	@FindBy(id = "diclaimercheck")
 	private WebElement chkDisclaimer;
 	
 	@FindBy(xpath = "//input[@value='Continue']")
 	private WebElement btnContinue;
 	
-	//*[@id='comboSurveyActions']
-	
-	@FindBy(xpath = "//input[@id='comboSurveyActions']")
+	@FindBy(id = "comboSurveyActions")
 	private WebElement ddtxtSurveyAction;
 	
-	//*[@id='ext-gen212']
-	
-	@FindBy(xpath = "//img[@id='ext-gen212']")
+	@FindBy(id = "ext-gen212")
 	private WebElement ddArrwSurveyAction;
-	
-	//div[text()='Submit Request']
 	
 	@FindBy(xpath = "//div[text()='Submit Request']")
 	private WebElement ddValueSubmitRequest;
 	
-	//div[text()='Create Survey']
-	
 	@FindBy(xpath = "//div[text()='Create Survey']")
 	private WebElement ddValueCreateSurvey;
 	
-	//div[contains(text(),'Add Contact')]
-	//*[@id='ext-gen71']
-	
-	@FindBy(xpath = ".//div[@id='ext-gen71']")
+	@FindBy(id = "ext-gen71")
 	private WebElement BtnAddContact;
 	
-	//input[@id='go']
-	
-	@FindBy(xpath = "//input[@id='go']")
+	@FindBy(id ="go")
 	private WebElement BtnGO;
 	
 	@FindBy(xpath = "//div[text()='loading...']")
@@ -174,6 +160,7 @@ public class SurveyTabPageCM extends Page {
 				 waitforPageLoadComplete();
 			}
 		} catch (Exception e) {
+			log.info(e.getMessage());
 			mstatus = true;
 		}
 		return mstatus;

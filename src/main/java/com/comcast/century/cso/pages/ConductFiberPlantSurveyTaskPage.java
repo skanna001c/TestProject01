@@ -3,6 +3,7 @@ package com.comcast.century.cso.pages;
 import java.awt.AWTException;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,6 +34,8 @@ public class ConductFiberPlantSurveyTaskPage extends Page {
 		
 	}
 	
+	Logger log = Logger.getLogger(ConductFiberPlantSurveyTaskPage.class);
+	
 	@FindBy(xpath = "//*[@id='RightFrame' and contains(@src,'MyOrder.exc')]")
 	private WebElement frameRight;
 	
@@ -42,25 +45,25 @@ public class ConductFiberPlantSurveyTaskPage extends Page {
 	@FindBy(xpath = "//div[contains(text(),'Fiber Survey Results')]/..")
 	private WebElement tabFiberSurveyResults;
 	
-	@FindBy(xpath = "//input[@id='surveyCompDate-inputEl']")
+	@FindBy(id = "surveyCompDate-inputEl")
 	private WebElement SurveyCompletionDate;
 
 	@FindBy(xpath = "//*[text()='Today']")
 	private List<WebElement> btnToday;
 	
-	@FindBy(xpath = "//select[@id='permitReqd']")
+	@FindBy(id = "permitReqd")
 	private WebElement ddPermitRequired;
 	
-	@FindBy(xpath = "//select[@id='constructReqd']")
+	@FindBy(id = "onstructReqd")
 	private WebElement ddConstructionRequired;
 	
-	@FindBy(xpath = "//input[@id='headEndDistance']")
+	@FindBy(id = "headEndDistance")
 	private WebElement txtHeadEndDistance;
 	
-	@FindBy(xpath = "//input[@id='nodeNumber']")
+	@FindBy(id = "nodeNumber")
 	private WebElement txtNodeNumber;
 	
-	@FindBy(xpath = "//select[@id='serviceable']")
+	@FindBy(id = "serviceable")
 	private WebElement ddServiceable;
 	
 	@FindBy(xpath = "//span[text()='Yes']/following-sibling::*")
@@ -105,6 +108,7 @@ public class ConductFiberPlantSurveyTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -118,6 +122,7 @@ public class ConductFiberPlantSurveyTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -131,6 +136,7 @@ public class ConductFiberPlantSurveyTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -151,6 +157,7 @@ public class ConductFiberPlantSurveyTaskPage extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;

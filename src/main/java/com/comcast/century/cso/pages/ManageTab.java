@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -31,6 +32,8 @@ public class ManageTab extends Page {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	Logger log = Logger.getLogger(ManageTab.class);
 
 	private boolean mstatus=true;
 	
@@ -39,10 +42,10 @@ public class ManageTab extends Page {
 	@FindBy(css = "span#Manage")
 	private WebElement tabManage;
 	
-	@FindBy(xpath = "//iframe[@id='mainFrame']")
+	@FindBy(id = "mainFrame")
 	private WebElement frameMain;
 	
-	@FindBy(xpath = "//iframe[@id='LabelsFrame']")
+	@FindBy(id = "LabelsFrame")
 	private WebElement frameLabels;
 	
 	@FindBy(xpath = "//img[@class[contains(.,'expand-right')]]")
@@ -54,7 +57,7 @@ public class ManageTab extends Page {
 	@FindBy(xpath = "//*[@id='Labels']/a")
 	private WebElement LinkLabels ;
 	
-	@FindBy(xpath = "//*[@id='RightFrame']")
+	@FindBy(id = "RightFrame")
 	private WebElement frameRight;
 	
 	@FindBy(css = "input[placeholder='---More Actions---']")
@@ -98,7 +101,7 @@ public class ManageTab extends Page {
 			iClick(tabManage);
 			waitforPageLoadComplete();
 		}catch(Exception e){
-			e.printStackTrace();
+			log.info(e.getMessage());
 			mstatus=false;
 		}
 		return mstatus;
@@ -117,7 +120,7 @@ public class ManageTab extends Page {
 			WaitandSwitchToFrame(frameRight);
 			
 		}catch(Exception e){
-			e.printStackTrace();
+			log.info(e.getMessage());
 			mstatus=false;
 		}
 		return mstatus;
@@ -157,7 +160,7 @@ public class ManageTab extends Page {
 			iClick(btnOK);
 			browser.switchTo().defaultContent();
 		}catch(Exception e){
-			e.printStackTrace();
+			log.info(e.getMessage());
 		
 		}
 		return labelName;

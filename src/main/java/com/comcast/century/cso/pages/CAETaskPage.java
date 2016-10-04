@@ -2,6 +2,7 @@ package com.comcast.century.cso.pages;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,6 +29,8 @@ public class CAETaskPage extends Page {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	Logger log = Logger.getLogger(CAETaskPage.class);
 	
 	@FindBy(xpath = "//img[@title='Back']")
 	private WebElement btnBack;
@@ -59,16 +62,16 @@ public class CAETaskPage extends Page {
 	@FindBy(xpath = "//div[text()='Trunk-PRI']")
 	private WebElement elementPRI ;
 	
-	@FindBy(xpath = "//input[@id='uniId']")
+	@FindBy(id = "uniId")
 	private WebElement txtUNIid ;
 	
-	@FindBy(xpath = "//input[@id='siteCili']")
+	@FindBy(id = "siteCili")
 	private WebElement txtSiteCili ;
 	
 	@FindBy(xpath = "//b[contains(normalize-space(text()),normalize-space(concat(\"Retrieve Circuit \",\"ID's\")))]")
 	private WebElement linkRetrieveCircuitID ;
 	
-	@FindBy(xpath = "//input[@id='projectName']")
+	@FindBy(id = "projectName")
 	private WebElement txtProjectName ;
 	
 	@FindBy(xpath = "//span[.='Order Services']")
@@ -98,7 +101,7 @@ public class CAETaskPage extends Page {
 			iClick(tabOnnetServiceCI);
 			waitForElementDisappear(elementLoading);
 		}catch(Exception e){
-		   System.out.println(e.getMessage());
+		  log.info(e.getMessage());
 		   
 		}
 		return RCID;
@@ -160,11 +163,9 @@ public class CAETaskPage extends Page {
 			}
 			iClick(btnBack,null, "CAE task complete:CAE task complete page: BackButton ");
 			waitForElement(browser.findElement(By.xpath("//*[text()='Create Account and Equipment' and contains(@onclick, 'COMPLETED')]")));
-			waitUntilElementPresent(By.xpath("//*[text()='Create Account and Equipment' and contains(@onclick, 'COMPLETED')]"), 60);
-
-			
+			waitUntilElementPresent(By.xpath("//*[text()='Create Account and Equipment' and contains(@onclick, 'COMPLETED')]"), 60);			
 		}catch(Exception e){
-			e.printStackTrace();
+			log.info(e.getMessage());
 			mstatus=false;
 		}
 		return mstatus;

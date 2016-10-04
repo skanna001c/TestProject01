@@ -1,5 +1,6 @@
 package com.comcast.century.cso.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -27,6 +28,8 @@ public class EqFeeFlowTasks extends Page {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	Logger log = Logger.getLogger(EqFeeFlowTasks.class);
 	
 	@FindBy(xpath = "//img[@title='Back']")
 	private WebElement btnBack;
@@ -66,8 +69,7 @@ public class EqFeeFlowTasks extends Page {
 	public boolean ClickBackButton() throws InterruptedException{
 		try{
 			if(waitForElement(btnBack)){
-				clickndRelease(btnBack);
-				//btnBack.click();
+				clickndRelease(btnBack);				
 				waitforPageLoadComplete();
 				waitForElementDisappear(elementLoading);
 				report.updateTestLog("Validate", "EqFee Flow Task Completed", Status.SCREENSHOT);
@@ -75,6 +77,7 @@ public class EqFeeFlowTasks extends Page {
 		}
 		catch(Exception ex)
 		{
+			log.info(ex.getMessage());
 			mstatus = false;
 		}
 		return mstatus;
@@ -98,7 +101,7 @@ public class EqFeeFlowTasks extends Page {
 		catch(Exception ex)
 		{  
 			mstatus = false;
-			ex.printStackTrace();
+			log.info(ex.getMessage());
 		}
 		return mstatus;
 	}
