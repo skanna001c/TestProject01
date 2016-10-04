@@ -1,4 +1,4 @@
-package com.comcast.cm.pages;
+package com.comcast.pages;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
