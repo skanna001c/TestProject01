@@ -352,6 +352,7 @@ public class CustomerTabPageCM extends Page {
 				+ "img[contains(@src,'images/csh_bluebooks/plus')]";
 		try {
 			do {
+				
 				if (isElementDisplayed(btnExpand)) {
 					iClick(btnExpand, null, "ExpandSOHierarchyButton: CSO Page: ExpandButton");
 				}

@@ -32,7 +32,7 @@
 					<include name="startCM" />
 					<include name="searchSRID" />
 					<include name="initiateSupplements" />
-					<include name="addBGPToEDI" />
+					<include name="addBGP" />
 					<include name="submitOrderSupplements" />
 					<include name="Ship_CPE_Supp" />
 					<include name="Create_Account_and_Equipment_Supp" />

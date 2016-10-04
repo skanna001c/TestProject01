@@ -152,6 +152,9 @@
 					<include name="initiateSupplements" />
 					<include name="upgradeEVC"/>
 					<include name="submitOrderSupplements"/>
+					<include name="Update_Design_Supp"/>
+					<include name="Create_Account_and_Equipment_Supp"/>
+					<include name="Assign_Design_Info_Supp"/>
 					<include name="Generate_Core_Config_Supp"/>
 					<include name="Generate_CPE_Config_Supp"/>
 					<include name="Load_Core_Config_Supp"/>
@@ -167,7 +170,7 @@
 				</methods>
 			</class>
 		</classes>
-	</test>-->
+	</test> -->
 
 	<test name="Tech_Sup_Add_Trunk-PRI_to_In-Flight_Metro-E_order">
 		<classes>
@@ -208,7 +211,6 @@
 					<include name="Activate_Service_Supp"/>
 					<include name="Notify_Customer_of_Service_Installation_Supp"/>
 					<include name="Complete_Customer_Acceptance_Testing_Supp"/>
-					<include name="Create_Order_Billing_Package_Supp"/>
 					<include name="Start_Billing_Supp"/>
 					<include name="EqFeeStartBilling_Supp"/>
 					<include name="Build_Update_Local_Biller_Account_PRISupp" />
