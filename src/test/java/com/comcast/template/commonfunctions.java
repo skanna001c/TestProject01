@@ -2,10 +2,7 @@ package com.comcast.template;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Properties;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -30,7 +27,7 @@ public class commonfunctions {
 	{
 		ArrayList<String> userdetails = new ArrayList<String>();
 		String Profileused = profile;
-		FileInputStream fis = new FileInputStream("C:\\Users\\ohegde001c\\Desktop\\data.xlsx");
+		FileInputStream fis = new FileInputStream("C:\\Users\\ohegde001c\\Desktop\\data.xlsx"); //TODO change this location
 		XSSFWorkbook datawb = new XSSFWorkbook(fis);
 
 		XSSFSheet datasheet = datawb.getSheet("user");
@@ -90,50 +87,9 @@ public class commonfunctions {
 	public static WebDriver openchrome() {
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("chrome.switches", "--disable-extensions");
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\ohegde001c\\Desktop\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\ohegde001c\\Desktop\\chromedriver.exe"); //TODO change this location
 		return driver = new ChromeDriver(options);
 
-	}
-
-	public static Properties setpropertyfile() throws IOException {
-		Properties proo = new Properties();
-		proo.load(new FileInputStream("or.properties"));
-		System.out.println("property class loaded");
-		return proo;
-
-	}
-
-	public String getcurrentdate() {
-
-		String startDateString = "06/27/2007";
-		DateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
-		// get current date time with Date()
-		Date date = new Date();
-		System.out.println(dateFormat.format(date));
-
-		// long datecurrent=Date.parse(startDateString);
-		String datecurrent = dateFormat.format(date);
-		return datecurrent;
-	}
-
-	public String getcurrentdatefor1_1() {
-
-		String startDateString = "06/27/2007";
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-M-d");
-		// get current date time with Date()
-		Date date = new Date();
-		System.out.println(dateFormat.format(date));
-
-		// long datecurrent=Date.parse(startDateString);
-		String datecurrent1_1 = dateFormat.format(date);
-		return datecurrent1_1;
-	}
-
-	public String returnnameoftestuserprofile(String username) throws IOException {
-		ArrayList<String> nameofuser = new ArrayList<String>();
-		nameofuser = selectuserandlogin(username);
-		String name = nameofuser.get(2);
-		return name;
 	}
 
 }

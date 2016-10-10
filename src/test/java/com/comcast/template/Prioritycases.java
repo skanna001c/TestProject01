@@ -1,5 +1,6 @@
 package com.comcast.template;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -14,7 +15,9 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class Prioritycases extends commonfunctions {
+import com.comcast.utils.ComcastTestMain;
+
+public class Prioritycases extends ComcastTestMain{
 	public WebDriver drivermain;
 	public static Properties pro;
 	public static Workcommonpages workobject;
@@ -149,6 +152,14 @@ public class Prioritycases extends commonfunctions {
 		} else {
 			log.info("test poc failed" + result.getName());
 		}
+	}
+	
+	public static Properties setpropertyfile() throws IOException {
+		Properties proo = new Properties();
+		proo.load(new FileInputStream("or.properties"));
+		System.out.println("property class loaded");
+		return proo;
+
 	}
 
 }
