@@ -26,19 +26,11 @@ public class Prioritycases extends commonfunctions {
 	public void test() throws Exception
 
 	{
-
 		pro = setpropertyfile();
-
-	//	reports = new ExtentReports("C:\\report\\repo.html", true, NetworkMode.ONLINE);
-
-	//	reports.loadConfig(new File("C:\\resi\\bulk\\extent-config.xml"));
-
 	}
 
 	@Test(dataProvider = "observation")
 	public void tc002_observation(String Manager, String reportee) throws InterruptedException, IOException {
-
-	//	logger = reports.startTest("tc002_" + reportee + " observations are done by" + Manager);
 
 		commonfunctions tc002 = new commonfunctions();
 		drivermain = tc002.setdriver(Manager);
