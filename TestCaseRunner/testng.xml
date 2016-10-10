@@ -6,11 +6,11 @@
 		<listener class-name="com.comcast.utils.CustomAnnotationListener"></listener>
 	</listeners>
 
-	<test name="Sample_Template_Test">
+	<test name="Priority_cases">
 		<classes>
-			<class name="com.comcast.template.SampleTest">
+			<class name="com.comcast.template.Prioritycases">
 				<methods>
-					<include name="sampleTest" />
+					<include name="tc002_observation" />
 				</methods>
 			</class>
 		</classes>
