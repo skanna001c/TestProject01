@@ -9,25 +9,40 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
-public class commonfunctions {
+import com.comcast.utils.ComcastTestMain;
+
+public class ComcastTest extends ComcastTestMain {
+	
 	public XSSFWorkbook datawb;
 	public String uname, pwd;
 	public static WebDriver driver;
+	
+	public static Properties setpropertyfile() throws IOException {
+		Properties proo = new Properties();
+		proo.load(new FileInputStream("or.properties"));
+		System.out.println("property class loaded");
+		return proo;
 
-	// function to fetch user name and pwd and select the particular driver
-
+	}
+	
+	public String returnnameoftestuserprofile(String username) throws IOException
+	{
+		ArrayList<String> nameofuser = new ArrayList<String>();
+		nameofuser=selectuserandlogin(username);
+		String name = nameofuser.get(2);
+		//System.out.println("name of the userprofile is"+name);
+		//
+		return name;
+	}
+	
 	public ArrayList<String> selectuserandlogin(String profile) throws IOException
 
 	{
 		ArrayList<String> userdetails = new ArrayList<String>();
 		String Profileused = profile;
-		FileInputStream fis = new FileInputStream("C:\\Users\\ohegde001c\\Desktop\\data.xlsx"); //TODO change this location
+		FileInputStream fis = new FileInputStream("data.xlsx"); //TODO change this location
 		XSSFWorkbook datawb = new XSSFWorkbook(fis);
 
 		XSSFSheet datasheet = datawb.getSheet("user");
@@ -56,39 +71,6 @@ public class commonfunctions {
 			}
 		}
 		return userdetails;
-
-	}
-
-	public WebDriver setdriver(String Profileuse) throws IOException {
-
-		String prof = Profileuse;
-		System.out.println(prof);
-		WebDriver driverr = openchrome();
-		ArrayList<String> userdetail = new ArrayList<String>();
-		userdetail = selectuserandlogin(prof);
-		String uname = userdetail.get(0);
-		System.out.println("uname" + uname);
-		String pwd = userdetail.get(1);
-
-		driver.get("https://test.salesforce.com");
-		WebElement username = driver.findElement(By.id("username"));
-
-		username.sendKeys(uname);
-
-		WebElement passwrd = driver.findElement(By.id("password"));
-		passwrd.sendKeys(pwd);
-
-		WebElement submit = driver.findElement(By.xpath("//*[@id='Login']"));
-		submit.click();
-
-		return driverr;
-	}
-
-	public static WebDriver openchrome() {
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("chrome.switches", "--disable-extensions");
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\ohegde001c\\Desktop\\chromedriver.exe"); //TODO change this location
-		return driver = new ChromeDriver(options);
 
 	}
 

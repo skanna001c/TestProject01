@@ -8,9 +8,9 @@
 
 	<test name="Priority_cases">
 		<classes>
-			<class name="com.comcast.template.Prioritycases">
+			<class name="com.comcast.template.Mod1_PriorityCases">
 				<methods>
-					<include name="tc002_observation" />
+					<include name="tc004_vcerifycoachingrelationshipfordirectprofiles" />
 				</methods>
 			</class>
 		</classes>

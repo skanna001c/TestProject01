@@ -1,35 +1,46 @@
 package com.comcast.template;
 
 import java.io.IOException;
+import java.util.Properties;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-public class Workcommonpages extends Prioritycases{
+public class Workcommonpages {
 
-		WebDriver driver; 
+	Properties pro;
 	
-	By chatter=By.linkText(super.pro.getProperty("work.chatter"));
-	By groups=By.xpath(super.pro.getProperty("work.groups"));
-	By sdmautomationgrp=By.xpath(super.pro.getProperty("work.automationgroups"));
-	By more=By.xpath(super.pro.getProperty("work.more"));
-	By teamhuddle=By.xpath(super.pro.getProperty("work.teamhuddle"));
-	By salesprocess=By.xpath(super.pro.getProperty("work.salesprocess"));
-	By Huddleforumname=By.xpath(super.pro.getProperty("work.huddleforumname"));
-	By Subject=By.xpath(super.pro.getProperty("work.huddlesubject"));
-	By userhud=By.xpath(super.pro.getProperty("work.username"));
-	By duedate=By.xpath(super.pro.getProperty("work.huddleduedate"));
+	By chatter;
+	By groups;
+	By sdmautomationgrp;
+	By more;
+	By teamhuddle;
+	By salesprocess;
+	By Huddleforumname;
+	By Subject;
+	By userhud;
+	By duedate;	
 	
-	
-	Workcommonpages(WebDriver driver) throws IOException
+	Workcommonpages(WebDriver driver, Properties pro) throws IOException
 	  {
-
 	        this.driver = driver;
-	    	
-        }
-	  
+	    	this.pro = pro;
+	    	chatter=By.linkText(pro.getProperty("work.chatter"));
+	    	groups=By.xpath(pro.getProperty("work.groups"));
+	    	sdmautomationgrp=By.xpath(pro.getProperty("work.automationgroups"));
+	    	more=By.xpath(pro.getProperty("work.more"));
+	    	teamhuddle=By.xpath(pro.getProperty("work.teamhuddle"));
+	    	salesprocess=By.xpath(pro.getProperty("work.salesprocess"));
+	    	Huddleforumname=By.xpath(pro.getProperty("work.huddleforumname"));
+	    	Subject=By.xpath(pro.getProperty("work.huddlesubject"));
+	    	userhud=By.xpath(pro.getProperty("work.username"));
+	    	duedate=By.xpath(pro.getProperty("work.huddleduedate"));
+      }
+	
+		WebDriver driver; 
+		
 	  public void clickchatter()
 	  {
 		  driver.findElement(chatter).click();
@@ -69,10 +80,10 @@ public class Workcommonpages extends Prioritycases{
 	  
 	  public void logout()
 	  {
-		  WebElement logoutarrow=driver.findElement(By.xpath(super.pro.getProperty("logout.arrow")));
+		  WebElement logoutarrow=driver.findElement(By.xpath(pro.getProperty("logout.arrow")));
 		  logoutarrow.click();
 		  
-		  WebElement logout=driver.findElement(By.xpath(super.pro.getProperty("logout.button")));
+		  WebElement logout=driver.findElement(By.xpath(pro.getProperty("logout.button")));
 		  logout.click();
 		  
 		  driver.close();

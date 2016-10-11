@@ -1,6 +1,5 @@
 package com.comcast.template;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -11,33 +10,30 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.comcast.utils.ComcastTestMain;
-
-public class Prioritycases extends ComcastTestMain{
+public class Prioritycases {
 	public WebDriver drivermain;
 	public static Properties pro;
 	public static Workcommonpages workobject;
-	public commonfunctions common;
+	public Old_commonfunctions common;
 
 	static Logger log = Logger.getLogger(Prioritycases.class.getName());
 
-	@BeforeTest
+	/*@BeforeTest
 	public void test() throws Exception
 
 	{
 		pro = setpropertyfile();
-	}
+	}*/
 
 	@Test(dataProvider = "observation")
 	public void tc002_observation(String Manager, String reportee) throws InterruptedException, IOException {
 
-		commonfunctions tc002 = new commonfunctions();
-		drivermain = tc002.setdriver(Manager);
-		workobject = new Workcommonpages(drivermain);
+		Old_commonfunctions tc002 = new Old_commonfunctions();
+	//	drivermain = tc002.setdriver(Manager);
+	//	workobject = new Workcommonpages(drivermain);
 
 		drivermain.manage().window().maximize();
 
@@ -154,12 +150,6 @@ public class Prioritycases extends ComcastTestMain{
 		}
 	}
 	
-	public static Properties setpropertyfile() throws IOException {
-		Properties proo = new Properties();
-		proo.load(new FileInputStream("or.properties"));
-		System.out.println("property class loaded");
-		return proo;
-
-	}
+	
 
 }
