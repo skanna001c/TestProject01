@@ -41,7 +41,7 @@ public class Mod1_PriorityCases extends ComcastTest {
 		
 		drivermain = frameworkContext.getDriver();
 		workobject = new Workcommonpages(drivermain, pro);
-		login(coacher, drivermain);
+	//	login(coacher, drivermain);
   		WorkPage work = new WorkPage(this.frameworkContext, drivermain, pro);
          	work.setCoach(coacher, personcoached);
 
