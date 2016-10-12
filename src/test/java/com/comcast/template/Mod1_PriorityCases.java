@@ -17,14 +17,21 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.comcast.pages.WorkPage;
+import com.comcast.commons.ComcastTest;
 
 public class Mod1_PriorityCases extends ComcastTest {
 	public WebDriver drivermain;
 	public static Properties pro;
 	public static Workcommonpages workobject;
 	public Old_commonfunctions common;
+	protected String testcaseName;
 
-	static Logger log = Logger.getLogger(Prioritycases.class.getName());
+	static Logger log = Logger.getLogger(Mod1_PriorityCases.class.getName());
+	
+	@BeforeClass
+	public void beforeTest() {
+		testcaseName = frameworkContext.getTestCaseName();
+	}
 
 	@BeforeTest
 	public void test() throws Exception
@@ -44,7 +51,7 @@ public class Mod1_PriorityCases extends ComcastTest {
   		WorkPage work = new WorkPage(this.frameworkContext, drivermain, pro);
          	work.setCoach(coacher, personcoached);
 
-		drivermain.quit();
+//		drivermain.quit();
 
 	}
 

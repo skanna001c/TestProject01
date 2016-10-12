@@ -2,11 +2,13 @@ package com.comcast.commons;
 
 import java.lang.reflect.Method;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import com.comcast.pages.LogInPage;
 import com.comcast.reporting.SeleniumReport;
 import com.comcast.reporting.Status;
+import com.comcast.template.Prioritycases;
 import com.comcast.utils.ComcastTestMain.FrameworkContext;
 import com.comcast.utils.IUserDetails;
 import com.comcast.utils.TestSettings;
@@ -34,6 +36,8 @@ public class Application {
 
 	}
 	
+	Logger log = Logger.getLogger(Application.class.getName());
+	
 	public void beforeMethodGetUserndURL(Method testName) {
 		String userName = null;
 		// check for rerun and the status of the method
@@ -47,8 +51,14 @@ public class Application {
 
 		browser.get(appUrl);
 		
+		log.info("Logging into url: [" +appUrl+ "]");
+		
 		this.password = userDetails.getPassword(userName);
 		this.domain = settings.getAPPDOMAIN();
+		
+		log.info("Username: [" +userName+ "]");
+		log.info("Passowrd: [" +this.password+ "]");
+		
 		(new LogInPage(frameworkContext)).applicationLogin(userName, this.password, this.domain);
 		report.updateTestLog("Application launch", "Application has been launched", Status.SCREENSHOT);
 
