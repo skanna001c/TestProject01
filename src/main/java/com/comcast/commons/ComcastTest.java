@@ -1,6 +1,8 @@
 package com.comcast.commons;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -11,15 +13,16 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
 import com.comcast.utils.ComcastTestMain;
+import com.comcast.utils.TestUtils;
 
 /**
  * Base class for all Comcast Test
@@ -31,81 +34,82 @@ import com.comcast.utils.ComcastTestMain;
  */
 public class ComcastTest extends ComcastTestMain {
 
-	Logger log = Logger.getLogger(ComcastTest.class);
 	Application application;
 	public XSSFWorkbook datawb;
 	public String uname, pwd;
-	// added a new beforeTest method - Harsh
+	protected String testcaseName;
+	public static Properties obj_repo_prop;
+	static Logger log = Logger.getLogger(ComcastTest.class);
+
+	@BeforeClass
+	public void beforeTest() {
+		testcaseName = frameworkContext.getTestCaseName();
+	}
 
 	@BeforeTest
 	public void beforeTestMainComcast(ITestContext context) {
+		log.debug("@BeforeTest beforeTestMainComcast()");
 		application = new Application(frameworkContext);
-		log.info("inside before test");
-
+		obj_repo_prop = loadObjRepo();
 	}
 
 	// updated the logic to check if datatable is null, then instantiate it
 	@BeforeMethod
 	public synchronized void setupDataApplication(Method testName) {
 		log.debug("In ComcastTest method :" + testName.getName());
-		
 		application.beforeMethodGetUserndURL(testName);
-
 	}
 
 	@AfterMethod
 	public synchronized void tearDownApplication(ITestResult result) {
+		log.debug("@AfterMethod tearDownApplication()");
 
 		String methodStatus;
 
-		// update teststatustable
 		if (result.getStatus() == 1) {
 			methodStatus = "PASS";
 		} else {
 			methodStatus = "FAIL";
 		}
-
-		dataDump.setValue(result.getMethod().getMethodName() + "_status", methodStatus);
-		if (methodStatus.equalsIgnoreCase("fail")) {
-			// Add code for test clean up
-
-		}
 	}
 
 	@AfterTest(alwaysRun = true)
 	public synchronized void afterTestMainApplication() {
+		log.debug("@AfterTest afterTestMainApplication()");
+
 		if (settings.getUpdateALM().equalsIgnoreCase("true"))
 			almRestUpdateStatus();
 		browser.quit();
-		// Add code for after test executions
 	}
-	
-	
-	
-	public static Properties setpropertyfile() throws IOException {
-		Properties proo = new Properties();
-		proo.load(new FileInputStream("or.properties"));
-		System.out.println("property class loaded");
-		return proo;
 
+	public static Properties loadObjRepo() {
+		Properties prop = new Properties();
+		String path = TestUtils.getRelativePath() + "//src//test//resources" + File.separator + "obj_repo.properties"; // TODO remove hardcoded value
+		log.debug("Loading obj_repo from: " + path);
+		try {
+			prop.load(new FileInputStream(path));
+		} catch (Exception e) {
+			log.error("Unable to load obj_repo from:" + path + "---" + e.getMessage());
+			e.printStackTrace();
+			throw new RuntimeException ("Unable to load obj_repo from:" + path + "---" + e.getMessage());
+		} 
+		return prop;
 	}
-	
-	public String returnnameoftestuserprofile(String username) throws IOException
-	{
-		ArrayList<String> nameofuser = new ArrayList<String>();
-		nameofuser=selectuserandlogin(username);
-		String name = nameofuser.get(2);
-		//System.out.println("name of the userprofile is"+name);
-		//
+
+	public String returnNameOfTestUserProfile(String username) throws IOException {
+		ArrayList<String> userNameList = new ArrayList<String>();
+		userNameList = selectuserandlogin(username);
+		String name = userNameList.get(2);
 		return name;
 	}
-	
+
 	public ArrayList<String> selectuserandlogin(String profile) throws IOException
 
 	{
 		ArrayList<String> userdetails = new ArrayList<String>();
 		String Profileused = profile;
-		FileInputStream fis = new FileInputStream("data.xlsx"); //TODO change this location
+		FileInputStream fis = new FileInputStream("data.xlsx"); // TODO change
+																// this location
 		XSSFWorkbook datawb = new XSSFWorkbook(fis);
 
 		XSSFSheet datasheet = datawb.getSheet("user");

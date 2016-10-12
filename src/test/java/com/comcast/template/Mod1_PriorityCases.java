@@ -2,7 +2,6 @@ package com.comcast.template;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Properties;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -12,58 +11,33 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.comcast.pages.WorkPage;
 import com.comcast.commons.ComcastTest;
+import com.comcast.pages.WorkPage;
 
 public class Mod1_PriorityCases extends ComcastTest {
 	public WebDriver drivermain;
-	public static Properties pro;
 	public static Workcommonpages workobject;
 	public Old_commonfunctions common;
-	protected String testcaseName;
 
 	static Logger log = Logger.getLogger(Mod1_PriorityCases.class.getName());
-	
-	@BeforeClass
-	public void beforeTest() {
-		testcaseName = frameworkContext.getTestCaseName();
-	}
-
-	@BeforeTest
-	public void test() throws Exception
-
-	{		
-		pro = setpropertyfile();
-
-	}
-
 
 	@Test(dataProvider = "coachrelationship_tc004")
-	public void tc004_vcerifycoachingrelationshipfordirectprofiles(
-			String coacher, String personcoached) throws Exception {
-		
+	public void tc004_vcerifycoachingrelationshipfordirectprofiles(String coacher, String personcoached)
+			throws Exception {
+
 		drivermain = frameworkContext.getDriver();
-		workobject = new Workcommonpages(drivermain, pro);
-  		WorkPage work = new WorkPage(this.frameworkContext, drivermain, pro);
-         	work.setCoach(coacher, personcoached);
-
-//		drivermain.quit();
-
+		workobject = new Workcommonpages(drivermain, obj_repo_prop);
+		WorkPage work = new WorkPage(this.frameworkContext, drivermain, obj_repo_prop);
+		work.setCoach(coacher, personcoached);
 	}
 
-	
 	@DataProvider(name = "coachrelationship_tc004")
 	public Object[][] getcoachrelationship() {
 
-		return new Object[][] {
-			{ "SDMwork", "XSPwork" }, 
-			{ "ASMwork", "SDMwork" },					
-			{ "ASMwork", "XSPwork1" },
-		};
+		return new Object[][] { { "SDMwork", "XSPwork" }, { "ASMwork", "SDMwork" }, { "ASMwork", "XSPwork1" }, };
 	}
 
 	@DataProvider(name = "coach")
@@ -71,8 +45,7 @@ public class Mod1_PriorityCases extends ComcastTest {
 
 		return new Object[][] {
 
-		{ "XSPwork", "SDMwork" }, { "SDMwork", "ASMwork" },
-				{ "XSPwork1", "ASMwork" },
+				{ "XSPwork", "SDMwork" }, { "SDMwork", "ASMwork" }, { "XSPwork1", "ASMwork" },
 
 		};
 	}
@@ -82,9 +55,9 @@ public class Mod1_PriorityCases extends ComcastTest {
 
 		return new Object[][] {
 
-		{ "SDMwork" },
+				{ "SDMwork" },
 
-		{ "ASMwork" },
+				{ "ASMwork" },
 
 		};
 
@@ -95,9 +68,9 @@ public class Mod1_PriorityCases extends ComcastTest {
 
 		return new Object[][] {
 
-		{ "SDMwork", "XSPwork" },
+				{ "SDMwork", "XSPwork" },
 
-		{ "ASMwork", "XSPwork1" },
+				{ "ASMwork", "XSPwork1" },
 
 		};
 
@@ -132,8 +105,8 @@ public class Mod1_PriorityCases extends ComcastTest {
 	public void afterTest() {
 		System.out.println("testClass: after test");
 	}
-	
-	public void login(String Profileuse, WebDriver driver) throws IOException{
+
+	public void login(String Profileuse, WebDriver driver) throws IOException {
 		String prof = Profileuse;
 		System.out.println(prof);
 		ArrayList<String> userdetail = new ArrayList<String>();
@@ -153,4 +126,4 @@ public class Mod1_PriorityCases extends ComcastTest {
 		submit.click();
 	}
 
-}	
+}
