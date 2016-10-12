@@ -96,7 +96,9 @@ public class ComcastTest extends ComcastTestMain {
 		return prop;
 	}
 
-	public String returnNameOfTestUserProfile(String username) throws IOException {
+	// To be removed
+	
+	/*public String returnNameOfTestUserProfile(String username) throws IOException {
 		ArrayList<String> userNameList = new ArrayList<String>();
 		userNameList = selectuserandlogin(username);
 		String name = userNameList.get(2);
@@ -139,6 +141,6 @@ public class ComcastTest extends ComcastTestMain {
 		}
 		return userdetails;
 
-	}
+	}*/
 
 }

@@ -6,11 +6,11 @@
 		<listener class-name="com.comcast.utils.CustomAnnotationListener"></listener>
 	</listeners>
 
-	<test name="tc004_vcerifycoachingrelationshipfordirectprofiles">
+	<test name="tc004_verifyCoachingRelationshipForDirectProfiles">
 		<classes>
 			<class name="com.comcast.template.Mod1_PriorityCases">
 				<methods>
-					<include name="tc004_vcerifycoachingrelationshipfordirectprofiles" />
+					<include name="tc004_verifyCoachingRelationshipForDirectProfiles" />
 				</methods>
 			</class>
 		</classes>

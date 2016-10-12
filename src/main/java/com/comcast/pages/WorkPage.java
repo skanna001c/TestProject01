@@ -3,7 +3,6 @@ package com.comcast.pages;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.comcast.utils.ComcastTestMain.FrameworkContext;
@@ -14,14 +13,12 @@ public class WorkPage extends SFRPage {
 		super(context);
 	}
 
-	public WorkPage(FrameworkContext context, WebDriver driver, Properties pro) {
-		super(context,driver, pro); 
+	public WorkPage(FrameworkContext context,Properties pro) {
+		super(context, pro); 
 	}
-	
-	
-	@Override
-	protected boolean isValidPage() {
 		
+	@Override
+	protected boolean isValidPage() {		
 		return false;
 	}
 

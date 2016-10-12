@@ -1,12 +1,6 @@
 package com.comcast.template;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
@@ -18,20 +12,15 @@ import com.comcast.commons.ComcastTest;
 import com.comcast.pages.WorkPage;
 
 public class Mod1_PriorityCases extends ComcastTest {
-	public WebDriver drivermain;
-	public static Workcommonpages workobject;
-	public Old_commonfunctions common;
 
 	static Logger log = Logger.getLogger(Mod1_PriorityCases.class.getName());
 
 	@Test(dataProvider = "coachrelationship_tc004")
-	public void tc004_vcerifycoachingrelationshipfordirectprofiles(String coacher, String personcoached)
+	public void tc004_verifyCoachingRelationshipForDirectProfiles(String coacher, String personcoached)
 			throws Exception {
 
-		drivermain = frameworkContext.getDriver();
-		workobject = new Workcommonpages(drivermain, obj_repo_prop);
-		WorkPage work = new WorkPage(this.frameworkContext, drivermain, obj_repo_prop);
-		work.setCoach(coacher, personcoached);
+		WorkPage workPage = new WorkPage(this.frameworkContext, obj_repo_prop);
+		workPage.setCoach(coacher, personcoached);
 	}
 
 	@DataProvider(name = "coachrelationship_tc004")
@@ -78,52 +67,52 @@ public class Mod1_PriorityCases extends ComcastTest {
 
 	@Test
 	public void unitLevel1() {
-		System.out.println("testClass: Unit level1 testing");
+		log.debug("testClass: Unit level1 testing");
 	}
 
 	@Test
 	public void unitLevel2() {
-		System.out.println("testClass: Unit level2 testing");
+		log.debug("testClass: Unit level2 testing");
 	}
 
 	@BeforeMethod
 	public void before2Method() {
-		System.out.println("testClass: before method2");
+		log.debug("testClass: before method2");
 	}
 
 	@BeforeClass
 	public void beforeClass() {
-		System.out.println("testClass: before class");
+		log.debug("testClass: before class");
 	}
 
 	@AfterClass
 	public void afterClass() {
-		System.out.println("testClass: after class");
+		log.debug("testClass: after class");
 	}
 
 	@AfterTest
 	public void afterTest() {
-		System.out.println("testClass: after test");
+		log.debug("testClass: after test");
 	}
 
-	public void login(String Profileuse, WebDriver driver) throws IOException {
-		String prof = Profileuse;
-		System.out.println(prof);
-		ArrayList<String> userdetail = new ArrayList<String>();
-		userdetail = selectuserandlogin(prof);
-		String uname = userdetail.get(0);
-		System.out.println("uname" + uname);
-		String pwd = userdetail.get(1);
-		driver.get("https://test.salesforce.com");
-		WebElement username = driver.findElement(By.id("username"));
+	// To be removed
 
-		username.sendKeys(uname);
-
-		WebElement passwrd = driver.findElement(By.id("password"));
-		passwrd.sendKeys(pwd);
-
-		WebElement submit = driver.findElement(By.xpath("//*[@id='Login']"));
-		submit.click();
-	}
+	/*
+	 * public void login(String Profileuse, WebDriver driver) throws IOException
+	 * { String prof = Profileuse; log.debug(prof); ArrayList<String>
+	 * userdetail = new ArrayList<String>(); userdetail =
+	 * selectuserandlogin(prof); String uname = userdetail.get(0);
+	 * log.debug("uname" + uname); String pwd = userdetail.get(1);
+	 * driver.get("https://test.salesforce.com"); WebElement username =
+	 * driver.findElement(By.id("username"));
+	 * 
+	 * username.sendKeys(uname);
+	 * 
+	 * WebElement passwrd = driver.findElement(By.id("password"));
+	 * passwrd.sendKeys(pwd);
+	 * 
+	 * WebElement submit = driver.findElement(By.xpath("//*[@id='Login']"));
+	 * submit.click(); }
+	 */
 
 }

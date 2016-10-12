@@ -5,12 +5,14 @@ import java.util.Properties;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import com.comcast.utils.ComcastTestMain.FrameworkContext;
+import com.comcast.template.Mod1_PriorityCases;
 import com.comcast.utils.Page;
 
 public class SFRPage extends Page {
@@ -19,22 +21,20 @@ public class SFRPage extends Page {
 	
 	Properties pro;	
 	
+	static Logger log = Logger.getLogger(Mod1_PriorityCases.class.getName());
+
 	protected SFRPage(FrameworkContext context) {
-		super(context);
-		
+		super(context);		
 	}
 	
-	protected SFRPage(FrameworkContext context, WebDriver driver, Properties pro) {
+	protected SFRPage(FrameworkContext context, Properties pro) {
 		super(context);
-		this.driver = driver;
+		this.driver = context.getDriver();
 		this.pro = pro;		
-	}
-	
-	
+	}	
 
 	@Override
-	protected boolean isValidPage() {
-		
+	protected boolean isValidPage() {		
 		return false;
 	}
 
@@ -52,11 +52,11 @@ public class SFRPage extends Page {
 		} catch (Exception e) {
 			String emsg = "Unable to find [" + locid + "],  locator=["
 					+ pro.getProperty(locid) + "] " + e.getMessage();
-			System.err.println(emsg);
+			log.error(emsg);
 			throw new RuntimeException(emsg);
 		}
 
-		System.out.println("Found [" + locid + "],  we=" + we);
+		log.info("Found [" + locid + "],  we=" + we);
 		return (we);
 	}	
 	
@@ -71,11 +71,11 @@ public class SFRPage extends Page {
 		} catch (Exception e) {
 			String emsg = "Unable to find [" + locid + "],  locator=["
 					+ pro.getProperty(locid) + "] " + e.getMessage();
-			System.err.println(emsg);
+			log.error(emsg);
 			throw new RuntimeException(emsg);
 		}
 
-		System.out.println("Found [" + locid + "],  we=" + we);
+		log.info("Found [" + locid + "],  we=" + we);
 		return (we);
 	}
 	
@@ -103,11 +103,11 @@ public class SFRPage extends Page {
 			String emsg = "Unable to click [" + locid + "],  locator=["
 					+ pro.getProperty(locid) + "], we=[" + we + ",]"
 					+ e.getMessage();
-			System.err.println(emsg);
+			log.error(emsg);
 			throw new RuntimeException(emsg);
 		}
 
-		System.out.println("Clicked [" + locid + "],  we=" + we);
+		log.info("Clicked [" + locid + "],  we=" + we);
 		return (true);
 	}
 	
@@ -136,11 +136,11 @@ public class SFRPage extends Page {
 			String emsg = "Unable to click [" + locid + "],  locator=["
 					+ pro.getProperty(locid) + "], we=[" + we + ",]"
 					+ e.getMessage();
-			System.err.println(emsg);
+			log.error(emsg);
 			throw new RuntimeException(emsg);
 		}
 
-		System.out.println("Clicked [" + locid + "],  we=" + we);
+		log.info("Clicked [" + locid + "],  we=" + we);
 		return (true);
 	}
 
@@ -166,11 +166,11 @@ public class SFRPage extends Page {
 		} catch (Exception e) {
 			String emsg = "Unable to send text [" + locid + "],  locator=["
 					+ pro.getProperty(locid) + "], we=" + we;
-			System.err.println(emsg);
+			log.error(emsg);
 			throw new RuntimeException(emsg);
 		}
 
-		System.out.println("[" + locid + "] enter text [" + stext + "] we="
+		log.info("[" + locid + "] enter text [" + stext + "] we="
 				+ we);
 		return (true);
 	}
@@ -190,20 +190,20 @@ public class SFRPage extends Page {
 		// copy the error message ....
 		// TODO + beautify
 
-		System.err.println("\n\nqPopup:");
-		System.err.println(emsg);
-		System.err.println("\n\n" + msg + "\n\n");
+		log.error("\n\nqPopup:");
+		log.error(emsg);
+		log.error("\n\n" + msg + "\n\n");
 		int response = JOptionPane.showConfirmDialog(null, msg
 				+ "\n Do you want to continue?\n", "Confirm",
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 		if (response == JOptionPane.NO_OPTION) {
-			System.out.println("No button clicked");
+			log.info("No button clicked");
 			return (-1);
 		} else if (response == JOptionPane.YES_OPTION) {
-			System.out.println("Yes button clicked");
+			log.info("Yes button clicked");
 			return (1);
 		} else if (response == JOptionPane.CLOSED_OPTION) {
-			System.out.println("JOptionPane closed");
+			log.info("JOptionPane closed");
 			return (0);
 		}
 
@@ -215,7 +215,6 @@ public class SFRPage extends Page {
 		try {
 			Thread.sleep(tmilisec);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
