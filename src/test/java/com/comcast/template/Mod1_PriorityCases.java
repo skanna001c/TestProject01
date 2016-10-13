@@ -8,7 +8,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.comcast.commons.ComcastTest;
 import com.comcast.pages.WorkPage;
 
 public class Mod1_PriorityCases extends ComcastTest {

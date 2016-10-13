@@ -1,4 +1,4 @@
-package com.comcast.commons;
+package com.comcast.template;
 
 import java.lang.reflect.Method;
 

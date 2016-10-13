@@ -3,8 +3,6 @@ package com.comcast.template;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.comcast.commons.ComcastTest;
-
 public class SampleTest extends ComcastTest {
 	protected String testcaseName;
 	int retryCount = 0;
