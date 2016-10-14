@@ -1,5 +1,6 @@
 package com.comcast.pages;
 
+import java.io.File;
 import java.util.Properties;
 
 import javax.swing.JOptionPane;
@@ -10,15 +11,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import com.comcast.data.ObjRepoLocator;
 import com.comcast.template.ComcastTest;
 import com.comcast.template.Mod1_PriorityCases;
 import com.comcast.utils.ComcastTestMain.FrameworkContext;
 import com.comcast.utils.Page;
+import com.comcast.utils.TestSettings;
 import com.comcast.utils.TestUtils;
 
 public class SFRPage extends Page {
 
 	WebDriver driver;
+	
+	public static int debug_level = 10;
+	
+	public static ObjRepoLocator pageWebElemLocator = null;
 	
 	Properties pgWebEleRepoProp;	
 	
@@ -220,5 +227,84 @@ public class SFRPage extends Page {
 			}
 		}
 		throw new RuntimeException("Unable to find we for locator " + locID);
+	}
+	
+	public static boolean click(String locid) {
+		// TODO should it be waitWE - check for visibility ??
+		WebElement we = pageWebElemLocator.getWE(locid);
+		if (we == null) {
+			String emsg = "Unable to find web element for locid=[" + locid + "]";
+			// throw exception ?
+			throw new RuntimeException(emsg);
+			// return(false) ;
+		}
+		we.click();
+		if (debug_level > 1) {
+			System.out.println("Clicked for locid=[" + locid + "], we=" + we.toString());
+		}
+		return (true);
+	}
+
+	public static boolean enterText(String locid, String stext) {
+		WebElement we = pageWebElemLocator.getWE(locid);
+		if (we == null) {
+			String emsg = "Unable to find web element for locid=[" + locid + "]";
+			// throw exception ?
+			throw new RuntimeException(emsg);
+			// return(false) ;
+		}
+		we.click();
+		we.clear();
+		we.sendKeys(stext);
+		if (debug_level > 1) {
+			System.out.println("Entered text [" + stext + "] for locid=[" + locid + "], we=" + we.toString());
+		}
+		return (true);
+	}
+
+	public static boolean setCheckBox(String chkId, int checkFlag) {
+		return (true);
+	}
+
+	public static boolean clickRadioButton(String rbtnId) {
+		return (true);
+	}
+
+	public static boolean selectDropDown(String ddId, String ddSelection) {
+		return (true);
+	}
+
+	public static boolean enterCombo(String comboId, String entryValue) {
+		return (true);
+	}
+	
+	public boolean get_xLocator(String pageName) {
+		String locf_dir = System.getenv("LOCATOR_FILES_DIR");
+		if (locf_dir == null) {
+			locf_dir = TestSettings.getResourcesDir() ;
+		}
+		System.out.println("Load Locators");
+		String objRepoFileName = locf_dir + File.separator + pageName + "_objrepo.csv";
+		System.out.println("Object repo file for page=[" + pageName + "]=[" + objRepoFileName + "]");
+		File cfile = new File(objRepoFileName) ;
+		if (cfile.exists()) {
+			if (debug_level>1)
+			    System.out.println("objRepoFileName=[" + objRepoFileName + "]" );
+		} else {
+			System.err.println("Can not find objRepoFileName=[" + objRepoFileName + "]" );
+			System.exit(1);
+		}		
+		pageWebElemLocator = new ObjRepoLocator(driver, objRepoFileName);
+
+		System.out.println("Locators loaded");
+		return (true);
+	}
+	
+	public boolean go(String url, String pgVlidationText, int pgLoadTimeLimit) {
+		driver.get(url);
+		waitForPageLoad();
+		// logic for validation for navigating to correct page ....
+
+		return (true); // raise exception on failure .....
 	}
 }
