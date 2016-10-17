@@ -102,8 +102,9 @@ public class SFRPage extends Page {
 		}
 
 		try {
-			we.click();
-		} catch (Exception e) {
+		//	we.click();
+			iClick(we,  null, "Transaction_Name:Page_Name:Button_Name");		
+			} catch (Exception e) {
 			String emsg = "Unable to click [" + locid + "],  locator=["
 					+ pgWebEleRepoProp.getProperty(locid) + "], we=[" + we + ",]"
 					+ e.getMessage();
