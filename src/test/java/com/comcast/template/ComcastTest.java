@@ -50,8 +50,9 @@ public class ComcastTest extends ComcastTestMain {
 	// updated the logic to check if datatable is null, then instantiate it
 	@BeforeMethod
 	public synchronized void setupDataApplication(Method testName) {
-		log.debug("In ComcastTest method :" + testName.getName());
-		application.beforeMethodGetUserndURL(testName);
+		log.debug("@BeforeMethod - setupDataApplication -  In ComcastTest method :" + testName.getName());
+		log.error("Commented out - beforeMethodGetUserndURL" );
+		// application.beforeMethodGetUserndURL(testName);
 	}
 
 	@AfterMethod
