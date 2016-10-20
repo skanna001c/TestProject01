@@ -1,4 +1,4 @@
-package com.comcast.template;
+package com.comcast.pages;
 
 import java.io.File;
 import java.io.FileInputStream;

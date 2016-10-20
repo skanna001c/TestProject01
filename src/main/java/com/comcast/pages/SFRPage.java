@@ -8,16 +8,10 @@ import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.comcast.data.ObjRepoLocator;
-import com.comcast.template.ComcastTest;
-import com.comcast.template.Mod1_PriorityCases;
 import com.comcast.utils.ComcastTestMain.FrameworkContext;
 import com.comcast.utils.Page;
 import com.comcast.utils.TestSettings;
@@ -33,7 +27,7 @@ public class SFRPage extends Page {
 
 	Properties pgWebEleRepoProp = null ;
 
-	static Logger log = Logger.getLogger(Mod1_PriorityCases.class.getName());
+	static Logger log = Logger.getLogger(SFRPage.class.getName());
 
 	protected SFRPage(FrameworkContext context) {
 		super(context);

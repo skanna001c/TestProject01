@@ -1,11 +1,10 @@
 package com.comcast.template;
 
 import org.apache.log4j.Logger;
-
-
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import com.comcast.pages.ComcastTest;
 import com.comcast.pages.GooglePage;
 
 public class PageObjRepoTest1 extends ComcastTest {
@@ -14,7 +13,8 @@ public class PageObjRepoTest1 extends ComcastTest {
 	int retryCount = 0;
 	boolean status=true;
 	
-
+	static Logger log = Logger.getLogger(PageObjRepoTest1.class.getName());
+	
 	@BeforeClass
 	public void beforeTest() {
 		loadData();

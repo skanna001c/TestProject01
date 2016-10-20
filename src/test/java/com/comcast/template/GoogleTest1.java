@@ -1,14 +1,19 @@
 package com.comcast.template;
 
+import org.apache.log4j.Logger;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import com.comcast.pages.ComcastTest;
 import com.comcast.pages.GooglePage;
+import com.comcast.pages.SFRPage;
 
 public class GoogleTest1 extends ComcastTest {
 	protected String testcaseName;
 	int retryCount = 0;
 	boolean status = true;
+	
+	static Logger log = Logger.getLogger(GoogleTest1.class.getName());
 	
 	GooglePage ggPage1  ;
 
