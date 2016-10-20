@@ -90,8 +90,8 @@ public class ObjRepoLocator {
 				.entrySet()) {
 			String locid = entry.getKey();
 			Map<String, String> loc_entry = entry.getValue();
-			if (debug_level > 0) {
-				log.debug("locid=[" + entry.getKey() + "],  loc_entry=" + loc_entry);
+			if (debug_level > 2) {
+				log.trace("locid=[" + entry.getKey() + "],  loc_entry=" + loc_entry);
 			}
 			xloc_hash.put(locid, new x1Locator(locid, loc_entry));
 		}
@@ -264,7 +264,7 @@ public class ObjRepoLocator {
 			}
 			this.loc_hash = loc_hash;
 			if (debug_level > 1) {
-				log.debug("added by [" + lby.toString() + "]");
+				log.trace("added by [" + lby.toString() + "]");
 			}
 		}
 
@@ -297,9 +297,9 @@ public class ObjRepoLocator {
 			} else if (lc_ltype.equals("partiallink")) {
 				by = By.partialLinkText(locStr);
 			} else {
-				String emsg = "Undefined locator type [" + locType + "]";
-				System.err.println(emsg);
-				return (null); // raise exception .....
+				String emsg = "Undefined locator type [" + locType + "] - locStr=[" + locStr + "]";
+				log.error(emsg);
+				return (null); 
 			}
 			return (by);
 		}
