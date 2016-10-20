@@ -161,14 +161,14 @@ public class ObjRepoLocator {
 		return (xl.lby);
 	}
 
-	public WebElement waitLocatorVisible(WebDriver wd, String locid, int tSec) {
+	public WebElement waitLocatorVisible(WebDriver wd, String locid, long tSec) {
 		WebElement we = null;
 		By xby = getObjRepoLocatorBy(locid) ;
 		
 		WebDriverWait wdwt = new WebDriverWait(wd, tSec);
 		if (debug_level > 1) {
 			log.debug("Wait to be clickable locid=[" + locid + "], by="
-					+ xby.toString());
+					+ xby.toString() + ", tSec=" + tSec);
 		}
 		we = wdwt.until(ExpectedConditions.visibilityOfElementLocated(xby));
 		if (we == null) {
@@ -183,14 +183,14 @@ public class ObjRepoLocator {
 	
 	
 	
-	public WebElement waitLocatorClickable(WebDriver wd, String locid, int tSec) {
+	public WebElement waitLocatorClickable(WebDriver wd, String locid, long tSec) {
 		WebElement we = null;
 		By xby = getObjRepoLocatorBy(locid) ;
 		
 		WebDriverWait wdwt = new WebDriverWait(wd, tSec);
 		if (debug_level > 1) {
 			log.debug("Wait to be clickable locid=[" + locid + "], by="
-					+ xby.toString());
+					+ xby.toString()+ ", tSec=" + tSec);
 		}
 		we = wdwt.until(ExpectedConditions.elementToBeClickable(xby));
 		if (we == null) {

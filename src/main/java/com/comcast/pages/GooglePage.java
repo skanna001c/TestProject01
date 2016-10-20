@@ -10,16 +10,24 @@ import com.comcast.utils.ComcastTestMain.FrameworkContext;
 public class GooglePage extends SFRPage {
 
 	Logger log = Logger.getLogger(GooglePage.class);
+	
+
+	// Needed only for intellisense completion and avoiding spelling errors ....
+	public static class locids {
+		public static final String txtSearch = "txtSearch";
+		public static final String btnSubmit = "btnSubmit";
+		public static final String XXbtnSubmit = "XXbtnSubmit";
+		public static final String submit = "submit";
+		//XXbtnSubmit
+
+	}
+
 
 	public GooglePage(FrameworkContext context) {	
 		super(context, "GooglePage");
 		log.debug("Done calling Super SRFPage");
 	}
 
-	public void launch() {
-		String googleURL = " https://google.com";
-		go(googleURL, "google", 10);
-	}
 
 	@Override
 	protected boolean isValidPage() {
@@ -30,18 +38,73 @@ public class GooglePage extends SFRPage {
 	protected void waitForPageLoad() {
 	}
 
-	public boolean google_search() {
-
+	
+	public void launch() {
 		String gurl = "https://google.com";
+		String titleCheckStr  = "google" ;
+		int tmOutSec = 10 ;
+		
 
-		go(gurl, "google", 10);
+		try {
+			go(gurl, titleCheckStr, tmOutSec);
+		} catch (Exception e) {		
+			e.printStackTrace();
+			String eMsg = "launch Failed: "   + e.getMessage() ;
+			log.error(eMsg);
+			sleep(10000);
+			throw new RuntimeException(eMsg);
+		}
+		// sleep(5000);
+	}
+	
+	public void google_search() {		
+		String srchStr = "Selenium web driver";
+		
+		try {
+			// WebElement we = L_testElementClickable(locids.txtSearch) ;
+			//highligntWE(we);		
+			//WebElement btnwe = L_testElementClickable(locids.btnSubmit) ;
+			//highligntWE(btnwe);		
+			// sleep(10000);
+			
+			enterText(locids.txtSearch, srchStr);
+			// click(locids.btnSubmit);
+			iClick(locids.btnSubmit, null, "Search Button");
+			
+		} catch (Exception e) {		
+			e.printStackTrace();
+			String eMsg = "Search Failed: "   + e.getMessage() ;
+			log.error(eMsg);
+			sleep(10000);
+			throw new RuntimeException(eMsg);
+		}		
+		// sleep(5000);
 
-		String locId = "txtSearch";
-		String sText = "Seleinum webdriver";
+	}
+	
+	public void google_search_err() {		
+		String srchStr = "Selenium web driver";
+		
+		try {
+			// WebElement we = L_testElementClickable(locids.txtSearch) ;
+			//highligntWE(we);		
+			//WebElement btnwe = L_testElementClickable(locids.btnSubmit) ;
+			//highligntWE(btnwe);			
+			// sleep(10000);
+			
+			enterText(locids.txtSearch, srchStr);
+			// click(locids.btnSubmit);
+			iClick(locids.XXbtnSubmit, null, "Search Button");
+			
+		} catch (Exception e) {		
+			e.printStackTrace();
+			String eMsg = "Search Failed: "   + e.getMessage() ;
+			log.error(eMsg);
+			sleep(10000);
+			throw new RuntimeException(eMsg);
+		}		
+		sleep(5000);
 
-		enterText(locId, sText, null);
-
-		return (true);
 	}
 
 }

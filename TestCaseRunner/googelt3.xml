@@ -10,8 +10,7 @@
 		<classes>
 			<class name="com.comcast.template.GoogleTest1">
 				<methods>
-					<include name="google_T1" />
-					<include name="google_T2" />
+					<include name="google_T3" />
 				</methods>
 			</class>
 		</classes>

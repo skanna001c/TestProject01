@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,6 +27,9 @@ public class SFRPage extends Page {
 
 	public static int debug_level = 10;
 	public static ObjRepoLocator pageORLocator = null;
+	
+	// TODO configurable wait time when interactive .....
+	long iwaitTime = 33 ;
 
 	Properties pgWebEleRepoProp = null ;
 
@@ -45,8 +49,10 @@ public class SFRPage extends Page {
 	protected SFRPage(FrameworkContext context, String className) {	
 		super(context);
 		// this.BROWSER = context.getDriver();
-		log.debug("Done calling super Page .... Load locators for [" + className + "]");
+		log.debug("Done calling super Page - 'Page' ");
+		log.debug("Now Load locators for [" + className + "]");
 		loadPageOrLocator(className);
+		log.debug("Locators loaded.\n\n");
 
 	}
 
@@ -249,11 +255,12 @@ public class SFRPage extends Page {
 		throw new RuntimeException("Unable to find we for locator " + locID);
 	}
 
+
 	public boolean click(String locId) {	
 		String iMsg = "" ;
 		try {
 			iMsg = "Check/Wait for WebElement for locid  to be clickable " ;
-			WebElement we = pageORLocator.waitLocatorClickable(browser, locId, 99);
+			WebElement we = pageORLocator.waitLocatorClickable(browser, locId, iwaitTime);
 			we.click();
 			if (debug_level > 1) {
 				log.debug("Clicked for locid=[" + locId + "], we=" + we );
@@ -271,7 +278,7 @@ public class SFRPage extends Page {
 		String iMsg = "" ;
 		try {
 			iMsg = "Check/Wait for WebElement for locid  to be clickable " ;
-			WebElement we = pageORLocator.waitLocatorClickable(browser, locId, 99);
+			WebElement we = pageORLocator.waitLocatorClickable(browser, locId, iwaitTime);
 	
 			we.click();
 			we.clear();
@@ -330,15 +337,34 @@ public class SFRPage extends Page {
 	
 	
 
+	/**
+	 * @param url
+	 * @param pgVlidationText
+	 * @param pgLoadTimeLimit
+	 * @return
+	 */
 	public boolean go(String url, String pgVlidationText, int pgLoadTimeLimit) {
+		log.debug("get URL=" + url);
 		browser.get(url);
 		waitForPageLoad();
 		// logic for validation for navigating to correct page ....
+		
+		log.debug("Done get URL=" + url);
 
-		return (true); // raise exception on failure .....
+		return (true); // TODO raise exception on failure .....
 	}
 
 
+	
+	protected WebElement L_testElementClickable(String locId) {
+		WebElement  we = pageORLocator.waitLocatorClickable(browser, locId, iwaitTime);
+		return(we);
+	}
+
+	protected WebElement L_testElementVisible(String locId) {
+		WebElement  we = pageORLocator.waitLocatorVisible(browser, locId, iwaitTime);
+		return(we);
+	}
 
 	
 	/**
@@ -352,16 +378,17 @@ public class SFRPage extends Page {
 	 * @param description
 	 *                  Description about the action performed on the UI - Format ... TODO
 	 */
-	public void iClick(String locId, String locIdToWaitFor, String description) {
+	public void iClick_0(String locId, String locIdToWaitFor, String description) {
 		log.debug("\n**********************    iClickWithPopup " + description + "***************\n");
 		String iMsg = "";
 
 		WebElement we = null;
 		try {
 			iMsg = "Finding clickable WebElement: ";
-			we = pageORLocator.waitLocatorClickable(browser, locId, 99);
+			we = L_testElementClickable(locId) ;
 			
 			iMsg = "Click WebElement: " + we.toString() + ", innerHTML" + we.getText();
+			startTransaction(testName);
 			browserDependentClick(we) ;
 
 			iMsg = "Witing for PageLoadComplete: ";
@@ -369,7 +396,7 @@ public class SFRPage extends Page {
 			
 			if (!(locIdToWaitFor == null)) {
 				iMsg = "waitForElement: ";
-				WebElement weToWaitFor = pageORLocator.waitLocatorVisible(browser, locId, 99);
+				WebElement weToWaitFor = L_testElementVisible(locIdToWaitFor) ;
 			}
 			endTransaction(testName,  description, null); // TODO record transaction as passed .....	
 			log.debug("Successfully clicked " + description + "\n");
@@ -384,49 +411,97 @@ public class SFRPage extends Page {
 		}
 	}
 	
-	public boolean  checkAndClick(String locId) {
+	public void  iClick(String locId,  String locIdToWaitFor, String transactionDescription) {
 		WebElement we = null;
 		boolean edone = false;
 		int tryCount = 0;
 		String iMsg = "" ;
-		
-		
+		String lstr = "??" ;
+		By lby  ;
+			
 		while (!edone) {
 			try {
 				iMsg = "Finding clickable WebElement: ";
-				By lby =  pageORLocator.getObjRepoLocatorBy(locId) ;
-				we = pageORLocator.waitLocatorClickable(browser, locId, 99);
+				lby =  pageORLocator.getObjRepoLocatorBy(locId) ;
+				lstr = pageORLocator.getObjRepoLocator(locId).loc_hash.get("locStr") ;
+				iMsg = "Finding clickable WebElement: locId=[" + locId + "], locStr=[" + lstr  + "]  by=" + lby ;
+				log.trace(iMsg) ;
+				we = L_testElementClickable(locId) ;
 				
 				iMsg = "Click WebElement: " + we.toString() + ", innerHTML" + we.getText();
-				browserDependentClick(we) ;
-				return (true);
+				// startTransaction(testName);
+				browserDependentClick(we) ;	
+
+				iMsg = "Waiting for PageLoadComplete: ";
+				log.trace(iMsg) ;
+				waitforPageLoadComplete();
+				
+				if (!(locIdToWaitFor == null)) {
+					iMsg = "waitForElement: ";
+					lby =  pageORLocator.getObjRepoLocatorBy(locIdToWaitFor) ;
+					lstr = pageORLocator.getObjRepoLocator(locIdToWaitFor).loc_hash.get("locStr") ;
+					iMsg = "Wait for element: locId=[" + locIdToWaitFor + "], locStr=[" + lstr  + "]  by=" + lby;
+					log.trace(iMsg) ;
+					WebElement weToWaitFor = L_testElementVisible(locIdToWaitFor) ;
+				}
+				
+				// endTransaction(testName, transactionDescription, null); // TODO // record // transaction // as passed // .....
+
+				log.debug("Successfully clicked " + transactionDescription + "\n\n");
+			
+				// return (true);
+				return ;
 			
 			} catch (Exception e) {
 				String emsg = e.getMessage();
-				String lstr = pageORLocator.getObjRepoLocator(locId).loc_hash.get("locStr") ;
-				String popupMsg = "Unable to find WebElement for [" + locId
-						+ "],\n  locator=["
-						+ lstr + "] ";
+				//  String popupMsg = "Unable to find WebElement for [" + locId + "],\n  locator=[" + lstr + "] ";
+				String cMsg = "Failed to success fully click [" + locId + "] and check --- " ;
+				
 
-				int jopResp = locId_ErrorInteraction_PopUpCheck(popupMsg, emsg, null);
+				int jopResp = 0 ;
+				// jopResp = locId_ErrorInteraction_PopUpCheck(popupMsg, emsg, null);
+				
+				jopResp =   locid_catchWithPopup(e, cMsg, iMsg) ;
 
 				if (jopResp > 0) {
-					return true;   //ASKED to pass the condition
+					// endTransaction(testName, transactionDescription, null); // TODO // record // transaction // as passed // .....
+					return ;
 				}
 				
-				else if (jopResp == 0) {
-					tryCount++ ;
-					log.error("Retry #" + tryCount);
-					// back to loop ..
-										
-				} else if (jopResp < 0) {
+				// endTransaction(testName, transactionDescription, null); // TODO // record // transaction // as failed // .....
+				
+				if (jopResp < 0) {
 					log.info("JOptionPane closed - FAIL and contiue");
 					throw new RuntimeException(emsg);
 				} 
+		
+					tryCount++ ;
+					log.error("Retry #" + tryCount);
+					// back to loop ..
+
 			}
 		}
 		throw new RuntimeException("Unable to find/click we for locator " + locId);
 	}
+	
+	
+
+	public int locid_catchWithPopup(Exception e, String cMsg, String iMsg) {
+
+		int nlevels = 4;
+		String ctrace = TestUtils.getExceptionCallTrace(e, nlevels);
+		String exMsg = cMsg + ": " + iMsg + e.getMessage(); // TODO beautify
+															// ......
+		String popUpMsg = "\n " + cMsg + "\n" + iMsg + "\n\n" + ctrace + "\n";
+		
+		
+		// we_ErrorInteraction_PopUpCheck(popUpMsg, exMsg, null);
+		return(locId_ErrorInteraction_PopUpCheck(popUpMsg, exMsg, null)) ;
+
+	}
+	
+	
+	
 	
 	public int locId_ErrorInteraction_PopUpCheck(String popUpMsg, String emsg, String description) {
 		int jopResp = TestUtils.passLoadRetryPopUp(popUpMsg, emsg);
@@ -443,12 +518,13 @@ public class SFRPage extends Page {
 		} else if (jopResp == JOptionPane.CANCEL_OPTION) {
 			log.info("3.  button  clicked - Load/Retry");
 			// ComcastTest.reloadObjRepo();
+			log.error("Try - Reload locator ...");
 			pageORLocator.reloadIfModified() ;
 			log.error("Reload locator try done");
 			return (0);
 		
 		} else if (jopResp == JOptionPane.CLOSED_OPTION) {
-			log.info("JOptionPane closed - FAIL and contiue");
+			log.error("JOptionPane closed - FAIL and contiue");
 			throw new RuntimeException(emsg);
 		} else {
 			log.info("Unknown Option?  ERROR ......... ["  + jopResp  +"]");
@@ -470,10 +546,11 @@ public class SFRPage extends Page {
 		WebElement we = null;
 		try {
 			iMsg = "Finding clickable WebElement for locId=[" +  locId  + ": ";
-			we = pageORLocator.waitLocatorClickable(browser, locId, 99);
+			we = L_testElementClickable(locId) ;
 			iMsg = "enterText WebElement: " + we.toString() + ", innerHTML" +  we.getText()  ;
 			iSendKeysWithCheck(we, sText);
 			log.debug("Successfully entered text [" + sText  +  "], we=" + we) ;
+			highligntWE(we);
 			return ;			
 		} catch (Exception e) {
 			int nlevels = 4 ;
@@ -485,6 +562,11 @@ public class SFRPage extends Page {
 	}
 	
 	
+	
+	public void  highligntWE(WebElement we) {
+		JavascriptExecutor js = (JavascriptExecutor) browser;
+		js.executeScript("arguments[0].style.border='3px dotted blue'", we);	
+	}
 	
 	
 	

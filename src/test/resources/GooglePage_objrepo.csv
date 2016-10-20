@@ -1,3 +1,5 @@
-locId,locType,locStr,weType,xx,
-txtSearch,id,lst-ib,textBox,xx1,
-btnSubmit,name,btnG,button,xx2,
+locId,locType,locStr,weType
+txtSearch,id,lst-ib,textBox
+btnSubmit,name,btnG,button
+XXbtnSubmit,name,btnG,button
+XXtxtSearch,id,XXlst-ib,textBox
