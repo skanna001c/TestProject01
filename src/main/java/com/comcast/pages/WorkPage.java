@@ -5,6 +5,7 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 
+import com.comcast.commons.SFRPage;
 import com.comcast.utils.ComcastTestMain.FrameworkContext;
 
 public class WorkPage extends SFRPage {

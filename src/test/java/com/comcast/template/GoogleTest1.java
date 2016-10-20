@@ -4,9 +4,9 @@ import org.apache.log4j.Logger;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.comcast.pages.ComcastTest;
+import com.comcast.commons.ComcastTest;
+import com.comcast.commons.SFRPage;
 import com.comcast.pages.GooglePage;
-import com.comcast.pages.SFRPage;
 
 public class GoogleTest1 extends ComcastTest {
 	protected String testcaseName;

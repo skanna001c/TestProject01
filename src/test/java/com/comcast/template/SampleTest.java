@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.comcast.pages.ComcastTest;
+import com.comcast.commons.ComcastTest;
 
 public class SampleTest extends ComcastTest {
 	protected String testcaseName;

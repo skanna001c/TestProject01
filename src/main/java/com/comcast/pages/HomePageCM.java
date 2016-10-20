@@ -12,6 +12,8 @@ import com.comcast.utils.Page;
 
 public class HomePageCM extends Page {
 
+	// This is an Example Page class extending Page.java	
+	
 	protected static String HOME_PAGE_TITLE_CM = "Customer Manager";
 
 	@Override

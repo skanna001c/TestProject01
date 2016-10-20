@@ -1,4 +1,4 @@
-package com.comcast.pages;
+package com.comcast.commons;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -80,7 +80,7 @@ public class ComcastTest extends ComcastTestMain {
 	public static Properties loadObjRepo() {
 		Properties prop = new Properties();
 		String path = TestUtils.getRelativePath() + "//src//test//resources" + File.separator + "obj_repo.properties"; // TODO
-																														// remove
+	                                                                                                 			// remove
 																														// hardcoded
 																														// value
 		log.debug("Loading obj_repo from: " + path);

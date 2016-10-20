@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.comcast.pages.ComcastTest;
+import com.comcast.commons.ComcastTest;
 import com.comcast.pages.GooglePage;
 
 public class PageObjRepoTest1 extends ComcastTest {
