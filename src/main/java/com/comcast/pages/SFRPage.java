@@ -429,7 +429,7 @@ public class SFRPage extends Page {
 				we = L_testElementClickable(locId) ;
 				
 				iMsg = "Click WebElement: " + we.toString() + ", innerHTML" + we.getText();
-				// startTransaction(testName);
+				//startTransaction(testName);
 				browserDependentClick(we) ;	
 
 				iMsg = "Waiting for PageLoadComplete: ";
@@ -464,16 +464,15 @@ public class SFRPage extends Page {
 				jopResp =   locid_catchWithPopup(e, cMsg, iMsg) ;
 
 				if (jopResp > 0) {
-					// endTransaction(testName, transactionDescription, null); // TODO // record // transaction // as passed // .....
 					return ;
 				}
 				
-				// endTransaction(testName, transactionDescription, null); // TODO // record // transaction // as failed // .....
 				
-				if (jopResp < 0) {
+				
+/*				if (jopResp < 0) {
 					log.info("JOptionPane closed - FAIL and contiue");
 					throw new RuntimeException(emsg);
-				} 
+				} */
 		
 					tryCount++ ;
 					log.error("Retry #" + tryCount);
@@ -503,9 +502,16 @@ public class SFRPage extends Page {
 	
 	
 	
-	public int locId_ErrorInteraction_PopUpCheck(String popUpMsg, String emsg, String description) {
+	public int locId_ErrorInteraction_PopUpCheck(String popUpMsg, String emsg, String transactionDescription) {
 		int jopResp = TestUtils.passLoadRetryPopUp(popUpMsg, emsg);
-
+		
+		if (jopResp == JOptionPane.CLOSED_OPTION) {
+			log.error("JOptionPane closed - FAIL and contiue");
+			// endTransaction(testName, transactionDescription, null); // TODO // record // transaction // as failed // .....
+			throw new RuntimeException(emsg);
+		}
+		
+		//  endTransaction(testName, transactionDescription, null); // TODO // record // transaction // as passed // .....
 		if (jopResp == JOptionPane.YES_OPTION) {
 			log.info("1. button clicked - Pass");
 			log.info("Retry .......");
@@ -522,10 +528,7 @@ public class SFRPage extends Page {
 			pageORLocator.reloadIfModified() ;
 			log.error("Reload locator try done");
 			return (0);
-		
-		} else if (jopResp == JOptionPane.CLOSED_OPTION) {
-			log.error("JOptionPane closed - FAIL and contiue");
-			throw new RuntimeException(emsg);
+	
 		} else {
 			log.info("Unknown Option?  ERROR ......... ["  + jopResp  +"]");
 			throw new RuntimeException(emsg);

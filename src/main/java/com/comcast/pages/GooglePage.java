@@ -13,7 +13,7 @@ public class GooglePage extends SFRPage {
 	
 
 	// Needed only for intellisense completion and avoiding spelling errors ....
-	public static class locids {
+	public static class Locators {
 		public static final String txtSearch = "txtSearch";
 		public static final String btnSubmit = "btnSubmit";
 		public static final String XXbtnSubmit = "XXbtnSubmit";
@@ -61,21 +61,21 @@ public class GooglePage extends SFRPage {
 		String srchStr = "Selenium web driver";
 		
 		try {
+			
 			// WebElement we = L_testElementClickable(locids.txtSearch) ;
 			//highligntWE(we);		
 			//WebElement btnwe = L_testElementClickable(locids.btnSubmit) ;
-			//highligntWE(btnwe);		
+			//highligntWE(btnwe);			
 			// sleep(10000);
 			
-			enterText(locids.txtSearch, srchStr);
-			// click(locids.btnSubmit);
-			iClick(locids.btnSubmit, null, "Search Button");
+			enterText(Locators.txtSearch, srchStr);
+	
+			iClick("btmSubmit", null, "Search Button");
+			iClick(Locators.btnSubmit, null, "Search Button");
 			
 		} catch (Exception e) {		
-			e.printStackTrace();
 			String eMsg = "Search Failed: "   + e.getMessage() ;
 			log.error(eMsg);
-			sleep(10000);
 			throw new RuntimeException(eMsg);
 		}		
 		// sleep(5000);
@@ -85,22 +85,13 @@ public class GooglePage extends SFRPage {
 	public void google_search_err() {		
 		String srchStr = "Selenium web driver";
 		
-		try {
-			// WebElement we = L_testElementClickable(locids.txtSearch) ;
-			//highligntWE(we);		
-			//WebElement btnwe = L_testElementClickable(locids.btnSubmit) ;
-			//highligntWE(btnwe);			
-			// sleep(10000);
-			
-			enterText(locids.txtSearch, srchStr);
-			// click(locids.btnSubmit);
-			iClick(locids.XXbtnSubmit, null, "Search Button");
+		try {			
+			enterText(Locators.txtSearch, srchStr);
+			iClick(Locators.XXbtnSubmit, null, "Search Button");
 			
 		} catch (Exception e) {		
-			e.printStackTrace();
 			String eMsg = "Search Failed: "   + e.getMessage() ;
 			log.error(eMsg);
-			sleep(10000);
 			throw new RuntimeException(eMsg);
 		}		
 		sleep(5000);
