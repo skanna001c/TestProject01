@@ -19,7 +19,7 @@ import com.comcast.utils.TestUtils;
 public class SFRPage extends Page {
 
 	public static int debug_level = 10;
-	public static ObjRepoLocator pageORLocator = null;
+	public  ObjRepoLocator pageORLocator = null;
 
 	// TODO configurable wait time when interactive .....
 	long iwaitTime = 33;
@@ -373,39 +373,48 @@ public class SFRPage extends Page {
 		}
 		return (true); // TODO raise exception on failure .....
 	}
+	
+	
+	
+	void checkLocatorLoaded() {
+		if (pageORLocator==null) {
+			String pgn = "PageName-Real??" ;
+			String eMsg = "Locators not loaded for parge [" + pgn + "]" ;
+			log.error(eMsg);
+			throw new RuntimeException(eMsg) ;		
+		}	
+	}
 
 	/**g
 	 * @param locId
 	 * @return
 	 */
 	public WebElement testLocatorClickable(String locId) {
-		if (pageORLocator==null) {
-			String pgn = "PageName-Real??" ;
-			String eMsg = "Locators not loaded for parge [" + pgn + "]" ;
-			log.error(eMsg);
-			throw new RuntimeException(eMsg) ;		
-		}
-		
+		checkLocatorLoaded();
 		WebElement we = pageORLocator.waitLocatorClickable(browser, locId, iwaitTime);
 		return (we);
 	}
+
 
 	/**
 	 * @param locId
 	 * @return
 	 */
 	public WebElement testLocatorVisible(String locId) {
-		if (pageORLocator==null) {
-			String pgn = "PageName-Real??" ;
-			String eMsg = "Locators not loaded for parge [" + pgn + "]" ;
-			log.error(eMsg);
-			throw new RuntimeException(eMsg) ;		
-		}
-		
+		checkLocatorLoaded();
 		WebElement we = pageORLocator.waitLocatorVisible(browser, locId, iwaitTime);
 		return (we);
 	}
+	
+	public By getByForLocator(String locId) {
+		checkLocatorLoaded();
+		return (pageORLocator.getObjRepoLocatorBy(locId) );
+	}
 
+	public String  getLocStrForLocator(String locId) {
+		checkLocatorLoaded();
+		return(pageORLocator.getObjRepoLocator(locId).loc_hash.get("locStr")) ;
+	}
 
 	/**
 	 * Enter text into text box identified by the locator locId
@@ -424,14 +433,14 @@ public class SFRPage extends Page {
 			
 		while (!edone) {
 			try {
-				lby =  pageORLocator.getObjRepoLocatorBy(locId) ;
-				lstr = pageORLocator.getObjRepoLocator(locId).loc_hash.get("locStr") ;
+				lby =  getByForLocator(locId) ;
+				lstr = getLocStrForLocator(locId) ;
 				iMsg = "Finding WebElement to enter text: locId=[" + locId + "], locStr=[" + lstr  + "]  by=" + lby ;
 				log.trace(iMsg) ;
 				we = testLocatorClickable(locId) ;
 				
 				iSendKeysWithCheck(we, sText);
-				log.debug("Successfully entered text [" + sText  +  "], we=" + we) ;
+				log.debug("Successfully entered text [" + sText  +  "], locId=" + locId) ;
 				highlightWE(we);
 				return ;			
 			} catch (Exception e) {
@@ -469,9 +478,8 @@ public class SFRPage extends Page {
 
 		while (!edone) {
 			try {
-				iMsg = "Finding clickable WebElement: ";
-				lby = pageORLocator.getObjRepoLocatorBy(locId);
-				lstr = pageORLocator.getObjRepoLocator(locId).loc_hash.get("locStr");
+				lby = getByForLocator(locId);
+				lstr = getLocStrForLocator(locId);
 				iMsg = "Finding clickable WebElement: locId=[" + locId + "], locStr=[" + lstr + "]  by=" + lby;
 				log.trace(iMsg);
 				we = testLocatorClickable(locId);
@@ -485,9 +493,8 @@ public class SFRPage extends Page {
 				waitforPageLoadComplete();
 
 				if (!(locIdToWaitFor == null)) {
-					iMsg = "waitForElement: ";
-					lby = pageORLocator.getObjRepoLocatorBy(locIdToWaitFor);
-					lstr = pageORLocator.getObjRepoLocator(locIdToWaitFor).loc_hash.get("locStr");
+					lby = getByForLocator(locIdToWaitFor);
+					lstr = getLocStrForLocator(locId);
 					iMsg = "Wait for element: locId=[" + locIdToWaitFor + "], locStr=[" + lstr + "]  by=" + lby;
 					log.trace(iMsg);
 					WebElement weToWaitFor = testLocatorVisible(locIdToWaitFor);
@@ -496,7 +503,7 @@ public class SFRPage extends Page {
 				// endTransaction(testName, transactionDescription, null); //
 				// TODO // record // transaction // as passed // .....
 
-				log.debug("Successfully clicked " + transactionDescription + "\n\n");
+				log.debug("Successfully clicked [" + locId + "] - " + transactionDescription + "\n\n");
 
 				// return (true);
 				return;
