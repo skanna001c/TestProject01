@@ -290,13 +290,17 @@ public class SFRPage extends Page {
 	}
 
 	public boolean loadPageOrLocator(String pageName) {
+		
+		// TODO add getLocatorsDir method to TestSettings .....
 		String locf_dir = System.getenv("LOCATOR_FILES_DIR");
 		if (locf_dir == null) {
-			locf_dir = TestSettings.getResourcesDir();
+			locf_dir = TestSettings.getResourcesDir() +  File.separator + "Locators" ;
 		}
 
-		String objRepoFileName = locf_dir + File.separator + pageName + "_objrepo.csv";
-		log.info("Load locator objRepo for page=[" + pageName + "],  repo file=[" + objRepoFileName + "]");
+		// String objRepoFileName = locf_dir + File.separator + pageName + "_objrepo.csv";
+		String objRepoFileName = locf_dir + File.separator + pageName + ".csv";
+		
+		log.info("Load locator objRepo for page=[" + pageName + "],  locators file=[" + objRepoFileName + "]");
 		File cfile = new File(objRepoFileName);
 		if (cfile.exists()) {
 			if (debug_level > 1)
@@ -305,10 +309,10 @@ public class SFRPage extends Page {
 			String eMsg = "Error Loading pageORLocator: Can not find objRepoFileName=[" + objRepoFileName + "]";
 			log.error(eMsg);
 			throw new RuntimeException(eMsg);
-
 		}
-		pageORLocator = new ObjRepoLocator(browser, objRepoFileName);
-		log.info("Locator loaded: objRepo for page=[" + pageName + "],  repo file=[" + objRepoFileName + "]");
+		
+		pageORLocator = new ObjRepoLocator(objRepoFileName);
+		log.info("Locator loaded: objRepo for page=[" + pageName + "],  locators file=[" + objRepoFileName + "]");
 
 		return (true);
 	}
@@ -419,7 +423,7 @@ public class SFRPage extends Page {
 				highligntWE(we);
 				return ;			
 			} catch (Exception e) {
-				String cMsg = "Failed to success fully click [" + locId + "] and check --- " ;
+				String cMsg = "Failed to successfully enterText for  [" + locId + "] and check --- " ;
 				int jopResp = 0 ;
 				jopResp =   locid_catchWithPopup(e, cMsg, iMsg) ;
 				if (jopResp > 0) {
@@ -485,30 +489,17 @@ public class SFRPage extends Page {
 
 			} catch (Exception e) {
 				String emsg = e.getMessage();
-				// String popupMsg = "Unable to find WebElement for [" + locId +
-				// "],\n locator=[" + lstr + "] ";
-				String cMsg = "Failed to success fully click [" + locId + "] and check --- ";
+				String cMsg = "Failed to successfully click [" + locId + "] and check --- ";
 
 				int jopResp = 0;
-				// jopResp = locId_ErrorInteraction_PopUpCheck(popupMsg, emsg,
-				// null);
-
 				jopResp = locid_catchWithPopup(e, cMsg, iMsg);
-
 				if (jopResp > 0) {
-					return;
+					return;  //  pass selected from popup  message ....
 				}
-
-				/*
-				 * if (jopResp < 0) {
-				 * log.info("JOptionPane closed - FAIL and contiue"); throw new
-				 * RuntimeException(emsg); }
-				 */
 
 				tryCount++;
 				log.error("Retry iClick #" + tryCount);
 				// back to loop ..
-
 			}
 		}
 		throw new RuntimeException("Unable to find/click we for locator " + locId);
@@ -531,7 +522,7 @@ public class SFRPage extends Page {
 		int jopResp = TestUtils.passLoadRetryPopUp(popUpMsg, emsg);
 
 		if (jopResp == JOptionPane.CLOSED_OPTION) {
-			log.error("JOptionPane closed - FAIL and contiue");
+			log.error("JOptionPane closed - FAIL -  throw exception (return with error)");
 			// endTransaction(testName, transactionDescription, null); // TODO
 			// // record // transaction // as failed // .....
 			throw new RuntimeException(emsg);
@@ -540,12 +531,11 @@ public class SFRPage extends Page {
 		// endTransaction(testName, transactionDescription, null); // TODO //
 		// record // transaction // as passed // .....
 		if (jopResp == JOptionPane.YES_OPTION) {
-			log.info("1. button clicked - Pass");
-			log.info("Retry .......");
+			log.info("1. button clicked -  Pass - after user fix");
 			return (1);
 
 		} else if (jopResp == JOptionPane.NO_OPTION) {
-			log.info("2.  button clicked  - Retry");
+			log.error("2.  button clicked  - Retry");
 			return (0);
 
 		} else if (jopResp == JOptionPane.CANCEL_OPTION) {

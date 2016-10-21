@@ -43,7 +43,7 @@ public class ObjRepoLocator {
 
 	HashMap<String, x1Locator> xloc_hash;
 
-	public ObjRepoLocator(WebDriver wd, String objRepoFileName) {
+	public ObjRepoLocator(String objRepoFileName) {
 		_objRepoFileName = objRepoFileName;
 
 		// load loc_hash_hash from objRepoFileName
