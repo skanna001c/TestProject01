@@ -320,6 +320,10 @@ public class SFRPage extends Page {
 	//===================            Move to Page.java                    ================================
 	//====================================================================================================
 	
+	/**
+	 * @param pageName
+	 * @return
+	 */
 	public boolean loadPageLocators(String pageName) {
 		
 		// TODO add getLocatorsDir method to TestSettings .....
@@ -356,21 +360,34 @@ public class SFRPage extends Page {
 	 */
 	public boolean go(String url, String pgVlidationText, int pgLoadTimeLimit) {
 		log.debug("get URL=" + url);
-		browser.get(url);
-		waitForPageLoad();
-		// TODO ... logic for validation for navigating to correct page ....
+		try {
+			browser.get(url);
+			waitForPageLoad();
+			// TODO ... logic for validation for navigating to correct page ....
 
-		log.debug("Done get URL=" + url);
-
+			log.debug("Done get URL=" + url);
+		} catch (Exception e) {
+			String eMsg = "Failed to navigate successfully to url [" + url + "] --- " + e.getMessage() ;
+			log.error(eMsg);
+			throw new RuntimeException(eMsg) ;
+		}
 		return (true); // TODO raise exception on failure .....
 	}
 
-	protected WebElement L_testElementClickable(String locId) {
+	/**
+	 * @param locId
+	 * @return
+	 */
+	protected WebElement testLocatorClickable(String locId) {
 		WebElement we = pageORLocator.waitLocatorClickable(browser, locId, iwaitTime);
 		return (we);
 	}
 
-	protected WebElement L_testElementVisible(String locId) {
+	/**
+	 * @param locId
+	 * @return
+	 */
+	protected WebElement testLocatorVisible(String locId) {
 		WebElement we = pageORLocator.waitLocatorVisible(browser, locId, iwaitTime);
 		return (we);
 	}
@@ -397,7 +414,7 @@ public class SFRPage extends Page {
 				lstr = pageORLocator.getObjRepoLocator(locId).loc_hash.get("locStr") ;
 				iMsg = "Finding WebElement to enter text: locId=[" + locId + "], locStr=[" + lstr  + "]  by=" + lby ;
 				log.trace(iMsg) ;
-				we = L_testElementClickable(locId) ;
+				we = testLocatorClickable(locId) ;
 				
 				iSendKeysWithCheck(we, sText);
 				log.debug("Successfully entered text [" + sText  +  "], we=" + we) ;
@@ -443,7 +460,7 @@ public class SFRPage extends Page {
 				lstr = pageORLocator.getObjRepoLocator(locId).loc_hash.get("locStr");
 				iMsg = "Finding clickable WebElement: locId=[" + locId + "], locStr=[" + lstr + "]  by=" + lby;
 				log.trace(iMsg);
-				we = L_testElementClickable(locId);
+				we = testLocatorClickable(locId);
 
 				iMsg = "Click WebElement: " + we.toString() + ", innerHTML" + we.getText();
 				// startTransaction(testName);
@@ -459,7 +476,7 @@ public class SFRPage extends Page {
 					lstr = pageORLocator.getObjRepoLocator(locIdToWaitFor).loc_hash.get("locStr");
 					iMsg = "Wait for element: locId=[" + locIdToWaitFor + "], locStr=[" + lstr + "]  by=" + lby;
 					log.trace(iMsg);
-					WebElement weToWaitFor = L_testElementVisible(locIdToWaitFor);
+					WebElement weToWaitFor = testLocatorVisible(locIdToWaitFor);
 				}
 
 				// endTransaction(testName, transactionDescription, null); //
@@ -488,6 +505,12 @@ public class SFRPage extends Page {
 		throw new RuntimeException("Unable to find/click we for locator " + locId);
 	}
 
+	/**
+	 * @param e
+	 * @param cMsg
+	 * @param iMsg
+	 * @return
+	 */
 	public int locid_catchWithPopup(Exception e, String cMsg, String iMsg) {
 
 		int nlevels = 4;
@@ -501,14 +524,20 @@ public class SFRPage extends Page {
 
 	}
 
-	public int locId_ErrorInteraction_PopUpCheck(String popUpMsg, String emsg, String transactionDescription) {
-		int jopResp = TestUtils.passLoadRetryPopUp(popUpMsg, emsg);
+	/**
+	 * @param popUpMsg
+	 * @param eMsg
+	 * @param transactionDescription
+	 * @return
+	 */
+	public int locId_ErrorInteraction_PopUpCheck(String popUpMsg, String eMsg, String transactionDescription) {
+		int jopResp = TestUtils.passLoadRetryPopUp(popUpMsg, eMsg);
 
 		if (jopResp == JOptionPane.CLOSED_OPTION) {
 			log.error("JOptionPane closed - FAIL -  throw exception (return with error)");
 			// endTransaction(testName, transactionDescription, null); // TODO
 			// // record // transaction // as failed // .....
-			throw new RuntimeException(emsg);
+			throw new RuntimeException(eMsg);
 		}
 
 		// endTransaction(testName, transactionDescription, null); // TODO //
@@ -531,7 +560,7 @@ public class SFRPage extends Page {
 
 		} else {
 			log.info("Unknown Option?  ERROR ......... [" + jopResp + "]");
-			throw new RuntimeException(emsg);
+			throw new RuntimeException(eMsg);
 		}
 
 	}
@@ -559,7 +588,7 @@ public class SFRPage extends Page {
 		WebElement we = null;
 		try {
 			iMsg = "Finding clickable WebElement: ";
-			we = L_testElementClickable(locId);
+			we = testLocatorClickable(locId);
 
 			iMsg = "Click WebElement: " + we.toString() + ", innerHTML" + we.getText();
 			startTransaction(testName);
@@ -570,7 +599,7 @@ public class SFRPage extends Page {
 
 			if (!(locIdToWaitFor == null)) {
 				iMsg = "waitForElement: ";
-				WebElement weToWaitFor = L_testElementVisible(locIdToWaitFor);
+				WebElement weToWaitFor = testLocatorVisible(locIdToWaitFor);
 			}
 			endTransaction(testName, description, null); // TODO record
 															// transaction as
@@ -600,7 +629,7 @@ public class SFRPage extends Page {
 		WebElement we = null;
 		try {
 			iMsg = "Finding clickable WebElement for locId=[" + locId + ": ";
-			we = L_testElementClickable(locId);
+			we = testLocatorClickable(locId);
 			iMsg = "enterText WebElement: " + we.toString() + ", innerHTML" + we.getText();
 			iSendKeysWithCheck(we, sText);
 			log.debug("Successfully entered text [" + sText + "], we=" + we);

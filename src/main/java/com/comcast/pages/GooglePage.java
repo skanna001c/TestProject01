@@ -22,7 +22,7 @@ public class GooglePage extends SFRPage {
 
 	public GooglePage(FrameworkContext context) {
 		super(context, "GooglePage");
-		log.debug("Done calling Super SRFPage");
+		log.debug("Done calling Super SRFPage");	
 	}
 
 	@Override

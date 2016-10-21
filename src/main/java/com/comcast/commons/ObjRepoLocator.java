@@ -12,6 +12,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
+
 // import com.comcast.template.Mod1_PriorityCases;
 import com.comcast.utils.CsvFileReader;
 
@@ -39,20 +41,77 @@ public class ObjRepoLocator {
 	static Logger log = Logger.getLogger(ObjRepoLocator.class.getName());
 
 	// HashMap<String, HashMap<String, String>> loc_hash_hash;
-	HashMap<String, Map<String, String>> csv_hash_hash;
+	HashMap<String, Map<String, String>> csv_HASH_HASH;
 
-	HashMap<String, x1Locator> xloc_hash;
+	HashMap<String, x1Locator> locatorsHash;
 
 	public ObjRepoLocator(String objRepoFileName) {
 		_objRepoFileName = objRepoFileName;
 
 		// load loc_hash_hash from objRepoFileName
-		csv_hash_hash = new HashMap<String, Map<String, String>>();
-		_rcount = loadObjRepoFromCSVFile(objRepoFileName,  csv_hash_hash) ;
+		csv_HASH_HASH = new HashMap<String, Map<String, String>>();
+		_rcount = loadObjRepoFromCSVFile(objRepoFileName,  csv_HASH_HASH) ;
 		
 		File orFile = new File(_objRepoFileName) ;
 		_fileModTime = orFile.lastModified() ;	
 	}
+	
+	
+
+	/**
+	 * @param rcsv_hash_hash
+	 */
+	public ObjRepoLocator(HashMap<String, Map<String, String>> rcsv_hash_hash) {
+		
+		// TODO replace by copy .....
+		csv_HASH_HASH = rcsv_hash_hash ;
+		
+		locatorsHash = new HashMap<String, x1Locator>();
+
+		// for (Map.Entry<String, HashMap<String, String>> entry : loc_hash_hash
+		for (Map.Entry<String, Map<String, String>> entry : rcsv_hash_hash
+				.entrySet()) {
+			String locid = entry.getKey();
+			Map<String, String> loc_entry = entry.getValue();
+			if (debug_level > 0) {
+				log.debug("locid=[" + entry.getKey() + "],  value=" + loc_entry);
+			}
+			locatorsHash.put(locid, new x1Locator(locid, loc_entry));
+		}
+	}
+
+
+	/**
+	 * @param objRepoFileName
+	 * @return
+	 */
+	private int loadObjRepoFromCSVFile(String objRepoFileName, HashMap<String, Map<String, String>> rcsv_hash_hash) {
+		int rcount = -1;
+
+		rcount = CsvFileReader.readCsvFileToMap(objRepoFileName, "",  rcsv_hash_hash);
+		if (rcount < 1) {
+			String eMsg = "Unable to read obj repository records from [" + objRepoFileName + "], rcount=" + rcount;
+			log.error(eMsg);
+			throw new RuntimeException(eMsg);
+		}
+		log.info("Read objRepoFileName=[" + objRepoFileName + "], rcount=" + rcount);
+
+		locatorsHash = new HashMap<String, x1Locator>();
+		// for (Map.Entry<String, HashMap<String, String>> entry : loc_hash_hash
+		for (Map.Entry<String, Map<String, String>> entry : rcsv_hash_hash
+				.entrySet()) {
+			String locid = entry.getKey();
+			Map<String, String> loc_entry = entry.getValue();
+			if (debug_level > 2) {
+				log.trace("locid=[" + entry.getKey() + "],  loc_entry=" + loc_entry);
+			}
+			locatorsHash.put(locid, new x1Locator(locid, loc_entry));
+		}
+
+		return (rcount);
+	}
+	
+	
 	
 	public int reloadIfModified() {
 		int rcount = -1 ;
@@ -66,58 +125,20 @@ public class ObjRepoLocator {
 		
 		log.info("File modfied,  reload [" +  _objRepoFileName + "] tdiff=" + (fmodt-_fileModTime) );
 		HashMap<String, Map<String, String>> new_csv_hash_hash = new HashMap<String, Map<String, String>>();
-		rcount = loadObjRepoFromCSVFile(_objRepoFileName,  new_csv_hash_hash) ;
-		csv_hash_hash = new_csv_hash_hash ;	
+		rcount = loadObjRepoFromCSVFile(_objRepoFileName, new_csv_hash_hash) ;
+		csv_HASH_HASH = new_csv_hash_hash ;	
 		_fileModTime = fmodt ;
 		_rcount = rcount ;
 		return(rcount) ;
 	}
 
-	public int loadObjRepoFromCSVFile(String objRepoFileName, HashMap<String, Map<String, String>> csv_hsh_hash) {
-		int rcount = -1;
-
-		xloc_hash = new HashMap<String, x1Locator>();
-		rcount = CsvFileReader.readCsvFileToMap(objRepoFileName, "", csv_hash_hash);
-		if (rcount < 1) {
-			String eMsg = "Unable to read obj repository records from [" + objRepoFileName + "], rcount=" + rcount;
-			log.error(eMsg);
-			throw new RuntimeException(eMsg);
-		}
-		log.info("Read objRepoFileName=[" + objRepoFileName + "], rcount=" + rcount);
-
-		// for (Map.Entry<String, HashMap<String, String>> entry : loc_hash_hash
-		for (Map.Entry<String, Map<String, String>> entry : csv_hash_hash
-				.entrySet()) {
-			String locid = entry.getKey();
-			Map<String, String> loc_entry = entry.getValue();
-			if (debug_level > 2) {
-				log.trace("locid=[" + entry.getKey() + "],  loc_entry=" + loc_entry);
-			}
-			xloc_hash.put(locid, new x1Locator(locid, loc_entry));
-		}
-
-		return (rcount);
-	}
-
-	public ObjRepoLocator(HashMap<String, Map<String, String>> csv_hash_hash) {
-		// load loc_hash_hash from csv_hash_hash
-		csv_hash_hash = new HashMap<String, Map<String, String>>();
-		xloc_hash = new HashMap<String, x1Locator>();
-
-		// for (Map.Entry<String, HashMap<String, String>> entry : loc_hash_hash
-		for (Map.Entry<String, Map<String, String>> entry : csv_hash_hash
-				.entrySet()) {
-			String locid = entry.getKey();
-			Map<String, String> loc_entry = entry.getValue();
-			if (debug_level > 0) {
-				log.debug("locid=[" + entry.getKey() + "],  value=" + loc_entry);
-			}
-			xloc_hash.put(locid, new x1Locator(locid, loc_entry));
-		}
-	}
+	
+	//======================================================================================
+	//======================================================================================
+	
 
 	public void add_x1locator(String locid, HashMap<String, String> loc_hash) {
-		xloc_hash.put(locid, new x1Locator(locid, loc_hash));
+		locatorsHash.put(locid, new x1Locator(locid, loc_hash));
 	}
 
 	public void add_min_x1locator(String locid, String loctype, String locstr,
@@ -127,10 +148,10 @@ public class ObjRepoLocator {
 		loc_hash.put(kLocType, loctype);
 		loc_hash.put(kLocStr, locstr);
 		loc_hash.put(kWeType, wetype);
-		xloc_hash.put(locid, new x1Locator(locid, loc_hash));
+		locatorsHash.put(locid, new x1Locator(locid, loc_hash));
 	}
 
-	public void print_Xlocator() {
+	public void printLocatorsHash() {
 		// TODO ......
 	}
 
@@ -138,41 +159,47 @@ public class ObjRepoLocator {
 	//
 	// ====================================================================================================
 	
-	public boolean existsObjRepoLocator(String locid) {
-		x1Locator xl = xloc_hash.get(locid);
+	public boolean existsObjRepoLocator(String locId) {
+		x1Locator xl = locatorsHash.get(locId);
 		if (xl == null) {
 			return(false) ;
 		}
 		return (true);
 	}
 	
-	public x1Locator getObjRepoLocator(String locid) {
-		x1Locator xl = xloc_hash.get(locid);
+	public x1Locator getObjRepoLocator(String locId) {
+		x1Locator xl = locatorsHash.get(locId);
 		if (xl == null) {
-			String emsg = "Can not find locator entry for locid=[" + locid + "]";
+			String emsg = "Can not find locator entry for locid=[" + locId + "]";
 			log.error(emsg);
 			throw new RuntimeException(emsg);
 		}
 		return (xl);
 	}
 
-	public By getObjRepoLocatorBy(String locid) {
-		x1Locator xl = getObjRepoLocator(locid);
+	public By getObjRepoLocatorBy(String locId) {
+		x1Locator xl = getObjRepoLocator(locId);
 		return (xl.lby);
 	}
 
-	public WebElement waitLocatorVisible(WebDriver wd, String locid, long tSec) {
+	/**
+	 * @param wd
+	 * @param locId
+	 * @param tSec
+	 * @return
+	 */
+	public WebElement waitLocatorVisible(WebDriver wd, String locId, long tSec) {
 		WebElement we = null;
-		By xby = getObjRepoLocatorBy(locid) ;
+		By xby = getObjRepoLocatorBy(locId) ;
 		
 		WebDriverWait wdwt = new WebDriverWait(wd, tSec);
 		if (debug_level > 1) {
-			log.debug("Wait to be clickable locid=[" + locid + "], by="
+			log.debug("Wait to be clickable locid=[" + locId + "], by="
 					+ xby.toString() + ", tSec=" + tSec);
 		}
 		we = wdwt.until(ExpectedConditions.visibilityOfElementLocated(xby));
 		if (we == null) {
-			String emsg = "Timed out waiting for locid=[" + locid + "], by="
+			String emsg = "Timed out waiting for locid=[" + locId + "], by="
 					+ xby.toString();
 			log.error(emsg);
 			throw new RuntimeException(emsg);
@@ -183,21 +210,27 @@ public class ObjRepoLocator {
 	
 	
 	
-	public WebElement waitLocatorClickable(WebDriver wd, String locid, long tSec) {
+	/**
+	 * @param wd
+	 * @param locId
+	 * @param tSec
+	 * @return
+	 */
+	public WebElement waitLocatorClickable(WebDriver wd, String locId, long tSec) {
 		WebElement we = null;
-		By xby = getObjRepoLocatorBy(locid) ;
+		By xby = getObjRepoLocatorBy(locId) ;
 		
 		WebDriverWait wdwt = new WebDriverWait(wd, tSec);
 		if (debug_level > 1) {
-			log.debug("Wait to be clickable locid=[" + locid + "], by="
+			log.debug("Wait to be clickable locid=[" + locId + "], by="
 					+ xby.toString()+ ", tSec=" + tSec);
 		}
 		we = wdwt.until(ExpectedConditions.elementToBeClickable(xby));
 		if (we == null) {
-			String emsg = "Timed out waiting for locid=[" + locid + "], by="
+			String eMsg = "Timed out waiting for locid=[" + locId + "], by="
 					+ xby.toString();
-			log.error(emsg);
-			throw new RuntimeException(emsg);
+			log.error(eMsg);
+			throw new RuntimeException(eMsg);
 		}
 
 		return (we);
@@ -205,27 +238,44 @@ public class ObjRepoLocator {
 	
 	
 
-	public WebElement getLocatorWE(WebDriver wd, String locid) {
-		By xby = getObjRepoLocatorBy(locid) ;
-			
-		WebElement we = wd.findElement(xby);
-		if (debug_level > 1) {
-			if (we == null) {
-				log.error("null WE found for locid=[" + locid + "]");
-			} else {
-				if (debug_level > 5) {
-					log.debug("WE found for locid=[" + locid + "], we="
-							+ we.toString());
+	public WebElement getLocatorWE(WebDriver wd, String locId) {
+		WebElement we = null ;
+		By xby  ;
+		
+		try {
+			xby = getObjRepoLocatorBy(locId) ;		
+			we = wd.findElement(xby);
+			if (debug_level > 1) {
+				if (we == null) {
+					log.error("null WE found for locid=[" + locId + "]");
+				} else {
+					if (debug_level > 5) {
+						log.debug("WE found for locid=[" + locId + "], we="
+								+ we.toString());
+					}
 				}
 			}
+			return (we);
+		} catch (Exception e) {
+              String eMsg = "Failed to get Webelement --- " + e.getMessage() ;
+              log.error(eMsg);
+              throw new RuntimeException(eMsg);
 		}
-		return (we);
+
 	}
 
-	public List<WebElement> getLocatorWEList(WebDriver wd, String locid) {
-		By xby = getObjRepoLocatorBy(locid) ;
-		List<WebElement> we_list = wd.findElements(xby);
-		return (we_list);
+	public List<WebElement> getLocatorWEList(WebDriver wd, String locId) {
+		List<WebElement> weList ;
+		
+		try {
+			By xby = getObjRepoLocatorBy(locId) ;
+			weList = wd.findElements(xby);
+			return (weList);
+		} catch (Exception e) {
+            String eMsg = "Failed to get WebElementList for [" + locId + "] --- " + e.getMessage() ;
+            log.error(eMsg);
+            throw new RuntimeException(eMsg);
+		}
 	}
 
 	// ===============================================================================================================
