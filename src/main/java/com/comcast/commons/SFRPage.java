@@ -39,12 +39,14 @@ public class SFRPage extends Page {
 
 	}
 
+	
+	// TODO improve implementation  - identify which classes are designed with locators
 	protected SFRPage(FrameworkContext context, String className) {
 		super(context);
 		// this.BROWSER = context.getDriver();
 		log.debug("Done calling super Page - 'Page' ");
 		log.debug("Now Load locators for [" + className + "]");
-		loadPageOrLocator(className);
+		loadPageLocators(className);
 		log.debug("Locators loaded.\n\n");
 
 	}
@@ -58,6 +60,16 @@ public class SFRPage extends Page {
 	protected void waitForPageLoad() {
 	}
 
+	
+	
+	
+	
+	
+	//===============================================================================================
+	//  Deprecated - used with old property file locator .....
+	//===============================================================================================
+	
+	@Deprecated
 	public WebElement getLWE(String locid) {
 
 		WebElement we = null;
@@ -76,6 +88,7 @@ public class SFRPage extends Page {
 		return (we);
 	}
 
+	@Deprecated
 	public WebElement getXWE(String locid) {
 
 		WebElement we = null;
@@ -94,6 +107,7 @@ public class SFRPage extends Page {
 		return (we);
 	}
 
+	@Deprecated
 	public boolean iXclick(String locid) {
 		WebElement we = null;
 		try {
@@ -122,6 +136,7 @@ public class SFRPage extends Page {
 		return (true);
 	}
 
+	@Deprecated
 	public boolean iLclick(String locid) {
 		WebElement we = null;
 		try {
@@ -150,6 +165,8 @@ public class SFRPage extends Page {
 		return (true);
 	}
 
+	
+	@Deprecated
 	public boolean enterXText(String locid, String stext) {
 		WebElement we = null;
 		try {
@@ -179,6 +196,7 @@ public class SFRPage extends Page {
 		return (true);
 	}
 
+	@Deprecated
 	public boolean selectXByIndex(String locid, int index) {
 		WebElement we = getXWE(locid);
 
@@ -194,6 +212,7 @@ public class SFRPage extends Page {
 	 * @param locID
 	 * @return
 	 */
+	@Deprecated
 	public WebElement getXWE_Retry(String locID) {
 		WebElement we = null;
 		boolean edone = false;
@@ -235,6 +254,7 @@ public class SFRPage extends Page {
 		throw new RuntimeException("Unable to find we for locator " + locID);
 	}
 
+	@Deprecated
 	public boolean click(String locId) {
 		String iMsg = "";
 		try {
@@ -253,6 +273,7 @@ public class SFRPage extends Page {
 		return (true);
 	}
 
+	@Deprecated
 	public boolean enterText(String locId, String sText) {
 		String iMsg = "";
 		try {
@@ -289,30 +310,40 @@ public class SFRPage extends Page {
 		return (true);
 	}
 
-	public boolean loadPageOrLocator(String pageName) {
+	
+	
+	
+	
+	
+	
+	//====================================================================================================
+	//===================            Move to Page.java                    ================================
+	//====================================================================================================
+	
+	public boolean loadPageLocators(String pageName) {
 		
 		// TODO add getLocatorsDir method to TestSettings .....
-		String locf_dir = System.getenv("LOCATOR_FILES_DIR");
+		String locf_dir = System.getenv("LOCATORS_DIR");
 		if (locf_dir == null) {
 			locf_dir = TestSettings.getResourcesDir() +  File.separator + "Locators" ;
 		}
 
 		// String objRepoFileName = locf_dir + File.separator + pageName + "_objrepo.csv";
-		String objRepoFileName = locf_dir + File.separator + pageName + ".csv";
+		String pageLocatorsFileName = locf_dir + File.separator + pageName + ".csv";
 		
-		log.info("Load locator objRepo for page=[" + pageName + "],  locators file=[" + objRepoFileName + "]");
-		File cfile = new File(objRepoFileName);
+		log.info("Load locator objRepo for page=[" + pageName + "],  locators file=[" + pageLocatorsFileName + "]");
+		File cfile = new File(pageLocatorsFileName);
 		if (cfile.exists()) {
 			if (debug_level > 1)
-				log.info("objRepoFileName=[" + objRepoFileName + "]");
+				log.info("objRepoFileName=[" + pageLocatorsFileName + "]");
 		} else {
-			String eMsg = "Error Loading pageORLocator: Can not find objRepoFileName=[" + objRepoFileName + "]";
+			String eMsg = "Error Loading pageORLocator: Can not find objRepoFileName=[" + pageLocatorsFileName + "]";
 			log.error(eMsg);
 			throw new RuntimeException(eMsg);
 		}
 		
-		pageORLocator = new ObjRepoLocator(objRepoFileName);
-		log.info("Locator loaded: objRepo for page=[" + pageName + "],  locators file=[" + objRepoFileName + "]");
+		pageORLocator = new ObjRepoLocator(pageLocatorsFileName);
+		log.info("Locator loaded: objRepo for page=[" + pageName + "],  locators file=[" + pageLocatorsFileName + "]");
 
 		return (true);
 	}
@@ -327,7 +358,7 @@ public class SFRPage extends Page {
 		log.debug("get URL=" + url);
 		browser.get(url);
 		waitForPageLoad();
-		// logic for validation for navigating to correct page ....
+		// TODO ... logic for validation for navigating to correct page ....
 
 		log.debug("Done get URL=" + url);
 
@@ -344,59 +375,9 @@ public class SFRPage extends Page {
 		return (we);
 	}
 
+
 	/**
-	 * Method to click a WebElement for locId and optionally wait for some
-	 * element to become visible. It also records as a transaction time between
-	 * these two events In interactive mode it will pop up a JOptionPane with
-	 * option to fix the issue
-	 * 
-	 * @param locId
-	 *            WebElement for locId to click.
-	 * @param locIdToWaitFor
-	 *            Element to wait to become visible - no wait it element is null
-	 * @param description
-	 *            Description about the action performed on the UI - Format ...
-	 *            TODO
-	 */
-	public void iClick_0(String locId, String locIdToWaitFor, String description) {
-		log.debug("\n**********************    iClickWithPopup " + description + "***************\n");
-		String iMsg = "";
-
-		WebElement we = null;
-		try {
-			iMsg = "Finding clickable WebElement: ";
-			we = L_testElementClickable(locId);
-
-			iMsg = "Click WebElement: " + we.toString() + ", innerHTML" + we.getText();
-			startTransaction(testName);
-			browserDependentClick(we);
-
-			iMsg = "Witing for PageLoadComplete: ";
-			waitforPageLoadComplete();
-
-			if (!(locIdToWaitFor == null)) {
-				iMsg = "waitForElement: ";
-				WebElement weToWaitFor = L_testElementVisible(locIdToWaitFor);
-			}
-			endTransaction(testName, description, null); // TODO record
-															// transaction as
-															// passed .....
-			log.debug("Successfully clicked " + description + "\n");
-			return;
-
-		} catch (Exception e) {
-			int nlevels = 4;
-			String ctrace = TestUtils.getExceptionCallTrace(e, nlevels);
-			String exMsg = "Click+Check Failed " + description + ": " + iMsg + e.getMessage(); // TODO
-																								// beautify
-																								// ......
-			String popUpMsg = "\nClicking on WebElement failed!\n" + iMsg + "\n" + description + "\n" + ctrace + "\n";
-			we_ErrorInteraction_PopUpCheck(popUpMsg, exMsg, description);
-		}
-	}
-	
-	
-	/**
+	 * Enter text into text box identified by the locator locId
 	 * @param locId
 	 * @param sText
 	 * @param transactionDescription
@@ -420,7 +401,7 @@ public class SFRPage extends Page {
 				
 				iSendKeysWithCheck(we, sText);
 				log.debug("Successfully entered text [" + sText  +  "], we=" + we) ;
-				highligntWE(we);
+				highlightWE(we);
 				return ;			
 			} catch (Exception e) {
 				String cMsg = "Failed to successfully enterText for  [" + locId + "] and check --- " ;
@@ -436,11 +417,13 @@ public class SFRPage extends Page {
 		}
 	}
 	
-	
-	
-	
 
 	/**
+	 * Method to click a WebElement for locId and optionally wait for some
+	 * element to become visible. It also records as a transaction time between
+	 * these two events.
+	 * In interactive mode it will pop up a JOptionPane with option to fix the issue.
+	 * 
 	 * @param locId
 	 * @param locIdToWaitFor
 	 * @param transactionDescription
@@ -553,7 +536,64 @@ public class SFRPage extends Page {
 
 	}
 
-	public void XX_enterText(String locId, String sText, String description) {
+	
+	
+	/**
+	 * Method to click a WebElement for locId and optionally wait for some
+	 * element to become visible. It also records as a transaction time between
+	 * these two events In interactive mode it will pop up a JOptionPane with
+	 * option to fix the issue
+	 * 
+	 * @param locId
+	 *            WebElement for locId to click.
+	 * @param locIdToWaitFor
+	 *            Element to wait to become visible - no wait it element is null
+	 * @param description
+	 *            Description about the action performed on the UI - Format ...
+	 *            TODO
+	 */
+	public void iClick_With_YN_Popup(String locId, String locIdToWaitFor, String description) {
+		log.debug("\n**********************    iClickWithPopup " + description + "***************\n");
+		String iMsg = "";
+
+		WebElement we = null;
+		try {
+			iMsg = "Finding clickable WebElement: ";
+			we = L_testElementClickable(locId);
+
+			iMsg = "Click WebElement: " + we.toString() + ", innerHTML" + we.getText();
+			startTransaction(testName);
+			browserDependentClick(we);
+
+			iMsg = "Witing for PageLoadComplete: ";
+			waitforPageLoadComplete();
+
+			if (!(locIdToWaitFor == null)) {
+				iMsg = "waitForElement: ";
+				WebElement weToWaitFor = L_testElementVisible(locIdToWaitFor);
+			}
+			endTransaction(testName, description, null); // TODO record
+															// transaction as
+															// passed .....
+			log.debug("Successfully clicked " + description + "\n");
+			return;
+
+		} catch (Exception e) {
+			int nlevels = 4;
+			String ctrace = TestUtils.getExceptionCallTrace(e, nlevels);
+			String exMsg = "Click+Check Failed " + description + ": " + iMsg + e.getMessage(); // TODO
+																								// beautify
+																								// ......
+			String popUpMsg = "\nClicking on WebElement failed!\n" + iMsg + "\n" + description + "\n" + ctrace + "\n";
+			we_ErrorInteraction_PopUpCheck(popUpMsg, exMsg, description);
+		}
+	}
+	
+
+	
+	
+	
+	public void enterText_With_YN_Popup(String locId, String sText, String description) {
 		log.debug("\n**********************    enterText locId=[" + locId + "]  ***************\n");
 		String iMsg = "";
 
@@ -564,7 +604,7 @@ public class SFRPage extends Page {
 			iMsg = "enterText WebElement: " + we.toString() + ", innerHTML" + we.getText();
 			iSendKeysWithCheck(we, sText);
 			log.debug("Successfully entered text [" + sText + "], we=" + we);
-			highligntWE(we);
+			highlightWE(we);
 			return;
 		} catch (Exception e) {
 			int nlevels = 4;
@@ -577,9 +617,14 @@ public class SFRPage extends Page {
 		}
 	}
 
-	public void highligntWE(WebElement we) {
+	public void highlightWE(WebElement we) {
 		JavascriptExecutor js = (JavascriptExecutor) browser;
 		js.executeScript("arguments[0].style.border='3px dotted blue'", we);
 	}
 
+	
+	
+	//====================================================================================================
+	//===================              to Page.java                    ================================
+	//====================================================================================================
 }
