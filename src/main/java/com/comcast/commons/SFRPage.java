@@ -390,7 +390,57 @@ public class SFRPage extends Page {
 			we_ErrorInteraction_PopUpCheck(popUpMsg, exMsg, description);
 		}
 	}
+	
+	
+	/**
+	 * @param locId
+	 * @param sText
+	 * @param transactionDescription
+	 */
+	public void enterText(String locId, String sText, String transactionDescription) {
+		log.debug("\n**********************    enterText locId=[" + locId + "]  ***************\n");
+		WebElement we = null;
+		boolean edone = false;
+		int tryCount = 0;
+		String iMsg = "" ;
+		String lstr = "??" ;
+		By lby  ;
+			
+		while (!edone) {
+			try {
+				lby =  pageORLocator.getObjRepoLocatorBy(locId) ;
+				lstr = pageORLocator.getObjRepoLocator(locId).loc_hash.get("locStr") ;
+				iMsg = "Finding WebElement to enter text: locId=[" + locId + "], locStr=[" + lstr  + "]  by=" + lby ;
+				log.trace(iMsg) ;
+				we = L_testElementClickable(locId) ;
+				
+				iSendKeysWithCheck(we, sText);
+				log.debug("Successfully entered text [" + sText  +  "], we=" + we) ;
+				highligntWE(we);
+				return ;			
+			} catch (Exception e) {
+				String cMsg = "Failed to success fully click [" + locId + "] and check --- " ;
+				int jopResp = 0 ;
+				jopResp =   locid_catchWithPopup(e, cMsg, iMsg) ;
+				if (jopResp > 0) {
+					return ;  // popup selection set to pass ....
+				}
+				tryCount++ ;
+				log.error("Retry enterText #" + tryCount);
+				// back to loop ..
+			}
+		}
+	}
+	
+	
+	
+	
 
+	/**
+	 * @param locId
+	 * @param locIdToWaitFor
+	 * @param transactionDescription
+	 */
 	public void iClick(String locId, String locIdToWaitFor, String transactionDescription) {
 		WebElement we = null;
 		boolean edone = false;
@@ -456,7 +506,7 @@ public class SFRPage extends Page {
 				 */
 
 				tryCount++;
-				log.error("Retry #" + tryCount);
+				log.error("Retry iClick #" + tryCount);
 				// back to loop ..
 
 			}
@@ -513,7 +563,7 @@ public class SFRPage extends Page {
 
 	}
 
-	public void enterText(String locId, String sText, String description) {
+	public void XX_enterText(String locId, String sText, String description) {
 		log.debug("\n**********************    enterText locId=[" + locId + "]  ***************\n");
 		String iMsg = "";
 
