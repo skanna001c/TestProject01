@@ -294,19 +294,19 @@ public class SFRPage extends Page {
 		return (true);
 	}
 
-	public static boolean setCheckBox(String chkId, int checkFlag) {
+	public static boolean isetCheckBox(String chkId, int checkFlag) {
 		return (true);
 	}
 
-	public static boolean clickRadioButton(String rbtnId) {
+	public static boolean iclickRadioButton(String rbtnId) {
 		return (true);
 	}
 
-	public static boolean selectDropDown(String ddId, String ddSelection) {
+	public static boolean iselectDropDown(String ddId, String ddSelection) {
 		return (true);
 	}
 
-	public static boolean enterCombo(String comboId, String entryValue) {
+	public static boolean ienterCombo(String comboId, String entryValue) {
 		return (true);
 	}
 
@@ -374,11 +374,18 @@ public class SFRPage extends Page {
 		return (true); // TODO raise exception on failure .....
 	}
 
-	/**
+	/**g
 	 * @param locId
 	 * @return
 	 */
-	protected WebElement testLocatorClickable(String locId) {
+	public WebElement testLocatorClickable(String locId) {
+		if (pageORLocator==null) {
+			String pgn = "PageName-Real??" ;
+			String eMsg = "Locators not loaded for parge [" + pgn + "]" ;
+			log.error(eMsg);
+			throw new RuntimeException(eMsg) ;		
+		}
+		
 		WebElement we = pageORLocator.waitLocatorClickable(browser, locId, iwaitTime);
 		return (we);
 	}
@@ -387,7 +394,14 @@ public class SFRPage extends Page {
 	 * @param locId
 	 * @return
 	 */
-	protected WebElement testLocatorVisible(String locId) {
+	public WebElement testLocatorVisible(String locId) {
+		if (pageORLocator==null) {
+			String pgn = "PageName-Real??" ;
+			String eMsg = "Locators not loaded for parge [" + pgn + "]" ;
+			log.error(eMsg);
+			throw new RuntimeException(eMsg) ;		
+		}
+		
 		WebElement we = pageORLocator.waitLocatorVisible(browser, locId, iwaitTime);
 		return (we);
 	}
