@@ -5,8 +5,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.comcast.commons.ComcastTest;
-import com.comcast.commons.SFRPage;
-import com.comcast.pages.GooglePage;
+import com.comcast.pages.TemplatePage;
 
 public class GoogleTest1 extends ComcastTest {
 	protected String testcaseName;
@@ -15,10 +14,10 @@ public class GoogleTest1 extends ComcastTest {
 	
 	static Logger log = Logger.getLogger(GoogleTest1.class.getName());
 	
-	GooglePage ggPage1  ;
+	TemplatePage templatePage  ;
 
 	@BeforeClass
-	public void beforeTest() {
+	public void beforeClassMethod() {
 		// loadData();
 		log.debug("beforeTest called by @BeforeClass");
 		testcaseName = frameworkContext.getTestCaseName();
@@ -31,8 +30,8 @@ public class GoogleTest1 extends ComcastTest {
 
 		try {
 			log.debug("New google page ....");
-			ggPage1 = new GooglePage(frameworkContext);
-		    ggPage1.launch();
+			templatePage = new TemplatePage(frameworkContext);
+		    templatePage.launch();
 
 		} catch (Exception e) {
 			String eMsg = "Test Failed --- " + e.getMessage() ;
@@ -52,7 +51,7 @@ public class GoogleTest1 extends ComcastTest {
 
 		try {
 			log.debug("Do google search");
-			ggPage1.google_search();
+			templatePage.googleSearch();
 
 		} catch (Exception e) {
 			String eMsg = "Test Failed --- " + e.getMessage() ;
@@ -75,10 +74,10 @@ public class GoogleTest1 extends ComcastTest {
 			log.debug("Do google search  with error1");
 			
 			log.debug("New google page ....");
-			ggPage1 = new GooglePage(frameworkContext);
-		    ggPage1.launch();
+			templatePage = new TemplatePage(frameworkContext);
+		    templatePage.launch();
 			
-			ggPage1.google_search_err();
+			templatePage.googleSearchError();;
 
 		} catch (Exception e) {
 			String eMsg = "Test Failed --- " + e.getMessage() ;

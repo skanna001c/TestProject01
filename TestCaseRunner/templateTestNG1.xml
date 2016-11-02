@@ -6,11 +6,12 @@
 		<listener class-name="com.comcast.utils.CustomAnnotationListener"></listener>
 	</listeners>
 
-	<test name="tc004_verifyCoachingRelationshipForDirectProfiles">
+	<test name="testng_test_templatetest1">
 		<classes>
-			<class name="com.comcast.template.Mod1_PriorityCases">
+			<class name="com.comcast.template.TemplateTest1">
 				<methods>
-					<include name="tc004_verifyCoachingRelationshipForDirectProfiles" />
+					<include name="sampleTestMethod1" />
+					<include name="sampleTestMethod2" />
 				</methods>
 			</class>
 		</classes>

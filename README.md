@@ -1,4 +1,4 @@
-# CenturyEnterprise_Selenium
+# Selenium_Template
 Selenium Template Code base for other projects
 with TestNG Framework
 

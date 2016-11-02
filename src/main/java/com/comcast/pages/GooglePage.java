@@ -5,10 +5,10 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 
-import com.comcast.commons.SFRPage;
+import com.comcast.commons.ApplicationPage;
 import com.comcast.utils.ComcastTestMain.FrameworkContext;
 
-public class GooglePage extends SFRPage {
+public class GooglePage extends ApplicationPage {
 
 	Logger log = Logger.getLogger(GooglePage.class);
 

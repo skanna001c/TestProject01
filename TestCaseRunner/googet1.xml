@@ -6,12 +6,12 @@
 		<listener class-name="com.comcast.utils.CustomAnnotationListener"></listener>
 	</listeners>
 
-	<test name="testng_test_googletest1">
+	<test name="testng_test_templatetest1">
 		<classes>
-			<class name="com.comcast.template.GoogleTest1">
+			<class name="com.comcast.template.TemplateTest1">
 				<methods>
-					<include name="google_T1" />
-					<include name="google_T2" />
+					<include name="sampleTestMethod1" />
+					<include name="sampleTestMethod2" />
 				</methods>
 			</class>
 		</classes>
