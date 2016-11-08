@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 
 import com.comcast.commons.ApplicationPage;
 import com.comcast.reporting.SeleniumReport;
+import com.comcast.transactions.MetricsCollector;
 import com.comcast.utils.ComcastTestMain.FrameworkContext;
 import com.comcast.utils.DataTable;
 
@@ -74,9 +75,12 @@ public class TemplatePage extends ApplicationPage {
 		String gurl = "https://google.com";
 		String titleCheckStr = "google";
 		int tmOutSec = 10;
+		MetricsCollector mc = new MetricsCollector();
 
 		try {
+			mc.clearResourceTiming(browser);
 			go(gurl, titleCheckStr, tmOutSec);
+			mc.collectPerformanceData("Google test transaction", browser);
 		} catch (Exception e) {
 			String eMsg = "launch Failed: " + e.getMessage();
 			log.error(eMsg);
