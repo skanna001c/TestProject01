@@ -20,7 +20,6 @@ import com.comcast.utils.ComcastTestMain;
  */
 public class ComcastTest extends ComcastTestMain {
 
-	Application application;
 	static Logger log = Logger.getLogger(ComcastTest.class);
 
 	@BeforeClass
@@ -30,14 +29,11 @@ public class ComcastTest extends ComcastTestMain {
 	@BeforeTest
 	public void beforeTestApplication(ITestContext context) {
 		log.debug("@BeforeTest beforeTestApplication()");
-		application = new Application(frameworkContext);
 	}
 
 	@BeforeMethod
 	public synchronized void setupDataApplication(Method testName) {
-		log.debug("@BeforeMethod - setupDataApplication -  In ComcastTest method :" + testName.getName());
-		// If login is required only once during test. Implement below method
-		// application.beforeMethodGetUserndURL(testName);
+		log.debug("@BeforeMethod - setupDataApplication -  In ComcastTest method :" + testName.getName());		
 	}
 
 	@AfterMethod
