@@ -15,12 +15,14 @@
 		<!-- <suiteXmlFile>testng.xml</suiteXmlFile> -->
 	</properties>
 
-
-
-
-
 	<dependencies>
-		
+
+		<dependency>
+			<groupId>com.comcast.logging</groupId>
+			<artifactId>transactions</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
@@ -72,7 +74,6 @@
 			<version>2.53.1</version>
 		</dependency>
 
-
 		<dependency>
 			<groupId>org.reflections</groupId>
 			<artifactId>reflections</artifactId>
@@ -82,6 +83,38 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.16</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+			<version>3.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-scratchpad</artifactId>
+			<version>3.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>ooxml-schemas</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>openxml4j</artifactId>
+			<version>1.0-beta</version>
 		</dependency>
 
 	</dependencies>
@@ -110,13 +143,9 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.19.1</version>
 				<configuration>
-					<!-- Suite testng xml file to consider for test execution -->
-					<suiteXmlFiles>
-						<suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
-						<!-- <suiteXmlFile>suites-test-testng.xml</suiteXmlFile> -->
-					</suiteXmlFiles>
-					<parallel>tests</parallel>
-					<threadCount>2</threadCount>
+					<skipTests>true</skipTests>
+					<!-- <suiteXmlFiles> <suiteXmlFile>${suiteXmlFile}</suiteXmlFile> </suiteXmlFiles> 
+						<parallel>tests</parallel> <threadCount>2</threadCount> -->
 				</configuration>
 			</plugin>
 
