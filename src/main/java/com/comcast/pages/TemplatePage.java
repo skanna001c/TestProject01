@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 
 import com.comcast.commons.ApplicationPage;
 import com.comcast.reporting.SeleniumReport;
+import com.comcast.transactions.MetricsCollector;
 import com.comcast.utils.ComcastTestMain.FrameworkContext;
 import com.comcast.utils.DataTable;
 
