@@ -75,12 +75,9 @@ public class TemplatePage extends ApplicationPage {
 		String gurl = "https://google.com";
 		String titleCheckStr = "google";
 		int tmOutSec = 10;
-		MetricsCollector mc = new MetricsCollector();
 
 		try {
-			mc.clearResourceTiming(browser);
 			go(gurl, titleCheckStr, tmOutSec);
-			mc.collectPerformanceData("Google test transaction", browser);
 		} catch (Exception e) {
 			String eMsg = "launch Failed: " + e.getMessage();
 			log.error(eMsg);

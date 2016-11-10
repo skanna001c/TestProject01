@@ -63,7 +63,7 @@ public class LogInPage extends Page {
 			txtPassword.click();
 			txtPassword.sendKeys(password);
 			report.reportDoneEvent("Enter password", "Entered password as-> " + password.replaceAll(".", "*"));
-			report.updateTestLog("Enter Login Details", "Login Details Entered", Status.SCREENSHOT);
+			report.reportDoneEvent("Enter Login Details", "Login Details Entered", Status.SCREENSHOT);
 
 			if (isElementPresent(btnLogin)) {
 				iClick(btnLogin, null, "Click on Login button: Login page: LoginButton");

@@ -67,7 +67,7 @@ public class Application {
 		}
 
 		(new LogInPage(frameworkContext)).applicationLogin(userName, password, this.domain);
-		report.updateTestLog("Application launch", "Application has been launched", Status.SCREENSHOT);
+		report.reportPassEvent("Application launch", "Application has been launched", Status.PASS);
 
 	}
 
