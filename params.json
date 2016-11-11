@@ -1,6 +1,6 @@
 {
   "name": "Selenium template",
   "tagline": "",
-  "body": "# Selenium_Template\r\nSelenium Template Code base for other projects\r\nwith TestNG Framework\r\n\r\nFor information on the codebase please contact the team on the following slack channel\r\nhttps://cim.slack.com/archives/centuryautomation\r\n\r\nSteps to Clone the Selenium template:\r\n1.Create a new empty repository in github\r\n2.git clone --bare \"URL of parent repository to be cloned\"\r\n3.git push --mirror \"URL of new repository\"\r\n",
+  "body": "# Selenium_Template\r\nSelenium Template Code base for other projects\r\nwith TestNG Framework\r\n\r\nFor information on the codebase please contact the team on the following slack channel\r\nhttps://cim.slack.com/archives/centuryautomation\r\n\r\nSteps to Clone the Selenium template:\r\n* Create a new empty repository in github\r\n* git clone --bare \"URL of parent repository to be cloned\"\r\n* git push --mirror \"URL of new repository\"\r\n",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
