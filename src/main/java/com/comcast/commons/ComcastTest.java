@@ -20,7 +20,6 @@ import com.comcast.utils.ComcastTestMain;
  */
 public class ComcastTest extends ComcastTestMain {
 
-	Application application;
 	static Logger log = Logger.getLogger(ComcastTest.class);
 
 	@BeforeClass
@@ -30,7 +29,6 @@ public class ComcastTest extends ComcastTestMain {
 	@BeforeTest
 	public void beforeTestApplication(ITestContext context) {
 		log.debug("@BeforeTest beforeTestApplication()");
-		application = new Application(frameworkContext);
 	}
 
 	@BeforeMethod
