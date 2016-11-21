@@ -4,3 +4,8 @@ with TestNG Framework
 
 For information on the codebase please contact the team on the following slack channel
 https://cim.slack.com/archives/centuryautomation
+
+Steps to Clone the Selenium template:
+1.Create a new empty repository in github
+2.git clone --bare "URL of parent repository to be cloned"
+3.git push --mirror "URL of new repository"
