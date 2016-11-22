@@ -166,8 +166,14 @@
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
-					
+					<skip>false</skip>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins </groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.0.2</version>
 			</plugin>
 
 			<plugin>
@@ -182,7 +188,7 @@
 						<phase>package</phase>
 						<goals>
 							<goal>single</goal>
-						</goals>						
+						</goals>
 					</execution>
 				</executions>
 			</plugin>
@@ -197,6 +203,10 @@
 			<resource>
 				<directory>${project.basedir}/src/test/resources</directory>
 			</resource>
+			<resource>
+				<directory>${project.basedir}/src/main/resources</directory>
+			</resource>
+
 		</resources>
 
 	</build>
