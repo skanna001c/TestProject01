@@ -198,6 +198,35 @@
 				<version>2.10</version>
 			</plugin>
 
+			<plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>test pom</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy-file</goal>
+						</goals>
+						<configuration>
+							<artifactId>selenium_template</artifactId>
+							<packaging>jar</packaging>
+							<version>${project.version}</version>
+							<groupId>com.comcast.template</groupId>
+							<classifier>test</classifier>
+							<file>
+								target/selenium_template-${project.version}-tests.jar
+							</file>
+							<pomFile>
+								pom.xml
+							</pomFile>
+							<url>
+								https://nexus.comcast.com/nexus/content/repositories/hosted-century-snapshots/
+							</url>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 		<resources>
 			<resource>
