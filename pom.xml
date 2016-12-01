@@ -212,7 +212,7 @@
 							<packaging>jar</packaging>
 							<version>${project.version}</version>
 							<groupId>com.comcast.template</groupId>
-							<classifier>test</classifier>
+							<classifier>tests</classifier>
 							<file>
 								target/selenium_template-${project.version}-tests.jar
 							</file>
