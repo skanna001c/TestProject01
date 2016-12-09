@@ -29,6 +29,8 @@ public class ComcastTest extends ComcastTestMain {
 	@BeforeTest
 	public void beforeTestApplication(ITestContext context) {
 		log.debug("@BeforeTest beforeTestApplication()");
+		Application application = new Application(frameworkContext);
+		application.applicationLogin();
 	}
 
 	@BeforeMethod
