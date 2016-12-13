@@ -102,12 +102,12 @@
 		<server>
 			<id>century-releases</id>
 			<username>century-nexus-user</username>
-			<password>comcast1</password>
+			<password></password>
 		</server>
 		<server>
 			<id>century-snapshots</id>
 			<username>century-nexus-user</username>
-			<password>comcast1</password>
+			<password></password>
 		</server>
 	</servers>
 
