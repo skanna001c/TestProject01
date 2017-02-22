@@ -18,12 +18,6 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>com.comcast.logging</groupId>
-			<artifactId>transactions</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.5.2</version>
@@ -38,47 +32,9 @@
 		<dependency>
 			<groupId>com.comcast.selenium</groupId>
 			<artifactId>framework-core</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
+			<version>1.2-SNAPSHOT</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>6.9.8</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-firefox-driver</artifactId>
-			<version>2.53.1</version>
-			<exclusions>
-				<exclusion>
-					<groupId>com.google.guava</groupId>
-					<artifactId>guava</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-chrome-driver</artifactId>
-			<version>2.53.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-server-standalone</artifactId>
-			<version>2.48.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version> 2.53.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-ie-driver</artifactId>
-			<version>2.53.1</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.reflections</groupId>
@@ -97,37 +53,6 @@
 			<version>1.2.16</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>3.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>3.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml-schemas</artifactId>
-			<version>3.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-scratchpad</artifactId>
-			<version>3.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>ooxml-schemas</artifactId>
-			<version>1.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>openxml4j</artifactId>
-			<version>1.0-beta</version>
-		</dependency>
 
 	</dependencies>
 
@@ -156,8 +81,8 @@
 				<version>2.19.1</version>
 				<configuration>
 					<skipTests>true</skipTests>
-					<!-- <suiteXmlFiles> <suiteXmlFile>${suiteXmlFile}</suiteXmlFile> </suiteXmlFiles> 
-						<parallel>tests</parallel> <threadCount>2</threadCount> -->
+					<suiteXmlFiles> <suiteXmlFile>${suiteXmlFile}</suiteXmlFile> </suiteXmlFiles> 
+						<parallel>tests</parallel> <threadCount>2</threadCount>
 				</configuration>
 			</plugin>
 
@@ -173,25 +98,27 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins </groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.0.2</version>
+				<version>2.6</version>
 			</plugin>
-
+			
 			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.3</version>
-				<configuration>
-					<descriptor>assembly.xml</descriptor>
-				</configuration>
-				<executions>
-					<execution>
-						<id>make-assembly</id>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <descriptor>src/main/assembly/assembly.xml</descriptor>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>                            
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
 			<plugin>
 				<artifactId>maven-dependency-plugin</artifactId>
