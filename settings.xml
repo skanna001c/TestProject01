@@ -1,4 +1,24 @@
 <settings xmlns="http://maven.apache.org/POM/4.0.0">
+<mirrors>
+	<mirror>
+		<id>century-releases</id>
+		<mirrorOf>century-releases</mirrorOf>
+		<url>https://nexus.comcast.com/nexus/content/repositories/hosted-century-releases/
+		</url>
+	</mirror>	
+	<mirror>
+		<id>century-snapshots</id>
+		<mirrorOf>century-snapshots</mirrorOf>
+		<url>https://nexus.comcast.com/nexus/content/repositories/hosted-century-snapshots/
+		</url>
+	</mirror>
+	<mirror>
+		<id>nexus-public</id>
+		<mirrorOf>nexus-public</mirrorOf>
+		<url>http://nexus.cvs.ula.comcast.net:8081/nexus/content/groups/public/
+		</url>
+	</mirror>
+</mirrors> 
 	<profiles>
 		<profile>
 			<id>nexus</id>
@@ -96,9 +116,7 @@
 			<port>8118</port>
 			<nonProxyHosts>192.168.100.*</nonProxyHosts>
 		</proxy>
-	</proxies>
-	
-   
+	</proxies>   
 
 	<servers>
 		<server>
