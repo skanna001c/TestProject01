@@ -14,39 +14,39 @@ import org.testng.annotations.BeforeTest;
 import com.comcast.utils.ComcastTestMain;
 
 /**
- * Base class for all Comcast Test
+ * Base class for all Tests. Extend all test cases with this class or its
+ * derivative
+ * 
  * @author hbolak01c
  *
  */
 public class ComcastTest extends ComcastTestMain {
 
-	static Logger log = Logger.getLogger(ComcastTest.class);
+    static Logger log = Logger.getLogger(ComcastTest.class);
 
-	@BeforeClass
-	public void beforeClassMethod() {
-	}
+    @BeforeClass
+    public void beforeClassMethod() {
+    }
 
-	@BeforeTest
-	public void beforeTestApplication(ITestContext context) {
-		log.debug("@BeforeTest beforeTestApplication()");
-		Application application = new Application(frameworkContext);
-		application.applicationLogin();
-	}
+    @BeforeTest
+    public void beforeTestApplication(ITestContext context) {
+	log.debug("@BeforeTest beforeTestApplication()");
+    }
 
-	@BeforeMethod
-	public synchronized void setupDataApplication(Method testName) {
-		log.debug("@BeforeMethod - setupDataApplication -  In ComcastTest method :" + testName.getName());		
-	}
+    @BeforeMethod
+    public synchronized void setupDataApplication(Method testName) {
+	log.debug("@BeforeMethod - setupDataApplication -  In ComcastTest method :" + testName.getName());
+    }
 
-	@AfterMethod
-	public synchronized void endMethodApplication(ITestResult result) {
-		log.debug("@AfterMethod beforeTestApplication()");
-	}
+    @AfterMethod
+    public synchronized void endMethodApplication(ITestResult result) {
+	log.debug("@AfterMethod beforeTestApplication()");
+    }
 
-	@AfterTest(alwaysRun = true)
-	public synchronized void afterTestApplication() {
-		log.debug("@AfterTest afterTestApplication()");
-		// Implement below method, if browser needs to closed after test
-		//browser.quit();
-	}
+    @AfterTest(alwaysRun = true)
+    public synchronized void afterTestApplication() {
+	log.debug("@AfterTest afterTestApplication()");
+	// Implement below method, if browser needs to closed after test
+	//browser.quit();
+    }
 }

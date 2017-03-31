@@ -19,8 +19,6 @@ public class TemplateLoginPage extends ApplicationPage {
 	FrameworkContext context;
 	DataTable dataSet;
 
-	// Needed only for intellisense completion and avoiding spelling errors and
-	// use with reflection for audit ....
 	/**
 	 * @author ohegde001c
 	 *
