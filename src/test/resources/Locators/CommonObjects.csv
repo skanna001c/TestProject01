@@ -1,0 +1,3 @@
+locId,locType,locStr,weType,Description
+#This is an example,,,,
+srchText,xpath,"//a[contains(@onmousedown, 'searchResultClick')]",search box,"Search box in header, visible in all pages"
