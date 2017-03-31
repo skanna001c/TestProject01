@@ -121,8 +121,10 @@ public class TemplatePage extends ApplicationPage {
 	 */
 	public boolean minimalViablelaunch() {
 		boolean methodStatus = false;
-		
-				
+		String gurl = "https://google.com";
+		String titleCheckStr = "google";
+		int tmOutSec = 10;
+		methodStatus = go(gurl, titleCheckStr, tmOutSec);	
 		return methodStatus;
 	}
 
