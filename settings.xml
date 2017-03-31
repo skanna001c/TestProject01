@@ -1,0 +1,134 @@
+<settings xmlns="http://maven.apache.org/POM/4.0.0">
+<mirrors>
+	<mirror>
+		<id>century-releases</id>
+		<mirrorOf>century-releases</mirrorOf>
+		<url>https://nexus.comcast.com/nexus/content/repositories/hosted-century-releases/
+		</url>
+	</mirror>	
+	<mirror>
+		<id>century-snapshots</id>
+		<mirrorOf>century-snapshots</mirrorOf>
+		<url>https://nexus.comcast.com/nexus/content/repositories/hosted-century-snapshots/
+		</url>
+	</mirror>
+	<mirror>
+		<id>nexus-public</id>
+		<mirrorOf>nexus-public</mirrorOf>
+		<url>http://nexus.cvs.ula.comcast.net:8081/nexus/content/groups/public/
+		</url>
+	</mirror>
+</mirrors> 
+	<profiles>
+		<profile>
+			<id>nexus</id>
+			<repositories>
+			
+			<repository>
+					<id>century-snapshots</id>
+					<url>https://nexus.comcast.com/nexus/content/repositories/hosted-century-snapshots/
+					</url>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+			
+			<repository>
+					<id>century-releases</id>
+					<url>https://nexus.comcast.com/nexus/content/repositories/hosted-century-releases/
+					</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</repository>
+				
+				
+				<repository>
+					<id>nexus-public</id>
+					<url>http://nexus.cvs.ula.comcast.net:8081/nexus/content/groups/public/
+					</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+				<repository>
+					<id>cats-releases</id>
+					<url>http://nexus.cvs.ula.comcast.net:8081/nexus/content/repositories/cats-releases/
+					</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</repository>
+	
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>nexus-public-plugins</id>
+					<url>http://nexus.cvs.ula.comcast.net:8081/nexus/content/groups/public/
+					</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</pluginRepository>
+				<pluginRepository>
+					<id>nexus-public-plugins</id>
+					<url>https://nexus.comcast.com/nexus/content/groups/public/
+					</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+	</profiles>
+
+
+
+	<activeProfiles>
+		<activeProfile>nexus</activeProfile>
+	</activeProfiles>
+
+
+	<!--Activate this if you are not in Comcast corporate network -->
+	<proxies>
+		<proxy>
+			<active>false</active>
+			<protocol>http</protocol>
+			<host>10.252.141.77</host>
+			<port>8118</port>
+			<nonProxyHosts>192.168.100.*</nonProxyHosts>
+		</proxy>
+	</proxies>   
+
+	<servers>
+		<server>
+			<id>century-releases</id>
+			<username></username>
+			<password></password>
+		</server>
+		<server>
+			<id>century-snapshots</id>
+			<username></username>
+			<password></password>
+		</server>
+	</servers>
+
+</settings>
