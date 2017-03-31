@@ -116,4 +116,14 @@ public class TemplatePage extends ApplicationPage {
 		sleep(5000);
 	}
 
+	/**
+	 * 
+	 */
+	public boolean minimalViablelaunch() {
+		boolean methodStatus = false;
+		
+				
+		return methodStatus;
+	}
+
 }

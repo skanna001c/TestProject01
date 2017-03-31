@@ -83,4 +83,12 @@ public class TemplateTest1 extends ComcastTest {
 		log.debug("Test method - sampleTestMethod3: Complete \n\n\n");
 	}
 	
+	@Test(priority = 400)
+	public void minimalViableTest(){
+		log.debug("in Test method");
+		templatePage = new TemplatePage(frameworkContext);
+	    templatePage.minimalViablelaunch();			
+
+	}
+	
 }
