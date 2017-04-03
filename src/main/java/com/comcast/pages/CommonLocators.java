@@ -11,5 +11,5 @@ package com.comcast.pages;
 public class CommonLocators {
 
     // Eg:
-    // public static final String txtUserName = "txtUserName";
+    // public static final String srchText = "srchText";
 }

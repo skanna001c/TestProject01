@@ -56,14 +56,16 @@
 				<version>2.19.1</version>
 				<configuration>
 					<skipTests>true</skipTests>
-					<suiteXmlFiles> <suiteXmlFile>${suiteXmlFile}</suiteXmlFile> </suiteXmlFiles> 
-						<parallel>tests</parallel> <threadCount>2</threadCount>
+					<suiteXmlFiles>
+						<suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+					</suiteXmlFiles>
+					<parallel>tests</parallel>
+					<threadCount>2</threadCount>
 				</configuration>
 			</plugin>
 
-		<!-- If eclipse is giving compilation error here,
-		     please select the quick fix option to 
-		     "Permanently mark goal in pom.xml as ignored in eclipse build" -->		
+			<!-- If eclipse is giving compilation error here, please select the quick 
+				fix option to "Permanently mark goal in pom.xml as ignored in eclipse build" -->
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
@@ -122,25 +124,25 @@
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.6</version>
 			</plugin>
-			
+
 			<plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.3</version>
-                <configuration>
-                    <descriptor>src/main/assembly/assembly.xml</descriptor>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>                            
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<descriptor>src/main/assembly/assembly.xml</descriptor>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 
 			<plugin>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -206,6 +208,83 @@
 			</build>
 		</profile>
 	</profiles>
+
+	<repositories>
+
+		<repository>
+			<id>century-snapshots</id>
+			<url>https://nexus.comcast.com/nexus/content/repositories/hosted-century-snapshots/
+					</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>century-releases</id>
+			<url>https://nexus.comcast.com/nexus/content/repositories/hosted-century-releases/
+					</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+
+		<repository>
+			<id>nexus-public</id>
+			<url>http://nexus.cvs.ula.comcast.net:8081/nexus/content/groups/public/
+					</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>cats-releases</id>
+			<url>http://nexus.cvs.ula.comcast.net:8081/nexus/content/repositories/cats-releases/
+					</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus-public-plugins</id>
+			<url>http://nexus.cvs.ula.comcast.net:8081/nexus/content/groups/public/
+					</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>nexus-public-plugins</id>
+			<url>https://nexus.comcast.com/nexus/content/groups/public/
+					</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
 </project>
 
 
