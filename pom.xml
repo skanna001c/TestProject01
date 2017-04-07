@@ -273,7 +273,7 @@
 			</snapshots>
 		</pluginRepository>
 		<pluginRepository>
-			<id>nexus-public-plugins</id>
+			<id>nexus-public-plugins2</id>
 			<url>https://nexus.comcast.com/nexus/content/groups/public/
 					</url>
 			<releases>
