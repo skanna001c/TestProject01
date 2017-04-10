@@ -146,7 +146,7 @@ public abstract class ApplicationPage extends Page {
 		super.iSelectValue(locId, strVal);
 	}
 
-	public void iSelectValue(String locId) throws InterruptedException {
+	public void iSelectValue(String locId) {
 		if (pInteractive && (highlightUI > 0)) {
 			WebElement we = this.verifyLocatorVisible(locId);
 			if (we != null) {
