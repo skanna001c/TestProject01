@@ -1,6 +1,7 @@
 package com.comcast.pages;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebElement;
 
 import com.comcast.commons.ApplicationPage;
 import com.comcast.reporting.SeleniumReport;
@@ -60,6 +61,44 @@ public class TemplatePage extends ApplicationPage {
 	@Override
 	protected void waitForPageLoad() {
 	}
+	
+	
+	/**
+	 * Method to check the Default cursor position once the Search Page is
+	 * loaded
+	 * 
+	 * Following standards must be followed while writing the page methods:
+	 * 
+	 * 1. Should return boolean value of page method status
+	 * 2. Should have log.trace("Start") in the beginning 
+	 * 3. Should have log.trace("End") at the end
+	 * 4. Should catch any runtime Exceptions and subsequently throw them to test method with appropriate message(Eg. eMsg)
+	 * 5. Typical page method should not exceed 30 lines. Use helper methods to add re-usability
+	 * 6. Use appropriate log.trace method to log contextual information in conditionals and iterations
+	 * 7. Make use of recommended Page.java methods for web element interactions (To see a list all available Page methods, Press Ctrl + Space)
+	 * 8. Commonly used methods across all pages must be moved to ApplicationPage.java
+     *
+	 * @return status
+	 */
+	public boolean templatePageMethod() {
+		log.trace("Start");
+		boolean isActiveElement = false;
+		try {
+			// Dummy method
+			WebElement we = testLocatorVisible(Locators.txtSearch);
+			isActiveElement = we.equals(browser.switchTo().activeElement());
+			iReport(Locators.txtSearch, "Default cursor position on Search Screen",
+					"Verifying default cursor position is on Universal search bar", isActiveElement);
+		} catch (Exception e) {
+			String eMsg = "templatePageMethod() Error: --- " + e.getMessage();
+			log.error(eMsg);
+			throw new RuntimeException(eMsg);
+		}
+		log.trace("End");
+		
+		return isActiveElement;
+	}
+	
 
 	/**
 	 * Your page methods start here. Add all required methods for this page.
@@ -89,13 +128,13 @@ public class TemplatePage extends ApplicationPage {
 		String srchStr = dataSet.getValue("Search_String");
 
 		try {
-			enterText(Locators.txtSearch, srchStr, "Enter Search Text");
+			iEnterText(Locators.txtSearch, srchStr, "Enter Search Text");
 			iClick(Locators.btnSubmit, null, "Search Button");
 			report.reportPassEvent("clickSearchButton", "Google search was succesfull");
 		} catch (Exception e) {
 			String eMsg = "Search Failed: " + e.getMessage();
 			log.error(eMsg);
-			report.reportFailEvent("clickSearchButton", "Google search was not succesfull");
+			report.reportSoftFailEvent("clickSearchButton", "Google search was not succesfull");
 			throw new RuntimeException(eMsg);
 		}
 	}
@@ -104,13 +143,13 @@ public class TemplatePage extends ApplicationPage {
 		String srchStr = dataSet.getValue("Search_String");
 
 		try {
-			enterText(Locators.XXtxtSearch, srchStr, "Enter Search Text");
+			iEnterText(Locators.XXtxtSearch, srchStr, "Enter Search Text");
 			iClick(Locators.XXbtnSubmit, null, "Search Button");
 			report.reportPassEvent("clickSearchButton", "Google search was successful");
 		} catch (Exception e) {
 			String eMsg = "Search Failed: " + e.getMessage();
 			log.error(eMsg);
-			report.reportFailEvent("clickSearchButton", "Google search was not successful");
+			report.reportSoftFailEvent("clickSearchButton", "Google search was not successful");
 			throw new RuntimeException(eMsg);
 		}
 		sleep(5000);
